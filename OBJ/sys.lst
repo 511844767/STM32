@@ -1,0 +1,184 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccOhE9x2.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"sys.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "SYSTEM/sys/sys.c"
+  18              		.section	.text.WFI_SET,"ax",%progbits
+  19              		.align	1
+  20              		.global	WFI_SET
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	WFI_SET:
+  26              	.LFB29:
+   1:SYSTEM/sys/sys.c **** #include "sys.h"
+   2:SYSTEM/sys/sys.c **** 
+   3:SYSTEM/sys/sys.c **** //////////////////////////////////////////////////////////////////////////////////	 
+   4:SYSTEM/sys/sys.c **** //������ֻ��ѧϰʹ�ã�δ���������ɣ���������
+   5:SYSTEM/sys/sys.c **** //ALIENTEK  STM32������
+   6:SYSTEM/sys/sys.c **** //ϵͳ�жϷ������û�		   
+   7:SYSTEM/sys/sys.c **** //����ԭ��@ALIENTEK
+   8:SYSTEM/sys/sys.c **** //������̳:www.openedv.com
+   9:SYSTEM/sys/sys.c **** //�޸�����:2012/9/10
+  10:SYSTEM/sys/sys.c **** //�汾��V1.4
+  11:SYSTEM/sys/sys.c **** //��Ȩ���У�����ؾ���
+  12:SYSTEM/sys/sys.c **** //Copyright(C) ����ԭ�� 2009-2019
+  13:SYSTEM/sys/sys.c **** //All rights reserved
+  14:SYSTEM/sys/sys.c **** //********************************************************************************  
+  15:SYSTEM/sys/sys.c **** //THUMBָ�֧�ֻ������
+  16:SYSTEM/sys/sys.c **** //�������·���ʵ��ִ�л��ָ��WFI  
+  17:SYSTEM/sys/sys.c **** void WFI_SET(void)
+  18:SYSTEM/sys/sys.c **** {
+  27              		.loc 1 18 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  19:SYSTEM/sys/sys.c **** 	__ASM volatile("wfi");		  
+  32              		.loc 1 19 2 view .LVU1
+  33              		.syntax unified
+  34              	@ 19 "SYSTEM/sys/sys.c" 1
+  35 0000 30BF     		wfi
+  36              	@ 0 "" 2
+  20:SYSTEM/sys/sys.c **** }
+  37              		.loc 1 20 1 is_stmt 0 view .LVU2
+  38              		.thumb
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccOhE9x2.s 			page 2
+
+
+  39              		.syntax unified
+  40 0002 7047     		bx	lr
+  41              		.cfi_endproc
+  42              	.LFE29:
+  44              		.section	.text.INTX_DISABLE,"ax",%progbits
+  45              		.align	1
+  46              		.global	INTX_DISABLE
+  47              		.syntax unified
+  48              		.thumb
+  49              		.thumb_func
+  51              	INTX_DISABLE:
+  52              	.LFB30:
+  21:SYSTEM/sys/sys.c **** //�ر������ж�
+  22:SYSTEM/sys/sys.c **** void INTX_DISABLE(void)
+  23:SYSTEM/sys/sys.c **** {		  
+  53              		.loc 1 23 1 is_stmt 1 view -0
+  54              		.cfi_startproc
+  55              		@ args = 0, pretend = 0, frame = 0
+  56              		@ frame_needed = 0, uses_anonymous_args = 0
+  57              		@ link register save eliminated.
+  24:SYSTEM/sys/sys.c **** 	__ASM volatile("cpsid i");
+  58              		.loc 1 24 2 view .LVU4
+  59              		.syntax unified
+  60              	@ 24 "SYSTEM/sys/sys.c" 1
+  61 0000 72B6     		cpsid i
+  62              	@ 0 "" 2
+  25:SYSTEM/sys/sys.c **** }
+  63              		.loc 1 25 1 is_stmt 0 view .LVU5
+  64              		.thumb
+  65              		.syntax unified
+  66 0002 7047     		bx	lr
+  67              		.cfi_endproc
+  68              	.LFE30:
+  70              		.section	.text.INTX_ENABLE,"ax",%progbits
+  71              		.align	1
+  72              		.global	INTX_ENABLE
+  73              		.syntax unified
+  74              		.thumb
+  75              		.thumb_func
+  77              	INTX_ENABLE:
+  78              	.LFB31:
+  26:SYSTEM/sys/sys.c **** //���������ж�
+  27:SYSTEM/sys/sys.c **** void INTX_ENABLE(void)
+  28:SYSTEM/sys/sys.c **** {
+  79              		.loc 1 28 1 is_stmt 1 view -0
+  80              		.cfi_startproc
+  81              		@ args = 0, pretend = 0, frame = 0
+  82              		@ frame_needed = 0, uses_anonymous_args = 0
+  83              		@ link register save eliminated.
+  29:SYSTEM/sys/sys.c **** 	__ASM volatile("cpsie i");		  
+  84              		.loc 1 29 2 view .LVU7
+  85              		.syntax unified
+  86              	@ 29 "SYSTEM/sys/sys.c" 1
+  87 0000 62B6     		cpsie i
+  88              	@ 0 "" 2
+  30:SYSTEM/sys/sys.c **** }
+  89              		.loc 1 30 1 is_stmt 0 view .LVU8
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccOhE9x2.s 			page 3
+
+
+  90              		.thumb
+  91              		.syntax unified
+  92 0002 7047     		bx	lr
+  93              		.cfi_endproc
+  94              	.LFE31:
+  96              		.section	.text.MSR_MSP,"ax",%progbits
+  97              		.align	1
+  98              		.global	MSR_MSP
+  99              		.syntax unified
+ 100              		.thumb
+ 101              		.thumb_func
+ 103              	MSR_MSP:
+ 104              	.LVL0:
+ 105              	.LFB32:
+  31:SYSTEM/sys/sys.c **** //����ջ����ַ
+  32:SYSTEM/sys/sys.c **** //addr:ջ����ַ
+  33:SYSTEM/sys/sys.c **** void MSR_MSP(u32 addr)
+  34:SYSTEM/sys/sys.c **** {
+ 106              		.loc 1 34 1 is_stmt 1 view -0
+ 107              		.cfi_startproc
+ 108              		@ args = 0, pretend = 0, frame = 0
+ 109              		@ frame_needed = 0, uses_anonymous_args = 0
+ 110              		@ link register save eliminated.
+  35:SYSTEM/sys/sys.c **** __ASM volatile("MSR MSP, r0");	//set Main Stack value
+ 111              		.loc 1 35 1 view .LVU10
+ 112              		.syntax unified
+ 113              	@ 35 "SYSTEM/sys/sys.c" 1
+ 114 0000 80F30888 		MSR MSP, r0
+ 115              	@ 0 "" 2
+  36:SYSTEM/sys/sys.c **** __ASM volatile("BX r14");
+ 116              		.loc 1 36 1 view .LVU11
+ 117              	@ 36 "SYSTEM/sys/sys.c" 1
+ 118 0004 7047     		BX r14
+ 119              	@ 0 "" 2
+  37:SYSTEM/sys/sys.c **** }...
+ 120              		.loc 1 37 1 is_stmt 0 view .LVU12
+ 121              		.thumb
+ 122              		.syntax unified
+ 123 0006 7047     		bx	lr
+ 124              		.cfi_endproc
+ 125              	.LFE32:
+ 127              		.text
+ 128              	.Letext0:
+ 129              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 130              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 131              		.file 4 "USER/stm32f10x.h"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccOhE9x2.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 sys.c
+C:\Users\86157\AppData\Local\Temp\ccOhE9x2.s:19     .text.WFI_SET:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccOhE9x2.s:25     .text.WFI_SET:00000000 WFI_SET
+C:\Users\86157\AppData\Local\Temp\ccOhE9x2.s:45     .text.INTX_DISABLE:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccOhE9x2.s:51     .text.INTX_DISABLE:00000000 INTX_DISABLE
+C:\Users\86157\AppData\Local\Temp\ccOhE9x2.s:71     .text.INTX_ENABLE:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccOhE9x2.s:77     .text.INTX_ENABLE:00000000 INTX_ENABLE
+C:\Users\86157\AppData\Local\Temp\ccOhE9x2.s:97     .text.MSR_MSP:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccOhE9x2.s:103    .text.MSR_MSP:00000000 MSR_MSP
+
+NO UNDEFINED SYMBOLS

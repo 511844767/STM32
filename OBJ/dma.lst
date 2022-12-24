@@ -1,0 +1,280 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccgSzrri.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"dma.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "HW/DMA/dma.c"
+  18              		.section	.text.DMA_USART_Init,"ax",%progbits
+  19              		.align	1
+  20              		.global	DMA_USART_Init
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	DMA_USART_Init:
+  26              	.LFB32:
+   1:HW/DMA/dma.c  **** #include"stm32f10x.h"
+   2:HW/DMA/dma.c  **** #include"stm32f10x_dma.h"
+   3:HW/DMA/dma.c  **** #include"stdio.h"
+   4:HW/DMA/dma.c  **** 
+   5:HW/DMA/dma.c  **** /**
+   6:HW/DMA/dma.c  ****  * @brief 用DMA将数据从内存拷贝到串口中
+   7:HW/DMA/dma.c  ****  * 
+   8:HW/DMA/dma.c  ****  */
+   9:HW/DMA/dma.c  **** 
+  10:HW/DMA/dma.c  **** /* 内存地址 */
+  11:HW/DMA/dma.c  **** static char buffer[500];
+  12:HW/DMA/dma.c  **** 
+  13:HW/DMA/dma.c  **** void DMA_USART_Init(){
+  27              		.loc 1 13 22 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 48
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 30B5     		push	{r4, r5, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 12
+  34              		.cfi_offset 4, -12
+  35              		.cfi_offset 5, -8
+  36              		.cfi_offset 14, -4
+  37 0002 8DB0     		sub	sp, sp, #52
+  38              	.LCFI1:
+  39              		.cfi_def_cfa_offset 64
+  14:HW/DMA/dma.c  ****     /* 使能DMA时钟 */
+  15:HW/DMA/dma.c  ****     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
+  40              		.loc 1 15 5 view .LVU1
+  41 0004 0121     		movs	r1, #1
+  42 0006 0846     		mov	r0, r1
+  43 0008 FFF7FEFF 		bl	RCC_AHBPeriphClockCmd
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccgSzrri.s 			page 2
+
+
+  44              	.LVL0:
+  16:HW/DMA/dma.c  ****     /* 配置DMA通道 */
+  17:HW/DMA/dma.c  ****     DMA_InitTypeDef dmaDef;
+  45              		.loc 1 17 5 view .LVU2
+  18:HW/DMA/dma.c  ****     dmaDef.DMA_PeripheralBaseAddr = (uint32_t)&(USART1->DR);  // 串口数据寄存器地址
+  46              		.loc 1 18 5 view .LVU3
+  47              		.loc 1 18 35 is_stmt 0 view .LVU4
+  48 000c 114B     		ldr	r3, .L3
+  49 000e 0193     		str	r3, [sp, #4]
+  19:HW/DMA/dma.c  ****     dmaDef.DMA_MemoryBaseAddr = (uint32_t)buffer; // 内存地址
+  50              		.loc 1 19 5 is_stmt 1 view .LVU5
+  51              		.loc 1 19 33 is_stmt 0 view .LVU6
+  52 0010 114B     		ldr	r3, .L3+4
+  53              		.loc 1 19 31 view .LVU7
+  54 0012 0293     		str	r3, [sp, #8]
+  20:HW/DMA/dma.c  ****     dmaDef.DMA_DIR = DMA_DIR_PeripheralDST; // 传输方向，M->P
+  55              		.loc 1 20 5 is_stmt 1 view .LVU8
+  56              		.loc 1 20 20 is_stmt 0 view .LVU9
+  57 0014 1023     		movs	r3, #16
+  58 0016 0393     		str	r3, [sp, #12]
+  21:HW/DMA/dma.c  ****     dmaDef.DMA_BufferSize = 500;    // 数据大小(CNDTR寄存器)
+  59              		.loc 1 21 5 is_stmt 1 view .LVU10
+  60              		.loc 1 21 27 is_stmt 0 view .LVU11
+  61 0018 4FF4FA75 		mov	r5, #500
+  62 001c 0495     		str	r5, [sp, #16]
+  22:HW/DMA/dma.c  ****     dmaDef.DMA_PeripheralInc = DMA_PeripheralInc_Disable;    // 地址自增
+  63              		.loc 1 22 5 is_stmt 1 view .LVU12
+  64              		.loc 1 22 30 is_stmt 0 view .LVU13
+  65 001e 0023     		movs	r3, #0
+  66 0020 0593     		str	r3, [sp, #20]
+  23:HW/DMA/dma.c  ****     dmaDef.DMA_MemoryInc = DMA_MemoryInc_Enable;    // 地址自增
+  67              		.loc 1 23 5 is_stmt 1 view .LVU14
+  68              		.loc 1 23 26 is_stmt 0 view .LVU15
+  69 0022 8022     		movs	r2, #128
+  70 0024 0692     		str	r2, [sp, #24]
+  24:HW/DMA/dma.c  ****     dmaDef.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;    // 数据大小
+  71              		.loc 1 24 5 is_stmt 1 view .LVU16
+  72              		.loc 1 24 35 is_stmt 0 view .LVU17
+  73 0026 0793     		str	r3, [sp, #28]
+  25:HW/DMA/dma.c  ****     dmaDef.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;    // 数据大下
+  74              		.loc 1 25 5 is_stmt 1 view .LVU18
+  75              		.loc 1 25 31 is_stmt 0 view .LVU19
+  76 0028 0893     		str	r3, [sp, #32]
+  26:HW/DMA/dma.c  ****     dmaDef.DMA_Mode = DMA_Mode_Normal;  // 传输模式（单次传输/循环传输）
+  77              		.loc 1 26 5 is_stmt 1 view .LVU20
+  78              		.loc 1 26 21 is_stmt 0 view .LVU21
+  79 002a 0993     		str	r3, [sp, #36]
+  27:HW/DMA/dma.c  ****     dmaDef.DMA_Priority = DMA_Priority_Medium;    // 传输优先级
+  80              		.loc 1 27 5 is_stmt 1 view .LVU22
+  81              		.loc 1 27 25 is_stmt 0 view .LVU23
+  82 002c 4FF48052 		mov	r2, #4096
+  83 0030 0A92     		str	r2, [sp, #40]
+  28:HW/DMA/dma.c  ****     dmaDef.DMA_M2M = DMA_M2M_Disable;   // 关闭M->M的传输方向
+  84              		.loc 1 28 5 is_stmt 1 view .LVU24
+  85              		.loc 1 28 20 is_stmt 0 view .LVU25
+  86 0032 0B93     		str	r3, [sp, #44]
+  29:HW/DMA/dma.c  ****     DMA_Init(DMA1_Channel4, &dmaDef);   // USART_TX对应通道4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccgSzrri.s 			page 3
+
+
+  87              		.loc 1 29 5 is_stmt 1 view .LVU26
+  88 0034 094C     		ldr	r4, .L3+8
+  89 0036 01A9     		add	r1, sp, #4
+  90 0038 2046     		mov	r0, r4
+  91 003a FFF7FEFF 		bl	DMA_Init
+  92              	.LVL1:
+  30:HW/DMA/dma.c  ****     /* 使能DMA通道 */
+  31:HW/DMA/dma.c  ****     DMA_SetCurrDataCounter(DMA1_Channel4, 500); // 在DMA_Cmd被DISABLE的情况下，可以用这�
+  93              		.loc 1 31 5 view .LVU27
+  94 003e 2946     		mov	r1, r5
+  95 0040 2046     		mov	r0, r4
+  96 0042 FFF7FEFF 		bl	DMA_SetCurrDataCounter
+  97              	.LVL2:
+  32:HW/DMA/dma.c  ****     DMA_Cmd(DMA1_Channel4, ENABLE);
+  98              		.loc 1 32 5 view .LVU28
+  99 0046 0121     		movs	r1, #1
+ 100 0048 2046     		mov	r0, r4
+ 101 004a FFF7FEFF 		bl	DMA_Cmd
+ 102              	.LVL3:
+  33:HW/DMA/dma.c  ****     // printf("DMA Buffer Size: %u\r\n", DMA_GetCurrDataCounter(DMA1_Channel4));    // 获取DMA_Bu
+  34:HW/DMA/dma.c  **** }
+ 103              		.loc 1 34 1 is_stmt 0 view .LVU29
+ 104 004e 0DB0     		add	sp, sp, #52
+ 105              	.LCFI2:
+ 106              		.cfi_def_cfa_offset 12
+ 107              		@ sp needed
+ 108 0050 30BD     		pop	{r4, r5, pc}
+ 109              	.L4:
+ 110 0052 00BF     		.align	2
+ 111              	.L3:
+ 112 0054 04380140 		.word	1073821700
+ 113 0058 00000000 		.word	buffer
+ 114 005c 44000240 		.word	1073872964
+ 115              		.cfi_endproc
+ 116              	.LFE32:
+ 118              		.section	.text.DMA_USART_Run,"ax",%progbits
+ 119              		.align	1
+ 120              		.global	DMA_USART_Run
+ 121              		.syntax unified
+ 122              		.thumb
+ 123              		.thumb_func
+ 125              	DMA_USART_Run:
+ 126              	.LFB33:
+  35:HW/DMA/dma.c  **** 
+  36:HW/DMA/dma.c  **** /* 串口初始化函数 */
+  37:HW/DMA/dma.c  **** extern void USART1_Init();
+  38:HW/DMA/dma.c  **** 
+  39:HW/DMA/dma.c  **** void DMA_USART_Run(){
+ 127              		.loc 1 39 21 is_stmt 1 view -0
+ 128              		.cfi_startproc
+ 129              		@ args = 0, pretend = 0, frame = 0
+ 130              		@ frame_needed = 0, uses_anonymous_args = 0
+ 131 0000 08B5     		push	{r3, lr}
+ 132              	.LCFI3:
+ 133              		.cfi_def_cfa_offset 8
+ 134              		.cfi_offset 3, -8
+ 135              		.cfi_offset 14, -4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccgSzrri.s 			page 4
+
+
+  40:HW/DMA/dma.c  ****     /* 初始化寄存器 */
+  41:HW/DMA/dma.c  ****     USART1_Init();
+ 136              		.loc 1 41 5 view .LVU31
+ 137 0002 FFF7FEFF 		bl	USART1_Init
+ 138              	.LVL4:
+  42:HW/DMA/dma.c  ****     DMA_USART_Init();
+ 139              		.loc 1 42 5 view .LVU32
+ 140 0006 FFF7FEFF 		bl	DMA_USART_Init
+ 141              	.LVL5:
+  43:HW/DMA/dma.c  ****     /* 初始化数据 */
+  44:HW/DMA/dma.c  ****     int i;
+ 142              		.loc 1 44 5 view .LVU33
+  45:HW/DMA/dma.c  ****     for(i = 0; i < 500; ++i){
+ 143              		.loc 1 45 5 view .LVU34
+ 144              		.loc 1 45 11 is_stmt 0 view .LVU35
+ 145 000a 0023     		movs	r3, #0
+ 146              		.loc 1 45 5 view .LVU36
+ 147 000c 03E0     		b	.L6
+ 148              	.LVL6:
+ 149              	.L7:
+  46:HW/DMA/dma.c  ****         // buffer[i] = i % 128;
+  47:HW/DMA/dma.c  ****         buffer[i] = 'A';
+ 150              		.loc 1 47 9 is_stmt 1 discriminator 3 view .LVU37
+ 151              		.loc 1 47 19 is_stmt 0 discriminator 3 view .LVU38
+ 152 000e 064A     		ldr	r2, .L10
+ 153 0010 4121     		movs	r1, #65
+ 154 0012 D154     		strb	r1, [r2, r3]
+  45:HW/DMA/dma.c  ****     for(i = 0; i < 500; ++i){
+ 155              		.loc 1 45 25 is_stmt 1 discriminator 3 view .LVU39
+ 156 0014 0133     		adds	r3, r3, #1
+ 157              	.LVL7:
+ 158              	.L6:
+  45:HW/DMA/dma.c  ****     for(i = 0; i < 500; ++i){
+ 159              		.loc 1 45 18 discriminator 1 view .LVU40
+ 160 0016 B3F5FA7F 		cmp	r3, #500
+ 161 001a F8DB     		blt	.L7
+  48:HW/DMA/dma.c  ****     }
+  49:HW/DMA/dma.c  ****     /* 发送数据 */
+  50:HW/DMA/dma.c  ****     USART_DMACmd(USART1, USART_DMAReq_Tx, ENABLE);
+ 162              		.loc 1 50 5 view .LVU41
+ 163 001c 0122     		movs	r2, #1
+ 164 001e 8021     		movs	r1, #128
+ 165 0020 0248     		ldr	r0, .L10+4
+ 166 0022 FFF7FEFF 		bl	USART_DMACmd
+ 167              	.LVL8:
+ 168              	.L8:
+  51:HW/DMA/dma.c  ****     while (1);
+ 169              		.loc 1 51 5 discriminator 1 view .LVU42
+ 170              		.loc 1 51 11 discriminator 1 view .LVU43
+ 171 0026 FEE7     		b	.L8
+ 172              	.L11:
+ 173              		.align	2
+ 174              	.L10:
+ 175 0028 00000000 		.word	buffer
+ 176 002c 00380140 		.word	1073821696
+ 177              		.cfi_endproc
+ 178              	.LFE33:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccgSzrri.s 			page 5
+
+
+ 180              		.section	.bss.buffer,"aw",%nobits
+ 181              		.align	2
+ 184              	buffer:
+ 185 0000 00000000 		.space	500
+ 185      00000000 
+ 185      00000000 
+ 185      00000000 
+ 185      00000000 
+ 186              		.text
+ 187              	.Letext0:
+ 188              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 189              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 190              		.file 4 "USER/stm32f10x.h"
+ 191              		.file 5 "STM32F10x_FWLib/inc/stm32f10x_dma.h"
+ 192              		.file 6 "STM32F10x_FWLib/inc/stm32f10x_usart.h"
+ 193              		.file 7 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccgSzrri.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 dma.c
+C:\Users\86157\AppData\Local\Temp\ccgSzrri.s:19     .text.DMA_USART_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccgSzrri.s:25     .text.DMA_USART_Init:00000000 DMA_USART_Init
+C:\Users\86157\AppData\Local\Temp\ccgSzrri.s:112    .text.DMA_USART_Init:00000054 $d
+C:\Users\86157\AppData\Local\Temp\ccgSzrri.s:184    .bss.buffer:00000000 buffer
+C:\Users\86157\AppData\Local\Temp\ccgSzrri.s:119    .text.DMA_USART_Run:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccgSzrri.s:125    .text.DMA_USART_Run:00000000 DMA_USART_Run
+C:\Users\86157\AppData\Local\Temp\ccgSzrri.s:175    .text.DMA_USART_Run:00000028 $d
+C:\Users\86157\AppData\Local\Temp\ccgSzrri.s:181    .bss.buffer:00000000 $d
+
+UNDEFINED SYMBOLS
+RCC_AHBPeriphClockCmd
+DMA_Init
+DMA_SetCurrDataCounter
+DMA_Cmd
+USART1_Init
+USART_DMACmd

@@ -1,0 +1,1017 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"tpad.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "HW/TPAD/tpad.c"
+  18              		.section	.text.TPAD_TIM5_Init,"ax",%progbits
+  19              		.align	1
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	TPAD_TIM5_Init:
+  25              	.LFB29:
+   1:HW/TPAD/tpad.c **** /*************************************************************************************************/
+   2:HW/TPAD/tpad.c **** /**
+   3:HW/TPAD/tpad.c ****  * @brief  TPAD引脚用跳线帽连到ADC引脚，即PA1引脚，对应TIM5的通道2。
+   4:HW/TPAD/tpad.c ****  *      用TIM5->ch2的输入捕获判断TPAD充电时间
+   5:HW/TPAD/tpad.c ****  *     
+   6:HW/TPAD/tpad.c ****  *      假设: TPAD电容充放电时间不超过5ms
+   7:HW/TPAD/tpad.c ****  *
+   8:HW/TPAD/tpad.c ****  *      定时器即使没有使能中断函数，依然需要通过中断标志位判断是否捕�
+   9:HW/TPAD/tpad.c ****  *      
+  10:HW/TPAD/tpad.c ****  *      TPAD充放电测试：
+  11:HW/TPAD/tpad.c ****  *         未触摸时充电时间为16.5us(定时器为198)
+  12:HW/TPAD/tpad.c ****  *         触摸时充电时间为60.9us(定时器为731)
+  13:HW/TPAD/tpad.c ****  */
+  14:HW/TPAD/tpad.c **** /*************************************************************************************************/
+  15:HW/TPAD/tpad.c **** #include"stm32f10x.h"
+  16:HW/TPAD/tpad.c **** #include"delay.h"
+  17:HW/TPAD/tpad.c **** #include"LED.h"
+  18:HW/TPAD/tpad.c **** #include"stdbool.h"
+  19:HW/TPAD/tpad.c **** 
+  20:HW/TPAD/tpad.c **** /* 重装载值，预分频系数，周期（5ms） */
+  21:HW/TPAD/tpad.c **** #define __TIM_Period        (60000 - 1)
+  22:HW/TPAD/tpad.c **** #define __TIM_Prescaler     (6 - 1)
+  23:HW/TPAD/tpad.c **** #define __TIM_T             ((__TIM_Period + 1) * (__TIM_Prescaler + 1) / 72)
+  24:HW/TPAD/tpad.c **** 
+  25:HW/TPAD/tpad.c **** 
+  26:HW/TPAD/tpad.c **** /* 初始化定时器输入捕获 */
+  27:HW/TPAD/tpad.c **** static void TPAD_TIM5_Init(){
+  26              		.loc 1 27 29 view -0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 32
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30 0000 70B5     		push	{r4, r5, r6, lr}
+  31              	.LCFI0:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s 			page 2
+
+
+  32              		.cfi_def_cfa_offset 16
+  33              		.cfi_offset 4, -16
+  34              		.cfi_offset 5, -12
+  35              		.cfi_offset 6, -8
+  36              		.cfi_offset 14, -4
+  37 0002 88B0     		sub	sp, sp, #32
+  38              	.LCFI1:
+  39              		.cfi_def_cfa_offset 48
+  28:HW/TPAD/tpad.c ****     /* 使能时钟 */
+  29:HW/TPAD/tpad.c ****     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM5, ENABLE);
+  40              		.loc 1 29 5 view .LVU1
+  41 0004 0121     		movs	r1, #1
+  42 0006 0820     		movs	r0, #8
+  43 0008 FFF7FEFF 		bl	RCC_APB1PeriphClockCmd
+  44              	.LVL0:
+  30:HW/TPAD/tpad.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+  45              		.loc 1 30 5 view .LVU2
+  46 000c 0121     		movs	r1, #1
+  47 000e 0420     		movs	r0, #4
+  48 0010 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+  49              	.LVL1:
+  31:HW/TPAD/tpad.c ****     /* 配置PA1引脚 */
+  32:HW/TPAD/tpad.c ****     GPIO_InitTypeDef gpioDef;
+  50              		.loc 1 32 5 view .LVU3
+  33:HW/TPAD/tpad.c ****     gpioDef.GPIO_Mode   = GPIO_Mode_IN_FLOATING;
+  51              		.loc 1 33 5 view .LVU4
+  52              		.loc 1 33 25 is_stmt 0 view .LVU5
+  53 0014 0426     		movs	r6, #4
+  54 0016 8DF81F60 		strb	r6, [sp, #31]
+  34:HW/TPAD/tpad.c ****     gpioDef.GPIO_Pin    = GPIO_Pin_1;
+  55              		.loc 1 34 5 is_stmt 1 view .LVU6
+  56              		.loc 1 34 25 is_stmt 0 view .LVU7
+  57 001a 0223     		movs	r3, #2
+  58 001c ADF81C30 		strh	r3, [sp, #28]	@ movhi
+  35:HW/TPAD/tpad.c ****     gpioDef.GPIO_Speed  = GPIO_Speed_50MHz;
+  59              		.loc 1 35 5 is_stmt 1 view .LVU8
+  60              		.loc 1 35 25 is_stmt 0 view .LVU9
+  61 0020 0323     		movs	r3, #3
+  62 0022 8DF81E30 		strb	r3, [sp, #30]
+  36:HW/TPAD/tpad.c ****     GPIO_Init(GPIOA, &gpioDef);
+  63              		.loc 1 36 5 is_stmt 1 view .LVU10
+  64 0026 07A9     		add	r1, sp, #28
+  65 0028 1548     		ldr	r0, .L3
+  66 002a FFF7FEFF 		bl	GPIO_Init
+  67              	.LVL2:
+  37:HW/TPAD/tpad.c ****     /* 配置TIM5计数器 */
+  38:HW/TPAD/tpad.c ****     TIM_TimeBaseInitTypeDef timeBaseDef;
+  68              		.loc 1 38 5 view .LVU11
+  39:HW/TPAD/tpad.c ****     timeBaseDef.TIM_CounterMode         = TIM_CounterMode_Up;   // 向上计数
+  69              		.loc 1 39 5 view .LVU12
+  70              		.loc 1 39 41 is_stmt 0 view .LVU13
+  71 002e 0024     		movs	r4, #0
+  72 0030 ADF81240 		strh	r4, [sp, #18]	@ movhi
+  40:HW/TPAD/tpad.c ****     timeBaseDef.TIM_Period              = __TIM_Period;         // 重装载值
+  73              		.loc 1 40 5 is_stmt 1 view .LVU14
+  74              		.loc 1 40 41 is_stmt 0 view .LVU15
+  75 0034 4EF65F23 		movw	r3, #59999
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s 			page 3
+
+
+  76 0038 ADF81430 		strh	r3, [sp, #20]	@ movhi
+  41:HW/TPAD/tpad.c ****     timeBaseDef.TIM_Prescaler           = __TIM_Prescaler;      // PSC预分频系数
+  77              		.loc 1 41 5 is_stmt 1 view .LVU16
+  78              		.loc 1 41 41 is_stmt 0 view .LVU17
+  79 003c 0523     		movs	r3, #5
+  80 003e ADF81030 		strh	r3, [sp, #16]	@ movhi
+  42:HW/TPAD/tpad.c ****     timeBaseDef.TIM_ClockDivision       = TIM_CKD_DIV1;         // PWM输入采样频率分频
+  81              		.loc 1 42 5 is_stmt 1 view .LVU18
+  82              		.loc 1 42 41 is_stmt 0 view .LVU19
+  83 0042 ADF81640 		strh	r4, [sp, #22]	@ movhi
+  43:HW/TPAD/tpad.c ****     timeBaseDef.TIM_RepetitionCounter   = 0X00;                 // (TIM1和TIM8的参数，暂时�
+  84              		.loc 1 43 5 is_stmt 1 view .LVU20
+  85              		.loc 1 43 41 is_stmt 0 view .LVU21
+  86 0046 8DF81840 		strb	r4, [sp, #24]
+  44:HW/TPAD/tpad.c ****     TIM_TimeBaseInit(TIM5, &timeBaseDef);
+  87              		.loc 1 44 5 is_stmt 1 view .LVU22
+  88 004a 0E4D     		ldr	r5, .L3+4
+  89 004c 04A9     		add	r1, sp, #16
+  90 004e 2846     		mov	r0, r5
+  91 0050 FFF7FEFF 		bl	TIM_TimeBaseInit
+  92              	.LVL3:
+  45:HW/TPAD/tpad.c ****     /* 配置输入捕获 */
+  46:HW/TPAD/tpad.c ****     TIM_ICInitTypeDef timeICDef;
+  93              		.loc 1 46 5 view .LVU23
+  47:HW/TPAD/tpad.c ****     timeICDef.TIM_Channel       = TIM_Channel_2;                // TIM5的通道2
+  94              		.loc 1 47 5 view .LVU24
+  95              		.loc 1 47 33 is_stmt 0 view .LVU25
+  96 0054 ADF80460 		strh	r6, [sp, #4]	@ movhi
+  48:HW/TPAD/tpad.c ****     timeICDef.TIM_ICFilter      = 0x00;                         // 滤波次数
+  97              		.loc 1 48 5 is_stmt 1 view .LVU26
+  98              		.loc 1 48 33 is_stmt 0 view .LVU27
+  99 0058 ADF80C40 		strh	r4, [sp, #12]	@ movhi
+  49:HW/TPAD/tpad.c ****     timeICDef.TIM_ICPolarity    = TIM_ICPolarity_Rising;        // 检测上升沿
+ 100              		.loc 1 49 5 is_stmt 1 view .LVU28
+ 101              		.loc 1 49 33 is_stmt 0 view .LVU29
+ 102 005c ADF80640 		strh	r4, [sp, #6]	@ movhi
+  50:HW/TPAD/tpad.c ****     timeICDef.TIM_ICPrescaler   = TIM_ICPSC_DIV1;               // IC2到IC2PS信号的预分频系
+ 103              		.loc 1 50 5 is_stmt 1 view .LVU30
+ 104              		.loc 1 50 33 is_stmt 0 view .LVU31
+ 105 0060 ADF80A40 		strh	r4, [sp, #10]	@ movhi
+  51:HW/TPAD/tpad.c ****     timeICDef.TIM_ICSelection   = TIM_ICSelection_DirectTI;     // TI2映射到IC2上
+ 106              		.loc 1 51 5 is_stmt 1 view .LVU32
+ 107              		.loc 1 51 33 is_stmt 0 view .LVU33
+ 108 0064 0124     		movs	r4, #1
+ 109 0066 ADF80840 		strh	r4, [sp, #8]	@ movhi
+  52:HW/TPAD/tpad.c ****     TIM_ICInit(TIM5, &timeICDef);
+ 110              		.loc 1 52 5 is_stmt 1 view .LVU34
+ 111 006a 0DEB0601 		add	r1, sp, r6
+ 112 006e 2846     		mov	r0, r5
+ 113 0070 FFF7FEFF 		bl	TIM_ICInit
+ 114              	.LVL4:
+  53:HW/TPAD/tpad.c ****     /* 使能定时器 */
+  54:HW/TPAD/tpad.c ****     TIM_Cmd(TIM5, ENABLE);
+ 115              		.loc 1 54 5 view .LVU35
+ 116 0074 2146     		mov	r1, r4
+ 117 0076 2846     		mov	r0, r5
+ 118 0078 FFF7FEFF 		bl	TIM_Cmd
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s 			page 4
+
+
+ 119              	.LVL5:
+  55:HW/TPAD/tpad.c **** }
+ 120              		.loc 1 55 1 is_stmt 0 view .LVU36
+ 121 007c 08B0     		add	sp, sp, #32
+ 122              	.LCFI2:
+ 123              		.cfi_def_cfa_offset 16
+ 124              		@ sp needed
+ 125 007e 70BD     		pop	{r4, r5, r6, pc}
+ 126              	.L4:
+ 127              		.align	2
+ 128              	.L3:
+ 129 0080 00080140 		.word	1073809408
+ 130 0084 000C0040 		.word	1073744896
+ 131              		.cfi_endproc
+ 132              	.LFE29:
+ 134              		.section	.text.TPAD_Reset,"ax",%progbits
+ 135              		.align	1
+ 136              		.global	TPAD_Reset
+ 137              		.syntax unified
+ 138              		.thumb
+ 139              		.thumb_func
+ 141              	TPAD_Reset:
+ 142              	.LFB30:
+  56:HW/TPAD/tpad.c **** 
+  57:HW/TPAD/tpad.c **** /* TPAD重新放电、充电 */
+  58:HW/TPAD/tpad.c **** void TPAD_Reset(){
+ 143              		.loc 1 58 18 is_stmt 1 view -0
+ 144              		.cfi_startproc
+ 145              		@ args = 0, pretend = 0, frame = 8
+ 146              		@ frame_needed = 0, uses_anonymous_args = 0
+ 147 0000 30B5     		push	{r4, r5, lr}
+ 148              	.LCFI3:
+ 149              		.cfi_def_cfa_offset 12
+ 150              		.cfi_offset 4, -12
+ 151              		.cfi_offset 5, -8
+ 152              		.cfi_offset 14, -4
+ 153 0002 83B0     		sub	sp, sp, #12
+ 154              	.LCFI4:
+ 155              		.cfi_def_cfa_offset 24
+  59:HW/TPAD/tpad.c ****     /* 放电: PA1推挽输出0 */
+  60:HW/TPAD/tpad.c ****     GPIO_InitTypeDef gpioDef;
+ 156              		.loc 1 60 5 view .LVU38
+  61:HW/TPAD/tpad.c ****     gpioDef.GPIO_Mode   = GPIO_Mode_Out_PP;
+ 157              		.loc 1 61 5 view .LVU39
+ 158              		.loc 1 61 25 is_stmt 0 view .LVU40
+ 159 0004 1023     		movs	r3, #16
+ 160 0006 8DF80730 		strb	r3, [sp, #7]
+  62:HW/TPAD/tpad.c ****     gpioDef.GPIO_Pin    = GPIO_Pin_1;
+ 161              		.loc 1 62 5 is_stmt 1 view .LVU41
+ 162              		.loc 1 62 25 is_stmt 0 view .LVU42
+ 163 000a 0225     		movs	r5, #2
+ 164 000c ADF80450 		strh	r5, [sp, #4]	@ movhi
+  63:HW/TPAD/tpad.c ****     gpioDef.GPIO_Speed  = GPIO_Speed_50MHz;
+ 165              		.loc 1 63 5 is_stmt 1 view .LVU43
+ 166              		.loc 1 63 25 is_stmt 0 view .LVU44
+ 167 0010 0323     		movs	r3, #3
+ 168 0012 8DF80630 		strb	r3, [sp, #6]
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s 			page 5
+
+
+  64:HW/TPAD/tpad.c ****     GPIO_Init(GPIOA, &gpioDef);
+ 169              		.loc 1 64 5 is_stmt 1 view .LVU45
+ 170 0016 0F4C     		ldr	r4, .L7
+ 171 0018 01A9     		add	r1, sp, #4
+ 172 001a 2046     		mov	r0, r4
+ 173 001c FFF7FEFF 		bl	GPIO_Init
+ 174              	.LVL6:
+  65:HW/TPAD/tpad.c ****     GPIO_ResetBits(GPIOA, GPIO_Pin_1);
+ 175              		.loc 1 65 5 view .LVU46
+ 176 0020 2946     		mov	r1, r5
+ 177 0022 2046     		mov	r0, r4
+ 178 0024 FFF7FEFF 		bl	GPIO_ResetBits
+ 179              	.LVL7:
+  66:HW/TPAD/tpad.c ****     delay_ms(5);
+ 180              		.loc 1 66 5 view .LVU47
+ 181 0028 0520     		movs	r0, #5
+ 182 002a FFF7FEFF 		bl	delay_ms
+ 183              	.LVL8:
+  67:HW/TPAD/tpad.c ****     /* 定时器清零 */
+  68:HW/TPAD/tpad.c ****     TIM_ClearITPendingBit(TIM5, TIM_IT_CC2 | TIM_IT_Update);
+ 184              		.loc 1 68 5 view .LVU48
+ 185 002e 0A4D     		ldr	r5, .L7+4
+ 186 0030 0521     		movs	r1, #5
+ 187 0032 2846     		mov	r0, r5
+ 188 0034 FFF7FEFF 		bl	TIM_ClearITPendingBit
+ 189              	.LVL9:
+  69:HW/TPAD/tpad.c ****     TIM_SetCounter(TIM5, 0);
+ 190              		.loc 1 69 5 view .LVU49
+ 191 0038 0021     		movs	r1, #0
+ 192 003a 2846     		mov	r0, r5
+ 193 003c FFF7FEFF 		bl	TIM_SetCounter
+ 194              	.LVL10:
+  70:HW/TPAD/tpad.c ****     /* 充电: PA1浮空输入 */
+  71:HW/TPAD/tpad.c ****     gpioDef.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+ 195              		.loc 1 71 5 view .LVU50
+ 196              		.loc 1 71 23 is_stmt 0 view .LVU51
+ 197 0040 0423     		movs	r3, #4
+ 198 0042 8DF80730 		strb	r3, [sp, #7]
+  72:HW/TPAD/tpad.c ****     GPIO_Init(GPIOA, &gpioDef);
+ 199              		.loc 1 72 5 is_stmt 1 view .LVU52
+ 200 0046 0DEB0301 		add	r1, sp, r3
+ 201 004a 2046     		mov	r0, r4
+ 202 004c FFF7FEFF 		bl	GPIO_Init
+ 203              	.LVL11:
+  73:HW/TPAD/tpad.c **** }
+ 204              		.loc 1 73 1 is_stmt 0 view .LVU53
+ 205 0050 03B0     		add	sp, sp, #12
+ 206              	.LCFI5:
+ 207              		.cfi_def_cfa_offset 12
+ 208              		@ sp needed
+ 209 0052 30BD     		pop	{r4, r5, pc}
+ 210              	.L8:
+ 211              		.align	2
+ 212              	.L7:
+ 213 0054 00080140 		.word	1073809408
+ 214 0058 000C0040 		.word	1073744896
+ 215              		.cfi_endproc
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s 			page 6
+
+
+ 216              	.LFE30:
+ 218              		.section	.text.TPAD_GetCounter,"ax",%progbits
+ 219              		.align	1
+ 220              		.global	TPAD_GetCounter
+ 221              		.syntax unified
+ 222              		.thumb
+ 223              		.thumb_func
+ 225              	TPAD_GetCounter:
+ 226              	.LFB31:
+  74:HW/TPAD/tpad.c **** 
+  75:HW/TPAD/tpad.c **** /* 读取一次TPAD充电时间 */
+  76:HW/TPAD/tpad.c **** uint16_t TPAD_GetCounter(){
+ 227              		.loc 1 76 27 is_stmt 1 view -0
+ 228              		.cfi_startproc
+ 229              		@ args = 0, pretend = 0, frame = 0
+ 230              		@ frame_needed = 0, uses_anonymous_args = 0
+ 231 0000 08B5     		push	{r3, lr}
+ 232              	.LCFI6:
+ 233              		.cfi_def_cfa_offset 8
+ 234              		.cfi_offset 3, -8
+ 235              		.cfi_offset 14, -4
+  77:HW/TPAD/tpad.c ****     /* 放、充电 */
+  78:HW/TPAD/tpad.c ****     TPAD_Reset();
+ 236              		.loc 1 78 5 view .LVU55
+ 237 0002 FFF7FEFF 		bl	TPAD_Reset
+ 238              	.LVL12:
+  79:HW/TPAD/tpad.c ****     /* 等待捕获上升沿 */
+  80:HW/TPAD/tpad.c ****     while(TIM_GetFlagStatus(TIM5, TIM_IT_CC2) == RESET){
+ 239              		.loc 1 80 5 view .LVU56
+ 240              	.L10:
+ 241              		.loc 1 80 47 view .LVU57
+ 242              		.loc 1 80 11 is_stmt 0 view .LVU58
+ 243 0006 0421     		movs	r1, #4
+ 244 0008 0848     		ldr	r0, .L16
+ 245 000a FFF7FEFF 		bl	TIM_GetFlagStatus
+ 246              	.LVL13:
+ 247              		.loc 1 80 47 view .LVU59
+ 248 000e 40B9     		cbnz	r0, .L15
+  81:HW/TPAD/tpad.c ****         if(TIM_GetFlagStatus(TIM5, TIM_IT_Update) == SET)  // 超时(5ms)
+ 249              		.loc 1 81 9 is_stmt 1 view .LVU60
+ 250              		.loc 1 81 12 is_stmt 0 view .LVU61
+ 251 0010 0121     		movs	r1, #1
+ 252 0012 0648     		ldr	r0, .L16
+ 253 0014 FFF7FEFF 		bl	TIM_GetFlagStatus
+ 254              	.LVL14:
+ 255              		.loc 1 81 11 view .LVU62
+ 256 0018 0128     		cmp	r0, #1
+ 257 001a F4D1     		bne	.L10
+  82:HW/TPAD/tpad.c ****             return __TIM_Period;
+ 258              		.loc 1 82 20 view .LVU63
+ 259 001c 4EF65F20 		movw	r0, #59999
+ 260 0020 02E0     		b	.L11
+ 261              	.L15:
+  83:HW/TPAD/tpad.c ****     }
+  84:HW/TPAD/tpad.c ****     return TIM_GetCounter(TIM5);
+ 262              		.loc 1 84 5 is_stmt 1 view .LVU64
+ 263              		.loc 1 84 12 is_stmt 0 view .LVU65
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s 			page 7
+
+
+ 264 0022 0248     		ldr	r0, .L16
+ 265 0024 FFF7FEFF 		bl	TIM_GetCounter
+ 266              	.LVL15:
+ 267              	.L11:
+  85:HW/TPAD/tpad.c **** }
+ 268              		.loc 1 85 1 view .LVU66
+ 269 0028 08BD     		pop	{r3, pc}
+ 270              	.L17:
+ 271 002a 00BF     		.align	2
+ 272              	.L16:
+ 273 002c 000C0040 		.word	1073744896
+ 274              		.cfi_endproc
+ 275              	.LFE31:
+ 277              		.section	.text.TPAD_StatisticAVG,"ax",%progbits
+ 278              		.align	1
+ 279              		.global	TPAD_StatisticAVG
+ 280              		.syntax unified
+ 281              		.thumb
+ 282              		.thumb_func
+ 284              	TPAD_StatisticAVG:
+ 285              	.LFB32:
+  86:HW/TPAD/tpad.c **** 
+  87:HW/TPAD/tpad.c **** /* 统计TPAD充电时间 */
+  88:HW/TPAD/tpad.c **** typedef enum{
+  89:HW/TPAD/tpad.c ****     TPAD_Statistic_Mode_AVG,    // 统计平均值
+  90:HW/TPAD/tpad.c ****     TPAD_Statistic_Mode_MAX     // 统计最大值
+  91:HW/TPAD/tpad.c **** }TPAD_Statistic_Mode_t;
+  92:HW/TPAD/tpad.c **** #define IS_TPAD_Statistic_Mode(mode) (mode == TPAD_Statistic_Mode_AVG) || (mode == TPAD_Statistic_M
+  93:HW/TPAD/tpad.c **** uint16_t TPAD_StatisticAVG(){
+ 286              		.loc 1 93 29 is_stmt 1 view -0
+ 287              		.cfi_startproc
+ 288              		@ args = 0, pretend = 0, frame = 24
+ 289              		@ frame_needed = 0, uses_anonymous_args = 0
+ 290 0000 10B5     		push	{r4, lr}
+ 291              	.LCFI7:
+ 292              		.cfi_def_cfa_offset 8
+ 293              		.cfi_offset 4, -8
+ 294              		.cfi_offset 14, -4
+ 295 0002 86B0     		sub	sp, sp, #24
+ 296              	.LCFI8:
+ 297              		.cfi_def_cfa_offset 32
+  94:HW/TPAD/tpad.c ****     /* 记录10次 */
+  95:HW/TPAD/tpad.c ****     int i, j;
+ 298              		.loc 1 95 5 view .LVU68
+  96:HW/TPAD/tpad.c ****     uint16_t buffer[10];
+ 299              		.loc 1 96 5 view .LVU69
+  97:HW/TPAD/tpad.c ****     for(i = 0; i < 10; ++i) buffer[i] = TPAD_GetCounter();
+ 300              		.loc 1 97 5 view .LVU70
+ 301              	.LVL16:
+ 302              		.loc 1 97 11 is_stmt 0 view .LVU71
+ 303 0004 0024     		movs	r4, #0
+ 304              		.loc 1 97 5 view .LVU72
+ 305 0006 07E0     		b	.L19
+ 306              	.LVL17:
+ 307              	.L20:
+ 308              		.loc 1 97 29 is_stmt 1 discriminator 3 view .LVU73
+ 309              		.loc 1 97 41 is_stmt 0 discriminator 3 view .LVU74
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s 			page 8
+
+
+ 310 0008 FFF7FEFF 		bl	TPAD_GetCounter
+ 311              	.LVL18:
+ 312              		.loc 1 97 39 discriminator 3 view .LVU75
+ 313 000c 06AB     		add	r3, sp, #24
+ 314 000e 03EB4403 		add	r3, r3, r4, lsl #1
+ 315 0012 23F8140C 		strh	r0, [r3, #-20]	@ movhi
+ 316              		.loc 1 97 24 is_stmt 1 discriminator 3 view .LVU76
+ 317 0016 0134     		adds	r4, r4, #1
+ 318              	.LVL19:
+ 319              	.L19:
+ 320              		.loc 1 97 18 discriminator 1 view .LVU77
+ 321 0018 092C     		cmp	r4, #9
+ 322 001a F5DD     		ble	.L20
+  98:HW/TPAD/tpad.c ****     /* 冒泡排序 */
+  99:HW/TPAD/tpad.c ****     uint16_t temp;
+ 100:HW/TPAD/tpad.c ****     for(i = 10 - 1; i > 0; --i){
+ 323              		.loc 1 100 11 is_stmt 0 view .LVU78
+ 324 001c 4FF0090C 		mov	ip, #9
+ 325 0020 1BE0     		b	.L21
+ 326              	.LVL20:
+ 327              	.L22:
+  97:HW/TPAD/tpad.c ****     for(i = 0; i < 10; ++i) buffer[i] = TPAD_GetCounter();
+ 328              		.loc 1 97 11 discriminator 1 view .LVU79
+ 329 0022 1346     		mov	r3, r2
+ 330              	.LVL21:
+ 331              	.L24:
+ 101:HW/TPAD/tpad.c ****         for(j = 0; j < i; ++j){
+ 332              		.loc 1 101 22 is_stmt 1 discriminator 1 view .LVU80
+ 333 0024 9C45     		cmp	ip, r3
+ 334 0026 16DD     		ble	.L29
+ 102:HW/TPAD/tpad.c ****             if(buffer[j] > buffer[j + 1]){
+ 335              		.loc 1 102 13 view .LVU81
+ 336              		.loc 1 102 22 is_stmt 0 view .LVU82
+ 337 0028 06AA     		add	r2, sp, #24
+ 338 002a 02EB4302 		add	r2, r2, r3, lsl #1
+ 339 002e 32F8141C 		ldrh	r1, [r2, #-20]
+ 340              		.loc 1 102 37 view .LVU83
+ 341 0032 5A1C     		adds	r2, r3, #1
+ 342              		.loc 1 102 34 view .LVU84
+ 343 0034 06A8     		add	r0, sp, #24
+ 344 0036 00EB4200 		add	r0, r0, r2, lsl #1
+ 345 003a 30F8140C 		ldrh	r0, [r0, #-20]
+ 346              		.loc 1 102 15 view .LVU85
+ 347 003e 8142     		cmp	r1, r0
+ 348 0040 EFD9     		bls	.L22
+ 103:HW/TPAD/tpad.c ****                 temp = buffer[j]; buffer[j] = buffer[j + 1]; buffer[j + 1] = temp;  // swap
+ 349              		.loc 1 103 17 is_stmt 1 view .LVU86
+ 350              	.LVL22:
+ 351              		.loc 1 103 35 view .LVU87
+ 352              		.loc 1 103 45 is_stmt 0 view .LVU88
+ 353 0042 06AC     		add	r4, sp, #24
+ 354 0044 04EB4303 		add	r3, r4, r3, lsl #1
+ 355              	.LVL23:
+ 356              		.loc 1 103 45 view .LVU89
+ 357 0048 23F8140C 		strh	r0, [r3, #-20]	@ movhi
+ 358              		.loc 1 103 62 is_stmt 1 view .LVU90
+ 359              		.loc 1 103 76 is_stmt 0 view .LVU91
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s 			page 9
+
+
+ 360 004c 04EB4203 		add	r3, r4, r2, lsl #1
+ 361 0050 23F8141C 		strh	r1, [r3, #-20]	@ movhi
+ 362 0054 E5E7     		b	.L22
+ 363              	.LVL24:
+ 364              	.L29:
+ 100:HW/TPAD/tpad.c ****         for(j = 0; j < i; ++j){
+ 365              		.loc 1 100 28 is_stmt 1 discriminator 2 view .LVU92
+ 366 0056 0CF1FF3C 		add	ip, ip, #-1
+ 367              	.LVL25:
+ 368              	.L21:
+ 100:HW/TPAD/tpad.c ****         for(j = 0; j < i; ++j){
+ 369              		.loc 1 100 23 discriminator 1 view .LVU93
+ 370 005a BCF1000F 		cmp	ip, #0
+ 371 005e 01DD     		ble	.L30
+ 101:HW/TPAD/tpad.c ****             if(buffer[j] > buffer[j + 1]){
+ 372              		.loc 1 101 15 is_stmt 0 view .LVU94
+ 373 0060 0023     		movs	r3, #0
+ 374 0062 DFE7     		b	.L24
+ 375              	.L30:
+ 104:HW/TPAD/tpad.c ****             }
+ 105:HW/TPAD/tpad.c ****         }
+ 106:HW/TPAD/tpad.c ****     }
+ 107:HW/TPAD/tpad.c ****     /* 统计其中的6次 */
+ 108:HW/TPAD/tpad.c ****     uint32_t sum = 0;
+ 376              		.loc 1 108 14 view .LVU95
+ 377 0064 0022     		movs	r2, #0
+ 109:HW/TPAD/tpad.c ****     for(i = 2; i < 8; ++i) sum += (uint32_t)buffer[i];
+ 378              		.loc 1 109 11 view .LVU96
+ 379 0066 0223     		movs	r3, #2
+ 380              	.LVL26:
+ 381              	.L25:
+ 382              		.loc 1 109 18 is_stmt 1 discriminator 1 view .LVU97
+ 383 0068 072B     		cmp	r3, #7
+ 384 006a 07DC     		bgt	.L31
+ 385              		.loc 1 109 28 discriminator 3 view .LVU98
+ 386              		.loc 1 109 51 is_stmt 0 discriminator 3 view .LVU99
+ 387 006c 06A9     		add	r1, sp, #24
+ 388 006e 01EB4301 		add	r1, r1, r3, lsl #1
+ 389 0072 31F8141C 		ldrh	r1, [r1, #-20]
+ 390              		.loc 1 109 32 discriminator 3 view .LVU100
+ 391 0076 0A44     		add	r2, r2, r1
+ 392              	.LVL27:
+ 393              		.loc 1 109 23 is_stmt 1 discriminator 3 view .LVU101
+ 394 0078 0133     		adds	r3, r3, #1
+ 395              	.LVL28:
+ 396              		.loc 1 109 23 is_stmt 0 discriminator 3 view .LVU102
+ 397 007a F5E7     		b	.L25
+ 398              	.L31:
+ 110:HW/TPAD/tpad.c ****     return (uint16_t)(sum / 6);
+ 399              		.loc 1 110 5 is_stmt 1 view .LVU103
+ 400              		.loc 1 110 27 is_stmt 0 view .LVU104
+ 401 007c 034B     		ldr	r3, .L32
+ 402              	.LVL29:
+ 403              		.loc 1 110 27 view .LVU105
+ 404 007e A3FB0232 		umull	r3, r2, r3, r2
+ 405              	.LVL30:
+ 111:HW/TPAD/tpad.c **** }
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s 			page 10
+
+
+ 406              		.loc 1 111 1 view .LVU106
+ 407 0082 C2F38F00 		ubfx	r0, r2, #2, #16
+ 408 0086 06B0     		add	sp, sp, #24
+ 409              	.LCFI9:
+ 410              		.cfi_def_cfa_offset 8
+ 411              		@ sp needed
+ 412 0088 10BD     		pop	{r4, pc}
+ 413              	.L33:
+ 414 008a 00BF     		.align	2
+ 415              	.L32:
+ 416 008c ABAAAAAA 		.word	-1431655765
+ 417              		.cfi_endproc
+ 418              	.LFE32:
+ 420              		.section	.text.TPAD_StatisticMAX,"ax",%progbits
+ 421              		.align	1
+ 422              		.global	TPAD_StatisticMAX
+ 423              		.syntax unified
+ 424              		.thumb
+ 425              		.thumb_func
+ 427              	TPAD_StatisticMAX:
+ 428              	.LFB33:
+ 112:HW/TPAD/tpad.c **** uint16_t TPAD_StatisticMAX(){
+ 429              		.loc 1 112 29 is_stmt 1 view -0
+ 430              		.cfi_startproc
+ 431              		@ args = 0, pretend = 0, frame = 0
+ 432              		@ frame_needed = 0, uses_anonymous_args = 0
+ 433 0000 38B5     		push	{r3, r4, r5, lr}
+ 434              	.LCFI10:
+ 435              		.cfi_def_cfa_offset 16
+ 436              		.cfi_offset 3, -16
+ 437              		.cfi_offset 4, -12
+ 438              		.cfi_offset 5, -8
+ 439              		.cfi_offset 14, -4
+ 113:HW/TPAD/tpad.c ****     /* 记录6次，记录最大值 */
+ 114:HW/TPAD/tpad.c ****     int i;
+ 440              		.loc 1 114 5 view .LVU108
+ 115:HW/TPAD/tpad.c ****     uint16_t max = 0, temp;
+ 441              		.loc 1 115 5 view .LVU109
+ 442              	.LVL31:
+ 116:HW/TPAD/tpad.c ****     for(i = 0; i < 6; ++i){
+ 443              		.loc 1 116 5 view .LVU110
+ 115:HW/TPAD/tpad.c ****     uint16_t max = 0, temp;
+ 444              		.loc 1 115 14 is_stmt 0 view .LVU111
+ 445 0002 0025     		movs	r5, #0
+ 446              		.loc 1 116 11 view .LVU112
+ 447 0004 2C46     		mov	r4, r5
+ 448              		.loc 1 116 5 view .LVU113
+ 449 0006 00E0     		b	.L35
+ 450              	.LVL32:
+ 451              	.L36:
+ 452              		.loc 1 116 23 is_stmt 1 discriminator 2 view .LVU114
+ 453 0008 0134     		adds	r4, r4, #1
+ 454              	.LVL33:
+ 455              	.L35:
+ 456              		.loc 1 116 18 discriminator 1 view .LVU115
+ 457 000a 052C     		cmp	r4, #5
+ 458 000c 05DC     		bgt	.L40
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s 			page 11
+
+
+ 117:HW/TPAD/tpad.c ****         temp = TPAD_GetCounter();
+ 459              		.loc 1 117 9 view .LVU116
+ 460              		.loc 1 117 16 is_stmt 0 view .LVU117
+ 461 000e FFF7FEFF 		bl	TPAD_GetCounter
+ 462              	.LVL34:
+ 118:HW/TPAD/tpad.c ****         if(temp > max) max = temp;
+ 463              		.loc 1 118 9 is_stmt 1 view .LVU118
+ 464              		.loc 1 118 11 is_stmt 0 view .LVU119
+ 465 0012 8542     		cmp	r5, r0
+ 466 0014 F8D2     		bcs	.L36
+ 467              		.loc 1 118 28 view .LVU120
+ 468 0016 0546     		mov	r5, r0
+ 469              	.LVL35:
+ 470              		.loc 1 118 28 view .LVU121
+ 471 0018 F6E7     		b	.L36
+ 472              	.LVL36:
+ 473              	.L40:
+ 119:HW/TPAD/tpad.c ****     }
+ 120:HW/TPAD/tpad.c ****     return max;
+ 474              		.loc 1 120 5 is_stmt 1 view .LVU122
+ 121:HW/TPAD/tpad.c **** }
+ 475              		.loc 1 121 1 is_stmt 0 view .LVU123
+ 476 001a 2846     		mov	r0, r5
+ 477 001c 38BD     		pop	{r3, r4, r5, pc}
+ 478              		.loc 1 121 1 view .LVU124
+ 479              		.cfi_endproc
+ 480              	.LFE33:
+ 482              		.section	.text.TPAD_StatisticCounter,"ax",%progbits
+ 483              		.align	1
+ 484              		.global	TPAD_StatisticCounter
+ 485              		.syntax unified
+ 486              		.thumb
+ 487              		.thumb_func
+ 489              	TPAD_StatisticCounter:
+ 490              	.LVL37:
+ 491              	.LFB34:
+ 122:HW/TPAD/tpad.c **** uint16_t TPAD_StatisticCounter(TPAD_Statistic_Mode_t mode){
+ 492              		.loc 1 122 59 is_stmt 1 view -0
+ 493              		.cfi_startproc
+ 494              		@ args = 0, pretend = 0, frame = 0
+ 495              		@ frame_needed = 0, uses_anonymous_args = 0
+ 496              		.loc 1 122 59 is_stmt 0 view .LVU126
+ 497 0000 08B5     		push	{r3, lr}
+ 498              	.LCFI11:
+ 499              		.cfi_def_cfa_offset 8
+ 500              		.cfi_offset 3, -8
+ 501              		.cfi_offset 14, -4
+ 123:HW/TPAD/tpad.c ****     assert_param(IS_TPAD_Statistic_Mode(mode));
+ 502              		.loc 1 123 5 is_stmt 1 view .LVU127
+ 124:HW/TPAD/tpad.c ****     switch (mode)
+ 503              		.loc 1 124 5 view .LVU128
+ 504 0002 18B1     		cbz	r0, .L42
+ 505 0004 0128     		cmp	r0, #1
+ 506 0006 04D0     		beq	.L43
+ 507 0008 0020     		movs	r0, #0
+ 508              	.LVL38:
+ 509              	.L44:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s 			page 12
+
+
+ 125:HW/TPAD/tpad.c ****     {
+ 126:HW/TPAD/tpad.c ****     case TPAD_Statistic_Mode_AVG:   // 平均值
+ 127:HW/TPAD/tpad.c ****         return TPAD_StatisticAVG();
+ 128:HW/TPAD/tpad.c ****     case TPAD_Statistic_Mode_MAX:   // 最大值
+ 129:HW/TPAD/tpad.c ****         return TPAD_StatisticMAX();
+ 130:HW/TPAD/tpad.c ****     }
+ 131:HW/TPAD/tpad.c ****     return 0;
+ 132:HW/TPAD/tpad.c **** }
+ 510              		.loc 1 132 1 is_stmt 0 view .LVU129
+ 511 000a 08BD     		pop	{r3, pc}
+ 512              	.LVL39:
+ 513              	.L42:
+ 127:HW/TPAD/tpad.c ****     case TPAD_Statistic_Mode_MAX:   // 最大值
+ 514              		.loc 1 127 9 is_stmt 1 view .LVU130
+ 127:HW/TPAD/tpad.c ****     case TPAD_Statistic_Mode_MAX:   // 最大值
+ 515              		.loc 1 127 16 is_stmt 0 view .LVU131
+ 516 000c FFF7FEFF 		bl	TPAD_StatisticAVG
+ 517              	.LVL40:
+ 127:HW/TPAD/tpad.c ****     case TPAD_Statistic_Mode_MAX:   // 最大值
+ 518              		.loc 1 127 16 view .LVU132
+ 519 0010 FBE7     		b	.L44
+ 520              	.LVL41:
+ 521              	.L43:
+ 129:HW/TPAD/tpad.c ****     }
+ 522              		.loc 1 129 9 is_stmt 1 view .LVU133
+ 129:HW/TPAD/tpad.c ****     }
+ 523              		.loc 1 129 16 is_stmt 0 view .LVU134
+ 524 0012 FFF7FEFF 		bl	TPAD_StatisticMAX
+ 525              	.LVL42:
+ 129:HW/TPAD/tpad.c ****     }
+ 526              		.loc 1 129 16 view .LVU135
+ 527 0016 F8E7     		b	.L44
+ 528              		.cfi_endproc
+ 529              	.LFE34:
+ 531              		.section	.text.TPAD_Init,"ax",%progbits
+ 532              		.align	1
+ 533              		.global	TPAD_Init
+ 534              		.syntax unified
+ 535              		.thumb
+ 536              		.thumb_func
+ 538              	TPAD_Init:
+ 539              	.LFB35:
+ 133:HW/TPAD/tpad.c **** 
+ 134:HW/TPAD/tpad.c **** 
+ 135:HW/TPAD/tpad.c **** /* 充电阈值 */
+ 136:HW/TPAD/tpad.c **** static uint16_t __TPAD_threshold = 0;
+ 137:HW/TPAD/tpad.c **** 
+ 138:HW/TPAD/tpad.c **** 
+ 139:HW/TPAD/tpad.c **** /* 初始化TPAD按键 */
+ 140:HW/TPAD/tpad.c **** void TPAD_Init(){
+ 540              		.loc 1 140 17 is_stmt 1 view -0
+ 541              		.cfi_startproc
+ 542              		@ args = 0, pretend = 0, frame = 0
+ 543              		@ frame_needed = 0, uses_anonymous_args = 0
+ 544 0000 08B5     		push	{r3, lr}
+ 545              	.LCFI12:
+ 546              		.cfi_def_cfa_offset 8
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s 			page 13
+
+
+ 547              		.cfi_offset 3, -8
+ 548              		.cfi_offset 14, -4
+ 141:HW/TPAD/tpad.c ****     /* 初始化定时器 */
+ 142:HW/TPAD/tpad.c ****     TPAD_TIM5_Init();
+ 549              		.loc 1 142 5 view .LVU137
+ 550 0002 FFF7FEFF 		bl	TPAD_TIM5_Init
+ 551              	.LVL43:
+ 143:HW/TPAD/tpad.c ****     /* 计算充电阈值（根据平均充电时间） */
+ 144:HW/TPAD/tpad.c ****     __TPAD_threshold = TPAD_StatisticCounter(TPAD_Statistic_Mode_AVG) + 100;
+ 552              		.loc 1 144 5 view .LVU138
+ 553              		.loc 1 144 24 is_stmt 0 view .LVU139
+ 554 0006 0020     		movs	r0, #0
+ 555 0008 FFF7FEFF 		bl	TPAD_StatisticCounter
+ 556              	.LVL44:
+ 557              		.loc 1 144 71 view .LVU140
+ 558 000c 6430     		adds	r0, r0, #100
+ 559              		.loc 1 144 22 view .LVU141
+ 560 000e 014B     		ldr	r3, .L48
+ 561 0010 1880     		strh	r0, [r3]	@ movhi
+ 145:HW/TPAD/tpad.c **** }
+ 562              		.loc 1 145 1 view .LVU142
+ 563 0012 08BD     		pop	{r3, pc}
+ 564              	.L49:
+ 565              		.align	2
+ 566              	.L48:
+ 567 0014 00000000 		.word	__TPAD_threshold
+ 568              		.cfi_endproc
+ 569              	.LFE35:
+ 571              		.section	.text.TPAD_Scan,"ax",%progbits
+ 572              		.align	1
+ 573              		.global	TPAD_Scan
+ 574              		.syntax unified
+ 575              		.thumb
+ 576              		.thumb_func
+ 578              	TPAD_Scan:
+ 579              	.LVL45:
+ 580              	.LFB36:
+ 146:HW/TPAD/tpad.c **** 
+ 147:HW/TPAD/tpad.c **** /* 判断是否按下 */
+ 148:HW/TPAD/tpad.c **** typedef enum{
+ 149:HW/TPAD/tpad.c ****     TPAD_Scan_Continue = 0,
+ 150:HW/TPAD/tpad.c ****     TPAD_Scan_Once,
+ 151:HW/TPAD/tpad.c **** } TPAD_Scan_Mode_t;
+ 152:HW/TPAD/tpad.c **** #define TPAD_Touched (TPAD_StatisticCounter(TPAD_Statistic_Mode_MAX) >= __TPAD_threshold)
+ 153:HW/TPAD/tpad.c **** bool TPAD_Scan(TPAD_Scan_Mode_t mode){
+ 581              		.loc 1 153 38 is_stmt 1 view -0
+ 582              		.cfi_startproc
+ 583              		@ args = 0, pretend = 0, frame = 0
+ 584              		@ frame_needed = 0, uses_anonymous_args = 0
+ 585              		.loc 1 153 38 is_stmt 0 view .LVU144
+ 586 0000 10B5     		push	{r4, lr}
+ 587              	.LCFI13:
+ 588              		.cfi_def_cfa_offset 8
+ 589              		.cfi_offset 4, -8
+ 590              		.cfi_offset 14, -4
+ 154:HW/TPAD/tpad.c ****     static bool __tpad_empt = 1;    // 无触摸时为1，有触摸时为0
+ 591              		.loc 1 154 5 is_stmt 1 view .LVU145
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s 			page 14
+
+
+ 155:HW/TPAD/tpad.c **** 
+ 156:HW/TPAD/tpad.c ****     if(mode == TPAD_Scan_Continue) __tpad_empt = 1;
+ 592              		.loc 1 156 5 view .LVU146
+ 593              		.loc 1 156 7 is_stmt 0 view .LVU147
+ 594 0002 10B9     		cbnz	r0, .L51
+ 595              		.loc 1 156 36 is_stmt 1 discriminator 1 view .LVU148
+ 596              		.loc 1 156 48 is_stmt 0 discriminator 1 view .LVU149
+ 597 0004 0F4B     		ldr	r3, .L57
+ 598 0006 0122     		movs	r2, #1
+ 599 0008 1A70     		strb	r2, [r3]
+ 600              	.L51:
+ 157:HW/TPAD/tpad.c **** 
+ 158:HW/TPAD/tpad.c ****     if(__tpad_empt && TPAD_Touched){  // 触摸
+ 601              		.loc 1 158 5 is_stmt 1 view .LVU150
+ 602              		.loc 1 158 8 is_stmt 0 view .LVU151
+ 603 000a 0E4B     		ldr	r3, .L57
+ 604 000c 1C78     		ldrb	r4, [r3]	@ zero_extendqisi2
+ 605              		.loc 1 158 7 view .LVU152
+ 606 000e 34B1     		cbz	r4, .L52
+ 607              		.loc 1 158 23 discriminator 1 view .LVU153
+ 608 0010 0120     		movs	r0, #1
+ 609              	.LVL46:
+ 610              		.loc 1 158 23 discriminator 1 view .LVU154
+ 611 0012 FFF7FEFF 		bl	TPAD_StatisticCounter
+ 612              	.LVL47:
+ 613 0016 0C4B     		ldr	r3, .L57+4
+ 614 0018 1B88     		ldrh	r3, [r3]
+ 615              		.loc 1 158 20 discriminator 1 view .LVU155
+ 616 001a 9842     		cmp	r0, r3
+ 617 001c 0BD2     		bcs	.L56
+ 618              	.L52:
+ 159:HW/TPAD/tpad.c ****         __tpad_empt = 0;
+ 160:HW/TPAD/tpad.c ****         return true;
+ 161:HW/TPAD/tpad.c ****     }else if(!TPAD_Touched){          // 无触摸
+ 619              		.loc 1 161 11 is_stmt 1 view .LVU156
+ 620              		.loc 1 161 15 is_stmt 0 view .LVU157
+ 621 001e 0120     		movs	r0, #1
+ 622 0020 FFF7FEFF 		bl	TPAD_StatisticCounter
+ 623              	.LVL48:
+ 624              		.loc 1 161 14 view .LVU158
+ 625 0024 084B     		ldr	r3, .L57+4
+ 626 0026 1B88     		ldrh	r3, [r3]
+ 627              		.loc 1 161 13 view .LVU159
+ 628 0028 9842     		cmp	r0, r3
+ 629 002a 08D2     		bcs	.L54
+ 162:HW/TPAD/tpad.c ****         __tpad_empt = 1;
+ 630              		.loc 1 162 9 is_stmt 1 view .LVU160
+ 631              		.loc 1 162 21 is_stmt 0 view .LVU161
+ 632 002c 054B     		ldr	r3, .L57
+ 633 002e 0122     		movs	r2, #1
+ 634 0030 1A70     		strb	r2, [r3]
+ 163:HW/TPAD/tpad.c ****     }
+ 164:HW/TPAD/tpad.c ****     return false;
+ 635              		.loc 1 164 12 view .LVU162
+ 636 0032 0024     		movs	r4, #0
+ 637 0034 04E0     		b	.L53
+ 638              	.L56:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s 			page 15
+
+
+ 159:HW/TPAD/tpad.c ****         return true;
+ 639              		.loc 1 159 9 is_stmt 1 view .LVU163
+ 159:HW/TPAD/tpad.c ****         return true;
+ 640              		.loc 1 159 21 is_stmt 0 view .LVU164
+ 641 0036 034B     		ldr	r3, .L57
+ 642 0038 0022     		movs	r2, #0
+ 643 003a 1A70     		strb	r2, [r3]
+ 160:HW/TPAD/tpad.c ****     }else if(!TPAD_Touched){          // 无触摸
+ 644              		.loc 1 160 9 is_stmt 1 view .LVU165
+ 160:HW/TPAD/tpad.c ****     }else if(!TPAD_Touched){          // 无触摸
+ 645              		.loc 1 160 16 is_stmt 0 view .LVU166
+ 646 003c 00E0     		b	.L53
+ 647              	.L54:
+ 648              		.loc 1 164 12 view .LVU167
+ 649 003e 0024     		movs	r4, #0
+ 650              	.L53:
+ 165:HW/TPAD/tpad.c **** }
+ 651              		.loc 1 165 1 view .LVU168
+ 652 0040 2046     		mov	r0, r4
+ 653 0042 10BD     		pop	{r4, pc}
+ 654              	.L58:
+ 655              		.align	2
+ 656              	.L57:
+ 657 0044 00000000 		.word	__tpad_empt.0
+ 658 0048 00000000 		.word	__TPAD_threshold
+ 659              		.cfi_endproc
+ 660              	.LFE36:
+ 662              		.section	.text.TPAD_Run,"ax",%progbits
+ 663              		.align	1
+ 664              		.global	TPAD_Run
+ 665              		.syntax unified
+ 666              		.thumb
+ 667              		.thumb_func
+ 669              	TPAD_Run:
+ 670              	.LFB37:
+ 166:HW/TPAD/tpad.c **** 
+ 167:HW/TPAD/tpad.c **** /* 运行例程 */
+ 168:HW/TPAD/tpad.c **** void TPAD_Run(){
+ 671              		.loc 1 168 16 is_stmt 1 view -0
+ 672              		.cfi_startproc
+ 673              		@ Volatile: function does not return.
+ 674              		@ args = 0, pretend = 0, frame = 0
+ 675              		@ frame_needed = 0, uses_anonymous_args = 0
+ 676 0000 08B5     		push	{r3, lr}
+ 677              	.LCFI14:
+ 678              		.cfi_def_cfa_offset 8
+ 679              		.cfi_offset 3, -8
+ 680              		.cfi_offset 14, -4
+ 169:HW/TPAD/tpad.c ****     /* 初始化 */
+ 170:HW/TPAD/tpad.c ****     delay_init();
+ 681              		.loc 1 170 5 view .LVU170
+ 682 0002 FFF7FEFF 		bl	delay_init
+ 683              	.LVL49:
+ 171:HW/TPAD/tpad.c ****     TPAD_Init();
+ 684              		.loc 1 171 5 view .LVU171
+ 685 0006 FFF7FEFF 		bl	TPAD_Init
+ 686              	.LVL50:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s 			page 16
+
+
+ 172:HW/TPAD/tpad.c ****     LED_Init_Hal();
+ 687              		.loc 1 172 5 view .LVU172
+ 688 000a FFF7FEFF 		bl	LED_Init_Hal
+ 689              	.LVL51:
+ 690 000e 0AE0     		b	.L61
+ 691              	.L63:
+ 173:HW/TPAD/tpad.c ****     /* 运行 */
+ 174:HW/TPAD/tpad.c ****     while(1){
+ 175:HW/TPAD/tpad.c ****         if(TPAD_Scan(TPAD_Scan_Once)) LED0_REVERT();
+ 692              		.loc 1 175 39 discriminator 1 view .LVU173
+ 693 0010 084A     		ldr	r2, .L64
+ 694 0012 D2F89431 		ldr	r3, [r2, #404]
+ 695 0016 B3FA83F3 		clz	r3, r3
+ 696 001a 5B09     		lsrs	r3, r3, #5
+ 697 001c C2F89431 		str	r3, [r2, #404]
+ 698              	.L60:
+ 699              		.loc 1 175 52 discriminator 3 view .LVU174
+ 176:HW/TPAD/tpad.c ****         delay_ms(10);
+ 700              		.loc 1 176 9 discriminator 3 view .LVU175
+ 701 0020 0A20     		movs	r0, #10
+ 702 0022 FFF7FEFF 		bl	delay_ms
+ 703              	.LVL52:
+ 174:HW/TPAD/tpad.c ****         if(TPAD_Scan(TPAD_Scan_Once)) LED0_REVERT();
+ 704              		.loc 1 174 10 discriminator 3 view .LVU176
+ 705              	.L61:
+ 174:HW/TPAD/tpad.c ****         if(TPAD_Scan(TPAD_Scan_Once)) LED0_REVERT();
+ 706              		.loc 1 174 5 view .LVU177
+ 175:HW/TPAD/tpad.c ****         delay_ms(10);
+ 707              		.loc 1 175 9 view .LVU178
+ 175:HW/TPAD/tpad.c ****         delay_ms(10);
+ 708              		.loc 1 175 12 is_stmt 0 view .LVU179
+ 709 0026 0120     		movs	r0, #1
+ 710 0028 FFF7FEFF 		bl	TPAD_Scan
+ 711              	.LVL53:
+ 175:HW/TPAD/tpad.c ****         delay_ms(10);
+ 712              		.loc 1 175 11 view .LVU180
+ 713 002c 0028     		cmp	r0, #0
+ 714 002e EFD1     		bne	.L63
+ 715 0030 F6E7     		b	.L60
+ 716              	.L65:
+ 717 0032 00BF     		.align	2
+ 718              	.L64:
+ 719 0034 00802142 		.word	1109491712
+ 720              		.cfi_endproc
+ 721              	.LFE37:
+ 723              		.section	.data.__tpad_empt.0,"aw"
+ 726              	__tpad_empt.0:
+ 727 0000 01       		.byte	1
+ 728              		.section	.bss.__TPAD_threshold,"aw",%nobits
+ 729              		.align	1
+ 732              	__TPAD_threshold:
+ 733 0000 0000     		.space	2
+ 734              		.text
+ 735              	.Letext0:
+ 736              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 737              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 738              		.file 4 "USER/stm32f10x.h"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s 			page 17
+
+
+ 739              		.file 5 "STM32F10x_FWLib/inc/stm32f10x_gpio.h"
+ 740              		.file 6 "STM32F10x_FWLib/inc/stm32f10x_tim.h"
+ 741              		.file 7 "HW\\LED/LED.h"
+ 742              		.file 8 "SYSTEM/delay/delay.h"
+ 743              		.file 9 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s 			page 18
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 tpad.c
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:19     .text.TPAD_TIM5_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:24     .text.TPAD_TIM5_Init:00000000 TPAD_TIM5_Init
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:129    .text.TPAD_TIM5_Init:00000080 $d
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:135    .text.TPAD_Reset:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:141    .text.TPAD_Reset:00000000 TPAD_Reset
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:213    .text.TPAD_Reset:00000054 $d
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:219    .text.TPAD_GetCounter:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:225    .text.TPAD_GetCounter:00000000 TPAD_GetCounter
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:273    .text.TPAD_GetCounter:0000002c $d
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:278    .text.TPAD_StatisticAVG:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:284    .text.TPAD_StatisticAVG:00000000 TPAD_StatisticAVG
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:416    .text.TPAD_StatisticAVG:0000008c $d
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:421    .text.TPAD_StatisticMAX:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:427    .text.TPAD_StatisticMAX:00000000 TPAD_StatisticMAX
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:483    .text.TPAD_StatisticCounter:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:489    .text.TPAD_StatisticCounter:00000000 TPAD_StatisticCounter
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:532    .text.TPAD_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:538    .text.TPAD_Init:00000000 TPAD_Init
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:567    .text.TPAD_Init:00000014 $d
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:732    .bss.__TPAD_threshold:00000000 __TPAD_threshold
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:572    .text.TPAD_Scan:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:578    .text.TPAD_Scan:00000000 TPAD_Scan
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:657    .text.TPAD_Scan:00000044 $d
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:726    .data.__tpad_empt.0:00000000 __tpad_empt.0
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:663    .text.TPAD_Run:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:669    .text.TPAD_Run:00000000 TPAD_Run
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:719    .text.TPAD_Run:00000034 $d
+C:\Users\86157\AppData\Local\Temp\ccQqOYZh.s:729    .bss.__TPAD_threshold:00000000 $d
+
+UNDEFINED SYMBOLS
+RCC_APB1PeriphClockCmd
+RCC_APB2PeriphClockCmd
+GPIO_Init
+TIM_TimeBaseInit
+TIM_ICInit
+TIM_Cmd
+GPIO_ResetBits
+delay_ms
+TIM_ClearITPendingBit
+TIM_SetCounter
+TIM_GetFlagStatus
+TIM_GetCounter
+delay_init
+LED_Init_Hal

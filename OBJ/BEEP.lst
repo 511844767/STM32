@@ -1,0 +1,189 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccMmViP6.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"BEEP.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "HW/BEEP/BEEP.c"
+  18              		.section	.text.BEEP_Init,"ax",%progbits
+  19              		.align	1
+  20              		.global	BEEP_Init
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	BEEP_Init:
+  26              	.LFB29:
+   1:HW/BEEP/BEEP.c **** #include "stm32f10x.h"
+   2:HW/BEEP/BEEP.c **** #include "sys.h"
+   3:HW/BEEP/BEEP.c **** #include"delay.h"
+   4:HW/BEEP/BEEP.c **** 
+   5:HW/BEEP/BEEP.c **** void BEEP_Init(){
+  27              		.loc 1 5 17 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 8
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 00B5     		push	{lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 4
+  34              		.cfi_offset 14, -4
+  35 0002 83B0     		sub	sp, sp, #12
+  36              	.LCFI1:
+  37              		.cfi_def_cfa_offset 16
+   6:HW/BEEP/BEEP.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+  38              		.loc 1 6 5 view .LVU1
+  39 0004 0121     		movs	r1, #1
+  40 0006 0820     		movs	r0, #8
+  41 0008 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+  42              	.LVL0:
+   7:HW/BEEP/BEEP.c **** 
+   8:HW/BEEP/BEEP.c ****     GPIO_InitTypeDef gpioDef = {GPIO_Pin_8, GPIO_Speed_50MHz, GPIO_Mode_Out_PP};
+  43              		.loc 1 8 5 view .LVU2
+  44              		.loc 1 8 22 is_stmt 0 view .LVU3
+  45 000c 044B     		ldr	r3, .L3
+  46 000e 1B68     		ldr	r3, [r3]
+  47 0010 0193     		str	r3, [sp, #4]
+   9:HW/BEEP/BEEP.c ****     GPIO_Init(GPIOB, &gpioDef);
+  48              		.loc 1 9 5 is_stmt 1 view .LVU4
+  49 0012 01A9     		add	r1, sp, #4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccMmViP6.s 			page 2
+
+
+  50 0014 0348     		ldr	r0, .L3+4
+  51 0016 FFF7FEFF 		bl	GPIO_Init
+  52              	.LVL1:
+  10:HW/BEEP/BEEP.c **** }
+  53              		.loc 1 10 1 is_stmt 0 view .LVU5
+  54 001a 03B0     		add	sp, sp, #12
+  55              	.LCFI2:
+  56              		.cfi_def_cfa_offset 4
+  57              		@ sp needed
+  58 001c 5DF804FB 		ldr	pc, [sp], #4
+  59              	.L4:
+  60              		.align	2
+  61              	.L3:
+  62 0020 00000000 		.word	.LANCHOR0
+  63 0024 000C0140 		.word	1073810432
+  64              		.cfi_endproc
+  65              	.LFE29:
+  67              		.section	.text.BEEP_Bit,"ax",%progbits
+  68              		.align	1
+  69              		.global	BEEP_Bit
+  70              		.syntax unified
+  71              		.thumb
+  72              		.thumb_func
+  74              	BEEP_Bit:
+  75              	.LFB30:
+  11:HW/BEEP/BEEP.c **** 
+  12:HW/BEEP/BEEP.c **** void BEEP_Bit(){
+  76              		.loc 1 12 16 is_stmt 1 view -0
+  77              		.cfi_startproc
+  78              		@ args = 0, pretend = 0, frame = 0
+  79              		@ frame_needed = 0, uses_anonymous_args = 0
+  80 0000 70B5     		push	{r4, r5, r6, lr}
+  81              	.LCFI3:
+  82              		.cfi_def_cfa_offset 16
+  83              		.cfi_offset 4, -16
+  84              		.cfi_offset 5, -12
+  85              		.cfi_offset 6, -8
+  86              		.cfi_offset 14, -4
+  13:HW/BEEP/BEEP.c ****     BEEP_Init();
+  87              		.loc 1 13 5 view .LVU7
+  88 0002 FFF7FEFF 		bl	BEEP_Init
+  89              	.LVL2:
+  14:HW/BEEP/BEEP.c ****     delay_init();
+  90              		.loc 1 14 5 view .LVU8
+  91 0006 FFF7FEFF 		bl	delay_init
+  92              	.LVL3:
+  15:HW/BEEP/BEEP.c **** 
+  16:HW/BEEP/BEEP.c ****     PBout(8) = 1;
+  93              		.loc 1 16 5 view .LVU9
+  94              		.loc 1 16 14 is_stmt 0 view .LVU10
+  95 000a 0C4C     		ldr	r4, .L7
+  96 000c 0126     		movs	r6, #1
+  97 000e C4F8A061 		str	r6, [r4, #416]
+  17:HW/BEEP/BEEP.c ****     delay_ms(500);
+  98              		.loc 1 17 5 is_stmt 1 view .LVU11
+  99 0012 4FF4FA70 		mov	r0, #500
+ 100 0016 FFF7FEFF 		bl	delay_ms
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccMmViP6.s 			page 3
+
+
+ 101              	.LVL4:
+  18:HW/BEEP/BEEP.c ****     PBout(8) = 0;  
+ 102              		.loc 1 18 5 view .LVU12
+ 103              		.loc 1 18 14 is_stmt 0 view .LVU13
+ 104 001a 0025     		movs	r5, #0
+ 105 001c C4F8A051 		str	r5, [r4, #416]
+  19:HW/BEEP/BEEP.c ****     delay_ms(500);
+ 106              		.loc 1 19 5 is_stmt 1 view .LVU14
+ 107 0020 4FF4FA70 		mov	r0, #500
+ 108 0024 FFF7FEFF 		bl	delay_ms
+ 109              	.LVL5:
+  20:HW/BEEP/BEEP.c ****     PBout(8) = 1;
+ 110              		.loc 1 20 5 view .LVU15
+ 111              		.loc 1 20 14 is_stmt 0 view .LVU16
+ 112 0028 C4F8A061 		str	r6, [r4, #416]
+  21:HW/BEEP/BEEP.c ****     delay_ms(1000);
+ 113              		.loc 1 21 5 is_stmt 1 view .LVU17
+ 114 002c 4FF47A70 		mov	r0, #1000
+ 115 0030 FFF7FEFF 		bl	delay_ms
+ 116              	.LVL6:
+  22:HW/BEEP/BEEP.c ****     PBout(8) = 0;
+ 117              		.loc 1 22 5 view .LVU18
+ 118              		.loc 1 22 14 is_stmt 0 view .LVU19
+ 119 0034 C4F8A051 		str	r5, [r4, #416]
+  23:HW/BEEP/BEEP.c **** }...
+ 120              		.loc 1 23 1 view .LVU20
+ 121 0038 70BD     		pop	{r4, r5, r6, pc}
+ 122              	.L8:
+ 123 003a 00BF     		.align	2
+ 124              	.L7:
+ 125 003c 00802142 		.word	1109491712
+ 126              		.cfi_endproc
+ 127              	.LFE30:
+ 129              		.section	.rodata
+ 130              		.align	2
+ 131              		.set	.LANCHOR0,. + 0
+ 132              	.LC0:
+ 133 0000 0001     		.short	256
+ 134 0002 03       		.byte	3
+ 135 0003 10       		.byte	16
+ 136              		.text
+ 137              	.Letext0:
+ 138              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 139              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 140              		.file 4 "USER/stm32f10x.h"
+ 141              		.file 5 "STM32F10x_FWLib/inc/stm32f10x_gpio.h"
+ 142              		.file 6 "SYSTEM/delay/delay.h"
+ 143              		.file 7 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccMmViP6.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 BEEP.c
+C:\Users\86157\AppData\Local\Temp\ccMmViP6.s:19     .text.BEEP_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccMmViP6.s:25     .text.BEEP_Init:00000000 BEEP_Init
+C:\Users\86157\AppData\Local\Temp\ccMmViP6.s:62     .text.BEEP_Init:00000020 $d
+C:\Users\86157\AppData\Local\Temp\ccMmViP6.s:68     .text.BEEP_Bit:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccMmViP6.s:74     .text.BEEP_Bit:00000000 BEEP_Bit
+C:\Users\86157\AppData\Local\Temp\ccMmViP6.s:125    .text.BEEP_Bit:0000003c $d
+C:\Users\86157\AppData\Local\Temp\ccMmViP6.s:130    .rodata:00000000 $d
+
+UNDEFINED SYMBOLS
+RCC_APB2PeriphClockCmd
+GPIO_Init
+delay_init
+delay_ms

@@ -1,0 +1,223 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc87Wvld.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"iwdg.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "HW/IWDG/iwdg.c"
+  18              		.section	.text.IWDG_Init,"ax",%progbits
+  19              		.align	1
+  20              		.global	IWDG_Init
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	IWDG_Init:
+  26              	.LVL0:
+  27              	.LFB29:
+   1:HW/IWDG/iwdg.c **** #include"stm32f10x.h"
+   2:HW/IWDG/iwdg.c **** #include"stm32f10x_iwdg.h"
+   3:HW/IWDG/iwdg.c **** #include"delay.h"
+   4:HW/IWDG/iwdg.c **** 
+   5:HW/IWDG/iwdg.c **** void IWDG_Init(uint8_t IWDG_Prescaler, uint16_t Reload){
+  28              		.loc 1 5 56 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 5 56 is_stmt 0 view .LVU1
+  33 0000 38B5     		push	{r3, r4, r5, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 16
+  36              		.cfi_offset 3, -16
+  37              		.cfi_offset 4, -12
+  38              		.cfi_offset 5, -8
+  39              		.cfi_offset 14, -4
+  40 0002 0546     		mov	r5, r0
+  41 0004 0C46     		mov	r4, r1
+   6:HW/IWDG/iwdg.c ****     /* 使PR和RLR寄存器可写 */
+   7:HW/IWDG/iwdg.c ****     IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);
+  42              		.loc 1 7 5 is_stmt 1 view .LVU2
+  43 0006 45F25550 		movw	r0, #21845
+  44              	.LVL1:
+  45              		.loc 1 7 5 is_stmt 0 view .LVU3
+  46 000a FFF7FEFF 		bl	IWDG_WriteAccessCmd
+  47              	.LVL2:
+   8:HW/IWDG/iwdg.c **** 
+   9:HW/IWDG/iwdg.c ****     /* 设置预分频系数 */
+  10:HW/IWDG/iwdg.c ****     IWDG_SetPrescaler(IWDG_Prescaler);
+  48              		.loc 1 10 5 is_stmt 1 view .LVU4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc87Wvld.s 			page 2
+
+
+  49 000e 2846     		mov	r0, r5
+  50 0010 FFF7FEFF 		bl	IWDG_SetPrescaler
+  51              	.LVL3:
+  11:HW/IWDG/iwdg.c **** 
+  12:HW/IWDG/iwdg.c ****     /* 设置重装载值 */
+  13:HW/IWDG/iwdg.c ****     IWDG_SetReload(Reload);
+  52              		.loc 1 13 5 view .LVU5
+  53 0014 2046     		mov	r0, r4
+  54 0016 FFF7FEFF 		bl	IWDG_SetReload
+  55              	.LVL4:
+  14:HW/IWDG/iwdg.c **** 
+  15:HW/IWDG/iwdg.c ****     /* 装载一次计时器 */
+  16:HW/IWDG/iwdg.c ****     IWDG_ReloadCounter();
+  56              		.loc 1 16 5 view .LVU6
+  57 001a FFF7FEFF 		bl	IWDG_ReloadCounter
+  58              	.LVL5:
+  17:HW/IWDG/iwdg.c **** 
+  18:HW/IWDG/iwdg.c ****     /* 使能看门狗 */
+  19:HW/IWDG/iwdg.c ****     IWDG_Enable();
+  59              		.loc 1 19 5 view .LVU7
+  60 001e FFF7FEFF 		bl	IWDG_Enable
+  61              	.LVL6:
+  20:HW/IWDG/iwdg.c **** }
+  62              		.loc 1 20 1 is_stmt 0 view .LVU8
+  63 0022 38BD     		pop	{r3, r4, r5, pc}
+  64              		.cfi_endproc
+  65              	.LFE29:
+  67              		.section	.text.IWDG_Run,"ax",%progbits
+  68              		.align	1
+  69              		.global	IWDG_Run
+  70              		.syntax unified
+  71              		.thumb
+  72              		.thumb_func
+  74              	IWDG_Run:
+  75              	.LFB30:
+  21:HW/IWDG/iwdg.c **** 
+  22:HW/IWDG/iwdg.c **** /* KEY与LED灯寄存器 */
+  23:HW/IWDG/iwdg.c **** #define KEY0  GPIO_ReadInputDataBit(GPIOE, GPIO_Pin_4)
+  24:HW/IWDG/iwdg.c **** #define KEY1  GPIO_ReadInputDataBit(GPIOE, GPIO_Pin_3)
+  25:HW/IWDG/iwdg.c **** #define KEYUP GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0)
+  26:HW/IWDG/iwdg.c **** #define LED0  PBout(5)
+  27:HW/IWDG/iwdg.c **** #define LED1  PEout(5)
+  28:HW/IWDG/iwdg.c **** typedef enum{
+  29:HW/IWDG/iwdg.c ****     KEY_NONE_PRESS = 0,
+  30:HW/IWDG/iwdg.c ****     KEY0_PRESS, 
+  31:HW/IWDG/iwdg.c ****     KEY1_PRESS, 
+  32:HW/IWDG/iwdg.c ****     KEYUP_PRESS, 
+  33:HW/IWDG/iwdg.c **** } KEY_STATUS_t;
+  34:HW/IWDG/iwdg.c **** 
+  35:HW/IWDG/iwdg.c **** typedef enum{
+  36:HW/IWDG/iwdg.c ****     KEY_SCAN_CONTINUE = 0,
+  37:HW/IWDG/iwdg.c ****     KEY_SCAN_ONCE,
+  38:HW/IWDG/iwdg.c **** } KEY_SCAN_MODE_t;
+  39:HW/IWDG/iwdg.c **** extern void LED_Init_Hal(void);
+  40:HW/IWDG/iwdg.c **** extern void KEY_Init();
+  41:HW/IWDG/iwdg.c **** extern KEY_STATUS_t KEY_Scan(KEY_SCAN_MODE_t mode);
+  42:HW/IWDG/iwdg.c **** 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc87Wvld.s 			page 3
+
+
+  43:HW/IWDG/iwdg.c **** 
+  44:HW/IWDG/iwdg.c **** void IWDG_Run(){
+  76              		.loc 1 44 16 is_stmt 1 view -0
+  77              		.cfi_startproc
+  78              		@ Volatile: function does not return.
+  79              		@ args = 0, pretend = 0, frame = 0
+  80              		@ frame_needed = 0, uses_anonymous_args = 0
+  81 0000 08B5     		push	{r3, lr}
+  82              	.LCFI1:
+  83              		.cfi_def_cfa_offset 8
+  84              		.cfi_offset 3, -8
+  85              		.cfi_offset 14, -4
+  45:HW/IWDG/iwdg.c ****     /* 初始化 */
+  46:HW/IWDG/iwdg.c ****     IWDG_Init(IWDG_Prescaler_32, 1250);     // 看门狗定时1s
+  86              		.loc 1 46 5 view .LVU10
+  87 0002 40F2E241 		movw	r1, #1250
+  88 0006 0320     		movs	r0, #3
+  89 0008 FFF7FEFF 		bl	IWDG_Init
+  90              	.LVL7:
+  47:HW/IWDG/iwdg.c ****     LED_Init_Hal();                         // LED初始化并亮灯
+  91              		.loc 1 47 5 view .LVU11
+  92 000c FFF7FEFF 		bl	LED_Init_Hal
+  93              	.LVL8:
+  48:HW/IWDG/iwdg.c ****     delay_init();
+  94              		.loc 1 48 5 view .LVU12
+  95 0010 FFF7FEFF 		bl	delay_init
+  96              	.LVL9:
+  49:HW/IWDG/iwdg.c ****     KEY_Init();
+  97              		.loc 1 49 5 view .LVU13
+  98 0014 FFF7FEFF 		bl	KEY_Init
+  99              	.LVL10:
+  50:HW/IWDG/iwdg.c **** 
+  51:HW/IWDG/iwdg.c ****     /* 复位后等0.5s关灯 */
+  52:HW/IWDG/iwdg.c ****     delay_ms(500);
+ 100              		.loc 1 52 5 view .LVU14
+ 101 0018 4FF4FA70 		mov	r0, #500
+ 102 001c FFF7FEFF 		bl	delay_ms
+ 103              	.LVL11:
+  53:HW/IWDG/iwdg.c ****     LED0 = 0;
+ 104              		.loc 1 53 5 view .LVU15
+ 105              		.loc 1 53 10 is_stmt 0 view .LVU16
+ 106 0020 054B     		ldr	r3, .L7
+ 107 0022 0022     		movs	r2, #0
+ 108 0024 C3F89421 		str	r2, [r3, #404]
+ 109              	.L4:
+  54:HW/IWDG/iwdg.c **** 
+  55:HW/IWDG/iwdg.c ****     while(1){
+ 110              		.loc 1 55 5 is_stmt 1 view .LVU17
+  56:HW/IWDG/iwdg.c ****         if(KEY_Scan(KEY_SCAN_ONCE) == KEY0_PRESS){  // 按键喂狗
+ 111              		.loc 1 56 9 view .LVU18
+ 112              		.loc 1 56 12 is_stmt 0 view .LVU19
+ 113 0028 0120     		movs	r0, #1
+ 114 002a FFF7FEFF 		bl	KEY_Scan
+ 115              	.LVL12:
+ 116              		.loc 1 56 11 view .LVU20
+ 117 002e 0128     		cmp	r0, #1
+ 118 0030 FAD1     		bne	.L4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc87Wvld.s 			page 4
+
+
+  57:HW/IWDG/iwdg.c ****             IWDG_ReloadCounter();
+ 119              		.loc 1 57 13 is_stmt 1 view .LVU21
+ 120 0032 FFF7FEFF 		bl	IWDG_ReloadCounter
+ 121              	.LVL13:
+ 122 0036 F7E7     		b	.L4
+ 123              	.L8:
+ 124              		.align	2
+ 125              	.L7:
+ 126 0038 00802142 		.word	1109491712
+ 127              		.cfi_endproc
+ 128              	.LFE30:
+ 130              		.text
+ 131              	.Letext0:
+ 132              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 133              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 134              		.file 4 "SYSTEM/delay/delay.h"
+ 135              		.file 5 "STM32F10x_FWLib/inc/stm32f10x_iwdg.h"
+ 136              		.file 6 "USER/stm32f10x.h"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc87Wvld.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 iwdg.c
+C:\Users\86157\AppData\Local\Temp\cc87Wvld.s:19     .text.IWDG_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc87Wvld.s:25     .text.IWDG_Init:00000000 IWDG_Init
+C:\Users\86157\AppData\Local\Temp\cc87Wvld.s:68     .text.IWDG_Run:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc87Wvld.s:74     .text.IWDG_Run:00000000 IWDG_Run
+C:\Users\86157\AppData\Local\Temp\cc87Wvld.s:126    .text.IWDG_Run:00000038 $d
+
+UNDEFINED SYMBOLS
+IWDG_WriteAccessCmd
+IWDG_SetPrescaler
+IWDG_SetReload
+IWDG_ReloadCounter
+IWDG_Enable
+LED_Init_Hal
+delay_init
+KEY_Init
+delay_ms
+KEY_Scan

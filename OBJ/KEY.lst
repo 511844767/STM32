@@ -1,0 +1,524 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cceFtz0a.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"KEY.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "HW/KEY/KEY.c"
+  18              		.section	.text.KEY_Init,"ax",%progbits
+  19              		.align	1
+  20              		.global	KEY_Init
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	KEY_Init:
+  26              	.LFB29:
+   1:HW/KEY/KEY.c  **** #include "stm32f10x.h"
+   2:HW/KEY/KEY.c  **** #include"delay.h"
+   3:HW/KEY/KEY.c  **** 
+   4:HW/KEY/KEY.c  **** typedef enum{
+   5:HW/KEY/KEY.c  ****     KEY_NONE_PRESS = 0,
+   6:HW/KEY/KEY.c  ****     KEY0_PRESS, 
+   7:HW/KEY/KEY.c  ****     KEY1_PRESS, 
+   8:HW/KEY/KEY.c  ****     KEYUP_PRESS, 
+   9:HW/KEY/KEY.c  **** } KEY_STATUS_t;
+  10:HW/KEY/KEY.c  **** 
+  11:HW/KEY/KEY.c  **** typedef enum{
+  12:HW/KEY/KEY.c  ****     KEY_SCAN_CONTINUE = 0,
+  13:HW/KEY/KEY.c  ****     KEY_SCAN_ONCE,
+  14:HW/KEY/KEY.c  **** } KEY_SCAN_MODE_t;
+  15:HW/KEY/KEY.c  **** 
+  16:HW/KEY/KEY.c  **** /* 配置时钟、输入模式 */
+  17:HW/KEY/KEY.c  **** void KEY_Init(){
+  27              		.loc 1 17 16 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 8
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 10B5     		push	{r4, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  36 0002 82B0     		sub	sp, sp, #8
+  37              	.LCFI1:
+  38              		.cfi_def_cfa_offset 16
+  18:HW/KEY/KEY.c  ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOE, ENABLE);
+  39              		.loc 1 18 5 view .LVU1
+  40 0004 0121     		movs	r1, #1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cceFtz0a.s 			page 2
+
+
+  41 0006 4420     		movs	r0, #68
+  42 0008 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+  43              	.LVL0:
+  19:HW/KEY/KEY.c  **** 
+  20:HW/KEY/KEY.c  ****     GPIO_InitTypeDef KEY01Def = 
+  44              		.loc 1 20 5 view .LVU2
+  45              		.loc 1 20 22 is_stmt 0 view .LVU3
+  46 000c 074C     		ldr	r4, .L3
+  47 000e 2368     		ldr	r3, [r4]
+  48 0010 0193     		str	r3, [sp, #4]
+  21:HW/KEY/KEY.c  ****         {GPIO_Pin_3 | GPIO_Pin_4, GPIO_Speed_50MHz, GPIO_Mode_IPU}; // KEY0, KEY1: GPIO_Mode_IPU上
+  22:HW/KEY/KEY.c  ****     GPIO_Init(GPIOE, &KEY01Def);    // GPIO_Init中for循环遍历了所有的Pin脚，所以可以
+  49              		.loc 1 22 5 is_stmt 1 view .LVU4
+  50 0012 01A9     		add	r1, sp, #4
+  51 0014 0648     		ldr	r0, .L3+4
+  52 0016 FFF7FEFF 		bl	GPIO_Init
+  53              	.LVL1:
+  23:HW/KEY/KEY.c  ****     GPIO_InitTypeDef KEYUPDef = 
+  54              		.loc 1 23 5 view .LVU5
+  55              		.loc 1 23 22 is_stmt 0 view .LVU6
+  56 001a 6368     		ldr	r3, [r4, #4]
+  57 001c 0093     		str	r3, [sp]
+  24:HW/KEY/KEY.c  ****         {GPIO_Pin_0, GPIO_Speed_50MHz, GPIO_Mode_IPD};  // KEY UP: GPIO_Mode_IPD下拉输入，按�
+  25:HW/KEY/KEY.c  ****     GPIO_Init(GPIOA, &KEYUPDef);
+  58              		.loc 1 25 5 is_stmt 1 view .LVU7
+  59 001e 6946     		mov	r1, sp
+  60 0020 0448     		ldr	r0, .L3+8
+  61 0022 FFF7FEFF 		bl	GPIO_Init
+  62              	.LVL2:
+  26:HW/KEY/KEY.c  **** }
+  63              		.loc 1 26 1 is_stmt 0 view .LVU8
+  64 0026 02B0     		add	sp, sp, #8
+  65              	.LCFI2:
+  66              		.cfi_def_cfa_offset 8
+  67              		@ sp needed
+  68 0028 10BD     		pop	{r4, pc}
+  69              	.L4:
+  70 002a 00BF     		.align	2
+  71              	.L3:
+  72 002c 00000000 		.word	.LANCHOR0
+  73 0030 00180140 		.word	1073813504
+  74 0034 00080140 		.word	1073809408
+  75              		.cfi_endproc
+  76              	.LFE29:
+  78              		.section	.text.KEY_Scan,"ax",%progbits
+  79              		.align	1
+  80              		.global	KEY_Scan
+  81              		.syntax unified
+  82              		.thumb
+  83              		.thumb_func
+  85              	KEY_Scan:
+  86              	.LVL3:
+  87              	.LFB30:
+  27:HW/KEY/KEY.c  **** 
+  28:HW/KEY/KEY.c  **** /**
+  29:HW/KEY/KEY.c  ****   * @brief  按键扫描
+  30:HW/KEY/KEY.c  ****   * @param  mode: 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cceFtz0a.s 			page 3
+
+
+  31:HW/KEY/KEY.c  ****   *             KEY_SCAN_CONTINUE表示若按钮按下，每次扫描都返回按下状态
+  32:HW/KEY/KEY.c  ****   *             KEY_SCAN_ONCE表示若按钮按下，只返回一次按下状态，如果不松手�
+  33:HW/KEY/KEY.c  ****   * @retval 按钮状态
+  34:HW/KEY/KEY.c  ****   */
+  35:HW/KEY/KEY.c  **** KEY_STATUS_t KEY_Scan(KEY_SCAN_MODE_t mode){
+  88              		.loc 1 35 44 is_stmt 1 view -0
+  89              		.cfi_startproc
+  90              		@ args = 0, pretend = 0, frame = 0
+  91              		@ frame_needed = 0, uses_anonymous_args = 0
+  92              		.loc 1 35 44 is_stmt 0 view .LVU10
+  93 0000 08B5     		push	{r3, lr}
+  94              	.LCFI3:
+  95              		.cfi_def_cfa_offset 8
+  96              		.cfi_offset 3, -8
+  97              		.cfi_offset 14, -4
+  36:HW/KEY/KEY.c  ****     static u8 __key_up = 1;   // 没有按键按下时为1，有按键按下时为0
+  98              		.loc 1 36 5 is_stmt 1 view .LVU11
+  37:HW/KEY/KEY.c  **** 
+  38:HW/KEY/KEY.c  ****     if(mode == KEY_SCAN_CONTINUE) __key_up = 1;
+  99              		.loc 1 38 5 view .LVU12
+ 100              		.loc 1 38 7 is_stmt 0 view .LVU13
+ 101 0002 10B9     		cbnz	r0, .L6
+ 102              		.loc 1 38 35 is_stmt 1 discriminator 1 view .LVU14
+ 103              		.loc 1 38 44 is_stmt 0 discriminator 1 view .LVU15
+ 104 0004 274B     		ldr	r3, .L21
+ 105 0006 0122     		movs	r2, #1
+ 106 0008 1A70     		strb	r2, [r3]
+ 107              	.L6:
+  39:HW/KEY/KEY.c  **** 
+  40:HW/KEY/KEY.c  **** #define KEY0  GPIO_ReadInputDataBit(GPIOE, GPIO_Pin_4)
+  41:HW/KEY/KEY.c  **** #define KEY1  GPIO_ReadInputDataBit(GPIOE, GPIO_Pin_3)
+  42:HW/KEY/KEY.c  **** #define KEYUP GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0)
+  43:HW/KEY/KEY.c  ****     if(__key_up && (KEY0 == 0 || KEY1 == 0 || KEYUP == 1)){ // 按下
+ 108              		.loc 1 43 5 is_stmt 1 view .LVU16
+ 109              		.loc 1 43 8 is_stmt 0 view .LVU17
+ 110 000a 264B     		ldr	r3, .L21
+ 111 000c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 112              		.loc 1 43 7 view .LVU18
+ 113 000e E3B1     		cbz	r3, .L7
+ 114              		.loc 1 43 21 discriminator 1 view .LVU19
+ 115 0010 1021     		movs	r1, #16
+ 116 0012 2548     		ldr	r0, .L21+4
+ 117              	.LVL4:
+ 118              		.loc 1 43 21 discriminator 1 view .LVU20
+ 119 0014 FFF7FEFF 		bl	GPIO_ReadInputDataBit
+ 120              	.LVL5:
+ 121              		.loc 1 43 17 discriminator 1 view .LVU21
+ 122 0018 20B1     		cbz	r0, .L8
+ 123              		.loc 1 43 34 discriminator 2 view .LVU22
+ 124 001a 0821     		movs	r1, #8
+ 125 001c 2248     		ldr	r0, .L21+4
+ 126 001e FFF7FEFF 		bl	GPIO_ReadInputDataBit
+ 127              	.LVL6:
+ 128              		.loc 1 43 31 discriminator 2 view .LVU23
+ 129 0022 60B9     		cbnz	r0, .L17
+ 130              	.L8:
+  44:HW/KEY/KEY.c  ****         delay_ms(10);       // 去抖动
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cceFtz0a.s 			page 4
+
+
+ 131              		.loc 1 44 9 is_stmt 1 view .LVU24
+ 132 0024 0A20     		movs	r0, #10
+ 133 0026 FFF7FEFF 		bl	delay_ms
+ 134              	.LVL7:
+  45:HW/KEY/KEY.c  ****         __key_up = 0;
+ 135              		.loc 1 45 9 view .LVU25
+ 136              		.loc 1 45 18 is_stmt 0 view .LVU26
+ 137 002a 1E4B     		ldr	r3, .L21
+ 138 002c 0022     		movs	r2, #0
+ 139 002e 1A70     		strb	r2, [r3]
+  46:HW/KEY/KEY.c  ****         if(KEY0  == 0) return KEY0_PRESS;
+ 140              		.loc 1 46 9 is_stmt 1 view .LVU27
+ 141              		.loc 1 46 12 is_stmt 0 view .LVU28
+ 142 0030 1021     		movs	r1, #16
+ 143 0032 1D48     		ldr	r0, .L21+4
+ 144 0034 FFF7FEFF 		bl	GPIO_ReadInputDataBit
+ 145              	.LVL8:
+ 146              		.loc 1 46 11 view .LVU29
+ 147 0038 78B9     		cbnz	r0, .L18
+ 148              		.loc 1 46 31 view .LVU30
+ 149 003a 0120     		movs	r0, #1
+ 150 003c 0CE0     		b	.L9
+ 151              	.L17:
+  43:HW/KEY/KEY.c  ****         delay_ms(10);       // 去抖动
+ 152              		.loc 1 43 47 discriminator 3 view .LVU31
+ 153 003e 0121     		movs	r1, #1
+ 154 0040 1A48     		ldr	r0, .L21+8
+ 155 0042 FFF7FEFF 		bl	GPIO_ReadInputDataBit
+ 156              	.LVL9:
+  43:HW/KEY/KEY.c  ****         delay_ms(10);       // 去抖动
+ 157              		.loc 1 43 44 discriminator 3 view .LVU32
+ 158 0046 0128     		cmp	r0, #1
+ 159 0048 ECD0     		beq	.L8
+ 160              	.L7:
+  47:HW/KEY/KEY.c  ****         if(KEY1  == 0) return KEY1_PRESS;
+  48:HW/KEY/KEY.c  ****         if(KEYUP == 1) return KEYUP_PRESS;
+  49:HW/KEY/KEY.c  ****     }else if(KEY0 == 1 && KEY1 == 1 && KEYUP == 0){         // 松开
+ 161              		.loc 1 49 11 is_stmt 1 view .LVU33
+ 162              		.loc 1 49 14 is_stmt 0 view .LVU34
+ 163 004a 1021     		movs	r1, #16
+ 164 004c 1648     		ldr	r0, .L21+4
+ 165 004e FFF7FEFF 		bl	GPIO_ReadInputDataBit
+ 166              	.LVL10:
+ 167              		.loc 1 49 13 view .LVU35
+ 168 0052 0128     		cmp	r0, #1
+ 169 0054 0ED0     		beq	.L19
+  50:HW/KEY/KEY.c  ****         __key_up = 1;     
+  51:HW/KEY/KEY.c  ****     }
+  52:HW/KEY/KEY.c  ****     return KEY_NONE_PRESS;
+ 170              		.loc 1 52 12 view .LVU36
+ 171 0056 0020     		movs	r0, #0
+ 172              	.L9:
+  53:HW/KEY/KEY.c  **** }
+ 173              		.loc 1 53 1 view .LVU37
+ 174 0058 08BD     		pop	{r3, pc}
+ 175              	.L18:
+  47:HW/KEY/KEY.c  ****         if(KEY1  == 0) return KEY1_PRESS;
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cceFtz0a.s 			page 5
+
+
+ 176              		.loc 1 47 9 is_stmt 1 view .LVU38
+  47:HW/KEY/KEY.c  ****         if(KEY1  == 0) return KEY1_PRESS;
+ 177              		.loc 1 47 12 is_stmt 0 view .LVU39
+ 178 005a 0821     		movs	r1, #8
+ 179 005c 1248     		ldr	r0, .L21+4
+ 180 005e FFF7FEFF 		bl	GPIO_ReadInputDataBit
+ 181              	.LVL11:
+  47:HW/KEY/KEY.c  ****         if(KEY1  == 0) return KEY1_PRESS;
+ 182              		.loc 1 47 11 view .LVU40
+ 183 0062 C0B1     		cbz	r0, .L11
+  48:HW/KEY/KEY.c  ****     }else if(KEY0 == 1 && KEY1 == 1 && KEYUP == 0){         // 松开
+ 184              		.loc 1 48 9 is_stmt 1 view .LVU41
+  48:HW/KEY/KEY.c  ****     }else if(KEY0 == 1 && KEY1 == 1 && KEYUP == 0){         // 松开
+ 185              		.loc 1 48 12 is_stmt 0 view .LVU42
+ 186 0064 0121     		movs	r1, #1
+ 187 0066 1148     		ldr	r0, .L21+8
+ 188 0068 FFF7FEFF 		bl	GPIO_ReadInputDataBit
+ 189              	.LVL12:
+  48:HW/KEY/KEY.c  ****     }else if(KEY0 == 1 && KEY1 == 1 && KEYUP == 0){         // 松开
+ 190              		.loc 1 48 11 view .LVU43
+ 191 006c 0128     		cmp	r0, #1
+ 192 006e 14D0     		beq	.L12
+  52:HW/KEY/KEY.c  **** }
+ 193              		.loc 1 52 12 view .LVU44
+ 194 0070 0020     		movs	r0, #0
+ 195 0072 F1E7     		b	.L9
+ 196              	.L19:
+  49:HW/KEY/KEY.c  ****         __key_up = 1;     
+ 197              		.loc 1 49 27 discriminator 1 view .LVU45
+ 198 0074 0821     		movs	r1, #8
+ 199 0076 0C48     		ldr	r0, .L21+4
+ 200 0078 FFF7FEFF 		bl	GPIO_ReadInputDataBit
+ 201              	.LVL13:
+  49:HW/KEY/KEY.c  ****         __key_up = 1;     
+ 202              		.loc 1 49 24 discriminator 1 view .LVU46
+ 203 007c 0128     		cmp	r0, #1
+ 204 007e 01D0     		beq	.L20
+  52:HW/KEY/KEY.c  **** }
+ 205              		.loc 1 52 12 view .LVU47
+ 206 0080 0020     		movs	r0, #0
+ 207 0082 E9E7     		b	.L9
+ 208              	.L20:
+  49:HW/KEY/KEY.c  ****         __key_up = 1;     
+ 209              		.loc 1 49 40 discriminator 2 view .LVU48
+ 210 0084 0121     		movs	r1, #1
+ 211 0086 0948     		ldr	r0, .L21+8
+ 212 0088 FFF7FEFF 		bl	GPIO_ReadInputDataBit
+ 213              	.LVL14:
+  49:HW/KEY/KEY.c  ****         __key_up = 1;     
+ 214              		.loc 1 49 37 discriminator 2 view .LVU49
+ 215 008c 38B9     		cbnz	r0, .L15
+  50:HW/KEY/KEY.c  ****     }
+ 216              		.loc 1 50 9 is_stmt 1 view .LVU50
+  50:HW/KEY/KEY.c  ****     }
+ 217              		.loc 1 50 18 is_stmt 0 view .LVU51
+ 218 008e 054B     		ldr	r3, .L21
+ 219 0090 0122     		movs	r2, #1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cceFtz0a.s 			page 6
+
+
+ 220 0092 1A70     		strb	r2, [r3]
+ 221 0094 E0E7     		b	.L9
+ 222              	.L11:
+  47:HW/KEY/KEY.c  ****         if(KEYUP == 1) return KEYUP_PRESS;
+ 223              		.loc 1 47 31 view .LVU52
+ 224 0096 0220     		movs	r0, #2
+ 225 0098 DEE7     		b	.L9
+ 226              	.L12:
+  48:HW/KEY/KEY.c  ****     }else if(KEY0 == 1 && KEY1 == 1 && KEYUP == 0){         // 松开
+ 227              		.loc 1 48 31 view .LVU53
+ 228 009a 0320     		movs	r0, #3
+ 229 009c DCE7     		b	.L9
+ 230              	.L15:
+  52:HW/KEY/KEY.c  **** }
+ 231              		.loc 1 52 12 view .LVU54
+ 232 009e 0020     		movs	r0, #0
+ 233 00a0 DAE7     		b	.L9
+ 234              	.L22:
+ 235 00a2 00BF     		.align	2
+ 236              	.L21:
+ 237 00a4 00000000 		.word	__key_up.0
+ 238 00a8 00180140 		.word	1073813504
+ 239 00ac 00080140 		.word	1073809408
+ 240              		.cfi_endproc
+ 241              	.LFE30:
+ 243              		.section	.text.KEY_RUN,"ax",%progbits
+ 244              		.align	1
+ 245              		.global	KEY_RUN
+ 246              		.syntax unified
+ 247              		.thumb
+ 248              		.thumb_func
+ 250              	KEY_RUN:
+ 251              	.LFB31:
+  54:HW/KEY/KEY.c  **** 
+  55:HW/KEY/KEY.c  **** void LED_Init_Hal(void);
+  56:HW/KEY/KEY.c  **** 
+  57:HW/KEY/KEY.c  **** /* 运行例程 */
+  58:HW/KEY/KEY.c  **** void KEY_RUN(){
+ 252              		.loc 1 58 15 is_stmt 1 view -0
+ 253              		.cfi_startproc
+ 254              		@ args = 0, pretend = 0, frame = 0
+ 255              		@ frame_needed = 0, uses_anonymous_args = 0
+ 256 0000 08B5     		push	{r3, lr}
+ 257              	.LCFI4:
+ 258              		.cfi_def_cfa_offset 8
+ 259              		.cfi_offset 3, -8
+ 260              		.cfi_offset 14, -4
+  59:HW/KEY/KEY.c  ****     LED_Init_Hal();
+ 261              		.loc 1 59 5 view .LVU56
+ 262 0002 FFF7FEFF 		bl	LED_Init_Hal
+ 263              	.LVL15:
+  60:HW/KEY/KEY.c  ****     KEY_Init();
+ 264              		.loc 1 60 5 view .LVU57
+ 265 0006 FFF7FEFF 		bl	KEY_Init
+ 266              	.LVL16:
+  61:HW/KEY/KEY.c  ****     delay_init();
+ 267              		.loc 1 61 5 view .LVU58
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cceFtz0a.s 			page 7
+
+
+ 268 000a FFF7FEFF 		bl	delay_init
+ 269              	.LVL17:
+ 270 000e 07E0     		b	.L24
+ 271              	.LVL18:
+ 272              	.L26:
+ 273              	.LBB2:
+  62:HW/KEY/KEY.c  **** 
+  63:HW/KEY/KEY.c  ****     // LED灯位映射
+  64:HW/KEY/KEY.c  **** #define LED0 PBout(5)
+  65:HW/KEY/KEY.c  **** #define LED1 PEout(5)
+  66:HW/KEY/KEY.c  **** 
+  67:HW/KEY/KEY.c  ****     while(1){
+  68:HW/KEY/KEY.c  ****         KEY_STATUS_t key = KEY_Scan(KEY_SCAN_ONCE);
+  69:HW/KEY/KEY.c  ****         if(key != KEY_NONE_PRESS){
+  70:HW/KEY/KEY.c  ****             switch (key)
+  71:HW/KEY/KEY.c  ****             {
+  72:HW/KEY/KEY.c  ****             case KEY0_PRESS:    // LED0翻转
+  73:HW/KEY/KEY.c  ****                 LED0 = !LED0;
+  74:HW/KEY/KEY.c  ****                 break;
+  75:HW/KEY/KEY.c  ****             case KEY1_PRESS:    // LED1翻转
+  76:HW/KEY/KEY.c  ****                 LED1 = !LED1;
+ 274              		.loc 1 76 17 view .LVU59
+ 275              		.loc 1 76 25 is_stmt 0 view .LVU60
+ 276 0010 164A     		ldr	r2, .L29
+ 277 0012 D2F89431 		ldr	r3, [r2, #404]
+ 278              		.loc 1 76 24 view .LVU61
+ 279 0016 B3FA83F3 		clz	r3, r3
+ 280 001a 5B09     		lsrs	r3, r3, #5
+ 281              		.loc 1 76 22 view .LVU62
+ 282 001c C2F89431 		str	r3, [r2, #404]
+  77:HW/KEY/KEY.c  ****                 break;
+ 283              		.loc 1 77 17 is_stmt 1 view .LVU63
+ 284              	.LVL19:
+ 285              	.L24:
+ 286              		.loc 1 77 17 is_stmt 0 view .LVU64
+ 287              	.LBE2:
+  67:HW/KEY/KEY.c  ****         KEY_STATUS_t key = KEY_Scan(KEY_SCAN_ONCE);
+ 288              		.loc 1 67 5 is_stmt 1 view .LVU65
+ 289              	.LBB3:
+  68:HW/KEY/KEY.c  ****         if(key != KEY_NONE_PRESS){
+ 290              		.loc 1 68 9 view .LVU66
+  68:HW/KEY/KEY.c  ****         if(key != KEY_NONE_PRESS){
+ 291              		.loc 1 68 28 is_stmt 0 view .LVU67
+ 292 0020 0120     		movs	r0, #1
+ 293 0022 FFF7FEFF 		bl	KEY_Scan
+ 294              	.LVL20:
+  69:HW/KEY/KEY.c  ****             switch (key)
+ 295              		.loc 1 69 9 is_stmt 1 view .LVU68
+  69:HW/KEY/KEY.c  ****             switch (key)
+ 296              		.loc 1 69 11 is_stmt 0 view .LVU69
+ 297 0026 0028     		cmp	r0, #0
+ 298 0028 FAD0     		beq	.L24
+  70:HW/KEY/KEY.c  ****             {
+ 299              		.loc 1 70 13 is_stmt 1 view .LVU70
+ 300 002a 0228     		cmp	r0, #2
+ 301 002c F0D0     		beq	.L26
+ 302 002e 0328     		cmp	r0, #3
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cceFtz0a.s 			page 8
+
+
+ 303 0030 0AD0     		beq	.L27
+ 304 0032 0128     		cmp	r0, #1
+ 305 0034 F4D1     		bne	.L24
+  73:HW/KEY/KEY.c  ****                 break;
+ 306              		.loc 1 73 17 view .LVU71
+  73:HW/KEY/KEY.c  ****                 break;
+ 307              		.loc 1 73 25 is_stmt 0 view .LVU72
+ 308 0036 0E4A     		ldr	r2, .L29+4
+ 309 0038 D2F89431 		ldr	r3, [r2, #404]
+  73:HW/KEY/KEY.c  ****                 break;
+ 310              		.loc 1 73 24 view .LVU73
+ 311 003c B3FA83F3 		clz	r3, r3
+ 312 0040 5B09     		lsrs	r3, r3, #5
+  73:HW/KEY/KEY.c  ****                 break;
+ 313              		.loc 1 73 22 view .LVU74
+ 314 0042 C2F89431 		str	r3, [r2, #404]
+  74:HW/KEY/KEY.c  ****             case KEY1_PRESS:    // LED1翻转
+ 315              		.loc 1 74 17 is_stmt 1 view .LVU75
+ 316 0046 EBE7     		b	.L24
+ 317              	.L27:
+  78:HW/KEY/KEY.c  ****             case KEYUP_PRESS:   // LED0, LED1一起翻转
+  79:HW/KEY/KEY.c  ****                 LED0 = !LED0;
+ 318              		.loc 1 79 17 view .LVU76
+ 319              		.loc 1 79 25 is_stmt 0 view .LVU77
+ 320 0048 094A     		ldr	r2, .L29+4
+ 321 004a D2F89431 		ldr	r3, [r2, #404]
+ 322              		.loc 1 79 24 view .LVU78
+ 323 004e B3FA83F3 		clz	r3, r3
+ 324 0052 5B09     		lsrs	r3, r3, #5
+ 325              		.loc 1 79 22 view .LVU79
+ 326 0054 C2F89431 		str	r3, [r2, #404]
+  80:HW/KEY/KEY.c  ****                 LED1 = !LED1;
+ 327              		.loc 1 80 17 is_stmt 1 view .LVU80
+ 328              		.loc 1 80 25 is_stmt 0 view .LVU81
+ 329 0058 02F5C032 		add	r2, r2, #98304
+ 330 005c D2F89431 		ldr	r3, [r2, #404]
+ 331              		.loc 1 80 24 view .LVU82
+ 332 0060 B3FA83F3 		clz	r3, r3
+ 333 0064 5B09     		lsrs	r3, r3, #5
+ 334              		.loc 1 80 22 view .LVU83
+ 335 0066 C2F89431 		str	r3, [r2, #404]
+  81:HW/KEY/KEY.c  ****                 break;
+ 336              		.loc 1 81 17 is_stmt 1 view .LVU84
+ 337 006a D9E7     		b	.L24
+ 338              	.L30:
+ 339              		.align	2
+ 340              	.L29:
+ 341 006c 00002342 		.word	1109590016
+ 342 0070 00802142 		.word	1109491712
+ 343              	.LBE3:
+ 344              		.cfi_endproc
+ 345              	.LFE31:
+ 347              		.section	.data.__key_up.0,"aw"
+ 350              	__key_up.0:
+ 351 0000 01       		.byte	1
+ 352              		.section	.rodata
+ 353              		.align	2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cceFtz0a.s 			page 9
+
+
+ 354              		.set	.LANCHOR0,. + 0
+ 355              	.LC0:
+ 356 0000 1800     		.short	24
+ 357 0002 03       		.byte	3
+ 358 0003 48       		.byte	72
+ 359              	.LC1:
+ 360 0004 0100     		.short	1
+ 361 0006 03       		.byte	3
+ 362 0007 28       		.byte	40
+ 363              		.text
+ 364              	.Letext0:
+ 365              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 366              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 367              		.file 4 "USER/stm32f10x.h"
+ 368              		.file 5 "STM32F10x_FWLib/inc/stm32f10x_gpio.h"
+ 369              		.file 6 "SYSTEM/delay/delay.h"
+ 370              		.file 7 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cceFtz0a.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 KEY.c
+C:\Users\86157\AppData\Local\Temp\cceFtz0a.s:19     .text.KEY_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cceFtz0a.s:25     .text.KEY_Init:00000000 KEY_Init
+C:\Users\86157\AppData\Local\Temp\cceFtz0a.s:72     .text.KEY_Init:0000002c $d
+C:\Users\86157\AppData\Local\Temp\cceFtz0a.s:79     .text.KEY_Scan:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cceFtz0a.s:85     .text.KEY_Scan:00000000 KEY_Scan
+C:\Users\86157\AppData\Local\Temp\cceFtz0a.s:237    .text.KEY_Scan:000000a4 $d
+C:\Users\86157\AppData\Local\Temp\cceFtz0a.s:350    .data.__key_up.0:00000000 __key_up.0
+C:\Users\86157\AppData\Local\Temp\cceFtz0a.s:244    .text.KEY_RUN:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cceFtz0a.s:250    .text.KEY_RUN:00000000 KEY_RUN
+C:\Users\86157\AppData\Local\Temp\cceFtz0a.s:341    .text.KEY_RUN:0000006c $d
+C:\Users\86157\AppData\Local\Temp\cceFtz0a.s:353    .rodata:00000000 $d
+
+UNDEFINED SYMBOLS
+RCC_APB2PeriphClockCmd
+GPIO_Init
+GPIO_ReadInputDataBit
+delay_ms
+LED_Init_Hal
+delay_init

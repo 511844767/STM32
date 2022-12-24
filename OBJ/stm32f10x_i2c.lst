@@ -1,0 +1,3212 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f10x_i2c.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "STM32F10x_FWLib/src/stm32f10x_i2c.c"
+  18              		.section	.text.I2C_DeInit,"ax",%progbits
+  19              		.align	1
+  20              		.global	I2C_DeInit
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	I2C_DeInit:
+  26              	.LVL0:
+  27              	.LFB29:
+   1:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+   2:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   ******************************************************************************
+   3:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @file    stm32f10x_i2c.c
+   4:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @author  MCD Application Team
+   5:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @version V3.5.0
+   6:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @date    11-March-2011
+   7:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief   This file provides all the I2C firmware functions.
+   8:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   ******************************************************************************
+   9:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @attention
+  10:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *
+  11:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+  12:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+  13:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * TIME. AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY
+  14:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+  15:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+  16:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+  17:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *
+  18:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * <h2><center>&copy; COPYRIGHT 2011 STMicroelectronics</center></h2>
+  19:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   ******************************************************************************
+  20:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+  21:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  22:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* Includes ------------------------------------------------------------------*/
+  23:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #include "stm32f10x_i2c.h"
+  24:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #include "stm32f10x_rcc.h"
+  25:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  26:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  27:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /** @addtogroup STM32F10x_StdPeriph_Driver
+  28:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @{
+  29:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+  30:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  31:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /** @defgroup I2C 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 2
+
+
+  32:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief I2C driver modules
+  33:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @{
+  34:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */ 
+  35:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  36:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /** @defgroup I2C_Private_TypesDefinitions
+  37:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @{
+  38:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+  39:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  40:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+  41:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @}
+  42:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+  43:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  44:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /** @defgroup I2C_Private_Defines
+  45:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @{
+  46:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+  47:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  48:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C SPE mask */
+  49:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_PE_Set              ((uint16_t)0x0001)
+  50:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_PE_Reset            ((uint16_t)0xFFFE)
+  51:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  52:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C START mask */
+  53:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_START_Set           ((uint16_t)0x0100)
+  54:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_START_Reset         ((uint16_t)0xFEFF)
+  55:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  56:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C STOP mask */
+  57:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_STOP_Set            ((uint16_t)0x0200)
+  58:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_STOP_Reset          ((uint16_t)0xFDFF)
+  59:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  60:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C ACK mask */
+  61:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_ACK_Set             ((uint16_t)0x0400)
+  62:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_ACK_Reset           ((uint16_t)0xFBFF)
+  63:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  64:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C ENGC mask */
+  65:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_ENGC_Set            ((uint16_t)0x0040)
+  66:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_ENGC_Reset          ((uint16_t)0xFFBF)
+  67:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  68:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C SWRST mask */
+  69:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_SWRST_Set           ((uint16_t)0x8000)
+  70:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_SWRST_Reset         ((uint16_t)0x7FFF)
+  71:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  72:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C PEC mask */
+  73:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_PEC_Set             ((uint16_t)0x1000)
+  74:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_PEC_Reset           ((uint16_t)0xEFFF)
+  75:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  76:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C ENPEC mask */
+  77:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_ENPEC_Set           ((uint16_t)0x0020)
+  78:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_ENPEC_Reset         ((uint16_t)0xFFDF)
+  79:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  80:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C ENARP mask */
+  81:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_ENARP_Set           ((uint16_t)0x0010)
+  82:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_ENARP_Reset         ((uint16_t)0xFFEF)
+  83:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  84:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C NOSTRETCH mask */
+  85:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_NOSTRETCH_Set       ((uint16_t)0x0080)
+  86:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_NOSTRETCH_Reset     ((uint16_t)0xFF7F)
+  87:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  88:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C registers Masks */
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 3
+
+
+  89:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_CLEAR_Mask          ((uint16_t)0xFBF5)
+  90:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  91:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C DMAEN mask */
+  92:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR2_DMAEN_Set           ((uint16_t)0x0800)
+  93:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR2_DMAEN_Reset         ((uint16_t)0xF7FF)
+  94:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  95:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C LAST mask */
+  96:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR2_LAST_Set            ((uint16_t)0x1000)
+  97:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR2_LAST_Reset          ((uint16_t)0xEFFF)
+  98:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+  99:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C FREQ mask */
+ 100:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR2_FREQ_Reset          ((uint16_t)0xFFC0)
+ 101:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 102:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C ADD0 mask */
+ 103:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define OAR1_ADD0_Set           ((uint16_t)0x0001)
+ 104:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define OAR1_ADD0_Reset         ((uint16_t)0xFFFE)
+ 105:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 106:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C ENDUAL mask */
+ 107:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define OAR2_ENDUAL_Set         ((uint16_t)0x0001)
+ 108:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define OAR2_ENDUAL_Reset       ((uint16_t)0xFFFE)
+ 109:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 110:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C ADD2 mask */
+ 111:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define OAR2_ADD2_Reset         ((uint16_t)0xFF01)
+ 112:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 113:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C F/S mask */
+ 114:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CCR_FS_Set              ((uint16_t)0x8000)
+ 115:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 116:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C CCR mask */
+ 117:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CCR_CCR_Set             ((uint16_t)0x0FFF)
+ 118:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 119:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C FLAG mask */
+ 120:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define FLAG_Mask               ((uint32_t)0x00FFFFFF)
+ 121:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 122:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C Interrupt Enable mask */
+ 123:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define ITEN_Mask               ((uint32_t)0x07000000)
+ 124:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 125:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 126:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @}
+ 127:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 128:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 129:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /** @defgroup I2C_Private_Macros
+ 130:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @{
+ 131:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 132:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 133:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 134:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @}
+ 135:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 136:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 137:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /** @defgroup I2C_Private_Variables
+ 138:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @{
+ 139:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 140:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 141:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 142:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @}
+ 143:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 144:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 145:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /** @defgroup I2C_Private_FunctionPrototypes
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 4
+
+
+ 146:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @{
+ 147:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 148:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 149:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 150:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @}
+ 151:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 152:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 153:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /** @defgroup I2C_Private_Functions
+ 154:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @{
+ 155:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 156:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 157:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 158:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Deinitializes the I2Cx peripheral registers to their default reset values.
+ 159:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 160:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+ 161:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 162:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_DeInit(I2C_TypeDef* I2Cx)
+ 163:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+  28              		.loc 1 163 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 163 1 is_stmt 0 view .LVU1
+  33 0000 08B5     		push	{r3, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 3, -8
+  37              		.cfi_offset 14, -4
+ 164:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 165:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  38              		.loc 1 165 3 is_stmt 1 view .LVU2
+ 166:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 167:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (I2Cx == I2C1)
+  39              		.loc 1 167 3 view .LVU3
+  40              		.loc 1 167 6 is_stmt 0 view .LVU4
+  41 0002 0C4B     		ldr	r3, .L6
+  42 0004 9842     		cmp	r0, r3
+  43 0006 0AD0     		beq	.L5
+ 168:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 169:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Enable I2C1 reset state */
+ 170:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C1, ENABLE);
+ 171:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Release I2C1 from reset state */
+ 172:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C1, DISABLE);
+ 173:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 174:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+ 175:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 176:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Enable I2C2 reset state */
+ 177:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C2, ENABLE);
+  44              		.loc 1 177 5 is_stmt 1 view .LVU5
+  45 0008 0121     		movs	r1, #1
+  46 000a 4FF48000 		mov	r0, #4194304
+  47              	.LVL1:
+  48              		.loc 1 177 5 is_stmt 0 view .LVU6
+  49 000e FFF7FEFF 		bl	RCC_APB1PeriphResetCmd
+  50              	.LVL2:
+ 178:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Release I2C2 from reset state */
+ 179:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C2, DISABLE);
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 5
+
+
+  51              		.loc 1 179 5 is_stmt 1 view .LVU7
+  52 0012 0021     		movs	r1, #0
+  53 0014 4FF48000 		mov	r0, #4194304
+  54 0018 FFF7FEFF 		bl	RCC_APB1PeriphResetCmd
+  55              	.LVL3:
+  56              	.L1:
+ 180:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 181:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+  57              		.loc 1 181 1 is_stmt 0 view .LVU8
+  58 001c 08BD     		pop	{r3, pc}
+  59              	.LVL4:
+  60              	.L5:
+ 170:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Release I2C1 from reset state */
+  61              		.loc 1 170 5 is_stmt 1 view .LVU9
+  62 001e 0121     		movs	r1, #1
+  63 0020 4FF40010 		mov	r0, #2097152
+  64              	.LVL5:
+ 170:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Release I2C1 from reset state */
+  65              		.loc 1 170 5 is_stmt 0 view .LVU10
+  66 0024 FFF7FEFF 		bl	RCC_APB1PeriphResetCmd
+  67              	.LVL6:
+ 172:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+  68              		.loc 1 172 5 is_stmt 1 view .LVU11
+  69 0028 0021     		movs	r1, #0
+  70 002a 4FF40010 		mov	r0, #2097152
+  71 002e FFF7FEFF 		bl	RCC_APB1PeriphResetCmd
+  72              	.LVL7:
+  73 0032 F3E7     		b	.L1
+  74              	.L7:
+  75              		.align	2
+  76              	.L6:
+  77 0034 00540040 		.word	1073763328
+  78              		.cfi_endproc
+  79              	.LFE29:
+  81              		.section	.text.I2C_Init,"ax",%progbits
+  82              		.align	1
+  83              		.global	I2C_Init
+  84              		.syntax unified
+  85              		.thumb
+  86              		.thumb_func
+  88              	I2C_Init:
+  89              	.LVL8:
+  90              	.LFB30:
+ 182:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 183:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 184:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Initializes the I2Cx peripheral according to the specified 
+ 185:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   parameters in the I2C_InitStruct.
+ 186:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 187:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2C_InitStruct: pointer to a I2C_InitTypeDef structure that
+ 188:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   contains the configuration information for the specified I2C peripheral.
+ 189:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+ 190:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 191:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_Init(I2C_TypeDef* I2Cx, I2C_InitTypeDef* I2C_InitStruct)
+ 192:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+  91              		.loc 1 192 1 view -0
+  92              		.cfi_startproc
+  93              		@ args = 0, pretend = 0, frame = 24
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 6
+
+
+  94              		@ frame_needed = 0, uses_anonymous_args = 0
+  95              		.loc 1 192 1 is_stmt 0 view .LVU13
+  96 0000 70B5     		push	{r4, r5, r6, lr}
+  97              	.LCFI1:
+  98              		.cfi_def_cfa_offset 16
+  99              		.cfi_offset 4, -16
+ 100              		.cfi_offset 5, -12
+ 101              		.cfi_offset 6, -8
+ 102              		.cfi_offset 14, -4
+ 103 0002 86B0     		sub	sp, sp, #24
+ 104              	.LCFI2:
+ 105              		.cfi_def_cfa_offset 40
+ 106 0004 0446     		mov	r4, r0
+ 107 0006 0D46     		mov	r5, r1
+ 193:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   uint16_t tmpreg = 0, freqrange = 0;
+ 108              		.loc 1 193 3 is_stmt 1 view .LVU14
+ 109              	.LVL9:
+ 194:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   uint16_t result = 0x04;
+ 110              		.loc 1 194 3 view .LVU15
+ 195:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   uint32_t pclk1 = 8000000;
+ 111              		.loc 1 195 3 view .LVU16
+ 196:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   RCC_ClocksTypeDef  rcc_clocks;
+ 112              		.loc 1 196 3 view .LVU17
+ 197:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 198:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 113              		.loc 1 198 3 view .LVU18
+ 199:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_CLOCK_SPEED(I2C_InitStruct->I2C_ClockSpeed));
+ 114              		.loc 1 199 3 view .LVU19
+ 200:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_MODE(I2C_InitStruct->I2C_Mode));
+ 115              		.loc 1 200 3 view .LVU20
+ 201:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_DUTY_CYCLE(I2C_InitStruct->I2C_DutyCycle));
+ 116              		.loc 1 201 3 view .LVU21
+ 202:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_OWN_ADDRESS1(I2C_InitStruct->I2C_OwnAddress1));
+ 117              		.loc 1 202 3 view .LVU22
+ 203:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ACK_STATE(I2C_InitStruct->I2C_Ack));
+ 118              		.loc 1 203 3 view .LVU23
+ 204:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ACKNOWLEDGE_ADDRESS(I2C_InitStruct->I2C_AcknowledgedAddress));
+ 119              		.loc 1 204 3 view .LVU24
+ 205:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 206:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /*---------------------------- I2Cx CR2 Configuration ------------------------*/
+ 207:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Get the I2Cx CR2 value */
+ 208:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   tmpreg = I2Cx->CR2;
+ 120              		.loc 1 208 3 view .LVU25
+ 121              		.loc 1 208 10 is_stmt 0 view .LVU26
+ 122 0008 8688     		ldrh	r6, [r0, #4]
+ 123 000a B6B2     		uxth	r6, r6
+ 124              	.LVL10:
+ 209:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Clear frequency FREQ[5:0] bits */
+ 210:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   tmpreg &= CR2_FREQ_Reset;
+ 125              		.loc 1 210 3 is_stmt 1 view .LVU27
+ 126              		.loc 1 210 10 is_stmt 0 view .LVU28
+ 127 000c 26F03F06 		bic	r6, r6, #63
+ 128              	.LVL11:
+ 129              		.loc 1 210 10 view .LVU29
+ 130 0010 B6B2     		uxth	r6, r6
+ 131              	.LVL12:
+ 211:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Get pclk1 frequency value */
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 7
+
+
+ 212:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   RCC_GetClocksFreq(&rcc_clocks);
+ 132              		.loc 1 212 3 is_stmt 1 view .LVU30
+ 133 0012 01A8     		add	r0, sp, #4
+ 134              	.LVL13:
+ 135              		.loc 1 212 3 is_stmt 0 view .LVU31
+ 136 0014 FFF7FEFF 		bl	RCC_GetClocksFreq
+ 137              	.LVL14:
+ 213:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   pclk1 = rcc_clocks.PCLK1_Frequency;
+ 138              		.loc 1 213 3 is_stmt 1 view .LVU32
+ 139              		.loc 1 213 9 is_stmt 0 view .LVU33
+ 140 0018 0399     		ldr	r1, [sp, #12]
+ 141              	.LVL15:
+ 214:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Set frequency bits depending on pclk1 value */
+ 215:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   freqrange = (uint16_t)(pclk1 / 1000000);
+ 142              		.loc 1 215 3 is_stmt 1 view .LVU34
+ 143              		.loc 1 215 32 is_stmt 0 view .LVU35
+ 144 001a 2C4B     		ldr	r3, .L18
+ 145 001c A3FB0123 		umull	r2, r3, r3, r1
+ 146 0020 9A0C     		lsrs	r2, r3, #18
+ 147              	.LVL16:
+ 216:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   tmpreg |= freqrange;
+ 148              		.loc 1 216 3 is_stmt 1 view .LVU36
+ 149              		.loc 1 216 10 is_stmt 0 view .LVU37
+ 150 0022 46EA9346 		orr	r6, r6, r3, lsr #18
+ 151              	.LVL17:
+ 217:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Write to I2Cx CR2 */
+ 218:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2Cx->CR2 = tmpreg;
+ 152              		.loc 1 218 3 is_stmt 1 view .LVU38
+ 153              		.loc 1 218 13 is_stmt 0 view .LVU39
+ 154 0026 A680     		strh	r6, [r4, #4]	@ movhi
+ 219:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 220:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /*---------------------------- I2Cx CCR Configuration ------------------------*/
+ 221:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Disable the selected I2C peripheral to configure TRISE */
+ 222:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2Cx->CR1 &= CR1_PE_Reset;
+ 155              		.loc 1 222 3 is_stmt 1 view .LVU40
+ 156              		.loc 1 222 7 is_stmt 0 view .LVU41
+ 157 0028 2388     		ldrh	r3, [r4]
+ 158 002a 9BB2     		uxth	r3, r3
+ 159              		.loc 1 222 13 view .LVU42
+ 160 002c 23F00103 		bic	r3, r3, #1
+ 161 0030 9BB2     		uxth	r3, r3
+ 162 0032 2380     		strh	r3, [r4]	@ movhi
+ 223:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Reset tmpreg value */
+ 224:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Clear F/S, DUTY and CCR[11:0] bits */
+ 225:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   tmpreg = 0;
+ 163              		.loc 1 225 3 is_stmt 1 view .LVU43
+ 164              	.LVL18:
+ 226:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 227:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Configure speed in standard mode */
+ 228:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (I2C_InitStruct->I2C_ClockSpeed <= 100000)
+ 165              		.loc 1 228 3 view .LVU44
+ 166              		.loc 1 228 21 is_stmt 0 view .LVU45
+ 167 0034 2B68     		ldr	r3, [r5]
+ 168              		.loc 1 228 6 view .LVU46
+ 169 0036 264E     		ldr	r6, .L18+4
+ 170 0038 B342     		cmp	r3, r6
+ 171 003a 20D8     		bhi	.L9
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 8
+
+
+ 172 003c 1046     		mov	r0, r2
+ 229:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 230:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Standard mode speed calculate */
+ 231:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     result = (uint16_t)(pclk1 / (I2C_InitStruct->I2C_ClockSpeed << 1));
+ 173              		.loc 1 231 5 is_stmt 1 view .LVU47
+ 174              		.loc 1 231 65 is_stmt 0 view .LVU48
+ 175 003e 5B00     		lsls	r3, r3, #1
+ 176              		.loc 1 231 31 view .LVU49
+ 177 0040 B1FBF3F3 		udiv	r3, r1, r3
+ 178              		.loc 1 231 12 view .LVU50
+ 179 0044 9BB2     		uxth	r3, r3
+ 180              	.LVL19:
+ 232:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Test if CCR value is under 0x4*/
+ 233:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     if (result < 0x04)
+ 181              		.loc 1 233 5 is_stmt 1 view .LVU51
+ 182              		.loc 1 233 8 is_stmt 0 view .LVU52
+ 183 0046 032B     		cmp	r3, #3
+ 184 0048 00D8     		bhi	.L10
+ 234:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     {
+ 235:STM32F10x_FWLib/src/stm32f10x_i2c.c ****       /* Set minimum allowed value */
+ 236:STM32F10x_FWLib/src/stm32f10x_i2c.c ****       result = 0x04;  
+ 185              		.loc 1 236 14 view .LVU53
+ 186 004a 0423     		movs	r3, #4
+ 187              	.LVL20:
+ 188              	.L10:
+ 237:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     }
+ 238:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Set speed value for standard mode */
+ 239:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     tmpreg |= result;	  
+ 189              		.loc 1 239 5 is_stmt 1 view .LVU54
+ 240:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Set Maximum Rise Time for standard mode */
+ 241:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->TRISE = freqrange + 1; 
+ 190              		.loc 1 241 5 view .LVU55
+ 191              		.loc 1 241 29 is_stmt 0 view .LVU56
+ 192 004c 0130     		adds	r0, r0, #1
+ 193              		.loc 1 241 17 view .LVU57
+ 194 004e 2084     		strh	r0, [r4, #32]	@ movhi
+ 195              	.LVL21:
+ 196              	.L11:
+ 242:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 243:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Configure speed in fast mode */
+ 244:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else /*(I2C_InitStruct->I2C_ClockSpeed <= 400000)*/
+ 245:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 246:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     if (I2C_InitStruct->I2C_DutyCycle == I2C_DutyCycle_2)
+ 247:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     {
+ 248:STM32F10x_FWLib/src/stm32f10x_i2c.c ****       /* Fast mode speed calculate: Tlow/Thigh = 2 */
+ 249:STM32F10x_FWLib/src/stm32f10x_i2c.c ****       result = (uint16_t)(pclk1 / (I2C_InitStruct->I2C_ClockSpeed * 3));
+ 250:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     }
+ 251:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     else /*I2C_InitStruct->I2C_DutyCycle == I2C_DutyCycle_16_9*/
+ 252:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     {
+ 253:STM32F10x_FWLib/src/stm32f10x_i2c.c ****       /* Fast mode speed calculate: Tlow/Thigh = 16/9 */
+ 254:STM32F10x_FWLib/src/stm32f10x_i2c.c ****       result = (uint16_t)(pclk1 / (I2C_InitStruct->I2C_ClockSpeed * 25));
+ 255:STM32F10x_FWLib/src/stm32f10x_i2c.c ****       /* Set DUTY bit */
+ 256:STM32F10x_FWLib/src/stm32f10x_i2c.c ****       result |= I2C_DutyCycle_16_9;
+ 257:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     }
+ 258:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 259:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Test if CCR value is under 0x1*/
+ 260:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     if ((result & CCR_CCR_Set) == 0)
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 9
+
+
+ 261:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     {
+ 262:STM32F10x_FWLib/src/stm32f10x_i2c.c ****       /* Set minimum allowed value */
+ 263:STM32F10x_FWLib/src/stm32f10x_i2c.c ****       result |= (uint16_t)0x0001;  
+ 264:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     }
+ 265:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Set speed value and set F/S bit for fast mode */
+ 266:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     tmpreg |= (uint16_t)(result | CCR_FS_Set);
+ 267:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Set Maximum Rise Time for fast mode */
+ 268:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->TRISE = (uint16_t)(((freqrange * (uint16_t)300) / (uint16_t)1000) + (uint16_t)1);  
+ 269:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 270:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 271:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Write to I2Cx CCR */
+ 272:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2Cx->CCR = tmpreg;
+ 197              		.loc 1 272 3 is_stmt 1 view .LVU58
+ 198              		.loc 1 272 13 is_stmt 0 view .LVU59
+ 199 0050 A383     		strh	r3, [r4, #28]	@ movhi
+ 273:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Enable the selected I2C peripheral */
+ 274:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2Cx->CR1 |= CR1_PE_Set;
+ 200              		.loc 1 274 3 is_stmt 1 view .LVU60
+ 201              		.loc 1 274 7 is_stmt 0 view .LVU61
+ 202 0052 2388     		ldrh	r3, [r4]
+ 203              	.LVL22:
+ 204              		.loc 1 274 7 view .LVU62
+ 205 0054 9BB2     		uxth	r3, r3
+ 206              		.loc 1 274 13 view .LVU63
+ 207 0056 43F00103 		orr	r3, r3, #1
+ 208 005a 2380     		strh	r3, [r4]	@ movhi
+ 209              	.LVL23:
+ 275:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 276:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /*---------------------------- I2Cx CR1 Configuration ------------------------*/
+ 277:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Get the I2Cx CR1 value */
+ 278:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   tmpreg = I2Cx->CR1;
+ 210              		.loc 1 278 3 is_stmt 1 view .LVU64
+ 211              		.loc 1 278 10 is_stmt 0 view .LVU65
+ 212 005c 2388     		ldrh	r3, [r4]
+ 213 005e 9BB2     		uxth	r3, r3
+ 214              	.LVL24:
+ 279:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Clear ACK, SMBTYPE and  SMBUS bits */
+ 280:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   tmpreg &= CR1_CLEAR_Mask;
+ 215              		.loc 1 280 3 is_stmt 1 view .LVU66
+ 216              		.loc 1 280 10 is_stmt 0 view .LVU67
+ 217 0060 23F48163 		bic	r3, r3, #1032
+ 218              	.LVL25:
+ 219              		.loc 1 280 10 view .LVU68
+ 220 0064 23F00203 		bic	r3, r3, #2
+ 221              	.LVL26:
+ 281:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Configure I2Cx: mode and acknowledgement */
+ 282:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Set SMBTYPE and SMBUS bits according to I2C_Mode value */
+ 283:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Set ACK bit according to I2C_Ack value */
+ 284:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   tmpreg |= (uint16_t)((uint32_t)I2C_InitStruct->I2C_Mode | I2C_InitStruct->I2C_Ack);
+ 222              		.loc 1 284 3 is_stmt 1 view .LVU69
+ 223              		.loc 1 284 48 is_stmt 0 view .LVU70
+ 224 0068 AA88     		ldrh	r2, [r5, #4]
+ 225              		.loc 1 284 75 view .LVU71
+ 226 006a 6989     		ldrh	r1, [r5, #10]
+ 227              		.loc 1 284 13 view .LVU72
+ 228 006c 0A43     		orrs	r2, r2, r1
+ 229              		.loc 1 284 10 view .LVU73
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 10
+
+
+ 230 006e 1343     		orrs	r3, r3, r2
+ 231              	.LVL27:
+ 285:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Write to I2Cx CR1 */
+ 286:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2Cx->CR1 = tmpreg;
+ 232              		.loc 1 286 3 is_stmt 1 view .LVU74
+ 233              		.loc 1 286 13 is_stmt 0 view .LVU75
+ 234 0070 2380     		strh	r3, [r4]	@ movhi
+ 287:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 288:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /*---------------------------- I2Cx OAR1 Configuration -----------------------*/
+ 289:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Set I2Cx Own Address1 and acknowledged address */
+ 290:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2Cx->OAR1 = (I2C_InitStruct->I2C_AcknowledgedAddress | I2C_InitStruct->I2C_OwnAddress1);
+ 235              		.loc 1 290 3 is_stmt 1 view .LVU76
+ 236              		.loc 1 290 31 is_stmt 0 view .LVU77
+ 237 0072 AB89     		ldrh	r3, [r5, #12]
+ 238              	.LVL28:
+ 239              		.loc 1 290 73 view .LVU78
+ 240 0074 2A89     		ldrh	r2, [r5, #8]
+ 241              		.loc 1 290 14 view .LVU79
+ 242 0076 1343     		orrs	r3, r3, r2
+ 243 0078 2381     		strh	r3, [r4, #8]	@ movhi
+ 244              	.LVL29:
+ 291:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 245              		.loc 1 291 1 view .LVU80
+ 246 007a 06B0     		add	sp, sp, #24
+ 247              	.LCFI3:
+ 248              		.cfi_remember_state
+ 249              		.cfi_def_cfa_offset 16
+ 250              		@ sp needed
+ 251 007c 70BD     		pop	{r4, r5, r6, pc}
+ 252              	.LVL30:
+ 253              	.L9:
+ 254              	.LCFI4:
+ 255              		.cfi_restore_state
+ 246:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     {
+ 256              		.loc 1 246 5 is_stmt 1 view .LVU81
+ 246:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     {
+ 257              		.loc 1 246 23 is_stmt 0 view .LVU82
+ 258 007e EE88     		ldrh	r6, [r5, #6]
+ 246:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     {
+ 259              		.loc 1 246 8 view .LVU83
+ 260 0080 4BF6FF70 		movw	r0, #49151
+ 261 0084 8642     		cmp	r6, r0
+ 262 0086 1BD0     		beq	.L17
+ 254:STM32F10x_FWLib/src/stm32f10x_i2c.c ****       /* Set DUTY bit */
+ 263              		.loc 1 254 7 is_stmt 1 view .LVU84
+ 254:STM32F10x_FWLib/src/stm32f10x_i2c.c ****       /* Set DUTY bit */
+ 264              		.loc 1 254 67 is_stmt 0 view .LVU85
+ 265 0088 03EB8303 		add	r3, r3, r3, lsl #2
+ 266 008c 03EB8303 		add	r3, r3, r3, lsl #2
+ 254:STM32F10x_FWLib/src/stm32f10x_i2c.c ****       /* Set DUTY bit */
+ 267              		.loc 1 254 33 view .LVU86
+ 268 0090 B1FBF3F1 		udiv	r1, r1, r3
+ 269              	.LVL31:
+ 254:STM32F10x_FWLib/src/stm32f10x_i2c.c ****       /* Set DUTY bit */
+ 270              		.loc 1 254 14 view .LVU87
+ 271 0094 89B2     		uxth	r1, r1
+ 272              	.LVL32:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 11
+
+
+ 256:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     }
+ 273              		.loc 1 256 7 is_stmt 1 view .LVU88
+ 256:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     }
+ 274              		.loc 1 256 14 is_stmt 0 view .LVU89
+ 275 0096 41F48043 		orr	r3, r1, #16384
+ 276              	.LVL33:
+ 277              	.L13:
+ 260:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     {
+ 278              		.loc 1 260 5 is_stmt 1 view .LVU90
+ 260:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     {
+ 279              		.loc 1 260 8 is_stmt 0 view .LVU91
+ 280 009a C3F30B01 		ubfx	r1, r3, #0, #12
+ 281 009e 09B9     		cbnz	r1, .L14
+ 263:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     }
+ 282              		.loc 1 263 7 is_stmt 1 view .LVU92
+ 263:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     }
+ 283              		.loc 1 263 14 is_stmt 0 view .LVU93
+ 284 00a0 43F00103 		orr	r3, r3, #1
+ 285              	.LVL34:
+ 286              	.L14:
+ 266:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Set Maximum Rise Time for fast mode */
+ 287              		.loc 1 266 5 is_stmt 1 view .LVU94
+ 266:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Set Maximum Rise Time for fast mode */
+ 288              		.loc 1 266 12 is_stmt 0 view .LVU95
+ 289 00a4 43F40043 		orr	r3, r3, #32768
+ 290              	.LVL35:
+ 268:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 291              		.loc 1 268 5 is_stmt 1 view .LVU96
+ 268:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 292              		.loc 1 268 42 is_stmt 0 view .LVU97
+ 293 00a8 4FF49671 		mov	r1, #300
+ 294 00ac 01FB02F2 		mul	r2, r1, r2
+ 295              	.LVL36:
+ 268:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 296              		.loc 1 268 59 view .LVU98
+ 297 00b0 0849     		ldr	r1, .L18+8
+ 298 00b2 81FB0212 		smull	r1, r2, r1, r2
+ 299 00b6 9211     		asrs	r2, r2, #6
+ 268:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 300              		.loc 1 268 19 view .LVU99
+ 301 00b8 0132     		adds	r2, r2, #1
+ 302 00ba 92B2     		uxth	r2, r2
+ 268:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 303              		.loc 1 268 17 view .LVU100
+ 304 00bc 2284     		strh	r2, [r4, #32]	@ movhi
+ 305 00be C7E7     		b	.L11
+ 306              	.LVL37:
+ 307              	.L17:
+ 249:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     }
+ 308              		.loc 1 249 7 is_stmt 1 view .LVU101
+ 249:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     }
+ 309              		.loc 1 249 67 is_stmt 0 view .LVU102
+ 310 00c0 03EB4303 		add	r3, r3, r3, lsl #1
+ 249:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     }
+ 311              		.loc 1 249 33 view .LVU103
+ 312 00c4 B1FBF3F3 		udiv	r3, r1, r3
+ 249:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     }
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 12
+
+
+ 313              		.loc 1 249 14 view .LVU104
+ 314 00c8 9BB2     		uxth	r3, r3
+ 315              	.LVL38:
+ 249:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     }
+ 316              		.loc 1 249 14 view .LVU105
+ 317 00ca E6E7     		b	.L13
+ 318              	.L19:
+ 319              		.align	2
+ 320              	.L18:
+ 321 00cc 83DE1B43 		.word	1125899907
+ 322 00d0 A0860100 		.word	100000
+ 323 00d4 D34D6210 		.word	274877907
+ 324              		.cfi_endproc
+ 325              	.LFE30:
+ 327              		.section	.text.I2C_StructInit,"ax",%progbits
+ 328              		.align	1
+ 329              		.global	I2C_StructInit
+ 330              		.syntax unified
+ 331              		.thumb
+ 332              		.thumb_func
+ 334              	I2C_StructInit:
+ 335              	.LVL39:
+ 336              	.LFB31:
+ 292:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 293:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 294:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Fills each I2C_InitStruct member with its default value.
+ 295:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2C_InitStruct: pointer to an I2C_InitTypeDef structure which will be initialized.
+ 296:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+ 297:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 298:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_StructInit(I2C_InitTypeDef* I2C_InitStruct)
+ 299:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 337              		.loc 1 299 1 is_stmt 1 view -0
+ 338              		.cfi_startproc
+ 339              		@ args = 0, pretend = 0, frame = 0
+ 340              		@ frame_needed = 0, uses_anonymous_args = 0
+ 341              		@ link register save eliminated.
+ 300:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /*---------------- Reset I2C init structure parameters values ----------------*/
+ 301:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* initialize the I2C_ClockSpeed member */
+ 302:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2C_InitStruct->I2C_ClockSpeed = 5000;
+ 342              		.loc 1 302 3 view .LVU107
+ 343              		.loc 1 302 34 is_stmt 0 view .LVU108
+ 344 0000 41F28833 		movw	r3, #5000
+ 345 0004 0360     		str	r3, [r0]
+ 303:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Initialize the I2C_Mode member */
+ 304:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2C_InitStruct->I2C_Mode = I2C_Mode_I2C;
+ 346              		.loc 1 304 3 is_stmt 1 view .LVU109
+ 347              		.loc 1 304 28 is_stmt 0 view .LVU110
+ 348 0006 0023     		movs	r3, #0
+ 349 0008 8380     		strh	r3, [r0, #4]	@ movhi
+ 305:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Initialize the I2C_DutyCycle member */
+ 306:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2C_InitStruct->I2C_DutyCycle = I2C_DutyCycle_2;
+ 350              		.loc 1 306 3 is_stmt 1 view .LVU111
+ 351              		.loc 1 306 33 is_stmt 0 view .LVU112
+ 352 000a 4BF6FF72 		movw	r2, #49151
+ 353 000e C280     		strh	r2, [r0, #6]	@ movhi
+ 307:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Initialize the I2C_OwnAddress1 member */
+ 308:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2C_InitStruct->I2C_OwnAddress1 = 0;
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 13
+
+
+ 354              		.loc 1 308 3 is_stmt 1 view .LVU113
+ 355              		.loc 1 308 35 is_stmt 0 view .LVU114
+ 356 0010 0381     		strh	r3, [r0, #8]	@ movhi
+ 309:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Initialize the I2C_Ack member */
+ 310:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2C_InitStruct->I2C_Ack = I2C_Ack_Disable;
+ 357              		.loc 1 310 3 is_stmt 1 view .LVU115
+ 358              		.loc 1 310 27 is_stmt 0 view .LVU116
+ 359 0012 4381     		strh	r3, [r0, #10]	@ movhi
+ 311:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Initialize the I2C_AcknowledgedAddress member */
+ 312:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2C_InitStruct->I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+ 360              		.loc 1 312 3 is_stmt 1 view .LVU117
+ 361              		.loc 1 312 43 is_stmt 0 view .LVU118
+ 362 0014 4FF48043 		mov	r3, #16384
+ 363 0018 8381     		strh	r3, [r0, #12]	@ movhi
+ 313:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 364              		.loc 1 313 1 view .LVU119
+ 365 001a 7047     		bx	lr
+ 366              		.cfi_endproc
+ 367              	.LFE31:
+ 369              		.section	.text.I2C_Cmd,"ax",%progbits
+ 370              		.align	1
+ 371              		.global	I2C_Cmd
+ 372              		.syntax unified
+ 373              		.thumb
+ 374              		.thumb_func
+ 376              	I2C_Cmd:
+ 377              	.LVL40:
+ 378              	.LFB32:
+ 314:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 315:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 316:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Enables or disables the specified I2C peripheral.
+ 317:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 318:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  NewState: new state of the I2Cx peripheral. 
+ 319:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be: ENABLE or DISABLE.
+ 320:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+ 321:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 322:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_Cmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
+ 323:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 379              		.loc 1 323 1 is_stmt 1 view -0
+ 380              		.cfi_startproc
+ 381              		@ args = 0, pretend = 0, frame = 0
+ 382              		@ frame_needed = 0, uses_anonymous_args = 0
+ 383              		@ link register save eliminated.
+ 324:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 325:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 384              		.loc 1 325 3 view .LVU121
+ 326:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 385              		.loc 1 326 3 view .LVU122
+ 327:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (NewState != DISABLE)
+ 386              		.loc 1 327 3 view .LVU123
+ 387              		.loc 1 327 6 is_stmt 0 view .LVU124
+ 388 0000 29B1     		cbz	r1, .L22
+ 328:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 329:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Enable the selected I2C peripheral */
+ 330:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 |= CR1_PE_Set;
+ 389              		.loc 1 330 5 is_stmt 1 view .LVU125
+ 390              		.loc 1 330 9 is_stmt 0 view .LVU126
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 14
+
+
+ 391 0002 0388     		ldrh	r3, [r0]
+ 392 0004 9BB2     		uxth	r3, r3
+ 393              		.loc 1 330 15 view .LVU127
+ 394 0006 43F00103 		orr	r3, r3, #1
+ 395 000a 0380     		strh	r3, [r0]	@ movhi
+ 396 000c 7047     		bx	lr
+ 397              	.L22:
+ 331:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 332:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+ 333:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 334:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Disable the selected I2C peripheral */
+ 335:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 &= CR1_PE_Reset;
+ 398              		.loc 1 335 5 is_stmt 1 view .LVU128
+ 399              		.loc 1 335 9 is_stmt 0 view .LVU129
+ 400 000e 0388     		ldrh	r3, [r0]
+ 401 0010 9BB2     		uxth	r3, r3
+ 402              		.loc 1 335 15 view .LVU130
+ 403 0012 23F00103 		bic	r3, r3, #1
+ 404 0016 9BB2     		uxth	r3, r3
+ 405 0018 0380     		strh	r3, [r0]	@ movhi
+ 336:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 337:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 406              		.loc 1 337 1 view .LVU131
+ 407 001a 7047     		bx	lr
+ 408              		.cfi_endproc
+ 409              	.LFE32:
+ 411              		.section	.text.I2C_DMACmd,"ax",%progbits
+ 412              		.align	1
+ 413              		.global	I2C_DMACmd
+ 414              		.syntax unified
+ 415              		.thumb
+ 416              		.thumb_func
+ 418              	I2C_DMACmd:
+ 419              	.LVL41:
+ 420              	.LFB33:
+ 338:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 339:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 340:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Enables or disables the specified I2C DMA requests.
+ 341:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 342:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  NewState: new state of the I2C DMA transfer.
+ 343:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be: ENABLE or DISABLE.
+ 344:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+ 345:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 346:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_DMACmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
+ 347:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 421              		.loc 1 347 1 is_stmt 1 view -0
+ 422              		.cfi_startproc
+ 423              		@ args = 0, pretend = 0, frame = 0
+ 424              		@ frame_needed = 0, uses_anonymous_args = 0
+ 425              		@ link register save eliminated.
+ 348:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 349:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 426              		.loc 1 349 3 view .LVU133
+ 350:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 427              		.loc 1 350 3 view .LVU134
+ 351:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (NewState != DISABLE)
+ 428              		.loc 1 351 3 view .LVU135
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 15
+
+
+ 429              		.loc 1 351 6 is_stmt 0 view .LVU136
+ 430 0000 29B1     		cbz	r1, .L25
+ 352:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 353:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Enable the selected I2C DMA requests */
+ 354:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR2 |= CR2_DMAEN_Set;
+ 431              		.loc 1 354 5 is_stmt 1 view .LVU137
+ 432              		.loc 1 354 9 is_stmt 0 view .LVU138
+ 433 0002 8388     		ldrh	r3, [r0, #4]
+ 434 0004 9BB2     		uxth	r3, r3
+ 435              		.loc 1 354 15 view .LVU139
+ 436 0006 43F40063 		orr	r3, r3, #2048
+ 437 000a 8380     		strh	r3, [r0, #4]	@ movhi
+ 438 000c 7047     		bx	lr
+ 439              	.L25:
+ 355:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 356:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+ 357:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 358:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Disable the selected I2C DMA requests */
+ 359:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR2 &= CR2_DMAEN_Reset;
+ 440              		.loc 1 359 5 is_stmt 1 view .LVU140
+ 441              		.loc 1 359 9 is_stmt 0 view .LVU141
+ 442 000e 8388     		ldrh	r3, [r0, #4]
+ 443 0010 9BB2     		uxth	r3, r3
+ 444              		.loc 1 359 15 view .LVU142
+ 445 0012 23F40063 		bic	r3, r3, #2048
+ 446 0016 9BB2     		uxth	r3, r3
+ 447 0018 8380     		strh	r3, [r0, #4]	@ movhi
+ 360:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 361:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 448              		.loc 1 361 1 view .LVU143
+ 449 001a 7047     		bx	lr
+ 450              		.cfi_endproc
+ 451              	.LFE33:
+ 453              		.section	.text.I2C_DMALastTransferCmd,"ax",%progbits
+ 454              		.align	1
+ 455              		.global	I2C_DMALastTransferCmd
+ 456              		.syntax unified
+ 457              		.thumb
+ 458              		.thumb_func
+ 460              	I2C_DMALastTransferCmd:
+ 461              	.LVL42:
+ 462              	.LFB34:
+ 362:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 363:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 364:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Specifies if the next DMA transfer will be the last one.
+ 365:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 366:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  NewState: new state of the I2C DMA last transfer.
+ 367:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be: ENABLE or DISABLE.
+ 368:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+ 369:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 370:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_DMALastTransferCmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
+ 371:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 463              		.loc 1 371 1 is_stmt 1 view -0
+ 464              		.cfi_startproc
+ 465              		@ args = 0, pretend = 0, frame = 0
+ 466              		@ frame_needed = 0, uses_anonymous_args = 0
+ 467              		@ link register save eliminated.
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 16
+
+
+ 372:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 373:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 468              		.loc 1 373 3 view .LVU145
+ 374:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 469              		.loc 1 374 3 view .LVU146
+ 375:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (NewState != DISABLE)
+ 470              		.loc 1 375 3 view .LVU147
+ 471              		.loc 1 375 6 is_stmt 0 view .LVU148
+ 472 0000 29B1     		cbz	r1, .L28
+ 376:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 377:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Next DMA transfer is the last transfer */
+ 378:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR2 |= CR2_LAST_Set;
+ 473              		.loc 1 378 5 is_stmt 1 view .LVU149
+ 474              		.loc 1 378 9 is_stmt 0 view .LVU150
+ 475 0002 8388     		ldrh	r3, [r0, #4]
+ 476 0004 9BB2     		uxth	r3, r3
+ 477              		.loc 1 378 15 view .LVU151
+ 478 0006 43F48053 		orr	r3, r3, #4096
+ 479 000a 8380     		strh	r3, [r0, #4]	@ movhi
+ 480 000c 7047     		bx	lr
+ 481              	.L28:
+ 379:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 380:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+ 381:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 382:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Next DMA transfer is not the last transfer */
+ 383:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR2 &= CR2_LAST_Reset;
+ 482              		.loc 1 383 5 is_stmt 1 view .LVU152
+ 483              		.loc 1 383 9 is_stmt 0 view .LVU153
+ 484 000e 8388     		ldrh	r3, [r0, #4]
+ 485 0010 9BB2     		uxth	r3, r3
+ 486              		.loc 1 383 15 view .LVU154
+ 487 0012 23F48053 		bic	r3, r3, #4096
+ 488 0016 9BB2     		uxth	r3, r3
+ 489 0018 8380     		strh	r3, [r0, #4]	@ movhi
+ 384:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 385:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 490              		.loc 1 385 1 view .LVU155
+ 491 001a 7047     		bx	lr
+ 492              		.cfi_endproc
+ 493              	.LFE34:
+ 495              		.section	.text.I2C_GenerateSTART,"ax",%progbits
+ 496              		.align	1
+ 497              		.global	I2C_GenerateSTART
+ 498              		.syntax unified
+ 499              		.thumb
+ 500              		.thumb_func
+ 502              	I2C_GenerateSTART:
+ 503              	.LVL43:
+ 504              	.LFB35:
+ 386:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 387:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 388:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Generates I2Cx communication START condition.
+ 389:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 390:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  NewState: new state of the I2C START condition generation.
+ 391:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be: ENABLE or DISABLE.
+ 392:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None.
+ 393:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 17
+
+
+ 394:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_GenerateSTART(I2C_TypeDef* I2Cx, FunctionalState NewState)
+ 395:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 505              		.loc 1 395 1 is_stmt 1 view -0
+ 506              		.cfi_startproc
+ 507              		@ args = 0, pretend = 0, frame = 0
+ 508              		@ frame_needed = 0, uses_anonymous_args = 0
+ 509              		@ link register save eliminated.
+ 396:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 397:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 510              		.loc 1 397 3 view .LVU157
+ 398:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 511              		.loc 1 398 3 view .LVU158
+ 399:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (NewState != DISABLE)
+ 512              		.loc 1 399 3 view .LVU159
+ 513              		.loc 1 399 6 is_stmt 0 view .LVU160
+ 514 0000 29B1     		cbz	r1, .L31
+ 400:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 401:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Generate a START condition */
+ 402:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 |= CR1_START_Set;
+ 515              		.loc 1 402 5 is_stmt 1 view .LVU161
+ 516              		.loc 1 402 9 is_stmt 0 view .LVU162
+ 517 0002 0388     		ldrh	r3, [r0]
+ 518 0004 9BB2     		uxth	r3, r3
+ 519              		.loc 1 402 15 view .LVU163
+ 520 0006 43F48073 		orr	r3, r3, #256
+ 521 000a 0380     		strh	r3, [r0]	@ movhi
+ 522 000c 7047     		bx	lr
+ 523              	.L31:
+ 403:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 404:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+ 405:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 406:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Disable the START condition generation */
+ 407:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 &= CR1_START_Reset;
+ 524              		.loc 1 407 5 is_stmt 1 view .LVU164
+ 525              		.loc 1 407 9 is_stmt 0 view .LVU165
+ 526 000e 0388     		ldrh	r3, [r0]
+ 527 0010 9BB2     		uxth	r3, r3
+ 528              		.loc 1 407 15 view .LVU166
+ 529 0012 23F48073 		bic	r3, r3, #256
+ 530 0016 9BB2     		uxth	r3, r3
+ 531 0018 0380     		strh	r3, [r0]	@ movhi
+ 408:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 409:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 532              		.loc 1 409 1 view .LVU167
+ 533 001a 7047     		bx	lr
+ 534              		.cfi_endproc
+ 535              	.LFE35:
+ 537              		.section	.text.I2C_GenerateSTOP,"ax",%progbits
+ 538              		.align	1
+ 539              		.global	I2C_GenerateSTOP
+ 540              		.syntax unified
+ 541              		.thumb
+ 542              		.thumb_func
+ 544              	I2C_GenerateSTOP:
+ 545              	.LVL44:
+ 546              	.LFB36:
+ 410:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 18
+
+
+ 411:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 412:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Generates I2Cx communication STOP condition.
+ 413:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 414:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  NewState: new state of the I2C STOP condition generation.
+ 415:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be: ENABLE or DISABLE.
+ 416:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None.
+ 417:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 418:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_GenerateSTOP(I2C_TypeDef* I2Cx, FunctionalState NewState)
+ 419:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 547              		.loc 1 419 1 is_stmt 1 view -0
+ 548              		.cfi_startproc
+ 549              		@ args = 0, pretend = 0, frame = 0
+ 550              		@ frame_needed = 0, uses_anonymous_args = 0
+ 551              		@ link register save eliminated.
+ 420:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 421:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 552              		.loc 1 421 3 view .LVU169
+ 422:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 553              		.loc 1 422 3 view .LVU170
+ 423:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (NewState != DISABLE)
+ 554              		.loc 1 423 3 view .LVU171
+ 555              		.loc 1 423 6 is_stmt 0 view .LVU172
+ 556 0000 29B1     		cbz	r1, .L34
+ 424:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 425:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Generate a STOP condition */
+ 426:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 |= CR1_STOP_Set;
+ 557              		.loc 1 426 5 is_stmt 1 view .LVU173
+ 558              		.loc 1 426 9 is_stmt 0 view .LVU174
+ 559 0002 0388     		ldrh	r3, [r0]
+ 560 0004 9BB2     		uxth	r3, r3
+ 561              		.loc 1 426 15 view .LVU175
+ 562 0006 43F40073 		orr	r3, r3, #512
+ 563 000a 0380     		strh	r3, [r0]	@ movhi
+ 564 000c 7047     		bx	lr
+ 565              	.L34:
+ 427:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 428:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+ 429:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 430:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Disable the STOP condition generation */
+ 431:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 &= CR1_STOP_Reset;
+ 566              		.loc 1 431 5 is_stmt 1 view .LVU176
+ 567              		.loc 1 431 9 is_stmt 0 view .LVU177
+ 568 000e 0388     		ldrh	r3, [r0]
+ 569 0010 9BB2     		uxth	r3, r3
+ 570              		.loc 1 431 15 view .LVU178
+ 571 0012 23F40073 		bic	r3, r3, #512
+ 572 0016 9BB2     		uxth	r3, r3
+ 573 0018 0380     		strh	r3, [r0]	@ movhi
+ 432:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 433:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 574              		.loc 1 433 1 view .LVU179
+ 575 001a 7047     		bx	lr
+ 576              		.cfi_endproc
+ 577              	.LFE36:
+ 579              		.section	.text.I2C_AcknowledgeConfig,"ax",%progbits
+ 580              		.align	1
+ 581              		.global	I2C_AcknowledgeConfig
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 19
+
+
+ 582              		.syntax unified
+ 583              		.thumb
+ 584              		.thumb_func
+ 586              	I2C_AcknowledgeConfig:
+ 587              	.LVL45:
+ 588              	.LFB37:
+ 434:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 435:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 436:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Enables or disables the specified I2C acknowledge feature.
+ 437:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 438:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  NewState: new state of the I2C Acknowledgement.
+ 439:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be: ENABLE or DISABLE.
+ 440:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None.
+ 441:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 442:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_AcknowledgeConfig(I2C_TypeDef* I2Cx, FunctionalState NewState)
+ 443:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 589              		.loc 1 443 1 is_stmt 1 view -0
+ 590              		.cfi_startproc
+ 591              		@ args = 0, pretend = 0, frame = 0
+ 592              		@ frame_needed = 0, uses_anonymous_args = 0
+ 593              		@ link register save eliminated.
+ 444:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 445:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 594              		.loc 1 445 3 view .LVU181
+ 446:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 595              		.loc 1 446 3 view .LVU182
+ 447:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (NewState != DISABLE)
+ 596              		.loc 1 447 3 view .LVU183
+ 597              		.loc 1 447 6 is_stmt 0 view .LVU184
+ 598 0000 29B1     		cbz	r1, .L37
+ 448:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 449:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Enable the acknowledgement */
+ 450:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 |= CR1_ACK_Set;
+ 599              		.loc 1 450 5 is_stmt 1 view .LVU185
+ 600              		.loc 1 450 9 is_stmt 0 view .LVU186
+ 601 0002 0388     		ldrh	r3, [r0]
+ 602 0004 9BB2     		uxth	r3, r3
+ 603              		.loc 1 450 15 view .LVU187
+ 604 0006 43F48063 		orr	r3, r3, #1024
+ 605 000a 0380     		strh	r3, [r0]	@ movhi
+ 606 000c 7047     		bx	lr
+ 607              	.L37:
+ 451:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 452:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+ 453:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 454:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Disable the acknowledgement */
+ 455:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 &= CR1_ACK_Reset;
+ 608              		.loc 1 455 5 is_stmt 1 view .LVU188
+ 609              		.loc 1 455 9 is_stmt 0 view .LVU189
+ 610 000e 0388     		ldrh	r3, [r0]
+ 611 0010 9BB2     		uxth	r3, r3
+ 612              		.loc 1 455 15 view .LVU190
+ 613 0012 23F48063 		bic	r3, r3, #1024
+ 614 0016 9BB2     		uxth	r3, r3
+ 615 0018 0380     		strh	r3, [r0]	@ movhi
+ 456:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 457:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 20
+
+
+ 616              		.loc 1 457 1 view .LVU191
+ 617 001a 7047     		bx	lr
+ 618              		.cfi_endproc
+ 619              	.LFE37:
+ 621              		.section	.text.I2C_OwnAddress2Config,"ax",%progbits
+ 622              		.align	1
+ 623              		.global	I2C_OwnAddress2Config
+ 624              		.syntax unified
+ 625              		.thumb
+ 626              		.thumb_func
+ 628              	I2C_OwnAddress2Config:
+ 629              	.LVL46:
+ 630              	.LFB38:
+ 458:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 459:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 460:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Configures the specified I2C own address2.
+ 461:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 462:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  Address: specifies the 7bit I2C own address2.
+ 463:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None.
+ 464:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 465:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_OwnAddress2Config(I2C_TypeDef* I2Cx, uint8_t Address)
+ 466:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 631              		.loc 1 466 1 is_stmt 1 view -0
+ 632              		.cfi_startproc
+ 633              		@ args = 0, pretend = 0, frame = 0
+ 634              		@ frame_needed = 0, uses_anonymous_args = 0
+ 635              		@ link register save eliminated.
+ 467:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   uint16_t tmpreg = 0;
+ 636              		.loc 1 467 3 view .LVU193
+ 468:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 469:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 470:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 637              		.loc 1 470 3 view .LVU194
+ 471:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 472:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Get the old register value */
+ 473:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   tmpreg = I2Cx->OAR2;
+ 638              		.loc 1 473 3 view .LVU195
+ 639              		.loc 1 473 10 is_stmt 0 view .LVU196
+ 640 0000 8389     		ldrh	r3, [r0, #12]
+ 641 0002 9BB2     		uxth	r3, r3
+ 642              	.LVL47:
+ 474:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 475:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Reset I2Cx Own address2 bit [7:1] */
+ 476:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   tmpreg &= OAR2_ADD2_Reset;
+ 643              		.loc 1 476 3 is_stmt 1 view .LVU197
+ 644              		.loc 1 476 10 is_stmt 0 view .LVU198
+ 645 0004 23F0FE03 		bic	r3, r3, #254
+ 646              	.LVL48:
+ 477:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 478:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Set I2Cx Own address2 */
+ 479:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   tmpreg |= (uint16_t)((uint16_t)Address & (uint16_t)0x00FE);
+ 647              		.loc 1 479 3 is_stmt 1 view .LVU199
+ 648              		.loc 1 479 10 is_stmt 0 view .LVU200
+ 649 0008 01F0FE01 		and	r1, r1, #254
+ 650              	.LVL49:
+ 651              		.loc 1 479 10 view .LVU201
+ 652 000c 0B43     		orrs	r3, r3, r1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 21
+
+
+ 653              	.LVL50:
+ 480:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 481:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Store the new register value */
+ 482:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2Cx->OAR2 = tmpreg;
+ 654              		.loc 1 482 3 is_stmt 1 view .LVU202
+ 655              		.loc 1 482 14 is_stmt 0 view .LVU203
+ 656 000e 8381     		strh	r3, [r0, #12]	@ movhi
+ 483:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 657              		.loc 1 483 1 view .LVU204
+ 658 0010 7047     		bx	lr
+ 659              		.cfi_endproc
+ 660              	.LFE38:
+ 662              		.section	.text.I2C_DualAddressCmd,"ax",%progbits
+ 663              		.align	1
+ 664              		.global	I2C_DualAddressCmd
+ 665              		.syntax unified
+ 666              		.thumb
+ 667              		.thumb_func
+ 669              	I2C_DualAddressCmd:
+ 670              	.LVL51:
+ 671              	.LFB39:
+ 484:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 485:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 486:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Enables or disables the specified I2C dual addressing mode.
+ 487:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 488:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  NewState: new state of the I2C dual addressing mode.
+ 489:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be: ENABLE or DISABLE.
+ 490:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+ 491:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 492:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_DualAddressCmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
+ 493:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 672              		.loc 1 493 1 is_stmt 1 view -0
+ 673              		.cfi_startproc
+ 674              		@ args = 0, pretend = 0, frame = 0
+ 675              		@ frame_needed = 0, uses_anonymous_args = 0
+ 676              		@ link register save eliminated.
+ 494:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 495:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 677              		.loc 1 495 3 view .LVU206
+ 496:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 678              		.loc 1 496 3 view .LVU207
+ 497:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (NewState != DISABLE)
+ 679              		.loc 1 497 3 view .LVU208
+ 680              		.loc 1 497 6 is_stmt 0 view .LVU209
+ 681 0000 29B1     		cbz	r1, .L41
+ 498:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 499:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Enable dual addressing mode */
+ 500:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->OAR2 |= OAR2_ENDUAL_Set;
+ 682              		.loc 1 500 5 is_stmt 1 view .LVU210
+ 683              		.loc 1 500 9 is_stmt 0 view .LVU211
+ 684 0002 8389     		ldrh	r3, [r0, #12]
+ 685 0004 9BB2     		uxth	r3, r3
+ 686              		.loc 1 500 16 view .LVU212
+ 687 0006 43F00103 		orr	r3, r3, #1
+ 688 000a 8381     		strh	r3, [r0, #12]	@ movhi
+ 689 000c 7047     		bx	lr
+ 690              	.L41:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 22
+
+
+ 501:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 502:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+ 503:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 504:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Disable dual addressing mode */
+ 505:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->OAR2 &= OAR2_ENDUAL_Reset;
+ 691              		.loc 1 505 5 is_stmt 1 view .LVU213
+ 692              		.loc 1 505 9 is_stmt 0 view .LVU214
+ 693 000e 8389     		ldrh	r3, [r0, #12]
+ 694 0010 9BB2     		uxth	r3, r3
+ 695              		.loc 1 505 16 view .LVU215
+ 696 0012 23F00103 		bic	r3, r3, #1
+ 697 0016 9BB2     		uxth	r3, r3
+ 698 0018 8381     		strh	r3, [r0, #12]	@ movhi
+ 506:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 507:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 699              		.loc 1 507 1 view .LVU216
+ 700 001a 7047     		bx	lr
+ 701              		.cfi_endproc
+ 702              	.LFE39:
+ 704              		.section	.text.I2C_GeneralCallCmd,"ax",%progbits
+ 705              		.align	1
+ 706              		.global	I2C_GeneralCallCmd
+ 707              		.syntax unified
+ 708              		.thumb
+ 709              		.thumb_func
+ 711              	I2C_GeneralCallCmd:
+ 712              	.LVL52:
+ 713              	.LFB40:
+ 508:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 509:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 510:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Enables or disables the specified I2C general call feature.
+ 511:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 512:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  NewState: new state of the I2C General call.
+ 513:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be: ENABLE or DISABLE.
+ 514:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+ 515:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 516:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_GeneralCallCmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
+ 517:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 714              		.loc 1 517 1 is_stmt 1 view -0
+ 715              		.cfi_startproc
+ 716              		@ args = 0, pretend = 0, frame = 0
+ 717              		@ frame_needed = 0, uses_anonymous_args = 0
+ 718              		@ link register save eliminated.
+ 518:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 519:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 719              		.loc 1 519 3 view .LVU218
+ 520:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 720              		.loc 1 520 3 view .LVU219
+ 521:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (NewState != DISABLE)
+ 721              		.loc 1 521 3 view .LVU220
+ 722              		.loc 1 521 6 is_stmt 0 view .LVU221
+ 723 0000 29B1     		cbz	r1, .L44
+ 522:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 523:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Enable generall call */
+ 524:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 |= CR1_ENGC_Set;
+ 724              		.loc 1 524 5 is_stmt 1 view .LVU222
+ 725              		.loc 1 524 9 is_stmt 0 view .LVU223
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 23
+
+
+ 726 0002 0388     		ldrh	r3, [r0]
+ 727 0004 9BB2     		uxth	r3, r3
+ 728              		.loc 1 524 15 view .LVU224
+ 729 0006 43F04003 		orr	r3, r3, #64
+ 730 000a 0380     		strh	r3, [r0]	@ movhi
+ 731 000c 7047     		bx	lr
+ 732              	.L44:
+ 525:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 526:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+ 527:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 528:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Disable generall call */
+ 529:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 &= CR1_ENGC_Reset;
+ 733              		.loc 1 529 5 is_stmt 1 view .LVU225
+ 734              		.loc 1 529 9 is_stmt 0 view .LVU226
+ 735 000e 0388     		ldrh	r3, [r0]
+ 736 0010 9BB2     		uxth	r3, r3
+ 737              		.loc 1 529 15 view .LVU227
+ 738 0012 23F04003 		bic	r3, r3, #64
+ 739 0016 9BB2     		uxth	r3, r3
+ 740 0018 0380     		strh	r3, [r0]	@ movhi
+ 530:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 531:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 741              		.loc 1 531 1 view .LVU228
+ 742 001a 7047     		bx	lr
+ 743              		.cfi_endproc
+ 744              	.LFE40:
+ 746              		.section	.text.I2C_ITConfig,"ax",%progbits
+ 747              		.align	1
+ 748              		.global	I2C_ITConfig
+ 749              		.syntax unified
+ 750              		.thumb
+ 751              		.thumb_func
+ 753              	I2C_ITConfig:
+ 754              	.LVL53:
+ 755              	.LFB41:
+ 532:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 533:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 534:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Enables or disables the specified I2C interrupts.
+ 535:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 536:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2C_IT: specifies the I2C interrupts sources to be enabled or disabled. 
+ 537:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be any combination of the following values:
+ 538:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_BUF: Buffer interrupt mask
+ 539:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_EVT: Event interrupt mask
+ 540:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_ERR: Error interrupt mask
+ 541:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  NewState: new state of the specified I2C interrupts.
+ 542:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be: ENABLE or DISABLE.
+ 543:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+ 544:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 545:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_ITConfig(I2C_TypeDef* I2Cx, uint16_t I2C_IT, FunctionalState NewState)
+ 546:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 756              		.loc 1 546 1 is_stmt 1 view -0
+ 757              		.cfi_startproc
+ 758              		@ args = 0, pretend = 0, frame = 0
+ 759              		@ frame_needed = 0, uses_anonymous_args = 0
+ 760              		@ link register save eliminated.
+ 547:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 548:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 24
+
+
+ 761              		.loc 1 548 3 view .LVU230
+ 549:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 762              		.loc 1 549 3 view .LVU231
+ 550:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_CONFIG_IT(I2C_IT));
+ 763              		.loc 1 550 3 view .LVU232
+ 551:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   
+ 552:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (NewState != DISABLE)
+ 764              		.loc 1 552 3 view .LVU233
+ 765              		.loc 1 552 6 is_stmt 0 view .LVU234
+ 766 0000 22B1     		cbz	r2, .L47
+ 553:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 554:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Enable the selected I2C interrupts */
+ 555:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR2 |= I2C_IT;
+ 767              		.loc 1 555 5 is_stmt 1 view .LVU235
+ 768              		.loc 1 555 9 is_stmt 0 view .LVU236
+ 769 0002 8388     		ldrh	r3, [r0, #4]
+ 770 0004 9BB2     		uxth	r3, r3
+ 771              		.loc 1 555 15 view .LVU237
+ 772 0006 0B43     		orrs	r3, r3, r1
+ 773 0008 8380     		strh	r3, [r0, #4]	@ movhi
+ 774 000a 7047     		bx	lr
+ 775              	.L47:
+ 556:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 557:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+ 558:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 559:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Disable the selected I2C interrupts */
+ 560:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR2 &= (uint16_t)~I2C_IT;
+ 776              		.loc 1 560 5 is_stmt 1 view .LVU238
+ 777              		.loc 1 560 9 is_stmt 0 view .LVU239
+ 778 000c 8388     		ldrh	r3, [r0, #4]
+ 779              		.loc 1 560 18 view .LVU240
+ 780 000e C943     		mvns	r1, r1
+ 781              	.LVL54:
+ 782              		.loc 1 560 18 view .LVU241
+ 783 0010 89B2     		uxth	r1, r1
+ 784              		.loc 1 560 15 view .LVU242
+ 785 0012 1940     		ands	r1, r1, r3
+ 786 0014 8180     		strh	r1, [r0, #4]	@ movhi
+ 561:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 562:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 787              		.loc 1 562 1 view .LVU243
+ 788 0016 7047     		bx	lr
+ 789              		.cfi_endproc
+ 790              	.LFE41:
+ 792              		.section	.text.I2C_SendData,"ax",%progbits
+ 793              		.align	1
+ 794              		.global	I2C_SendData
+ 795              		.syntax unified
+ 796              		.thumb
+ 797              		.thumb_func
+ 799              	I2C_SendData:
+ 800              	.LVL55:
+ 801              	.LFB42:
+ 563:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 564:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 565:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Sends a data byte through the I2Cx peripheral.
+ 566:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 25
+
+
+ 567:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  Data: Byte to be transmitted..
+ 568:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+ 569:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 570:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_SendData(I2C_TypeDef* I2Cx, uint8_t Data)
+ 571:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 802              		.loc 1 571 1 is_stmt 1 view -0
+ 803              		.cfi_startproc
+ 804              		@ args = 0, pretend = 0, frame = 0
+ 805              		@ frame_needed = 0, uses_anonymous_args = 0
+ 806              		@ link register save eliminated.
+ 572:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 573:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 807              		.loc 1 573 3 view .LVU245
+ 574:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Write in the DR register the data to be sent */
+ 575:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2Cx->DR = Data;
+ 808              		.loc 1 575 3 view .LVU246
+ 809              		.loc 1 575 12 is_stmt 0 view .LVU247
+ 810 0000 0182     		strh	r1, [r0, #16]	@ movhi
+ 576:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 811              		.loc 1 576 1 view .LVU248
+ 812 0002 7047     		bx	lr
+ 813              		.cfi_endproc
+ 814              	.LFE42:
+ 816              		.section	.text.I2C_ReceiveData,"ax",%progbits
+ 817              		.align	1
+ 818              		.global	I2C_ReceiveData
+ 819              		.syntax unified
+ 820              		.thumb
+ 821              		.thumb_func
+ 823              	I2C_ReceiveData:
+ 824              	.LVL56:
+ 825              	.LFB43:
+ 577:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 578:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 579:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Returns the most recent received data by the I2Cx peripheral.
+ 580:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 581:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval The value of the received data.
+ 582:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 583:STM32F10x_FWLib/src/stm32f10x_i2c.c **** uint8_t I2C_ReceiveData(I2C_TypeDef* I2Cx)
+ 584:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 826              		.loc 1 584 1 is_stmt 1 view -0
+ 827              		.cfi_startproc
+ 828              		@ args = 0, pretend = 0, frame = 0
+ 829              		@ frame_needed = 0, uses_anonymous_args = 0
+ 830              		@ link register save eliminated.
+ 585:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 586:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 831              		.loc 1 586 3 view .LVU250
+ 587:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Return the data in the DR register */
+ 588:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   return (uint8_t)I2Cx->DR;
+ 832              		.loc 1 588 3 view .LVU251
+ 833              		.loc 1 588 23 is_stmt 0 view .LVU252
+ 834 0000 008A     		ldrh	r0, [r0, #16]
+ 835              	.LVL57:
+ 589:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 836              		.loc 1 589 1 view .LVU253
+ 837 0002 C0B2     		uxtb	r0, r0
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 26
+
+
+ 838 0004 7047     		bx	lr
+ 839              		.cfi_endproc
+ 840              	.LFE43:
+ 842              		.section	.text.I2C_Send7bitAddress,"ax",%progbits
+ 843              		.align	1
+ 844              		.global	I2C_Send7bitAddress
+ 845              		.syntax unified
+ 846              		.thumb
+ 847              		.thumb_func
+ 849              	I2C_Send7bitAddress:
+ 850              	.LVL58:
+ 851              	.LFB44:
+ 590:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 591:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 592:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Transmits the address byte to select the slave device.
+ 593:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 594:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  Address: specifies the slave address which will be transmitted
+ 595:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2C_Direction: specifies whether the I2C device will be a
+ 596:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   Transmitter or a Receiver. This parameter can be one of the following values
+ 597:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_Direction_Transmitter: Transmitter mode
+ 598:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_Direction_Receiver: Receiver mode
+ 599:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None.
+ 600:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 601:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_Send7bitAddress(I2C_TypeDef* I2Cx, uint8_t Address, uint8_t I2C_Direction)
+ 602:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 852              		.loc 1 602 1 is_stmt 1 view -0
+ 853              		.cfi_startproc
+ 854              		@ args = 0, pretend = 0, frame = 0
+ 855              		@ frame_needed = 0, uses_anonymous_args = 0
+ 856              		@ link register save eliminated.
+ 603:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 604:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 857              		.loc 1 604 3 view .LVU255
+ 605:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_DIRECTION(I2C_Direction));
+ 858              		.loc 1 605 3 view .LVU256
+ 606:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Test on the direction to set/reset the read/write bit */
+ 607:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (I2C_Direction != I2C_Direction_Transmitter)
+ 859              		.loc 1 607 3 view .LVU257
+ 860              		.loc 1 607 6 is_stmt 0 view .LVU258
+ 861 0000 1AB1     		cbz	r2, .L52
+ 608:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 609:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Set the address bit0 for read */
+ 610:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     Address |= OAR1_ADD0_Set;
+ 862              		.loc 1 610 5 is_stmt 1 view .LVU259
+ 863              		.loc 1 610 13 is_stmt 0 view .LVU260
+ 864 0002 41F00101 		orr	r1, r1, #1
+ 865              	.LVL59:
+ 866              	.L53:
+ 611:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 612:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+ 613:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 614:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Reset the address bit0 for write */
+ 615:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     Address &= OAR1_ADD0_Reset;
+ 616:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 617:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Send the address */
+ 618:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2Cx->DR = Address;
+ 867              		.loc 1 618 3 is_stmt 1 view .LVU261
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 27
+
+
+ 868              		.loc 1 618 12 is_stmt 0 view .LVU262
+ 869 0006 0182     		strh	r1, [r0, #16]	@ movhi
+ 619:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 870              		.loc 1 619 1 view .LVU263
+ 871 0008 7047     		bx	lr
+ 872              	.L52:
+ 615:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 873              		.loc 1 615 5 is_stmt 1 view .LVU264
+ 615:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 874              		.loc 1 615 13 is_stmt 0 view .LVU265
+ 875 000a 01F0FE01 		and	r1, r1, #254
+ 876              	.LVL60:
+ 615:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 877              		.loc 1 615 13 view .LVU266
+ 878 000e FAE7     		b	.L53
+ 879              		.cfi_endproc
+ 880              	.LFE44:
+ 882              		.section	.text.I2C_ReadRegister,"ax",%progbits
+ 883              		.align	1
+ 884              		.global	I2C_ReadRegister
+ 885              		.syntax unified
+ 886              		.thumb
+ 887              		.thumb_func
+ 889              	I2C_ReadRegister:
+ 890              	.LVL61:
+ 891              	.LFB45:
+ 620:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 621:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 622:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Reads the specified I2C register and returns its value.
+ 623:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2C_Register: specifies the register to read.
+ 624:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be one of the following values:
+ 625:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_Register_CR1:  CR1 register.
+ 626:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_Register_CR2:   CR2 register.
+ 627:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_Register_OAR1:  OAR1 register.
+ 628:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_Register_OAR2:  OAR2 register.
+ 629:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_Register_DR:    DR register.
+ 630:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_Register_SR1:   SR1 register.
+ 631:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_Register_SR2:   SR2 register.
+ 632:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_Register_CCR:   CCR register.
+ 633:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_Register_TRISE: TRISE register.
+ 634:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval The value of the read register.
+ 635:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 636:STM32F10x_FWLib/src/stm32f10x_i2c.c **** uint16_t I2C_ReadRegister(I2C_TypeDef* I2Cx, uint8_t I2C_Register)
+ 637:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 892              		.loc 1 637 1 is_stmt 1 view -0
+ 893              		.cfi_startproc
+ 894              		@ args = 0, pretend = 0, frame = 8
+ 895              		@ frame_needed = 0, uses_anonymous_args = 0
+ 896              		@ link register save eliminated.
+ 897              		.loc 1 637 1 is_stmt 0 view .LVU268
+ 898 0000 82B0     		sub	sp, sp, #8
+ 899              	.LCFI5:
+ 900              		.cfi_def_cfa_offset 8
+ 638:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   __IO uint32_t tmp = 0;
+ 901              		.loc 1 638 3 is_stmt 1 view .LVU269
+ 902              		.loc 1 638 17 is_stmt 0 view .LVU270
+ 903 0002 0023     		movs	r3, #0
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 28
+
+
+ 904 0004 0193     		str	r3, [sp, #4]
+ 639:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 640:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 641:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 905              		.loc 1 641 3 is_stmt 1 view .LVU271
+ 642:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_REGISTER(I2C_Register));
+ 906              		.loc 1 642 3 view .LVU272
+ 643:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 644:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   tmp = (uint32_t) I2Cx;
+ 907              		.loc 1 644 3 view .LVU273
+ 908              		.loc 1 644 7 is_stmt 0 view .LVU274
+ 909 0006 0190     		str	r0, [sp, #4]
+ 645:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   tmp += I2C_Register;
+ 910              		.loc 1 645 3 is_stmt 1 view .LVU275
+ 911              		.loc 1 645 7 is_stmt 0 view .LVU276
+ 912 0008 019B     		ldr	r3, [sp, #4]
+ 913 000a 1944     		add	r1, r1, r3
+ 914              	.LVL62:
+ 915              		.loc 1 645 7 view .LVU277
+ 916 000c 0191     		str	r1, [sp, #4]
+ 646:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 647:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Return the selected register value */
+ 648:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   return (*(__IO uint16_t *) tmp);
+ 917              		.loc 1 648 3 is_stmt 1 view .LVU278
+ 918              		.loc 1 648 12 is_stmt 0 view .LVU279
+ 919 000e 019B     		ldr	r3, [sp, #4]
+ 920              		.loc 1 648 11 view .LVU280
+ 921 0010 1888     		ldrh	r0, [r3]
+ 922              	.LVL63:
+ 649:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 923              		.loc 1 649 1 view .LVU281
+ 924 0012 80B2     		uxth	r0, r0
+ 925 0014 02B0     		add	sp, sp, #8
+ 926              	.LCFI6:
+ 927              		.cfi_def_cfa_offset 0
+ 928              		@ sp needed
+ 929 0016 7047     		bx	lr
+ 930              		.cfi_endproc
+ 931              	.LFE45:
+ 933              		.section	.text.I2C_SoftwareResetCmd,"ax",%progbits
+ 934              		.align	1
+ 935              		.global	I2C_SoftwareResetCmd
+ 936              		.syntax unified
+ 937              		.thumb
+ 938              		.thumb_func
+ 940              	I2C_SoftwareResetCmd:
+ 941              	.LVL64:
+ 942              	.LFB46:
+ 650:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 651:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 652:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Enables or disables the specified I2C software reset.
+ 653:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 654:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  NewState: new state of the I2C software reset.
+ 655:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be: ENABLE or DISABLE.
+ 656:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+ 657:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 658:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_SoftwareResetCmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 29
+
+
+ 659:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 943              		.loc 1 659 1 is_stmt 1 view -0
+ 944              		.cfi_startproc
+ 945              		@ args = 0, pretend = 0, frame = 0
+ 946              		@ frame_needed = 0, uses_anonymous_args = 0
+ 947              		@ link register save eliminated.
+ 660:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 661:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 948              		.loc 1 661 3 view .LVU283
+ 662:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 949              		.loc 1 662 3 view .LVU284
+ 663:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (NewState != DISABLE)
+ 950              		.loc 1 663 3 view .LVU285
+ 951              		.loc 1 663 6 is_stmt 0 view .LVU286
+ 952 0000 39B1     		cbz	r1, .L57
+ 664:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 665:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Peripheral under reset */
+ 666:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 |= CR1_SWRST_Set;
+ 953              		.loc 1 666 5 is_stmt 1 view .LVU287
+ 954              		.loc 1 666 9 is_stmt 0 view .LVU288
+ 955 0002 0388     		ldrh	r3, [r0]
+ 956              		.loc 1 666 15 view .LVU289
+ 957 0004 6FEA4343 		mvn	r3, r3, lsl #17
+ 958 0008 6FEA5343 		mvn	r3, r3, lsr #17
+ 959 000c 9BB2     		uxth	r3, r3
+ 960 000e 0380     		strh	r3, [r0]	@ movhi
+ 961 0010 7047     		bx	lr
+ 962              	.L57:
+ 667:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 668:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+ 669:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 670:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Peripheral not under reset */
+ 671:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 &= CR1_SWRST_Reset;
+ 963              		.loc 1 671 5 is_stmt 1 view .LVU290
+ 964              		.loc 1 671 9 is_stmt 0 view .LVU291
+ 965 0012 0388     		ldrh	r3, [r0]
+ 966              		.loc 1 671 15 view .LVU292
+ 967 0014 C3F30E03 		ubfx	r3, r3, #0, #15
+ 968 0018 0380     		strh	r3, [r0]	@ movhi
+ 672:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 673:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 969              		.loc 1 673 1 view .LVU293
+ 970 001a 7047     		bx	lr
+ 971              		.cfi_endproc
+ 972              	.LFE46:
+ 974              		.section	.text.I2C_NACKPositionConfig,"ax",%progbits
+ 975              		.align	1
+ 976              		.global	I2C_NACKPositionConfig
+ 977              		.syntax unified
+ 978              		.thumb
+ 979              		.thumb_func
+ 981              	I2C_NACKPositionConfig:
+ 982              	.LVL65:
+ 983              	.LFB47:
+ 674:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 675:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 676:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Selects the specified I2C NACK position in master receiver mode.
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 30
+
+
+ 677:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *         This function is useful in I2C Master Receiver mode when the number
+ 678:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *         of data to be received is equal to 2. In this case, this function 
+ 679:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *         should be called (with parameter I2C_NACKPosition_Next) before data 
+ 680:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *         reception starts,as described in the 2-byte reception procedure 
+ 681:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *         recommended in Reference Manual in Section: Master receiver.                
+ 682:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 683:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2C_NACKPosition: specifies the NACK position. 
+ 684:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be one of the following values:
+ 685:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_NACKPosition_Next: indicates that the next byte will be the last
+ 686:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *          received byte.  
+ 687:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_NACKPosition_Current: indicates that current byte is the last 
+ 688:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *          received byte.
+ 689:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *            
+ 690:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @note    This function configures the same bit (POS) as I2C_PECPositionConfig() 
+ 691:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *          but is intended to be used in I2C mode while I2C_PECPositionConfig() 
+ 692:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *          is intended to used in SMBUS mode. 
+ 693:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *            
+ 694:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+ 695:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 696:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_NACKPositionConfig(I2C_TypeDef* I2Cx, uint16_t I2C_NACKPosition)
+ 697:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 984              		.loc 1 697 1 is_stmt 1 view -0
+ 985              		.cfi_startproc
+ 986              		@ args = 0, pretend = 0, frame = 0
+ 987              		@ frame_needed = 0, uses_anonymous_args = 0
+ 988              		@ link register save eliminated.
+ 698:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 699:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 989              		.loc 1 699 3 view .LVU295
+ 700:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_NACK_POSITION(I2C_NACKPosition));
+ 990              		.loc 1 700 3 view .LVU296
+ 701:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   
+ 702:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the input parameter */
+ 703:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (I2C_NACKPosition == I2C_NACKPosition_Next)
+ 991              		.loc 1 703 3 view .LVU297
+ 992              		.loc 1 703 6 is_stmt 0 view .LVU298
+ 993 0000 B1F5006F 		cmp	r1, #2048
+ 994 0004 06D0     		beq	.L62
+ 704:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 705:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Next byte in shift register is the last received byte */
+ 706:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 |= I2C_NACKPosition_Next;
+ 707:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 708:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+ 709:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 710:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Current byte in shift register is the last received byte */
+ 711:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 &= I2C_NACKPosition_Current;
+ 995              		.loc 1 711 5 is_stmt 1 view .LVU299
+ 996              		.loc 1 711 9 is_stmt 0 view .LVU300
+ 997 0006 0388     		ldrh	r3, [r0]
+ 998 0008 9BB2     		uxth	r3, r3
+ 999              		.loc 1 711 15 view .LVU301
+ 1000 000a 23F40063 		bic	r3, r3, #2048
+ 1001 000e 9BB2     		uxth	r3, r3
+ 1002 0010 0380     		strh	r3, [r0]	@ movhi
+ 712:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 713:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 1003              		.loc 1 713 1 view .LVU302
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 31
+
+
+ 1004 0012 7047     		bx	lr
+ 1005              	.L62:
+ 706:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 1006              		.loc 1 706 5 is_stmt 1 view .LVU303
+ 706:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 1007              		.loc 1 706 9 is_stmt 0 view .LVU304
+ 1008 0014 0388     		ldrh	r3, [r0]
+ 1009 0016 9BB2     		uxth	r3, r3
+ 706:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 1010              		.loc 1 706 15 view .LVU305
+ 1011 0018 43F40063 		orr	r3, r3, #2048
+ 1012 001c 0380     		strh	r3, [r0]	@ movhi
+ 1013 001e 7047     		bx	lr
+ 1014              		.cfi_endproc
+ 1015              	.LFE47:
+ 1017              		.section	.text.I2C_SMBusAlertConfig,"ax",%progbits
+ 1018              		.align	1
+ 1019              		.global	I2C_SMBusAlertConfig
+ 1020              		.syntax unified
+ 1021              		.thumb
+ 1022              		.thumb_func
+ 1024              	I2C_SMBusAlertConfig:
+ 1025              	.LVL66:
+ 1026              	.LFB48:
+ 714:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 715:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 716:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Drives the SMBusAlert pin high or low for the specified I2C.
+ 717:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 718:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2C_SMBusAlert: specifies SMBAlert pin level. 
+ 719:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be one of the following values:
+ 720:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_SMBusAlert_Low: SMBAlert pin driven low
+ 721:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_SMBusAlert_High: SMBAlert pin driven high
+ 722:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+ 723:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 724:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_SMBusAlertConfig(I2C_TypeDef* I2Cx, uint16_t I2C_SMBusAlert)
+ 725:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 1027              		.loc 1 725 1 is_stmt 1 view -0
+ 1028              		.cfi_startproc
+ 1029              		@ args = 0, pretend = 0, frame = 0
+ 1030              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1031              		@ link register save eliminated.
+ 726:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 727:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 1032              		.loc 1 727 3 view .LVU307
+ 728:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_SMBUS_ALERT(I2C_SMBusAlert));
+ 1033              		.loc 1 728 3 view .LVU308
+ 729:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (I2C_SMBusAlert == I2C_SMBusAlert_Low)
+ 1034              		.loc 1 729 3 view .LVU309
+ 1035              		.loc 1 729 6 is_stmt 0 view .LVU310
+ 1036 0000 B1F5005F 		cmp	r1, #8192
+ 1037 0004 06D0     		beq	.L66
+ 730:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 731:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Drive the SMBusAlert pin Low */
+ 732:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 |= I2C_SMBusAlert_Low;
+ 733:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 734:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+ 735:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 32
+
+
+ 736:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Drive the SMBusAlert pin High  */
+ 737:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 &= I2C_SMBusAlert_High;
+ 1038              		.loc 1 737 5 is_stmt 1 view .LVU311
+ 1039              		.loc 1 737 9 is_stmt 0 view .LVU312
+ 1040 0006 0388     		ldrh	r3, [r0]
+ 1041 0008 9BB2     		uxth	r3, r3
+ 1042              		.loc 1 737 15 view .LVU313
+ 1043 000a 23F40053 		bic	r3, r3, #8192
+ 1044 000e 9BB2     		uxth	r3, r3
+ 1045 0010 0380     		strh	r3, [r0]	@ movhi
+ 738:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 739:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 1046              		.loc 1 739 1 view .LVU314
+ 1047 0012 7047     		bx	lr
+ 1048              	.L66:
+ 732:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 1049              		.loc 1 732 5 is_stmt 1 view .LVU315
+ 732:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 1050              		.loc 1 732 9 is_stmt 0 view .LVU316
+ 1051 0014 0388     		ldrh	r3, [r0]
+ 1052 0016 9BB2     		uxth	r3, r3
+ 732:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 1053              		.loc 1 732 15 view .LVU317
+ 1054 0018 43F40053 		orr	r3, r3, #8192
+ 1055 001c 0380     		strh	r3, [r0]	@ movhi
+ 1056 001e 7047     		bx	lr
+ 1057              		.cfi_endproc
+ 1058              	.LFE48:
+ 1060              		.section	.text.I2C_TransmitPEC,"ax",%progbits
+ 1061              		.align	1
+ 1062              		.global	I2C_TransmitPEC
+ 1063              		.syntax unified
+ 1064              		.thumb
+ 1065              		.thumb_func
+ 1067              	I2C_TransmitPEC:
+ 1068              	.LVL67:
+ 1069              	.LFB49:
+ 740:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 741:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 742:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Enables or disables the specified I2C PEC transfer.
+ 743:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 744:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  NewState: new state of the I2C PEC transmission.
+ 745:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be: ENABLE or DISABLE.
+ 746:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+ 747:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 748:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_TransmitPEC(I2C_TypeDef* I2Cx, FunctionalState NewState)
+ 749:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 1070              		.loc 1 749 1 is_stmt 1 view -0
+ 1071              		.cfi_startproc
+ 1072              		@ args = 0, pretend = 0, frame = 0
+ 1073              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1074              		@ link register save eliminated.
+ 750:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 751:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 1075              		.loc 1 751 3 view .LVU319
+ 752:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 1076              		.loc 1 752 3 view .LVU320
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 33
+
+
+ 753:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (NewState != DISABLE)
+ 1077              		.loc 1 753 3 view .LVU321
+ 1078              		.loc 1 753 6 is_stmt 0 view .LVU322
+ 1079 0000 29B1     		cbz	r1, .L68
+ 754:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 755:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Enable the selected I2C PEC transmission */
+ 756:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 |= CR1_PEC_Set;
+ 1080              		.loc 1 756 5 is_stmt 1 view .LVU323
+ 1081              		.loc 1 756 9 is_stmt 0 view .LVU324
+ 1082 0002 0388     		ldrh	r3, [r0]
+ 1083 0004 9BB2     		uxth	r3, r3
+ 1084              		.loc 1 756 15 view .LVU325
+ 1085 0006 43F48053 		orr	r3, r3, #4096
+ 1086 000a 0380     		strh	r3, [r0]	@ movhi
+ 1087 000c 7047     		bx	lr
+ 1088              	.L68:
+ 757:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 758:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+ 759:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 760:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Disable the selected I2C PEC transmission */
+ 761:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 &= CR1_PEC_Reset;
+ 1089              		.loc 1 761 5 is_stmt 1 view .LVU326
+ 1090              		.loc 1 761 9 is_stmt 0 view .LVU327
+ 1091 000e 0388     		ldrh	r3, [r0]
+ 1092 0010 9BB2     		uxth	r3, r3
+ 1093              		.loc 1 761 15 view .LVU328
+ 1094 0012 23F48053 		bic	r3, r3, #4096
+ 1095 0016 9BB2     		uxth	r3, r3
+ 1096 0018 0380     		strh	r3, [r0]	@ movhi
+ 762:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 763:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 1097              		.loc 1 763 1 view .LVU329
+ 1098 001a 7047     		bx	lr
+ 1099              		.cfi_endproc
+ 1100              	.LFE49:
+ 1102              		.section	.text.I2C_PECPositionConfig,"ax",%progbits
+ 1103              		.align	1
+ 1104              		.global	I2C_PECPositionConfig
+ 1105              		.syntax unified
+ 1106              		.thumb
+ 1107              		.thumb_func
+ 1109              	I2C_PECPositionConfig:
+ 1110              	.LVL68:
+ 1111              	.LFB50:
+ 764:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 765:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 766:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Selects the specified I2C PEC position.
+ 767:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 768:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2C_PECPosition: specifies the PEC position. 
+ 769:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be one of the following values:
+ 770:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_PECPosition_Next: indicates that the next byte is PEC
+ 771:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_PECPosition_Current: indicates that current byte is PEC
+ 772:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *       
+ 773:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @note    This function configures the same bit (POS) as I2C_NACKPositionConfig()
+ 774:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *          but is intended to be used in SMBUS mode while I2C_NACKPositionConfig() 
+ 775:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *          is intended to used in I2C mode.
+ 776:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *               
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 34
+
+
+ 777:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+ 778:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 779:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_PECPositionConfig(I2C_TypeDef* I2Cx, uint16_t I2C_PECPosition)
+ 780:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 1112              		.loc 1 780 1 is_stmt 1 view -0
+ 1113              		.cfi_startproc
+ 1114              		@ args = 0, pretend = 0, frame = 0
+ 1115              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1116              		@ link register save eliminated.
+ 781:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 782:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 1117              		.loc 1 782 3 view .LVU331
+ 783:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_PEC_POSITION(I2C_PECPosition));
+ 1118              		.loc 1 783 3 view .LVU332
+ 784:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (I2C_PECPosition == I2C_PECPosition_Next)
+ 1119              		.loc 1 784 3 view .LVU333
+ 1120              		.loc 1 784 6 is_stmt 0 view .LVU334
+ 1121 0000 B1F5006F 		cmp	r1, #2048
+ 1122 0004 06D0     		beq	.L73
+ 785:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 786:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Next byte in shift register is PEC */
+ 787:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 |= I2C_PECPosition_Next;
+ 788:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 789:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+ 790:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 791:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Current byte in shift register is PEC */
+ 792:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 &= I2C_PECPosition_Current;
+ 1123              		.loc 1 792 5 is_stmt 1 view .LVU335
+ 1124              		.loc 1 792 9 is_stmt 0 view .LVU336
+ 1125 0006 0388     		ldrh	r3, [r0]
+ 1126 0008 9BB2     		uxth	r3, r3
+ 1127              		.loc 1 792 15 view .LVU337
+ 1128 000a 23F40063 		bic	r3, r3, #2048
+ 1129 000e 9BB2     		uxth	r3, r3
+ 1130 0010 0380     		strh	r3, [r0]	@ movhi
+ 793:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 794:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 1131              		.loc 1 794 1 view .LVU338
+ 1132 0012 7047     		bx	lr
+ 1133              	.L73:
+ 787:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 1134              		.loc 1 787 5 is_stmt 1 view .LVU339
+ 787:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 1135              		.loc 1 787 9 is_stmt 0 view .LVU340
+ 1136 0014 0388     		ldrh	r3, [r0]
+ 1137 0016 9BB2     		uxth	r3, r3
+ 787:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 1138              		.loc 1 787 15 view .LVU341
+ 1139 0018 43F40063 		orr	r3, r3, #2048
+ 1140 001c 0380     		strh	r3, [r0]	@ movhi
+ 1141 001e 7047     		bx	lr
+ 1142              		.cfi_endproc
+ 1143              	.LFE50:
+ 1145              		.section	.text.I2C_CalculatePEC,"ax",%progbits
+ 1146              		.align	1
+ 1147              		.global	I2C_CalculatePEC
+ 1148              		.syntax unified
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 35
+
+
+ 1149              		.thumb
+ 1150              		.thumb_func
+ 1152              	I2C_CalculatePEC:
+ 1153              	.LVL69:
+ 1154              	.LFB51:
+ 795:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 796:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 797:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Enables or disables the PEC value calculation of the transferred bytes.
+ 798:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 799:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  NewState: new state of the I2Cx PEC value calculation.
+ 800:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be: ENABLE or DISABLE.
+ 801:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+ 802:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 803:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_CalculatePEC(I2C_TypeDef* I2Cx, FunctionalState NewState)
+ 804:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 1155              		.loc 1 804 1 is_stmt 1 view -0
+ 1156              		.cfi_startproc
+ 1157              		@ args = 0, pretend = 0, frame = 0
+ 1158              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1159              		@ link register save eliminated.
+ 805:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 806:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 1160              		.loc 1 806 3 view .LVU343
+ 807:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 1161              		.loc 1 807 3 view .LVU344
+ 808:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (NewState != DISABLE)
+ 1162              		.loc 1 808 3 view .LVU345
+ 1163              		.loc 1 808 6 is_stmt 0 view .LVU346
+ 1164 0000 29B1     		cbz	r1, .L75
+ 809:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 810:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Enable the selected I2C PEC calculation */
+ 811:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 |= CR1_ENPEC_Set;
+ 1165              		.loc 1 811 5 is_stmt 1 view .LVU347
+ 1166              		.loc 1 811 9 is_stmt 0 view .LVU348
+ 1167 0002 0388     		ldrh	r3, [r0]
+ 1168 0004 9BB2     		uxth	r3, r3
+ 1169              		.loc 1 811 15 view .LVU349
+ 1170 0006 43F02003 		orr	r3, r3, #32
+ 1171 000a 0380     		strh	r3, [r0]	@ movhi
+ 1172 000c 7047     		bx	lr
+ 1173              	.L75:
+ 812:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 813:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+ 814:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 815:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Disable the selected I2C PEC calculation */
+ 816:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 &= CR1_ENPEC_Reset;
+ 1174              		.loc 1 816 5 is_stmt 1 view .LVU350
+ 1175              		.loc 1 816 9 is_stmt 0 view .LVU351
+ 1176 000e 0388     		ldrh	r3, [r0]
+ 1177 0010 9BB2     		uxth	r3, r3
+ 1178              		.loc 1 816 15 view .LVU352
+ 1179 0012 23F02003 		bic	r3, r3, #32
+ 1180 0016 9BB2     		uxth	r3, r3
+ 1181 0018 0380     		strh	r3, [r0]	@ movhi
+ 817:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 818:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 1182              		.loc 1 818 1 view .LVU353
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 36
+
+
+ 1183 001a 7047     		bx	lr
+ 1184              		.cfi_endproc
+ 1185              	.LFE51:
+ 1187              		.section	.text.I2C_GetPEC,"ax",%progbits
+ 1188              		.align	1
+ 1189              		.global	I2C_GetPEC
+ 1190              		.syntax unified
+ 1191              		.thumb
+ 1192              		.thumb_func
+ 1194              	I2C_GetPEC:
+ 1195              	.LVL70:
+ 1196              	.LFB52:
+ 819:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 820:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 821:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Returns the PEC value for the specified I2C.
+ 822:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 823:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval The PEC value.
+ 824:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 825:STM32F10x_FWLib/src/stm32f10x_i2c.c **** uint8_t I2C_GetPEC(I2C_TypeDef* I2Cx)
+ 826:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 1197              		.loc 1 826 1 is_stmt 1 view -0
+ 1198              		.cfi_startproc
+ 1199              		@ args = 0, pretend = 0, frame = 0
+ 1200              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1201              		@ link register save eliminated.
+ 827:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 828:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 1202              		.loc 1 828 3 view .LVU355
+ 829:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Return the selected I2C PEC value */
+ 830:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   return ((I2Cx->SR2) >> 8);
+ 1203              		.loc 1 830 3 view .LVU356
+ 1204              		.loc 1 830 16 is_stmt 0 view .LVU357
+ 1205 0000 008B     		ldrh	r0, [r0, #24]
+ 1206              	.LVL71:
+ 831:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 1207              		.loc 1 831 1 view .LVU358
+ 1208 0002 C0F30720 		ubfx	r0, r0, #8, #8
+ 1209 0006 7047     		bx	lr
+ 1210              		.cfi_endproc
+ 1211              	.LFE52:
+ 1213              		.section	.text.I2C_ARPCmd,"ax",%progbits
+ 1214              		.align	1
+ 1215              		.global	I2C_ARPCmd
+ 1216              		.syntax unified
+ 1217              		.thumb
+ 1218              		.thumb_func
+ 1220              	I2C_ARPCmd:
+ 1221              	.LVL72:
+ 1222              	.LFB53:
+ 832:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 833:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 834:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Enables or disables the specified I2C ARP.
+ 835:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 836:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  NewState: new state of the I2Cx ARP. 
+ 837:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be: ENABLE or DISABLE.
+ 838:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+ 839:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 37
+
+
+ 840:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_ARPCmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
+ 841:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 1223              		.loc 1 841 1 is_stmt 1 view -0
+ 1224              		.cfi_startproc
+ 1225              		@ args = 0, pretend = 0, frame = 0
+ 1226              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1227              		@ link register save eliminated.
+ 842:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 843:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 1228              		.loc 1 843 3 view .LVU360
+ 844:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 1229              		.loc 1 844 3 view .LVU361
+ 845:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (NewState != DISABLE)
+ 1230              		.loc 1 845 3 view .LVU362
+ 1231              		.loc 1 845 6 is_stmt 0 view .LVU363
+ 1232 0000 29B1     		cbz	r1, .L79
+ 846:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 847:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Enable the selected I2C ARP */
+ 848:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 |= CR1_ENARP_Set;
+ 1233              		.loc 1 848 5 is_stmt 1 view .LVU364
+ 1234              		.loc 1 848 9 is_stmt 0 view .LVU365
+ 1235 0002 0388     		ldrh	r3, [r0]
+ 1236 0004 9BB2     		uxth	r3, r3
+ 1237              		.loc 1 848 15 view .LVU366
+ 1238 0006 43F01003 		orr	r3, r3, #16
+ 1239 000a 0380     		strh	r3, [r0]	@ movhi
+ 1240 000c 7047     		bx	lr
+ 1241              	.L79:
+ 849:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 850:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+ 851:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 852:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Disable the selected I2C ARP */
+ 853:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 &= CR1_ENARP_Reset;
+ 1242              		.loc 1 853 5 is_stmt 1 view .LVU367
+ 1243              		.loc 1 853 9 is_stmt 0 view .LVU368
+ 1244 000e 0388     		ldrh	r3, [r0]
+ 1245 0010 9BB2     		uxth	r3, r3
+ 1246              		.loc 1 853 15 view .LVU369
+ 1247 0012 23F01003 		bic	r3, r3, #16
+ 1248 0016 9BB2     		uxth	r3, r3
+ 1249 0018 0380     		strh	r3, [r0]	@ movhi
+ 854:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 855:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 1250              		.loc 1 855 1 view .LVU370
+ 1251 001a 7047     		bx	lr
+ 1252              		.cfi_endproc
+ 1253              	.LFE53:
+ 1255              		.section	.text.I2C_StretchClockCmd,"ax",%progbits
+ 1256              		.align	1
+ 1257              		.global	I2C_StretchClockCmd
+ 1258              		.syntax unified
+ 1259              		.thumb
+ 1260              		.thumb_func
+ 1262              	I2C_StretchClockCmd:
+ 1263              	.LVL73:
+ 1264              	.LFB54:
+ 856:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 38
+
+
+ 857:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 858:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Enables or disables the specified I2C Clock stretching.
+ 859:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 860:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  NewState: new state of the I2Cx Clock stretching.
+ 861:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be: ENABLE or DISABLE.
+ 862:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+ 863:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 864:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_StretchClockCmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
+ 865:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 1265              		.loc 1 865 1 is_stmt 1 view -0
+ 1266              		.cfi_startproc
+ 1267              		@ args = 0, pretend = 0, frame = 0
+ 1268              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1269              		@ link register save eliminated.
+ 866:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 867:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 1270              		.loc 1 867 3 view .LVU372
+ 868:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 1271              		.loc 1 868 3 view .LVU373
+ 869:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (NewState == DISABLE)
+ 1272              		.loc 1 869 3 view .LVU374
+ 1273              		.loc 1 869 6 is_stmt 0 view .LVU375
+ 1274 0000 29B9     		cbnz	r1, .L82
+ 870:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 871:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Enable the selected I2C Clock stretching */
+ 872:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 |= CR1_NOSTRETCH_Set;
+ 1275              		.loc 1 872 5 is_stmt 1 view .LVU376
+ 1276              		.loc 1 872 9 is_stmt 0 view .LVU377
+ 1277 0002 0388     		ldrh	r3, [r0]
+ 1278 0004 9BB2     		uxth	r3, r3
+ 1279              		.loc 1 872 15 view .LVU378
+ 1280 0006 43F08003 		orr	r3, r3, #128
+ 1281 000a 0380     		strh	r3, [r0]	@ movhi
+ 1282 000c 7047     		bx	lr
+ 1283              	.L82:
+ 873:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 874:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+ 875:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 876:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Disable the selected I2C Clock stretching */
+ 877:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 &= CR1_NOSTRETCH_Reset;
+ 1284              		.loc 1 877 5 is_stmt 1 view .LVU379
+ 1285              		.loc 1 877 9 is_stmt 0 view .LVU380
+ 1286 000e 0388     		ldrh	r3, [r0]
+ 1287 0010 9BB2     		uxth	r3, r3
+ 1288              		.loc 1 877 15 view .LVU381
+ 1289 0012 23F08003 		bic	r3, r3, #128
+ 1290 0016 9BB2     		uxth	r3, r3
+ 1291 0018 0380     		strh	r3, [r0]	@ movhi
+ 878:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 879:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 1292              		.loc 1 879 1 view .LVU382
+ 1293 001a 7047     		bx	lr
+ 1294              		.cfi_endproc
+ 1295              	.LFE54:
+ 1297              		.section	.text.I2C_FastModeDutyCycleConfig,"ax",%progbits
+ 1298              		.align	1
+ 1299              		.global	I2C_FastModeDutyCycleConfig
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 39
+
+
+ 1300              		.syntax unified
+ 1301              		.thumb
+ 1302              		.thumb_func
+ 1304              	I2C_FastModeDutyCycleConfig:
+ 1305              	.LVL74:
+ 1306              	.LFB55:
+ 880:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 881:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 882:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Selects the specified I2C fast mode duty cycle.
+ 883:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+ 884:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2C_DutyCycle: specifies the fast mode duty cycle.
+ 885:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be one of the following values:
+ 886:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_DutyCycle_2: I2C fast mode Tlow/Thigh = 2
+ 887:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_DutyCycle_16_9: I2C fast mode Tlow/Thigh = 16/9
+ 888:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+ 889:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+ 890:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_FastModeDutyCycleConfig(I2C_TypeDef* I2Cx, uint16_t I2C_DutyCycle)
+ 891:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 1307              		.loc 1 891 1 is_stmt 1 view -0
+ 1308              		.cfi_startproc
+ 1309              		@ args = 0, pretend = 0, frame = 0
+ 1310              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1311              		@ link register save eliminated.
+ 892:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+ 893:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 1312              		.loc 1 893 3 view .LVU384
+ 894:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_DUTY_CYCLE(I2C_DutyCycle));
+ 1313              		.loc 1 894 3 view .LVU385
+ 895:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (I2C_DutyCycle != I2C_DutyCycle_16_9)
+ 1314              		.loc 1 895 3 view .LVU386
+ 1315              		.loc 1 895 6 is_stmt 0 view .LVU387
+ 1316 0000 B1F5804F 		cmp	r1, #16384
+ 1317 0004 06D0     		beq	.L85
+ 896:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 897:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* I2C fast mode Tlow/Thigh=2 */
+ 898:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CCR &= I2C_DutyCycle_2;
+ 1318              		.loc 1 898 5 is_stmt 1 view .LVU388
+ 1319              		.loc 1 898 9 is_stmt 0 view .LVU389
+ 1320 0006 838B     		ldrh	r3, [r0, #28]
+ 1321 0008 9BB2     		uxth	r3, r3
+ 1322              		.loc 1 898 15 view .LVU390
+ 1323 000a 23F48043 		bic	r3, r3, #16384
+ 1324 000e 9BB2     		uxth	r3, r3
+ 1325 0010 8383     		strh	r3, [r0, #28]	@ movhi
+ 1326 0012 7047     		bx	lr
+ 1327              	.L85:
+ 899:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 900:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+ 901:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+ 902:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* I2C fast mode Tlow/Thigh=16/9 */
+ 903:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CCR |= I2C_DutyCycle_16_9;
+ 1328              		.loc 1 903 5 is_stmt 1 view .LVU391
+ 1329              		.loc 1 903 9 is_stmt 0 view .LVU392
+ 1330 0014 838B     		ldrh	r3, [r0, #28]
+ 1331 0016 9BB2     		uxth	r3, r3
+ 1332              		.loc 1 903 15 view .LVU393
+ 1333 0018 43F48043 		orr	r3, r3, #16384
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 40
+
+
+ 1334 001c 8383     		strh	r3, [r0, #28]	@ movhi
+ 904:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 905:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 1335              		.loc 1 905 1 view .LVU394
+ 1336 001e 7047     		bx	lr
+ 1337              		.cfi_endproc
+ 1338              	.LFE55:
+ 1340              		.section	.text.I2C_CheckEvent,"ax",%progbits
+ 1341              		.align	1
+ 1342              		.global	I2C_CheckEvent
+ 1343              		.syntax unified
+ 1344              		.thumb
+ 1345              		.thumb_func
+ 1347              	I2C_CheckEvent:
+ 1348              	.LVL75:
+ 1349              	.LFB56:
+ 906:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 907:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 908:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 909:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 910:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  * @brief
+ 911:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  ****************************************************************************************
+ 912:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *
+ 913:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *                         I2C State Monitoring Functions
+ 914:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *                       
+ 915:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  ****************************************************************************************   
+ 916:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  * This I2C driver provides three different ways for I2C state monitoring
+ 917:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *  depending on the application requirements and constraints:
+ 918:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *        
+ 919:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *  
+ 920:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  * 1) Basic state monitoring:
+ 921:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *    Using I2C_CheckEvent() function:
+ 922:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *    It compares the status registers (SR1 and SR2) content to a given event
+ 923:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *    (can be the combination of one or more flags).
+ 924:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *    It returns SUCCESS if the current status includes the given flags 
+ 925:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *    and returns ERROR if one or more flags are missing in the current status.
+ 926:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *    - When to use:
+ 927:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *      - This function is suitable for most applications as well as for startup 
+ 928:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *      activity since the events are fully described in the product reference manual 
+ 929:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *      (RM0008).
+ 930:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *      - It is also suitable for users who need to define their own events.
+ 931:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *    - Limitations:
+ 932:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *      - If an error occurs (ie. error flags are set besides to the monitored flags),
+ 933:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *        the I2C_CheckEvent() function may return SUCCESS despite the communication
+ 934:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *        hold or corrupted real state. 
+ 935:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *        In this case, it is advised to use error interrupts to monitor the error
+ 936:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *        events and handle them in the interrupt IRQ handler.
+ 937:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *        
+ 938:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *        @note 
+ 939:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *        For error management, it is advised to use the following functions:
+ 940:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *          - I2C_ITConfig() to configure and enable the error interrupts (I2C_IT_ERR).
+ 941:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *          - I2Cx_ER_IRQHandler() which is called when the error interrupt occurs.
+ 942:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *            Where x is the peripheral instance (I2C1, I2C2 ...)
+ 943:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *          - I2C_GetFlagStatus() or I2C_GetITStatus() to be called into I2Cx_ER_IRQHandler() 
+ 944:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *            in order to determine which error occured.
+ 945:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *          - I2C_ClearFlag() or I2C_ClearITPendingBit() and/or I2C_SoftwareResetCmd()
+ 946:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *            and/or I2C_GenerateStop() in order to clear the error flag and source,
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 41
+
+
+ 947:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *            and return to correct communication status.
+ 948:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *            
+ 949:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *
+ 950:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *  2) Advanced state monitoring:
+ 951:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *     Using the function I2C_GetLastEvent() which returns the image of both status 
+ 952:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *     registers in a single word (uint32_t) (Status Register 2 value is shifted left 
+ 953:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *     by 16 bits and concatenated to Status Register 1).
+ 954:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *     - When to use:
+ 955:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *       - This function is suitable for the same applications above but it allows to
+ 956:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *         overcome the mentioned limitation of I2C_GetFlagStatus() function.
+ 957:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *         The returned value could be compared to events already defined in the 
+ 958:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *         library (stm32f10x_i2c.h) or to custom values defined by user.
+ 959:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *       - This function is suitable when multiple flags are monitored at the same time.
+ 960:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *       - At the opposite of I2C_CheckEvent() function, this function allows user to
+ 961:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *         choose when an event is accepted (when all events flags are set and no 
+ 962:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *         other flags are set or just when the needed flags are set like 
+ 963:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *         I2C_CheckEvent() function).
+ 964:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *     - Limitations:
+ 965:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *       - User may need to define his own events.
+ 966:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *       - Same remark concerning the error management is applicable for this 
+ 967:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *         function if user decides to check only regular communication flags (and 
+ 968:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *         ignores error flags).
+ 969:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *     
+ 970:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *
+ 971:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *  3) Flag-based state monitoring:
+ 972:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *     Using the function I2C_GetFlagStatus() which simply returns the status of 
+ 973:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *     one single flag (ie. I2C_FLAG_RXNE ...). 
+ 974:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *     - When to use:
+ 975:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *        - This function could be used for specific applications or in debug phase.
+ 976:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *        - It is suitable when only one flag checking is needed (most I2C events 
+ 977:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *          are monitored through multiple flags).
+ 978:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *     - Limitations: 
+ 979:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *        - When calling this function, the Status register is accessed. Some flags are
+ 980:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *          cleared when the status register is accessed. So checking the status
+ 981:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *          of one Flag, may clear other ones.
+ 982:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *        - Function may need to be called twice or more in order to monitor one 
+ 983:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *          single event.
+ 984:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *
+ 985:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *  For detailed description of Events, please refer to section I2C_Events in 
+ 986:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *  stm32f10x_i2c.h file.
+ 987:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *  
+ 988:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  */
+ 989:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 990:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 991:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  * 
+ 992:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *  1) Basic state monitoring
+ 993:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *******************************************************************************
+ 994:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  */
+ 995:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ 996:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+ 997:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Checks whether the last I2Cx Event is equal to the one passed
+ 998:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   as parameter.
+ 999:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+1000:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2C_EVENT: specifies the event to be checked. 
+1001:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be one of the following values:
+1002:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED           : EV1
+1003:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED              : EV1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 42
+
+
+1004:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_EVENT_SLAVE_TRANSMITTER_SECONDADDRESS_MATCHED     : EV1
+1005:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_EVENT_SLAVE_RECEIVER_SECONDADDRESS_MATCHED        : EV1
+1006:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_EVENT_SLAVE_GENERALCALLADDRESS_MATCHED            : EV1
+1007:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_EVENT_SLAVE_BYTE_RECEIVED                         : EV2
+1008:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg (I2C_EVENT_SLAVE_BYTE_RECEIVED | I2C_FLAG_DUALF)      : EV2
+1009:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg (I2C_EVENT_SLAVE_BYTE_RECEIVED | I2C_FLAG_GENCALL)    : EV2
+1010:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_EVENT_SLAVE_BYTE_TRANSMITTED                      : EV3
+1011:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg (I2C_EVENT_SLAVE_BYTE_TRANSMITTED | I2C_FLAG_DUALF)   : EV3
+1012:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg (I2C_EVENT_SLAVE_BYTE_TRANSMITTED | I2C_FLAG_GENCALL) : EV3
+1013:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_EVENT_SLAVE_ACK_FAILURE                           : EV3_2
+1014:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_EVENT_SLAVE_STOP_DETECTED                         : EV4
+1015:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_EVENT_MASTER_MODE_SELECT                          : EV5
+1016:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED            : EV6     
+1017:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED               : EV6
+1018:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_EVENT_MASTER_BYTE_RECEIVED                        : EV7
+1019:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_EVENT_MASTER_BYTE_TRANSMITTING                    : EV8
+1020:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_EVENT_MASTER_BYTE_TRANSMITTED                     : EV8_2
+1021:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_EVENT_MASTER_MODE_ADDRESS10                       : EV9
+1022:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     
+1023:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @note: For detailed description of Events, please refer to section 
+1024:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *    I2C_Events in stm32f10x_i2c.h file.
+1025:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *    
+1026:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval An ErrorStatus enumeration value:
+1027:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * - SUCCESS: Last event is equal to the I2C_EVENT
+1028:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * - ERROR: Last event is different from the I2C_EVENT
+1029:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+1030:STM32F10x_FWLib/src/stm32f10x_i2c.c **** ErrorStatus I2C_CheckEvent(I2C_TypeDef* I2Cx, uint32_t I2C_EVENT)
+1031:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 1350              		.loc 1 1031 1 is_stmt 1 view -0
+ 1351              		.cfi_startproc
+ 1352              		@ args = 0, pretend = 0, frame = 0
+ 1353              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1354              		@ link register save eliminated.
+1032:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   uint32_t lastevent = 0;
+ 1355              		.loc 1 1032 3 view .LVU396
+1033:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   uint32_t flag1 = 0, flag2 = 0;
+ 1356              		.loc 1 1033 3 view .LVU397
+1034:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   ErrorStatus status = ERROR;
+ 1357              		.loc 1 1034 3 view .LVU398
+1035:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1036:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+1037:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 1358              		.loc 1 1037 3 view .LVU399
+1038:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_EVENT(I2C_EVENT));
+ 1359              		.loc 1 1038 3 view .LVU400
+1039:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1040:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Read the I2Cx status register */
+1041:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   flag1 = I2Cx->SR1;
+ 1360              		.loc 1 1041 3 view .LVU401
+ 1361              		.loc 1 1041 15 is_stmt 0 view .LVU402
+ 1362 0000 838A     		ldrh	r3, [r0, #20]
+ 1363 0002 9BB2     		uxth	r3, r3
+ 1364              	.LVL76:
+1042:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   flag2 = I2Cx->SR2;
+ 1365              		.loc 1 1042 3 is_stmt 1 view .LVU403
+ 1366              		.loc 1 1042 15 is_stmt 0 view .LVU404
+ 1367 0004 028B     		ldrh	r2, [r0, #24]
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 43
+
+
+ 1368              	.LVL77:
+1043:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   flag2 = flag2 << 16;
+ 1369              		.loc 1 1043 3 is_stmt 1 view .LVU405
+1044:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1045:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Get the last event value from I2C status register */
+1046:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   lastevent = (flag1 | flag2) & FLAG_Mask;
+ 1370              		.loc 1 1046 3 view .LVU406
+ 1371              		.loc 1 1046 22 is_stmt 0 view .LVU407
+ 1372 0006 43EA0243 		orr	r3, r3, r2, lsl #16
+ 1373              	.LVL78:
+ 1374              		.loc 1 1046 13 view .LVU408
+ 1375 000a 23F07F43 		bic	r3, r3, #-16777216
+ 1376              	.LVL79:
+1047:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1048:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check whether the last event contains the I2C_EVENT */
+1049:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if ((lastevent & I2C_EVENT) == I2C_EVENT)
+ 1377              		.loc 1 1049 3 is_stmt 1 view .LVU409
+ 1378              		.loc 1 1049 6 is_stmt 0 view .LVU410
+ 1379 000e 9943     		bics	r1, r1, r3
+ 1380              	.LVL80:
+ 1381              		.loc 1 1049 6 view .LVU411
+ 1382 0010 01D0     		beq	.L90
+1050:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+1051:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* SUCCESS: last event is equal to I2C_EVENT */
+1052:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     status = SUCCESS;
+1053:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+1054:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+1055:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+1056:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* ERROR: last event is different from I2C_EVENT */
+1057:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     status = ERROR;
+ 1383              		.loc 1 1057 12 view .LVU412
+ 1384 0012 0020     		movs	r0, #0
+ 1385              	.LVL81:
+1058:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+1059:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Return status */
+1060:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   return status;
+ 1386              		.loc 1 1060 3 is_stmt 1 view .LVU413
+1061:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 1387              		.loc 1 1061 1 is_stmt 0 view .LVU414
+ 1388 0014 7047     		bx	lr
+ 1389              	.LVL82:
+ 1390              	.L90:
+1052:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 1391              		.loc 1 1052 12 view .LVU415
+ 1392 0016 0120     		movs	r0, #1
+ 1393              	.LVL83:
+1052:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 1394              		.loc 1 1052 12 view .LVU416
+ 1395 0018 7047     		bx	lr
+ 1396              		.cfi_endproc
+ 1397              	.LFE56:
+ 1399              		.section	.text.I2C_GetLastEvent,"ax",%progbits
+ 1400              		.align	1
+ 1401              		.global	I2C_GetLastEvent
+ 1402              		.syntax unified
+ 1403              		.thumb
+ 1404              		.thumb_func
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 44
+
+
+ 1406              	I2C_GetLastEvent:
+ 1407              	.LVL84:
+ 1408              	.LFB57:
+1062:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1063:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+1064:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  * 
+1065:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *  2) Advanced state monitoring
+1066:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *******************************************************************************
+1067:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  */
+1068:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1069:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+1070:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Returns the last I2Cx Event.
+1071:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+1072:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     
+1073:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @note: For detailed description of Events, please refer to section 
+1074:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *    I2C_Events in stm32f10x_i2c.h file.
+1075:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *    
+1076:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval The last event
+1077:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+1078:STM32F10x_FWLib/src/stm32f10x_i2c.c **** uint32_t I2C_GetLastEvent(I2C_TypeDef* I2Cx)
+1079:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 1409              		.loc 1 1079 1 is_stmt 1 view -0
+ 1410              		.cfi_startproc
+ 1411              		@ args = 0, pretend = 0, frame = 0
+ 1412              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1413              		@ link register save eliminated.
+1080:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   uint32_t lastevent = 0;
+ 1414              		.loc 1 1080 3 view .LVU418
+1081:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   uint32_t flag1 = 0, flag2 = 0;
+ 1415              		.loc 1 1081 3 view .LVU419
+1082:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1083:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+1084:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 1416              		.loc 1 1084 3 view .LVU420
+1085:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1086:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Read the I2Cx status register */
+1087:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   flag1 = I2Cx->SR1;
+ 1417              		.loc 1 1087 3 view .LVU421
+ 1418              		.loc 1 1087 15 is_stmt 0 view .LVU422
+ 1419 0000 838A     		ldrh	r3, [r0, #20]
+ 1420 0002 9BB2     		uxth	r3, r3
+ 1421              	.LVL85:
+1088:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   flag2 = I2Cx->SR2;
+ 1422              		.loc 1 1088 3 is_stmt 1 view .LVU423
+ 1423              		.loc 1 1088 15 is_stmt 0 view .LVU424
+ 1424 0004 028B     		ldrh	r2, [r0, #24]
+ 1425              	.LVL86:
+1089:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   flag2 = flag2 << 16;
+ 1426              		.loc 1 1089 3 is_stmt 1 view .LVU425
+1090:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1091:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Get the last event value from I2C status register */
+1092:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   lastevent = (flag1 | flag2) & FLAG_Mask;
+ 1427              		.loc 1 1092 3 view .LVU426
+ 1428              		.loc 1 1092 22 is_stmt 0 view .LVU427
+ 1429 0006 43EA0240 		orr	r0, r3, r2, lsl #16
+ 1430              	.LVL87:
+1093:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 45
+
+
+1094:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Return status */
+1095:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   return lastevent;
+ 1431              		.loc 1 1095 3 is_stmt 1 view .LVU428
+1096:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 1432              		.loc 1 1096 1 is_stmt 0 view .LVU429
+ 1433 000a 20F07F40 		bic	r0, r0, #-16777216
+ 1434              	.LVL88:
+ 1435              		.loc 1 1096 1 view .LVU430
+ 1436 000e 7047     		bx	lr
+ 1437              		.cfi_endproc
+ 1438              	.LFE57:
+ 1440              		.section	.text.I2C_GetFlagStatus,"ax",%progbits
+ 1441              		.align	1
+ 1442              		.global	I2C_GetFlagStatus
+ 1443              		.syntax unified
+ 1444              		.thumb
+ 1445              		.thumb_func
+ 1447              	I2C_GetFlagStatus:
+ 1448              	.LVL89:
+ 1449              	.LFB58:
+1097:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1098:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+1099:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  * 
+1100:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *  3) Flag-based state monitoring
+1101:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *******************************************************************************
+1102:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  */
+1103:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1104:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+1105:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Checks whether the specified I2C flag is set or not.
+1106:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+1107:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2C_FLAG: specifies the flag to check. 
+1108:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be one of the following values:
+1109:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_DUALF: Dual flag (Slave mode)
+1110:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_SMBHOST: SMBus host header (Slave mode)
+1111:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_SMBDEFAULT: SMBus default header (Slave mode)
+1112:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_GENCALL: General call header flag (Slave mode)
+1113:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_TRA: Transmitter/Receiver flag
+1114:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_BUSY: Bus busy flag
+1115:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_MSL: Master/Slave flag
+1116:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_SMBALERT: SMBus Alert flag
+1117:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_TIMEOUT: Timeout or Tlow error flag
+1118:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_PECERR: PEC error in reception flag
+1119:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_OVR: Overrun/Underrun flag (Slave mode)
+1120:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_AF: Acknowledge failure flag
+1121:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_ARLO: Arbitration lost flag (Master mode)
+1122:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_BERR: Bus error flag
+1123:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_TXE: Data register empty flag (Transmitter)
+1124:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_RXNE: Data register not empty (Receiver) flag
+1125:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_STOPF: Stop detection flag (Slave mode)
+1126:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_ADD10: 10-bit header sent flag (Master mode)
+1127:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_BTF: Byte transfer finished flag
+1128:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_ADDR: Address sent flag (Master mode) "ADSL"
+1129:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   Address matched flag (Slave mode)"ENDA"
+1130:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_SB: Start bit flag (Master mode)
+1131:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval The new state of I2C_FLAG (SET or RESET).
+1132:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+1133:STM32F10x_FWLib/src/stm32f10x_i2c.c **** FlagStatus I2C_GetFlagStatus(I2C_TypeDef* I2Cx, uint32_t I2C_FLAG)
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 46
+
+
+1134:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 1450              		.loc 1 1134 1 is_stmt 1 view -0
+ 1451              		.cfi_startproc
+ 1452              		@ args = 0, pretend = 0, frame = 8
+ 1453              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1454              		@ link register save eliminated.
+ 1455              		.loc 1 1134 1 is_stmt 0 view .LVU432
+ 1456 0000 82B0     		sub	sp, sp, #8
+ 1457              	.LCFI7:
+ 1458              		.cfi_def_cfa_offset 8
+1135:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   FlagStatus bitstatus = RESET;
+ 1459              		.loc 1 1135 3 is_stmt 1 view .LVU433
+ 1460              	.LVL90:
+1136:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   __IO uint32_t i2creg = 0, i2cxbase = 0;
+ 1461              		.loc 1 1136 3 view .LVU434
+ 1462              		.loc 1 1136 17 is_stmt 0 view .LVU435
+ 1463 0002 0023     		movs	r3, #0
+ 1464 0004 0193     		str	r3, [sp, #4]
+ 1465              		.loc 1 1136 29 view .LVU436
+ 1466 0006 0093     		str	r3, [sp]
+1137:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1138:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+1139:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 1467              		.loc 1 1139 3 is_stmt 1 view .LVU437
+1140:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_GET_FLAG(I2C_FLAG));
+ 1468              		.loc 1 1140 3 view .LVU438
+1141:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1142:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Get the I2Cx peripheral base address */
+1143:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   i2cxbase = (uint32_t)I2Cx;
+ 1469              		.loc 1 1143 3 view .LVU439
+ 1470              		.loc 1 1143 12 is_stmt 0 view .LVU440
+ 1471 0008 0090     		str	r0, [sp]
+1144:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   
+1145:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Read flag register index */
+1146:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   i2creg = I2C_FLAG >> 28;
+ 1472              		.loc 1 1146 3 is_stmt 1 view .LVU441
+ 1473              		.loc 1 1146 21 is_stmt 0 view .LVU442
+ 1474 000a 0B0F     		lsrs	r3, r1, #28
+ 1475              		.loc 1 1146 10 view .LVU443
+ 1476 000c 0193     		str	r3, [sp, #4]
+1147:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   
+1148:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Get bit[23:0] of the flag */
+1149:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2C_FLAG &= FLAG_Mask;
+ 1477              		.loc 1 1149 3 is_stmt 1 view .LVU444
+ 1478              		.loc 1 1149 12 is_stmt 0 view .LVU445
+ 1479 000e 21F07F41 		bic	r1, r1, #-16777216
+ 1480              	.LVL91:
+1150:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   
+1151:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if(i2creg != 0)
+ 1481              		.loc 1 1151 3 is_stmt 1 view .LVU446
+ 1482              		.loc 1 1151 13 is_stmt 0 view .LVU447
+ 1483 0012 019B     		ldr	r3, [sp, #4]
+ 1484              		.loc 1 1151 5 view .LVU448
+ 1485 0014 4BB1     		cbz	r3, .L93
+1152:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+1153:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Get the I2Cx SR1 register address */
+1154:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     i2cxbase += 0x14;
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 47
+
+
+ 1486              		.loc 1 1154 5 is_stmt 1 view .LVU449
+ 1487              		.loc 1 1154 14 is_stmt 0 view .LVU450
+ 1488 0016 009B     		ldr	r3, [sp]
+ 1489 0018 1433     		adds	r3, r3, #20
+ 1490 001a 0093     		str	r3, [sp]
+ 1491              	.L94:
+1155:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+1156:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+1157:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+1158:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Flag in I2Cx SR2 Register */
+1159:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2C_FLAG = (uint32_t)(I2C_FLAG >> 16);
+1160:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Get the I2Cx SR2 register address */
+1161:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     i2cxbase += 0x18;
+1162:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+1163:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   
+1164:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if(((*(__IO uint32_t *)i2cxbase) & I2C_FLAG) != (uint32_t)RESET)
+ 1492              		.loc 1 1164 3 is_stmt 1 view .LVU451
+ 1493              		.loc 1 1164 9 is_stmt 0 view .LVU452
+ 1494 001c 009B     		ldr	r3, [sp]
+ 1495              		.loc 1 1164 8 view .LVU453
+ 1496 001e 1B68     		ldr	r3, [r3]
+ 1497              		.loc 1 1164 5 view .LVU454
+ 1498 0020 0B42     		tst	r3, r1
+ 1499 0022 07D0     		beq	.L96
+1165:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+1166:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* I2C_FLAG is set */
+1167:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     bitstatus = SET;
+ 1500              		.loc 1 1167 15 view .LVU455
+ 1501 0024 0120     		movs	r0, #1
+ 1502              	.LVL92:
+ 1503              	.L95:
+1168:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+1169:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+1170:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+1171:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* I2C_FLAG is reset */
+1172:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     bitstatus = RESET;
+1173:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+1174:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   
+1175:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Return the I2C_FLAG status */
+1176:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   return  bitstatus;
+ 1504              		.loc 1 1176 3 is_stmt 1 view .LVU456
+1177:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 1505              		.loc 1 1177 1 is_stmt 0 view .LVU457
+ 1506 0026 02B0     		add	sp, sp, #8
+ 1507              	.LCFI8:
+ 1508              		.cfi_remember_state
+ 1509              		.cfi_def_cfa_offset 0
+ 1510              		@ sp needed
+ 1511 0028 7047     		bx	lr
+ 1512              	.LVL93:
+ 1513              	.L93:
+ 1514              	.LCFI9:
+ 1515              		.cfi_restore_state
+1159:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Get the I2Cx SR2 register address */
+ 1516              		.loc 1 1159 5 is_stmt 1 view .LVU458
+1159:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Get the I2Cx SR2 register address */
+ 1517              		.loc 1 1159 14 is_stmt 0 view .LVU459
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 48
+
+
+ 1518 002a 090C     		lsrs	r1, r1, #16
+ 1519              	.LVL94:
+1161:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 1520              		.loc 1 1161 5 is_stmt 1 view .LVU460
+1161:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 1521              		.loc 1 1161 14 is_stmt 0 view .LVU461
+ 1522 002c 009B     		ldr	r3, [sp]
+ 1523 002e 1833     		adds	r3, r3, #24
+ 1524 0030 0093     		str	r3, [sp]
+ 1525 0032 F3E7     		b	.L94
+ 1526              	.L96:
+1172:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 1527              		.loc 1 1172 15 view .LVU462
+ 1528 0034 0020     		movs	r0, #0
+ 1529              	.LVL95:
+1172:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 1530              		.loc 1 1172 15 view .LVU463
+ 1531 0036 F6E7     		b	.L95
+ 1532              		.cfi_endproc
+ 1533              	.LFE58:
+ 1535              		.section	.text.I2C_ClearFlag,"ax",%progbits
+ 1536              		.align	1
+ 1537              		.global	I2C_ClearFlag
+ 1538              		.syntax unified
+ 1539              		.thumb
+ 1540              		.thumb_func
+ 1542              	I2C_ClearFlag:
+ 1543              	.LVL96:
+ 1544              	.LFB59:
+1178:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1179:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1180:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1181:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+1182:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Clears the I2Cx's pending flags.
+1183:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+1184:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2C_FLAG: specifies the flag to clear. 
+1185:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be any combination of the following values:
+1186:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_SMBALERT: SMBus Alert flag
+1187:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_TIMEOUT: Timeout or Tlow error flag
+1188:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_PECERR: PEC error in reception flag
+1189:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_OVR: Overrun/Underrun flag (Slave mode)
+1190:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_AF: Acknowledge failure flag
+1191:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_ARLO: Arbitration lost flag (Master mode)
+1192:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_FLAG_BERR: Bus error flag
+1193:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   
+1194:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @note
+1195:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   - STOPF (STOP detection) is cleared by software sequence: a read operation 
+1196:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     to I2C_SR1 register (I2C_GetFlagStatus()) followed by a write operation 
+1197:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     to I2C_CR1 register (I2C_Cmd() to re-enable the I2C peripheral).
+1198:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   - ADD10 (10-bit header sent) is cleared by software sequence: a read 
+1199:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     operation to I2C_SR1 (I2C_GetFlagStatus()) followed by writing the 
+1200:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     second byte of the address in DR register.
+1201:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   - BTF (Byte Transfer Finished) is cleared by software sequence: a read 
+1202:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     operation to I2C_SR1 register (I2C_GetFlagStatus()) followed by a 
+1203:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     read/write to I2C_DR register (I2C_SendData()).
+1204:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   - ADDR (Address sent) is cleared by software sequence: a read operation to 
+1205:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     I2C_SR1 register (I2C_GetFlagStatus()) followed by a read operation to 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 49
+
+
+1206:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     I2C_SR2 register ((void)(I2Cx->SR2)).
+1207:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   - SB (Start Bit) is cleared software sequence: a read operation to I2C_SR1
+1208:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     register (I2C_GetFlagStatus()) followed by a write operation to I2C_DR
+1209:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     register  (I2C_SendData()).
+1210:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+1211:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+1212:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_ClearFlag(I2C_TypeDef* I2Cx, uint32_t I2C_FLAG)
+1213:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 1545              		.loc 1 1213 1 is_stmt 1 view -0
+ 1546              		.cfi_startproc
+ 1547              		@ args = 0, pretend = 0, frame = 0
+ 1548              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1549              		@ link register save eliminated.
+1214:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   uint32_t flagpos = 0;
+ 1550              		.loc 1 1214 3 view .LVU465
+1215:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+1216:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 1551              		.loc 1 1216 3 view .LVU466
+1217:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_CLEAR_FLAG(I2C_FLAG));
+ 1552              		.loc 1 1217 3 view .LVU467
+1218:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Get the I2C flag position */
+1219:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   flagpos = I2C_FLAG & FLAG_Mask;
+ 1553              		.loc 1 1219 3 view .LVU468
+ 1554              		.loc 1 1219 11 is_stmt 0 view .LVU469
+ 1555 0000 21F07F41 		bic	r1, r1, #-16777216
+ 1556              	.LVL97:
+1220:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Clear the selected I2C flag */
+1221:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2Cx->SR1 = (uint16_t)~flagpos;
+ 1557              		.loc 1 1221 3 is_stmt 1 view .LVU470
+ 1558              		.loc 1 1221 15 is_stmt 0 view .LVU471
+ 1559 0004 C943     		mvns	r1, r1
+ 1560              	.LVL98:
+ 1561              		.loc 1 1221 15 view .LVU472
+ 1562 0006 89B2     		uxth	r1, r1
+ 1563              	.LVL99:
+ 1564              		.loc 1 1221 13 view .LVU473
+ 1565 0008 8182     		strh	r1, [r0, #20]	@ movhi
+1222:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 1566              		.loc 1 1222 1 view .LVU474
+ 1567 000a 7047     		bx	lr
+ 1568              		.cfi_endproc
+ 1569              	.LFE59:
+ 1571              		.section	.text.I2C_GetITStatus,"ax",%progbits
+ 1572              		.align	1
+ 1573              		.global	I2C_GetITStatus
+ 1574              		.syntax unified
+ 1575              		.thumb
+ 1576              		.thumb_func
+ 1578              	I2C_GetITStatus:
+ 1579              	.LVL100:
+ 1580              	.LFB60:
+1223:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1224:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+1225:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Checks whether the specified I2C interrupt has occurred or not.
+1226:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+1227:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2C_IT: specifies the interrupt source to check. 
+1228:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be one of the following values:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 50
+
+
+1229:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_SMBALERT: SMBus Alert flag
+1230:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_TIMEOUT: Timeout or Tlow error flag
+1231:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_PECERR: PEC error in reception flag
+1232:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_OVR: Overrun/Underrun flag (Slave mode)
+1233:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_AF: Acknowledge failure flag
+1234:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_ARLO: Arbitration lost flag (Master mode)
+1235:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_BERR: Bus error flag
+1236:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_TXE: Data register empty flag (Transmitter)
+1237:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_RXNE: Data register not empty (Receiver) flag
+1238:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_STOPF: Stop detection flag (Slave mode)
+1239:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_ADD10: 10-bit header sent flag (Master mode)
+1240:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_BTF: Byte transfer finished flag
+1241:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_ADDR: Address sent flag (Master mode) "ADSL"
+1242:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *                       Address matched flag (Slave mode)"ENDAD"
+1243:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_SB: Start bit flag (Master mode)
+1244:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval The new state of I2C_IT (SET or RESET).
+1245:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+1246:STM32F10x_FWLib/src/stm32f10x_i2c.c **** ITStatus I2C_GetITStatus(I2C_TypeDef* I2Cx, uint32_t I2C_IT)
+1247:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 1581              		.loc 1 1247 1 is_stmt 1 view -0
+ 1582              		.cfi_startproc
+ 1583              		@ args = 0, pretend = 0, frame = 0
+ 1584              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1585              		@ link register save eliminated.
+1248:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   ITStatus bitstatus = RESET;
+ 1586              		.loc 1 1248 3 view .LVU476
+1249:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   uint32_t enablestatus = 0;
+ 1587              		.loc 1 1249 3 view .LVU477
+1250:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1251:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+1252:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 1588              		.loc 1 1252 3 view .LVU478
+1253:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_GET_IT(I2C_IT));
+ 1589              		.loc 1 1253 3 view .LVU479
+1254:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1255:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check if the interrupt source is enabled or not */
+1256:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   enablestatus = (uint32_t)(((I2C_IT & ITEN_Mask) >> 16) & (I2Cx->CR2)) ;
+ 1590              		.loc 1 1256 3 view .LVU480
+ 1591              		.loc 1 1256 65 is_stmt 0 view .LVU481
+ 1592 0000 8388     		ldrh	r3, [r0, #4]
+ 1593              		.loc 1 1256 18 view .LVU482
+ 1594 0002 03EA1143 		and	r3, r3, r1, lsr #16
+ 1595              		.loc 1 1256 16 view .LVU483
+ 1596 0006 03F4E063 		and	r3, r3, #1792
+ 1597              	.LVL101:
+1257:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   
+1258:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Get bit[23:0] of the flag */
+1259:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2C_IT &= FLAG_Mask;
+ 1598              		.loc 1 1259 3 is_stmt 1 view .LVU484
+1260:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1261:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the status of the specified I2C flag */
+1262:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (((I2Cx->SR1 & I2C_IT) != (uint32_t)RESET) && enablestatus)
+ 1599              		.loc 1 1262 3 view .LVU485
+ 1600              		.loc 1 1262 13 is_stmt 0 view .LVU486
+ 1601 000a 828A     		ldrh	r2, [r0, #20]
+ 1602 000c 92B2     		uxth	r2, r2
+ 1603              		.loc 1 1262 6 view .LVU487
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 51
+
+
+ 1604 000e 1142     		tst	r1, r2
+ 1605 0010 02D0     		beq	.L101
+ 1606              		.loc 1 1262 49 discriminator 1 view .LVU488
+ 1607 0012 1BB9     		cbnz	r3, .L102
+1263:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+1264:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* I2C_IT is set */
+1265:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     bitstatus = SET;
+1266:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+1267:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
+1268:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
+1269:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* I2C_IT is reset */
+1270:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     bitstatus = RESET;
+ 1608              		.loc 1 1270 15 view .LVU489
+ 1609 0014 0020     		movs	r0, #0
+ 1610              	.LVL102:
+ 1611              		.loc 1 1270 15 view .LVU490
+ 1612 0016 7047     		bx	lr
+ 1613              	.LVL103:
+ 1614              	.L101:
+ 1615              		.loc 1 1270 15 view .LVU491
+ 1616 0018 0020     		movs	r0, #0
+ 1617              	.LVL104:
+ 1618              		.loc 1 1270 15 view .LVU492
+ 1619 001a 7047     		bx	lr
+ 1620              	.LVL105:
+ 1621              	.L102:
+1265:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+ 1622              		.loc 1 1265 15 view .LVU493
+ 1623 001c 0120     		movs	r0, #1
+ 1624              	.LVL106:
+1271:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
+1272:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Return the I2C_IT status */
+1273:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   return  bitstatus;
+ 1625              		.loc 1 1273 3 is_stmt 1 view .LVU494
+1274:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 1626              		.loc 1 1274 1 is_stmt 0 view .LVU495
+ 1627 001e 7047     		bx	lr
+ 1628              		.cfi_endproc
+ 1629              	.LFE60:
+ 1631              		.section	.text.I2C_ClearITPendingBit,"ax",%progbits
+ 1632              		.align	1
+ 1633              		.global	I2C_ClearITPendingBit
+ 1634              		.syntax unified
+ 1635              		.thumb
+ 1636              		.thumb_func
+ 1638              	I2C_ClearITPendingBit:
+ 1639              	.LVL107:
+ 1640              	.LFB61:
+1275:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
+1276:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
+1277:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Clears the I2Cx’s interrupt pending bits.
+1278:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+1279:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2C_IT: specifies the interrupt pending bit to clear. 
+1280:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be any combination of the following values:
+1281:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_SMBALERT: SMBus Alert interrupt
+1282:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_TIMEOUT: Timeout or Tlow error interrupt
+1283:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_PECERR: PEC error in reception  interrupt
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 52
+
+
+1284:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_OVR: Overrun/Underrun interrupt (Slave mode)
+1285:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_AF: Acknowledge failure interrupt
+1286:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_ARLO: Arbitration lost interrupt (Master mode)
+1287:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_BERR: Bus error interrupt
+1288:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   
+1289:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @note
+1290:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   - STOPF (STOP detection) is cleared by software sequence: a read operation 
+1291:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     to I2C_SR1 register (I2C_GetITStatus()) followed by a write operation to 
+1292:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     I2C_CR1 register (I2C_Cmd() to re-enable the I2C peripheral).
+1293:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   - ADD10 (10-bit header sent) is cleared by software sequence: a read 
+1294:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     operation to I2C_SR1 (I2C_GetITStatus()) followed by writing the second 
+1295:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     byte of the address in I2C_DR register.
+1296:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   - BTF (Byte Transfer Finished) is cleared by software sequence: a read 
+1297:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     operation to I2C_SR1 register (I2C_GetITStatus()) followed by a 
+1298:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     read/write to I2C_DR register (I2C_SendData()).
+1299:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   - ADDR (Address sent) is cleared by software sequence: a read operation to 
+1300:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     I2C_SR1 register (I2C_GetITStatus()) followed by a read operation to 
+1301:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     I2C_SR2 register ((void)(I2Cx->SR2)).
+1302:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   - SB (Start Bit) is cleared by software sequence: a read operation to 
+1303:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     I2C_SR1 register (I2C_GetITStatus()) followed by a write operation to 
+1304:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     I2C_DR register (I2C_SendData()).
+1305:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
+1306:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
+1307:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_ClearITPendingBit(I2C_TypeDef* I2Cx, uint32_t I2C_IT)
+1308:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
+ 1641              		.loc 1 1308 1 is_stmt 1 view -0
+ 1642              		.cfi_startproc
+ 1643              		@ args = 0, pretend = 0, frame = 0
+ 1644              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1645              		@ link register save eliminated.
+1309:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   uint32_t flagpos = 0;
+ 1646              		.loc 1 1309 3 view .LVU497
+1310:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
+1311:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+ 1647              		.loc 1 1311 3 view .LVU498
+1312:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_CLEAR_IT(I2C_IT));
+ 1648              		.loc 1 1312 3 view .LVU499
+1313:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Get the I2C flag position */
+1314:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   flagpos = I2C_IT & FLAG_Mask;
+ 1649              		.loc 1 1314 3 view .LVU500
+ 1650              		.loc 1 1314 11 is_stmt 0 view .LVU501
+ 1651 0000 21F07F41 		bic	r1, r1, #-16777216
+ 1652              	.LVL108:
+1315:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Clear the selected I2C flag */
+1316:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2Cx->SR1 = (uint16_t)~flagpos;
+ 1653              		.loc 1 1316 3 is_stmt 1 view .LVU502
+ 1654              		.loc 1 1316 15 is_stmt 0 view .LVU503
+ 1655 0004 C943     		mvns	r1, r1
+ 1656              	.LVL109:
+ 1657              		.loc 1 1316 15 view .LVU504
+ 1658 0006 89B2     		uxth	r1, r1
+ 1659              	.LVL110:
+ 1660              		.loc 1 1316 13 view .LVU505
+ 1661 0008 8182     		strh	r1, [r0, #20]	@ movhi
+1317:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
+ 1662              		.loc 1 1317 1 view .LVU506
+ 1663 000a 7047     		bx	lr
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 53
+
+
+ 1664              		.cfi_endproc
+ 1665              	.LFE61:
+ 1667              		.text
+ 1668              	.Letext0:
+ 1669              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1670              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1671              		.file 4 "USER/stm32f10x.h"
+ 1672              		.file 5 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
+ 1673              		.file 6 "STM32F10x_FWLib/inc/stm32f10x_i2c.h"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 54
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f10x_i2c.c
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:19     .text.I2C_DeInit:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:25     .text.I2C_DeInit:00000000 I2C_DeInit
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:77     .text.I2C_DeInit:00000034 $d
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:82     .text.I2C_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:88     .text.I2C_Init:00000000 I2C_Init
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:321    .text.I2C_Init:000000cc $d
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:328    .text.I2C_StructInit:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:334    .text.I2C_StructInit:00000000 I2C_StructInit
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:370    .text.I2C_Cmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:376    .text.I2C_Cmd:00000000 I2C_Cmd
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:412    .text.I2C_DMACmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:418    .text.I2C_DMACmd:00000000 I2C_DMACmd
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:454    .text.I2C_DMALastTransferCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:460    .text.I2C_DMALastTransferCmd:00000000 I2C_DMALastTransferCmd
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:496    .text.I2C_GenerateSTART:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:502    .text.I2C_GenerateSTART:00000000 I2C_GenerateSTART
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:538    .text.I2C_GenerateSTOP:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:544    .text.I2C_GenerateSTOP:00000000 I2C_GenerateSTOP
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:580    .text.I2C_AcknowledgeConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:586    .text.I2C_AcknowledgeConfig:00000000 I2C_AcknowledgeConfig
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:622    .text.I2C_OwnAddress2Config:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:628    .text.I2C_OwnAddress2Config:00000000 I2C_OwnAddress2Config
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:663    .text.I2C_DualAddressCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:669    .text.I2C_DualAddressCmd:00000000 I2C_DualAddressCmd
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:705    .text.I2C_GeneralCallCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:711    .text.I2C_GeneralCallCmd:00000000 I2C_GeneralCallCmd
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:747    .text.I2C_ITConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:753    .text.I2C_ITConfig:00000000 I2C_ITConfig
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:793    .text.I2C_SendData:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:799    .text.I2C_SendData:00000000 I2C_SendData
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:817    .text.I2C_ReceiveData:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:823    .text.I2C_ReceiveData:00000000 I2C_ReceiveData
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:843    .text.I2C_Send7bitAddress:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:849    .text.I2C_Send7bitAddress:00000000 I2C_Send7bitAddress
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:883    .text.I2C_ReadRegister:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:889    .text.I2C_ReadRegister:00000000 I2C_ReadRegister
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:934    .text.I2C_SoftwareResetCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:940    .text.I2C_SoftwareResetCmd:00000000 I2C_SoftwareResetCmd
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:975    .text.I2C_NACKPositionConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:981    .text.I2C_NACKPositionConfig:00000000 I2C_NACKPositionConfig
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1018   .text.I2C_SMBusAlertConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1024   .text.I2C_SMBusAlertConfig:00000000 I2C_SMBusAlertConfig
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1061   .text.I2C_TransmitPEC:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1067   .text.I2C_TransmitPEC:00000000 I2C_TransmitPEC
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1103   .text.I2C_PECPositionConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1109   .text.I2C_PECPositionConfig:00000000 I2C_PECPositionConfig
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1146   .text.I2C_CalculatePEC:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1152   .text.I2C_CalculatePEC:00000000 I2C_CalculatePEC
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1188   .text.I2C_GetPEC:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1194   .text.I2C_GetPEC:00000000 I2C_GetPEC
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1214   .text.I2C_ARPCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1220   .text.I2C_ARPCmd:00000000 I2C_ARPCmd
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1256   .text.I2C_StretchClockCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1262   .text.I2C_StretchClockCmd:00000000 I2C_StretchClockCmd
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1298   .text.I2C_FastModeDutyCycleConfig:00000000 $t
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s 			page 55
+
+
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1304   .text.I2C_FastModeDutyCycleConfig:00000000 I2C_FastModeDutyCycleConfig
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1341   .text.I2C_CheckEvent:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1347   .text.I2C_CheckEvent:00000000 I2C_CheckEvent
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1400   .text.I2C_GetLastEvent:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1406   .text.I2C_GetLastEvent:00000000 I2C_GetLastEvent
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1441   .text.I2C_GetFlagStatus:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1447   .text.I2C_GetFlagStatus:00000000 I2C_GetFlagStatus
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1536   .text.I2C_ClearFlag:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1542   .text.I2C_ClearFlag:00000000 I2C_ClearFlag
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1572   .text.I2C_GetITStatus:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1578   .text.I2C_GetITStatus:00000000 I2C_GetITStatus
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1632   .text.I2C_ClearITPendingBit:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccqfc0Ou.s:1638   .text.I2C_ClearITPendingBit:00000000 I2C_ClearITPendingBit
+
+UNDEFINED SYMBOLS
+RCC_APB1PeriphResetCmd
+RCC_GetClocksFreq

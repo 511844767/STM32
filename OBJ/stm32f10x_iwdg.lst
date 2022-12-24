@@ -1,0 +1,419 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccyBStqs.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f10x_iwdg.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "STM32F10x_FWLib/src/stm32f10x_iwdg.c"
+  18              		.section	.text.IWDG_WriteAccessCmd,"ax",%progbits
+  19              		.align	1
+  20              		.global	IWDG_WriteAccessCmd
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	IWDG_WriteAccessCmd:
+  26              	.LVL0:
+  27              	.LFB29:
+   1:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /**
+   2:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   ******************************************************************************
+   3:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @file    stm32f10x_iwdg.c
+   4:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @author  MCD Application Team
+   5:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @version V3.5.0
+   6:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @date    11-March-2011
+   7:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @brief   This file provides all the IWDG firmware functions.
+   8:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   ******************************************************************************
+   9:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @attention
+  10:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   *
+  11:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+  12:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+  13:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * TIME. AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY
+  14:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+  15:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+  16:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+  17:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   *
+  18:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * <h2><center>&copy; COPYRIGHT 2011 STMicroelectronics</center></h2>
+  19:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   ******************************************************************************
+  20:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   */
+  21:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+  22:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /* Includes ------------------------------------------------------------------*/
+  23:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** #include "stm32f10x_iwdg.h"
+  24:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+  25:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /** @addtogroup STM32F10x_StdPeriph_Driver
+  26:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @{
+  27:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   */
+  28:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+  29:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /** @defgroup IWDG 
+  30:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @brief IWDG driver modules
+  31:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @{
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccyBStqs.s 			page 2
+
+
+  32:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   */ 
+  33:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+  34:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /** @defgroup IWDG_Private_TypesDefinitions
+  35:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @{
+  36:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   */
+  37:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+  38:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /**
+  39:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @}
+  40:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   */
+  41:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+  42:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /** @defgroup IWDG_Private_Defines
+  43:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @{
+  44:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   */ 
+  45:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+  46:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /* ---------------------- IWDG registers bit mask ----------------------------*/
+  47:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+  48:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /* KR register bit mask */
+  49:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** #define KR_KEY_Reload    ((uint16_t)0xAAAA)
+  50:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** #define KR_KEY_Enable    ((uint16_t)0xCCCC)
+  51:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+  52:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /**
+  53:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @}
+  54:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   */ 
+  55:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+  56:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /** @defgroup IWDG_Private_Macros
+  57:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @{
+  58:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   */
+  59:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+  60:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /**
+  61:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @}
+  62:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   */
+  63:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+  64:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /** @defgroup IWDG_Private_Variables
+  65:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @{
+  66:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   */
+  67:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+  68:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /**
+  69:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @}
+  70:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   */
+  71:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+  72:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /** @defgroup IWDG_Private_FunctionPrototypes
+  73:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @{
+  74:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   */
+  75:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+  76:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /**
+  77:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @}
+  78:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   */
+  79:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+  80:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /** @defgroup IWDG_Private_Functions
+  81:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @{
+  82:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   */
+  83:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+  84:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /**
+  85:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @brief  Enables or disables write access to IWDG_PR and IWDG_RLR registers.
+  86:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @param  IWDG_WriteAccess: new state of write access to IWDG_PR and IWDG_RLR registers.
+  87:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   *   This parameter can be one of the following values:
+  88:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   *     @arg IWDG_WriteAccess_Enable: Enable write access to IWDG_PR and IWDG_RLR registers
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccyBStqs.s 			page 3
+
+
+  89:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   *     @arg IWDG_WriteAccess_Disable: Disable write access to IWDG_PR and IWDG_RLR registers
+  90:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @retval None
+  91:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   */
+  92:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** void IWDG_WriteAccessCmd(uint16_t IWDG_WriteAccess)
+  93:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** {
+  28              		.loc 1 93 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  94:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   /* Check the parameters */
+  95:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   assert_param(IS_IWDG_WRITE_ACCESS(IWDG_WriteAccess));
+  33              		.loc 1 95 3 view .LVU1
+  96:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   IWDG->KR = IWDG_WriteAccess;
+  34              		.loc 1 96 3 view .LVU2
+  35              		.loc 1 96 12 is_stmt 0 view .LVU3
+  36 0000 014B     		ldr	r3, .L2
+  37 0002 1860     		str	r0, [r3]
+  97:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** }
+  38              		.loc 1 97 1 view .LVU4
+  39 0004 7047     		bx	lr
+  40              	.L3:
+  41 0006 00BF     		.align	2
+  42              	.L2:
+  43 0008 00300040 		.word	1073754112
+  44              		.cfi_endproc
+  45              	.LFE29:
+  47              		.section	.text.IWDG_SetPrescaler,"ax",%progbits
+  48              		.align	1
+  49              		.global	IWDG_SetPrescaler
+  50              		.syntax unified
+  51              		.thumb
+  52              		.thumb_func
+  54              	IWDG_SetPrescaler:
+  55              	.LVL1:
+  56              	.LFB30:
+  98:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+  99:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /**
+ 100:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @brief  Sets IWDG Prescaler value.
+ 101:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @param  IWDG_Prescaler: specifies the IWDG Prescaler value.
+ 102:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   *   This parameter can be one of the following values:
+ 103:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   *     @arg IWDG_Prescaler_4: IWDG prescaler set to 4
+ 104:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   *     @arg IWDG_Prescaler_8: IWDG prescaler set to 8
+ 105:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   *     @arg IWDG_Prescaler_16: IWDG prescaler set to 16
+ 106:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   *     @arg IWDG_Prescaler_32: IWDG prescaler set to 32
+ 107:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   *     @arg IWDG_Prescaler_64: IWDG prescaler set to 64
+ 108:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   *     @arg IWDG_Prescaler_128: IWDG prescaler set to 128
+ 109:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   *     @arg IWDG_Prescaler_256: IWDG prescaler set to 256
+ 110:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @retval None
+ 111:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   */
+ 112:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** void IWDG_SetPrescaler(uint8_t IWDG_Prescaler)
+ 113:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** {
+  57              		.loc 1 113 1 is_stmt 1 view -0
+  58              		.cfi_startproc
+  59              		@ args = 0, pretend = 0, frame = 0
+  60              		@ frame_needed = 0, uses_anonymous_args = 0
+  61              		@ link register save eliminated.
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccyBStqs.s 			page 4
+
+
+ 114:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   /* Check the parameters */
+ 115:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   assert_param(IS_IWDG_PRESCALER(IWDG_Prescaler));
+  62              		.loc 1 115 3 view .LVU6
+ 116:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   IWDG->PR = IWDG_Prescaler;
+  63              		.loc 1 116 3 view .LVU7
+  64              		.loc 1 116 12 is_stmt 0 view .LVU8
+  65 0000 014B     		ldr	r3, .L5
+  66 0002 5860     		str	r0, [r3, #4]
+ 117:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** }
+  67              		.loc 1 117 1 view .LVU9
+  68 0004 7047     		bx	lr
+  69              	.L6:
+  70 0006 00BF     		.align	2
+  71              	.L5:
+  72 0008 00300040 		.word	1073754112
+  73              		.cfi_endproc
+  74              	.LFE30:
+  76              		.section	.text.IWDG_SetReload,"ax",%progbits
+  77              		.align	1
+  78              		.global	IWDG_SetReload
+  79              		.syntax unified
+  80              		.thumb
+  81              		.thumb_func
+  83              	IWDG_SetReload:
+  84              	.LVL2:
+  85              	.LFB31:
+ 118:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+ 119:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /**
+ 120:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @brief  Sets IWDG Reload value.
+ 121:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @param  Reload: specifies the IWDG Reload value.
+ 122:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   *   This parameter must be a number between 0 and 0x0FFF.
+ 123:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @retval None
+ 124:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   */
+ 125:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** void IWDG_SetReload(uint16_t Reload)
+ 126:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** {
+  86              		.loc 1 126 1 is_stmt 1 view -0
+  87              		.cfi_startproc
+  88              		@ args = 0, pretend = 0, frame = 0
+  89              		@ frame_needed = 0, uses_anonymous_args = 0
+  90              		@ link register save eliminated.
+ 127:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   /* Check the parameters */
+ 128:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   assert_param(IS_IWDG_RELOAD(Reload));
+  91              		.loc 1 128 3 view .LVU11
+ 129:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   IWDG->RLR = Reload;
+  92              		.loc 1 129 3 view .LVU12
+  93              		.loc 1 129 13 is_stmt 0 view .LVU13
+  94 0000 014B     		ldr	r3, .L8
+  95 0002 9860     		str	r0, [r3, #8]
+ 130:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** }
+  96              		.loc 1 130 1 view .LVU14
+  97 0004 7047     		bx	lr
+  98              	.L9:
+  99 0006 00BF     		.align	2
+ 100              	.L8:
+ 101 0008 00300040 		.word	1073754112
+ 102              		.cfi_endproc
+ 103              	.LFE31:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccyBStqs.s 			page 5
+
+
+ 105              		.section	.text.IWDG_ReloadCounter,"ax",%progbits
+ 106              		.align	1
+ 107              		.global	IWDG_ReloadCounter
+ 108              		.syntax unified
+ 109              		.thumb
+ 110              		.thumb_func
+ 112              	IWDG_ReloadCounter:
+ 113              	.LFB32:
+ 131:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+ 132:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /**
+ 133:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @brief  Reloads IWDG counter with value defined in the reload register
+ 134:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   *   (write access to IWDG_PR and IWDG_RLR registers disabled).
+ 135:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @param  None
+ 136:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @retval None
+ 137:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   */
+ 138:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** void IWDG_ReloadCounter(void)
+ 139:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** {
+ 114              		.loc 1 139 1 is_stmt 1 view -0
+ 115              		.cfi_startproc
+ 116              		@ args = 0, pretend = 0, frame = 0
+ 117              		@ frame_needed = 0, uses_anonymous_args = 0
+ 118              		@ link register save eliminated.
+ 140:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   IWDG->KR = KR_KEY_Reload;
+ 119              		.loc 1 140 3 view .LVU16
+ 120              		.loc 1 140 12 is_stmt 0 view .LVU17
+ 121 0000 024B     		ldr	r3, .L11
+ 122 0002 4AF6AA22 		movw	r2, #43690
+ 123 0006 1A60     		str	r2, [r3]
+ 141:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** }
+ 124              		.loc 1 141 1 view .LVU18
+ 125 0008 7047     		bx	lr
+ 126              	.L12:
+ 127 000a 00BF     		.align	2
+ 128              	.L11:
+ 129 000c 00300040 		.word	1073754112
+ 130              		.cfi_endproc
+ 131              	.LFE32:
+ 133              		.section	.text.IWDG_Enable,"ax",%progbits
+ 134              		.align	1
+ 135              		.global	IWDG_Enable
+ 136              		.syntax unified
+ 137              		.thumb
+ 138              		.thumb_func
+ 140              	IWDG_Enable:
+ 141              	.LFB33:
+ 142:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+ 143:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /**
+ 144:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @brief  Enables IWDG (write access to IWDG_PR and IWDG_RLR registers disabled).
+ 145:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @param  None
+ 146:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @retval None
+ 147:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   */
+ 148:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** void IWDG_Enable(void)
+ 149:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** {
+ 142              		.loc 1 149 1 is_stmt 1 view -0
+ 143              		.cfi_startproc
+ 144              		@ args = 0, pretend = 0, frame = 0
+ 145              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccyBStqs.s 			page 6
+
+
+ 146              		@ link register save eliminated.
+ 150:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   IWDG->KR = KR_KEY_Enable;
+ 147              		.loc 1 150 3 view .LVU20
+ 148              		.loc 1 150 12 is_stmt 0 view .LVU21
+ 149 0000 024B     		ldr	r3, .L14
+ 150 0002 4CF6CC42 		movw	r2, #52428
+ 151 0006 1A60     		str	r2, [r3]
+ 151:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** }
+ 152              		.loc 1 151 1 view .LVU22
+ 153 0008 7047     		bx	lr
+ 154              	.L15:
+ 155 000a 00BF     		.align	2
+ 156              	.L14:
+ 157 000c 00300040 		.word	1073754112
+ 158              		.cfi_endproc
+ 159              	.LFE33:
+ 161              		.section	.text.IWDG_GetFlagStatus,"ax",%progbits
+ 162              		.align	1
+ 163              		.global	IWDG_GetFlagStatus
+ 164              		.syntax unified
+ 165              		.thumb
+ 166              		.thumb_func
+ 168              	IWDG_GetFlagStatus:
+ 169              	.LVL3:
+ 170              	.LFB34:
+ 152:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** 
+ 153:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** /**
+ 154:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @brief  Checks whether the specified IWDG flag is set or not.
+ 155:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @param  IWDG_FLAG: specifies the flag to check.
+ 156:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   *   This parameter can be one of the following values:
+ 157:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   *     @arg IWDG_FLAG_PVU: Prescaler Value Update on going
+ 158:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   *     @arg IWDG_FLAG_RVU: Reload Value Update on going
+ 159:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   * @retval The new state of IWDG_FLAG (SET or RESET).
+ 160:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   */
+ 161:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** FlagStatus IWDG_GetFlagStatus(uint16_t IWDG_FLAG)
+ 162:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** {
+ 171              		.loc 1 162 1 is_stmt 1 view -0
+ 172              		.cfi_startproc
+ 173              		@ args = 0, pretend = 0, frame = 0
+ 174              		@ frame_needed = 0, uses_anonymous_args = 0
+ 175              		@ link register save eliminated.
+ 163:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   FlagStatus bitstatus = RESET;
+ 176              		.loc 1 163 3 view .LVU24
+ 164:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   /* Check the parameters */
+ 165:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   assert_param(IS_IWDG_FLAG(IWDG_FLAG));
+ 177              		.loc 1 165 3 view .LVU25
+ 166:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   if ((IWDG->SR & IWDG_FLAG) != (uint32_t)RESET)
+ 178              		.loc 1 166 3 view .LVU26
+ 179              		.loc 1 166 12 is_stmt 0 view .LVU27
+ 180 0000 034B     		ldr	r3, .L19
+ 181 0002 DB68     		ldr	r3, [r3, #12]
+ 182              		.loc 1 166 6 view .LVU28
+ 183 0004 1842     		tst	r0, r3
+ 184 0006 01D0     		beq	.L18
+ 167:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   {
+ 168:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****     bitstatus = SET;
+ 185              		.loc 1 168 15 view .LVU29
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccyBStqs.s 			page 7
+
+
+ 186 0008 0120     		movs	r0, #1
+ 187              	.LVL4:
+ 188              		.loc 1 168 15 view .LVU30
+ 189 000a 7047     		bx	lr
+ 190              	.LVL5:
+ 191              	.L18:
+ 169:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   }
+ 170:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   else
+ 171:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   {
+ 172:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****     bitstatus = RESET;
+ 192              		.loc 1 172 15 view .LVU31
+ 193 000c 0020     		movs	r0, #0
+ 194              	.LVL6:
+ 173:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   }
+ 174:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   /* Return the flag status */
+ 175:STM32F10x_FWLib/src/stm32f10x_iwdg.c ****   return bitstatus;
+ 195              		.loc 1 175 3 is_stmt 1 view .LVU32
+ 176:STM32F10x_FWLib/src/stm32f10x_iwdg.c **** }
+ 196              		.loc 1 176 1 is_stmt 0 view .LVU33
+ 197 000e 7047     		bx	lr
+ 198              	.L20:
+ 199              		.align	2
+ 200              	.L19:
+ 201 0010 00300040 		.word	1073754112
+ 202              		.cfi_endproc
+ 203              	.LFE34:
+ 205              		.text
+ 206              	.Letext0:
+ 207              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 208              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 209              		.file 4 "USER/stm32f10x.h"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccyBStqs.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f10x_iwdg.c
+C:\Users\86157\AppData\Local\Temp\ccyBStqs.s:19     .text.IWDG_WriteAccessCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccyBStqs.s:25     .text.IWDG_WriteAccessCmd:00000000 IWDG_WriteAccessCmd
+C:\Users\86157\AppData\Local\Temp\ccyBStqs.s:43     .text.IWDG_WriteAccessCmd:00000008 $d
+C:\Users\86157\AppData\Local\Temp\ccyBStqs.s:48     .text.IWDG_SetPrescaler:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccyBStqs.s:54     .text.IWDG_SetPrescaler:00000000 IWDG_SetPrescaler
+C:\Users\86157\AppData\Local\Temp\ccyBStqs.s:72     .text.IWDG_SetPrescaler:00000008 $d
+C:\Users\86157\AppData\Local\Temp\ccyBStqs.s:77     .text.IWDG_SetReload:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccyBStqs.s:83     .text.IWDG_SetReload:00000000 IWDG_SetReload
+C:\Users\86157\AppData\Local\Temp\ccyBStqs.s:101    .text.IWDG_SetReload:00000008 $d
+C:\Users\86157\AppData\Local\Temp\ccyBStqs.s:106    .text.IWDG_ReloadCounter:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccyBStqs.s:112    .text.IWDG_ReloadCounter:00000000 IWDG_ReloadCounter
+C:\Users\86157\AppData\Local\Temp\ccyBStqs.s:129    .text.IWDG_ReloadCounter:0000000c $d
+C:\Users\86157\AppData\Local\Temp\ccyBStqs.s:134    .text.IWDG_Enable:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccyBStqs.s:140    .text.IWDG_Enable:00000000 IWDG_Enable
+C:\Users\86157\AppData\Local\Temp\ccyBStqs.s:157    .text.IWDG_Enable:0000000c $d
+C:\Users\86157\AppData\Local\Temp\ccyBStqs.s:162    .text.IWDG_GetFlagStatus:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccyBStqs.s:168    .text.IWDG_GetFlagStatus:00000000 IWDG_GetFlagStatus
+C:\Users\86157\AppData\Local\Temp\ccyBStqs.s:201    .text.IWDG_GetFlagStatus:00000010 $d
+
+NO UNDEFINED SYMBOLS

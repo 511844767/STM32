@@ -1,0 +1,504 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUqleq8.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"LED.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "HW/LED/LED.c"
+  18              		.section	.text.LED_Init_Hal,"ax",%progbits
+  19              		.align	1
+  20              		.global	LED_Init_Hal
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	LED_Init_Hal:
+  26              	.LFB29:
+   1:HW/LED/LED.c  **** #include"stm32f10x.h"
+   2:HW/LED/LED.c  **** #include"delay.h"
+   3:HW/LED/LED.c  **** #include"LED.h"
+   4:HW/LED/LED.c  **** 
+   5:HW/LED/LED.c  **** /*-----------------------------初始化--------------------------------------*/
+   6:HW/LED/LED.c  **** 
+   7:HW/LED/LED.c  **** void LED_Init_Hal(void){
+  27              		.loc 1 7 24 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 8
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 30B5     		push	{r4, r5, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 12
+  34              		.cfi_offset 4, -12
+  35              		.cfi_offset 5, -8
+  36              		.cfi_offset 14, -4
+  37 0002 83B0     		sub	sp, sp, #12
+  38              	.LCFI1:
+  39              		.cfi_def_cfa_offset 24
+   8:HW/LED/LED.c  **** 	/* 初始化GPIOx时钟 */
+   9:HW/LED/LED.c  **** 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB | RCC_APB2Periph_GPIOE, ENABLE);
+  40              		.loc 1 9 2 view .LVU1
+  41 0004 0121     		movs	r1, #1
+  42 0006 4820     		movs	r0, #72
+  43 0008 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+  44              	.LVL0:
+  10:HW/LED/LED.c  **** 	
+  11:HW/LED/LED.c  **** 	/* 配置GPIO模式  */
+  12:HW/LED/LED.c  **** 	GPIO_InitTypeDef gpioDef[2] = {
+  45              		.loc 1 12 2 view .LVU2
+  46              		.loc 1 12 19 is_stmt 0 view .LVU3
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUqleq8.s 			page 2
+
+
+  47 000c 0C4A     		ldr	r2, .L3
+  48 000e 6B46     		mov	r3, sp
+  49 0010 92E80300 		ldm	r2, {r0, r1}
+  50 0014 83E80300 		stm	r3, {r0, r1}
+  13:HW/LED/LED.c  **** 		{GPIO_Pin_5, GPIO_Speed_50MHz, GPIO_Mode_Out_PP}, 
+  14:HW/LED/LED.c  **** 		{GPIO_Pin_5, GPIO_Speed_50MHz, GPIO_Mode_Out_PP}
+  15:HW/LED/LED.c  **** 	};
+  16:HW/LED/LED.c  **** 	GPIO_Init(GPIOB, &gpioDef[0]);
+  51              		.loc 1 16 2 is_stmt 1 view .LVU4
+  52 0018 0A4D     		ldr	r5, .L3+4
+  53 001a 1946     		mov	r1, r3
+  54 001c 2846     		mov	r0, r5
+  55 001e FFF7FEFF 		bl	GPIO_Init
+  56              	.LVL1:
+  17:HW/LED/LED.c  **** 	GPIO_Init(GPIOE, &gpioDef[1]);
+  57              		.loc 1 17 2 view .LVU5
+  58 0022 094C     		ldr	r4, .L3+8
+  59 0024 01A9     		add	r1, sp, #4
+  60 0026 2046     		mov	r0, r4
+  61 0028 FFF7FEFF 		bl	GPIO_Init
+  62              	.LVL2:
+  18:HW/LED/LED.c  **** 
+  19:HW/LED/LED.c  **** 	/* LED引脚输出高电平 */
+  20:HW/LED/LED.c  **** 	GPIO_SetBits(GPIOB, GPIO_Pin_5);
+  63              		.loc 1 20 2 view .LVU6
+  64 002c 2021     		movs	r1, #32
+  65 002e 2846     		mov	r0, r5
+  66 0030 FFF7FEFF 		bl	GPIO_SetBits
+  67              	.LVL3:
+  21:HW/LED/LED.c  **** 	GPIO_SetBits(GPIOE, GPIO_Pin_5);
+  68              		.loc 1 21 2 view .LVU7
+  69 0034 2021     		movs	r1, #32
+  70 0036 2046     		mov	r0, r4
+  71 0038 FFF7FEFF 		bl	GPIO_SetBits
+  72              	.LVL4:
+  22:HW/LED/LED.c  **** }
+  73              		.loc 1 22 1 is_stmt 0 view .LVU8
+  74 003c 03B0     		add	sp, sp, #12
+  75              	.LCFI2:
+  76              		.cfi_def_cfa_offset 12
+  77              		@ sp needed
+  78 003e 30BD     		pop	{r4, r5, pc}
+  79              	.L4:
+  80              		.align	2
+  81              	.L3:
+  82 0040 00000000 		.word	.LANCHOR0
+  83 0044 000C0140 		.word	1073810432
+  84 0048 00180140 		.word	1073813504
+  85              		.cfi_endproc
+  86              	.LFE29:
+  88              		.section	.text.LED_Init_Register,"ax",%progbits
+  89              		.align	1
+  90              		.global	LED_Init_Register
+  91              		.syntax unified
+  92              		.thumb
+  93              		.thumb_func
+  95              	LED_Init_Register:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUqleq8.s 			page 3
+
+
+  96              	.LFB30:
+  23:HW/LED/LED.c  **** 
+  24:HW/LED/LED.c  **** 
+  25:HW/LED/LED.c  **** void LED_Init_Register(void){
+  97              		.loc 1 25 29 is_stmt 1 view -0
+  98              		.cfi_startproc
+  99              		@ args = 0, pretend = 0, frame = 0
+ 100              		@ frame_needed = 0, uses_anonymous_args = 0
+ 101              		@ link register save eliminated.
+  26:HW/LED/LED.c  **** 	/* 初始化GPIOx时钟 */
+  27:HW/LED/LED.c  **** 	RCC->APB2ENR |= 1 << 3;	// B
+ 102              		.loc 1 27 2 view .LVU10
+ 103              		.loc 1 27 5 is_stmt 0 view .LVU11
+ 104 0000 0F4B     		ldr	r3, .L6
+ 105 0002 9A69     		ldr	r2, [r3, #24]
+ 106              		.loc 1 27 15 view .LVU12
+ 107 0004 42F00802 		orr	r2, r2, #8
+ 108 0008 9A61     		str	r2, [r3, #24]
+  28:HW/LED/LED.c  **** 	RCC->APB2ENR |= 1 << 6;	// E
+ 109              		.loc 1 28 2 is_stmt 1 view .LVU13
+ 110              		.loc 1 28 5 is_stmt 0 view .LVU14
+ 111 000a 9A69     		ldr	r2, [r3, #24]
+ 112              		.loc 1 28 15 view .LVU15
+ 113 000c 42F04002 		orr	r2, r2, #64
+ 114 0010 9A61     		str	r2, [r3, #24]
+  29:HW/LED/LED.c  **** 
+  30:HW/LED/LED.c  **** 	/* 配置GPIO模式  */
+  31:HW/LED/LED.c  **** 	GPIOB->CRL = (GPIOB->CRL & 0XFF0FFFFF) | 3 << 20;
+ 115              		.loc 1 31 2 is_stmt 1 view .LVU16
+ 116              		.loc 1 31 21 is_stmt 0 view .LVU17
+ 117 0012 0C49     		ldr	r1, .L6+4
+ 118 0014 0B68     		ldr	r3, [r1]
+ 119              		.loc 1 31 27 view .LVU18
+ 120 0016 23F47003 		bic	r3, r3, #15728640
+ 121              		.loc 1 31 41 view .LVU19
+ 122 001a 43F44013 		orr	r3, r3, #3145728
+ 123              		.loc 1 31 13 view .LVU20
+ 124 001e 0B60     		str	r3, [r1]
+  32:HW/LED/LED.c  **** 	GPIOE->CRL = (GPIOE->CRL & 0XFF0FFFFF) | 3 << 20;
+ 125              		.loc 1 32 2 is_stmt 1 view .LVU21
+ 126              		.loc 1 32 21 is_stmt 0 view .LVU22
+ 127 0020 094A     		ldr	r2, .L6+8
+ 128 0022 1368     		ldr	r3, [r2]
+ 129              		.loc 1 32 27 view .LVU23
+ 130 0024 23F47003 		bic	r3, r3, #15728640
+ 131              		.loc 1 32 41 view .LVU24
+ 132 0028 43F44013 		orr	r3, r3, #3145728
+ 133              		.loc 1 32 13 view .LVU25
+ 134 002c 1360     		str	r3, [r2]
+  33:HW/LED/LED.c  **** 
+  34:HW/LED/LED.c  **** 	/* LED引脚输出高电平 */
+  35:HW/LED/LED.c  **** 	GPIOB->ODR |= 1 << 5;
+ 135              		.loc 1 35 2 is_stmt 1 view .LVU26
+ 136              		.loc 1 35 7 is_stmt 0 view .LVU27
+ 137 002e CB68     		ldr	r3, [r1, #12]
+ 138              		.loc 1 35 13 view .LVU28
+ 139 0030 43F02003 		orr	r3, r3, #32
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUqleq8.s 			page 4
+
+
+ 140 0034 CB60     		str	r3, [r1, #12]
+  36:HW/LED/LED.c  **** 	GPIOE->ODR |= 1 << 5;
+ 141              		.loc 1 36 2 is_stmt 1 view .LVU29
+ 142              		.loc 1 36 7 is_stmt 0 view .LVU30
+ 143 0036 D368     		ldr	r3, [r2, #12]
+ 144              		.loc 1 36 13 view .LVU31
+ 145 0038 43F02003 		orr	r3, r3, #32
+ 146 003c D360     		str	r3, [r2, #12]
+  37:HW/LED/LED.c  **** }
+ 147              		.loc 1 37 1 view .LVU32
+ 148 003e 7047     		bx	lr
+ 149              	.L7:
+ 150              		.align	2
+ 151              	.L6:
+ 152 0040 00100240 		.word	1073876992
+ 153 0044 000C0140 		.word	1073810432
+ 154 0048 00180140 		.word	1073813504
+ 155              		.cfi_endproc
+ 156              	.LFE30:
+ 158              		.section	.text.LED_HAL,"ax",%progbits
+ 159              		.align	1
+ 160              		.global	LED_HAL
+ 161              		.syntax unified
+ 162              		.thumb
+ 163              		.thumb_func
+ 165              	LED_HAL:
+ 166              	.LFB31:
+  38:HW/LED/LED.c  **** 
+  39:HW/LED/LED.c  **** /*-----------------------------运行--------------------------------------*/
+  40:HW/LED/LED.c  **** 
+  41:HW/LED/LED.c  **** void LED_HAL(){
+ 167              		.loc 1 41 15 is_stmt 1 view -0
+ 168              		.cfi_startproc
+ 169              		@ Volatile: function does not return.
+ 170              		@ args = 0, pretend = 0, frame = 0
+ 171              		@ frame_needed = 0, uses_anonymous_args = 0
+ 172 0000 08B5     		push	{r3, lr}
+ 173              	.LCFI3:
+ 174              		.cfi_def_cfa_offset 8
+ 175              		.cfi_offset 3, -8
+ 176              		.cfi_offset 14, -4
+  42:HW/LED/LED.c  ****     LED_Init_Hal();
+ 177              		.loc 1 42 5 view .LVU34
+ 178 0002 FFF7FEFF 		bl	LED_Init_Hal
+ 179              	.LVL5:
+  43:HW/LED/LED.c  ****     delay_init();
+ 180              		.loc 1 43 5 view .LVU35
+ 181 0006 FFF7FEFF 		bl	delay_init
+ 182              	.LVL6:
+ 183              	.L9:
+  44:HW/LED/LED.c  **** 
+  45:HW/LED/LED.c  ****     while (1){
+ 184              		.loc 1 45 5 discriminator 1 view .LVU36
+  46:HW/LED/LED.c  ****         GPIO_SetBits(GPIOB, GPIO_Pin_5);
+ 185              		.loc 1 46 9 discriminator 1 view .LVU37
+ 186 000a 0D4D     		ldr	r5, .L11
+ 187 000c 2021     		movs	r1, #32
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUqleq8.s 			page 5
+
+
+ 188 000e 2846     		mov	r0, r5
+ 189 0010 FFF7FEFF 		bl	GPIO_SetBits
+ 190              	.LVL7:
+  47:HW/LED/LED.c  **** 	    GPIO_SetBits(GPIOE, GPIO_Pin_5);
+ 191              		.loc 1 47 6 discriminator 1 view .LVU38
+ 192 0014 0B4C     		ldr	r4, .L11+4
+ 193 0016 2021     		movs	r1, #32
+ 194 0018 2046     		mov	r0, r4
+ 195 001a FFF7FEFF 		bl	GPIO_SetBits
+ 196              	.LVL8:
+  48:HW/LED/LED.c  ****         delay_ms(500);
+ 197              		.loc 1 48 9 discriminator 1 view .LVU39
+ 198 001e 4FF4FA70 		mov	r0, #500
+ 199 0022 FFF7FEFF 		bl	delay_ms
+ 200              	.LVL9:
+  49:HW/LED/LED.c  **** 
+  50:HW/LED/LED.c  ****         GPIO_ResetBits(GPIOB, GPIO_Pin_5);
+ 201              		.loc 1 50 9 discriminator 1 view .LVU40
+ 202 0026 2021     		movs	r1, #32
+ 203 0028 2846     		mov	r0, r5
+ 204 002a FFF7FEFF 		bl	GPIO_ResetBits
+ 205              	.LVL10:
+  51:HW/LED/LED.c  **** 	    GPIO_ResetBits(GPIOE, GPIO_Pin_5);
+ 206              		.loc 1 51 6 discriminator 1 view .LVU41
+ 207 002e 2021     		movs	r1, #32
+ 208 0030 2046     		mov	r0, r4
+ 209 0032 FFF7FEFF 		bl	GPIO_ResetBits
+ 210              	.LVL11:
+  52:HW/LED/LED.c  ****         delay_ms(500);
+ 211              		.loc 1 52 9 discriminator 1 view .LVU42
+ 212 0036 4FF4FA70 		mov	r0, #500
+ 213 003a FFF7FEFF 		bl	delay_ms
+ 214              	.LVL12:
+  45:HW/LED/LED.c  ****         GPIO_SetBits(GPIOB, GPIO_Pin_5);
+ 215              		.loc 1 45 11 discriminator 1 view .LVU43
+ 216 003e E4E7     		b	.L9
+ 217              	.L12:
+ 218              		.align	2
+ 219              	.L11:
+ 220 0040 000C0140 		.word	1073810432
+ 221 0044 00180140 		.word	1073813504
+ 222              		.cfi_endproc
+ 223              	.LFE31:
+ 225              		.section	.text.LED_Register,"ax",%progbits
+ 226              		.align	1
+ 227              		.global	LED_Register
+ 228              		.syntax unified
+ 229              		.thumb
+ 230              		.thumb_func
+ 232              	LED_Register:
+ 233              	.LFB32:
+  53:HW/LED/LED.c  ****     }
+  54:HW/LED/LED.c  **** }
+  55:HW/LED/LED.c  **** 
+  56:HW/LED/LED.c  **** void LED_Register(){
+ 234              		.loc 1 56 20 view -0
+ 235              		.cfi_startproc
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUqleq8.s 			page 6
+
+
+ 236              		@ Volatile: function does not return.
+ 237              		@ args = 0, pretend = 0, frame = 0
+ 238              		@ frame_needed = 0, uses_anonymous_args = 0
+ 239 0000 08B5     		push	{r3, lr}
+ 240              	.LCFI4:
+ 241              		.cfi_def_cfa_offset 8
+ 242              		.cfi_offset 3, -8
+ 243              		.cfi_offset 14, -4
+  57:HW/LED/LED.c  ****     LED_Init_Register();
+ 244              		.loc 1 57 5 view .LVU45
+ 245 0002 FFF7FEFF 		bl	LED_Init_Register
+ 246              	.LVL13:
+  58:HW/LED/LED.c  ****     delay_init();
+ 247              		.loc 1 58 5 view .LVU46
+ 248 0006 FFF7FEFF 		bl	delay_init
+ 249              	.LVL14:
+ 250              	.L14:
+  59:HW/LED/LED.c  **** 
+  60:HW/LED/LED.c  ****     while(1){
+ 251              		.loc 1 60 5 discriminator 1 view .LVU47
+  61:HW/LED/LED.c  ****         GPIOB->ODR |= 1<<5;
+ 252              		.loc 1 61 9 discriminator 1 view .LVU48
+ 253              		.loc 1 61 14 is_stmt 0 discriminator 1 view .LVU49
+ 254 000a 0D4D     		ldr	r5, .L16
+ 255 000c EB68     		ldr	r3, [r5, #12]
+ 256              		.loc 1 61 20 discriminator 1 view .LVU50
+ 257 000e 43F02003 		orr	r3, r3, #32
+ 258 0012 EB60     		str	r3, [r5, #12]
+  62:HW/LED/LED.c  ****         GPIOE->ODR |= 1<<5;
+ 259              		.loc 1 62 9 is_stmt 1 discriminator 1 view .LVU51
+ 260              		.loc 1 62 14 is_stmt 0 discriminator 1 view .LVU52
+ 261 0014 0B4C     		ldr	r4, .L16+4
+ 262 0016 E368     		ldr	r3, [r4, #12]
+ 263              		.loc 1 62 20 discriminator 1 view .LVU53
+ 264 0018 43F02003 		orr	r3, r3, #32
+ 265 001c E360     		str	r3, [r4, #12]
+  63:HW/LED/LED.c  ****         delay_ms(500);
+ 266              		.loc 1 63 9 is_stmt 1 discriminator 1 view .LVU54
+ 267 001e 4FF4FA70 		mov	r0, #500
+ 268 0022 FFF7FEFF 		bl	delay_ms
+ 269              	.LVL15:
+  64:HW/LED/LED.c  **** 
+  65:HW/LED/LED.c  ****         GPIOB->ODR &= ~(1<<5);
+ 270              		.loc 1 65 9 discriminator 1 view .LVU55
+ 271              		.loc 1 65 14 is_stmt 0 discriminator 1 view .LVU56
+ 272 0026 EB68     		ldr	r3, [r5, #12]
+ 273              		.loc 1 65 20 discriminator 1 view .LVU57
+ 274 0028 23F02003 		bic	r3, r3, #32
+ 275 002c EB60     		str	r3, [r5, #12]
+  66:HW/LED/LED.c  ****         GPIOE->ODR &= ~(1<<5);
+ 276              		.loc 1 66 9 is_stmt 1 discriminator 1 view .LVU58
+ 277              		.loc 1 66 14 is_stmt 0 discriminator 1 view .LVU59
+ 278 002e E368     		ldr	r3, [r4, #12]
+ 279              		.loc 1 66 20 discriminator 1 view .LVU60
+ 280 0030 23F02003 		bic	r3, r3, #32
+ 281 0034 E360     		str	r3, [r4, #12]
+  67:HW/LED/LED.c  ****         delay_ms(500);
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUqleq8.s 			page 7
+
+
+ 282              		.loc 1 67 9 is_stmt 1 discriminator 1 view .LVU61
+ 283 0036 4FF4FA70 		mov	r0, #500
+ 284 003a FFF7FEFF 		bl	delay_ms
+ 285              	.LVL16:
+  60:HW/LED/LED.c  ****         GPIOB->ODR |= 1<<5;
+ 286              		.loc 1 60 10 discriminator 1 view .LVU62
+ 287 003e E4E7     		b	.L14
+ 288              	.L17:
+ 289              		.align	2
+ 290              	.L16:
+ 291 0040 000C0140 		.word	1073810432
+ 292 0044 00180140 		.word	1073813504
+ 293              		.cfi_endproc
+ 294              	.LFE32:
+ 296              		.section	.text.LED_Bit,"ax",%progbits
+ 297              		.align	1
+ 298              		.global	LED_Bit
+ 299              		.syntax unified
+ 300              		.thumb
+ 301              		.thumb_func
+ 303              	LED_Bit:
+ 304              	.LFB33:
+  68:HW/LED/LED.c  ****     }
+  69:HW/LED/LED.c  **** }
+  70:HW/LED/LED.c  **** 
+  71:HW/LED/LED.c  **** #define LED0  PBout(5)
+  72:HW/LED/LED.c  **** #define LED1  PEout(5)
+  73:HW/LED/LED.c  **** 
+  74:HW/LED/LED.c  **** void LED_Bit(){
+ 305              		.loc 1 74 15 view -0
+ 306              		.cfi_startproc
+ 307              		@ Volatile: function does not return.
+ 308              		@ args = 0, pretend = 0, frame = 0
+ 309              		@ frame_needed = 0, uses_anonymous_args = 0
+ 310 0000 08B5     		push	{r3, lr}
+ 311              	.LCFI5:
+ 312              		.cfi_def_cfa_offset 8
+ 313              		.cfi_offset 3, -8
+ 314              		.cfi_offset 14, -4
+  75:HW/LED/LED.c  **** 	LED_Init_Register();
+ 315              		.loc 1 75 2 view .LVU64
+ 316 0002 FFF7FEFF 		bl	LED_Init_Register
+ 317              	.LVL17:
+  76:HW/LED/LED.c  **** 	delay_init();
+ 318              		.loc 1 76 2 view .LVU65
+ 319 0006 FFF7FEFF 		bl	delay_init
+ 320              	.LVL18:
+ 321              	.L19:
+  77:HW/LED/LED.c  **** 
+  78:HW/LED/LED.c  **** 	while(1){
+ 322              		.loc 1 78 2 discriminator 1 view .LVU66
+  79:HW/LED/LED.c  **** 		PBout(5) = 1;
+ 323              		.loc 1 79 3 discriminator 1 view .LVU67
+ 324              		.loc 1 79 12 is_stmt 0 discriminator 1 view .LVU68
+ 325 000a 0A4D     		ldr	r5, .L21
+ 326 000c 0123     		movs	r3, #1
+ 327 000e C5F89431 		str	r3, [r5, #404]
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUqleq8.s 			page 8
+
+
+  80:HW/LED/LED.c  **** 		PEout(5) = 1;
+ 328              		.loc 1 80 3 is_stmt 1 discriminator 1 view .LVU69
+ 329              		.loc 1 80 12 is_stmt 0 discriminator 1 view .LVU70
+ 330 0012 094C     		ldr	r4, .L21+4
+ 331 0014 C4F89431 		str	r3, [r4, #404]
+  81:HW/LED/LED.c  **** 		delay_ms(500);
+ 332              		.loc 1 81 3 is_stmt 1 discriminator 1 view .LVU71
+ 333 0018 4FF4FA70 		mov	r0, #500
+ 334 001c FFF7FEFF 		bl	delay_ms
+ 335              	.LVL19:
+  82:HW/LED/LED.c  **** 		PBout(5) = 0;
+ 336              		.loc 1 82 3 discriminator 1 view .LVU72
+ 337              		.loc 1 82 12 is_stmt 0 discriminator 1 view .LVU73
+ 338 0020 0023     		movs	r3, #0
+ 339 0022 C5F89431 		str	r3, [r5, #404]
+  83:HW/LED/LED.c  **** 		PEout(5) = 0;
+ 340              		.loc 1 83 3 is_stmt 1 discriminator 1 view .LVU74
+ 341              		.loc 1 83 12 is_stmt 0 discriminator 1 view .LVU75
+ 342 0026 C4F89431 		str	r3, [r4, #404]
+  84:HW/LED/LED.c  **** 		delay_ms(500);
+ 343              		.loc 1 84 3 is_stmt 1 discriminator 1 view .LVU76
+ 344 002a 4FF4FA70 		mov	r0, #500
+ 345 002e FFF7FEFF 		bl	delay_ms
+ 346              	.LVL20:
+  78:HW/LED/LED.c  **** 		PBout(5) = 1;
+ 347              		.loc 1 78 7 discriminator 1 view .LVU77
+ 348 0032 EAE7     		b	.L19
+ 349              	.L22:
+ 350              		.align	2
+ 351              	.L21:
+ 352 0034 00802142 		.word	1109491712
+ 353 0038 00002342 		.word	1109590016
+ 354              		.cfi_endproc
+ 355              	.LFE33:
+ 357              		.section	.rodata
+ 358              		.align	2
+ 359              		.set	.LANCHOR0,. + 0
+ 360              	.LC0:
+ 361 0000 2000     		.short	32
+ 362 0002 03       		.byte	3
+ 363 0003 10       		.byte	16
+ 364 0004 2000     		.short	32
+ 365 0006 03       		.byte	3
+ 366 0007 10       		.byte	16
+ 367              		.text
+ 368              	.Letext0:
+ 369              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 370              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 371              		.file 4 "USER/stm32f10x.h"
+ 372              		.file 5 "STM32F10x_FWLib/inc/stm32f10x_gpio.h"
+ 373              		.file 6 "SYSTEM/delay/delay.h"
+ 374              		.file 7 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUqleq8.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 LED.c
+C:\Users\86157\AppData\Local\Temp\ccUqleq8.s:19     .text.LED_Init_Hal:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUqleq8.s:25     .text.LED_Init_Hal:00000000 LED_Init_Hal
+C:\Users\86157\AppData\Local\Temp\ccUqleq8.s:82     .text.LED_Init_Hal:00000040 $d
+C:\Users\86157\AppData\Local\Temp\ccUqleq8.s:89     .text.LED_Init_Register:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUqleq8.s:95     .text.LED_Init_Register:00000000 LED_Init_Register
+C:\Users\86157\AppData\Local\Temp\ccUqleq8.s:152    .text.LED_Init_Register:00000040 $d
+C:\Users\86157\AppData\Local\Temp\ccUqleq8.s:159    .text.LED_HAL:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUqleq8.s:165    .text.LED_HAL:00000000 LED_HAL
+C:\Users\86157\AppData\Local\Temp\ccUqleq8.s:220    .text.LED_HAL:00000040 $d
+C:\Users\86157\AppData\Local\Temp\ccUqleq8.s:226    .text.LED_Register:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUqleq8.s:232    .text.LED_Register:00000000 LED_Register
+C:\Users\86157\AppData\Local\Temp\ccUqleq8.s:291    .text.LED_Register:00000040 $d
+C:\Users\86157\AppData\Local\Temp\ccUqleq8.s:297    .text.LED_Bit:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUqleq8.s:303    .text.LED_Bit:00000000 LED_Bit
+C:\Users\86157\AppData\Local\Temp\ccUqleq8.s:352    .text.LED_Bit:00000034 $d
+C:\Users\86157\AppData\Local\Temp\ccUqleq8.s:358    .rodata:00000000 $d
+
+UNDEFINED SYMBOLS
+RCC_APB2PeriphClockCmd
+GPIO_Init
+GPIO_SetBits
+delay_init
+delay_ms
+GPIO_ResetBits

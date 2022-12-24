@@ -1,0 +1,2216 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"i2c_software.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "HW/EEPROM/I2C_Software/i2c_software.c"
+  18              		.section	.text.I2C_Software_Init,"ax",%progbits
+  19              		.align	1
+  20              		.global	I2C_Software_Init
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	I2C_Software_Init:
+  26              	.LFB32:
+   1:HW/EEPROM/I2C_Software/i2c_software.c **** #include"stdbool.h"
+   2:HW/EEPROM/I2C_Software/i2c_software.c **** #include"stdio.h"
+   3:HW/EEPROM/I2C_Software/i2c_software.c **** #include"stm32f10x.h"
+   4:HW/EEPROM/I2C_Software/i2c_software.c **** #include"delay.h"
+   5:HW/EEPROM/I2C_Software/i2c_software.c **** 
+   6:HW/EEPROM/I2C_Software/i2c_software.c **** /**
+   7:HW/EEPROM/I2C_Software/i2c_software.c ****  * @brief 用GPIO仿真I2C时序，读写EEPROM
+   8:HW/EEPROM/I2C_Software/i2c_software.c ****  *  PB6连SCL，PB7连SDA
+   9:HW/EEPROM/I2C_Software/i2c_software.c ****  *  I2C协议的特性要求输出为开漏输出：低电平靠N-MOS导通接地，高电平靠上
+  10:HW/EEPROM/I2C_Software/i2c_software.c ****  *  EEPROM AT24C02有2048Byte内存，需要8bit取址
+  11:HW/EEPROM/I2C_Software/i2c_software.c ****  *  EEPROM AT24C02要求信号从高位开始发送（其实只要求把地址高位开始发送，
+  12:HW/EEPROM/I2C_Software/i2c_software.c ****  */
+  13:HW/EEPROM/I2C_Software/i2c_software.c **** void I2C_Software_Init(){
+  27              		.loc 1 13 25 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 8
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 10B5     		push	{r4, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  36 0002 82B0     		sub	sp, sp, #8
+  37              	.LCFI1:
+  38              		.cfi_def_cfa_offset 16
+  14:HW/EEPROM/I2C_Software/i2c_software.c ****     /* 使能GPIOB时钟 */
+  15:HW/EEPROM/I2C_Software/i2c_software.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+  39              		.loc 1 15 5 view .LVU1
+  40 0004 0121     		movs	r1, #1
+  41 0006 0820     		movs	r0, #8
+  42 0008 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+  43              	.LVL0:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 2
+
+
+  16:HW/EEPROM/I2C_Software/i2c_software.c ****     /* 配置GPIO */
+  17:HW/EEPROM/I2C_Software/i2c_software.c ****     GPIO_InitTypeDef gpioDef;
+  44              		.loc 1 17 5 view .LVU2
+  18:HW/EEPROM/I2C_Software/i2c_software.c ****     gpioDef.GPIO_Mode   = GPIO_Mode_Out_OD; // 开漏输出
+  45              		.loc 1 18 5 view .LVU3
+  46              		.loc 1 18 25 is_stmt 0 view .LVU4
+  47 000c 1423     		movs	r3, #20
+  48 000e 8DF80730 		strb	r3, [sp, #7]
+  19:HW/EEPROM/I2C_Software/i2c_software.c ****     gpioDef.GPIO_Pin    = GPIO_Pin_6;
+  49              		.loc 1 19 5 is_stmt 1 view .LVU5
+  50              		.loc 1 19 25 is_stmt 0 view .LVU6
+  51 0012 4023     		movs	r3, #64
+  52 0014 ADF80430 		strh	r3, [sp, #4]	@ movhi
+  20:HW/EEPROM/I2C_Software/i2c_software.c ****     gpioDef.GPIO_Speed  = GPIO_Speed_50MHz; // 50MHz满足I2C的400KHz的频率
+  53              		.loc 1 20 5 is_stmt 1 view .LVU7
+  54              		.loc 1 20 25 is_stmt 0 view .LVU8
+  55 0018 0323     		movs	r3, #3
+  56 001a 8DF80630 		strb	r3, [sp, #6]
+  21:HW/EEPROM/I2C_Software/i2c_software.c ****     GPIO_Init(GPIOB, &gpioDef);
+  57              		.loc 1 21 5 is_stmt 1 view .LVU9
+  58 001e 074C     		ldr	r4, .L3
+  59 0020 01A9     		add	r1, sp, #4
+  60 0022 2046     		mov	r0, r4
+  61 0024 FFF7FEFF 		bl	GPIO_Init
+  62              	.LVL1:
+  22:HW/EEPROM/I2C_Software/i2c_software.c ****     gpioDef.GPIO_Pin    = GPIO_Pin_7;
+  63              		.loc 1 22 5 view .LVU10
+  64              		.loc 1 22 25 is_stmt 0 view .LVU11
+  65 0028 8023     		movs	r3, #128
+  66 002a ADF80430 		strh	r3, [sp, #4]	@ movhi
+  23:HW/EEPROM/I2C_Software/i2c_software.c ****     GPIO_Init(GPIOB, &gpioDef);
+  67              		.loc 1 23 5 is_stmt 1 view .LVU12
+  68 002e 01A9     		add	r1, sp, #4
+  69 0030 2046     		mov	r0, r4
+  70 0032 FFF7FEFF 		bl	GPIO_Init
+  71              	.LVL2:
+  24:HW/EEPROM/I2C_Software/i2c_software.c **** }
+  72              		.loc 1 24 1 is_stmt 0 view .LVU13
+  73 0036 02B0     		add	sp, sp, #8
+  74              	.LCFI2:
+  75              		.cfi_def_cfa_offset 8
+  76              		@ sp needed
+  77 0038 10BD     		pop	{r4, pc}
+  78              	.L4:
+  79 003a 00BF     		.align	2
+  80              	.L3:
+  81 003c 000C0140 		.word	1073810432
+  82              		.cfi_endproc
+  83              	.LFE32:
+  85              		.section	.text.I2C_SendSignal_Start,"ax",%progbits
+  86              		.align	1
+  87              		.global	I2C_SendSignal_Start
+  88              		.syntax unified
+  89              		.thumb
+  90              		.thumb_func
+  92              	I2C_SendSignal_Start:
+  93              	.LFB33:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 3
+
+
+  25:HW/EEPROM/I2C_Software/i2c_software.c **** 
+  26:HW/EEPROM/I2C_Software/i2c_software.c **** /* 控制SDA和SCL的宏，全部换成寄存器宏，提高读写性能 */
+  27:HW/EEPROM/I2C_Software/i2c_software.c **** #define __GPIO_SetBits(GPIOx, GPIO_Pin)             GPIOx->BSRR = GPIO_Pin
+  28:HW/EEPROM/I2C_Software/i2c_software.c **** #define __GPIO_ResetBits(GPIOx, GPIO_Pin)           GPIOx->BRR = GPIO_Pin
+  29:HW/EEPROM/I2C_Software/i2c_software.c **** #define __GPIO_ReadInputDataBit(GPIOx, GPIO_Pin)    ((GPIOx->IDR & GPIO_Pin)? 1: 0)
+  30:HW/EEPROM/I2C_Software/i2c_software.c **** #define SDASet1()  __GPIO_SetBits(GPIOB, GPIO_Pin_7)
+  31:HW/EEPROM/I2C_Software/i2c_software.c **** #define SDASet0()  __GPIO_ResetBits(GPIOB, GPIO_Pin_7)
+  32:HW/EEPROM/I2C_Software/i2c_software.c **** #define SCLSet1()  __GPIO_SetBits(GPIOB, GPIO_Pin_6)
+  33:HW/EEPROM/I2C_Software/i2c_software.c **** #define SCLSet0()  __GPIO_ResetBits(GPIOB, GPIO_Pin_6)
+  34:HW/EEPROM/I2C_Software/i2c_software.c **** #define SDAGet()   __GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_7)
+  35:HW/EEPROM/I2C_Software/i2c_software.c **** #define SCLGet()   __GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_6)
+  36:HW/EEPROM/I2C_Software/i2c_software.c **** 
+  37:HW/EEPROM/I2C_Software/i2c_software.c **** /* 时序宽度，从EEPROM的Data Sheet中算出 */
+  38:HW/EEPROM/I2C_Software/i2c_software.c **** #define Signal_Delay() delay_us(2)  // t_low, t_high高低电平最短有效时间
+  39:HW/EEPROM/I2C_Software/i2c_software.c **** #define WR_Delay()     delay_ms(5)  // t_wr前后两次信号最短间隔
+  40:HW/EEPROM/I2C_Software/i2c_software.c **** 
+  41:HW/EEPROM/I2C_Software/i2c_software.c **** /* 发送起始信号 */
+  42:HW/EEPROM/I2C_Software/i2c_software.c **** void I2C_SendSignal_Start(){
+  94              		.loc 1 42 28 is_stmt 1 view -0
+  95              		.cfi_startproc
+  96              		@ args = 0, pretend = 0, frame = 0
+  97              		@ frame_needed = 0, uses_anonymous_args = 0
+  98 0000 70B5     		push	{r4, r5, r6, lr}
+  99              	.LCFI3:
+ 100              		.cfi_def_cfa_offset 16
+ 101              		.cfi_offset 4, -16
+ 102              		.cfi_offset 5, -12
+ 103              		.cfi_offset 6, -8
+ 104              		.cfi_offset 14, -4
+  43:HW/EEPROM/I2C_Software/i2c_software.c ****     SDASet1(); SCLSet1();
+ 105              		.loc 1 43 5 view .LVU15
+ 106 0002 084C     		ldr	r4, .L7
+ 107 0004 8026     		movs	r6, #128
+ 108 0006 2661     		str	r6, [r4, #16]
+ 109              		.loc 1 43 16 view .LVU16
+ 110 0008 4025     		movs	r5, #64
+ 111 000a 2561     		str	r5, [r4, #16]
+  44:HW/EEPROM/I2C_Software/i2c_software.c ****     Signal_Delay();
+ 112              		.loc 1 44 5 view .LVU17
+ 113 000c 0220     		movs	r0, #2
+ 114 000e FFF7FEFF 		bl	delay_us
+ 115              	.LVL3:
+  45:HW/EEPROM/I2C_Software/i2c_software.c ****     SDASet0();
+ 116              		.loc 1 45 5 view .LVU18
+ 117 0012 6661     		str	r6, [r4, #20]
+  46:HW/EEPROM/I2C_Software/i2c_software.c ****     Signal_Delay();
+ 118              		.loc 1 46 5 view .LVU19
+ 119 0014 0220     		movs	r0, #2
+ 120 0016 FFF7FEFF 		bl	delay_us
+ 121              	.LVL4:
+  47:HW/EEPROM/I2C_Software/i2c_software.c ****     SCLSet0();
+ 122              		.loc 1 47 5 view .LVU20
+ 123 001a 6561     		str	r5, [r4, #20]
+  48:HW/EEPROM/I2C_Software/i2c_software.c ****     Signal_Delay();
+ 124              		.loc 1 48 5 view .LVU21
+ 125 001c 0220     		movs	r0, #2
+ 126 001e FFF7FEFF 		bl	delay_us
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 4
+
+
+ 127              	.LVL5:
+  49:HW/EEPROM/I2C_Software/i2c_software.c **** }                               // 起始信号之后还是主机说话，不需要释放SDA控制�
+ 128              		.loc 1 49 1 is_stmt 0 view .LVU22
+ 129 0022 70BD     		pop	{r4, r5, r6, pc}
+ 130              	.L8:
+ 131              		.align	2
+ 132              	.L7:
+ 133 0024 000C0140 		.word	1073810432
+ 134              		.cfi_endproc
+ 135              	.LFE33:
+ 137              		.section	.text.I2C_SendSignal_Stop,"ax",%progbits
+ 138              		.align	1
+ 139              		.global	I2C_SendSignal_Stop
+ 140              		.syntax unified
+ 141              		.thumb
+ 142              		.thumb_func
+ 144              	I2C_SendSignal_Stop:
+ 145              	.LFB34:
+  50:HW/EEPROM/I2C_Software/i2c_software.c **** 
+  51:HW/EEPROM/I2C_Software/i2c_software.c **** /* 发送结束信号 */
+  52:HW/EEPROM/I2C_Software/i2c_software.c **** void I2C_SendSignal_Stop(){
+ 146              		.loc 1 52 27 is_stmt 1 view -0
+ 147              		.cfi_startproc
+ 148              		@ args = 0, pretend = 0, frame = 0
+ 149              		@ frame_needed = 0, uses_anonymous_args = 0
+ 150 0000 38B5     		push	{r3, r4, r5, lr}
+ 151              	.LCFI4:
+ 152              		.cfi_def_cfa_offset 16
+ 153              		.cfi_offset 3, -16
+ 154              		.cfi_offset 4, -12
+ 155              		.cfi_offset 5, -8
+ 156              		.cfi_offset 14, -4
+  53:HW/EEPROM/I2C_Software/i2c_software.c ****     SDASet0(); SCLSet1();
+ 157              		.loc 1 53 5 view .LVU24
+ 158 0002 064C     		ldr	r4, .L11
+ 159 0004 8025     		movs	r5, #128
+ 160 0006 6561     		str	r5, [r4, #20]
+ 161              		.loc 1 53 16 view .LVU25
+ 162 0008 4023     		movs	r3, #64
+ 163 000a 2361     		str	r3, [r4, #16]
+  54:HW/EEPROM/I2C_Software/i2c_software.c ****     Signal_Delay();
+ 164              		.loc 1 54 5 view .LVU26
+ 165 000c 0220     		movs	r0, #2
+ 166 000e FFF7FEFF 		bl	delay_us
+ 167              	.LVL6:
+  55:HW/EEPROM/I2C_Software/i2c_software.c ****     SDASet1();
+ 168              		.loc 1 55 5 view .LVU27
+ 169 0012 2561     		str	r5, [r4, #16]
+  56:HW/EEPROM/I2C_Software/i2c_software.c ****     Signal_Delay();
+ 170              		.loc 1 56 5 view .LVU28
+ 171 0014 0220     		movs	r0, #2
+ 172 0016 FFF7FEFF 		bl	delay_us
+ 173              	.LVL7:
+  57:HW/EEPROM/I2C_Software/i2c_software.c **** }                               // 结束信号之后的SDA控制权已释放
+ 174              		.loc 1 57 1 is_stmt 0 view .LVU29
+ 175 001a 38BD     		pop	{r3, r4, r5, pc}
+ 176              	.L12:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 5
+
+
+ 177              		.align	2
+ 178              	.L11:
+ 179 001c 000C0140 		.word	1073810432
+ 180              		.cfi_endproc
+ 181              	.LFE34:
+ 183              		.section	.text.I2C_SendSignal_ACK,"ax",%progbits
+ 184              		.align	1
+ 185              		.global	I2C_SendSignal_ACK
+ 186              		.syntax unified
+ 187              		.thumb
+ 188              		.thumb_func
+ 190              	I2C_SendSignal_ACK:
+ 191              	.LFB35:
+  58:HW/EEPROM/I2C_Software/i2c_software.c **** 
+  59:HW/EEPROM/I2C_Software/i2c_software.c **** /* 发送应答信号 */
+  60:HW/EEPROM/I2C_Software/i2c_software.c **** void I2C_SendSignal_ACK(){
+ 192              		.loc 1 60 26 is_stmt 1 view -0
+ 193              		.cfi_startproc
+ 194              		@ args = 0, pretend = 0, frame = 0
+ 195              		@ frame_needed = 0, uses_anonymous_args = 0
+ 196 0000 70B5     		push	{r4, r5, r6, lr}
+ 197              	.LCFI5:
+ 198              		.cfi_def_cfa_offset 16
+ 199              		.cfi_offset 4, -16
+ 200              		.cfi_offset 5, -12
+ 201              		.cfi_offset 6, -8
+ 202              		.cfi_offset 14, -4
+  61:HW/EEPROM/I2C_Software/i2c_software.c ****     SDASet0(); SCLSet1();
+ 203              		.loc 1 61 5 view .LVU31
+ 204 0002 074C     		ldr	r4, .L15
+ 205 0004 8025     		movs	r5, #128
+ 206 0006 6561     		str	r5, [r4, #20]
+ 207              		.loc 1 61 16 view .LVU32
+ 208 0008 4026     		movs	r6, #64
+ 209 000a 2661     		str	r6, [r4, #16]
+  62:HW/EEPROM/I2C_Software/i2c_software.c ****     Signal_Delay();
+ 210              		.loc 1 62 5 view .LVU33
+ 211 000c 0220     		movs	r0, #2
+ 212 000e FFF7FEFF 		bl	delay_us
+ 213              	.LVL8:
+  63:HW/EEPROM/I2C_Software/i2c_software.c ****     SCLSet0();
+ 214              		.loc 1 63 5 view .LVU34
+ 215 0012 6661     		str	r6, [r4, #20]
+  64:HW/EEPROM/I2C_Software/i2c_software.c ****     SDASet1();                  // 应答之后主机要释放SDA控制权，让从机说话
+ 216              		.loc 1 64 5 view .LVU35
+ 217 0014 2561     		str	r5, [r4, #16]
+  65:HW/EEPROM/I2C_Software/i2c_software.c ****     Signal_Delay();
+ 218              		.loc 1 65 5 view .LVU36
+ 219 0016 0220     		movs	r0, #2
+ 220 0018 FFF7FEFF 		bl	delay_us
+ 221              	.LVL9:
+  66:HW/EEPROM/I2C_Software/i2c_software.c **** }
+ 222              		.loc 1 66 1 is_stmt 0 view .LVU37
+ 223 001c 70BD     		pop	{r4, r5, r6, pc}
+ 224              	.L16:
+ 225 001e 00BF     		.align	2
+ 226              	.L15:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 6
+
+
+ 227 0020 000C0140 		.word	1073810432
+ 228              		.cfi_endproc
+ 229              	.LFE35:
+ 231              		.section	.text.I2C_SendSignal_NO_ACK,"ax",%progbits
+ 232              		.align	1
+ 233              		.global	I2C_SendSignal_NO_ACK
+ 234              		.syntax unified
+ 235              		.thumb
+ 236              		.thumb_func
+ 238              	I2C_SendSignal_NO_ACK:
+ 239              	.LFB36:
+  67:HW/EEPROM/I2C_Software/i2c_software.c **** 
+  68:HW/EEPROM/I2C_Software/i2c_software.c **** /* 发送非应答信号 */
+  69:HW/EEPROM/I2C_Software/i2c_software.c **** void I2C_SendSignal_NO_ACK(){
+ 240              		.loc 1 69 29 is_stmt 1 view -0
+ 241              		.cfi_startproc
+ 242              		@ args = 0, pretend = 0, frame = 0
+ 243              		@ frame_needed = 0, uses_anonymous_args = 0
+ 244 0000 38B5     		push	{r3, r4, r5, lr}
+ 245              	.LCFI6:
+ 246              		.cfi_def_cfa_offset 16
+ 247              		.cfi_offset 3, -16
+ 248              		.cfi_offset 4, -12
+ 249              		.cfi_offset 5, -8
+ 250              		.cfi_offset 14, -4
+  70:HW/EEPROM/I2C_Software/i2c_software.c ****     SDASet1(); SCLSet1();
+ 251              		.loc 1 70 5 view .LVU39
+ 252 0002 064C     		ldr	r4, .L19
+ 253 0004 8023     		movs	r3, #128
+ 254 0006 2361     		str	r3, [r4, #16]
+ 255              		.loc 1 70 16 view .LVU40
+ 256 0008 4025     		movs	r5, #64
+ 257 000a 2561     		str	r5, [r4, #16]
+  71:HW/EEPROM/I2C_Software/i2c_software.c ****     Signal_Delay();
+ 258              		.loc 1 71 5 view .LVU41
+ 259 000c 0220     		movs	r0, #2
+ 260 000e FFF7FEFF 		bl	delay_us
+ 261              	.LVL10:
+  72:HW/EEPROM/I2C_Software/i2c_software.c ****     SCLSet0();
+ 262              		.loc 1 72 5 view .LVU42
+ 263 0012 6561     		str	r5, [r4, #20]
+  73:HW/EEPROM/I2C_Software/i2c_software.c ****     Signal_Delay();
+ 264              		.loc 1 73 5 view .LVU43
+ 265 0014 0220     		movs	r0, #2
+ 266 0016 FFF7FEFF 		bl	delay_us
+ 267              	.LVL11:
+  74:HW/EEPROM/I2C_Software/i2c_software.c **** }                               // 非应答之后的SDA控制权已释放
+ 268              		.loc 1 74 1 is_stmt 0 view .LVU44
+ 269 001a 38BD     		pop	{r3, r4, r5, pc}
+ 270              	.L20:
+ 271              		.align	2
+ 272              	.L19:
+ 273 001c 000C0140 		.word	1073810432
+ 274              		.cfi_endproc
+ 275              	.LFE36:
+ 277              		.section	.text.I2C_SendSignal_DataByte,"ax",%progbits
+ 278              		.align	1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 7
+
+
+ 279              		.global	I2C_SendSignal_DataByte
+ 280              		.syntax unified
+ 281              		.thumb
+ 282              		.thumb_func
+ 284              	I2C_SendSignal_DataByte:
+ 285              	.LVL12:
+ 286              	.LFB37:
+  75:HW/EEPROM/I2C_Software/i2c_software.c **** 
+  76:HW/EEPROM/I2C_Software/i2c_software.c **** 
+  77:HW/EEPROM/I2C_Software/i2c_software.c **** /* 发送一个字节的数据信号 */
+  78:HW/EEPROM/I2C_Software/i2c_software.c **** void I2C_SendSignal_DataByte(uint8_t data){
+ 287              		.loc 1 78 43 is_stmt 1 view -0
+ 288              		.cfi_startproc
+ 289              		@ args = 0, pretend = 0, frame = 0
+ 290              		@ frame_needed = 0, uses_anonymous_args = 0
+ 291              		.loc 1 78 43 is_stmt 0 view .LVU46
+ 292 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 293              	.LCFI7:
+ 294              		.cfi_def_cfa_offset 24
+ 295              		.cfi_offset 3, -24
+ 296              		.cfi_offset 4, -20
+ 297              		.cfi_offset 5, -16
+ 298              		.cfi_offset 6, -12
+ 299              		.cfi_offset 7, -8
+ 300              		.cfi_offset 14, -4
+ 301 0002 0746     		mov	r7, r0
+  79:HW/EEPROM/I2C_Software/i2c_software.c ****     int i;
+ 302              		.loc 1 79 5 is_stmt 1 view .LVU47
+  80:HW/EEPROM/I2C_Software/i2c_software.c ****     for(i = 7; i >= 0; --i){
+ 303              		.loc 1 80 5 view .LVU48
+ 304              	.LVL13:
+ 305              		.loc 1 80 11 is_stmt 0 view .LVU49
+ 306 0004 0724     		movs	r4, #7
+ 307              		.loc 1 80 5 view .LVU50
+ 308 0006 0EE0     		b	.L22
+ 309              	.LVL14:
+ 310              	.L23:
+  81:HW/EEPROM/I2C_Software/i2c_software.c ****         if(data & (1 << i))     // 从高位开始发送
+  82:HW/EEPROM/I2C_Software/i2c_software.c ****             SDASet1();
+  83:HW/EEPROM/I2C_Software/i2c_software.c ****         else
+  84:HW/EEPROM/I2C_Software/i2c_software.c ****             SDASet0();
+ 311              		.loc 1 84 13 is_stmt 1 view .LVU51
+ 312 0008 0E4B     		ldr	r3, .L30
+ 313 000a 8022     		movs	r2, #128
+ 314 000c 5A61     		str	r2, [r3, #20]
+ 315              	.L24:
+  85:HW/EEPROM/I2C_Software/i2c_software.c ****         SCLSet1();
+ 316              		.loc 1 85 9 view .LVU52
+ 317 000e 0D4D     		ldr	r5, .L30
+ 318 0010 4026     		movs	r6, #64
+ 319 0012 2E61     		str	r6, [r5, #16]
+  86:HW/EEPROM/I2C_Software/i2c_software.c ****         Signal_Delay();
+ 320              		.loc 1 86 9 view .LVU53
+ 321 0014 0220     		movs	r0, #2
+ 322 0016 FFF7FEFF 		bl	delay_us
+ 323              	.LVL15:
+  87:HW/EEPROM/I2C_Software/i2c_software.c ****         SCLSet0();
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 8
+
+
+ 324              		.loc 1 87 9 view .LVU54
+ 325 001a 6E61     		str	r6, [r5, #20]
+  88:HW/EEPROM/I2C_Software/i2c_software.c ****         if(i == 0) SDASet1();   // 最后一个信号发完就要释放SDA控制权
+ 326              		.loc 1 88 9 view .LVU55
+ 327              		.loc 1 88 11 is_stmt 0 view .LVU56
+ 328 001c 74B1     		cbz	r4, .L28
+ 329              	.L25:
+  89:HW/EEPROM/I2C_Software/i2c_software.c ****         Signal_Delay();
+ 330              		.loc 1 89 9 is_stmt 1 discriminator 2 view .LVU57
+ 331 001e 0220     		movs	r0, #2
+ 332 0020 FFF7FEFF 		bl	delay_us
+ 333              	.LVL16:
+  80:HW/EEPROM/I2C_Software/i2c_software.c ****         if(data & (1 << i))     // 从高位开始发送
+ 334              		.loc 1 80 24 discriminator 2 view .LVU58
+ 335 0024 013C     		subs	r4, r4, #1
+ 336              	.LVL17:
+ 337              	.L22:
+  80:HW/EEPROM/I2C_Software/i2c_software.c ****         if(data & (1 << i))     // 从高位开始发送
+ 338              		.loc 1 80 18 discriminator 1 view .LVU59
+ 339 0026 002C     		cmp	r4, #0
+ 340 0028 0BDB     		blt	.L29
+  81:HW/EEPROM/I2C_Software/i2c_software.c ****             SDASet1();
+ 341              		.loc 1 81 9 view .LVU60
+  81:HW/EEPROM/I2C_Software/i2c_software.c ****             SDASet1();
+ 342              		.loc 1 81 12 is_stmt 0 view .LVU61
+ 343 002a 47FA04F3 		asr	r3, r7, r4
+  81:HW/EEPROM/I2C_Software/i2c_software.c ****             SDASet1();
+ 344              		.loc 1 81 11 view .LVU62
+ 345 002e 13F0010F 		tst	r3, #1
+ 346 0032 E9D0     		beq	.L23
+  82:HW/EEPROM/I2C_Software/i2c_software.c ****         else
+ 347              		.loc 1 82 13 is_stmt 1 view .LVU63
+ 348 0034 034B     		ldr	r3, .L30
+ 349 0036 8022     		movs	r2, #128
+ 350 0038 1A61     		str	r2, [r3, #16]
+ 351 003a E8E7     		b	.L24
+ 352              	.L28:
+  88:HW/EEPROM/I2C_Software/i2c_software.c ****         Signal_Delay();
+ 353              		.loc 1 88 20 discriminator 1 view .LVU64
+ 354 003c 8022     		movs	r2, #128
+ 355 003e 2A61     		str	r2, [r5, #16]
+ 356 0040 EDE7     		b	.L25
+ 357              	.L29:
+  90:HW/EEPROM/I2C_Software/i2c_software.c ****     }
+  91:HW/EEPROM/I2C_Software/i2c_software.c **** }
+ 358              		.loc 1 91 1 is_stmt 0 view .LVU65
+ 359 0042 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 360              	.LVL18:
+ 361              	.L31:
+ 362              		.loc 1 91 1 view .LVU66
+ 363              		.align	2
+ 364              	.L30:
+ 365 0044 000C0140 		.word	1073810432
+ 366              		.cfi_endproc
+ 367              	.LFE37:
+ 369              		.section	.text.I2C_GetSignal_IS_ACK,"ax",%progbits
+ 370              		.align	1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 9
+
+
+ 371              		.global	I2C_GetSignal_IS_ACK
+ 372              		.syntax unified
+ 373              		.thumb
+ 374              		.thumb_func
+ 376              	I2C_GetSignal_IS_ACK:
+ 377              	.LFB38:
+  92:HW/EEPROM/I2C_Software/i2c_software.c **** 
+  93:HW/EEPROM/I2C_Software/i2c_software.c **** /* 接收应答/非应答信号 */
+  94:HW/EEPROM/I2C_Software/i2c_software.c **** bool I2C_GetSignal_IS_ACK(){
+ 378              		.loc 1 94 28 is_stmt 1 view -0
+ 379              		.cfi_startproc
+ 380              		@ args = 0, pretend = 0, frame = 0
+ 381              		@ frame_needed = 0, uses_anonymous_args = 0
+ 382 0000 70B5     		push	{r4, r5, r6, lr}
+ 383              	.LCFI8:
+ 384              		.cfi_def_cfa_offset 16
+ 385              		.cfi_offset 4, -16
+ 386              		.cfi_offset 5, -12
+ 387              		.cfi_offset 6, -8
+ 388              		.cfi_offset 14, -4
+  95:HW/EEPROM/I2C_Software/i2c_software.c ****     SDASet1(); SCLSet1();           // 接收信号之前要释放SDA控制权
+ 389              		.loc 1 95 5 view .LVU68
+ 390 0002 0A4C     		ldr	r4, .L34
+ 391 0004 8023     		movs	r3, #128
+ 392 0006 2361     		str	r3, [r4, #16]
+ 393              		.loc 1 95 16 view .LVU69
+ 394 0008 4025     		movs	r5, #64
+ 395 000a 2561     		str	r5, [r4, #16]
+  96:HW/EEPROM/I2C_Software/i2c_software.c ****     Signal_Delay();
+ 396              		.loc 1 96 5 view .LVU70
+ 397 000c 0220     		movs	r0, #2
+ 398 000e FFF7FEFF 		bl	delay_us
+ 399              	.LVL19:
+  97:HW/EEPROM/I2C_Software/i2c_software.c ****     bool ACKflag = (SDAGet() == 0); // 低电平为ACK，高电平为NO ACK
+ 400              		.loc 1 97 5 view .LVU71
+ 401              		.loc 1 97 21 is_stmt 0 view .LVU72
+ 402 0012 A368     		ldr	r3, [r4, #8]
+ 403              		.loc 1 97 10 view .LVU73
+ 404 0014 13F0800F 		tst	r3, #128
+ 405 0018 0CBF     		ite	eq
+ 406 001a 0126     		moveq	r6, #1
+ 407 001c 0026     		movne	r6, #0
+ 408              	.LVL20:
+  98:HW/EEPROM/I2C_Software/i2c_software.c ****     SCLSet0();
+ 409              		.loc 1 98 5 is_stmt 1 view .LVU74
+ 410 001e 6561     		str	r5, [r4, #20]
+  99:HW/EEPROM/I2C_Software/i2c_software.c ****     Signal_Delay();
+ 411              		.loc 1 99 5 view .LVU75
+ 412 0020 0220     		movs	r0, #2
+ 413 0022 FFF7FEFF 		bl	delay_us
+ 414              	.LVL21:
+ 100:HW/EEPROM/I2C_Software/i2c_software.c ****     return ACKflag;
+ 415              		.loc 1 100 5 view .LVU76
+ 101:HW/EEPROM/I2C_Software/i2c_software.c **** }
+ 416              		.loc 1 101 1 is_stmt 0 view .LVU77
+ 417 0026 3046     		mov	r0, r6
+ 418 0028 70BD     		pop	{r4, r5, r6, pc}
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 10
+
+
+ 419              	.LVL22:
+ 420              	.L35:
+ 421              		.loc 1 101 1 view .LVU78
+ 422 002a 00BF     		.align	2
+ 423              	.L34:
+ 424 002c 000C0140 		.word	1073810432
+ 425              		.cfi_endproc
+ 426              	.LFE38:
+ 428              		.section	.text.I2C_GetSignal_DataByte,"ax",%progbits
+ 429              		.align	1
+ 430              		.global	I2C_GetSignal_DataByte
+ 431              		.syntax unified
+ 432              		.thumb
+ 433              		.thumb_func
+ 435              	I2C_GetSignal_DataByte:
+ 436              	.LFB39:
+ 102:HW/EEPROM/I2C_Software/i2c_software.c **** 
+ 103:HW/EEPROM/I2C_Software/i2c_software.c **** /* 接收一个字节的数据信号 */
+ 104:HW/EEPROM/I2C_Software/i2c_software.c **** uint8_t I2C_GetSignal_DataByte(){
+ 437              		.loc 1 104 33 is_stmt 1 view -0
+ 438              		.cfi_startproc
+ 439              		@ args = 0, pretend = 0, frame = 0
+ 440              		@ frame_needed = 0, uses_anonymous_args = 0
+ 441 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 442              	.LCFI9:
+ 443              		.cfi_def_cfa_offset 24
+ 444              		.cfi_offset 3, -24
+ 445              		.cfi_offset 4, -20
+ 446              		.cfi_offset 5, -16
+ 447              		.cfi_offset 6, -12
+ 448              		.cfi_offset 7, -8
+ 449              		.cfi_offset 14, -4
+ 105:HW/EEPROM/I2C_Software/i2c_software.c ****     uint8_t data = 0;
+ 450              		.loc 1 105 5 view .LVU80
+ 451              	.LVL23:
+ 106:HW/EEPROM/I2C_Software/i2c_software.c ****     int i;
+ 452              		.loc 1 106 5 view .LVU81
+ 107:HW/EEPROM/I2C_Software/i2c_software.c ****     for(i = 7; i >= 0; --i){
+ 453              		.loc 1 107 5 view .LVU82
+ 454              		.loc 1 107 11 is_stmt 0 view .LVU83
+ 455 0002 0725     		movs	r5, #7
+ 105:HW/EEPROM/I2C_Software/i2c_software.c ****     uint8_t data = 0;
+ 456              		.loc 1 105 13 view .LVU84
+ 457 0004 0026     		movs	r6, #0
+ 458              		.loc 1 107 5 view .LVU85
+ 459 0006 12E0     		b	.L37
+ 460              	.LVL24:
+ 461              	.L38:
+ 108:HW/EEPROM/I2C_Software/i2c_software.c ****         SDASet1(); SCLSet1();       // 接收信号之前释放SDA控制权
+ 462              		.loc 1 108 9 is_stmt 1 discriminator 3 view .LVU86
+ 463 0008 0B4C     		ldr	r4, .L40
+ 464 000a 8023     		movs	r3, #128
+ 465 000c 2361     		str	r3, [r4, #16]
+ 466              		.loc 1 108 20 discriminator 3 view .LVU87
+ 467 000e 4027     		movs	r7, #64
+ 468 0010 2761     		str	r7, [r4, #16]
+ 109:HW/EEPROM/I2C_Software/i2c_software.c ****         Signal_Delay();
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 11
+
+
+ 469              		.loc 1 109 9 discriminator 3 view .LVU88
+ 470 0012 0220     		movs	r0, #2
+ 471 0014 FFF7FEFF 		bl	delay_us
+ 472              	.LVL25:
+ 110:HW/EEPROM/I2C_Software/i2c_software.c ****         data |= (SDAGet() << i);    // 从高位开始读取
+ 473              		.loc 1 110 9 discriminator 3 view .LVU89
+ 474              		.loc 1 110 18 is_stmt 0 discriminator 3 view .LVU90
+ 475 0018 A368     		ldr	r3, [r4, #8]
+ 476 001a C3F3C013 		ubfx	r3, r3, #7, #1
+ 477              		.loc 1 110 27 discriminator 3 view .LVU91
+ 478 001e AB40     		lsls	r3, r3, r5
+ 479              		.loc 1 110 14 discriminator 3 view .LVU92
+ 480 0020 1E43     		orrs	r6, r6, r3
+ 481              	.LVL26:
+ 482              		.loc 1 110 14 discriminator 3 view .LVU93
+ 483 0022 F6B2     		uxtb	r6, r6
+ 484              	.LVL27:
+ 111:HW/EEPROM/I2C_Software/i2c_software.c ****         SCLSet0();
+ 485              		.loc 1 111 9 is_stmt 1 discriminator 3 view .LVU94
+ 486 0024 6761     		str	r7, [r4, #20]
+ 112:HW/EEPROM/I2C_Software/i2c_software.c ****         Signal_Delay();
+ 487              		.loc 1 112 9 discriminator 3 view .LVU95
+ 488 0026 0220     		movs	r0, #2
+ 489 0028 FFF7FEFF 		bl	delay_us
+ 490              	.LVL28:
+ 107:HW/EEPROM/I2C_Software/i2c_software.c ****         SDASet1(); SCLSet1();       // 接收信号之前释放SDA控制权
+ 491              		.loc 1 107 24 discriminator 3 view .LVU96
+ 492 002c 013D     		subs	r5, r5, #1
+ 493              	.LVL29:
+ 494              	.L37:
+ 107:HW/EEPROM/I2C_Software/i2c_software.c ****         SDASet1(); SCLSet1();       // 接收信号之前释放SDA控制权
+ 495              		.loc 1 107 18 discriminator 1 view .LVU97
+ 496 002e 002D     		cmp	r5, #0
+ 497 0030 EADA     		bge	.L38
+ 113:HW/EEPROM/I2C_Software/i2c_software.c ****     }
+ 114:HW/EEPROM/I2C_Software/i2c_software.c ****     return data;
+ 498              		.loc 1 114 5 view .LVU98
+ 115:HW/EEPROM/I2C_Software/i2c_software.c **** }
+ 499              		.loc 1 115 1 is_stmt 0 view .LVU99
+ 500 0032 3046     		mov	r0, r6
+ 501 0034 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 502              	.LVL30:
+ 503              	.L41:
+ 504              		.loc 1 115 1 view .LVU100
+ 505 0036 00BF     		.align	2
+ 506              	.L40:
+ 507 0038 000C0140 		.word	1073810432
+ 508              		.cfi_endproc
+ 509              	.LFE39:
+ 511              		.section	.rodata.Check_EEPROM.str1.4,"aMS",%progbits,1
+ 512              		.align	2
+ 513              	.LC0:
+ 514 0000 4E6F7420 		.ascii	"Not Found EEPROM\000"
+ 514      466F756E 
+ 514      64204545 
+ 514      50524F4D 
+ 514      00
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 12
+
+
+ 515 0011 000000   		.align	2
+ 516              	.LC1:
+ 517 0014 25732C20 		.ascii	"%s, line: %d, function: %s\015\012\000"
+ 517      6C696E65 
+ 517      3A202564 
+ 517      2C206675 
+ 517      6E637469 
+ 518              		.section	.text.Check_EEPROM,"ax",%progbits
+ 519              		.align	1
+ 520              		.global	Check_EEPROM
+ 521              		.syntax unified
+ 522              		.thumb
+ 523              		.thumb_func
+ 525              	Check_EEPROM:
+ 526              	.LFB40:
+ 116:HW/EEPROM/I2C_Software/i2c_software.c **** 
+ 117:HW/EEPROM/I2C_Software/i2c_software.c **** /* 设备地址，0位根据读/写确定，1~3位从EEPROM电路图的A0~A2引脚确定，4~7位�
+ 118:HW/EEPROM/I2C_Software/i2c_software.c **** #define READ_ADDRESS    0B10100001
+ 119:HW/EEPROM/I2C_Software/i2c_software.c **** #define WRITE_ADDRESS   0B10100000
+ 120:HW/EEPROM/I2C_Software/i2c_software.c **** 
+ 121:HW/EEPROM/I2C_Software/i2c_software.c **** /* 串口初始化 */
+ 122:HW/EEPROM/I2C_Software/i2c_software.c **** extern void USART1_Init();
+ 123:HW/EEPROM/I2C_Software/i2c_software.c **** 
+ 124:HW/EEPROM/I2C_Software/i2c_software.c **** /* 应答检查，TODO: 报错后怎么结束进程？ */
+ 125:HW/EEPROM/I2C_Software/i2c_software.c **** #define CHECK_ACK(info) \
+ 126:HW/EEPROM/I2C_Software/i2c_software.c **** if(!I2C_GetSignal_IS_ACK()){ \
+ 127:HW/EEPROM/I2C_Software/i2c_software.c ****     fprintf(stderr, "%s, line: %d, function: %s\r\n", info, __LINE__, __FUNCTION__); \
+ 128:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Stop(); \
+ 129:HW/EEPROM/I2C_Software/i2c_software.c **** }
+ 130:HW/EEPROM/I2C_Software/i2c_software.c **** #define CHECK_NO_ACK(info) \
+ 131:HW/EEPROM/I2C_Software/i2c_software.c **** if(I2C_GetSignal_IS_ACK()){ \
+ 132:HW/EEPROM/I2C_Software/i2c_software.c ****     fprintf(stderr, "%s, line: %d, function: %s\r\n", info, __LINE__, __FUNCTION__); \
+ 133:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Stop(); \
+ 134:HW/EEPROM/I2C_Software/i2c_software.c **** }
+ 135:HW/EEPROM/I2C_Software/i2c_software.c **** 
+ 136:HW/EEPROM/I2C_Software/i2c_software.c **** /* 检测EEPROM是否存在 */
+ 137:HW/EEPROM/I2C_Software/i2c_software.c **** void Check_EEPROM(){
+ 527              		.loc 1 137 20 is_stmt 1 view -0
+ 528              		.cfi_startproc
+ 529              		@ args = 0, pretend = 0, frame = 0
+ 530              		@ frame_needed = 0, uses_anonymous_args = 0
+ 531 0000 00B5     		push	{lr}
+ 532              	.LCFI10:
+ 533              		.cfi_def_cfa_offset 4
+ 534              		.cfi_offset 14, -4
+ 535 0002 83B0     		sub	sp, sp, #12
+ 536              	.LCFI11:
+ 537              		.cfi_def_cfa_offset 16
+ 138:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Start();                 // 开始
+ 538              		.loc 1 138 5 view .LVU102
+ 539 0004 FFF7FEFF 		bl	I2C_SendSignal_Start
+ 540              	.LVL31:
+ 139:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(WRITE_ADDRESS); // 发送一个写地址（注意不能发送读地址�
+ 541              		.loc 1 139 5 view .LVU103
+ 542 0008 A020     		movs	r0, #160
+ 543 000a FFF7FEFF 		bl	I2C_SendSignal_DataByte
+ 544              	.LVL32:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 13
+
+
+ 140:HW/EEPROM/I2C_Software/i2c_software.c ****     CHECK_ACK("Not Found EEPROM");     // 检测EEPROM对读地址是否有响应
+ 545              		.loc 1 140 5 view .LVU104
+ 546 000e FFF7FEFF 		bl	I2C_GetSignal_IS_ACK
+ 547              	.LVL33:
+ 548 0012 20B1     		cbz	r0, .L45
+ 549              	.L43:
+ 550              		.loc 1 140 34 discriminator 3 view .LVU105
+ 141:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Stop();                  // 结束
+ 551              		.loc 1 141 5 discriminator 3 view .LVU106
+ 552 0014 FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 553              	.LVL34:
+ 142:HW/EEPROM/I2C_Software/i2c_software.c **** }
+ 554              		.loc 1 142 1 is_stmt 0 discriminator 3 view .LVU107
+ 555 0018 03B0     		add	sp, sp, #12
+ 556              	.LCFI12:
+ 557              		.cfi_remember_state
+ 558              		.cfi_def_cfa_offset 4
+ 559              		@ sp needed
+ 560 001a 5DF804FB 		ldr	pc, [sp], #4
+ 561              	.L45:
+ 562              	.LCFI13:
+ 563              		.cfi_restore_state
+ 140:HW/EEPROM/I2C_Software/i2c_software.c ****     CHECK_ACK("Not Found EEPROM");     // 检测EEPROM对读地址是否有响应
+ 564              		.loc 1 140 5 is_stmt 1 discriminator 1 view .LVU108
+ 565 001e 064B     		ldr	r3, .L46
+ 566 0020 1B68     		ldr	r3, [r3]
+ 567 0022 D868     		ldr	r0, [r3, #12]
+ 568 0024 054B     		ldr	r3, .L46+4
+ 569 0026 0093     		str	r3, [sp]
+ 570 0028 8C23     		movs	r3, #140
+ 571 002a 054A     		ldr	r2, .L46+8
+ 572 002c 0549     		ldr	r1, .L46+12
+ 573 002e FFF7FEFF 		bl	fprintf
+ 574              	.LVL35:
+ 140:HW/EEPROM/I2C_Software/i2c_software.c ****     CHECK_ACK("Not Found EEPROM");     // 检测EEPROM对读地址是否有响应
+ 575              		.loc 1 140 5 discriminator 1 view .LVU109
+ 576 0032 FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 577              	.LVL36:
+ 578 0036 EDE7     		b	.L43
+ 579              	.L47:
+ 580              		.align	2
+ 581              	.L46:
+ 582 0038 00000000 		.word	_impure_ptr
+ 583 003c 00000000 		.word	__FUNCTION__.4
+ 584 0040 00000000 		.word	.LC0
+ 585 0044 14000000 		.word	.LC1
+ 586              		.cfi_endproc
+ 587              	.LFE40:
+ 589              		.section	.rodata.EEPROM_Write_Byte.str1.4,"aMS",%progbits,1
+ 590              		.align	2
+ 591              	.LC2:
+ 592 0000 57726974 		.ascii	"Write Failed\000"
+ 592      65204661 
+ 592      696C6564 
+ 592      00
+ 593              		.section	.text.EEPROM_Write_Byte,"ax",%progbits
+ 594              		.align	1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 14
+
+
+ 595              		.global	EEPROM_Write_Byte
+ 596              		.syntax unified
+ 597              		.thumb
+ 598              		.thumb_func
+ 600              	EEPROM_Write_Byte:
+ 601              	.LVL37:
+ 602              	.LFB41:
+ 143:HW/EEPROM/I2C_Software/i2c_software.c **** 
+ 144:HW/EEPROM/I2C_Software/i2c_software.c **** /* 写入一个字节 */
+ 145:HW/EEPROM/I2C_Software/i2c_software.c **** void EEPROM_Write_Byte(uint8_t addr, uint8_t data){
+ 603              		.loc 1 145 51 view -0
+ 604              		.cfi_startproc
+ 605              		@ args = 0, pretend = 0, frame = 0
+ 606              		@ frame_needed = 0, uses_anonymous_args = 0
+ 607              		.loc 1 145 51 is_stmt 0 view .LVU111
+ 608 0000 30B5     		push	{r4, r5, lr}
+ 609              	.LCFI14:
+ 610              		.cfi_def_cfa_offset 12
+ 611              		.cfi_offset 4, -12
+ 612              		.cfi_offset 5, -8
+ 613              		.cfi_offset 14, -4
+ 614 0002 83B0     		sub	sp, sp, #12
+ 615              	.LCFI15:
+ 616              		.cfi_def_cfa_offset 24
+ 617 0004 0546     		mov	r5, r0
+ 618 0006 0C46     		mov	r4, r1
+ 146:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Start();
+ 619              		.loc 1 146 5 is_stmt 1 view .LVU112
+ 620 0008 FFF7FEFF 		bl	I2C_SendSignal_Start
+ 621              	.LVL38:
+ 147:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(WRITE_ADDRESS);
+ 622              		.loc 1 147 5 view .LVU113
+ 623 000c A020     		movs	r0, #160
+ 624 000e FFF7FEFF 		bl	I2C_SendSignal_DataByte
+ 625              	.LVL39:
+ 148:HW/EEPROM/I2C_Software/i2c_software.c ****     CHECK_ACK("Write Failed");
+ 626              		.loc 1 148 5 view .LVU114
+ 627 0012 FFF7FEFF 		bl	I2C_GetSignal_IS_ACK
+ 628              	.LVL40:
+ 629 0016 90B1     		cbz	r0, .L53
+ 630              	.L49:
+ 631              		.loc 1 148 30 discriminator 3 view .LVU115
+ 149:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(addr);  // 写入地址
+ 632              		.loc 1 149 5 discriminator 3 view .LVU116
+ 633 0018 2846     		mov	r0, r5
+ 634 001a FFF7FEFF 		bl	I2C_SendSignal_DataByte
+ 635              	.LVL41:
+ 150:HW/EEPROM/I2C_Software/i2c_software.c ****     CHECK_ACK("Write Failed");
+ 636              		.loc 1 150 5 discriminator 3 view .LVU117
+ 637 001e FFF7FEFF 		bl	I2C_GetSignal_IS_ACK
+ 638              	.LVL42:
+ 639 0022 C8B1     		cbz	r0, .L54
+ 640              	.L50:
+ 641              		.loc 1 150 30 discriminator 3 view .LVU118
+ 151:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(data);   // 写入内容
+ 642              		.loc 1 151 5 discriminator 3 view .LVU119
+ 643 0024 2046     		mov	r0, r4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 15
+
+
+ 644 0026 FFF7FEFF 		bl	I2C_SendSignal_DataByte
+ 645              	.LVL43:
+ 152:HW/EEPROM/I2C_Software/i2c_software.c ****     CHECK_ACK("Write Failed");
+ 646              		.loc 1 152 5 discriminator 3 view .LVU120
+ 647 002a FFF7FEFF 		bl	I2C_GetSignal_IS_ACK
+ 648              	.LVL44:
+ 649 002e 00B3     		cbz	r0, .L55
+ 650              	.L51:
+ 651              		.loc 1 152 30 discriminator 3 view .LVU121
+ 153:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Stop();
+ 652              		.loc 1 153 5 discriminator 3 view .LVU122
+ 653 0030 FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 654              	.LVL45:
+ 154:HW/EEPROM/I2C_Software/i2c_software.c **** 
+ 155:HW/EEPROM/I2C_Software/i2c_software.c ****     WR_Delay();
+ 655              		.loc 1 155 5 discriminator 3 view .LVU123
+ 656 0034 0520     		movs	r0, #5
+ 657 0036 FFF7FEFF 		bl	delay_ms
+ 658              	.LVL46:
+ 156:HW/EEPROM/I2C_Software/i2c_software.c **** }
+ 659              		.loc 1 156 1 is_stmt 0 discriminator 3 view .LVU124
+ 660 003a 03B0     		add	sp, sp, #12
+ 661              	.LCFI16:
+ 662              		.cfi_remember_state
+ 663              		.cfi_def_cfa_offset 12
+ 664              		@ sp needed
+ 665 003c 30BD     		pop	{r4, r5, pc}
+ 666              	.L53:
+ 667              	.LCFI17:
+ 668              		.cfi_restore_state
+ 148:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(addr);  // 写入地址
+ 669              		.loc 1 148 5 is_stmt 1 discriminator 1 view .LVU125
+ 670 003e 134B     		ldr	r3, .L56
+ 671 0040 1B68     		ldr	r3, [r3]
+ 672 0042 D868     		ldr	r0, [r3, #12]
+ 673 0044 124B     		ldr	r3, .L56+4
+ 674 0046 0093     		str	r3, [sp]
+ 675 0048 9423     		movs	r3, #148
+ 676 004a 124A     		ldr	r2, .L56+8
+ 677 004c 1249     		ldr	r1, .L56+12
+ 678 004e FFF7FEFF 		bl	fprintf
+ 679              	.LVL47:
+ 148:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(addr);  // 写入地址
+ 680              		.loc 1 148 5 discriminator 1 view .LVU126
+ 681 0052 FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 682              	.LVL48:
+ 683 0056 DFE7     		b	.L49
+ 684              	.L54:
+ 150:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(data);   // 写入内容
+ 685              		.loc 1 150 5 discriminator 1 view .LVU127
+ 686 0058 0C4B     		ldr	r3, .L56
+ 687 005a 1B68     		ldr	r3, [r3]
+ 688 005c D868     		ldr	r0, [r3, #12]
+ 689 005e 0C4B     		ldr	r3, .L56+4
+ 690 0060 0093     		str	r3, [sp]
+ 691 0062 9623     		movs	r3, #150
+ 692 0064 0B4A     		ldr	r2, .L56+8
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 16
+
+
+ 693 0066 0C49     		ldr	r1, .L56+12
+ 694 0068 FFF7FEFF 		bl	fprintf
+ 695              	.LVL49:
+ 150:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(data);   // 写入内容
+ 696              		.loc 1 150 5 discriminator 1 view .LVU128
+ 697 006c FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 698              	.LVL50:
+ 699 0070 D8E7     		b	.L50
+ 700              	.L55:
+ 152:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Stop();
+ 701              		.loc 1 152 5 discriminator 1 view .LVU129
+ 702 0072 064B     		ldr	r3, .L56
+ 703 0074 1B68     		ldr	r3, [r3]
+ 704 0076 D868     		ldr	r0, [r3, #12]
+ 705 0078 054B     		ldr	r3, .L56+4
+ 706 007a 0093     		str	r3, [sp]
+ 707 007c 9823     		movs	r3, #152
+ 708 007e 054A     		ldr	r2, .L56+8
+ 709 0080 0549     		ldr	r1, .L56+12
+ 710 0082 FFF7FEFF 		bl	fprintf
+ 711              	.LVL51:
+ 152:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Stop();
+ 712              		.loc 1 152 5 discriminator 1 view .LVU130
+ 713 0086 FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 714              	.LVL52:
+ 715 008a D1E7     		b	.L51
+ 716              	.L57:
+ 717              		.align	2
+ 718              	.L56:
+ 719 008c 00000000 		.word	_impure_ptr
+ 720 0090 00000000 		.word	__FUNCTION__.3
+ 721 0094 00000000 		.word	.LC2
+ 722 0098 14000000 		.word	.LC1
+ 723              		.cfi_endproc
+ 724              	.LFE41:
+ 726              		.section	.rodata.EEPROM_Read_Byte.str1.4,"aMS",%progbits,1
+ 727              		.align	2
+ 728              	.LC3:
+ 729 0000 52656164 		.ascii	"Read Failed\000"
+ 729      20466169 
+ 729      6C656400 
+ 730              		.section	.text.EEPROM_Read_Byte,"ax",%progbits
+ 731              		.align	1
+ 732              		.global	EEPROM_Read_Byte
+ 733              		.syntax unified
+ 734              		.thumb
+ 735              		.thumb_func
+ 737              	EEPROM_Read_Byte:
+ 738              	.LVL53:
+ 739              	.LFB42:
+ 157:HW/EEPROM/I2C_Software/i2c_software.c **** 
+ 158:HW/EEPROM/I2C_Software/i2c_software.c **** /* 读出一个字节 */
+ 159:HW/EEPROM/I2C_Software/i2c_software.c **** uint8_t EEPROM_Read_Byte(uint8_t addr){
+ 740              		.loc 1 159 39 view -0
+ 741              		.cfi_startproc
+ 742              		@ args = 0, pretend = 0, frame = 0
+ 743              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 17
+
+
+ 744              		.loc 1 159 39 is_stmt 0 view .LVU132
+ 745 0000 10B5     		push	{r4, lr}
+ 746              	.LCFI18:
+ 747              		.cfi_def_cfa_offset 8
+ 748              		.cfi_offset 4, -8
+ 749              		.cfi_offset 14, -4
+ 750 0002 82B0     		sub	sp, sp, #8
+ 751              	.LCFI19:
+ 752              		.cfi_def_cfa_offset 16
+ 753 0004 0446     		mov	r4, r0
+ 160:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Start();
+ 754              		.loc 1 160 5 is_stmt 1 view .LVU133
+ 755 0006 FFF7FEFF 		bl	I2C_SendSignal_Start
+ 756              	.LVL54:
+ 161:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(WRITE_ADDRESS);
+ 757              		.loc 1 161 5 view .LVU134
+ 758 000a A020     		movs	r0, #160
+ 759 000c FFF7FEFF 		bl	I2C_SendSignal_DataByte
+ 760              	.LVL55:
+ 162:HW/EEPROM/I2C_Software/i2c_software.c ****     CHECK_ACK("Read Failed");
+ 761              		.loc 1 162 5 view .LVU135
+ 762 0010 FFF7FEFF 		bl	I2C_GetSignal_IS_ACK
+ 763              	.LVL56:
+ 764 0014 E0B1     		cbz	r0, .L64
+ 765              	.L59:
+ 766              		.loc 1 162 29 discriminator 3 view .LVU136
+ 163:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(addr);  // 读取地址
+ 767              		.loc 1 163 5 discriminator 3 view .LVU137
+ 768 0016 2046     		mov	r0, r4
+ 769 0018 FFF7FEFF 		bl	I2C_SendSignal_DataByte
+ 770              	.LVL57:
+ 164:HW/EEPROM/I2C_Software/i2c_software.c ****     CHECK_ACK("Read Failed");
+ 771              		.loc 1 164 5 discriminator 3 view .LVU138
+ 772 001c FFF7FEFF 		bl	I2C_GetSignal_IS_ACK
+ 773              	.LVL58:
+ 774 0020 18B3     		cbz	r0, .L65
+ 775              	.L60:
+ 776              		.loc 1 164 29 discriminator 3 view .LVU139
+ 165:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Start();
+ 777              		.loc 1 165 5 discriminator 3 view .LVU140
+ 778 0022 FFF7FEFF 		bl	I2C_SendSignal_Start
+ 779              	.LVL59:
+ 166:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(READ_ADDRESS);
+ 780              		.loc 1 166 5 discriminator 3 view .LVU141
+ 781 0026 A120     		movs	r0, #161
+ 782 0028 FFF7FEFF 		bl	I2C_SendSignal_DataByte
+ 783              	.LVL60:
+ 167:HW/EEPROM/I2C_Software/i2c_software.c ****     CHECK_ACK("Read Failed");
+ 784              		.loc 1 167 5 discriminator 3 view .LVU142
+ 785 002c FFF7FEFF 		bl	I2C_GetSignal_IS_ACK
+ 786              	.LVL61:
+ 787 0030 40B3     		cbz	r0, .L66
+ 788              	.L61:
+ 789              		.loc 1 167 29 discriminator 3 view .LVU143
+ 168:HW/EEPROM/I2C_Software/i2c_software.c ****     uint8_t data = I2C_GetSignal_DataByte();
+ 790              		.loc 1 168 5 discriminator 3 view .LVU144
+ 791              		.loc 1 168 20 is_stmt 0 discriminator 3 view .LVU145
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 18
+
+
+ 792 0032 FFF7FEFF 		bl	I2C_GetSignal_DataByte
+ 793              	.LVL62:
+ 794 0036 0446     		mov	r4, r0
+ 795              	.LVL63:
+ 169:HW/EEPROM/I2C_Software/i2c_software.c ****     CHECK_NO_ACK("Read Failed");
+ 796              		.loc 1 169 5 is_stmt 1 discriminator 3 view .LVU146
+ 797 0038 FFF7FEFF 		bl	I2C_GetSignal_IS_ACK
+ 798              	.LVL64:
+ 799 003c 0028     		cmp	r0, #0
+ 800 003e 2ED1     		bne	.L67
+ 801              	.L62:
+ 802              		.loc 1 169 32 discriminator 3 view .LVU147
+ 170:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Stop();
+ 803              		.loc 1 170 5 discriminator 3 view .LVU148
+ 804 0040 FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 805              	.LVL65:
+ 171:HW/EEPROM/I2C_Software/i2c_software.c **** 
+ 172:HW/EEPROM/I2C_Software/i2c_software.c ****     WR_Delay();
+ 806              		.loc 1 172 5 discriminator 3 view .LVU149
+ 807 0044 0520     		movs	r0, #5
+ 808 0046 FFF7FEFF 		bl	delay_ms
+ 809              	.LVL66:
+ 173:HW/EEPROM/I2C_Software/i2c_software.c ****     return data;
+ 810              		.loc 1 173 5 discriminator 3 view .LVU150
+ 174:HW/EEPROM/I2C_Software/i2c_software.c **** }
+ 811              		.loc 1 174 1 is_stmt 0 discriminator 3 view .LVU151
+ 812 004a 2046     		mov	r0, r4
+ 813 004c 02B0     		add	sp, sp, #8
+ 814              	.LCFI20:
+ 815              		.cfi_remember_state
+ 816              		.cfi_def_cfa_offset 8
+ 817              		@ sp needed
+ 818 004e 10BD     		pop	{r4, pc}
+ 819              	.LVL67:
+ 820              	.L64:
+ 821              	.LCFI21:
+ 822              		.cfi_restore_state
+ 162:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(addr);  // 读取地址
+ 823              		.loc 1 162 5 is_stmt 1 discriminator 1 view .LVU152
+ 824 0050 194B     		ldr	r3, .L68
+ 825 0052 1B68     		ldr	r3, [r3]
+ 826 0054 D868     		ldr	r0, [r3, #12]
+ 827 0056 194B     		ldr	r3, .L68+4
+ 828 0058 0093     		str	r3, [sp]
+ 829 005a A223     		movs	r3, #162
+ 830 005c 184A     		ldr	r2, .L68+8
+ 831 005e 1949     		ldr	r1, .L68+12
+ 832 0060 FFF7FEFF 		bl	fprintf
+ 833              	.LVL68:
+ 162:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(addr);  // 读取地址
+ 834              		.loc 1 162 5 discriminator 1 view .LVU153
+ 835 0064 FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 836              	.LVL69:
+ 837 0068 D5E7     		b	.L59
+ 838              	.L65:
+ 164:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Start();
+ 839              		.loc 1 164 5 discriminator 1 view .LVU154
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 19
+
+
+ 840 006a 134B     		ldr	r3, .L68
+ 841 006c 1B68     		ldr	r3, [r3]
+ 842 006e D868     		ldr	r0, [r3, #12]
+ 843 0070 124B     		ldr	r3, .L68+4
+ 844 0072 0093     		str	r3, [sp]
+ 845 0074 A423     		movs	r3, #164
+ 846 0076 124A     		ldr	r2, .L68+8
+ 847 0078 1249     		ldr	r1, .L68+12
+ 848 007a FFF7FEFF 		bl	fprintf
+ 849              	.LVL70:
+ 164:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Start();
+ 850              		.loc 1 164 5 discriminator 1 view .LVU155
+ 851 007e FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 852              	.LVL71:
+ 853 0082 CEE7     		b	.L60
+ 854              	.L66:
+ 167:HW/EEPROM/I2C_Software/i2c_software.c ****     uint8_t data = I2C_GetSignal_DataByte();
+ 855              		.loc 1 167 5 discriminator 1 view .LVU156
+ 856 0084 0C4B     		ldr	r3, .L68
+ 857 0086 1B68     		ldr	r3, [r3]
+ 858 0088 D868     		ldr	r0, [r3, #12]
+ 859 008a 0C4B     		ldr	r3, .L68+4
+ 860 008c 0093     		str	r3, [sp]
+ 861 008e A723     		movs	r3, #167
+ 862 0090 0B4A     		ldr	r2, .L68+8
+ 863 0092 0C49     		ldr	r1, .L68+12
+ 864 0094 FFF7FEFF 		bl	fprintf
+ 865              	.LVL72:
+ 167:HW/EEPROM/I2C_Software/i2c_software.c ****     uint8_t data = I2C_GetSignal_DataByte();
+ 866              		.loc 1 167 5 discriminator 1 view .LVU157
+ 867 0098 FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 868              	.LVL73:
+ 869 009c C9E7     		b	.L61
+ 870              	.LVL74:
+ 871              	.L67:
+ 169:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Stop();
+ 872              		.loc 1 169 5 discriminator 1 view .LVU158
+ 873 009e 064B     		ldr	r3, .L68
+ 874 00a0 1B68     		ldr	r3, [r3]
+ 875 00a2 D868     		ldr	r0, [r3, #12]
+ 876 00a4 054B     		ldr	r3, .L68+4
+ 877 00a6 0093     		str	r3, [sp]
+ 878 00a8 A923     		movs	r3, #169
+ 879 00aa 054A     		ldr	r2, .L68+8
+ 880 00ac 0549     		ldr	r1, .L68+12
+ 881 00ae FFF7FEFF 		bl	fprintf
+ 882              	.LVL75:
+ 169:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Stop();
+ 883              		.loc 1 169 5 discriminator 1 view .LVU159
+ 884 00b2 FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 885              	.LVL76:
+ 886 00b6 C3E7     		b	.L62
+ 887              	.L69:
+ 888              		.align	2
+ 889              	.L68:
+ 890 00b8 00000000 		.word	_impure_ptr
+ 891 00bc 00000000 		.word	__FUNCTION__.2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 20
+
+
+ 892 00c0 00000000 		.word	.LC3
+ 893 00c4 14000000 		.word	.LC1
+ 894              		.cfi_endproc
+ 895              	.LFE42:
+ 897              		.section	.rodata.EEPROM_Write_Sequential_IS.str1.4,"aMS",%progbits,1
+ 898              		.align	2
+ 899              	.LC4:
+ 900 0000 57726974 		.ascii	"Write bytes overflowed, line: %d, function: %s\015\012"
+ 900      65206279 
+ 900      74657320 
+ 900      6F766572 
+ 900      666C6F77 
+ 901 0030 00       		.ascii	"\000"
+ 902              		.section	.text.EEPROM_Write_Sequential_IS,"ax",%progbits
+ 903              		.align	1
+ 904              		.global	EEPROM_Write_Sequential_IS
+ 905              		.syntax unified
+ 906              		.thumb
+ 907              		.thumb_func
+ 909              	EEPROM_Write_Sequential_IS:
+ 910              	.LVL77:
+ 911              	.LFB43:
+ 175:HW/EEPROM/I2C_Software/i2c_software.c **** 
+ 176:HW/EEPROM/I2C_Software/i2c_software.c **** /* 写入多个数据 */
+ 177:HW/EEPROM/I2C_Software/i2c_software.c **** void EEPROM_Write_Sequential_IS(uint8_t addr, uint8_t* dataPtr, uint8_t dataLen){
+ 912              		.loc 1 177 81 view -0
+ 913              		.cfi_startproc
+ 914              		@ args = 0, pretend = 0, frame = 0
+ 915              		@ frame_needed = 0, uses_anonymous_args = 0
+ 916              		.loc 1 177 81 is_stmt 0 view .LVU161
+ 917 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 918              	.LCFI22:
+ 919              		.cfi_def_cfa_offset 36
+ 920              		.cfi_offset 4, -36
+ 921              		.cfi_offset 5, -32
+ 922              		.cfi_offset 6, -28
+ 923              		.cfi_offset 7, -24
+ 924              		.cfi_offset 8, -20
+ 925              		.cfi_offset 9, -16
+ 926              		.cfi_offset 10, -12
+ 927              		.cfi_offset 11, -8
+ 928              		.cfi_offset 14, -4
+ 929 0004 83B0     		sub	sp, sp, #12
+ 930              	.LCFI23:
+ 931              		.cfi_def_cfa_offset 48
+ 932 0006 8246     		mov	r10, r0
+ 933 0008 0F46     		mov	r7, r1
+ 934 000a 1646     		mov	r6, r2
+ 178:HW/EEPROM/I2C_Software/i2c_software.c ****     if((uint16_t)addr + (uint16_t)dataLen > 0XFF)
+ 935              		.loc 1 178 5 is_stmt 1 view .LVU162
+ 936              		.loc 1 178 23 is_stmt 0 view .LVU163
+ 937 000c 8318     		adds	r3, r0, r2
+ 938              		.loc 1 178 7 view .LVU164
+ 939 000e FF2B     		cmp	r3, #255
+ 940 0010 18DC     		bgt	.L87
+ 941              	.LVL78:
+ 942              	.L71:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 21
+
+
+ 179:HW/EEPROM/I2C_Software/i2c_software.c ****         fprintf(stderr, "Write bytes overflowed, line: %d, function: %s\r\n", __LINE__, __FUNCTION_
+ 180:HW/EEPROM/I2C_Software/i2c_software.c ****     /* 写到addr对齐page */
+ 181:HW/EEPROM/I2C_Software/i2c_software.c **** #define MIN(a, b) (a < b)? a: b 
+ 182:HW/EEPROM/I2C_Software/i2c_software.c ****     uint8_t count = MIN(8 - addr % 8, dataLen);
+ 943              		.loc 1 182 5 is_stmt 1 view .LVU165
+ 944              		.loc 1 182 21 is_stmt 0 view .LVU166
+ 945 0012 0AF00709 		and	r9, r10, #7
+ 946 0016 C9F10809 		rsb	r9, r9, #8
+ 947 001a B145     		cmp	r9, r6
+ 948 001c A8BF     		it	ge
+ 949 001e B146     		movge	r9, r6
+ 950              		.loc 1 182 13 view .LVU167
+ 951 0020 5FFA89F5 		uxtb	r5, r9
+ 952              	.LVL79:
+ 183:HW/EEPROM/I2C_Software/i2c_software.c ****     uint8_t idx;
+ 953              		.loc 1 183 5 is_stmt 1 view .LVU168
+ 184:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Start();
+ 954              		.loc 1 184 5 view .LVU169
+ 955 0024 FFF7FEFF 		bl	I2C_SendSignal_Start
+ 956              	.LVL80:
+ 185:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(WRITE_ADDRESS);
+ 957              		.loc 1 185 5 view .LVU170
+ 958 0028 A020     		movs	r0, #160
+ 959 002a FFF7FEFF 		bl	I2C_SendSignal_DataByte
+ 960              	.LVL81:
+ 186:HW/EEPROM/I2C_Software/i2c_software.c ****     CHECK_ACK("Write Failed");
+ 961              		.loc 1 186 5 view .LVU171
+ 962 002e FFF7FEFF 		bl	I2C_GetSignal_IS_ACK
+ 963              	.LVL82:
+ 964 0032 80B1     		cbz	r0, .L88
+ 965              	.L72:
+ 966              		.loc 1 186 30 discriminator 3 view .LVU172
+ 187:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(addr);  // 写入地址
+ 967              		.loc 1 187 5 discriminator 3 view .LVU173
+ 968 0034 5046     		mov	r0, r10
+ 969 0036 FFF7FEFF 		bl	I2C_SendSignal_DataByte
+ 970              	.LVL83:
+ 188:HW/EEPROM/I2C_Software/i2c_software.c ****     CHECK_ACK("Write Failed");
+ 971              		.loc 1 188 5 discriminator 3 view .LVU174
+ 972 003a FFF7FEFF 		bl	I2C_GetSignal_IS_ACK
+ 973              	.LVL84:
+ 974 003e B8B1     		cbz	r0, .L89
+ 975              	.L73:
+ 177:HW/EEPROM/I2C_Software/i2c_software.c ****     if((uint16_t)addr + (uint16_t)dataLen > 0XFF)
+ 976              		.loc 1 177 81 is_stmt 0 discriminator 2 view .LVU175
+ 977 0040 0024     		movs	r4, #0
+ 978 0042 24E0     		b	.L75
+ 979              	.LVL85:
+ 980              	.L87:
+ 179:HW/EEPROM/I2C_Software/i2c_software.c ****     /* 写到addr对齐page */
+ 981              		.loc 1 179 9 is_stmt 1 view .LVU176
+ 179:HW/EEPROM/I2C_Software/i2c_software.c ****     /* 写到addr对齐page */
+ 982              		.loc 1 179 17 is_stmt 0 view .LVU177
+ 983 0044 544B     		ldr	r3, .L94
+ 984 0046 1868     		ldr	r0, [r3]
+ 985              	.LVL86:
+ 179:HW/EEPROM/I2C_Software/i2c_software.c ****     /* 写到addr对齐page */
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 22
+
+
+ 986              		.loc 1 179 9 view .LVU178
+ 987 0048 544B     		ldr	r3, .L94+4
+ 988 004a B322     		movs	r2, #179
+ 989              	.LVL87:
+ 179:HW/EEPROM/I2C_Software/i2c_software.c ****     /* 写到addr对齐page */
+ 990              		.loc 1 179 9 view .LVU179
+ 991 004c 5449     		ldr	r1, .L94+8
+ 992              	.LVL88:
+ 179:HW/EEPROM/I2C_Software/i2c_software.c ****     /* 写到addr对齐page */
+ 993              		.loc 1 179 9 view .LVU180
+ 994 004e C068     		ldr	r0, [r0, #12]
+ 995 0050 FFF7FEFF 		bl	fprintf
+ 996              	.LVL89:
+ 997 0054 DDE7     		b	.L71
+ 998              	.LVL90:
+ 999              	.L88:
+ 186:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(addr);  // 写入地址
+ 1000              		.loc 1 186 5 is_stmt 1 discriminator 1 view .LVU181
+ 1001 0056 504B     		ldr	r3, .L94
+ 1002 0058 1B68     		ldr	r3, [r3]
+ 1003 005a D868     		ldr	r0, [r3, #12]
+ 1004 005c 4F4B     		ldr	r3, .L94+4
+ 1005 005e 0093     		str	r3, [sp]
+ 1006 0060 BA23     		movs	r3, #186
+ 1007 0062 504A     		ldr	r2, .L94+12
+ 1008 0064 5049     		ldr	r1, .L94+16
+ 1009 0066 FFF7FEFF 		bl	fprintf
+ 1010              	.LVL91:
+ 186:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(addr);  // 写入地址
+ 1011              		.loc 1 186 5 discriminator 1 view .LVU182
+ 1012 006a FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 1013              	.LVL92:
+ 1014 006e E1E7     		b	.L72
+ 1015              	.L89:
+ 1016              		.loc 1 188 5 discriminator 1 view .LVU183
+ 1017 0070 494B     		ldr	r3, .L94
+ 1018 0072 1B68     		ldr	r3, [r3]
+ 1019 0074 D868     		ldr	r0, [r3, #12]
+ 1020 0076 494B     		ldr	r3, .L94+4
+ 1021 0078 0093     		str	r3, [sp]
+ 1022 007a BC23     		movs	r3, #188
+ 1023 007c 494A     		ldr	r2, .L94+12
+ 1024 007e 4A49     		ldr	r1, .L94+16
+ 1025 0080 FFF7FEFF 		bl	fprintf
+ 1026              	.LVL93:
+ 1027              		.loc 1 188 5 discriminator 1 view .LVU184
+ 1028 0084 FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 1029              	.LVL94:
+ 1030 0088 DAE7     		b	.L73
+ 1031              	.LVL95:
+ 1032              	.L74:
+ 189:HW/EEPROM/I2C_Software/i2c_software.c ****     for(idx = 0; idx < count; ++idx){
+ 190:HW/EEPROM/I2C_Software/i2c_software.c ****         I2C_SendSignal_DataByte(dataPtr[idx]);  // 写入数据
+ 191:HW/EEPROM/I2C_Software/i2c_software.c ****         CHECK_ACK("Write Failed");
+ 1033              		.loc 1 191 34 discriminator 3 view .LVU185
+ 189:HW/EEPROM/I2C_Software/i2c_software.c ****     for(idx = 0; idx < count; ++idx){
+ 1034              		.loc 1 189 31 discriminator 3 view .LVU186
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 23
+
+
+ 1035 008a 0134     		adds	r4, r4, #1
+ 1036              	.LVL96:
+ 189:HW/EEPROM/I2C_Software/i2c_software.c ****     for(idx = 0; idx < count; ++idx){
+ 1037              		.loc 1 189 31 is_stmt 0 discriminator 3 view .LVU187
+ 1038 008c E4B2     		uxtb	r4, r4
+ 1039              	.LVL97:
+ 1040              	.L75:
+ 189:HW/EEPROM/I2C_Software/i2c_software.c ****     for(idx = 0; idx < count; ++idx){
+ 1041              		.loc 1 189 22 is_stmt 1 discriminator 2 view .LVU188
+ 1042 008e AC42     		cmp	r4, r5
+ 1043 0090 13D2     		bcs	.L90
+ 190:HW/EEPROM/I2C_Software/i2c_software.c ****         CHECK_ACK("Write Failed");
+ 1044              		.loc 1 190 9 view .LVU189
+ 1045 0092 385D     		ldrb	r0, [r7, r4]	@ zero_extendqisi2
+ 1046 0094 FFF7FEFF 		bl	I2C_SendSignal_DataByte
+ 1047              	.LVL98:
+ 1048              		.loc 1 191 9 view .LVU190
+ 1049 0098 FFF7FEFF 		bl	I2C_GetSignal_IS_ACK
+ 1050              	.LVL99:
+ 1051 009c 0028     		cmp	r0, #0
+ 1052 009e F4D1     		bne	.L74
+ 1053              		.loc 1 191 9 discriminator 1 view .LVU191
+ 1054 00a0 3D4B     		ldr	r3, .L94
+ 1055 00a2 1B68     		ldr	r3, [r3]
+ 1056 00a4 D868     		ldr	r0, [r3, #12]
+ 1057 00a6 3D4B     		ldr	r3, .L94+4
+ 1058 00a8 0093     		str	r3, [sp]
+ 1059 00aa BF23     		movs	r3, #191
+ 1060 00ac 3D4A     		ldr	r2, .L94+12
+ 1061 00ae 3E49     		ldr	r1, .L94+16
+ 1062 00b0 FFF7FEFF 		bl	fprintf
+ 1063              	.LVL100:
+ 1064              		.loc 1 191 9 discriminator 1 view .LVU192
+ 1065 00b4 FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 1066              	.LVL101:
+ 1067 00b8 E7E7     		b	.L74
+ 1068              	.L90:
+ 192:HW/EEPROM/I2C_Software/i2c_software.c ****     }
+ 193:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Stop();
+ 1069              		.loc 1 193 5 view .LVU193
+ 1070 00ba FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 1071              	.LVL102:
+ 194:HW/EEPROM/I2C_Software/i2c_software.c ****     WR_Delay();
+ 1072              		.loc 1 194 5 view .LVU194
+ 1073 00be 0520     		movs	r0, #5
+ 1074 00c0 FFF7FEFF 		bl	delay_ms
+ 1075              	.LVL103:
+ 195:HW/EEPROM/I2C_Software/i2c_software.c ****     addr += count;
+ 1076              		.loc 1 195 5 view .LVU195
+ 1077              		.loc 1 195 10 is_stmt 0 view .LVU196
+ 1078 00c4 AA44     		add	r10, r10, r5
+ 1079 00c6 5FFA8AFA 		uxtb	r10, r10
+ 1080              	.LVL104:
+ 196:HW/EEPROM/I2C_Software/i2c_software.c ****     dataPtr += count;
+ 1081              		.loc 1 196 5 is_stmt 1 view .LVU197
+ 1082              		.loc 1 196 13 is_stmt 0 view .LVU198
+ 1083 00ca 5FFA89F9 		uxtb	r9, r9
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 24
+
+
+ 1084              	.LVL105:
+ 197:HW/EEPROM/I2C_Software/i2c_software.c ****     dataLen -= count;
+ 1085              		.loc 1 197 5 is_stmt 1 view .LVU199
+ 1086              		.loc 1 197 13 is_stmt 0 view .LVU200
+ 1087 00ce 761B     		subs	r6, r6, r5
+ 1088 00d0 F6B2     		uxtb	r6, r6
+ 1089              	.LVL106:
+ 198:HW/EEPROM/I2C_Software/i2c_software.c **** 
+ 199:HW/EEPROM/I2C_Software/i2c_software.c ****     /* 把剩下的数据写入 */
+ 200:HW/EEPROM/I2C_Software/i2c_software.c ****     uint8_t pages = (dataLen + 7) / 8;
+ 1090              		.loc 1 200 5 is_stmt 1 view .LVU201
+ 1091              		.loc 1 200 35 is_stmt 0 view .LVU202
+ 1092 00d2 06F1070B 		add	fp, r6, #7
+ 1093              		.loc 1 200 13 view .LVU203
+ 1094 00d6 4FEADB0B 		lsr	fp, fp, #3
+ 1095              	.LVL107:
+ 201:HW/EEPROM/I2C_Software/i2c_software.c ****     uint8_t p;
+ 1096              		.loc 1 201 5 is_stmt 1 view .LVU204
+ 202:HW/EEPROM/I2C_Software/i2c_software.c ****     for(p = 0; p < pages; ++p){
+ 1097              		.loc 1 202 5 view .LVU205
+ 1098              		.loc 1 202 11 is_stmt 0 view .LVU206
+ 1099 00da 4FF00008 		mov	r8, #0
+ 1100              		.loc 1 202 5 view .LVU207
+ 1101 00de 3FE0     		b	.L78
+ 1102              	.LVL108:
+ 1103              	.L92:
+ 203:HW/EEPROM/I2C_Software/i2c_software.c ****         I2C_SendSignal_Start();
+ 204:HW/EEPROM/I2C_Software/i2c_software.c ****         I2C_SendSignal_DataByte(WRITE_ADDRESS);
+ 205:HW/EEPROM/I2C_Software/i2c_software.c ****         CHECK_ACK("Write Failed");
+ 1104              		.loc 1 205 9 is_stmt 1 discriminator 1 view .LVU208
+ 1105 00e0 2D4B     		ldr	r3, .L94
+ 1106 00e2 1B68     		ldr	r3, [r3]
+ 1107 00e4 D868     		ldr	r0, [r3, #12]
+ 1108 00e6 2D4B     		ldr	r3, .L94+4
+ 1109 00e8 0093     		str	r3, [sp]
+ 1110 00ea CD23     		movs	r3, #205
+ 1111 00ec 2D4A     		ldr	r2, .L94+12
+ 1112 00ee 2E49     		ldr	r1, .L94+16
+ 1113 00f0 FFF7FEFF 		bl	fprintf
+ 1114              	.LVL109:
+ 1115              		.loc 1 205 9 discriminator 1 view .LVU209
+ 1116 00f4 FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 1117              	.LVL110:
+ 1118 00f8 3DE0     		b	.L79
+ 1119              	.L93:
+ 206:HW/EEPROM/I2C_Software/i2c_software.c ****         I2C_SendSignal_DataByte(addr + p * 8);  // 写入地址
+ 207:HW/EEPROM/I2C_Software/i2c_software.c ****         CHECK_ACK("Write Failed");
+ 1120              		.loc 1 207 9 discriminator 1 view .LVU210
+ 1121 00fa 274B     		ldr	r3, .L94
+ 1122 00fc 1B68     		ldr	r3, [r3]
+ 1123 00fe D868     		ldr	r0, [r3, #12]
+ 1124 0100 264B     		ldr	r3, .L94+4
+ 1125 0102 0093     		str	r3, [sp]
+ 1126 0104 CF23     		movs	r3, #207
+ 1127 0106 274A     		ldr	r2, .L94+12
+ 1128 0108 2749     		ldr	r1, .L94+16
+ 1129 010a FFF7FEFF 		bl	fprintf
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 25
+
+
+ 1130              	.LVL111:
+ 1131              		.loc 1 207 9 discriminator 1 view .LVU211
+ 1132 010e FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 1133              	.LVL112:
+ 1134 0112 3CE0     		b	.L80
+ 1135              	.LVL113:
+ 1136              	.L82:
+ 1137              	.LBB2:
+ 208:HW/EEPROM/I2C_Software/i2c_software.c ****         for(int i = 0; i < 8; ++i){
+ 209:HW/EEPROM/I2C_Software/i2c_software.c ****             idx = i + p * 8;
+ 210:HW/EEPROM/I2C_Software/i2c_software.c ****             if(idx >= dataLen) 
+ 211:HW/EEPROM/I2C_Software/i2c_software.c ****                 break;
+ 212:HW/EEPROM/I2C_Software/i2c_software.c ****             I2C_SendSignal_DataByte(dataPtr[idx]);  // 写入数据
+ 213:HW/EEPROM/I2C_Software/i2c_software.c ****             CHECK_ACK("Write Failed");
+ 1138              		.loc 1 213 38 discriminator 3 view .LVU212
+ 208:HW/EEPROM/I2C_Software/i2c_software.c ****         for(int i = 0; i < 8; ++i){
+ 1139              		.loc 1 208 31 discriminator 3 view .LVU213
+ 1140 0114 0134     		adds	r4, r4, #1
+ 1141              	.LVL114:
+ 1142              	.L83:
+ 208:HW/EEPROM/I2C_Software/i2c_software.c ****         for(int i = 0; i < 8; ++i){
+ 1143              		.loc 1 208 26 discriminator 2 view .LVU214
+ 1144 0116 072C     		cmp	r4, #7
+ 1145 0118 19DC     		bgt	.L81
+ 209:HW/EEPROM/I2C_Software/i2c_software.c ****             if(idx >= dataLen) 
+ 1146              		.loc 1 209 13 view .LVU215
+ 209:HW/EEPROM/I2C_Software/i2c_software.c ****             if(idx >= dataLen) 
+ 1147              		.loc 1 209 21 is_stmt 0 view .LVU216
+ 1148 011a E3B2     		uxtb	r3, r4
+ 209:HW/EEPROM/I2C_Software/i2c_software.c ****             if(idx >= dataLen) 
+ 1149              		.loc 1 209 17 view .LVU217
+ 1150 011c 2B44     		add	r3, r3, r5
+ 1151 011e DBB2     		uxtb	r3, r3
+ 1152              	.LVL115:
+ 210:HW/EEPROM/I2C_Software/i2c_software.c ****                 break;
+ 1153              		.loc 1 210 13 is_stmt 1 view .LVU218
+ 210:HW/EEPROM/I2C_Software/i2c_software.c ****                 break;
+ 1154              		.loc 1 210 15 is_stmt 0 view .LVU219
+ 1155 0120 9E42     		cmp	r6, r3
+ 1156 0122 14D9     		bls	.L81
+ 212:HW/EEPROM/I2C_Software/i2c_software.c ****             CHECK_ACK("Write Failed");
+ 1157              		.loc 1 212 13 is_stmt 1 view .LVU220
+ 212:HW/EEPROM/I2C_Software/i2c_software.c ****             CHECK_ACK("Write Failed");
+ 1158              		.loc 1 212 44 is_stmt 0 view .LVU221
+ 1159 0124 4B44     		add	r3, r3, r9
+ 1160              	.LVL116:
+ 212:HW/EEPROM/I2C_Software/i2c_software.c ****             CHECK_ACK("Write Failed");
+ 1161              		.loc 1 212 13 view .LVU222
+ 1162 0126 F85C     		ldrb	r0, [r7, r3]	@ zero_extendqisi2
+ 1163 0128 FFF7FEFF 		bl	I2C_SendSignal_DataByte
+ 1164              	.LVL117:
+ 1165              		.loc 1 213 13 is_stmt 1 view .LVU223
+ 1166 012c FFF7FEFF 		bl	I2C_GetSignal_IS_ACK
+ 1167              	.LVL118:
+ 1168 0130 0028     		cmp	r0, #0
+ 1169 0132 EFD1     		bne	.L82
+ 1170              		.loc 1 213 13 discriminator 1 view .LVU224
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 26
+
+
+ 1171 0134 184B     		ldr	r3, .L94
+ 1172 0136 1B68     		ldr	r3, [r3]
+ 1173 0138 D868     		ldr	r0, [r3, #12]
+ 1174 013a 184B     		ldr	r3, .L94+4
+ 1175 013c 0093     		str	r3, [sp]
+ 1176 013e D523     		movs	r3, #213
+ 1177 0140 184A     		ldr	r2, .L94+12
+ 1178 0142 1949     		ldr	r1, .L94+16
+ 1179 0144 FFF7FEFF 		bl	fprintf
+ 1180              	.LVL119:
+ 1181              		.loc 1 213 13 discriminator 1 view .LVU225
+ 1182 0148 FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 1183              	.LVL120:
+ 1184 014c E2E7     		b	.L82
+ 1185              	.LVL121:
+ 1186              	.L81:
+ 1187              		.loc 1 213 13 is_stmt 0 discriminator 1 view .LVU226
+ 1188              	.LBE2:
+ 214:HW/EEPROM/I2C_Software/i2c_software.c ****         }
+ 215:HW/EEPROM/I2C_Software/i2c_software.c ****         I2C_SendSignal_Stop();
+ 1189              		.loc 1 215 9 is_stmt 1 discriminator 2 view .LVU227
+ 1190 014e FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 1191              	.LVL122:
+ 216:HW/EEPROM/I2C_Software/i2c_software.c ****         WR_Delay();
+ 1192              		.loc 1 216 9 discriminator 2 view .LVU228
+ 1193 0152 0520     		movs	r0, #5
+ 1194 0154 FFF7FEFF 		bl	delay_ms
+ 1195              	.LVL123:
+ 202:HW/EEPROM/I2C_Software/i2c_software.c ****         I2C_SendSignal_Start();
+ 1196              		.loc 1 202 27 discriminator 2 view .LVU229
+ 1197 0158 08F10108 		add	r8, r8, #1
+ 1198              	.LVL124:
+ 202:HW/EEPROM/I2C_Software/i2c_software.c ****         I2C_SendSignal_Start();
+ 1199              		.loc 1 202 27 is_stmt 0 discriminator 2 view .LVU230
+ 1200 015c 5FFA88F8 		uxtb	r8, r8
+ 1201              	.LVL125:
+ 1202              	.L78:
+ 202:HW/EEPROM/I2C_Software/i2c_software.c ****         I2C_SendSignal_Start();
+ 1203              		.loc 1 202 18 is_stmt 1 discriminator 1 view .LVU231
+ 1204 0160 D845     		cmp	r8, fp
+ 1205 0162 16D2     		bcs	.L91
+ 203:HW/EEPROM/I2C_Software/i2c_software.c ****         I2C_SendSignal_DataByte(WRITE_ADDRESS);
+ 1206              		.loc 1 203 9 view .LVU232
+ 1207 0164 FFF7FEFF 		bl	I2C_SendSignal_Start
+ 1208              	.LVL126:
+ 204:HW/EEPROM/I2C_Software/i2c_software.c ****         CHECK_ACK("Write Failed");
+ 1209              		.loc 1 204 9 view .LVU233
+ 1210 0168 A020     		movs	r0, #160
+ 1211 016a FFF7FEFF 		bl	I2C_SendSignal_DataByte
+ 1212              	.LVL127:
+ 205:HW/EEPROM/I2C_Software/i2c_software.c ****         I2C_SendSignal_DataByte(addr + p * 8);  // 写入地址
+ 1213              		.loc 1 205 9 view .LVU234
+ 1214 016e FFF7FEFF 		bl	I2C_GetSignal_IS_ACK
+ 1215              	.LVL128:
+ 1216 0172 0028     		cmp	r0, #0
+ 1217 0174 B4D0     		beq	.L92
+ 1218              	.L79:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 27
+
+
+ 205:HW/EEPROM/I2C_Software/i2c_software.c ****         I2C_SendSignal_DataByte(addr + p * 8);  // 写入地址
+ 1219              		.loc 1 205 34 discriminator 3 view .LVU235
+ 206:HW/EEPROM/I2C_Software/i2c_software.c ****         CHECK_ACK("Write Failed");
+ 1220              		.loc 1 206 9 discriminator 3 view .LVU236
+ 1221 0176 4FEAC805 		lsl	r5, r8, #3
+ 1222 017a EDB2     		uxtb	r5, r5
+ 1223 017c 05EB0A00 		add	r0, r5, r10
+ 1224 0180 C0B2     		uxtb	r0, r0
+ 1225 0182 FFF7FEFF 		bl	I2C_SendSignal_DataByte
+ 1226              	.LVL129:
+ 207:HW/EEPROM/I2C_Software/i2c_software.c ****         for(int i = 0; i < 8; ++i){
+ 1227              		.loc 1 207 9 discriminator 3 view .LVU237
+ 1228 0186 FFF7FEFF 		bl	I2C_GetSignal_IS_ACK
+ 1229              	.LVL130:
+ 1230 018a 0028     		cmp	r0, #0
+ 1231 018c B5D0     		beq	.L93
+ 1232              	.L80:
+ 177:HW/EEPROM/I2C_Software/i2c_software.c ****     if((uint16_t)addr + (uint16_t)dataLen > 0XFF)
+ 1233              		.loc 1 177 81 is_stmt 0 discriminator 2 view .LVU238
+ 1234 018e 0024     		movs	r4, #0
+ 1235 0190 C1E7     		b	.L83
+ 1236              	.L91:
+ 217:HW/EEPROM/I2C_Software/i2c_software.c ****     }
+ 218:HW/EEPROM/I2C_Software/i2c_software.c **** }
+ 1237              		.loc 1 218 1 view .LVU239
+ 1238 0192 03B0     		add	sp, sp, #12
+ 1239              	.LCFI24:
+ 1240              		.cfi_def_cfa_offset 36
+ 1241              		@ sp needed
+ 1242 0194 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1243              	.LVL131:
+ 1244              	.L95:
+ 1245              		.loc 1 218 1 view .LVU240
+ 1246              		.align	2
+ 1247              	.L94:
+ 1248 0198 00000000 		.word	_impure_ptr
+ 1249 019c 00000000 		.word	__FUNCTION__.1
+ 1250 01a0 00000000 		.word	.LC4
+ 1251 01a4 00000000 		.word	.LC2
+ 1252 01a8 14000000 		.word	.LC1
+ 1253              		.cfi_endproc
+ 1254              	.LFE43:
+ 1256              		.section	.rodata.EEPROM_Read_Sequential_IS.str1.4,"aMS",%progbits,1
+ 1257              		.align	2
+ 1258              	.LC5:
+ 1259 0000 52656164 		.ascii	"Read bytes overflowed, line: %d, function: %s\015\012"
+ 1259      20627974 
+ 1259      6573206F 
+ 1259      76657266 
+ 1259      6C6F7765 
+ 1260 002f 00       		.ascii	"\000"
+ 1261              		.section	.text.EEPROM_Read_Sequential_IS,"ax",%progbits
+ 1262              		.align	1
+ 1263              		.global	EEPROM_Read_Sequential_IS
+ 1264              		.syntax unified
+ 1265              		.thumb
+ 1266              		.thumb_func
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 28
+
+
+ 1268              	EEPROM_Read_Sequential_IS:
+ 1269              	.LVL132:
+ 1270              	.LFB44:
+ 219:HW/EEPROM/I2C_Software/i2c_software.c **** 
+ 220:HW/EEPROM/I2C_Software/i2c_software.c **** /* 读取多个数据 */
+ 221:HW/EEPROM/I2C_Software/i2c_software.c **** void EEPROM_Read_Sequential_IS(uint8_t addr, uint8_t* dataPtr, uint8_t dataLen){
+ 1271              		.loc 1 221 80 is_stmt 1 view -0
+ 1272              		.cfi_startproc
+ 1273              		@ args = 0, pretend = 0, frame = 0
+ 1274              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1275              		.loc 1 221 80 is_stmt 0 view .LVU242
+ 1276 0000 70B5     		push	{r4, r5, r6, lr}
+ 1277              	.LCFI25:
+ 1278              		.cfi_def_cfa_offset 16
+ 1279              		.cfi_offset 4, -16
+ 1280              		.cfi_offset 5, -12
+ 1281              		.cfi_offset 6, -8
+ 1282              		.cfi_offset 14, -4
+ 1283 0002 82B0     		sub	sp, sp, #8
+ 1284              	.LCFI26:
+ 1285              		.cfi_def_cfa_offset 24
+ 1286 0004 0446     		mov	r4, r0
+ 1287 0006 0E46     		mov	r6, r1
+ 1288 0008 1546     		mov	r5, r2
+ 222:HW/EEPROM/I2C_Software/i2c_software.c ****     if((uint16_t)addr + (uint16_t)dataLen > 0XFF)
+ 1289              		.loc 1 222 5 is_stmt 1 view .LVU243
+ 1290              		.loc 1 222 23 is_stmt 0 view .LVU244
+ 1291 000a 8318     		adds	r3, r0, r2
+ 1292              		.loc 1 222 7 view .LVU245
+ 1293 000c FF2B     		cmp	r3, #255
+ 1294 000e 17DC     		bgt	.L105
+ 1295              	.LVL133:
+ 1296              	.L97:
+ 223:HW/EEPROM/I2C_Software/i2c_software.c ****         fprintf(stderr, "Read bytes overflowed, line: %d, function: %s\r\n", __LINE__, __FUNCTION__
+ 224:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Start();
+ 1297              		.loc 1 224 5 is_stmt 1 view .LVU246
+ 1298 0010 FFF7FEFF 		bl	I2C_SendSignal_Start
+ 1299              	.LVL134:
+ 225:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(WRITE_ADDRESS);
+ 1300              		.loc 1 225 5 view .LVU247
+ 1301 0014 A020     		movs	r0, #160
+ 1302 0016 FFF7FEFF 		bl	I2C_SendSignal_DataByte
+ 1303              	.LVL135:
+ 226:HW/EEPROM/I2C_Software/i2c_software.c ****     CHECK_ACK("Read Failed");
+ 1304              		.loc 1 226 5 view .LVU248
+ 1305 001a FFF7FEFF 		bl	I2C_GetSignal_IS_ACK
+ 1306              	.LVL136:
+ 1307 001e C0B1     		cbz	r0, .L106
+ 1308              	.L98:
+ 1309              		.loc 1 226 29 discriminator 3 view .LVU249
+ 227:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(addr);  // 读取地址
+ 1310              		.loc 1 227 5 discriminator 3 view .LVU250
+ 1311 0020 2046     		mov	r0, r4
+ 1312 0022 FFF7FEFF 		bl	I2C_SendSignal_DataByte
+ 1313              	.LVL137:
+ 228:HW/EEPROM/I2C_Software/i2c_software.c ****     CHECK_ACK("Read Failed");
+ 1314              		.loc 1 228 5 discriminator 3 view .LVU251
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 29
+
+
+ 1315 0026 FFF7FEFF 		bl	I2C_GetSignal_IS_ACK
+ 1316              	.LVL138:
+ 1317 002a F8B1     		cbz	r0, .L107
+ 1318              	.L99:
+ 1319              		.loc 1 228 29 discriminator 3 view .LVU252
+ 229:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Start();
+ 1320              		.loc 1 229 5 discriminator 3 view .LVU253
+ 1321 002c FFF7FEFF 		bl	I2C_SendSignal_Start
+ 1322              	.LVL139:
+ 230:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(READ_ADDRESS);
+ 1323              		.loc 1 230 5 discriminator 3 view .LVU254
+ 1324 0030 A120     		movs	r0, #161
+ 1325 0032 FFF7FEFF 		bl	I2C_SendSignal_DataByte
+ 1326              	.LVL140:
+ 231:HW/EEPROM/I2C_Software/i2c_software.c ****     CHECK_ACK("Read Failed");
+ 1327              		.loc 1 231 5 discriminator 3 view .LVU255
+ 1328 0036 FFF7FEFF 		bl	I2C_GetSignal_IS_ACK
+ 1329              	.LVL141:
+ 1330 003a 20B3     		cbz	r0, .L108
+ 1331              	.L100:
+ 221:HW/EEPROM/I2C_Software/i2c_software.c ****     if((uint16_t)addr + (uint16_t)dataLen > 0XFF)
+ 1332              		.loc 1 221 80 is_stmt 0 discriminator 1 view .LVU256
+ 1333 003c 0024     		movs	r4, #0
+ 1334 003e 36E0     		b	.L101
+ 1335              	.LVL142:
+ 1336              	.L105:
+ 223:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Start();
+ 1337              		.loc 1 223 9 is_stmt 1 view .LVU257
+ 223:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Start();
+ 1338              		.loc 1 223 17 is_stmt 0 view .LVU258
+ 1339 0040 294B     		ldr	r3, .L110
+ 1340 0042 1868     		ldr	r0, [r3]
+ 1341              	.LVL143:
+ 223:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Start();
+ 1342              		.loc 1 223 9 view .LVU259
+ 1343 0044 294B     		ldr	r3, .L110+4
+ 1344 0046 DF22     		movs	r2, #223
+ 1345              	.LVL144:
+ 223:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Start();
+ 1346              		.loc 1 223 9 view .LVU260
+ 1347 0048 2949     		ldr	r1, .L110+8
+ 1348              	.LVL145:
+ 223:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Start();
+ 1349              		.loc 1 223 9 view .LVU261
+ 1350 004a C068     		ldr	r0, [r0, #12]
+ 1351 004c FFF7FEFF 		bl	fprintf
+ 1352              	.LVL146:
+ 1353 0050 DEE7     		b	.L97
+ 1354              	.L106:
+ 226:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(addr);  // 读取地址
+ 1355              		.loc 1 226 5 is_stmt 1 discriminator 1 view .LVU262
+ 1356 0052 254B     		ldr	r3, .L110
+ 1357 0054 1B68     		ldr	r3, [r3]
+ 1358 0056 D868     		ldr	r0, [r3, #12]
+ 1359 0058 244B     		ldr	r3, .L110+4
+ 1360 005a 0093     		str	r3, [sp]
+ 1361 005c E223     		movs	r3, #226
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 30
+
+
+ 1362 005e 254A     		ldr	r2, .L110+12
+ 1363 0060 2549     		ldr	r1, .L110+16
+ 1364 0062 FFF7FEFF 		bl	fprintf
+ 1365              	.LVL147:
+ 226:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_DataByte(addr);  // 读取地址
+ 1366              		.loc 1 226 5 discriminator 1 view .LVU263
+ 1367 0066 FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 1368              	.LVL148:
+ 1369 006a D9E7     		b	.L98
+ 1370              	.L107:
+ 228:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Start();
+ 1371              		.loc 1 228 5 discriminator 1 view .LVU264
+ 1372 006c 1E4B     		ldr	r3, .L110
+ 1373 006e 1B68     		ldr	r3, [r3]
+ 1374 0070 D868     		ldr	r0, [r3, #12]
+ 1375 0072 1E4B     		ldr	r3, .L110+4
+ 1376 0074 0093     		str	r3, [sp]
+ 1377 0076 E423     		movs	r3, #228
+ 1378 0078 1E4A     		ldr	r2, .L110+12
+ 1379 007a 1F49     		ldr	r1, .L110+16
+ 1380 007c FFF7FEFF 		bl	fprintf
+ 1381              	.LVL149:
+ 228:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Start();
+ 1382              		.loc 1 228 5 discriminator 1 view .LVU265
+ 1383 0080 FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 1384              	.LVL150:
+ 1385 0084 D2E7     		b	.L99
+ 1386              	.L108:
+ 1387              		.loc 1 231 5 discriminator 1 view .LVU266
+ 1388 0086 184B     		ldr	r3, .L110
+ 1389 0088 1B68     		ldr	r3, [r3]
+ 1390 008a D868     		ldr	r0, [r3, #12]
+ 1391 008c 174B     		ldr	r3, .L110+4
+ 1392 008e 0093     		str	r3, [sp]
+ 1393 0090 E723     		movs	r3, #231
+ 1394 0092 184A     		ldr	r2, .L110+12
+ 1395 0094 1849     		ldr	r1, .L110+16
+ 1396 0096 FFF7FEFF 		bl	fprintf
+ 1397              	.LVL151:
+ 1398              		.loc 1 231 5 discriminator 1 view .LVU267
+ 1399 009a FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 1400              	.LVL152:
+ 1401 009e CDE7     		b	.L100
+ 1402              	.LVL153:
+ 1403              	.L102:
+ 232:HW/EEPROM/I2C_Software/i2c_software.c ****     uint8_t idx;
+ 233:HW/EEPROM/I2C_Software/i2c_software.c ****     for(idx = 0; idx < dataLen - 1; ++idx){
+ 234:HW/EEPROM/I2C_Software/i2c_software.c ****         dataPtr[idx] = I2C_GetSignal_DataByte();
+ 1404              		.loc 1 234 9 discriminator 3 view .LVU268
+ 1405              		.loc 1 234 24 is_stmt 0 discriminator 3 view .LVU269
+ 1406 00a0 FFF7FEFF 		bl	I2C_GetSignal_DataByte
+ 1407              	.LVL154:
+ 1408              		.loc 1 234 22 discriminator 3 view .LVU270
+ 1409 00a4 3055     		strb	r0, [r6, r4]
+ 235:HW/EEPROM/I2C_Software/i2c_software.c ****         I2C_SendSignal_ACK();
+ 1410              		.loc 1 235 9 is_stmt 1 discriminator 3 view .LVU271
+ 1411 00a6 FFF7FEFF 		bl	I2C_SendSignal_ACK
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 31
+
+
+ 1412              	.LVL155:
+ 233:HW/EEPROM/I2C_Software/i2c_software.c ****         dataPtr[idx] = I2C_GetSignal_DataByte();
+ 1413              		.loc 1 233 37 discriminator 3 view .LVU272
+ 1414 00aa 0134     		adds	r4, r4, #1
+ 1415              	.LVL156:
+ 233:HW/EEPROM/I2C_Software/i2c_software.c ****         dataPtr[idx] = I2C_GetSignal_DataByte();
+ 1416              		.loc 1 233 37 is_stmt 0 discriminator 3 view .LVU273
+ 1417 00ac E4B2     		uxtb	r4, r4
+ 1418              	.LVL157:
+ 1419              	.L101:
+ 233:HW/EEPROM/I2C_Software/i2c_software.c ****         dataPtr[idx] = I2C_GetSignal_DataByte();
+ 1420              		.loc 1 233 22 is_stmt 1 discriminator 1 view .LVU274
+ 233:HW/EEPROM/I2C_Software/i2c_software.c ****         dataPtr[idx] = I2C_GetSignal_DataByte();
+ 1421              		.loc 1 233 32 is_stmt 0 discriminator 1 view .LVU275
+ 1422 00ae 6B1E     		subs	r3, r5, #1
+ 233:HW/EEPROM/I2C_Software/i2c_software.c ****         dataPtr[idx] = I2C_GetSignal_DataByte();
+ 1423              		.loc 1 233 22 discriminator 1 view .LVU276
+ 1424 00b0 9C42     		cmp	r4, r3
+ 1425 00b2 F5DB     		blt	.L102
+ 236:HW/EEPROM/I2C_Software/i2c_software.c ****     }
+ 237:HW/EEPROM/I2C_Software/i2c_software.c ****     dataPtr[idx] = I2C_GetSignal_DataByte();
+ 1426              		.loc 1 237 5 is_stmt 1 view .LVU277
+ 1427              		.loc 1 237 20 is_stmt 0 view .LVU278
+ 1428 00b4 FFF7FEFF 		bl	I2C_GetSignal_DataByte
+ 1429              	.LVL158:
+ 1430              		.loc 1 237 18 view .LVU279
+ 1431 00b8 3055     		strb	r0, [r6, r4]
+ 238:HW/EEPROM/I2C_Software/i2c_software.c ****     CHECK_NO_ACK("Read Failed");
+ 1432              		.loc 1 238 5 is_stmt 1 view .LVU280
+ 1433 00ba FFF7FEFF 		bl	I2C_GetSignal_IS_ACK
+ 1434              	.LVL159:
+ 1435 00be 30B9     		cbnz	r0, .L109
+ 1436              	.L103:
+ 1437              		.loc 1 238 32 discriminator 3 view .LVU281
+ 239:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Stop();
+ 1438              		.loc 1 239 5 discriminator 3 view .LVU282
+ 1439 00c0 FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 1440              	.LVL160:
+ 240:HW/EEPROM/I2C_Software/i2c_software.c **** 
+ 241:HW/EEPROM/I2C_Software/i2c_software.c ****     WR_Delay();
+ 1441              		.loc 1 241 5 discriminator 3 view .LVU283
+ 1442 00c4 0520     		movs	r0, #5
+ 1443 00c6 FFF7FEFF 		bl	delay_ms
+ 1444              	.LVL161:
+ 242:HW/EEPROM/I2C_Software/i2c_software.c **** }
+ 1445              		.loc 1 242 1 is_stmt 0 discriminator 3 view .LVU284
+ 1446 00ca 02B0     		add	sp, sp, #8
+ 1447              	.LCFI27:
+ 1448              		.cfi_remember_state
+ 1449              		.cfi_def_cfa_offset 16
+ 1450              		@ sp needed
+ 1451 00cc 70BD     		pop	{r4, r5, r6, pc}
+ 1452              	.LVL162:
+ 1453              	.L109:
+ 1454              	.LCFI28:
+ 1455              		.cfi_restore_state
+ 238:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Stop();
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 32
+
+
+ 1456              		.loc 1 238 5 is_stmt 1 discriminator 1 view .LVU285
+ 1457 00ce 064B     		ldr	r3, .L110
+ 1458 00d0 1B68     		ldr	r3, [r3]
+ 1459 00d2 D868     		ldr	r0, [r3, #12]
+ 1460 00d4 054B     		ldr	r3, .L110+4
+ 1461 00d6 0093     		str	r3, [sp]
+ 1462 00d8 EE23     		movs	r3, #238
+ 1463 00da 064A     		ldr	r2, .L110+12
+ 1464 00dc 0649     		ldr	r1, .L110+16
+ 1465 00de FFF7FEFF 		bl	fprintf
+ 1466              	.LVL163:
+ 238:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_SendSignal_Stop();
+ 1467              		.loc 1 238 5 discriminator 1 view .LVU286
+ 1468 00e2 FFF7FEFF 		bl	I2C_SendSignal_Stop
+ 1469              	.LVL164:
+ 1470 00e6 EBE7     		b	.L103
+ 1471              	.L111:
+ 1472              		.align	2
+ 1473              	.L110:
+ 1474 00e8 00000000 		.word	_impure_ptr
+ 1475 00ec 00000000 		.word	__FUNCTION__.0
+ 1476 00f0 00000000 		.word	.LC5
+ 1477 00f4 00000000 		.word	.LC3
+ 1478 00f8 14000000 		.word	.LC1
+ 1479              		.cfi_endproc
+ 1480              	.LFE44:
+ 1482              		.section	.rodata.I2C_Software_Run.str1.4,"aMS",%progbits,1
+ 1483              		.align	2
+ 1484              	.LC6:
+ 1485 0000 466F756E 		.ascii	"Founded EEPROM\015\000"
+ 1485      64656420 
+ 1485      45455052 
+ 1485      4F4D0D00 
+ 1486              		.align	2
+ 1487              	.LC8:
+ 1488 0010 57726974 		.ascii	"Write byte success\015\000"
+ 1488      65206279 
+ 1488      74652073 
+ 1488      75636365 
+ 1488      73730D00 
+ 1489              		.align	2
+ 1490              	.LC9:
+ 1491 0024 52656164 		.ascii	"Read byte success: %c\015\012\000"
+ 1491      20627974 
+ 1491      65207375 
+ 1491      63636573 
+ 1491      733A2025 
+ 1492              		.align	2
+ 1493              	.LC10:
+ 1494 003c 57726974 		.ascii	"Write sequential success\015\000"
+ 1494      65207365 
+ 1494      7175656E 
+ 1494      7469616C 
+ 1494      20737563 
+ 1495 0056 0000     		.align	2
+ 1496              	.LC11:
+ 1497 0058 52656164 		.ascii	"Read sequential success: %s\015\012\000"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 33
+
+
+ 1497      20736571 
+ 1497      75656E74 
+ 1497      69616C20 
+ 1497      73756363 
+ 1498              		.section	.text.I2C_Software_Run,"ax",%progbits
+ 1499              		.align	1
+ 1500              		.global	I2C_Software_Run
+ 1501              		.syntax unified
+ 1502              		.thumb
+ 1503              		.thumb_func
+ 1505              	I2C_Software_Run:
+ 1506              	.LFB45:
+ 243:HW/EEPROM/I2C_Software/i2c_software.c **** 
+ 244:HW/EEPROM/I2C_Software/i2c_software.c **** /* 测试例程 */
+ 245:HW/EEPROM/I2C_Software/i2c_software.c **** void I2C_Software_Run(){
+ 1507              		.loc 1 245 24 view -0
+ 1508              		.cfi_startproc
+ 1509              		@ args = 0, pretend = 0, frame = 24
+ 1510              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1511 0000 10B5     		push	{r4, lr}
+ 1512              	.LCFI29:
+ 1513              		.cfi_def_cfa_offset 8
+ 1514              		.cfi_offset 4, -8
+ 1515              		.cfi_offset 14, -4
+ 1516 0002 86B0     		sub	sp, sp, #24
+ 1517              	.LCFI30:
+ 1518              		.cfi_def_cfa_offset 32
+ 246:HW/EEPROM/I2C_Software/i2c_software.c ****     /* 初始化 */
+ 247:HW/EEPROM/I2C_Software/i2c_software.c ****     delay_init();
+ 1519              		.loc 1 247 5 view .LVU288
+ 1520 0004 FFF7FEFF 		bl	delay_init
+ 1521              	.LVL165:
+ 248:HW/EEPROM/I2C_Software/i2c_software.c ****     USART1_Init();
+ 1522              		.loc 1 248 5 view .LVU289
+ 1523 0008 FFF7FEFF 		bl	USART1_Init
+ 1524              	.LVL166:
+ 249:HW/EEPROM/I2C_Software/i2c_software.c ****     I2C_Software_Init();
+ 1525              		.loc 1 249 5 view .LVU290
+ 1526 000c FFF7FEFF 		bl	I2C_Software_Init
+ 1527              	.LVL167:
+ 250:HW/EEPROM/I2C_Software/i2c_software.c **** 
+ 251:HW/EEPROM/I2C_Software/i2c_software.c ****     /* 检测EEPROM */
+ 252:HW/EEPROM/I2C_Software/i2c_software.c ****     Check_EEPROM();
+ 1528              		.loc 1 252 5 view .LVU291
+ 1529 0010 FFF7FEFF 		bl	Check_EEPROM
+ 1530              	.LVL168:
+ 253:HW/EEPROM/I2C_Software/i2c_software.c ****     printf("Founded EEPROM\r\n");
+ 1531              		.loc 1 253 5 view .LVU292
+ 1532 0014 1848     		ldr	r0, .L114
+ 1533 0016 FFF7FEFF 		bl	puts
+ 1534              	.LVL169:
+ 254:HW/EEPROM/I2C_Software/i2c_software.c **** 
+ 255:HW/EEPROM/I2C_Software/i2c_software.c ****     char srcBuffer[10] = "A1234567";
+ 1535              		.loc 1 255 5 view .LVU293
+ 1536              		.loc 1 255 10 is_stmt 0 view .LVU294
+ 1537 001a 184A     		ldr	r2, .L114+4
+ 1538 001c 03AB     		add	r3, sp, #12
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 34
+
+
+ 1539 001e 07CA     		ldm	r2, {r0, r1, r2}
+ 1540 0020 03C3     		stmia	r3!, {r0, r1}
+ 1541 0022 1A70     		strb	r2, [r3]
+ 1542 0024 0024     		movs	r4, #0
+ 1543 0026 8DF81540 		strb	r4, [sp, #21]
+ 256:HW/EEPROM/I2C_Software/i2c_software.c ****     char dstBuffer[10] = "";
+ 1544              		.loc 1 256 5 is_stmt 1 view .LVU295
+ 1545              		.loc 1 256 10 is_stmt 0 view .LVU296
+ 1546 002a 0094     		str	r4, [sp]
+ 1547 002c 0194     		str	r4, [sp, #4]
+ 1548 002e ADF80840 		strh	r4, [sp, #8]	@ movhi
+ 257:HW/EEPROM/I2C_Software/i2c_software.c **** 
+ 258:HW/EEPROM/I2C_Software/i2c_software.c ****     /* Byte Write */
+ 259:HW/EEPROM/I2C_Software/i2c_software.c ****     EEPROM_Write_Byte(0X00, (uint8_t)srcBuffer[0]);
+ 1549              		.loc 1 259 5 is_stmt 1 view .LVU297
+ 1550 0032 4121     		movs	r1, #65
+ 1551 0034 2046     		mov	r0, r4
+ 1552 0036 FFF7FEFF 		bl	EEPROM_Write_Byte
+ 1553              	.LVL170:
+ 260:HW/EEPROM/I2C_Software/i2c_software.c ****     printf("Write byte success\r\n");
+ 1554              		.loc 1 260 5 view .LVU298
+ 1555 003a 1148     		ldr	r0, .L114+8
+ 1556 003c FFF7FEFF 		bl	puts
+ 1557              	.LVL171:
+ 261:HW/EEPROM/I2C_Software/i2c_software.c ****     
+ 262:HW/EEPROM/I2C_Software/i2c_software.c ****     /* Random Read */
+ 263:HW/EEPROM/I2C_Software/i2c_software.c ****     dstBuffer[0] = (char)EEPROM_Read_Byte(0X00);
+ 1558              		.loc 1 263 5 view .LVU299
+ 1559              		.loc 1 263 26 is_stmt 0 view .LVU300
+ 1560 0040 2046     		mov	r0, r4
+ 1561 0042 FFF7FEFF 		bl	EEPROM_Read_Byte
+ 1562              	.LVL172:
+ 1563 0046 0146     		mov	r1, r0
+ 1564              		.loc 1 263 18 view .LVU301
+ 1565 0048 8DF80000 		strb	r0, [sp]
+ 264:HW/EEPROM/I2C_Software/i2c_software.c ****     printf("Read byte success: %c\r\n", dstBuffer[0]);
+ 1566              		.loc 1 264 5 is_stmt 1 view .LVU302
+ 1567 004c 0D48     		ldr	r0, .L114+12
+ 1568 004e FFF7FEFF 		bl	printf
+ 1569              	.LVL173:
+ 265:HW/EEPROM/I2C_Software/i2c_software.c **** 
+ 266:HW/EEPROM/I2C_Software/i2c_software.c ****     /* Sequential Write */
+ 267:HW/EEPROM/I2C_Software/i2c_software.c ****     EEPROM_Write_Sequential_IS(0X50, (uint8_t*)srcBuffer, 8);
+ 1570              		.loc 1 267 5 view .LVU303
+ 1571 0052 0822     		movs	r2, #8
+ 1572 0054 03A9     		add	r1, sp, #12
+ 1573 0056 5020     		movs	r0, #80
+ 1574 0058 FFF7FEFF 		bl	EEPROM_Write_Sequential_IS
+ 1575              	.LVL174:
+ 268:HW/EEPROM/I2C_Software/i2c_software.c ****     printf("Write sequential success\r\n");
+ 1576              		.loc 1 268 5 view .LVU304
+ 1577 005c 0A48     		ldr	r0, .L114+16
+ 1578 005e FFF7FEFF 		bl	puts
+ 1579              	.LVL175:
+ 269:HW/EEPROM/I2C_Software/i2c_software.c **** 
+ 270:HW/EEPROM/I2C_Software/i2c_software.c ****     /* Sequential Read */
+ 271:HW/EEPROM/I2C_Software/i2c_software.c ****     EEPROM_Read_Sequential_IS(0X50, (uint8_t*)dstBuffer, 8);
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 35
+
+
+ 1580              		.loc 1 271 5 view .LVU305
+ 1581 0062 0822     		movs	r2, #8
+ 1582 0064 6946     		mov	r1, sp
+ 1583 0066 5020     		movs	r0, #80
+ 1584 0068 FFF7FEFF 		bl	EEPROM_Read_Sequential_IS
+ 1585              	.LVL176:
+ 272:HW/EEPROM/I2C_Software/i2c_software.c ****     printf("Read sequential success: %s\r\n", dstBuffer);
+ 1586              		.loc 1 272 5 view .LVU306
+ 1587 006c 6946     		mov	r1, sp
+ 1588 006e 0748     		ldr	r0, .L114+20
+ 1589 0070 FFF7FEFF 		bl	printf
+ 1590              	.LVL177:
+ 273:HW/EEPROM/I2C_Software/i2c_software.c **** }...
+ 1591              		.loc 1 273 1 is_stmt 0 view .LVU307
+ 1592 0074 06B0     		add	sp, sp, #24
+ 1593              	.LCFI31:
+ 1594              		.cfi_def_cfa_offset 8
+ 1595              		@ sp needed
+ 1596 0076 10BD     		pop	{r4, pc}
+ 1597              	.L115:
+ 1598              		.align	2
+ 1599              	.L114:
+ 1600 0078 00000000 		.word	.LC6
+ 1601 007c 00000000 		.word	.LANCHOR0
+ 1602 0080 10000000 		.word	.LC8
+ 1603 0084 24000000 		.word	.LC9
+ 1604 0088 3C000000 		.word	.LC10
+ 1605 008c 58000000 		.word	.LC11
+ 1606              		.cfi_endproc
+ 1607              	.LFE45:
+ 1609              		.section	.rodata.__FUNCTION__.0,"a"
+ 1610              		.align	2
+ 1613              	__FUNCTION__.0:
+ 1614 0000 45455052 		.ascii	"EEPROM_Read_Sequential_IS\000"
+ 1614      4F4D5F52 
+ 1614      6561645F 
+ 1614      53657175 
+ 1614      656E7469 
+ 1615              		.section	.rodata.__FUNCTION__.1,"a"
+ 1616              		.align	2
+ 1619              	__FUNCTION__.1:
+ 1620 0000 45455052 		.ascii	"EEPROM_Write_Sequential_IS\000"
+ 1620      4F4D5F57 
+ 1620      72697465 
+ 1620      5F536571 
+ 1620      75656E74 
+ 1621              		.section	.rodata.__FUNCTION__.2,"a"
+ 1622              		.align	2
+ 1625              	__FUNCTION__.2:
+ 1626 0000 45455052 		.ascii	"EEPROM_Read_Byte\000"
+ 1626      4F4D5F52 
+ 1626      6561645F 
+ 1626      42797465 
+ 1626      00
+ 1627              		.section	.rodata.__FUNCTION__.3,"a"
+ 1628              		.align	2
+ 1631              	__FUNCTION__.3:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 36
+
+
+ 1632 0000 45455052 		.ascii	"EEPROM_Write_Byte\000"
+ 1632      4F4D5F57 
+ 1632      72697465 
+ 1632      5F427974 
+ 1632      6500
+ 1633              		.section	.rodata.__FUNCTION__.4,"a"
+ 1634              		.align	2
+ 1637              	__FUNCTION__.4:
+ 1638 0000 43686563 		.ascii	"Check_EEPROM\000"
+ 1638      6B5F4545 
+ 1638      50524F4D 
+ 1638      00
+ 1639              		.section	.rodata
+ 1640              		.align	2
+ 1641              		.set	.LANCHOR0,. + 0
+ 1642              	.LC7:
+ 1643 0000 41313233 		.ascii	"A1234567\000"
+ 1643      34353637 
+ 1643      00
+ 1644 0009 00       		.space	1
+ 1645              		.text
+ 1646              	.Letext0:
+ 1647              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1648              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1649              		.file 4 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1650              		.file 5 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1651              		.file 6 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1652              		.file 7 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1653              		.file 8 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1654              		.file 9 "USER/stm32f10x.h"
+ 1655              		.file 10 "STM32F10x_FWLib/inc/stm32f10x_gpio.h"
+ 1656              		.file 11 "SYSTEM/delay/delay.h"
+ 1657              		.file 12 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
+ 1658              		.file 13 "<built-in>"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 37
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 i2c_software.c
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:19     .text.I2C_Software_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:25     .text.I2C_Software_Init:00000000 I2C_Software_Init
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:81     .text.I2C_Software_Init:0000003c $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:86     .text.I2C_SendSignal_Start:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:92     .text.I2C_SendSignal_Start:00000000 I2C_SendSignal_Start
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:133    .text.I2C_SendSignal_Start:00000024 $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:138    .text.I2C_SendSignal_Stop:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:144    .text.I2C_SendSignal_Stop:00000000 I2C_SendSignal_Stop
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:179    .text.I2C_SendSignal_Stop:0000001c $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:184    .text.I2C_SendSignal_ACK:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:190    .text.I2C_SendSignal_ACK:00000000 I2C_SendSignal_ACK
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:227    .text.I2C_SendSignal_ACK:00000020 $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:232    .text.I2C_SendSignal_NO_ACK:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:238    .text.I2C_SendSignal_NO_ACK:00000000 I2C_SendSignal_NO_ACK
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:273    .text.I2C_SendSignal_NO_ACK:0000001c $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:278    .text.I2C_SendSignal_DataByte:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:284    .text.I2C_SendSignal_DataByte:00000000 I2C_SendSignal_DataByte
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:365    .text.I2C_SendSignal_DataByte:00000044 $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:370    .text.I2C_GetSignal_IS_ACK:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:376    .text.I2C_GetSignal_IS_ACK:00000000 I2C_GetSignal_IS_ACK
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:424    .text.I2C_GetSignal_IS_ACK:0000002c $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:429    .text.I2C_GetSignal_DataByte:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:435    .text.I2C_GetSignal_DataByte:00000000 I2C_GetSignal_DataByte
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:507    .text.I2C_GetSignal_DataByte:00000038 $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:512    .rodata.Check_EEPROM.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:519    .text.Check_EEPROM:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:525    .text.Check_EEPROM:00000000 Check_EEPROM
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:582    .text.Check_EEPROM:00000038 $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:1637   .rodata.__FUNCTION__.4:00000000 __FUNCTION__.4
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:590    .rodata.EEPROM_Write_Byte.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:594    .text.EEPROM_Write_Byte:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:600    .text.EEPROM_Write_Byte:00000000 EEPROM_Write_Byte
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:719    .text.EEPROM_Write_Byte:0000008c $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:1631   .rodata.__FUNCTION__.3:00000000 __FUNCTION__.3
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:727    .rodata.EEPROM_Read_Byte.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:731    .text.EEPROM_Read_Byte:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:737    .text.EEPROM_Read_Byte:00000000 EEPROM_Read_Byte
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:890    .text.EEPROM_Read_Byte:000000b8 $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:1625   .rodata.__FUNCTION__.2:00000000 __FUNCTION__.2
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:898    .rodata.EEPROM_Write_Sequential_IS.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:903    .text.EEPROM_Write_Sequential_IS:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:909    .text.EEPROM_Write_Sequential_IS:00000000 EEPROM_Write_Sequential_IS
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:1248   .text.EEPROM_Write_Sequential_IS:00000198 $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:1619   .rodata.__FUNCTION__.1:00000000 __FUNCTION__.1
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:1257   .rodata.EEPROM_Read_Sequential_IS.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:1262   .text.EEPROM_Read_Sequential_IS:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:1268   .text.EEPROM_Read_Sequential_IS:00000000 EEPROM_Read_Sequential_IS
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:1474   .text.EEPROM_Read_Sequential_IS:000000e8 $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:1613   .rodata.__FUNCTION__.0:00000000 __FUNCTION__.0
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:1483   .rodata.I2C_Software_Run.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:1499   .text.I2C_Software_Run:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:1505   .text.I2C_Software_Run:00000000 I2C_Software_Run
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:1600   .text.I2C_Software_Run:00000078 $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:1610   .rodata.__FUNCTION__.0:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:1616   .rodata.__FUNCTION__.1:00000000 $d
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s 			page 38
+
+
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:1622   .rodata.__FUNCTION__.2:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:1628   .rodata.__FUNCTION__.3:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:1634   .rodata.__FUNCTION__.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccmrTz9g.s:1640   .rodata:00000000 $d
+
+UNDEFINED SYMBOLS
+RCC_APB2PeriphClockCmd
+GPIO_Init
+delay_us
+fprintf
+_impure_ptr
+delay_ms
+delay_init
+USART1_Init
+puts
+printf

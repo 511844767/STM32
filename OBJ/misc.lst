@@ -1,0 +1,552 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cca3YMiq.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"misc.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "STM32F10x_FWLib/src/misc.c"
+  18              		.section	.text.NVIC_PriorityGroupConfig,"ax",%progbits
+  19              		.align	1
+  20              		.global	NVIC_PriorityGroupConfig
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	NVIC_PriorityGroupConfig:
+  26              	.LVL0:
+  27              	.LFB29:
+   1:STM32F10x_FWLib/src/misc.c **** /**
+   2:STM32F10x_FWLib/src/misc.c ****   ******************************************************************************
+   3:STM32F10x_FWLib/src/misc.c ****   * @file    misc.c
+   4:STM32F10x_FWLib/src/misc.c ****   * @author  MCD Application Team
+   5:STM32F10x_FWLib/src/misc.c ****   * @version V3.5.0
+   6:STM32F10x_FWLib/src/misc.c ****   * @date    11-March-2011
+   7:STM32F10x_FWLib/src/misc.c ****   * @brief   This file provides all the miscellaneous firmware functions (add-on
+   8:STM32F10x_FWLib/src/misc.c ****   *          to CMSIS functions).
+   9:STM32F10x_FWLib/src/misc.c ****   ******************************************************************************
+  10:STM32F10x_FWLib/src/misc.c ****   * @attention
+  11:STM32F10x_FWLib/src/misc.c ****   *
+  12:STM32F10x_FWLib/src/misc.c ****   * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+  13:STM32F10x_FWLib/src/misc.c ****   * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+  14:STM32F10x_FWLib/src/misc.c ****   * TIME. AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY
+  15:STM32F10x_FWLib/src/misc.c ****   * DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+  16:STM32F10x_FWLib/src/misc.c ****   * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+  17:STM32F10x_FWLib/src/misc.c ****   * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+  18:STM32F10x_FWLib/src/misc.c ****   *
+  19:STM32F10x_FWLib/src/misc.c ****   * <h2><center>&copy; COPYRIGHT 2011 STMicroelectronics</center></h2>
+  20:STM32F10x_FWLib/src/misc.c ****   ******************************************************************************
+  21:STM32F10x_FWLib/src/misc.c ****   */
+  22:STM32F10x_FWLib/src/misc.c **** 
+  23:STM32F10x_FWLib/src/misc.c **** /* Includes ------------------------------------------------------------------*/
+  24:STM32F10x_FWLib/src/misc.c **** #include "misc.h"
+  25:STM32F10x_FWLib/src/misc.c **** 
+  26:STM32F10x_FWLib/src/misc.c **** /** @addtogroup STM32F10x_StdPeriph_Driver
+  27:STM32F10x_FWLib/src/misc.c ****   * @{
+  28:STM32F10x_FWLib/src/misc.c ****   */
+  29:STM32F10x_FWLib/src/misc.c **** 
+  30:STM32F10x_FWLib/src/misc.c **** /** @defgroup MISC 
+  31:STM32F10x_FWLib/src/misc.c ****   * @brief MISC driver modules
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cca3YMiq.s 			page 2
+
+
+  32:STM32F10x_FWLib/src/misc.c ****   * @{
+  33:STM32F10x_FWLib/src/misc.c ****   */
+  34:STM32F10x_FWLib/src/misc.c **** 
+  35:STM32F10x_FWLib/src/misc.c **** /** @defgroup MISC_Private_TypesDefinitions
+  36:STM32F10x_FWLib/src/misc.c ****   * @{
+  37:STM32F10x_FWLib/src/misc.c ****   */
+  38:STM32F10x_FWLib/src/misc.c **** 
+  39:STM32F10x_FWLib/src/misc.c **** /**
+  40:STM32F10x_FWLib/src/misc.c ****   * @}
+  41:STM32F10x_FWLib/src/misc.c ****   */ 
+  42:STM32F10x_FWLib/src/misc.c **** 
+  43:STM32F10x_FWLib/src/misc.c **** /** @defgroup MISC_Private_Defines
+  44:STM32F10x_FWLib/src/misc.c ****   * @{
+  45:STM32F10x_FWLib/src/misc.c ****   */
+  46:STM32F10x_FWLib/src/misc.c **** 
+  47:STM32F10x_FWLib/src/misc.c **** #define AIRCR_VECTKEY_MASK    ((uint32_t)0x05FA0000)
+  48:STM32F10x_FWLib/src/misc.c **** /**
+  49:STM32F10x_FWLib/src/misc.c ****   * @}
+  50:STM32F10x_FWLib/src/misc.c ****   */
+  51:STM32F10x_FWLib/src/misc.c **** 
+  52:STM32F10x_FWLib/src/misc.c **** /** @defgroup MISC_Private_Macros
+  53:STM32F10x_FWLib/src/misc.c ****   * @{
+  54:STM32F10x_FWLib/src/misc.c ****   */
+  55:STM32F10x_FWLib/src/misc.c **** 
+  56:STM32F10x_FWLib/src/misc.c **** /**
+  57:STM32F10x_FWLib/src/misc.c ****   * @}
+  58:STM32F10x_FWLib/src/misc.c ****   */
+  59:STM32F10x_FWLib/src/misc.c **** 
+  60:STM32F10x_FWLib/src/misc.c **** /** @defgroup MISC_Private_Variables
+  61:STM32F10x_FWLib/src/misc.c ****   * @{
+  62:STM32F10x_FWLib/src/misc.c ****   */
+  63:STM32F10x_FWLib/src/misc.c **** 
+  64:STM32F10x_FWLib/src/misc.c **** /**
+  65:STM32F10x_FWLib/src/misc.c ****   * @}
+  66:STM32F10x_FWLib/src/misc.c ****   */
+  67:STM32F10x_FWLib/src/misc.c **** 
+  68:STM32F10x_FWLib/src/misc.c **** /** @defgroup MISC_Private_FunctionPrototypes
+  69:STM32F10x_FWLib/src/misc.c ****   * @{
+  70:STM32F10x_FWLib/src/misc.c ****   */
+  71:STM32F10x_FWLib/src/misc.c **** 
+  72:STM32F10x_FWLib/src/misc.c **** /**
+  73:STM32F10x_FWLib/src/misc.c ****   * @}
+  74:STM32F10x_FWLib/src/misc.c ****   */
+  75:STM32F10x_FWLib/src/misc.c **** 
+  76:STM32F10x_FWLib/src/misc.c **** /** @defgroup MISC_Private_Functions
+  77:STM32F10x_FWLib/src/misc.c ****   * @{
+  78:STM32F10x_FWLib/src/misc.c ****   */
+  79:STM32F10x_FWLib/src/misc.c **** 
+  80:STM32F10x_FWLib/src/misc.c **** /**
+  81:STM32F10x_FWLib/src/misc.c ****   * @brief  Configures the priority grouping: pre-emption priority and subpriority.
+  82:STM32F10x_FWLib/src/misc.c ****   * @param  NVIC_PriorityGroup: specifies the priority grouping bits length. 
+  83:STM32F10x_FWLib/src/misc.c ****   *   This parameter can be one of the following values:
+  84:STM32F10x_FWLib/src/misc.c ****   *     @arg NVIC_PriorityGroup_0: 0 bits for pre-emption priority
+  85:STM32F10x_FWLib/src/misc.c ****   *                                4 bits for subpriority
+  86:STM32F10x_FWLib/src/misc.c ****   *     @arg NVIC_PriorityGroup_1: 1 bits for pre-emption priority
+  87:STM32F10x_FWLib/src/misc.c ****   *                                3 bits for subpriority
+  88:STM32F10x_FWLib/src/misc.c ****   *     @arg NVIC_PriorityGroup_2: 2 bits for pre-emption priority
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cca3YMiq.s 			page 3
+
+
+  89:STM32F10x_FWLib/src/misc.c ****   *                                2 bits for subpriority
+  90:STM32F10x_FWLib/src/misc.c ****   *     @arg NVIC_PriorityGroup_3: 3 bits for pre-emption priority
+  91:STM32F10x_FWLib/src/misc.c ****   *                                1 bits for subpriority
+  92:STM32F10x_FWLib/src/misc.c ****   *     @arg NVIC_PriorityGroup_4: 4 bits for pre-emption priority
+  93:STM32F10x_FWLib/src/misc.c ****   *                                0 bits for subpriority
+  94:STM32F10x_FWLib/src/misc.c ****   * @retval None
+  95:STM32F10x_FWLib/src/misc.c ****   */
+  96:STM32F10x_FWLib/src/misc.c **** void NVIC_PriorityGroupConfig(uint32_t NVIC_PriorityGroup)
+  97:STM32F10x_FWLib/src/misc.c **** {
+  28              		.loc 1 97 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  98:STM32F10x_FWLib/src/misc.c ****   /* Check the parameters */
+  99:STM32F10x_FWLib/src/misc.c ****   assert_param(IS_NVIC_PRIORITY_GROUP(NVIC_PriorityGroup));
+  33              		.loc 1 99 3 view .LVU1
+ 100:STM32F10x_FWLib/src/misc.c ****   
+ 101:STM32F10x_FWLib/src/misc.c ****   /* Set the PRIGROUP[10:8] bits according to NVIC_PriorityGroup value */
+ 102:STM32F10x_FWLib/src/misc.c ****   SCB->AIRCR = AIRCR_VECTKEY_MASK | NVIC_PriorityGroup;
+  34              		.loc 1 102 3 view .LVU2
+  35              		.loc 1 102 35 is_stmt 0 view .LVU3
+  36 0000 40F0BF60 		orr	r0, r0, #100139008
+  37              	.LVL1:
+  38              		.loc 1 102 35 view .LVU4
+  39 0004 40F40030 		orr	r0, r0, #131072
+  40              		.loc 1 102 14 view .LVU5
+  41 0008 014B     		ldr	r3, .L2
+  42 000a D860     		str	r0, [r3, #12]
+ 103:STM32F10x_FWLib/src/misc.c **** }
+  43              		.loc 1 103 1 view .LVU6
+  44 000c 7047     		bx	lr
+  45              	.L3:
+  46 000e 00BF     		.align	2
+  47              	.L2:
+  48 0010 00ED00E0 		.word	-536810240
+  49              		.cfi_endproc
+  50              	.LFE29:
+  52              		.section	.text.NVIC_Init,"ax",%progbits
+  53              		.align	1
+  54              		.global	NVIC_Init
+  55              		.syntax unified
+  56              		.thumb
+  57              		.thumb_func
+  59              	NVIC_Init:
+  60              	.LVL2:
+  61              	.LFB30:
+ 104:STM32F10x_FWLib/src/misc.c **** 
+ 105:STM32F10x_FWLib/src/misc.c **** /**
+ 106:STM32F10x_FWLib/src/misc.c ****   * @brief  Initializes the NVIC peripheral according to the specified
+ 107:STM32F10x_FWLib/src/misc.c ****   *         parameters in the NVIC_InitStruct.
+ 108:STM32F10x_FWLib/src/misc.c ****   * @param  NVIC_InitStruct: pointer to a NVIC_InitTypeDef structure that contains
+ 109:STM32F10x_FWLib/src/misc.c ****   *         the configuration information for the specified NVIC peripheral.
+ 110:STM32F10x_FWLib/src/misc.c ****   * @retval None
+ 111:STM32F10x_FWLib/src/misc.c ****   */
+ 112:STM32F10x_FWLib/src/misc.c **** void NVIC_Init(NVIC_InitTypeDef* NVIC_InitStruct)
+ 113:STM32F10x_FWLib/src/misc.c **** {
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cca3YMiq.s 			page 4
+
+
+  62              		.loc 1 113 1 is_stmt 1 view -0
+  63              		.cfi_startproc
+  64              		@ args = 0, pretend = 0, frame = 0
+  65              		@ frame_needed = 0, uses_anonymous_args = 0
+  66              		@ link register save eliminated.
+ 114:STM32F10x_FWLib/src/misc.c ****   uint32_t tmppriority = 0x00, tmppre = 0x00, tmpsub = 0x0F;
+  67              		.loc 1 114 3 view .LVU8
+ 115:STM32F10x_FWLib/src/misc.c ****   
+ 116:STM32F10x_FWLib/src/misc.c ****   /* Check the parameters */
+ 117:STM32F10x_FWLib/src/misc.c ****   assert_param(IS_FUNCTIONAL_STATE(NVIC_InitStruct->NVIC_IRQChannelCmd));
+  68              		.loc 1 117 3 view .LVU9
+ 118:STM32F10x_FWLib/src/misc.c ****   assert_param(IS_NVIC_PREEMPTION_PRIORITY(NVIC_InitStruct->NVIC_IRQChannelPreemptionPriority));  
+  69              		.loc 1 118 3 view .LVU10
+ 119:STM32F10x_FWLib/src/misc.c ****   assert_param(IS_NVIC_SUB_PRIORITY(NVIC_InitStruct->NVIC_IRQChannelSubPriority));
+  70              		.loc 1 119 3 view .LVU11
+ 120:STM32F10x_FWLib/src/misc.c ****     
+ 121:STM32F10x_FWLib/src/misc.c ****   if (NVIC_InitStruct->NVIC_IRQChannelCmd != DISABLE)
+  71              		.loc 1 121 3 view .LVU12
+  72              		.loc 1 121 22 is_stmt 0 view .LVU13
+  73 0000 C378     		ldrb	r3, [r0, #3]	@ zero_extendqisi2
+  74              		.loc 1 121 6 view .LVU14
+  75 0002 F3B1     		cbz	r3, .L5
+ 122:STM32F10x_FWLib/src/misc.c ****   {
+ 123:STM32F10x_FWLib/src/misc.c ****     /* Compute the Corresponding IRQ Priority --------------------------------*/    
+ 124:STM32F10x_FWLib/src/misc.c ****     tmppriority = (0x700 - ((SCB->AIRCR) & (uint32_t)0x700))>> 0x08;
+  76              		.loc 1 124 5 is_stmt 1 view .LVU15
+  77              		.loc 1 124 33 is_stmt 0 view .LVU16
+  78 0004 144B     		ldr	r3, .L7
+  79 0006 DB68     		ldr	r3, [r3, #12]
+  80              		.loc 1 124 26 view .LVU17
+  81 0008 DB43     		mvns	r3, r3
+  82              		.loc 1 124 17 view .LVU18
+  83 000a C3F30223 		ubfx	r3, r3, #8, #3
+  84              	.LVL3:
+ 125:STM32F10x_FWLib/src/misc.c ****     tmppre = (0x4 - tmppriority);
+  85              		.loc 1 125 5 is_stmt 1 view .LVU19
+  86              		.loc 1 125 12 is_stmt 0 view .LVU20
+  87 000e C3F1040C 		rsb	ip, r3, #4
+  88              	.LVL4:
+ 126:STM32F10x_FWLib/src/misc.c ****     tmpsub = tmpsub >> tmppriority;
+  89              		.loc 1 126 5 is_stmt 1 view .LVU21
+  90              		.loc 1 126 12 is_stmt 0 view .LVU22
+  91 0012 0F21     		movs	r1, #15
+  92 0014 D940     		lsrs	r1, r1, r3
+  93              	.LVL5:
+ 127:STM32F10x_FWLib/src/misc.c **** 
+ 128:STM32F10x_FWLib/src/misc.c ****     tmppriority = (uint32_t)NVIC_InitStruct->NVIC_IRQChannelPreemptionPriority << tmppre;
+  94              		.loc 1 128 5 is_stmt 1 view .LVU23
+  95              		.loc 1 128 44 is_stmt 0 view .LVU24
+  96 0016 4278     		ldrb	r2, [r0, #1]	@ zero_extendqisi2
+  97              		.loc 1 128 17 view .LVU25
+  98 0018 02FA0CF2 		lsl	r2, r2, ip
+  99              	.LVL6:
+ 129:STM32F10x_FWLib/src/misc.c ****     tmppriority |=  NVIC_InitStruct->NVIC_IRQChannelSubPriority & tmpsub;
+ 100              		.loc 1 129 5 is_stmt 1 view .LVU26
+ 101              		.loc 1 129 36 is_stmt 0 view .LVU27
+ 102 001c 8378     		ldrb	r3, [r0, #2]	@ zero_extendqisi2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cca3YMiq.s 			page 5
+
+
+ 103              		.loc 1 129 65 view .LVU28
+ 104 001e 0B40     		ands	r3, r3, r1
+ 105              		.loc 1 129 17 view .LVU29
+ 106 0020 1343     		orrs	r3, r3, r2
+ 107              	.LVL7:
+ 130:STM32F10x_FWLib/src/misc.c ****     tmppriority = tmppriority << 0x04;
+ 108              		.loc 1 130 5 is_stmt 1 view .LVU30
+ 109              		.loc 1 130 17 is_stmt 0 view .LVU31
+ 110 0022 1B01     		lsls	r3, r3, #4
+ 111              	.LVL8:
+ 131:STM32F10x_FWLib/src/misc.c ****         
+ 132:STM32F10x_FWLib/src/misc.c ****     NVIC->IP[NVIC_InitStruct->NVIC_IRQChannel] = tmppriority;
+ 112              		.loc 1 132 5 is_stmt 1 view .LVU32
+ 113              		.loc 1 132 29 is_stmt 0 view .LVU33
+ 114 0024 0278     		ldrb	r2, [r0]	@ zero_extendqisi2
+ 115              		.loc 1 132 48 view .LVU34
+ 116 0026 DBB2     		uxtb	r3, r3
+ 117              	.LVL9:
+ 118              		.loc 1 132 48 view .LVU35
+ 119 0028 0C49     		ldr	r1, .L7+4
+ 120              	.LVL10:
+ 121              		.loc 1 132 48 view .LVU36
+ 122 002a 0A44     		add	r2, r2, r1
+ 123 002c 82F80033 		strb	r3, [r2, #768]
+ 133:STM32F10x_FWLib/src/misc.c ****     
+ 134:STM32F10x_FWLib/src/misc.c ****     /* Enable the Selected IRQ Channels --------------------------------------*/
+ 135:STM32F10x_FWLib/src/misc.c ****     NVIC->ISER[NVIC_InitStruct->NVIC_IRQChannel >> 0x05] =
+ 124              		.loc 1 135 5 is_stmt 1 view .LVU37
+ 136:STM32F10x_FWLib/src/misc.c ****       (uint32_t)0x01 << (NVIC_InitStruct->NVIC_IRQChannel & (uint8_t)0x1F);
+ 125              		.loc 1 136 41 is_stmt 0 view .LVU38
+ 126 0030 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 127              		.loc 1 136 59 view .LVU39
+ 128 0032 03F01F00 		and	r0, r3, #31
+ 129              	.LVL11:
+ 135:STM32F10x_FWLib/src/misc.c ****       (uint32_t)0x01 << (NVIC_InitStruct->NVIC_IRQChannel & (uint8_t)0x1F);
+ 130              		.loc 1 135 49 view .LVU40
+ 131 0036 5B09     		lsrs	r3, r3, #5
+ 132              		.loc 1 136 22 view .LVU41
+ 133 0038 0122     		movs	r2, #1
+ 134 003a 8240     		lsls	r2, r2, r0
+ 135:STM32F10x_FWLib/src/misc.c ****       (uint32_t)0x01 << (NVIC_InitStruct->NVIC_IRQChannel & (uint8_t)0x1F);
+ 135              		.loc 1 135 58 view .LVU42
+ 136 003c 41F82320 		str	r2, [r1, r3, lsl #2]
+ 137 0040 7047     		bx	lr
+ 138              	.LVL12:
+ 139              	.L5:
+ 137:STM32F10x_FWLib/src/misc.c ****   }
+ 138:STM32F10x_FWLib/src/misc.c ****   else
+ 139:STM32F10x_FWLib/src/misc.c ****   {
+ 140:STM32F10x_FWLib/src/misc.c ****     /* Disable the Selected IRQ Channels -------------------------------------*/
+ 141:STM32F10x_FWLib/src/misc.c ****     NVIC->ICER[NVIC_InitStruct->NVIC_IRQChannel >> 0x05] =
+ 140              		.loc 1 141 5 is_stmt 1 view .LVU43
+ 142:STM32F10x_FWLib/src/misc.c ****       (uint32_t)0x01 << (NVIC_InitStruct->NVIC_IRQChannel & (uint8_t)0x1F);
+ 141              		.loc 1 142 41 is_stmt 0 view .LVU44
+ 142 0042 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 143              		.loc 1 142 59 view .LVU45
+ 144 0044 03F01F01 		and	r1, r3, #31
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cca3YMiq.s 			page 6
+
+
+ 141:STM32F10x_FWLib/src/misc.c ****       (uint32_t)0x01 << (NVIC_InitStruct->NVIC_IRQChannel & (uint8_t)0x1F);
+ 145              		.loc 1 141 49 view .LVU46
+ 146 0048 5B09     		lsrs	r3, r3, #5
+ 147              		.loc 1 142 22 view .LVU47
+ 148 004a 0122     		movs	r2, #1
+ 149 004c 8A40     		lsls	r2, r2, r1
+ 141:STM32F10x_FWLib/src/misc.c ****       (uint32_t)0x01 << (NVIC_InitStruct->NVIC_IRQChannel & (uint8_t)0x1F);
+ 150              		.loc 1 141 58 view .LVU48
+ 151 004e 2033     		adds	r3, r3, #32
+ 152 0050 0249     		ldr	r1, .L7+4
+ 153 0052 41F82320 		str	r2, [r1, r3, lsl #2]
+ 143:STM32F10x_FWLib/src/misc.c ****   }
+ 144:STM32F10x_FWLib/src/misc.c **** }
+ 154              		.loc 1 144 1 view .LVU49
+ 155 0056 7047     		bx	lr
+ 156              	.L8:
+ 157              		.align	2
+ 158              	.L7:
+ 159 0058 00ED00E0 		.word	-536810240
+ 160 005c 00E100E0 		.word	-536813312
+ 161              		.cfi_endproc
+ 162              	.LFE30:
+ 164              		.section	.text.NVIC_SetVectorTable,"ax",%progbits
+ 165              		.align	1
+ 166              		.global	NVIC_SetVectorTable
+ 167              		.syntax unified
+ 168              		.thumb
+ 169              		.thumb_func
+ 171              	NVIC_SetVectorTable:
+ 172              	.LVL13:
+ 173              	.LFB31:
+ 145:STM32F10x_FWLib/src/misc.c **** 
+ 146:STM32F10x_FWLib/src/misc.c **** /**
+ 147:STM32F10x_FWLib/src/misc.c ****   * @brief  Sets the vector table location and Offset.
+ 148:STM32F10x_FWLib/src/misc.c ****   * @param  NVIC_VectTab: specifies if the vector table is in RAM or FLASH memory.
+ 149:STM32F10x_FWLib/src/misc.c ****   *   This parameter can be one of the following values:
+ 150:STM32F10x_FWLib/src/misc.c ****   *     @arg NVIC_VectTab_RAM
+ 151:STM32F10x_FWLib/src/misc.c ****   *     @arg NVIC_VectTab_FLASH
+ 152:STM32F10x_FWLib/src/misc.c ****   * @param  Offset: Vector Table base offset field. This value must be a multiple 
+ 153:STM32F10x_FWLib/src/misc.c ****   *         of 0x200.
+ 154:STM32F10x_FWLib/src/misc.c ****   * @retval None
+ 155:STM32F10x_FWLib/src/misc.c ****   */
+ 156:STM32F10x_FWLib/src/misc.c **** void NVIC_SetVectorTable(uint32_t NVIC_VectTab, uint32_t Offset)
+ 157:STM32F10x_FWLib/src/misc.c **** { 
+ 174              		.loc 1 157 1 is_stmt 1 view -0
+ 175              		.cfi_startproc
+ 176              		@ args = 0, pretend = 0, frame = 0
+ 177              		@ frame_needed = 0, uses_anonymous_args = 0
+ 178              		@ link register save eliminated.
+ 158:STM32F10x_FWLib/src/misc.c ****   /* Check the parameters */
+ 159:STM32F10x_FWLib/src/misc.c ****   assert_param(IS_NVIC_VECTTAB(NVIC_VectTab));
+ 179              		.loc 1 159 3 view .LVU51
+ 160:STM32F10x_FWLib/src/misc.c ****   assert_param(IS_NVIC_OFFSET(Offset));  
+ 180              		.loc 1 160 3 view .LVU52
+ 161:STM32F10x_FWLib/src/misc.c ****    
+ 162:STM32F10x_FWLib/src/misc.c ****   SCB->VTOR = NVIC_VectTab | (Offset & (uint32_t)0x1FFFFF80);
+ 181              		.loc 1 162 3 view .LVU53
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cca3YMiq.s 			page 7
+
+
+ 182              		.loc 1 162 38 is_stmt 0 view .LVU54
+ 183 0000 21F06041 		bic	r1, r1, #-536870912
+ 184              	.LVL14:
+ 185              		.loc 1 162 38 view .LVU55
+ 186 0004 21F07F01 		bic	r1, r1, #127
+ 187              		.loc 1 162 28 view .LVU56
+ 188 0008 0143     		orrs	r1, r1, r0
+ 189              		.loc 1 162 13 view .LVU57
+ 190 000a 014B     		ldr	r3, .L10
+ 191 000c 9960     		str	r1, [r3, #8]
+ 163:STM32F10x_FWLib/src/misc.c **** }
+ 192              		.loc 1 163 1 view .LVU58
+ 193 000e 7047     		bx	lr
+ 194              	.L11:
+ 195              		.align	2
+ 196              	.L10:
+ 197 0010 00ED00E0 		.word	-536810240
+ 198              		.cfi_endproc
+ 199              	.LFE31:
+ 201              		.section	.text.NVIC_SystemLPConfig,"ax",%progbits
+ 202              		.align	1
+ 203              		.global	NVIC_SystemLPConfig
+ 204              		.syntax unified
+ 205              		.thumb
+ 206              		.thumb_func
+ 208              	NVIC_SystemLPConfig:
+ 209              	.LVL15:
+ 210              	.LFB32:
+ 164:STM32F10x_FWLib/src/misc.c **** 
+ 165:STM32F10x_FWLib/src/misc.c **** /**
+ 166:STM32F10x_FWLib/src/misc.c ****   * @brief  Selects the condition for the system to enter low power mode.
+ 167:STM32F10x_FWLib/src/misc.c ****   * @param  LowPowerMode: Specifies the new mode for the system to enter low power mode.
+ 168:STM32F10x_FWLib/src/misc.c ****   *   This parameter can be one of the following values:
+ 169:STM32F10x_FWLib/src/misc.c ****   *     @arg NVIC_LP_SEVONPEND
+ 170:STM32F10x_FWLib/src/misc.c ****   *     @arg NVIC_LP_SLEEPDEEP
+ 171:STM32F10x_FWLib/src/misc.c ****   *     @arg NVIC_LP_SLEEPONEXIT
+ 172:STM32F10x_FWLib/src/misc.c ****   * @param  NewState: new state of LP condition. This parameter can be: ENABLE or DISABLE.
+ 173:STM32F10x_FWLib/src/misc.c ****   * @retval None
+ 174:STM32F10x_FWLib/src/misc.c ****   */
+ 175:STM32F10x_FWLib/src/misc.c **** void NVIC_SystemLPConfig(uint8_t LowPowerMode, FunctionalState NewState)
+ 176:STM32F10x_FWLib/src/misc.c **** {
+ 211              		.loc 1 176 1 is_stmt 1 view -0
+ 212              		.cfi_startproc
+ 213              		@ args = 0, pretend = 0, frame = 0
+ 214              		@ frame_needed = 0, uses_anonymous_args = 0
+ 215              		@ link register save eliminated.
+ 177:STM32F10x_FWLib/src/misc.c ****   /* Check the parameters */
+ 178:STM32F10x_FWLib/src/misc.c ****   assert_param(IS_NVIC_LP(LowPowerMode));
+ 216              		.loc 1 178 3 view .LVU60
+ 179:STM32F10x_FWLib/src/misc.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));  
+ 217              		.loc 1 179 3 view .LVU61
+ 180:STM32F10x_FWLib/src/misc.c ****   
+ 181:STM32F10x_FWLib/src/misc.c ****   if (NewState != DISABLE)
+ 218              		.loc 1 181 3 view .LVU62
+ 219              		.loc 1 181 6 is_stmt 0 view .LVU63
+ 220 0000 21B1     		cbz	r1, .L13
+ 182:STM32F10x_FWLib/src/misc.c ****   {
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cca3YMiq.s 			page 8
+
+
+ 183:STM32F10x_FWLib/src/misc.c ****     SCB->SCR |= LowPowerMode;
+ 221              		.loc 1 183 5 is_stmt 1 view .LVU64
+ 222              		.loc 1 183 8 is_stmt 0 view .LVU65
+ 223 0002 054B     		ldr	r3, .L15
+ 224 0004 1A69     		ldr	r2, [r3, #16]
+ 225              		.loc 1 183 14 view .LVU66
+ 226 0006 1043     		orrs	r0, r0, r2
+ 227              	.LVL16:
+ 228              		.loc 1 183 14 view .LVU67
+ 229 0008 1861     		str	r0, [r3, #16]
+ 230 000a 7047     		bx	lr
+ 231              	.LVL17:
+ 232              	.L13:
+ 184:STM32F10x_FWLib/src/misc.c ****   }
+ 185:STM32F10x_FWLib/src/misc.c ****   else
+ 186:STM32F10x_FWLib/src/misc.c ****   {
+ 187:STM32F10x_FWLib/src/misc.c ****     SCB->SCR &= (uint32_t)(~(uint32_t)LowPowerMode);
+ 233              		.loc 1 187 5 is_stmt 1 view .LVU68
+ 234              		.loc 1 187 8 is_stmt 0 view .LVU69
+ 235 000c 024A     		ldr	r2, .L15
+ 236 000e 1369     		ldr	r3, [r2, #16]
+ 237              		.loc 1 187 14 view .LVU70
+ 238 0010 23EA0003 		bic	r3, r3, r0
+ 239 0014 1361     		str	r3, [r2, #16]
+ 188:STM32F10x_FWLib/src/misc.c ****   }
+ 189:STM32F10x_FWLib/src/misc.c **** }
+ 240              		.loc 1 189 1 view .LVU71
+ 241 0016 7047     		bx	lr
+ 242              	.L16:
+ 243              		.align	2
+ 244              	.L15:
+ 245 0018 00ED00E0 		.word	-536810240
+ 246              		.cfi_endproc
+ 247              	.LFE32:
+ 249              		.section	.text.SysTick_CLKSourceConfig,"ax",%progbits
+ 250              		.align	1
+ 251              		.global	SysTick_CLKSourceConfig
+ 252              		.syntax unified
+ 253              		.thumb
+ 254              		.thumb_func
+ 256              	SysTick_CLKSourceConfig:
+ 257              	.LVL18:
+ 258              	.LFB33:
+ 190:STM32F10x_FWLib/src/misc.c **** 
+ 191:STM32F10x_FWLib/src/misc.c **** /**
+ 192:STM32F10x_FWLib/src/misc.c ****   * @brief  Configures the SysTick clock source.
+ 193:STM32F10x_FWLib/src/misc.c ****   * @param  SysTick_CLKSource: specifies the SysTick clock source.
+ 194:STM32F10x_FWLib/src/misc.c ****   *   This parameter can be one of the following values:
+ 195:STM32F10x_FWLib/src/misc.c ****   *     @arg SysTick_CLKSource_HCLK_Div8: AHB clock divided by 8 selected as SysTick clock source.
+ 196:STM32F10x_FWLib/src/misc.c ****   *     @arg SysTick_CLKSource_HCLK: AHB clock selected as SysTick clock source.
+ 197:STM32F10x_FWLib/src/misc.c ****   * @retval None
+ 198:STM32F10x_FWLib/src/misc.c ****   */
+ 199:STM32F10x_FWLib/src/misc.c **** void SysTick_CLKSourceConfig(uint32_t SysTick_CLKSource)
+ 200:STM32F10x_FWLib/src/misc.c **** {
+ 259              		.loc 1 200 1 is_stmt 1 view -0
+ 260              		.cfi_startproc
+ 261              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cca3YMiq.s 			page 9
+
+
+ 262              		@ frame_needed = 0, uses_anonymous_args = 0
+ 263              		@ link register save eliminated.
+ 201:STM32F10x_FWLib/src/misc.c ****   /* Check the parameters */
+ 202:STM32F10x_FWLib/src/misc.c ****   assert_param(IS_SYSTICK_CLK_SOURCE(SysTick_CLKSource));
+ 264              		.loc 1 202 3 view .LVU73
+ 203:STM32F10x_FWLib/src/misc.c ****   if (SysTick_CLKSource == SysTick_CLKSource_HCLK)
+ 265              		.loc 1 203 3 view .LVU74
+ 266              		.loc 1 203 6 is_stmt 0 view .LVU75
+ 267 0000 0428     		cmp	r0, #4
+ 268 0002 06D0     		beq	.L20
+ 204:STM32F10x_FWLib/src/misc.c ****   {
+ 205:STM32F10x_FWLib/src/misc.c ****     SysTick->CTRL |= SysTick_CLKSource_HCLK;
+ 206:STM32F10x_FWLib/src/misc.c ****   }
+ 207:STM32F10x_FWLib/src/misc.c ****   else
+ 208:STM32F10x_FWLib/src/misc.c ****   {
+ 209:STM32F10x_FWLib/src/misc.c ****     SysTick->CTRL &= SysTick_CLKSource_HCLK_Div8;
+ 269              		.loc 1 209 5 is_stmt 1 view .LVU76
+ 270              		.loc 1 209 12 is_stmt 0 view .LVU77
+ 271 0004 4FF0E022 		mov	r2, #-536813568
+ 272 0008 1369     		ldr	r3, [r2, #16]
+ 273              		.loc 1 209 19 view .LVU78
+ 274 000a 23F00403 		bic	r3, r3, #4
+ 275 000e 1361     		str	r3, [r2, #16]
+ 210:STM32F10x_FWLib/src/misc.c ****   }
+ 211:STM32F10x_FWLib/src/misc.c **** }
+ 276              		.loc 1 211 1 view .LVU79
+ 277 0010 7047     		bx	lr
+ 278              	.L20:
+ 205:STM32F10x_FWLib/src/misc.c ****   }
+ 279              		.loc 1 205 5 is_stmt 1 view .LVU80
+ 205:STM32F10x_FWLib/src/misc.c ****   }
+ 280              		.loc 1 205 12 is_stmt 0 view .LVU81
+ 281 0012 4FF0E022 		mov	r2, #-536813568
+ 282 0016 1369     		ldr	r3, [r2, #16]
+ 205:STM32F10x_FWLib/src/misc.c ****   }
+ 283              		.loc 1 205 19 view .LVU82
+ 284 0018 43F00403 		orr	r3, r3, #4
+ 285 001c 1361     		str	r3, [r2, #16]
+ 286 001e 7047     		bx	lr
+ 287              		.cfi_endproc
+ 288              	.LFE33:
+ 290              		.text
+ 291              	.Letext0:
+ 292              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 293              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 294              		.file 4 "Core/core_cm3.h"
+ 295              		.file 5 "USER/stm32f10x.h"
+ 296              		.file 6 "STM32F10x_FWLib/inc/misc.h"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cca3YMiq.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 misc.c
+C:\Users\86157\AppData\Local\Temp\cca3YMiq.s:19     .text.NVIC_PriorityGroupConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cca3YMiq.s:25     .text.NVIC_PriorityGroupConfig:00000000 NVIC_PriorityGroupConfig
+C:\Users\86157\AppData\Local\Temp\cca3YMiq.s:48     .text.NVIC_PriorityGroupConfig:00000010 $d
+C:\Users\86157\AppData\Local\Temp\cca3YMiq.s:53     .text.NVIC_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cca3YMiq.s:59     .text.NVIC_Init:00000000 NVIC_Init
+C:\Users\86157\AppData\Local\Temp\cca3YMiq.s:159    .text.NVIC_Init:00000058 $d
+C:\Users\86157\AppData\Local\Temp\cca3YMiq.s:165    .text.NVIC_SetVectorTable:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cca3YMiq.s:171    .text.NVIC_SetVectorTable:00000000 NVIC_SetVectorTable
+C:\Users\86157\AppData\Local\Temp\cca3YMiq.s:197    .text.NVIC_SetVectorTable:00000010 $d
+C:\Users\86157\AppData\Local\Temp\cca3YMiq.s:202    .text.NVIC_SystemLPConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cca3YMiq.s:208    .text.NVIC_SystemLPConfig:00000000 NVIC_SystemLPConfig
+C:\Users\86157\AppData\Local\Temp\cca3YMiq.s:245    .text.NVIC_SystemLPConfig:00000018 $d
+C:\Users\86157\AppData\Local\Temp\cca3YMiq.s:250    .text.SysTick_CLKSourceConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cca3YMiq.s:256    .text.SysTick_CLKSourceConfig:00000000 SysTick_CLKSourceConfig
+
+NO UNDEFINED SYMBOLS

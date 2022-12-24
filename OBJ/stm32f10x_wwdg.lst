@@ -1,0 +1,553 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccaROqQr.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f10x_wwdg.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "STM32F10x_FWLib/src/stm32f10x_wwdg.c"
+  18              		.section	.text.WWDG_DeInit,"ax",%progbits
+  19              		.align	1
+  20              		.global	WWDG_DeInit
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	WWDG_DeInit:
+  26              	.LFB29:
+   1:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /**
+   2:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   ******************************************************************************
+   3:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @file    stm32f10x_wwdg.c
+   4:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @author  MCD Application Team
+   5:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @version V3.5.0
+   6:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @date    11-March-2011
+   7:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @brief   This file provides all the WWDG firmware functions.
+   8:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   ******************************************************************************
+   9:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @attention
+  10:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   *
+  11:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+  12:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+  13:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * TIME. AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY
+  14:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+  15:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+  16:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+  17:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   *
+  18:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * <h2><center>&copy; COPYRIGHT 2011 STMicroelectronics</center></h2>
+  19:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   ******************************************************************************
+  20:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+  21:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+  22:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /* Includes ------------------------------------------------------------------*/
+  23:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** #include "stm32f10x_wwdg.h"
+  24:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** #include "stm32f10x_rcc.h"
+  25:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+  26:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /** @addtogroup STM32F10x_StdPeriph_Driver
+  27:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @{
+  28:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+  29:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+  30:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /** @defgroup WWDG 
+  31:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @brief WWDG driver modules
+  32:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @{
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccaROqQr.s 			page 2
+
+
+  33:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+  34:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+  35:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /** @defgroup WWDG_Private_TypesDefinitions
+  36:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @{
+  37:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+  38:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+  39:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /**
+  40:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @}
+  41:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+  42:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+  43:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /** @defgroup WWDG_Private_Defines
+  44:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @{
+  45:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+  46:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+  47:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /* ----------- WWDG registers bit address in the alias region ----------- */
+  48:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** #define WWDG_OFFSET       (WWDG_BASE - PERIPH_BASE)
+  49:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+  50:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /* Alias word address of EWI bit */
+  51:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** #define CFR_OFFSET        (WWDG_OFFSET + 0x04)
+  52:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** #define EWI_BitNumber     0x09
+  53:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** #define CFR_EWI_BB        (PERIPH_BB_BASE + (CFR_OFFSET * 32) + (EWI_BitNumber * 4))
+  54:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+  55:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /* --------------------- WWDG registers bit mask ------------------------ */
+  56:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+  57:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /* CR register bit mask */
+  58:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** #define CR_WDGA_Set       ((uint32_t)0x00000080)
+  59:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+  60:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /* CFR register bit mask */
+  61:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** #define CFR_WDGTB_Mask    ((uint32_t)0xFFFFFE7F)
+  62:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** #define CFR_W_Mask        ((uint32_t)0xFFFFFF80)
+  63:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** #define BIT_Mask          ((uint8_t)0x7F)
+  64:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+  65:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /**
+  66:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @}
+  67:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+  68:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+  69:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /** @defgroup WWDG_Private_Macros
+  70:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @{
+  71:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+  72:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+  73:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /**
+  74:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @}
+  75:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+  76:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+  77:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /** @defgroup WWDG_Private_Variables
+  78:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @{
+  79:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+  80:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+  81:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /**
+  82:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @}
+  83:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+  84:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+  85:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /** @defgroup WWDG_Private_FunctionPrototypes
+  86:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @{
+  87:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+  88:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+  89:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /**
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccaROqQr.s 			page 3
+
+
+  90:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @}
+  91:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+  92:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+  93:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /** @defgroup WWDG_Private_Functions
+  94:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @{
+  95:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+  96:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+  97:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /**
+  98:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @brief  Deinitializes the WWDG peripheral registers to their default reset values.
+  99:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @param  None
+ 100:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @retval None
+ 101:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+ 102:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** void WWDG_DeInit(void)
+ 103:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** {
+  27              		.loc 1 103 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 08B5     		push	{r3, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 3, -8
+  35              		.cfi_offset 14, -4
+ 104:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   RCC_APB1PeriphResetCmd(RCC_APB1Periph_WWDG, ENABLE);
+  36              		.loc 1 104 3 view .LVU1
+  37 0002 0121     		movs	r1, #1
+  38 0004 4FF40060 		mov	r0, #2048
+  39 0008 FFF7FEFF 		bl	RCC_APB1PeriphResetCmd
+  40              	.LVL0:
+ 105:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   RCC_APB1PeriphResetCmd(RCC_APB1Periph_WWDG, DISABLE);
+  41              		.loc 1 105 3 view .LVU2
+  42 000c 0021     		movs	r1, #0
+  43 000e 4FF40060 		mov	r0, #2048
+  44 0012 FFF7FEFF 		bl	RCC_APB1PeriphResetCmd
+  45              	.LVL1:
+ 106:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** }
+  46              		.loc 1 106 1 is_stmt 0 view .LVU3
+  47 0016 08BD     		pop	{r3, pc}
+  48              		.cfi_endproc
+  49              	.LFE29:
+  51              		.section	.text.WWDG_SetPrescaler,"ax",%progbits
+  52              		.align	1
+  53              		.global	WWDG_SetPrescaler
+  54              		.syntax unified
+  55              		.thumb
+  56              		.thumb_func
+  58              	WWDG_SetPrescaler:
+  59              	.LVL2:
+  60              	.LFB30:
+ 107:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+ 108:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /**
+ 109:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @brief  Sets the WWDG Prescaler.
+ 110:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @param  WWDG_Prescaler: specifies the WWDG Prescaler.
+ 111:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   *   This parameter can be one of the following values:
+ 112:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   *     @arg WWDG_Prescaler_1: WWDG counter clock = (PCLK1/4096)/1
+ 113:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   *     @arg WWDG_Prescaler_2: WWDG counter clock = (PCLK1/4096)/2
+ 114:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   *     @arg WWDG_Prescaler_4: WWDG counter clock = (PCLK1/4096)/4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccaROqQr.s 			page 4
+
+
+ 115:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   *     @arg WWDG_Prescaler_8: WWDG counter clock = (PCLK1/4096)/8
+ 116:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @retval None
+ 117:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+ 118:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** void WWDG_SetPrescaler(uint32_t WWDG_Prescaler)
+ 119:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** {
+  61              		.loc 1 119 1 is_stmt 1 view -0
+  62              		.cfi_startproc
+  63              		@ args = 0, pretend = 0, frame = 0
+  64              		@ frame_needed = 0, uses_anonymous_args = 0
+  65              		@ link register save eliminated.
+ 120:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   uint32_t tmpreg = 0;
+  66              		.loc 1 120 3 view .LVU5
+ 121:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   /* Check the parameters */
+ 122:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   assert_param(IS_WWDG_PRESCALER(WWDG_Prescaler));
+  67              		.loc 1 122 3 view .LVU6
+ 123:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   /* Clear WDGTB[1:0] bits */
+ 124:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   tmpreg = WWDG->CFR & CFR_WDGTB_Mask;
+  68              		.loc 1 124 3 view .LVU7
+  69              		.loc 1 124 16 is_stmt 0 view .LVU8
+  70 0000 034A     		ldr	r2, .L4
+  71 0002 5368     		ldr	r3, [r2, #4]
+  72              		.loc 1 124 10 view .LVU9
+  73 0004 23F4C073 		bic	r3, r3, #384
+  74              	.LVL3:
+ 125:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   /* Set WDGTB[1:0] bits according to WWDG_Prescaler value */
+ 126:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   tmpreg |= WWDG_Prescaler;
+  75              		.loc 1 126 3 is_stmt 1 view .LVU10
+  76              		.loc 1 126 10 is_stmt 0 view .LVU11
+  77 0008 0343     		orrs	r3, r3, r0
+  78              	.LVL4:
+ 127:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   /* Store the new value */
+ 128:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   WWDG->CFR = tmpreg;
+  79              		.loc 1 128 3 is_stmt 1 view .LVU12
+  80              		.loc 1 128 13 is_stmt 0 view .LVU13
+  81 000a 5360     		str	r3, [r2, #4]
+ 129:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** }
+  82              		.loc 1 129 1 view .LVU14
+  83 000c 7047     		bx	lr
+  84              	.L5:
+  85 000e 00BF     		.align	2
+  86              	.L4:
+  87 0010 002C0040 		.word	1073753088
+  88              		.cfi_endproc
+  89              	.LFE30:
+  91              		.section	.text.WWDG_SetWindowValue,"ax",%progbits
+  92              		.align	1
+  93              		.global	WWDG_SetWindowValue
+  94              		.syntax unified
+  95              		.thumb
+  96              		.thumb_func
+  98              	WWDG_SetWindowValue:
+  99              	.LVL5:
+ 100              	.LFB31:
+ 130:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+ 131:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /**
+ 132:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @brief  Sets the WWDG window value.
+ 133:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @param  WindowValue: specifies the window value to be compared to the downcounter.
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccaROqQr.s 			page 5
+
+
+ 134:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   *   This parameter value must be lower than 0x80.
+ 135:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @retval None
+ 136:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+ 137:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** void WWDG_SetWindowValue(uint8_t WindowValue)
+ 138:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** {
+ 101              		.loc 1 138 1 is_stmt 1 view -0
+ 102              		.cfi_startproc
+ 103              		@ args = 0, pretend = 0, frame = 8
+ 104              		@ frame_needed = 0, uses_anonymous_args = 0
+ 105              		@ link register save eliminated.
+ 106              		.loc 1 138 1 is_stmt 0 view .LVU16
+ 107 0000 82B0     		sub	sp, sp, #8
+ 108              	.LCFI1:
+ 109              		.cfi_def_cfa_offset 8
+ 139:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   __IO uint32_t tmpreg = 0;
+ 110              		.loc 1 139 3 is_stmt 1 view .LVU17
+ 111              		.loc 1 139 17 is_stmt 0 view .LVU18
+ 112 0002 0023     		movs	r3, #0
+ 113 0004 0193     		str	r3, [sp, #4]
+ 140:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+ 141:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   /* Check the parameters */
+ 142:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   assert_param(IS_WWDG_WINDOW_VALUE(WindowValue));
+ 114              		.loc 1 142 3 is_stmt 1 view .LVU19
+ 143:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   /* Clear W[6:0] bits */
+ 144:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+ 145:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   tmpreg = WWDG->CFR & CFR_W_Mask;
+ 115              		.loc 1 145 3 view .LVU20
+ 116              		.loc 1 145 16 is_stmt 0 view .LVU21
+ 117 0006 074A     		ldr	r2, .L8
+ 118 0008 5368     		ldr	r3, [r2, #4]
+ 119              		.loc 1 145 22 view .LVU22
+ 120 000a 23F07F03 		bic	r3, r3, #127
+ 121              		.loc 1 145 10 view .LVU23
+ 122 000e 0193     		str	r3, [sp, #4]
+ 146:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+ 147:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   /* Set W[6:0] bits according to WindowValue value */
+ 148:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   tmpreg |= WindowValue & (uint32_t) BIT_Mask;
+ 123              		.loc 1 148 3 is_stmt 1 view .LVU24
+ 124              		.loc 1 148 25 is_stmt 0 view .LVU25
+ 125 0010 00F07F00 		and	r0, r0, #127
+ 126              	.LVL6:
+ 127              		.loc 1 148 10 view .LVU26
+ 128 0014 019B     		ldr	r3, [sp, #4]
+ 129 0016 1843     		orrs	r0, r0, r3
+ 130 0018 0190     		str	r0, [sp, #4]
+ 149:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+ 150:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   /* Store the new value */
+ 151:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   WWDG->CFR = tmpreg;
+ 131              		.loc 1 151 3 is_stmt 1 view .LVU27
+ 132              		.loc 1 151 13 is_stmt 0 view .LVU28
+ 133 001a 019B     		ldr	r3, [sp, #4]
+ 134 001c 5360     		str	r3, [r2, #4]
+ 152:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** }
+ 135              		.loc 1 152 1 view .LVU29
+ 136 001e 02B0     		add	sp, sp, #8
+ 137              	.LCFI2:
+ 138              		.cfi_def_cfa_offset 0
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccaROqQr.s 			page 6
+
+
+ 139              		@ sp needed
+ 140 0020 7047     		bx	lr
+ 141              	.L9:
+ 142 0022 00BF     		.align	2
+ 143              	.L8:
+ 144 0024 002C0040 		.word	1073753088
+ 145              		.cfi_endproc
+ 146              	.LFE31:
+ 148              		.section	.text.WWDG_EnableIT,"ax",%progbits
+ 149              		.align	1
+ 150              		.global	WWDG_EnableIT
+ 151              		.syntax unified
+ 152              		.thumb
+ 153              		.thumb_func
+ 155              	WWDG_EnableIT:
+ 156              	.LFB32:
+ 153:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+ 154:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /**
+ 155:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @brief  Enables the WWDG Early Wakeup interrupt(EWI).
+ 156:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @param  None
+ 157:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @retval None
+ 158:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+ 159:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** void WWDG_EnableIT(void)
+ 160:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** {
+ 157              		.loc 1 160 1 is_stmt 1 view -0
+ 158              		.cfi_startproc
+ 159              		@ args = 0, pretend = 0, frame = 0
+ 160              		@ frame_needed = 0, uses_anonymous_args = 0
+ 161              		@ link register save eliminated.
+ 161:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   *(__IO uint32_t *) CFR_EWI_BB = (uint32_t)ENABLE;
+ 162              		.loc 1 161 3 view .LVU31
+ 163              		.loc 1 161 33 is_stmt 0 view .LVU32
+ 164 0000 024B     		ldr	r3, .L11
+ 165 0002 0122     		movs	r2, #1
+ 166 0004 C3F8A420 		str	r2, [r3, #164]
+ 162:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** }
+ 167              		.loc 1 162 1 view .LVU33
+ 168 0008 7047     		bx	lr
+ 169              	.L12:
+ 170 000a 00BF     		.align	2
+ 171              	.L11:
+ 172 000c 00800542 		.word	1107656704
+ 173              		.cfi_endproc
+ 174              	.LFE32:
+ 176              		.section	.text.WWDG_SetCounter,"ax",%progbits
+ 177              		.align	1
+ 178              		.global	WWDG_SetCounter
+ 179              		.syntax unified
+ 180              		.thumb
+ 181              		.thumb_func
+ 183              	WWDG_SetCounter:
+ 184              	.LVL7:
+ 185              	.LFB33:
+ 163:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+ 164:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /**
+ 165:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @brief  Sets the WWDG counter value.
+ 166:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @param  Counter: specifies the watchdog counter value.
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccaROqQr.s 			page 7
+
+
+ 167:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   *   This parameter must be a number between 0x40 and 0x7F.
+ 168:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @retval None
+ 169:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+ 170:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** void WWDG_SetCounter(uint8_t Counter)
+ 171:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** {
+ 186              		.loc 1 171 1 is_stmt 1 view -0
+ 187              		.cfi_startproc
+ 188              		@ args = 0, pretend = 0, frame = 0
+ 189              		@ frame_needed = 0, uses_anonymous_args = 0
+ 190              		@ link register save eliminated.
+ 172:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   /* Check the parameters */
+ 173:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   assert_param(IS_WWDG_COUNTER(Counter));
+ 191              		.loc 1 173 3 view .LVU35
+ 174:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   /* Write to T[6:0] bits to configure the counter value, no need to do
+ 175:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****      a read-modify-write; writing a 0 to WDGA bit does nothing */
+ 176:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   WWDG->CR = Counter & BIT_Mask;
+ 192              		.loc 1 176 3 view .LVU36
+ 193              		.loc 1 176 22 is_stmt 0 view .LVU37
+ 194 0000 00F07F00 		and	r0, r0, #127
+ 195              	.LVL8:
+ 196              		.loc 1 176 12 view .LVU38
+ 197 0004 014B     		ldr	r3, .L14
+ 198 0006 1860     		str	r0, [r3]
+ 177:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** }
+ 199              		.loc 1 177 1 view .LVU39
+ 200 0008 7047     		bx	lr
+ 201              	.L15:
+ 202 000a 00BF     		.align	2
+ 203              	.L14:
+ 204 000c 002C0040 		.word	1073753088
+ 205              		.cfi_endproc
+ 206              	.LFE33:
+ 208              		.section	.text.WWDG_Enable,"ax",%progbits
+ 209              		.align	1
+ 210              		.global	WWDG_Enable
+ 211              		.syntax unified
+ 212              		.thumb
+ 213              		.thumb_func
+ 215              	WWDG_Enable:
+ 216              	.LVL9:
+ 217              	.LFB34:
+ 178:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+ 179:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /**
+ 180:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @brief  Enables WWDG and load the counter value.                  
+ 181:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @param  Counter: specifies the watchdog counter value.
+ 182:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   *   This parameter must be a number between 0x40 and 0x7F.
+ 183:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @retval None
+ 184:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+ 185:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** void WWDG_Enable(uint8_t Counter)
+ 186:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** {
+ 218              		.loc 1 186 1 is_stmt 1 view -0
+ 219              		.cfi_startproc
+ 220              		@ args = 0, pretend = 0, frame = 0
+ 221              		@ frame_needed = 0, uses_anonymous_args = 0
+ 222              		@ link register save eliminated.
+ 187:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   /* Check the parameters */
+ 188:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   assert_param(IS_WWDG_COUNTER(Counter));
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccaROqQr.s 			page 8
+
+
+ 223              		.loc 1 188 3 view .LVU41
+ 189:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   WWDG->CR = CR_WDGA_Set | Counter;
+ 224              		.loc 1 189 3 view .LVU42
+ 225              		.loc 1 189 26 is_stmt 0 view .LVU43
+ 226 0000 40F08000 		orr	r0, r0, #128
+ 227              	.LVL10:
+ 228              		.loc 1 189 12 view .LVU44
+ 229 0004 014B     		ldr	r3, .L17
+ 230 0006 1860     		str	r0, [r3]
+ 190:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** }
+ 231              		.loc 1 190 1 view .LVU45
+ 232 0008 7047     		bx	lr
+ 233              	.L18:
+ 234 000a 00BF     		.align	2
+ 235              	.L17:
+ 236 000c 002C0040 		.word	1073753088
+ 237              		.cfi_endproc
+ 238              	.LFE34:
+ 240              		.section	.text.WWDG_GetFlagStatus,"ax",%progbits
+ 241              		.align	1
+ 242              		.global	WWDG_GetFlagStatus
+ 243              		.syntax unified
+ 244              		.thumb
+ 245              		.thumb_func
+ 247              	WWDG_GetFlagStatus:
+ 248              	.LFB35:
+ 191:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+ 192:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /**
+ 193:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @brief  Checks whether the Early Wakeup interrupt flag is set or not.
+ 194:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @param  None
+ 195:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @retval The new state of the Early Wakeup interrupt flag (SET or RESET)
+ 196:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+ 197:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** FlagStatus WWDG_GetFlagStatus(void)
+ 198:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** {
+ 249              		.loc 1 198 1 is_stmt 1 view -0
+ 250              		.cfi_startproc
+ 251              		@ args = 0, pretend = 0, frame = 0
+ 252              		@ frame_needed = 0, uses_anonymous_args = 0
+ 253              		@ link register save eliminated.
+ 199:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   return (FlagStatus)(WWDG->SR);
+ 254              		.loc 1 199 3 view .LVU47
+ 255              		.loc 1 199 27 is_stmt 0 view .LVU48
+ 256 0000 014B     		ldr	r3, .L20
+ 257 0002 9868     		ldr	r0, [r3, #8]
+ 200:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** }
+ 258              		.loc 1 200 1 view .LVU49
+ 259 0004 C0B2     		uxtb	r0, r0
+ 260 0006 7047     		bx	lr
+ 261              	.L21:
+ 262              		.align	2
+ 263              	.L20:
+ 264 0008 002C0040 		.word	1073753088
+ 265              		.cfi_endproc
+ 266              	.LFE35:
+ 268              		.section	.text.WWDG_ClearFlag,"ax",%progbits
+ 269              		.align	1
+ 270              		.global	WWDG_ClearFlag
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccaROqQr.s 			page 9
+
+
+ 271              		.syntax unified
+ 272              		.thumb
+ 273              		.thumb_func
+ 275              	WWDG_ClearFlag:
+ 276              	.LFB36:
+ 201:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** 
+ 202:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** /**
+ 203:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @brief  Clears Early Wakeup interrupt flag.
+ 204:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @param  None
+ 205:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   * @retval None
+ 206:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   */
+ 207:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** void WWDG_ClearFlag(void)
+ 208:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** {
+ 277              		.loc 1 208 1 is_stmt 1 view -0
+ 278              		.cfi_startproc
+ 279              		@ args = 0, pretend = 0, frame = 0
+ 280              		@ frame_needed = 0, uses_anonymous_args = 0
+ 281              		@ link register save eliminated.
+ 209:STM32F10x_FWLib/src/stm32f10x_wwdg.c ****   WWDG->SR = (uint32_t)RESET;
+ 282              		.loc 1 209 3 view .LVU51
+ 283              		.loc 1 209 12 is_stmt 0 view .LVU52
+ 284 0000 014B     		ldr	r3, .L23
+ 285 0002 0022     		movs	r2, #0
+ 286 0004 9A60     		str	r2, [r3, #8]
+ 210:STM32F10x_FWLib/src/stm32f10x_wwdg.c **** }
+ 287              		.loc 1 210 1 view .LVU53
+ 288 0006 7047     		bx	lr
+ 289              	.L24:
+ 290              		.align	2
+ 291              	.L23:
+ 292 0008 002C0040 		.word	1073753088
+ 293              		.cfi_endproc
+ 294              	.LFE36:
+ 296              		.text
+ 297              	.Letext0:
+ 298              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 299              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 300              		.file 4 "USER/stm32f10x.h"
+ 301              		.file 5 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccaROqQr.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f10x_wwdg.c
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:19     .text.WWDG_DeInit:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:25     .text.WWDG_DeInit:00000000 WWDG_DeInit
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:52     .text.WWDG_SetPrescaler:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:58     .text.WWDG_SetPrescaler:00000000 WWDG_SetPrescaler
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:87     .text.WWDG_SetPrescaler:00000010 $d
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:92     .text.WWDG_SetWindowValue:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:98     .text.WWDG_SetWindowValue:00000000 WWDG_SetWindowValue
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:144    .text.WWDG_SetWindowValue:00000024 $d
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:149    .text.WWDG_EnableIT:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:155    .text.WWDG_EnableIT:00000000 WWDG_EnableIT
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:172    .text.WWDG_EnableIT:0000000c $d
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:177    .text.WWDG_SetCounter:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:183    .text.WWDG_SetCounter:00000000 WWDG_SetCounter
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:204    .text.WWDG_SetCounter:0000000c $d
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:209    .text.WWDG_Enable:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:215    .text.WWDG_Enable:00000000 WWDG_Enable
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:236    .text.WWDG_Enable:0000000c $d
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:241    .text.WWDG_GetFlagStatus:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:247    .text.WWDG_GetFlagStatus:00000000 WWDG_GetFlagStatus
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:264    .text.WWDG_GetFlagStatus:00000008 $d
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:269    .text.WWDG_ClearFlag:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:275    .text.WWDG_ClearFlag:00000000 WWDG_ClearFlag
+C:\Users\86157\AppData\Local\Temp\ccaROqQr.s:292    .text.WWDG_ClearFlag:00000008 $d
+
+UNDEFINED SYMBOLS
+RCC_APB1PeriphResetCmd

@@ -1,0 +1,23 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Cortex Debug",
+            "cwd": "${workspaceFolder}",
+            "executable": "./OBJ/STM32_STD.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "runToEntryPoint": "main",
+            "servertype": "stlink",
+            "serverpath": "E:\\Windows\\Programs\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.win32_2.0.400.202209281104\\tools\\bin\\ST-LINK_gdbserver.exe",
+            "stm32cubeprogrammer": "E:\\Windows\\Programs\\STM32CubeProgrammer\\bin" ,
+            "svdFile": "E:\\Windows\\Programs\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.productdb.debug_2.0.400.202211151459\\resources\\cmsis\\STMicroelectronics_CMSIS_SVD\\STM32F103.svd",            
+            "interface": "jtag",    // ST-LINK_gdbserver -c port=jtag
+            "serverArgs": ["--frequency 4000"], // ST-LINK_gdbserver --frequency 4000
+            // "gdbTarget": "127.0.0.1:8000",   // 自定义服务端端口
+        }
+    ]
+}

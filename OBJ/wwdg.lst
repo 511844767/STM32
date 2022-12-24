@@ -1,0 +1,307 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc6YnCUc.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"wwdg.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "HW/WWDG/wwdg.c"
+  18              		.section	.text.WWDG_Init,"ax",%progbits
+  19              		.align	1
+  20              		.global	WWDG_Init
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	WWDG_Init:
+  26              	.LVL0:
+  27              	.LFB29:
+   1:HW/WWDG/wwdg.c **** #include"stm32f10x.h"
+   2:HW/WWDG/wwdg.c **** #include"stm32f10x_wwdg.h"
+   3:HW/WWDG/wwdg.c **** #include"sys.h"
+   4:HW/WWDG/wwdg.c **** #include"delay.h"
+   5:HW/WWDG/wwdg.c **** #include"LED.h"
+   6:HW/WWDG/wwdg.c **** 
+   7:HW/WWDG/wwdg.c **** /* 喂狗重装载值 */
+   8:HW/WWDG/wwdg.c **** static uint8_t Counter = 0X7F;
+   9:HW/WWDG/wwdg.c **** 
+  10:HW/WWDG/wwdg.c **** void WWDG_Init(uint32_t WWDG_Prescaler, uint8_t WindowValue, uint8_t __Counter){
+  28              		.loc 1 10 80 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 8
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 10 80 is_stmt 0 view .LVU1
+  33 0000 70B5     		push	{r4, r5, r6, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 16
+  36              		.cfi_offset 4, -16
+  37              		.cfi_offset 5, -12
+  38              		.cfi_offset 6, -8
+  39              		.cfi_offset 14, -4
+  40 0002 82B0     		sub	sp, sp, #8
+  41              	.LCFI1:
+  42              		.cfi_def_cfa_offset 24
+  43 0004 0546     		mov	r5, r0
+  44 0006 0C46     		mov	r4, r1
+  11:HW/WWDG/wwdg.c ****     /* 重装载值最大为0X7F */
+  12:HW/WWDG/wwdg.c ****     Counter = __Counter & 0X7F;
+  45              		.loc 1 12 5 is_stmt 1 view .LVU2
+  46              		.loc 1 12 25 is_stmt 0 view .LVU3
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc6YnCUc.s 			page 2
+
+
+  47 0008 02F07F02 		and	r2, r2, #127
+  48              	.LVL1:
+  49              		.loc 1 12 13 view .LVU4
+  50 000c 124E     		ldr	r6, .L3
+  51 000e 3270     		strb	r2, [r6]
+  13:HW/WWDG/wwdg.c ****     /* 使能看门狗时钟 */
+  14:HW/WWDG/wwdg.c ****     RCC_APB1PeriphClockCmd(RCC_APB1Periph_WWDG, ENABLE);
+  52              		.loc 1 14 5 is_stmt 1 view .LVU5
+  53 0010 0121     		movs	r1, #1
+  54              	.LVL2:
+  55              		.loc 1 14 5 is_stmt 0 view .LVU6
+  56 0012 4FF40060 		mov	r0, #2048
+  57              	.LVL3:
+  58              		.loc 1 14 5 view .LVU7
+  59 0016 FFF7FEFF 		bl	RCC_APB1PeriphClockCmd
+  60              	.LVL4:
+  15:HW/WWDG/wwdg.c ****     /* 设置预分频系数 */
+  16:HW/WWDG/wwdg.c ****     WWDG_SetPrescaler(WWDG_Prescaler);
+  61              		.loc 1 16 5 is_stmt 1 view .LVU8
+  62 001a 2846     		mov	r0, r5
+  63 001c FFF7FEFF 		bl	WWDG_SetPrescaler
+  64              	.LVL5:
+  17:HW/WWDG/wwdg.c ****     /* 设置窗口值 */
+  18:HW/WWDG/wwdg.c ****     WWDG_SetWindowValue(WindowValue);
+  65              		.loc 1 18 5 view .LVU9
+  66 0020 2046     		mov	r0, r4
+  67 0022 FFF7FEFF 		bl	WWDG_SetWindowValue
+  68              	.LVL6:
+  19:HW/WWDG/wwdg.c ****     /* 使能窗口看门狗 */
+  20:HW/WWDG/wwdg.c ****     WWDG_Enable(Counter);
+  69              		.loc 1 20 5 view .LVU10
+  70 0026 3078     		ldrb	r0, [r6]	@ zero_extendqisi2
+  71 0028 FFF7FEFF 		bl	WWDG_Enable
+  72              	.LVL7:
+  21:HW/WWDG/wwdg.c ****     /* 清除计时结束前中断标志 */
+  22:HW/WWDG/wwdg.c ****     WWDG_ClearFlag();
+  73              		.loc 1 22 5 view .LVU11
+  74 002c FFF7FEFF 		bl	WWDG_ClearFlag
+  75              	.LVL8:
+  23:HW/WWDG/wwdg.c ****     /* 配置看门狗中断 */
+  24:HW/WWDG/wwdg.c ****     NVIC_InitTypeDef nvicDef;
+  76              		.loc 1 24 5 view .LVU12
+  25:HW/WWDG/wwdg.c ****     nvicDef.NVIC_IRQChannel = WWDG_IRQn;
+  77              		.loc 1 25 5 view .LVU13
+  78              		.loc 1 25 29 is_stmt 0 view .LVU14
+  79 0030 0023     		movs	r3, #0
+  80 0032 8DF80430 		strb	r3, [sp, #4]
+  26:HW/WWDG/wwdg.c ****     nvicDef.NVIC_IRQChannelCmd = ENABLE;
+  81              		.loc 1 26 5 is_stmt 1 view .LVU15
+  82              		.loc 1 26 32 is_stmt 0 view .LVU16
+  83 0036 0123     		movs	r3, #1
+  84 0038 8DF80730 		strb	r3, [sp, #7]
+  27:HW/WWDG/wwdg.c ****     nvicDef.NVIC_IRQChannelPreemptionPriority = 2;
+  85              		.loc 1 27 5 is_stmt 1 view .LVU17
+  86              		.loc 1 27 47 is_stmt 0 view .LVU18
+  87 003c 0223     		movs	r3, #2
+  88 003e 8DF80530 		strb	r3, [sp, #5]
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc6YnCUc.s 			page 3
+
+
+  28:HW/WWDG/wwdg.c ****     nvicDef.NVIC_IRQChannelSubPriority = 3;
+  89              		.loc 1 28 5 is_stmt 1 view .LVU19
+  90              		.loc 1 28 40 is_stmt 0 view .LVU20
+  91 0042 0323     		movs	r3, #3
+  92 0044 8DF80630 		strb	r3, [sp, #6]
+  29:HW/WWDG/wwdg.c ****     NVIC_Init(&nvicDef);
+  93              		.loc 1 29 5 is_stmt 1 view .LVU21
+  94 0048 01A8     		add	r0, sp, #4
+  95 004a FFF7FEFF 		bl	NVIC_Init
+  96              	.LVL9:
+  30:HW/WWDG/wwdg.c ****     /* 使能看门狗中断 */
+  31:HW/WWDG/wwdg.c ****     WWDG_EnableIT();
+  97              		.loc 1 31 5 view .LVU22
+  98 004e FFF7FEFF 		bl	WWDG_EnableIT
+  99              	.LVL10:
+  32:HW/WWDG/wwdg.c **** }
+ 100              		.loc 1 32 1 is_stmt 0 view .LVU23
+ 101 0052 02B0     		add	sp, sp, #8
+ 102              	.LCFI2:
+ 103              		.cfi_def_cfa_offset 16
+ 104              		@ sp needed
+ 105 0054 70BD     		pop	{r4, r5, r6, pc}
+ 106              	.LVL11:
+ 107              	.L4:
+ 108              		.loc 1 32 1 view .LVU24
+ 109 0056 00BF     		.align	2
+ 110              	.L3:
+ 111 0058 00000000 		.word	Counter
+ 112              		.cfi_endproc
+ 113              	.LFE29:
+ 115              		.section	.text.WWDG_IRQHandler,"ax",%progbits
+ 116              		.align	1
+ 117              		.global	WWDG_IRQHandler
+ 118              		.syntax unified
+ 119              		.thumb
+ 120              		.thumb_func
+ 122              	WWDG_IRQHandler:
+ 123              	.LFB30:
+  33:HW/WWDG/wwdg.c **** 
+  34:HW/WWDG/wwdg.c **** /* 中断服务函数，在复位前触发 */
+  35:HW/WWDG/wwdg.c **** void WWDG_IRQHandler(){
+ 124              		.loc 1 35 23 is_stmt 1 view -0
+ 125              		.cfi_startproc
+ 126              		@ args = 0, pretend = 0, frame = 0
+ 127              		@ frame_needed = 0, uses_anonymous_args = 0
+ 128 0000 08B5     		push	{r3, lr}
+ 129              	.LCFI3:
+ 130              		.cfi_def_cfa_offset 8
+ 131              		.cfi_offset 3, -8
+ 132              		.cfi_offset 14, -4
+  36:HW/WWDG/wwdg.c ****     /* 喂狗 */
+  37:HW/WWDG/wwdg.c ****     WWDG_SetCounter(Counter);
+ 133              		.loc 1 37 5 view .LVU26
+ 134 0002 034B     		ldr	r3, .L7
+ 135 0004 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 136 0006 FFF7FEFF 		bl	WWDG_SetCounter
+ 137              	.LVL12:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc6YnCUc.s 			page 4
+
+
+  38:HW/WWDG/wwdg.c ****     /* 清除计时结束前中断标志 */
+  39:HW/WWDG/wwdg.c ****     WWDG_ClearFlag();
+ 138              		.loc 1 39 5 view .LVU27
+ 139 000a FFF7FEFF 		bl	WWDG_ClearFlag
+ 140              	.LVL13:
+  40:HW/WWDG/wwdg.c **** }
+ 141              		.loc 1 40 1 is_stmt 0 view .LVU28
+ 142 000e 08BD     		pop	{r3, pc}
+ 143              	.L8:
+ 144              		.align	2
+ 145              	.L7:
+ 146 0010 00000000 		.word	Counter
+ 147              		.cfi_endproc
+ 148              	.LFE30:
+ 150              		.section	.text.WWDG_Run,"ax",%progbits
+ 151              		.align	1
+ 152              		.global	WWDG_Run
+ 153              		.syntax unified
+ 154              		.thumb
+ 155              		.thumb_func
+ 157              	WWDG_Run:
+ 158              	.LFB31:
+  41:HW/WWDG/wwdg.c **** 
+  42:HW/WWDG/wwdg.c **** void WWDG_Run(){
+ 159              		.loc 1 42 16 is_stmt 1 view -0
+ 160              		.cfi_startproc
+ 161              		@ Volatile: function does not return.
+ 162              		@ args = 0, pretend = 0, frame = 0
+ 163              		@ frame_needed = 0, uses_anonymous_args = 0
+ 164 0000 08B5     		push	{r3, lr}
+ 165              	.LCFI4:
+ 166              		.cfi_def_cfa_offset 8
+ 167              		.cfi_offset 3, -8
+ 168              		.cfi_offset 14, -4
+  43:HW/WWDG/wwdg.c ****     /* 配置中断优先级组 */
+  44:HW/WWDG/wwdg.c ****     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+ 169              		.loc 1 44 5 view .LVU30
+ 170 0002 4FF4A060 		mov	r0, #1280
+ 171 0006 FFF7FEFF 		bl	NVIC_PriorityGroupConfig
+ 172              	.LVL14:
+  45:HW/WWDG/wwdg.c ****     /* 初始化 */
+  46:HW/WWDG/wwdg.c ****     LED_Init_Hal();
+ 173              		.loc 1 46 5 view .LVU31
+ 174 000a FFF7FEFF 		bl	LED_Init_Hal
+ 175              	.LVL15:
+  47:HW/WWDG/wwdg.c ****     delay_init();
+ 176              		.loc 1 47 5 view .LVU32
+ 177 000e FFF7FEFF 		bl	delay_init
+ 178              	.LVL16:
+  48:HW/WWDG/wwdg.c ****     WWDG_Init(WWDG_Prescaler_8, 0X7F, 0X7F);    // 窗口值为0X7F，复位值为0X7F
+ 179              		.loc 1 48 5 view .LVU33
+ 180 0012 7F22     		movs	r2, #127
+ 181 0014 1146     		mov	r1, r2
+ 182 0016 4FF4C070 		mov	r0, #384
+ 183 001a FFF7FEFF 		bl	WWDG_Init
+ 184              	.LVL17:
+  49:HW/WWDG/wwdg.c ****     /* 复位后等0.5s亮灯 */
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc6YnCUc.s 			page 5
+
+
+  50:HW/WWDG/wwdg.c **** 	delay_ms(500);
+ 185              		.loc 1 50 2 view .LVU34
+ 186 001e 4FF4FA70 		mov	r0, #500
+ 187 0022 FFF7FEFF 		bl	delay_ms
+ 188              	.LVL18:
+  51:HW/WWDG/wwdg.c ****     LED0_ON();
+ 189              		.loc 1 51 5 view .LVU35
+ 190 0026 024B     		ldr	r3, .L12
+ 191 0028 0022     		movs	r2, #0
+ 192 002a C3F89421 		str	r2, [r3, #404]
+ 193              	.L10:
+ 194              		.loc 1 51 14 discriminator 1 view .LVU36
+  52:HW/WWDG/wwdg.c ****     while(1);
+ 195              		.loc 1 52 5 discriminator 1 view .LVU37
+ 196              		.loc 1 52 10 discriminator 1 view .LVU38
+ 197 002e FEE7     		b	.L10
+ 198              	.L13:
+ 199              		.align	2
+ 200              	.L12:
+ 201 0030 00802142 		.word	1109491712
+ 202              		.cfi_endproc
+ 203              	.LFE31:
+ 205              		.section	.data.Counter,"aw"
+ 208              	Counter:
+ 209 0000 7F       		.byte	127
+ 210              		.text
+ 211              	.Letext0:
+ 212              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 213              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 214              		.file 4 "USER/stm32f10x.h"
+ 215              		.file 5 "STM32F10x_FWLib/inc/misc.h"
+ 216              		.file 6 "SYSTEM/delay/delay.h"
+ 217              		.file 7 "HW\\LED/LED.h"
+ 218              		.file 8 "STM32F10x_FWLib/inc/stm32f10x_wwdg.h"
+ 219              		.file 9 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc6YnCUc.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 wwdg.c
+C:\Users\86157\AppData\Local\Temp\cc6YnCUc.s:19     .text.WWDG_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc6YnCUc.s:25     .text.WWDG_Init:00000000 WWDG_Init
+C:\Users\86157\AppData\Local\Temp\cc6YnCUc.s:111    .text.WWDG_Init:00000058 $d
+C:\Users\86157\AppData\Local\Temp\cc6YnCUc.s:208    .data.Counter:00000000 Counter
+C:\Users\86157\AppData\Local\Temp\cc6YnCUc.s:116    .text.WWDG_IRQHandler:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc6YnCUc.s:122    .text.WWDG_IRQHandler:00000000 WWDG_IRQHandler
+C:\Users\86157\AppData\Local\Temp\cc6YnCUc.s:146    .text.WWDG_IRQHandler:00000010 $d
+C:\Users\86157\AppData\Local\Temp\cc6YnCUc.s:151    .text.WWDG_Run:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc6YnCUc.s:157    .text.WWDG_Run:00000000 WWDG_Run
+C:\Users\86157\AppData\Local\Temp\cc6YnCUc.s:201    .text.WWDG_Run:00000030 $d
+
+UNDEFINED SYMBOLS
+RCC_APB1PeriphClockCmd
+WWDG_SetPrescaler
+WWDG_SetWindowValue
+WWDG_Enable
+WWDG_ClearFlag
+NVIC_Init
+WWDG_EnableIT
+WWDG_SetCounter
+NVIC_PriorityGroupConfig
+LED_Init_Hal
+delay_init
+delay_ms

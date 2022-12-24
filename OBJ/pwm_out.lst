@@ -1,0 +1,363 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccSrlaVb.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"pwm_out.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "HW/TIM/PWM_OUT/pwm_out.c"
+  18              		.section	.text.TIM3_PWMOut_Init,"ax",%progbits
+  19              		.align	1
+  20              		.global	TIM3_PWMOut_Init
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	TIM3_PWMOut_Init:
+  26              	.LVL0:
+  27              	.LFB29:
+   1:HW/TIM/PWM_OUT/pwm_out.c **** #include"stm32f10x.h"
+   2:HW/TIM/PWM_OUT/pwm_out.c **** #include"stm32f10x_tim.h"
+   3:HW/TIM/PWM_OUT/pwm_out.c **** #include"LED.h"
+   4:HW/TIM/PWM_OUT/pwm_out.c **** #include"delay.h"
+   5:HW/TIM/PWM_OUT/pwm_out.c **** 
+   6:HW/TIM/PWM_OUT/pwm_out.c **** void TIM3_PWMOut_Init(uint16_t TIM_Period, uint16_t TIM_Prescaler, uint16_t TIM_Pulse){
+  28              		.loc 1 6 87 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 32
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 6 87 is_stmt 0 view .LVU1
+  33 0000 70B5     		push	{r4, r5, r6, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 16
+  36              		.cfi_offset 4, -16
+  37              		.cfi_offset 5, -12
+  38              		.cfi_offset 6, -8
+  39              		.cfi_offset 14, -4
+  40 0002 88B0     		sub	sp, sp, #32
+  41              	.LCFI1:
+  42              		.cfi_def_cfa_offset 48
+  43 0004 0646     		mov	r6, r0
+  44 0006 0C46     		mov	r4, r1
+  45 0008 1546     		mov	r5, r2
+   7:HW/TIM/PWM_OUT/pwm_out.c ****     /* 使能时钟 */
+   8:HW/TIM/PWM_OUT/pwm_out.c ****     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);    // TIM3定时器
+  46              		.loc 1 8 5 is_stmt 1 view .LVU2
+  47 000a 0121     		movs	r1, #1
+  48              	.LVL1:
+  49              		.loc 1 8 5 is_stmt 0 view .LVU3
+  50 000c 0220     		movs	r0, #2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccSrlaVb.s 			page 2
+
+
+  51              	.LVL2:
+  52              		.loc 1 8 5 view .LVU4
+  53 000e FFF7FEFF 		bl	RCC_APB1PeriphClockCmd
+  54              	.LVL3:
+   9:HW/TIM/PWM_OUT/pwm_out.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);   // LED0在GPIOB上
+  55              		.loc 1 9 5 is_stmt 1 view .LVU5
+  56 0012 0121     		movs	r1, #1
+  57 0014 0820     		movs	r0, #8
+  58 0016 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+  59              	.LVL4:
+  10:HW/TIM/PWM_OUT/pwm_out.c ****     /* 配置GPIOB->Pin5 */
+  11:HW/TIM/PWM_OUT/pwm_out.c ****     GPIO_InitTypeDef gpioDef;
+  60              		.loc 1 11 5 view .LVU6
+  12:HW/TIM/PWM_OUT/pwm_out.c ****     gpioDef.GPIO_Pin    = GPIO_Pin_5;
+  61              		.loc 1 12 5 view .LVU7
+  62              		.loc 1 12 25 is_stmt 0 view .LVU8
+  63 001a 2023     		movs	r3, #32
+  64 001c ADF81C30 		strh	r3, [sp, #28]	@ movhi
+  13:HW/TIM/PWM_OUT/pwm_out.c ****     gpioDef.GPIO_Speed  = GPIO_Speed_50MHz;
+  65              		.loc 1 13 5 is_stmt 1 view .LVU9
+  66              		.loc 1 13 25 is_stmt 0 view .LVU10
+  67 0020 0323     		movs	r3, #3
+  68 0022 8DF81E30 		strb	r3, [sp, #30]
+  14:HW/TIM/PWM_OUT/pwm_out.c ****     gpioDef.GPIO_Mode   = GPIO_Mode_AF_PP;                  // 复用推挽输出
+  69              		.loc 1 14 5 is_stmt 1 view .LVU11
+  70              		.loc 1 14 25 is_stmt 0 view .LVU12
+  71 0026 1823     		movs	r3, #24
+  72 0028 8DF81F30 		strb	r3, [sp, #31]
+  15:HW/TIM/PWM_OUT/pwm_out.c **** 	GPIO_Init(GPIOB, &gpioDef);
+  73              		.loc 1 15 2 is_stmt 1 view .LVU13
+  74 002c 07A9     		add	r1, sp, #28
+  75 002e 1A48     		ldr	r0, .L3
+  76 0030 FFF7FEFF 		bl	GPIO_Init
+  77              	.LVL5:
+  16:HW/TIM/PWM_OUT/pwm_out.c ****     /* TIM3定时器部分重映射 */
+  17:HW/TIM/PWM_OUT/pwm_out.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);    // 使能重映射时钟
+  78              		.loc 1 17 5 view .LVU14
+  79 0034 0121     		movs	r1, #1
+  80 0036 0846     		mov	r0, r1
+  81 0038 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+  82              	.LVL6:
+  18:HW/TIM/PWM_OUT/pwm_out.c ****     GPIO_PinRemapConfig(GPIO_PartialRemap_TIM3, ENABLE);
+  83              		.loc 1 18 5 view .LVU15
+  84 003c 0121     		movs	r1, #1
+  85 003e 1748     		ldr	r0, .L3+4
+  86 0040 FFF7FEFF 		bl	GPIO_PinRemapConfig
+  87              	.LVL7:
+  19:HW/TIM/PWM_OUT/pwm_out.c ****     /* 配置TIM3 */
+  20:HW/TIM/PWM_OUT/pwm_out.c ****     TIM_TimeBaseInitTypeDef timeBaseDef;
+  88              		.loc 1 20 5 view .LVU16
+  21:HW/TIM/PWM_OUT/pwm_out.c ****     timeBaseDef.TIM_CounterMode         = TIM_CounterMode_Down; // 向下计数
+  89              		.loc 1 21 5 view .LVU17
+  90              		.loc 1 21 41 is_stmt 0 view .LVU18
+  91 0044 1023     		movs	r3, #16
+  92 0046 ADF81230 		strh	r3, [sp, #18]	@ movhi
+  22:HW/TIM/PWM_OUT/pwm_out.c ****     timeBaseDef.TIM_Period              = TIM_Period;           // 重装载值
+  93              		.loc 1 22 5 is_stmt 1 view .LVU19
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccSrlaVb.s 			page 3
+
+
+  94              		.loc 1 22 41 is_stmt 0 view .LVU20
+  95 004a ADF81460 		strh	r6, [sp, #20]	@ movhi
+  23:HW/TIM/PWM_OUT/pwm_out.c ****     timeBaseDef.TIM_Prescaler           = TIM_Prescaler;        // PSC预分频系数
+  96              		.loc 1 23 5 is_stmt 1 view .LVU21
+  97              		.loc 1 23 41 is_stmt 0 view .LVU22
+  98 004e ADF81040 		strh	r4, [sp, #16]	@ movhi
+  24:HW/TIM/PWM_OUT/pwm_out.c ****     timeBaseDef.TIM_ClockDivision       = TIM_CKD_DIV1;         // 采样频率分频（暂时用�
+  99              		.loc 1 24 5 is_stmt 1 view .LVU23
+ 100              		.loc 1 24 41 is_stmt 0 view .LVU24
+ 101 0052 0026     		movs	r6, #0
+ 102 0054 ADF81660 		strh	r6, [sp, #22]	@ movhi
+  25:HW/TIM/PWM_OUT/pwm_out.c ****     timeBaseDef.TIM_RepetitionCounter   = 0X00;                 // PWM输入相关系数（暂时�
+ 103              		.loc 1 25 5 is_stmt 1 view .LVU25
+ 104              		.loc 1 25 41 is_stmt 0 view .LVU26
+ 105 0058 8DF81860 		strb	r6, [sp, #24]
+  26:HW/TIM/PWM_OUT/pwm_out.c ****     TIM_TimeBaseInit(TIM3, &timeBaseDef);
+ 106              		.loc 1 26 5 is_stmt 1 view .LVU27
+ 107 005c 104C     		ldr	r4, .L3+8
+ 108 005e 0DEB0301 		add	r1, sp, r3
+ 109 0062 2046     		mov	r0, r4
+ 110 0064 FFF7FEFF 		bl	TIM_TimeBaseInit
+ 111              	.LVL8:
+  27:HW/TIM/PWM_OUT/pwm_out.c ****     TIM_OCInitTypeDef timeOCDef;
+ 112              		.loc 1 27 5 view .LVU28
+  28:HW/TIM/PWM_OUT/pwm_out.c ****     timeOCDef.TIM_OCMode        = TIM_OCMode_PWM2;              // PWM模式2，计数器大于阈�
+ 113              		.loc 1 28 5 view .LVU29
+ 114              		.loc 1 28 33 is_stmt 0 view .LVU30
+ 115 0068 7023     		movs	r3, #112
+ 116 006a ADF80030 		strh	r3, [sp]	@ movhi
+  29:HW/TIM/PWM_OUT/pwm_out.c ****     timeOCDef.TIM_OCPolarity    = TIM_OCPolarity_High;          // PWM极性，高电平为有效�
+ 117              		.loc 1 29 5 is_stmt 1 view .LVU31
+ 118              		.loc 1 29 33 is_stmt 0 view .LVU32
+ 119 006e ADF80860 		strh	r6, [sp, #8]	@ movhi
+  30:HW/TIM/PWM_OUT/pwm_out.c ****     timeOCDef.TIM_OutputState   = TIM_OutputState_Enable;       // 使能输出
+ 120              		.loc 1 30 5 is_stmt 1 view .LVU33
+ 121              		.loc 1 30 33 is_stmt 0 view .LVU34
+ 122 0072 0126     		movs	r6, #1
+ 123 0074 ADF80260 		strh	r6, [sp, #2]	@ movhi
+  31:HW/TIM/PWM_OUT/pwm_out.c ****     timeOCDef.TIM_Pulse         = TIM_Pulse;                    // 用这个也可以初始化阈�
+ 124              		.loc 1 31 5 is_stmt 1 view .LVU35
+ 125              		.loc 1 31 33 is_stmt 0 view .LVU36
+ 126 0078 ADF80650 		strh	r5, [sp, #6]	@ movhi
+  32:HW/TIM/PWM_OUT/pwm_out.c ****     TIM_OC2Init(TIM3, &timeOCDef);
+ 127              		.loc 1 32 5 is_stmt 1 view .LVU37
+ 128 007c 6946     		mov	r1, sp
+ 129 007e 2046     		mov	r0, r4
+ 130 0080 FFF7FEFF 		bl	TIM_OC2Init
+ 131              	.LVL9:
+  33:HW/TIM/PWM_OUT/pwm_out.c ****     TIM_OC2PreloadConfig(TIM3, TIM_OCPreload_Enable);           // 使能阈值（预装载值）
+ 132              		.loc 1 33 5 view .LVU38
+ 133 0084 0821     		movs	r1, #8
+ 134 0086 2046     		mov	r0, r4
+ 135 0088 FFF7FEFF 		bl	TIM_OC2PreloadConfig
+ 136              	.LVL10:
+  34:HW/TIM/PWM_OUT/pwm_out.c ****     TIM_Cmd(TIM3, ENABLE);                                      // 使能定时器
+ 137              		.loc 1 34 5 view .LVU39
+ 138 008c 3146     		mov	r1, r6
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccSrlaVb.s 			page 4
+
+
+ 139 008e 2046     		mov	r0, r4
+ 140 0090 FFF7FEFF 		bl	TIM_Cmd
+ 141              	.LVL11:
+  35:HW/TIM/PWM_OUT/pwm_out.c **** }
+ 142              		.loc 1 35 1 is_stmt 0 view .LVU40
+ 143 0094 08B0     		add	sp, sp, #32
+ 144              	.LCFI2:
+ 145              		.cfi_def_cfa_offset 16
+ 146              		@ sp needed
+ 147 0096 70BD     		pop	{r4, r5, r6, pc}
+ 148              	.L4:
+ 149              		.align	2
+ 150              	.L3:
+ 151 0098 000C0140 		.word	1073810432
+ 152 009c 00081A00 		.word	1705984
+ 153 00a0 00040040 		.word	1073742848
+ 154              		.cfi_endproc
+ 155              	.LFE29:
+ 157              		.section	.text.TIM3_PWMOut_Run,"ax",%progbits
+ 158              		.align	1
+ 159              		.global	TIM3_PWMOut_Run
+ 160              		.syntax unified
+ 161              		.thumb
+ 162              		.thumb_func
+ 164              	TIM3_PWMOut_Run:
+ 165              	.LFB30:
+  36:HW/TIM/PWM_OUT/pwm_out.c **** 
+  37:HW/TIM/PWM_OUT/pwm_out.c **** void TIM3_PWMOut_Run(){
+ 166              		.loc 1 37 23 is_stmt 1 view -0
+ 167              		.cfi_startproc
+ 168              		@ args = 0, pretend = 0, frame = 0
+ 169              		@ frame_needed = 0, uses_anonymous_args = 0
+ 170 0000 38B5     		push	{r3, r4, r5, lr}
+ 171              	.LCFI3:
+ 172              		.cfi_def_cfa_offset 16
+ 173              		.cfi_offset 3, -16
+ 174              		.cfi_offset 4, -12
+ 175              		.cfi_offset 5, -8
+ 176              		.cfi_offset 14, -4
+  38:HW/TIM/PWM_OUT/pwm_out.c ****     /* 初始化 */
+  39:HW/TIM/PWM_OUT/pwm_out.c ****     LED_Init_Hal();
+ 177              		.loc 1 39 5 view .LVU42
+ 178 0002 FFF7FEFF 		bl	LED_Init_Hal
+ 179              	.LVL12:
+  40:HW/TIM/PWM_OUT/pwm_out.c ****     delay_init();
+ 180              		.loc 1 40 5 view .LVU43
+ 181 0006 FFF7FEFF 		bl	delay_init
+ 182              	.LVL13:
+  41:HW/TIM/PWM_OUT/pwm_out.c ****     uint16_t TIM_Pulse = 450;
+ 183              		.loc 1 41 5 view .LVU44
+  42:HW/TIM/PWM_OUT/pwm_out.c ****     TIM3_PWMOut_Init(900 - 1, 0, TIM_Pulse);  // PWM频率为72MHz / 900 = 80KHz，占空比为(900
+ 184              		.loc 1 42 5 view .LVU45
+ 185 000a 4FF4E172 		mov	r2, #450
+ 186 000e 0021     		movs	r1, #0
+ 187 0010 40F28330 		movw	r0, #899
+ 188 0014 FFF7FEFF 		bl	TIM3_PWMOut_Init
+ 189              	.LVL14:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccSrlaVb.s 			page 5
+
+
+  43:HW/TIM/PWM_OUT/pwm_out.c ****     /* 随着时间改变占空比（1~0.66之间） */
+  44:HW/TIM/PWM_OUT/pwm_out.c ****     u8 dir = 0;
+ 190              		.loc 1 44 5 view .LVU46
+ 191              		.loc 1 44 8 is_stmt 0 view .LVU47
+ 192 0018 0025     		movs	r5, #0
+  41:HW/TIM/PWM_OUT/pwm_out.c ****     TIM3_PWMOut_Init(900 - 1, 0, TIM_Pulse);  // PWM频率为72MHz / 900 = 80KHz，占空比为(900
+ 193              		.loc 1 41 14 view .LVU48
+ 194 001a 4FF4E174 		mov	r4, #450
+ 195 001e 0AE0     		b	.L9
+ 196              	.LVL15:
+ 197              	.L10:
+  45:HW/TIM/PWM_OUT/pwm_out.c ****     while(1){
+  46:HW/TIM/PWM_OUT/pwm_out.c ****         delay_ms(1);
+  47:HW/TIM/PWM_OUT/pwm_out.c ****         if(TIM_Pulse <= 0)   dir = 1;      // 占空比下降
+ 198              		.loc 1 47 34 view .LVU49
+ 199 0020 0125     		movs	r5, #1
+ 200              	.LVL16:
+ 201              	.L6:
+  48:HW/TIM/PWM_OUT/pwm_out.c ****         if(TIM_Pulse >= 900) dir = 0;      // 占空比上升
+  49:HW/TIM/PWM_OUT/pwm_out.c ****         if(dir) ++TIM_Pulse;
+ 202              		.loc 1 49 9 is_stmt 1 view .LVU50
+ 203              		.loc 1 49 11 is_stmt 0 view .LVU51
+ 204 0022 15B1     		cbz	r5, .L7
+ 205              		.loc 1 49 17 is_stmt 1 discriminator 1 view .LVU52
+ 206 0024 0134     		adds	r4, r4, #1
+ 207              	.LVL17:
+ 208              		.loc 1 49 17 is_stmt 0 discriminator 1 view .LVU53
+ 209 0026 A4B2     		uxth	r4, r4
+ 210              	.LVL18:
+ 211              		.loc 1 49 17 discriminator 1 view .LVU54
+ 212 0028 01E0     		b	.L8
+ 213              	.LVL19:
+ 214              	.L7:
+  50:HW/TIM/PWM_OUT/pwm_out.c ****         else    --TIM_Pulse;
+ 215              		.loc 1 50 17 is_stmt 1 view .LVU55
+ 216 002a 013C     		subs	r4, r4, #1
+ 217              	.LVL20:
+ 218              		.loc 1 50 17 is_stmt 0 view .LVU56
+ 219 002c A4B2     		uxth	r4, r4
+ 220              	.LVL21:
+ 221              	.L8:
+  51:HW/TIM/PWM_OUT/pwm_out.c ****         TIM_SetCompare2(TIM3, TIM_Pulse);
+ 222              		.loc 1 51 9 is_stmt 1 view .LVU57
+ 223 002e 2146     		mov	r1, r4
+ 224 0030 0648     		ldr	r0, .L13
+ 225 0032 FFF7FEFF 		bl	TIM_SetCompare2
+ 226              	.LVL22:
+  45:HW/TIM/PWM_OUT/pwm_out.c ****         delay_ms(1);
+ 227              		.loc 1 45 10 view .LVU58
+ 228              	.L9:
+  45:HW/TIM/PWM_OUT/pwm_out.c ****         delay_ms(1);
+ 229              		.loc 1 45 5 view .LVU59
+  46:HW/TIM/PWM_OUT/pwm_out.c ****         if(TIM_Pulse <= 0)   dir = 1;      // 占空比下降
+ 230              		.loc 1 46 9 view .LVU60
+ 231 0036 0120     		movs	r0, #1
+ 232 0038 FFF7FEFF 		bl	delay_ms
+ 233              	.LVL23:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccSrlaVb.s 			page 6
+
+
+  47:HW/TIM/PWM_OUT/pwm_out.c ****         if(TIM_Pulse >= 900) dir = 0;      // 占空比上升
+ 234              		.loc 1 47 9 view .LVU61
+  47:HW/TIM/PWM_OUT/pwm_out.c ****         if(TIM_Pulse >= 900) dir = 0;      // 占空比上升
+ 235              		.loc 1 47 11 is_stmt 0 view .LVU62
+ 236 003c 002C     		cmp	r4, #0
+ 237 003e EFD0     		beq	.L10
+  48:HW/TIM/PWM_OUT/pwm_out.c ****         if(dir) ++TIM_Pulse;
+ 238              		.loc 1 48 9 is_stmt 1 view .LVU63
+  48:HW/TIM/PWM_OUT/pwm_out.c ****         if(dir) ++TIM_Pulse;
+ 239              		.loc 1 48 11 is_stmt 0 view .LVU64
+ 240 0040 B4F5617F 		cmp	r4, #900
+ 241 0044 EDD3     		bcc	.L6
+  48:HW/TIM/PWM_OUT/pwm_out.c ****         if(dir) ++TIM_Pulse;
+ 242              		.loc 1 48 34 view .LVU65
+ 243 0046 0025     		movs	r5, #0
+ 244              	.LVL24:
+  48:HW/TIM/PWM_OUT/pwm_out.c ****         if(dir) ++TIM_Pulse;
+ 245              		.loc 1 48 34 view .LVU66
+ 246 0048 EFE7     		b	.L7
+ 247              	.L14:
+ 248 004a 00BF     		.align	2
+ 249              	.L13:
+ 250 004c 00040040 		.word	1073742848
+ 251              		.cfi_endproc
+ 252              	.LFE30:
+ 254              		.text
+ 255              	.Letext0:
+ 256              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 257              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 258              		.file 4 "USER/stm32f10x.h"
+ 259              		.file 5 "STM32F10x_FWLib/inc/stm32f10x_gpio.h"
+ 260              		.file 6 "STM32F10x_FWLib/inc/stm32f10x_tim.h"
+ 261              		.file 7 "SYSTEM/delay/delay.h"
+ 262              		.file 8 "HW\\LED/LED.h"
+ 263              		.file 9 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccSrlaVb.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 pwm_out.c
+C:\Users\86157\AppData\Local\Temp\ccSrlaVb.s:19     .text.TIM3_PWMOut_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccSrlaVb.s:25     .text.TIM3_PWMOut_Init:00000000 TIM3_PWMOut_Init
+C:\Users\86157\AppData\Local\Temp\ccSrlaVb.s:151    .text.TIM3_PWMOut_Init:00000098 $d
+C:\Users\86157\AppData\Local\Temp\ccSrlaVb.s:158    .text.TIM3_PWMOut_Run:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccSrlaVb.s:164    .text.TIM3_PWMOut_Run:00000000 TIM3_PWMOut_Run
+C:\Users\86157\AppData\Local\Temp\ccSrlaVb.s:250    .text.TIM3_PWMOut_Run:0000004c $d
+
+UNDEFINED SYMBOLS
+RCC_APB1PeriphClockCmd
+RCC_APB2PeriphClockCmd
+GPIO_Init
+GPIO_PinRemapConfig
+TIM_TimeBaseInit
+TIM_OC2Init
+TIM_OC2PreloadConfig
+TIM_Cmd
+LED_Init_Hal
+delay_init
+TIM_SetCompare2
+delay_ms

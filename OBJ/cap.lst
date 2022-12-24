@@ -1,0 +1,623 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"cap.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "HW/TIM/CAP/cap.c"
+  18              		.section	.text.TIM5_Cap_Init,"ax",%progbits
+  19              		.align	1
+  20              		.global	TIM5_Cap_Init
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	TIM5_Cap_Init:
+  26              	.LFB32:
+   1:HW/TIM/CAP/cap.c **** #include"stm32f10x.h"
+   2:HW/TIM/CAP/cap.c **** #include"stm32f10x_tim.h"
+   3:HW/TIM/CAP/cap.c **** #include"stdbool.h"
+   4:HW/TIM/CAP/cap.c **** #include"stdio.h"
+   5:HW/TIM/CAP/cap.c **** #include"delay.h"
+   6:HW/TIM/CAP/cap.c **** 
+   7:HW/TIM/CAP/cap.c **** /* 重装载值，预分频系数，周期（0.01ms） */
+   8:HW/TIM/CAP/cap.c **** #define __TIM_Period        (720 - 1)
+   9:HW/TIM/CAP/cap.c **** #define __TIM_Prescaler     (1 - 1)
+  10:HW/TIM/CAP/cap.c **** #define __TIM_T             ((__TIM_Period + 1) * (__TIM_Prescaler + 1) / 72)
+  11:HW/TIM/CAP/cap.c **** 
+  12:HW/TIM/CAP/cap.c **** void TIM5_Cap_Init(){
+  27              		.loc 1 12 21 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 32
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 20
+  34              		.cfi_offset 4, -20
+  35              		.cfi_offset 5, -16
+  36              		.cfi_offset 6, -12
+  37              		.cfi_offset 7, -8
+  38              		.cfi_offset 14, -4
+  39 0002 89B0     		sub	sp, sp, #36
+  40              	.LCFI1:
+  41              		.cfi_def_cfa_offset 56
+  13:HW/TIM/CAP/cap.c ****     /* 使能时钟 */
+  14:HW/TIM/CAP/cap.c ****     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM5, ENABLE);
+  42              		.loc 1 14 5 view .LVU1
+  43 0004 0121     		movs	r1, #1
+  44 0006 0820     		movs	r0, #8
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 2
+
+
+  45 0008 FFF7FEFF 		bl	RCC_APB1PeriphClockCmd
+  46              	.LVL0:
+  15:HW/TIM/CAP/cap.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+  47              		.loc 1 15 5 view .LVU2
+  48 000c 0121     		movs	r1, #1
+  49 000e 0420     		movs	r0, #4
+  50 0010 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+  51              	.LVL1:
+  16:HW/TIM/CAP/cap.c ****     /* 配置WAKE UP按键对应的GPIOA->Pin0引脚 */
+  17:HW/TIM/CAP/cap.c ****     GPIO_InitTypeDef gpioDef;
+  52              		.loc 1 17 5 view .LVU3
+  18:HW/TIM/CAP/cap.c ****     gpioDef.GPIO_Mode   = GPIO_Mode_IPD;        // 下拉输入
+  53              		.loc 1 18 5 view .LVU4
+  54              		.loc 1 18 25 is_stmt 0 view .LVU5
+  55 0014 2823     		movs	r3, #40
+  56 0016 8DF81F30 		strb	r3, [sp, #31]
+  19:HW/TIM/CAP/cap.c ****     gpioDef.GPIO_Pin    = GPIO_Pin_0;
+  57              		.loc 1 19 5 is_stmt 1 view .LVU6
+  58              		.loc 1 19 25 is_stmt 0 view .LVU7
+  59 001a 0125     		movs	r5, #1
+  60 001c ADF81C50 		strh	r5, [sp, #28]	@ movhi
+  20:HW/TIM/CAP/cap.c ****     gpioDef.GPIO_Speed  = GPIO_Speed_50MHz;
+  61              		.loc 1 20 5 is_stmt 1 view .LVU8
+  62              		.loc 1 20 25 is_stmt 0 view .LVU9
+  63 0020 0326     		movs	r6, #3
+  64 0022 8DF81E60 		strb	r6, [sp, #30]
+  21:HW/TIM/CAP/cap.c ****     GPIO_Init(GPIOA, &gpioDef);
+  65              		.loc 1 21 5 is_stmt 1 view .LVU10
+  66 0026 07A9     		add	r1, sp, #28
+  67 0028 1C48     		ldr	r0, .L3
+  68 002a FFF7FEFF 		bl	GPIO_Init
+  69              	.LVL2:
+  22:HW/TIM/CAP/cap.c ****     /* 配置TIM5 */
+  23:HW/TIM/CAP/cap.c ****     TIM_TimeBaseInitTypeDef timeBaseDef;
+  70              		.loc 1 23 5 view .LVU11
+  24:HW/TIM/CAP/cap.c ****     timeBaseDef.TIM_CounterMode         = TIM_CounterMode_Up;   // 向上计数
+  71              		.loc 1 24 5 view .LVU12
+  72              		.loc 1 24 41 is_stmt 0 view .LVU13
+  73 002e 0024     		movs	r4, #0
+  74 0030 ADF81240 		strh	r4, [sp, #18]	@ movhi
+  25:HW/TIM/CAP/cap.c ****     timeBaseDef.TIM_Period              = __TIM_Period;         // 重装载值
+  75              		.loc 1 25 5 is_stmt 1 view .LVU14
+  76              		.loc 1 25 41 is_stmt 0 view .LVU15
+  77 0034 40F2CF23 		movw	r3, #719
+  78 0038 ADF81430 		strh	r3, [sp, #20]	@ movhi
+  26:HW/TIM/CAP/cap.c ****     timeBaseDef.TIM_Prescaler           = __TIM_Prescaler;      // PSC预分频系数
+  79              		.loc 1 26 5 is_stmt 1 view .LVU16
+  80              		.loc 1 26 41 is_stmt 0 view .LVU17
+  81 003c ADF81040 		strh	r4, [sp, #16]	@ movhi
+  27:HW/TIM/CAP/cap.c ****     timeBaseDef.TIM_ClockDivision       = TIM_CKD_DIV1;         // PWM输入采样频率分频
+  82              		.loc 1 27 5 is_stmt 1 view .LVU18
+  83              		.loc 1 27 41 is_stmt 0 view .LVU19
+  84 0040 ADF81640 		strh	r4, [sp, #22]	@ movhi
+  28:HW/TIM/CAP/cap.c ****     timeBaseDef.TIM_RepetitionCounter   = 0X00;                 // (TIM1和TIM8的参数，暂时�
+  85              		.loc 1 28 5 is_stmt 1 view .LVU20
+  86              		.loc 1 28 41 is_stmt 0 view .LVU21
+  87 0044 8DF81840 		strb	r4, [sp, #24]
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 3
+
+
+  29:HW/TIM/CAP/cap.c ****     TIM_TimeBaseInit(TIM5, &timeBaseDef);
+  88              		.loc 1 29 5 is_stmt 1 view .LVU22
+  89 0048 154F     		ldr	r7, .L3+4
+  90 004a 04A9     		add	r1, sp, #16
+  91 004c 3846     		mov	r0, r7
+  92 004e FFF7FEFF 		bl	TIM_TimeBaseInit
+  93              	.LVL3:
+  30:HW/TIM/CAP/cap.c ****     /* 配置输入捕获 */
+  31:HW/TIM/CAP/cap.c ****     TIM_ICInitTypeDef timeICDef;
+  94              		.loc 1 31 5 view .LVU23
+  32:HW/TIM/CAP/cap.c ****     timeICDef.TIM_Channel       = TIM_Channel_1;                // TIM5的通道1
+  95              		.loc 1 32 5 view .LVU24
+  96              		.loc 1 32 33 is_stmt 0 view .LVU25
+  97 0052 ADF80440 		strh	r4, [sp, #4]	@ movhi
+  33:HW/TIM/CAP/cap.c ****     timeICDef.TIM_ICFilter      = 0x03;                         // 滤波次数（0011：采样频�
+  98              		.loc 1 33 5 is_stmt 1 view .LVU26
+  99              		.loc 1 33 33 is_stmt 0 view .LVU27
+ 100 0056 ADF80C60 		strh	r6, [sp, #12]	@ movhi
+  34:HW/TIM/CAP/cap.c ****     timeICDef.TIM_ICPolarity    = TIM_ICPolarity_Rising;        // 检测上升沿
+ 101              		.loc 1 34 5 is_stmt 1 view .LVU28
+ 102              		.loc 1 34 33 is_stmt 0 view .LVU29
+ 103 005a ADF80640 		strh	r4, [sp, #6]	@ movhi
+  35:HW/TIM/CAP/cap.c ****     timeICDef.TIM_ICPrescaler   = TIM_ICPSC_DIV1;               // IC1到IC1PS信号的预分频系
+ 104              		.loc 1 35 5 is_stmt 1 view .LVU30
+ 105              		.loc 1 35 33 is_stmt 0 view .LVU31
+ 106 005e ADF80A40 		strh	r4, [sp, #10]	@ movhi
+  36:HW/TIM/CAP/cap.c ****     timeICDef.TIM_ICSelection   = TIM_ICSelection_DirectTI;     // TI1映射到IC1上
+ 107              		.loc 1 36 5 is_stmt 1 view .LVU32
+ 108              		.loc 1 36 33 is_stmt 0 view .LVU33
+ 109 0062 ADF80850 		strh	r5, [sp, #8]	@ movhi
+  37:HW/TIM/CAP/cap.c ****     TIM_ICInit(TIM5, &timeICDef);
+ 110              		.loc 1 37 5 is_stmt 1 view .LVU34
+ 111 0066 01A9     		add	r1, sp, #4
+ 112 0068 3846     		mov	r0, r7
+ 113 006a FFF7FEFF 		bl	TIM_ICInit
+ 114              	.LVL4:
+  38:HW/TIM/CAP/cap.c ****     /* 中断初始化 */
+  39:HW/TIM/CAP/cap.c ****     NVIC_InitTypeDef nvicDef;
+ 115              		.loc 1 39 5 view .LVU35
+  40:HW/TIM/CAP/cap.c ****     nvicDef.NVIC_IRQChannel                     = TIM5_IRQn;
+ 116              		.loc 1 40 5 view .LVU36
+ 117              		.loc 1 40 49 is_stmt 0 view .LVU37
+ 118 006e 3223     		movs	r3, #50
+ 119 0070 8DF80030 		strb	r3, [sp]
+  41:HW/TIM/CAP/cap.c ****     nvicDef.NVIC_IRQChannelCmd                  = ENABLE;
+ 120              		.loc 1 41 5 is_stmt 1 view .LVU38
+ 121              		.loc 1 41 49 is_stmt 0 view .LVU39
+ 122 0074 8DF80350 		strb	r5, [sp, #3]
+  42:HW/TIM/CAP/cap.c ****     nvicDef.NVIC_IRQChannelPreemptionPriority   = 3;
+ 123              		.loc 1 42 5 is_stmt 1 view .LVU40
+ 124              		.loc 1 42 49 is_stmt 0 view .LVU41
+ 125 0078 8DF80160 		strb	r6, [sp, #1]
+  43:HW/TIM/CAP/cap.c ****     nvicDef.NVIC_IRQChannelSubPriority          = 3;
+ 126              		.loc 1 43 5 is_stmt 1 view .LVU42
+ 127              		.loc 1 43 49 is_stmt 0 view .LVU43
+ 128 007c 8DF80260 		strb	r6, [sp, #2]
+  44:HW/TIM/CAP/cap.c ****     NVIC_Init(&nvicDef);
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 4
+
+
+ 129              		.loc 1 44 5 is_stmt 1 view .LVU44
+ 130 0080 6846     		mov	r0, sp
+ 131 0082 FFF7FEFF 		bl	NVIC_Init
+ 132              	.LVL5:
+  45:HW/TIM/CAP/cap.c ****     TIM_ITConfig(TIM5, TIM_IT_Update | TIM_IT_CC1, ENABLE);     // 使能更新中断、通道1中�
+ 133              		.loc 1 45 5 view .LVU45
+ 134 0086 2A46     		mov	r2, r5
+ 135 0088 3146     		mov	r1, r6
+ 136 008a 3846     		mov	r0, r7
+ 137 008c FFF7FEFF 		bl	TIM_ITConfig
+ 138              	.LVL6:
+  46:HW/TIM/CAP/cap.c ****     /* 使能定时器 */
+  47:HW/TIM/CAP/cap.c ****     TIM_Cmd(TIM5, ENABLE);
+ 139              		.loc 1 47 5 view .LVU46
+ 140 0090 2946     		mov	r1, r5
+ 141 0092 3846     		mov	r0, r7
+ 142 0094 FFF7FEFF 		bl	TIM_Cmd
+ 143              	.LVL7:
+  48:HW/TIM/CAP/cap.c **** }
+ 144              		.loc 1 48 1 is_stmt 0 view .LVU47
+ 145 0098 09B0     		add	sp, sp, #36
+ 146              	.LCFI2:
+ 147              		.cfi_def_cfa_offset 20
+ 148              		@ sp needed
+ 149 009a F0BD     		pop	{r4, r5, r6, r7, pc}
+ 150              	.L4:
+ 151              		.align	2
+ 152              	.L3:
+ 153 009c 00080140 		.word	1073809408
+ 154 00a0 000C0040 		.word	1073744896
+ 155              		.cfi_endproc
+ 156              	.LFE32:
+ 158              		.section	.text.TIM5_IRQHandler,"ax",%progbits
+ 159              		.align	1
+ 160              		.global	TIM5_IRQHandler
+ 161              		.syntax unified
+ 162              		.thumb
+ 163              		.thumb_func
+ 165              	TIM5_IRQHandler:
+ 166              	.LFB33:
+  49:HW/TIM/CAP/cap.c **** 
+  50:HW/TIM/CAP/cap.c **** /* 标志 */
+  51:HW/TIM/CAP/cap.c **** static uint16_t polarity   = TIM_ICPolarity_Rising;    // 检测边缘（WAKE UP按下是上升沿�
+  52:HW/TIM/CAP/cap.c **** static uint32_t cycles     = 0;                        // 定时器溢出次数
+  53:HW/TIM/CAP/cap.c **** static uint16_t value      = 0;                        // 定时器计数
+  54:HW/TIM/CAP/cap.c **** static bool captured       = false;                    // 是否捕获到了信号
+  55:HW/TIM/CAP/cap.c **** 
+  56:HW/TIM/CAP/cap.c **** void TIM5_IRQHandler(){
+ 167              		.loc 1 56 23 is_stmt 1 view -0
+ 168              		.cfi_startproc
+ 169              		@ args = 0, pretend = 0, frame = 0
+ 170              		@ frame_needed = 0, uses_anonymous_args = 0
+ 171 0000 08B5     		push	{r3, lr}
+ 172              	.LCFI3:
+ 173              		.cfi_def_cfa_offset 8
+ 174              		.cfi_offset 3, -8
+ 175              		.cfi_offset 14, -4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 5
+
+
+  57:HW/TIM/CAP/cap.c ****     if(!captured){                                                      // 如果没有捕获到信
+ 176              		.loc 1 57 5 view .LVU49
+ 177              		.loc 1 57 8 is_stmt 0 view .LVU50
+ 178 0002 244B     		ldr	r3, .L15
+ 179 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 180              		.loc 1 57 7 view .LVU51
+ 181 0006 23B1     		cbz	r3, .L12
+ 182              	.L6:
+  58:HW/TIM/CAP/cap.c ****         if(TIM_GetITStatus(TIM5, TIM_IT_Update) == SET){                // 更新中断处理
+  59:HW/TIM/CAP/cap.c ****             if(polarity == TIM_ICPolarity_Falling){                     // 如果捕获过了上升
+  60:HW/TIM/CAP/cap.c ****                 if(cycles >= 4000000 / __TIM_T){                        // 如果按下太久（4s�
+  61:HW/TIM/CAP/cap.c ****                     captured = true; polarity = TIM_ICPolarity_Rising;
+  62:HW/TIM/CAP/cap.c ****                     TIM_OC1PolarityConfig(TIM5, polarity);              // 重新配置极性
+  63:HW/TIM/CAP/cap.c ****                 }else{                                                  // 如果按下少于4s，�
+  64:HW/TIM/CAP/cap.c ****                     ++cycles;
+  65:HW/TIM/CAP/cap.c ****                 }
+  66:HW/TIM/CAP/cap.c ****             }
+  67:HW/TIM/CAP/cap.c ****         }
+  68:HW/TIM/CAP/cap.c **** 
+  69:HW/TIM/CAP/cap.c ****         if(TIM_GetITStatus(TIM5, TIM_IT_CC1) == SET){               // 捕获中断处理
+  70:HW/TIM/CAP/cap.c ****             if(polarity == TIM_ICPolarity_Rising){                  // 如果捕获到了上升沿
+  71:HW/TIM/CAP/cap.c ****                 cycles = 0; polarity = TIM_ICPolarity_Falling;      // 更新状态
+  72:HW/TIM/CAP/cap.c ****             }else if(polarity == TIM_ICPolarity_Falling){           // 如果捕获到了下降沿
+  73:HW/TIM/CAP/cap.c ****                 value = TIM_GetCapture1(TIM5);                      // 记录定时器当前值
+  74:HW/TIM/CAP/cap.c ****                 captured = true; polarity = TIM_ICPolarity_Rising;  // 更新状态
+  75:HW/TIM/CAP/cap.c ****             }
+  76:HW/TIM/CAP/cap.c ****             TIM_OC1PolarityConfig(TIM5, polarity);                  // 重新配置极性
+  77:HW/TIM/CAP/cap.c ****         }
+  78:HW/TIM/CAP/cap.c ****     }
+  79:HW/TIM/CAP/cap.c ****     TIM_ClearITPendingBit(TIM5, TIM_IT_Update | TIM_IT_CC1);    // 清除中断标志
+ 183              		.loc 1 79 5 is_stmt 1 view .LVU52
+ 184 0008 0321     		movs	r1, #3
+ 185 000a 2348     		ldr	r0, .L15+4
+ 186 000c FFF7FEFF 		bl	TIM_ClearITPendingBit
+ 187              	.LVL8:
+  80:HW/TIM/CAP/cap.c **** }
+ 188              		.loc 1 80 1 is_stmt 0 view .LVU53
+ 189 0010 08BD     		pop	{r3, pc}
+ 190              	.L12:
+  58:HW/TIM/CAP/cap.c ****         if(TIM_GetITStatus(TIM5, TIM_IT_Update) == SET){                // 更新中断处理
+ 191              		.loc 1 58 9 is_stmt 1 view .LVU54
+  58:HW/TIM/CAP/cap.c ****         if(TIM_GetITStatus(TIM5, TIM_IT_Update) == SET){                // 更新中断处理
+ 192              		.loc 1 58 12 is_stmt 0 view .LVU55
+ 193 0012 0121     		movs	r1, #1
+ 194 0014 2048     		ldr	r0, .L15+4
+ 195 0016 FFF7FEFF 		bl	TIM_GetITStatus
+ 196              	.LVL9:
+  58:HW/TIM/CAP/cap.c ****         if(TIM_GetITStatus(TIM5, TIM_IT_Update) == SET){                // 更新中断处理
+ 197              		.loc 1 58 11 view .LVU56
+ 198 001a 0128     		cmp	r0, #1
+ 199 001c 14D0     		beq	.L13
+ 200              	.L7:
+  69:HW/TIM/CAP/cap.c ****             if(polarity == TIM_ICPolarity_Rising){                  // 如果捕获到了上升沿
+ 201              		.loc 1 69 9 is_stmt 1 view .LVU57
+  69:HW/TIM/CAP/cap.c ****             if(polarity == TIM_ICPolarity_Rising){                  // 如果捕获到了上升沿
+ 202              		.loc 1 69 12 is_stmt 0 view .LVU58
+ 203 001e 0221     		movs	r1, #2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 6
+
+
+ 204 0020 1D48     		ldr	r0, .L15+4
+ 205 0022 FFF7FEFF 		bl	TIM_GetITStatus
+ 206              	.LVL10:
+  69:HW/TIM/CAP/cap.c ****             if(polarity == TIM_ICPolarity_Rising){                  // 如果捕获到了上升沿
+ 207              		.loc 1 69 11 view .LVU59
+ 208 0026 0128     		cmp	r0, #1
+ 209 0028 EED1     		bne	.L6
+  70:HW/TIM/CAP/cap.c ****                 cycles = 0; polarity = TIM_ICPolarity_Falling;      // 更新状态
+ 210              		.loc 1 70 13 is_stmt 1 view .LVU60
+  70:HW/TIM/CAP/cap.c ****                 cycles = 0; polarity = TIM_ICPolarity_Falling;      // 更新状态
+ 211              		.loc 1 70 25 is_stmt 0 view .LVU61
+ 212 002a 1C4B     		ldr	r3, .L15+8
+ 213 002c 1B88     		ldrh	r3, [r3]
+  70:HW/TIM/CAP/cap.c ****                 cycles = 0; polarity = TIM_ICPolarity_Falling;      // 更新状态
+ 214              		.loc 1 70 15 view .LVU62
+ 215 002e 13BB     		cbnz	r3, .L9
+  71:HW/TIM/CAP/cap.c ****             }else if(polarity == TIM_ICPolarity_Falling){           // 如果捕获到了下降沿
+ 216              		.loc 1 71 17 is_stmt 1 view .LVU63
+  71:HW/TIM/CAP/cap.c ****             }else if(polarity == TIM_ICPolarity_Falling){           // 如果捕获到了下降沿
+ 217              		.loc 1 71 24 is_stmt 0 view .LVU64
+ 218 0030 1B4B     		ldr	r3, .L15+12
+ 219 0032 0022     		movs	r2, #0
+ 220 0034 1A60     		str	r2, [r3]
+  71:HW/TIM/CAP/cap.c ****             }else if(polarity == TIM_ICPolarity_Falling){           // 如果捕获到了下降沿
+ 221              		.loc 1 71 29 is_stmt 1 view .LVU65
+  71:HW/TIM/CAP/cap.c ****             }else if(polarity == TIM_ICPolarity_Falling){           // 如果捕获到了下降沿
+ 222              		.loc 1 71 38 is_stmt 0 view .LVU66
+ 223 0036 194B     		ldr	r3, .L15+8
+ 224 0038 0222     		movs	r2, #2
+ 225 003a 1A80     		strh	r2, [r3]	@ movhi
+ 226              	.L10:
+  76:HW/TIM/CAP/cap.c ****         }
+ 227              		.loc 1 76 13 is_stmt 1 view .LVU67
+ 228 003c 174B     		ldr	r3, .L15+8
+ 229 003e 1988     		ldrh	r1, [r3]
+ 230 0040 1548     		ldr	r0, .L15+4
+ 231 0042 FFF7FEFF 		bl	TIM_OC1PolarityConfig
+ 232              	.LVL11:
+ 233 0046 DFE7     		b	.L6
+ 234              	.L13:
+  59:HW/TIM/CAP/cap.c ****                 if(cycles >= 4000000 / __TIM_T){                        // 如果按下太久（4s�
+ 235              		.loc 1 59 13 view .LVU68
+  59:HW/TIM/CAP/cap.c ****                 if(cycles >= 4000000 / __TIM_T){                        // 如果按下太久（4s�
+ 236              		.loc 1 59 25 is_stmt 0 view .LVU69
+ 237 0048 144B     		ldr	r3, .L15+8
+ 238 004a 1B88     		ldrh	r3, [r3]
+  59:HW/TIM/CAP/cap.c ****                 if(cycles >= 4000000 / __TIM_T){                        // 如果按下太久（4s�
+ 239              		.loc 1 59 15 view .LVU70
+ 240 004c 022B     		cmp	r3, #2
+ 241 004e E6D1     		bne	.L7
+  60:HW/TIM/CAP/cap.c ****                     captured = true; polarity = TIM_ICPolarity_Rising;
+ 242              		.loc 1 60 17 is_stmt 1 view .LVU71
+  60:HW/TIM/CAP/cap.c ****                     captured = true; polarity = TIM_ICPolarity_Rising;
+ 243              		.loc 1 60 27 is_stmt 0 view .LVU72
+ 244 0050 134B     		ldr	r3, .L15+12
+ 245 0052 1B68     		ldr	r3, [r3]
+  60:HW/TIM/CAP/cap.c ****                     captured = true; polarity = TIM_ICPolarity_Rising;
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 7
+
+
+ 246              		.loc 1 60 19 view .LVU73
+ 247 0054 134A     		ldr	r2, .L15+16
+ 248 0056 9342     		cmp	r3, r2
+ 249 0058 03D8     		bhi	.L14
+  64:HW/TIM/CAP/cap.c ****                 }
+ 250              		.loc 1 64 21 is_stmt 1 view .LVU74
+ 251 005a 0133     		adds	r3, r3, #1
+ 252 005c 104A     		ldr	r2, .L15+12
+ 253 005e 1360     		str	r3, [r2]
+ 254 0060 DDE7     		b	.L7
+ 255              	.L14:
+  61:HW/TIM/CAP/cap.c ****                     TIM_OC1PolarityConfig(TIM5, polarity);              // 重新配置极性
+ 256              		.loc 1 61 21 view .LVU75
+  61:HW/TIM/CAP/cap.c ****                     TIM_OC1PolarityConfig(TIM5, polarity);              // 重新配置极性
+ 257              		.loc 1 61 30 is_stmt 0 view .LVU76
+ 258 0062 0C4B     		ldr	r3, .L15
+ 259 0064 0122     		movs	r2, #1
+ 260 0066 1A70     		strb	r2, [r3]
+  61:HW/TIM/CAP/cap.c ****                     TIM_OC1PolarityConfig(TIM5, polarity);              // 重新配置极性
+ 261              		.loc 1 61 38 is_stmt 1 view .LVU77
+  61:HW/TIM/CAP/cap.c ****                     TIM_OC1PolarityConfig(TIM5, polarity);              // 重新配置极性
+ 262              		.loc 1 61 47 is_stmt 0 view .LVU78
+ 263 0068 0021     		movs	r1, #0
+ 264 006a 0C4B     		ldr	r3, .L15+8
+ 265 006c 1980     		strh	r1, [r3]	@ movhi
+  62:HW/TIM/CAP/cap.c ****                 }else{                                                  // 如果按下少于4s，�
+ 266              		.loc 1 62 21 is_stmt 1 view .LVU79
+ 267 006e 0A48     		ldr	r0, .L15+4
+ 268 0070 FFF7FEFF 		bl	TIM_OC1PolarityConfig
+ 269              	.LVL12:
+ 270 0074 D3E7     		b	.L7
+ 271              	.L9:
+  72:HW/TIM/CAP/cap.c ****                 value = TIM_GetCapture1(TIM5);                      // 记录定时器当前值
+ 272              		.loc 1 72 19 view .LVU80
+  72:HW/TIM/CAP/cap.c ****                 value = TIM_GetCapture1(TIM5);                      // 记录定时器当前值
+ 273              		.loc 1 72 21 is_stmt 0 view .LVU81
+ 274 0076 022B     		cmp	r3, #2
+ 275 0078 E0D1     		bne	.L10
+  73:HW/TIM/CAP/cap.c ****                 captured = true; polarity = TIM_ICPolarity_Rising;  // 更新状态
+ 276              		.loc 1 73 17 is_stmt 1 view .LVU82
+  73:HW/TIM/CAP/cap.c ****                 captured = true; polarity = TIM_ICPolarity_Rising;  // 更新状态
+ 277              		.loc 1 73 25 is_stmt 0 view .LVU83
+ 278 007a 0748     		ldr	r0, .L15+4
+ 279 007c FFF7FEFF 		bl	TIM_GetCapture1
+ 280              	.LVL13:
+  73:HW/TIM/CAP/cap.c ****                 captured = true; polarity = TIM_ICPolarity_Rising;  // 更新状态
+ 281              		.loc 1 73 23 view .LVU84
+ 282 0080 094B     		ldr	r3, .L15+20
+ 283 0082 1880     		strh	r0, [r3]	@ movhi
+  74:HW/TIM/CAP/cap.c ****             }
+ 284              		.loc 1 74 17 is_stmt 1 view .LVU85
+  74:HW/TIM/CAP/cap.c ****             }
+ 285              		.loc 1 74 26 is_stmt 0 view .LVU86
+ 286 0084 034B     		ldr	r3, .L15
+ 287 0086 0122     		movs	r2, #1
+ 288 0088 1A70     		strb	r2, [r3]
+  74:HW/TIM/CAP/cap.c ****             }
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 8
+
+
+ 289              		.loc 1 74 34 is_stmt 1 view .LVU87
+  74:HW/TIM/CAP/cap.c ****             }
+ 290              		.loc 1 74 43 is_stmt 0 view .LVU88
+ 291 008a 044B     		ldr	r3, .L15+8
+ 292 008c 0022     		movs	r2, #0
+ 293 008e 1A80     		strh	r2, [r3]	@ movhi
+ 294 0090 D4E7     		b	.L10
+ 295              	.L16:
+ 296 0092 00BF     		.align	2
+ 297              	.L15:
+ 298 0094 00000000 		.word	captured
+ 299 0098 000C0040 		.word	1073744896
+ 300 009c 00000000 		.word	polarity
+ 301 00a0 00000000 		.word	cycles
+ 302 00a4 7F1A0600 		.word	399999
+ 303 00a8 00000000 		.word	value
+ 304              		.cfi_endproc
+ 305              	.LFE33:
+ 307              		.section	.rodata.TIM5_Cap_Run.str1.4,"aMS",%progbits,1
+ 308              		.align	2
+ 309              	.LC0:
+ 310 0000 48494748 		.ascii	"HIGH: %luus \015\012\000"
+ 310      3A20256C 
+ 310      75757320 
+ 310      0D0A00
+ 311              		.section	.text.TIM5_Cap_Run,"ax",%progbits
+ 312              		.align	1
+ 313              		.global	TIM5_Cap_Run
+ 314              		.syntax unified
+ 315              		.thumb
+ 316              		.thumb_func
+ 318              	TIM5_Cap_Run:
+ 319              	.LFB34:
+  81:HW/TIM/CAP/cap.c **** 
+  82:HW/TIM/CAP/cap.c **** /* 串口初始化 */
+  83:HW/TIM/CAP/cap.c **** extern void USART1_Init();
+  84:HW/TIM/CAP/cap.c **** 
+  85:HW/TIM/CAP/cap.c **** void TIM5_Cap_Run(){
+ 320              		.loc 1 85 20 is_stmt 1 view -0
+ 321              		.cfi_startproc
+ 322              		@ args = 0, pretend = 0, frame = 0
+ 323              		@ frame_needed = 0, uses_anonymous_args = 0
+ 324 0000 08B5     		push	{r3, lr}
+ 325              	.LCFI4:
+ 326              		.cfi_def_cfa_offset 8
+ 327              		.cfi_offset 3, -8
+ 328              		.cfi_offset 14, -4
+  86:HW/TIM/CAP/cap.c ****     /* 配置中断组 */
+  87:HW/TIM/CAP/cap.c ****     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+ 329              		.loc 1 87 5 view .LVU90
+ 330 0002 4FF4A060 		mov	r0, #1280
+ 331 0006 FFF7FEFF 		bl	NVIC_PriorityGroupConfig
+ 332              	.LVL14:
+  88:HW/TIM/CAP/cap.c ****     /* 初始化 */
+  89:HW/TIM/CAP/cap.c ****     delay_init();
+ 333              		.loc 1 89 5 view .LVU91
+ 334 000a FFF7FEFF 		bl	delay_init
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 9
+
+
+ 335              	.LVL15:
+  90:HW/TIM/CAP/cap.c ****     USART1_Init();
+ 336              		.loc 1 90 5 view .LVU92
+ 337 000e FFF7FEFF 		bl	USART1_Init
+ 338              	.LVL16:
+  91:HW/TIM/CAP/cap.c ****     TIM5_Cap_Init();
+ 339              		.loc 1 91 5 view .LVU93
+ 340 0012 FFF7FEFF 		bl	TIM5_Cap_Init
+ 341              	.LVL17:
+ 342              	.L18:
+  92:HW/TIM/CAP/cap.c ****     /* 工作 */
+  93:HW/TIM/CAP/cap.c ****     uint32_t during;
+ 343              		.loc 1 93 5 view .LVU94
+  94:HW/TIM/CAP/cap.c ****     while (1){
+ 344              		.loc 1 94 5 view .LVU95
+  95:HW/TIM/CAP/cap.c ****         delay_ms(1);
+ 345              		.loc 1 95 9 view .LVU96
+ 346 0016 0120     		movs	r0, #1
+ 347 0018 FFF7FEFF 		bl	delay_ms
+ 348              	.LVL18:
+  96:HW/TIM/CAP/cap.c ****         if(captured){   // 如果捕获到了信号，打印信号持续时间
+ 349              		.loc 1 96 9 view .LVU97
+ 350              		.loc 1 96 12 is_stmt 0 view .LVU98
+ 351 001c 0B4B     		ldr	r3, .L21
+ 352 001e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 353              		.loc 1 96 11 view .LVU99
+ 354 0020 002B     		cmp	r3, #0
+ 355 0022 F8D0     		beq	.L18
+  97:HW/TIM/CAP/cap.c ****             during = (cycles * (__TIM_Period + 1) + (value - 1)) * (__TIM_Prescaler + 1) / 72;
+ 356              		.loc 1 97 13 is_stmt 1 view .LVU100
+ 357              		.loc 1 97 30 is_stmt 0 view .LVU101
+ 358 0024 0A4B     		ldr	r3, .L21+4
+ 359 0026 1B68     		ldr	r3, [r3]
+ 360              		.loc 1 97 51 view .LVU102
+ 361 0028 0A4A     		ldr	r2, .L21+8
+ 362 002a 1188     		ldrh	r1, [r2]
+ 363 002c 4FF43472 		mov	r2, #720
+ 364 0030 02FB0311 		mla	r1, r2, r3, r1
+ 365              		.loc 1 97 66 view .LVU103
+ 366 0034 0139     		subs	r1, r1, #1
+ 367              		.loc 1 97 20 view .LVU104
+ 368 0036 084B     		ldr	r3, .L21+12
+ 369 0038 A3FB0131 		umull	r3, r1, r3, r1
+ 370              	.LVL19:
+  98:HW/TIM/CAP/cap.c ****             printf("HIGH: %luus \r\n", during);
+ 371              		.loc 1 98 13 is_stmt 1 view .LVU105
+ 372 003c 0909     		lsrs	r1, r1, #4
+ 373              	.LVL20:
+ 374              		.loc 1 98 13 is_stmt 0 view .LVU106
+ 375 003e 0748     		ldr	r0, .L21+16
+ 376 0040 FFF7FEFF 		bl	printf
+ 377              	.LVL21:
+  99:HW/TIM/CAP/cap.c ****             captured = false;
+ 378              		.loc 1 99 13 is_stmt 1 view .LVU107
+ 379              		.loc 1 99 22 is_stmt 0 view .LVU108
+ 380 0044 014B     		ldr	r3, .L21
+ 381 0046 0022     		movs	r2, #0
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 10
+
+
+ 382 0048 1A70     		strb	r2, [r3]
+ 383 004a E4E7     		b	.L18
+ 384              	.L22:
+ 385              		.align	2
+ 386              	.L21:
+ 387 004c 00000000 		.word	captured
+ 388 0050 00000000 		.word	cycles
+ 389 0054 00000000 		.word	value
+ 390 0058 398EE338 		.word	954437177
+ 391 005c 00000000 		.word	.LC0
+ 392              		.cfi_endproc
+ 393              	.LFE34:
+ 395              		.section	.bss.captured,"aw",%nobits
+ 398              	captured:
+ 399 0000 00       		.space	1
+ 400              		.section	.bss.value,"aw",%nobits
+ 401              		.align	1
+ 404              	value:
+ 405 0000 0000     		.space	2
+ 406              		.section	.bss.cycles,"aw",%nobits
+ 407              		.align	2
+ 410              	cycles:
+ 411 0000 00000000 		.space	4
+ 412              		.section	.bss.polarity,"aw",%nobits
+ 413              		.align	1
+ 416              	polarity:
+ 417 0000 0000     		.space	2
+ 418              		.text
+ 419              	.Letext0:
+ 420              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 421              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 422              		.file 4 "USER/stm32f10x.h"
+ 423              		.file 5 "STM32F10x_FWLib/inc/stm32f10x_gpio.h"
+ 424              		.file 6 "STM32F10x_FWLib/inc/stm32f10x_tim.h"
+ 425              		.file 7 "STM32F10x_FWLib/inc/misc.h"
+ 426              		.file 8 "SYSTEM/delay/delay.h"
+ 427              		.file 9 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 428              		.file 10 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 cap.c
+C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:19     .text.TIM5_Cap_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:25     .text.TIM5_Cap_Init:00000000 TIM5_Cap_Init
+C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:153    .text.TIM5_Cap_Init:0000009c $d
+C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:159    .text.TIM5_IRQHandler:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:165    .text.TIM5_IRQHandler:00000000 TIM5_IRQHandler
+C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:298    .text.TIM5_IRQHandler:00000094 $d
+C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:398    .bss.captured:00000000 captured
+C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:416    .bss.polarity:00000000 polarity
+C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:410    .bss.cycles:00000000 cycles
+C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:404    .bss.value:00000000 value
+C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:308    .rodata.TIM5_Cap_Run.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:312    .text.TIM5_Cap_Run:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:318    .text.TIM5_Cap_Run:00000000 TIM5_Cap_Run
+C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:387    .text.TIM5_Cap_Run:0000004c $d
+C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:399    .bss.captured:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:401    .bss.value:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:407    .bss.cycles:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:413    .bss.polarity:00000000 $d
+
+UNDEFINED SYMBOLS
+RCC_APB1PeriphClockCmd
+RCC_APB2PeriphClockCmd
+GPIO_Init
+TIM_TimeBaseInit
+TIM_ICInit
+NVIC_Init
+TIM_ITConfig
+TIM_Cmd
+TIM_ClearITPendingBit
+TIM_GetITStatus
+TIM_OC1PolarityConfig
+TIM_GetCapture1
+NVIC_PriorityGroupConfig
+delay_init
+USART1_Init
+delay_ms
+printf

@@ -1,0 +1,2698 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"i2c_hardware.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "HW/EEPROM/I2C_Hardware/i2c_hardware.c"
+  18              		.section	.text.I2C_Hardware_Init,"ax",%progbits
+  19              		.align	1
+  20              		.global	I2C_Hardware_Init
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	I2C_Hardware_Init:
+  26              	.LFB32:
+   1:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** #include"stdio.h"
+   2:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** #include"stm32f10x.h"
+   3:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** #include"stm32f10x_i2c.h"
+   4:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** #include"delay.h"
+   5:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+   6:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** /**
+   7:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****  * @brief 用STM32的I2C引脚硬件实现I2C通讯
+   8:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****  *          TODO: 异常检测太丑陋了，CHECK_FLAG也不能检测读写是否复位，还是�
+   9:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****  */
+  10:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+  11:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** void I2C_Hardware_Init(){
+  27              		.loc 1 11 25 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 24
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 10B5     		push	{r4, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  36 0002 86B0     		sub	sp, sp, #24
+  37              	.LCFI1:
+  38              		.cfi_def_cfa_offset 32
+  12:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 使能时钟 */
+  13:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
+  39              		.loc 1 13 5 view .LVU1
+  40 0004 0121     		movs	r1, #1
+  41 0006 4FF40010 		mov	r0, #2097152
+  42 000a FFF7FEFF 		bl	RCC_APB1PeriphClockCmd
+  43              	.LVL0:
+  14:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+  44              		.loc 1 14 5 view .LVU2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 2
+
+
+  45 000e 0121     		movs	r1, #1
+  46 0010 0820     		movs	r0, #8
+  47 0012 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+  48              	.LVL1:
+  15:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 配置GPIO */
+  16:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     GPIO_InitTypeDef gpioDef;
+  49              		.loc 1 16 5 view .LVU3
+  17:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     gpioDef.GPIO_Mode   = GPIO_Mode_AF_OD;
+  50              		.loc 1 17 5 view .LVU4
+  51              		.loc 1 17 25 is_stmt 0 view .LVU5
+  52 0016 1C23     		movs	r3, #28
+  53 0018 8DF81730 		strb	r3, [sp, #23]
+  18:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     gpioDef.GPIO_Pin    = GPIO_Pin_6 | GPIO_Pin_7;
+  54              		.loc 1 18 5 is_stmt 1 view .LVU6
+  55              		.loc 1 18 25 is_stmt 0 view .LVU7
+  56 001c C023     		movs	r3, #192
+  57 001e ADF81430 		strh	r3, [sp, #20]	@ movhi
+  19:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     gpioDef.GPIO_Speed  = GPIO_Speed_50MHz;
+  58              		.loc 1 19 5 is_stmt 1 view .LVU8
+  59              		.loc 1 19 25 is_stmt 0 view .LVU9
+  60 0022 0323     		movs	r3, #3
+  61 0024 8DF81630 		strb	r3, [sp, #22]
+  20:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     GPIO_Init(GPIOB, &gpioDef);
+  62              		.loc 1 20 5 is_stmt 1 view .LVU10
+  63 0028 05A9     		add	r1, sp, #20
+  64 002a 1148     		ldr	r0, .L3
+  65 002c FFF7FEFF 		bl	GPIO_Init
+  66              	.LVL2:
+  21:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 配置I2C1 */
+  22:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_InitTypeDef iicDef;
+  67              		.loc 1 22 5 view .LVU11
+  23:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     iicDef.I2C_ClockSpeed           = 400000;                       // 时钟为400KHz，周期为2
+  68              		.loc 1 23 5 view .LVU12
+  69              		.loc 1 23 37 is_stmt 0 view .LVU13
+  70 0030 104B     		ldr	r3, .L3+4
+  71 0032 0193     		str	r3, [sp, #4]
+  24:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     iicDef.I2C_Mode                 = I2C_Mode_I2C;                 // I2C通信或者SMBus通信
+  72              		.loc 1 24 5 is_stmt 1 view .LVU14
+  73              		.loc 1 24 37 is_stmt 0 view .LVU15
+  74 0034 0023     		movs	r3, #0
+  75 0036 ADF80830 		strh	r3, [sp, #8]	@ movhi
+  25:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     iicDef.I2C_DutyCycle            = I2C_DutyCycle_2;              // 占空比，似乎没什么�
+  76              		.loc 1 25 5 is_stmt 1 view .LVU16
+  77              		.loc 1 25 37 is_stmt 0 view .LVU17
+  78 003a 4BF6FF73 		movw	r3, #49151
+  79 003e ADF80A30 		strh	r3, [sp, #10]	@ movhi
+  26:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     iicDef.I2C_OwnAddress1          = 0X00A;                        // 本机设备地址1（STM32�
+  80              		.loc 1 26 5 is_stmt 1 view .LVU18
+  81              		.loc 1 26 37 is_stmt 0 view .LVU19
+  82 0042 0A23     		movs	r3, #10
+  83 0044 ADF80C30 		strh	r3, [sp, #12]	@ movhi
+  27:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     iicDef.I2C_Ack                  = I2C_Ack_Enable;               // 在接收到1byte数据后�
+  84              		.loc 1 27 5 is_stmt 1 view .LVU20
+  85              		.loc 1 27 37 is_stmt 0 view .LVU21
+  86 0048 4FF48063 		mov	r3, #1024
+  87 004c ADF80E30 		strh	r3, [sp, #14]	@ movhi
+  28:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     iicDef.I2C_AcknowledgedAddress  = I2C_AcknowledgedAddress_7bit; // 设备地址位数
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 3
+
+
+  88              		.loc 1 28 5 is_stmt 1 view .LVU22
+  89              		.loc 1 28 37 is_stmt 0 view .LVU23
+  90 0050 4FF48043 		mov	r3, #16384
+  91 0054 ADF81030 		strh	r3, [sp, #16]	@ movhi
+  29:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_Init(I2C1, &iicDef);
+  92              		.loc 1 29 5 is_stmt 1 view .LVU24
+  93 0058 074C     		ldr	r4, .L3+8
+  94 005a 01A9     		add	r1, sp, #4
+  95 005c 2046     		mov	r0, r4
+  96 005e FFF7FEFF 		bl	I2C_Init
+  97              	.LVL3:
+  30:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 使能I2C1 */
+  31:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_Cmd(I2C1, ENABLE);
+  98              		.loc 1 31 5 view .LVU25
+  99 0062 0121     		movs	r1, #1
+ 100 0064 2046     		mov	r0, r4
+ 101 0066 FFF7FEFF 		bl	I2C_Cmd
+ 102              	.LVL4:
+  32:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** }
+ 103              		.loc 1 32 1 is_stmt 0 view .LVU26
+ 104 006a 06B0     		add	sp, sp, #24
+ 105              	.LCFI2:
+ 106              		.cfi_def_cfa_offset 8
+ 107              		@ sp needed
+ 108 006c 10BD     		pop	{r4, pc}
+ 109              	.L4:
+ 110 006e 00BF     		.align	2
+ 111              	.L3:
+ 112 0070 000C0140 		.word	1073810432
+ 113 0074 801A0600 		.word	400000
+ 114 0078 00540040 		.word	1073763328
+ 115              		.cfi_endproc
+ 116              	.LFE32:
+ 118              		.section	.rodata.Check_EEROM_IH.str1.4,"aMS",%progbits,1
+ 119              		.align	2
+ 120              	.LC0:
+ 121 0000 466C6167 		.ascii	"Flag error, line: %d, function: %s\015\012\000"
+ 121      20657272 
+ 121      6F722C20 
+ 121      6C696E65 
+ 121      3A202564 
+ 122 0025 000000   		.align	2
+ 123              	.LC1:
+ 124 0028 4576656E 		.ascii	"Event error, line: %d, function: %s\015\012\000"
+ 124      74206572 
+ 124      726F722C 
+ 124      206C696E 
+ 124      653A2025 
+ 125              		.section	.text.Check_EEROM_IH,"ax",%progbits
+ 126              		.align	1
+ 127              		.global	Check_EEROM_IH
+ 128              		.syntax unified
+ 129              		.thumb
+ 130              		.thumb_func
+ 132              	Check_EEROM_IH:
+ 133              	.LFB33:
+  33:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 4
+
+
+  34:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** /* 设备地址，0位根据读/写确定，1~3位从EEPROM电路图的A0~A2引脚确定，4~7位�
+  35:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** #define EEPROM_ADDRESS    0B10100000
+  36:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+  37:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** /* 等待事件 */
+  38:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** static uint8_t eventTimeOut;
+  39:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** #define CHECK_EVENT(event) { \
+  40:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     eventTimeOut = 200; \
+  41:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     while(I2C_CheckEvent(I2C1, event) != SUCCESS){ \
+  42:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         delay_us(5); \
+  43:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         if(eventTimeOut-- == 0){ \
+  44:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****             fprintf(stderr, "Event error, line: %d, function: %s\r\n", __LINE__, __FUNCTION__); \
+  45:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****             break; \
+  46:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         } \
+  47:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     } \
+  48:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** }
+  49:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** #define CHECK_FLAG(flag) { \
+  50:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     eventTimeOut = 200; \
+  51:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     while(I2C_GetFlagStatus(I2C1, flag) != RESET){ \
+  52:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         delay_us(5); \
+  53:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         if(eventTimeOut-- == 0){ \
+  54:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****             fprintf(stderr, "Flag error, line: %d, function: %s\r\n", __LINE__, __FUNCTION__); \
+  55:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****             break; \
+  56:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         } \
+  57:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     } \
+  58:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** }
+  59:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+  60:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** void Check_EEROM_IH(){
+ 134              		.loc 1 60 22 is_stmt 1 view -0
+ 135              		.cfi_startproc
+ 136              		@ args = 0, pretend = 0, frame = 0
+ 137              		@ frame_needed = 0, uses_anonymous_args = 0
+ 138 0000 08B5     		push	{r3, lr}
+ 139              	.LCFI3:
+ 140              		.cfi_def_cfa_offset 8
+ 141              		.cfi_offset 3, -8
+ 142              		.cfi_offset 14, -4
+  61:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_FLAG(I2C_FLAG_BUSY);
+ 143              		.loc 1 61 5 view .LVU28
+ 144 0002 2E4B     		ldr	r3, .L16
+ 145 0004 C822     		movs	r2, #200
+ 146 0006 1A70     		strb	r2, [r3]
+ 147              		.loc 1 61 5 view .LVU29
+ 148              	.L6:
+ 149              		.loc 1 61 5 discriminator 1 view .LVU30
+ 150 0008 4FF40031 		mov	r1, #131072
+ 151 000c 2C48     		ldr	r0, .L16+4
+ 152 000e FFF7FEFF 		bl	I2C_GetFlagStatus
+ 153              	.LVL5:
+ 154 0012 80B1     		cbz	r0, .L7
+ 155              		.loc 1 61 5 discriminator 5 view .LVU31
+ 156 0014 0520     		movs	r0, #5
+ 157 0016 FFF7FEFF 		bl	delay_us
+ 158              	.LVL6:
+ 159              		.loc 1 61 5 discriminator 5 view .LVU32
+ 160 001a 284A     		ldr	r2, .L16
+ 161 001c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 162 001e 591E     		subs	r1, r3, #1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 5
+
+
+ 163 0020 1170     		strb	r1, [r2]
+ 164 0022 002B     		cmp	r3, #0
+ 165 0024 F0D1     		bne	.L6
+ 166              		.loc 1 61 5 discriminator 2 view .LVU33
+ 167 0026 274B     		ldr	r3, .L16+8
+ 168 0028 1868     		ldr	r0, [r3]
+ 169 002a 274B     		ldr	r3, .L16+12
+ 170 002c 3D22     		movs	r2, #61
+ 171 002e 2749     		ldr	r1, .L16+16
+ 172 0030 C068     		ldr	r0, [r0, #12]
+ 173 0032 FFF7FEFF 		bl	fprintf
+ 174              	.LVL7:
+ 175              		.loc 1 61 5 discriminator 2 view .LVU34
+ 176              	.L7:
+ 177              		.loc 1 61 30 discriminator 6 view .LVU35
+  62:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+  63:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_GenerateSTART(I2C1, ENABLE);
+ 178              		.loc 1 63 5 discriminator 6 view .LVU36
+ 179 0036 0121     		movs	r1, #1
+ 180 0038 2148     		ldr	r0, .L16+4
+ 181 003a FFF7FEFF 		bl	I2C_GenerateSTART
+ 182              	.LVL8:
+  64:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_EVENT_MASTER_MODE_SELECT);
+ 183              		.loc 1 64 5 discriminator 6 view .LVU37
+ 184 003e 1F4B     		ldr	r3, .L16
+ 185 0040 C822     		movs	r2, #200
+ 186 0042 1A70     		strb	r2, [r3]
+ 187              		.loc 1 64 5 discriminator 6 view .LVU38
+ 188              	.L9:
+ 189              		.loc 1 64 5 discriminator 1 view .LVU39
+ 190 0044 2249     		ldr	r1, .L16+20
+ 191 0046 1E48     		ldr	r0, .L16+4
+ 192 0048 FFF7FEFF 		bl	I2C_CheckEvent
+ 193              	.LVL9:
+ 194 004c 0128     		cmp	r0, #1
+ 195 004e 10D0     		beq	.L10
+ 196              		.loc 1 64 5 discriminator 5 view .LVU40
+ 197 0050 0520     		movs	r0, #5
+ 198 0052 FFF7FEFF 		bl	delay_us
+ 199              	.LVL10:
+ 200              		.loc 1 64 5 discriminator 5 view .LVU41
+ 201 0056 194A     		ldr	r2, .L16
+ 202 0058 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 203 005a 591E     		subs	r1, r3, #1
+ 204 005c 1170     		strb	r1, [r2]
+ 205 005e 002B     		cmp	r3, #0
+ 206 0060 F0D1     		bne	.L9
+ 207              		.loc 1 64 5 discriminator 2 view .LVU42
+ 208 0062 184B     		ldr	r3, .L16+8
+ 209 0064 1868     		ldr	r0, [r3]
+ 210 0066 184B     		ldr	r3, .L16+12
+ 211 0068 4022     		movs	r2, #64
+ 212 006a 1A49     		ldr	r1, .L16+24
+ 213 006c C068     		ldr	r0, [r0, #12]
+ 214 006e FFF7FEFF 		bl	fprintf
+ 215              	.LVL11:
+ 216              		.loc 1 64 5 discriminator 2 view .LVU43
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 6
+
+
+ 217              	.L10:
+ 218              		.loc 1 64 46 discriminator 6 view .LVU44
+  65:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_Send7bitAddress(I2C1, EEPROM_ADDRESS, I2C_Direction_Transmitter);
+ 219              		.loc 1 65 5 discriminator 6 view .LVU45
+ 220 0072 0022     		movs	r2, #0
+ 221 0074 A021     		movs	r1, #160
+ 222 0076 1248     		ldr	r0, .L16+4
+ 223 0078 FFF7FEFF 		bl	I2C_Send7bitAddress
+ 224              	.LVL12:
+  66:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_Direction_Transmitter);
+ 225              		.loc 1 66 5 discriminator 6 view .LVU46
+ 226 007c 0F4B     		ldr	r3, .L16
+ 227 007e C822     		movs	r2, #200
+ 228 0080 1A70     		strb	r2, [r3]
+ 229              		.loc 1 66 5 discriminator 6 view .LVU47
+ 230              	.L12:
+ 231              		.loc 1 66 5 discriminator 1 view .LVU48
+ 232 0082 0021     		movs	r1, #0
+ 233 0084 0E48     		ldr	r0, .L16+4
+ 234 0086 FFF7FEFF 		bl	I2C_CheckEvent
+ 235              	.LVL13:
+ 236 008a 0128     		cmp	r0, #1
+ 237 008c 10D0     		beq	.L13
+ 238              		.loc 1 66 5 discriminator 5 view .LVU49
+ 239 008e 0520     		movs	r0, #5
+ 240 0090 FFF7FEFF 		bl	delay_us
+ 241              	.LVL14:
+ 242              		.loc 1 66 5 discriminator 5 view .LVU50
+ 243 0094 094A     		ldr	r2, .L16
+ 244 0096 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 245 0098 591E     		subs	r1, r3, #1
+ 246 009a 1170     		strb	r1, [r2]
+ 247 009c 002B     		cmp	r3, #0
+ 248 009e F0D1     		bne	.L12
+ 249              		.loc 1 66 5 discriminator 2 view .LVU51
+ 250 00a0 084B     		ldr	r3, .L16+8
+ 251 00a2 1868     		ldr	r0, [r3]
+ 252 00a4 084B     		ldr	r3, .L16+12
+ 253 00a6 4222     		movs	r2, #66
+ 254 00a8 0A49     		ldr	r1, .L16+24
+ 255 00aa C068     		ldr	r0, [r0, #12]
+ 256 00ac FFF7FEFF 		bl	fprintf
+ 257              	.LVL15:
+ 258              		.loc 1 66 5 discriminator 2 view .LVU52
+ 259              	.L13:
+ 260              		.loc 1 66 43 discriminator 6 view .LVU53
+  67:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_GenerateSTOP(I2C1, ENABLE);
+ 261              		.loc 1 67 5 discriminator 6 view .LVU54
+ 262 00b0 0121     		movs	r1, #1
+ 263 00b2 0348     		ldr	r0, .L16+4
+ 264 00b4 FFF7FEFF 		bl	I2C_GenerateSTOP
+ 265              	.LVL16:
+  68:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** }
+ 266              		.loc 1 68 1 is_stmt 0 discriminator 6 view .LVU55
+ 267 00b8 08BD     		pop	{r3, pc}
+ 268              	.L17:
+ 269 00ba 00BF     		.align	2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 7
+
+
+ 270              	.L16:
+ 271 00bc 00000000 		.word	eventTimeOut
+ 272 00c0 00540040 		.word	1073763328
+ 273 00c4 00000000 		.word	_impure_ptr
+ 274 00c8 00000000 		.word	__FUNCTION__.4
+ 275 00cc 00000000 		.word	.LC0
+ 276 00d0 01000300 		.word	196609
+ 277 00d4 28000000 		.word	.LC1
+ 278              		.cfi_endproc
+ 279              	.LFE33:
+ 281              		.section	.text.EEPROM_Write_Byte_IH,"ax",%progbits
+ 282              		.align	1
+ 283              		.global	EEPROM_Write_Byte_IH
+ 284              		.syntax unified
+ 285              		.thumb
+ 286              		.thumb_func
+ 288              	EEPROM_Write_Byte_IH:
+ 289              	.LVL17:
+ 290              	.LFB34:
+  69:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+  70:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** void EEPROM_Write_Byte_IH(uint8_t addr, uint8_t data){
+ 291              		.loc 1 70 54 is_stmt 1 view -0
+ 292              		.cfi_startproc
+ 293              		@ args = 0, pretend = 0, frame = 0
+ 294              		@ frame_needed = 0, uses_anonymous_args = 0
+ 295              		.loc 1 70 54 is_stmt 0 view .LVU57
+ 296 0000 38B5     		push	{r3, r4, r5, lr}
+ 297              	.LCFI4:
+ 298              		.cfi_def_cfa_offset 16
+ 299              		.cfi_offset 3, -16
+ 300              		.cfi_offset 4, -12
+ 301              		.cfi_offset 5, -8
+ 302              		.cfi_offset 14, -4
+ 303 0002 0546     		mov	r5, r0
+ 304 0004 0C46     		mov	r4, r1
+  71:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 等待上一次的I2C信号结束 */
+  72:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_FLAG(I2C_FLAG_BUSY);
+ 305              		.loc 1 72 5 is_stmt 1 view .LVU58
+ 306 0006 4C4B     		ldr	r3, .L35
+ 307 0008 C822     		movs	r2, #200
+ 308 000a 1A70     		strb	r2, [r3]
+ 309              		.loc 1 72 5 view .LVU59
+ 310              	.LVL18:
+ 311              	.L19:
+ 312              		.loc 1 72 5 discriminator 1 view .LVU60
+ 313 000c 4FF40031 		mov	r1, #131072
+ 314 0010 4A48     		ldr	r0, .L35+4
+ 315 0012 FFF7FEFF 		bl	I2C_GetFlagStatus
+ 316              	.LVL19:
+ 317 0016 80B1     		cbz	r0, .L20
+ 318              		.loc 1 72 5 discriminator 5 view .LVU61
+ 319 0018 0520     		movs	r0, #5
+ 320 001a FFF7FEFF 		bl	delay_us
+ 321              	.LVL20:
+ 322              		.loc 1 72 5 discriminator 5 view .LVU62
+ 323 001e 464A     		ldr	r2, .L35
+ 324 0020 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 8
+
+
+ 325 0022 591E     		subs	r1, r3, #1
+ 326 0024 1170     		strb	r1, [r2]
+ 327 0026 002B     		cmp	r3, #0
+ 328 0028 F0D1     		bne	.L19
+ 329              		.loc 1 72 5 discriminator 2 view .LVU63
+ 330 002a 454B     		ldr	r3, .L35+8
+ 331 002c 1868     		ldr	r0, [r3]
+ 332 002e 454B     		ldr	r3, .L35+12
+ 333 0030 4822     		movs	r2, #72
+ 334 0032 4549     		ldr	r1, .L35+16
+ 335 0034 C068     		ldr	r0, [r0, #12]
+ 336 0036 FFF7FEFF 		bl	fprintf
+ 337              	.LVL21:
+ 338              		.loc 1 72 5 discriminator 2 view .LVU64
+ 339              	.L20:
+ 340              		.loc 1 72 30 discriminator 6 view .LVU65
+  73:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+  74:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 写入1Byte */
+  75:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_GenerateSTART(I2C1, ENABLE);
+ 341              		.loc 1 75 5 discriminator 6 view .LVU66
+ 342 003a 0121     		movs	r1, #1
+ 343 003c 3F48     		ldr	r0, .L35+4
+ 344 003e FFF7FEFF 		bl	I2C_GenerateSTART
+ 345              	.LVL22:
+  76:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_EVENT_MASTER_MODE_SELECT);
+ 346              		.loc 1 76 5 discriminator 6 view .LVU67
+ 347 0042 3D4B     		ldr	r3, .L35
+ 348 0044 C822     		movs	r2, #200
+ 349 0046 1A70     		strb	r2, [r3]
+ 350              		.loc 1 76 5 discriminator 6 view .LVU68
+ 351              	.L22:
+ 352              		.loc 1 76 5 discriminator 1 view .LVU69
+ 353 0048 4049     		ldr	r1, .L35+20
+ 354 004a 3C48     		ldr	r0, .L35+4
+ 355 004c FFF7FEFF 		bl	I2C_CheckEvent
+ 356              	.LVL23:
+ 357 0050 0128     		cmp	r0, #1
+ 358 0052 10D0     		beq	.L23
+ 359              		.loc 1 76 5 discriminator 5 view .LVU70
+ 360 0054 0520     		movs	r0, #5
+ 361 0056 FFF7FEFF 		bl	delay_us
+ 362              	.LVL24:
+ 363              		.loc 1 76 5 discriminator 5 view .LVU71
+ 364 005a 374A     		ldr	r2, .L35
+ 365 005c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 366 005e 591E     		subs	r1, r3, #1
+ 367 0060 1170     		strb	r1, [r2]
+ 368 0062 002B     		cmp	r3, #0
+ 369 0064 F0D1     		bne	.L22
+ 370              		.loc 1 76 5 discriminator 2 view .LVU72
+ 371 0066 364B     		ldr	r3, .L35+8
+ 372 0068 1868     		ldr	r0, [r3]
+ 373 006a 364B     		ldr	r3, .L35+12
+ 374 006c 4C22     		movs	r2, #76
+ 375 006e 3849     		ldr	r1, .L35+24
+ 376 0070 C068     		ldr	r0, [r0, #12]
+ 377 0072 FFF7FEFF 		bl	fprintf
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 9
+
+
+ 378              	.LVL25:
+ 379              		.loc 1 76 5 discriminator 2 view .LVU73
+ 380              	.L23:
+ 381              		.loc 1 76 46 discriminator 6 view .LVU74
+  77:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_Send7bitAddress(I2C1, EEPROM_ADDRESS, I2C_Direction_Transmitter);
+ 382              		.loc 1 77 5 discriminator 6 view .LVU75
+ 383 0076 0022     		movs	r2, #0
+ 384 0078 A021     		movs	r1, #160
+ 385 007a 3048     		ldr	r0, .L35+4
+ 386 007c FFF7FEFF 		bl	I2C_Send7bitAddress
+ 387              	.LVL26:
+  78:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED);
+ 388              		.loc 1 78 5 discriminator 6 view .LVU76
+ 389 0080 2D4B     		ldr	r3, .L35
+ 390 0082 C822     		movs	r2, #200
+ 391 0084 1A70     		strb	r2, [r3]
+ 392              		.loc 1 78 5 discriminator 6 view .LVU77
+ 393              	.L25:
+ 394              		.loc 1 78 5 discriminator 1 view .LVU78
+ 395 0086 3349     		ldr	r1, .L35+28
+ 396 0088 2C48     		ldr	r0, .L35+4
+ 397 008a FFF7FEFF 		bl	I2C_CheckEvent
+ 398              	.LVL27:
+ 399 008e 0128     		cmp	r0, #1
+ 400 0090 10D0     		beq	.L26
+ 401              		.loc 1 78 5 discriminator 5 view .LVU79
+ 402 0092 0520     		movs	r0, #5
+ 403 0094 FFF7FEFF 		bl	delay_us
+ 404              	.LVL28:
+ 405              		.loc 1 78 5 discriminator 5 view .LVU80
+ 406 0098 274A     		ldr	r2, .L35
+ 407 009a 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 408 009c 591E     		subs	r1, r3, #1
+ 409 009e 1170     		strb	r1, [r2]
+ 410 00a0 002B     		cmp	r3, #0
+ 411 00a2 F0D1     		bne	.L25
+ 412              		.loc 1 78 5 discriminator 2 view .LVU81
+ 413 00a4 264B     		ldr	r3, .L35+8
+ 414 00a6 1868     		ldr	r0, [r3]
+ 415 00a8 264B     		ldr	r3, .L35+12
+ 416 00aa 4E22     		movs	r2, #78
+ 417 00ac 2849     		ldr	r1, .L35+24
+ 418 00ae C068     		ldr	r0, [r0, #12]
+ 419 00b0 FFF7FEFF 		bl	fprintf
+ 420              	.LVL29:
+ 421              		.loc 1 78 5 discriminator 2 view .LVU82
+ 422              	.L26:
+ 423              		.loc 1 78 60 discriminator 6 view .LVU83
+  79:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_SendData(I2C1, addr);
+ 424              		.loc 1 79 5 discriminator 6 view .LVU84
+ 425 00b4 2946     		mov	r1, r5
+ 426 00b6 2148     		ldr	r0, .L35+4
+ 427 00b8 FFF7FEFF 		bl	I2C_SendData
+ 428              	.LVL30:
+  80:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_EVENT_MASTER_BYTE_TRANSMITTING);
+ 429              		.loc 1 80 5 discriminator 6 view .LVU85
+ 430 00bc 1E4B     		ldr	r3, .L35
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 10
+
+
+ 431 00be C822     		movs	r2, #200
+ 432 00c0 1A70     		strb	r2, [r3]
+ 433              		.loc 1 80 5 discriminator 6 view .LVU86
+ 434              	.L28:
+ 435              		.loc 1 80 5 discriminator 1 view .LVU87
+ 436 00c2 2549     		ldr	r1, .L35+32
+ 437 00c4 1D48     		ldr	r0, .L35+4
+ 438 00c6 FFF7FEFF 		bl	I2C_CheckEvent
+ 439              	.LVL31:
+ 440 00ca 0128     		cmp	r0, #1
+ 441 00cc 10D0     		beq	.L29
+ 442              		.loc 1 80 5 discriminator 5 view .LVU88
+ 443 00ce 0520     		movs	r0, #5
+ 444 00d0 FFF7FEFF 		bl	delay_us
+ 445              	.LVL32:
+ 446              		.loc 1 80 5 discriminator 5 view .LVU89
+ 447 00d4 184A     		ldr	r2, .L35
+ 448 00d6 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 449 00d8 591E     		subs	r1, r3, #1
+ 450 00da 1170     		strb	r1, [r2]
+ 451 00dc 002B     		cmp	r3, #0
+ 452 00de F0D1     		bne	.L28
+ 453              		.loc 1 80 5 discriminator 2 view .LVU90
+ 454 00e0 174B     		ldr	r3, .L35+8
+ 455 00e2 1868     		ldr	r0, [r3]
+ 456 00e4 174B     		ldr	r3, .L35+12
+ 457 00e6 5022     		movs	r2, #80
+ 458 00e8 1949     		ldr	r1, .L35+24
+ 459 00ea C068     		ldr	r0, [r0, #12]
+ 460 00ec FFF7FEFF 		bl	fprintf
+ 461              	.LVL33:
+ 462              		.loc 1 80 5 discriminator 2 view .LVU91
+ 463              	.L29:
+ 464              		.loc 1 80 52 discriminator 6 view .LVU92
+  81:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_SendData(I2C1, data);
+ 465              		.loc 1 81 5 discriminator 6 view .LVU93
+ 466 00f0 2146     		mov	r1, r4
+ 467 00f2 1248     		ldr	r0, .L35+4
+ 468 00f4 FFF7FEFF 		bl	I2C_SendData
+ 469              	.LVL34:
+  82:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_EVENT_MASTER_BYTE_TRANSMITTED);
+ 470              		.loc 1 82 5 discriminator 6 view .LVU94
+ 471 00f8 0F4B     		ldr	r3, .L35
+ 472 00fa C822     		movs	r2, #200
+ 473 00fc 1A70     		strb	r2, [r3]
+ 474              		.loc 1 82 5 discriminator 6 view .LVU95
+ 475              	.L31:
+ 476              		.loc 1 82 5 discriminator 1 view .LVU96
+ 477 00fe 1749     		ldr	r1, .L35+36
+ 478 0100 0E48     		ldr	r0, .L35+4
+ 479 0102 FFF7FEFF 		bl	I2C_CheckEvent
+ 480              	.LVL35:
+ 481 0106 0128     		cmp	r0, #1
+ 482 0108 10D0     		beq	.L32
+ 483              		.loc 1 82 5 discriminator 5 view .LVU97
+ 484 010a 0520     		movs	r0, #5
+ 485 010c FFF7FEFF 		bl	delay_us
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 11
+
+
+ 486              	.LVL36:
+ 487              		.loc 1 82 5 discriminator 5 view .LVU98
+ 488 0110 094A     		ldr	r2, .L35
+ 489 0112 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 490 0114 591E     		subs	r1, r3, #1
+ 491 0116 1170     		strb	r1, [r2]
+ 492 0118 002B     		cmp	r3, #0
+ 493 011a F0D1     		bne	.L31
+ 494              		.loc 1 82 5 discriminator 2 view .LVU99
+ 495 011c 084B     		ldr	r3, .L35+8
+ 496 011e 1868     		ldr	r0, [r3]
+ 497 0120 084B     		ldr	r3, .L35+12
+ 498 0122 5222     		movs	r2, #82
+ 499 0124 0A49     		ldr	r1, .L35+24
+ 500 0126 C068     		ldr	r0, [r0, #12]
+ 501 0128 FFF7FEFF 		bl	fprintf
+ 502              	.LVL37:
+ 503              		.loc 1 82 5 discriminator 2 view .LVU100
+ 504              	.L32:
+ 505              		.loc 1 82 51 discriminator 6 view .LVU101
+  83:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_GenerateSTOP(I2C1, ENABLE);
+ 506              		.loc 1 83 5 discriminator 6 view .LVU102
+ 507 012c 0121     		movs	r1, #1
+ 508 012e 0348     		ldr	r0, .L35+4
+ 509 0130 FFF7FEFF 		bl	I2C_GenerateSTOP
+ 510              	.LVL38:
+  84:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** }
+ 511              		.loc 1 84 1 is_stmt 0 discriminator 6 view .LVU103
+ 512 0134 38BD     		pop	{r3, r4, r5, pc}
+ 513              	.L36:
+ 514 0136 00BF     		.align	2
+ 515              	.L35:
+ 516 0138 00000000 		.word	eventTimeOut
+ 517 013c 00540040 		.word	1073763328
+ 518 0140 00000000 		.word	_impure_ptr
+ 519 0144 00000000 		.word	__FUNCTION__.3
+ 520 0148 00000000 		.word	.LC0
+ 521 014c 01000300 		.word	196609
+ 522 0150 28000000 		.word	.LC1
+ 523 0154 82000700 		.word	458882
+ 524 0158 80000700 		.word	458880
+ 525 015c 84000700 		.word	458884
+ 526              		.cfi_endproc
+ 527              	.LFE34:
+ 529              		.section	.text.EEPROM_Read_Byte_IH,"ax",%progbits
+ 530              		.align	1
+ 531              		.global	EEPROM_Read_Byte_IH
+ 532              		.syntax unified
+ 533              		.thumb
+ 534              		.thumb_func
+ 536              	EEPROM_Read_Byte_IH:
+ 537              	.LVL39:
+ 538              	.LFB35:
+  85:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+  86:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** uint8_t EEPROM_Read_Byte_IH(uint8_t addr){
+ 539              		.loc 1 86 42 is_stmt 1 view -0
+ 540              		.cfi_startproc
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 12
+
+
+ 541              		@ args = 0, pretend = 0, frame = 0
+ 542              		@ frame_needed = 0, uses_anonymous_args = 0
+ 543              		.loc 1 86 42 is_stmt 0 view .LVU105
+ 544 0000 38B5     		push	{r3, r4, r5, lr}
+ 545              	.LCFI5:
+ 546              		.cfi_def_cfa_offset 16
+ 547              		.cfi_offset 3, -16
+ 548              		.cfi_offset 4, -12
+ 549              		.cfi_offset 5, -8
+ 550              		.cfi_offset 14, -4
+ 551 0002 0446     		mov	r4, r0
+  87:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 等待上一次的I2C信号结束 */
+  88:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_FLAG(I2C_FLAG_BUSY);
+ 552              		.loc 1 88 5 is_stmt 1 view .LVU106
+ 553 0004 7C4B     		ldr	r3, .L63
+ 554 0006 C822     		movs	r2, #200
+ 555 0008 1A70     		strb	r2, [r3]
+ 556              		.loc 1 88 5 view .LVU107
+ 557              	.LVL40:
+ 558              	.L38:
+ 559              		.loc 1 88 5 discriminator 1 view .LVU108
+ 560 000a 4FF40031 		mov	r1, #131072
+ 561 000e 7B48     		ldr	r0, .L63+4
+ 562 0010 FFF7FEFF 		bl	I2C_GetFlagStatus
+ 563              	.LVL41:
+ 564 0014 80B1     		cbz	r0, .L39
+ 565              		.loc 1 88 5 discriminator 5 view .LVU109
+ 566 0016 0520     		movs	r0, #5
+ 567 0018 FFF7FEFF 		bl	delay_us
+ 568              	.LVL42:
+ 569              		.loc 1 88 5 discriminator 5 view .LVU110
+ 570 001c 764A     		ldr	r2, .L63
+ 571 001e 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 572 0020 591E     		subs	r1, r3, #1
+ 573 0022 1170     		strb	r1, [r2]
+ 574 0024 002B     		cmp	r3, #0
+ 575 0026 F0D1     		bne	.L38
+ 576              		.loc 1 88 5 discriminator 2 view .LVU111
+ 577 0028 754B     		ldr	r3, .L63+8
+ 578 002a 1868     		ldr	r0, [r3]
+ 579 002c 754B     		ldr	r3, .L63+12
+ 580 002e 5822     		movs	r2, #88
+ 581 0030 7549     		ldr	r1, .L63+16
+ 582 0032 C068     		ldr	r0, [r0, #12]
+ 583 0034 FFF7FEFF 		bl	fprintf
+ 584              	.LVL43:
+ 585              		.loc 1 88 5 discriminator 2 view .LVU112
+ 586              	.L39:
+ 587              		.loc 1 88 30 discriminator 6 view .LVU113
+  89:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+  90:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 读取1Byte */
+  91:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_GenerateSTART(I2C1, ENABLE);
+ 588              		.loc 1 91 5 discriminator 6 view .LVU114
+ 589 0038 0121     		movs	r1, #1
+ 590 003a 7048     		ldr	r0, .L63+4
+ 591 003c FFF7FEFF 		bl	I2C_GenerateSTART
+ 592              	.LVL44:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 13
+
+
+  92:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_EVENT_MASTER_MODE_SELECT);
+ 593              		.loc 1 92 5 discriminator 6 view .LVU115
+ 594 0040 6D4B     		ldr	r3, .L63
+ 595 0042 C822     		movs	r2, #200
+ 596 0044 1A70     		strb	r2, [r3]
+ 597              		.loc 1 92 5 discriminator 6 view .LVU116
+ 598              	.L41:
+ 599              		.loc 1 92 5 discriminator 1 view .LVU117
+ 600 0046 7149     		ldr	r1, .L63+20
+ 601 0048 6C48     		ldr	r0, .L63+4
+ 602 004a FFF7FEFF 		bl	I2C_CheckEvent
+ 603              	.LVL45:
+ 604 004e 0128     		cmp	r0, #1
+ 605 0050 10D0     		beq	.L42
+ 606              		.loc 1 92 5 discriminator 5 view .LVU118
+ 607 0052 0520     		movs	r0, #5
+ 608 0054 FFF7FEFF 		bl	delay_us
+ 609              	.LVL46:
+ 610              		.loc 1 92 5 discriminator 5 view .LVU119
+ 611 0058 674A     		ldr	r2, .L63
+ 612 005a 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 613 005c 591E     		subs	r1, r3, #1
+ 614 005e 1170     		strb	r1, [r2]
+ 615 0060 002B     		cmp	r3, #0
+ 616 0062 F0D1     		bne	.L41
+ 617              		.loc 1 92 5 discriminator 2 view .LVU120
+ 618 0064 664B     		ldr	r3, .L63+8
+ 619 0066 1868     		ldr	r0, [r3]
+ 620 0068 664B     		ldr	r3, .L63+12
+ 621 006a 5C22     		movs	r2, #92
+ 622 006c 6849     		ldr	r1, .L63+24
+ 623 006e C068     		ldr	r0, [r0, #12]
+ 624 0070 FFF7FEFF 		bl	fprintf
+ 625              	.LVL47:
+ 626              		.loc 1 92 5 discriminator 2 view .LVU121
+ 627              	.L42:
+ 628              		.loc 1 92 46 discriminator 6 view .LVU122
+  93:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_Send7bitAddress(I2C1, EEPROM_ADDRESS, I2C_Direction_Transmitter);
+ 629              		.loc 1 93 5 discriminator 6 view .LVU123
+ 630 0074 0022     		movs	r2, #0
+ 631 0076 A021     		movs	r1, #160
+ 632 0078 6048     		ldr	r0, .L63+4
+ 633 007a FFF7FEFF 		bl	I2C_Send7bitAddress
+ 634              	.LVL48:
+  94:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED);
+ 635              		.loc 1 94 5 discriminator 6 view .LVU124
+ 636 007e 5E4B     		ldr	r3, .L63
+ 637 0080 C822     		movs	r2, #200
+ 638 0082 1A70     		strb	r2, [r3]
+ 639              		.loc 1 94 5 discriminator 6 view .LVU125
+ 640              	.L44:
+ 641              		.loc 1 94 5 discriminator 1 view .LVU126
+ 642 0084 6349     		ldr	r1, .L63+28
+ 643 0086 5D48     		ldr	r0, .L63+4
+ 644 0088 FFF7FEFF 		bl	I2C_CheckEvent
+ 645              	.LVL49:
+ 646 008c 0128     		cmp	r0, #1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 14
+
+
+ 647 008e 10D0     		beq	.L45
+ 648              		.loc 1 94 5 discriminator 5 view .LVU127
+ 649 0090 0520     		movs	r0, #5
+ 650 0092 FFF7FEFF 		bl	delay_us
+ 651              	.LVL50:
+ 652              		.loc 1 94 5 discriminator 5 view .LVU128
+ 653 0096 584A     		ldr	r2, .L63
+ 654 0098 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 655 009a 591E     		subs	r1, r3, #1
+ 656 009c 1170     		strb	r1, [r2]
+ 657 009e 002B     		cmp	r3, #0
+ 658 00a0 F0D1     		bne	.L44
+ 659              		.loc 1 94 5 discriminator 2 view .LVU129
+ 660 00a2 574B     		ldr	r3, .L63+8
+ 661 00a4 1868     		ldr	r0, [r3]
+ 662 00a6 574B     		ldr	r3, .L63+12
+ 663 00a8 5E22     		movs	r2, #94
+ 664 00aa 5949     		ldr	r1, .L63+24
+ 665 00ac C068     		ldr	r0, [r0, #12]
+ 666 00ae FFF7FEFF 		bl	fprintf
+ 667              	.LVL51:
+ 668              		.loc 1 94 5 discriminator 2 view .LVU130
+ 669              	.L45:
+ 670              		.loc 1 94 60 discriminator 6 view .LVU131
+  95:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_SendData(I2C1, addr);
+ 671              		.loc 1 95 5 discriminator 6 view .LVU132
+ 672 00b2 2146     		mov	r1, r4
+ 673 00b4 5148     		ldr	r0, .L63+4
+ 674 00b6 FFF7FEFF 		bl	I2C_SendData
+ 675              	.LVL52:
+  96:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_EVENT_MASTER_BYTE_TRANSMITTED);
+ 676              		.loc 1 96 5 discriminator 6 view .LVU133
+ 677 00ba 4F4B     		ldr	r3, .L63
+ 678 00bc C822     		movs	r2, #200
+ 679 00be 1A70     		strb	r2, [r3]
+ 680              		.loc 1 96 5 discriminator 6 view .LVU134
+ 681              	.L47:
+ 682              		.loc 1 96 5 discriminator 1 view .LVU135
+ 683 00c0 5549     		ldr	r1, .L63+32
+ 684 00c2 4E48     		ldr	r0, .L63+4
+ 685 00c4 FFF7FEFF 		bl	I2C_CheckEvent
+ 686              	.LVL53:
+ 687 00c8 0128     		cmp	r0, #1
+ 688 00ca 10D0     		beq	.L48
+ 689              		.loc 1 96 5 discriminator 5 view .LVU136
+ 690 00cc 0520     		movs	r0, #5
+ 691 00ce FFF7FEFF 		bl	delay_us
+ 692              	.LVL54:
+ 693              		.loc 1 96 5 discriminator 5 view .LVU137
+ 694 00d2 494A     		ldr	r2, .L63
+ 695 00d4 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 696 00d6 591E     		subs	r1, r3, #1
+ 697 00d8 1170     		strb	r1, [r2]
+ 698 00da 002B     		cmp	r3, #0
+ 699 00dc F0D1     		bne	.L47
+ 700              		.loc 1 96 5 discriminator 2 view .LVU138
+ 701 00de 484B     		ldr	r3, .L63+8
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 15
+
+
+ 702 00e0 1868     		ldr	r0, [r3]
+ 703 00e2 484B     		ldr	r3, .L63+12
+ 704 00e4 6022     		movs	r2, #96
+ 705 00e6 4A49     		ldr	r1, .L63+24
+ 706 00e8 C068     		ldr	r0, [r0, #12]
+ 707 00ea FFF7FEFF 		bl	fprintf
+ 708              	.LVL55:
+ 709              		.loc 1 96 5 discriminator 2 view .LVU139
+ 710              	.L48:
+ 711              		.loc 1 96 51 discriminator 6 view .LVU140
+  97:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_GenerateSTART(I2C1, ENABLE);
+ 712              		.loc 1 97 5 discriminator 6 view .LVU141
+ 713 00ee 0121     		movs	r1, #1
+ 714 00f0 4248     		ldr	r0, .L63+4
+ 715 00f2 FFF7FEFF 		bl	I2C_GenerateSTART
+ 716              	.LVL56:
+  98:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_EVENT_MASTER_MODE_SELECT);
+ 717              		.loc 1 98 5 discriminator 6 view .LVU142
+ 718 00f6 404B     		ldr	r3, .L63
+ 719 00f8 C822     		movs	r2, #200
+ 720 00fa 1A70     		strb	r2, [r3]
+ 721              		.loc 1 98 5 discriminator 6 view .LVU143
+ 722              	.L50:
+ 723              		.loc 1 98 5 discriminator 1 view .LVU144
+ 724 00fc 4349     		ldr	r1, .L63+20
+ 725 00fe 3F48     		ldr	r0, .L63+4
+ 726 0100 FFF7FEFF 		bl	I2C_CheckEvent
+ 727              	.LVL57:
+ 728 0104 0128     		cmp	r0, #1
+ 729 0106 10D0     		beq	.L51
+ 730              		.loc 1 98 5 discriminator 5 view .LVU145
+ 731 0108 0520     		movs	r0, #5
+ 732 010a FFF7FEFF 		bl	delay_us
+ 733              	.LVL58:
+ 734              		.loc 1 98 5 discriminator 5 view .LVU146
+ 735 010e 3A4A     		ldr	r2, .L63
+ 736 0110 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 737 0112 591E     		subs	r1, r3, #1
+ 738 0114 1170     		strb	r1, [r2]
+ 739 0116 002B     		cmp	r3, #0
+ 740 0118 F0D1     		bne	.L50
+ 741              		.loc 1 98 5 discriminator 2 view .LVU147
+ 742 011a 394B     		ldr	r3, .L63+8
+ 743 011c 1868     		ldr	r0, [r3]
+ 744 011e 394B     		ldr	r3, .L63+12
+ 745 0120 6222     		movs	r2, #98
+ 746 0122 3B49     		ldr	r1, .L63+24
+ 747 0124 C068     		ldr	r0, [r0, #12]
+ 748 0126 FFF7FEFF 		bl	fprintf
+ 749              	.LVL59:
+ 750              		.loc 1 98 5 discriminator 2 view .LVU148
+ 751              	.L51:
+ 752              		.loc 1 98 46 discriminator 6 view .LVU149
+  99:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_Send7bitAddress(I2C1, EEPROM_ADDRESS, I2C_Direction_Receiver);
+ 753              		.loc 1 99 5 discriminator 6 view .LVU150
+ 754 012a 0122     		movs	r2, #1
+ 755 012c A021     		movs	r1, #160
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 16
+
+
+ 756 012e 3348     		ldr	r0, .L63+4
+ 757 0130 FFF7FEFF 		bl	I2C_Send7bitAddress
+ 758              	.LVL60:
+ 100:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED);
+ 759              		.loc 1 100 5 discriminator 6 view .LVU151
+ 760 0134 304B     		ldr	r3, .L63
+ 761 0136 C822     		movs	r2, #200
+ 762 0138 1A70     		strb	r2, [r3]
+ 763              		.loc 1 100 5 discriminator 6 view .LVU152
+ 764              	.L53:
+ 765              		.loc 1 100 5 discriminator 1 view .LVU153
+ 766 013a 3849     		ldr	r1, .L63+36
+ 767 013c 2F48     		ldr	r0, .L63+4
+ 768 013e FFF7FEFF 		bl	I2C_CheckEvent
+ 769              	.LVL61:
+ 770 0142 0128     		cmp	r0, #1
+ 771 0144 10D0     		beq	.L54
+ 772              		.loc 1 100 5 discriminator 5 view .LVU154
+ 773 0146 0520     		movs	r0, #5
+ 774 0148 FFF7FEFF 		bl	delay_us
+ 775              	.LVL62:
+ 776              		.loc 1 100 5 discriminator 5 view .LVU155
+ 777 014c 2A4A     		ldr	r2, .L63
+ 778 014e 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 779 0150 591E     		subs	r1, r3, #1
+ 780 0152 1170     		strb	r1, [r2]
+ 781 0154 002B     		cmp	r3, #0
+ 782 0156 F0D1     		bne	.L53
+ 783              		.loc 1 100 5 discriminator 2 view .LVU156
+ 784 0158 294B     		ldr	r3, .L63+8
+ 785 015a 1868     		ldr	r0, [r3]
+ 786 015c 294B     		ldr	r3, .L63+12
+ 787 015e 6422     		movs	r2, #100
+ 788 0160 2B49     		ldr	r1, .L63+24
+ 789 0162 C068     		ldr	r0, [r0, #12]
+ 790 0164 FFF7FEFF 		bl	fprintf
+ 791              	.LVL63:
+ 792              		.loc 1 100 5 discriminator 2 view .LVU157
+ 793              	.L54:
+ 794              		.loc 1 100 57 discriminator 6 view .LVU158
+ 101:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_EVENT_MASTER_BYTE_RECEIVED);    // 注意一定要先等待EV7再读取DR寄存
+ 795              		.loc 1 101 5 discriminator 6 view .LVU159
+ 796 0168 234B     		ldr	r3, .L63
+ 797 016a C822     		movs	r2, #200
+ 798 016c 1A70     		strb	r2, [r3]
+ 799              		.loc 1 101 5 discriminator 6 view .LVU160
+ 800              	.L56:
+ 801              		.loc 1 101 5 discriminator 1 view .LVU161
+ 802 016e 2C49     		ldr	r1, .L63+40
+ 803 0170 2248     		ldr	r0, .L63+4
+ 804 0172 FFF7FEFF 		bl	I2C_CheckEvent
+ 805              	.LVL64:
+ 806 0176 0128     		cmp	r0, #1
+ 807 0178 10D0     		beq	.L57
+ 808              		.loc 1 101 5 discriminator 5 view .LVU162
+ 809 017a 0520     		movs	r0, #5
+ 810 017c FFF7FEFF 		bl	delay_us
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 17
+
+
+ 811              	.LVL65:
+ 812              		.loc 1 101 5 discriminator 5 view .LVU163
+ 813 0180 1D4A     		ldr	r2, .L63
+ 814 0182 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 815 0184 591E     		subs	r1, r3, #1
+ 816 0186 1170     		strb	r1, [r2]
+ 817 0188 002B     		cmp	r3, #0
+ 818 018a F0D1     		bne	.L56
+ 819              		.loc 1 101 5 discriminator 2 view .LVU164
+ 820 018c 1C4B     		ldr	r3, .L63+8
+ 821 018e 1868     		ldr	r0, [r3]
+ 822 0190 1C4B     		ldr	r3, .L63+12
+ 823 0192 6522     		movs	r2, #101
+ 824 0194 1E49     		ldr	r1, .L63+24
+ 825 0196 C068     		ldr	r0, [r0, #12]
+ 826 0198 FFF7FEFF 		bl	fprintf
+ 827              	.LVL66:
+ 828              		.loc 1 101 5 discriminator 2 view .LVU165
+ 829              	.L57:
+ 830              		.loc 1 101 48 discriminator 6 view .LVU166
+ 102:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_AcknowledgeConfig(I2C1, DISABLE);           // 最后一个receive信号之前关闭ACK信�
+ 831              		.loc 1 102 5 discriminator 6 view .LVU167
+ 832 019c 174D     		ldr	r5, .L63+4
+ 833 019e 0021     		movs	r1, #0
+ 834 01a0 2846     		mov	r0, r5
+ 835 01a2 FFF7FEFF 		bl	I2C_AcknowledgeConfig
+ 836              	.LVL67:
+ 103:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     uint8_t data = I2C_ReceiveData(I2C1);
+ 837              		.loc 1 103 5 discriminator 6 view .LVU168
+ 838              		.loc 1 103 20 is_stmt 0 discriminator 6 view .LVU169
+ 839 01a6 2846     		mov	r0, r5
+ 840 01a8 FFF7FEFF 		bl	I2C_ReceiveData
+ 841              	.LVL68:
+ 842 01ac 0446     		mov	r4, r0
+ 843              	.LVL69:
+ 104:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_GenerateSTOP(I2C1, ENABLE);
+ 844              		.loc 1 104 5 is_stmt 1 discriminator 6 view .LVU170
+ 845 01ae 0121     		movs	r1, #1
+ 846 01b0 2846     		mov	r0, r5
+ 847 01b2 FFF7FEFF 		bl	I2C_GenerateSTOP
+ 848              	.LVL70:
+ 105:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 106:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 等待stop信号完成后重新使能ACK信号 */
+ 107:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_FLAG(I2C_FLAG_BUSY);
+ 849              		.loc 1 107 5 discriminator 6 view .LVU171
+ 850 01b6 104B     		ldr	r3, .L63
+ 851 01b8 C822     		movs	r2, #200
+ 852 01ba 1A70     		strb	r2, [r3]
+ 853              		.loc 1 107 5 discriminator 6 view .LVU172
+ 854              	.L59:
+ 855              		.loc 1 107 5 discriminator 1 view .LVU173
+ 856 01bc 4FF40031 		mov	r1, #131072
+ 857 01c0 0E48     		ldr	r0, .L63+4
+ 858 01c2 FFF7FEFF 		bl	I2C_GetFlagStatus
+ 859              	.LVL71:
+ 860 01c6 80B1     		cbz	r0, .L60
+ 861              		.loc 1 107 5 discriminator 5 view .LVU174
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 18
+
+
+ 862 01c8 0520     		movs	r0, #5
+ 863 01ca FFF7FEFF 		bl	delay_us
+ 864              	.LVL72:
+ 865              		.loc 1 107 5 discriminator 5 view .LVU175
+ 866 01ce 0A4A     		ldr	r2, .L63
+ 867 01d0 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 868 01d2 591E     		subs	r1, r3, #1
+ 869 01d4 1170     		strb	r1, [r2]
+ 870 01d6 002B     		cmp	r3, #0
+ 871 01d8 F0D1     		bne	.L59
+ 872              		.loc 1 107 5 discriminator 2 view .LVU176
+ 873 01da 094B     		ldr	r3, .L63+8
+ 874 01dc 1868     		ldr	r0, [r3]
+ 875 01de 094B     		ldr	r3, .L63+12
+ 876 01e0 6B22     		movs	r2, #107
+ 877 01e2 0949     		ldr	r1, .L63+16
+ 878 01e4 C068     		ldr	r0, [r0, #12]
+ 879 01e6 FFF7FEFF 		bl	fprintf
+ 880              	.LVL73:
+ 881              		.loc 1 107 5 discriminator 2 view .LVU177
+ 882              	.L60:
+ 883              		.loc 1 107 30 discriminator 6 view .LVU178
+ 108:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_AcknowledgeConfig(I2C1, ENABLE);
+ 884              		.loc 1 108 5 discriminator 6 view .LVU179
+ 885 01ea 0121     		movs	r1, #1
+ 886 01ec 0348     		ldr	r0, .L63+4
+ 887 01ee FFF7FEFF 		bl	I2C_AcknowledgeConfig
+ 888              	.LVL74:
+ 109:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     return data;
+ 889              		.loc 1 109 5 discriminator 6 view .LVU180
+ 110:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** }
+ 890              		.loc 1 110 1 is_stmt 0 discriminator 6 view .LVU181
+ 891 01f2 2046     		mov	r0, r4
+ 892 01f4 38BD     		pop	{r3, r4, r5, pc}
+ 893              	.LVL75:
+ 894              	.L64:
+ 895              		.loc 1 110 1 discriminator 6 view .LVU182
+ 896 01f6 00BF     		.align	2
+ 897              	.L63:
+ 898 01f8 00000000 		.word	eventTimeOut
+ 899 01fc 00540040 		.word	1073763328
+ 900 0200 00000000 		.word	_impure_ptr
+ 901 0204 00000000 		.word	__FUNCTION__.2
+ 902 0208 00000000 		.word	.LC0
+ 903 020c 01000300 		.word	196609
+ 904 0210 28000000 		.word	.LC1
+ 905 0214 82000700 		.word	458882
+ 906 0218 84000700 		.word	458884
+ 907 021c 02000300 		.word	196610
+ 908 0220 40000300 		.word	196672
+ 909              		.cfi_endproc
+ 910              	.LFE35:
+ 912              		.section	.rodata.EEPROM_Write_Sequential_IH.str1.4,"aMS",%progbits,1
+ 913              		.align	2
+ 914              	.LC2:
+ 915 0000 57726974 		.ascii	"Write bytes overflowed, line: %d, function: %s\015\012"
+ 915      65206279 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 19
+
+
+ 915      74657320 
+ 915      6F766572 
+ 915      666C6F77 
+ 916 0030 00       		.ascii	"\000"
+ 917              		.section	.text.EEPROM_Write_Sequential_IH,"ax",%progbits
+ 918              		.align	1
+ 919              		.global	EEPROM_Write_Sequential_IH
+ 920              		.syntax unified
+ 921              		.thumb
+ 922              		.thumb_func
+ 924              	EEPROM_Write_Sequential_IH:
+ 925              	.LVL76:
+ 926              	.LFB36:
+ 111:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 112:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** void EEPROM_Write_Sequential_IH(uint8_t addr, uint8_t* dataPtr, uint8_t dataLen){
+ 927              		.loc 1 112 81 is_stmt 1 view -0
+ 928              		.cfi_startproc
+ 929              		@ args = 0, pretend = 0, frame = 0
+ 930              		@ frame_needed = 0, uses_anonymous_args = 0
+ 931              		.loc 1 112 81 is_stmt 0 view .LVU184
+ 932 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 933              	.LCFI6:
+ 934              		.cfi_def_cfa_offset 32
+ 935              		.cfi_offset 4, -32
+ 936              		.cfi_offset 5, -28
+ 937              		.cfi_offset 6, -24
+ 938              		.cfi_offset 7, -20
+ 939              		.cfi_offset 8, -16
+ 940              		.cfi_offset 9, -12
+ 941              		.cfi_offset 10, -8
+ 942              		.cfi_offset 14, -4
+ 943 0004 8146     		mov	r9, r0
+ 944 0006 0F46     		mov	r7, r1
+ 945 0008 1646     		mov	r6, r2
+ 113:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     if((uint16_t)addr + (uint16_t)dataLen > 0XFF)
+ 946              		.loc 1 113 5 is_stmt 1 view .LVU185
+ 947              		.loc 1 113 23 is_stmt 0 view .LVU186
+ 948 000a 8318     		adds	r3, r0, r2
+ 949              		.loc 1 113 7 view .LVU187
+ 950 000c FF2B     		cmp	r3, #255
+ 951 000e 7FDC     		bgt	.L106
+ 952              	.LVL77:
+ 953              	.L66:
+ 114:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         fprintf(stderr, "Write bytes overflowed, line: %d, function: %s\r\n", __LINE__, __FUNCTION_
+ 115:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 写到addr对齐page */
+ 116:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** #define MIN(a, b) (a < b)? a: b 
+ 117:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     uint8_t count = MIN(8 - addr % 8, dataLen);
+ 954              		.loc 1 117 5 is_stmt 1 view .LVU188
+ 955              		.loc 1 117 21 is_stmt 0 view .LVU189
+ 956 0010 09F00708 		and	r8, r9, #7
+ 957 0014 C8F10808 		rsb	r8, r8, #8
+ 958 0018 B045     		cmp	r8, r6
+ 959 001a A8BF     		it	ge
+ 960 001c B046     		movge	r8, r6
+ 961              		.loc 1 117 13 view .LVU190
+ 962 001e 5FFA88F5 		uxtb	r5, r8
+ 963              	.LVL78:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 20
+
+
+ 118:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     uint8_t idx;
+ 964              		.loc 1 118 5 is_stmt 1 view .LVU191
+ 119:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 等待上一次的I2C信号结束 */
+ 120:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_FLAG(I2C_FLAG_BUSY);
+ 965              		.loc 1 120 5 view .LVU192
+ 966 0022 6F4B     		ldr	r3, .L109
+ 967 0024 C822     		movs	r2, #200
+ 968 0026 1A70     		strb	r2, [r3]
+ 969              		.loc 1 120 5 view .LVU193
+ 970              	.L67:
+ 971              		.loc 1 120 5 discriminator 1 view .LVU194
+ 972 0028 4FF40031 		mov	r1, #131072
+ 973 002c 6D48     		ldr	r0, .L109+4
+ 974 002e FFF7FEFF 		bl	I2C_GetFlagStatus
+ 975              	.LVL79:
+ 976 0032 80B1     		cbz	r0, .L68
+ 977              		.loc 1 120 5 discriminator 5 view .LVU195
+ 978 0034 0520     		movs	r0, #5
+ 979 0036 FFF7FEFF 		bl	delay_us
+ 980              	.LVL80:
+ 981              		.loc 1 120 5 discriminator 5 view .LVU196
+ 982 003a 694A     		ldr	r2, .L109
+ 983 003c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 984 003e 591E     		subs	r1, r3, #1
+ 985 0040 1170     		strb	r1, [r2]
+ 986 0042 002B     		cmp	r3, #0
+ 987 0044 F0D1     		bne	.L67
+ 988              		.loc 1 120 5 discriminator 2 view .LVU197
+ 989 0046 684B     		ldr	r3, .L109+8
+ 990 0048 1868     		ldr	r0, [r3]
+ 991 004a 684B     		ldr	r3, .L109+12
+ 992 004c 7822     		movs	r2, #120
+ 993 004e 6849     		ldr	r1, .L109+16
+ 994 0050 C068     		ldr	r0, [r0, #12]
+ 995 0052 FFF7FEFF 		bl	fprintf
+ 996              	.LVL81:
+ 997              		.loc 1 120 5 discriminator 2 view .LVU198
+ 998              	.L68:
+ 999              		.loc 1 120 30 discriminator 6 view .LVU199
+ 121:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 122:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 写到addr对齐page */
+ 123:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_GenerateSTART(I2C1, ENABLE);
+ 1000              		.loc 1 123 5 discriminator 6 view .LVU200
+ 1001 0056 0121     		movs	r1, #1
+ 1002 0058 6248     		ldr	r0, .L109+4
+ 1003 005a FFF7FEFF 		bl	I2C_GenerateSTART
+ 1004              	.LVL82:
+ 124:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_EVENT_MASTER_MODE_SELECT);
+ 1005              		.loc 1 124 5 discriminator 6 view .LVU201
+ 1006 005e 604B     		ldr	r3, .L109
+ 1007 0060 C822     		movs	r2, #200
+ 1008 0062 1A70     		strb	r2, [r3]
+ 1009              		.loc 1 124 5 discriminator 6 view .LVU202
+ 1010              	.L70:
+ 1011              		.loc 1 124 5 discriminator 1 view .LVU203
+ 1012 0064 6349     		ldr	r1, .L109+20
+ 1013 0066 5F48     		ldr	r0, .L109+4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 21
+
+
+ 1014 0068 FFF7FEFF 		bl	I2C_CheckEvent
+ 1015              	.LVL83:
+ 1016 006c 0128     		cmp	r0, #1
+ 1017 006e 10D0     		beq	.L71
+ 1018              		.loc 1 124 5 discriminator 5 view .LVU204
+ 1019 0070 0520     		movs	r0, #5
+ 1020 0072 FFF7FEFF 		bl	delay_us
+ 1021              	.LVL84:
+ 1022              		.loc 1 124 5 discriminator 5 view .LVU205
+ 1023 0076 5A4A     		ldr	r2, .L109
+ 1024 0078 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 1025 007a 591E     		subs	r1, r3, #1
+ 1026 007c 1170     		strb	r1, [r2]
+ 1027 007e 002B     		cmp	r3, #0
+ 1028 0080 F0D1     		bne	.L70
+ 1029              		.loc 1 124 5 discriminator 2 view .LVU206
+ 1030 0082 594B     		ldr	r3, .L109+8
+ 1031 0084 1868     		ldr	r0, [r3]
+ 1032 0086 594B     		ldr	r3, .L109+12
+ 1033 0088 7C22     		movs	r2, #124
+ 1034 008a 5B49     		ldr	r1, .L109+24
+ 1035 008c C068     		ldr	r0, [r0, #12]
+ 1036 008e FFF7FEFF 		bl	fprintf
+ 1037              	.LVL85:
+ 1038              		.loc 1 124 5 discriminator 2 view .LVU207
+ 1039              	.L71:
+ 1040              		.loc 1 124 46 discriminator 6 view .LVU208
+ 125:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_Send7bitAddress(I2C1, EEPROM_ADDRESS, I2C_Direction_Transmitter);
+ 1041              		.loc 1 125 5 discriminator 6 view .LVU209
+ 1042 0092 0022     		movs	r2, #0
+ 1043 0094 A021     		movs	r1, #160
+ 1044 0096 5348     		ldr	r0, .L109+4
+ 1045 0098 FFF7FEFF 		bl	I2C_Send7bitAddress
+ 1046              	.LVL86:
+ 126:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED);
+ 1047              		.loc 1 126 5 discriminator 6 view .LVU210
+ 1048 009c 504B     		ldr	r3, .L109
+ 1049 009e C822     		movs	r2, #200
+ 1050 00a0 1A70     		strb	r2, [r3]
+ 1051              		.loc 1 126 5 discriminator 6 view .LVU211
+ 1052              	.L73:
+ 1053              		.loc 1 126 5 discriminator 1 view .LVU212
+ 1054 00a2 5649     		ldr	r1, .L109+28
+ 1055 00a4 4F48     		ldr	r0, .L109+4
+ 1056 00a6 FFF7FEFF 		bl	I2C_CheckEvent
+ 1057              	.LVL87:
+ 1058 00aa 0128     		cmp	r0, #1
+ 1059 00ac 10D0     		beq	.L74
+ 1060              		.loc 1 126 5 discriminator 5 view .LVU213
+ 1061 00ae 0520     		movs	r0, #5
+ 1062 00b0 FFF7FEFF 		bl	delay_us
+ 1063              	.LVL88:
+ 1064              		.loc 1 126 5 discriminator 5 view .LVU214
+ 1065 00b4 4A4A     		ldr	r2, .L109
+ 1066 00b6 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 1067 00b8 591E     		subs	r1, r3, #1
+ 1068 00ba 1170     		strb	r1, [r2]
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 22
+
+
+ 1069 00bc 002B     		cmp	r3, #0
+ 1070 00be F0D1     		bne	.L73
+ 1071              		.loc 1 126 5 discriminator 2 view .LVU215
+ 1072 00c0 494B     		ldr	r3, .L109+8
+ 1073 00c2 1868     		ldr	r0, [r3]
+ 1074 00c4 494B     		ldr	r3, .L109+12
+ 1075 00c6 7E22     		movs	r2, #126
+ 1076 00c8 4B49     		ldr	r1, .L109+24
+ 1077 00ca C068     		ldr	r0, [r0, #12]
+ 1078 00cc FFF7FEFF 		bl	fprintf
+ 1079              	.LVL89:
+ 1080              		.loc 1 126 5 discriminator 2 view .LVU216
+ 1081              	.L74:
+ 1082              		.loc 1 126 60 discriminator 6 view .LVU217
+ 127:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_SendData(I2C1, addr);
+ 1083              		.loc 1 127 5 discriminator 6 view .LVU218
+ 1084 00d0 4946     		mov	r1, r9
+ 1085 00d2 4448     		ldr	r0, .L109+4
+ 1086 00d4 FFF7FEFF 		bl	I2C_SendData
+ 1087              	.LVL90:
+ 128:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_EVENT_MASTER_BYTE_TRANSMITTING);
+ 1088              		.loc 1 128 5 discriminator 6 view .LVU219
+ 1089 00d8 414B     		ldr	r3, .L109
+ 1090 00da C822     		movs	r2, #200
+ 1091 00dc 1A70     		strb	r2, [r3]
+ 1092              		.loc 1 128 5 discriminator 6 view .LVU220
+ 1093              	.L76:
+ 1094              		.loc 1 128 5 discriminator 1 view .LVU221
+ 1095 00de 4849     		ldr	r1, .L109+32
+ 1096 00e0 4048     		ldr	r0, .L109+4
+ 1097 00e2 FFF7FEFF 		bl	I2C_CheckEvent
+ 1098              	.LVL91:
+ 1099 00e6 0128     		cmp	r0, #1
+ 1100 00e8 10D0     		beq	.L77
+ 1101              		.loc 1 128 5 discriminator 5 view .LVU222
+ 1102 00ea 0520     		movs	r0, #5
+ 1103 00ec FFF7FEFF 		bl	delay_us
+ 1104              	.LVL92:
+ 1105              		.loc 1 128 5 discriminator 5 view .LVU223
+ 1106 00f0 3B4A     		ldr	r2, .L109
+ 1107 00f2 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 1108 00f4 591E     		subs	r1, r3, #1
+ 1109 00f6 1170     		strb	r1, [r2]
+ 1110 00f8 002B     		cmp	r3, #0
+ 1111 00fa F0D1     		bne	.L76
+ 1112              		.loc 1 128 5 discriminator 2 view .LVU224
+ 1113 00fc 3A4B     		ldr	r3, .L109+8
+ 1114 00fe 1868     		ldr	r0, [r3]
+ 1115 0100 3A4B     		ldr	r3, .L109+12
+ 1116 0102 8022     		movs	r2, #128
+ 1117 0104 3C49     		ldr	r1, .L109+24
+ 1118 0106 C068     		ldr	r0, [r0, #12]
+ 1119 0108 FFF7FEFF 		bl	fprintf
+ 1120              	.LVL93:
+ 1121              		.loc 1 128 5 discriminator 2 view .LVU225
+ 1122              	.L77:
+ 112:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     if((uint16_t)addr + (uint16_t)dataLen > 0XFF)
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 23
+
+
+ 1123              		.loc 1 112 81 is_stmt 0 discriminator 2 view .LVU226
+ 1124 010c 0024     		movs	r4, #0
+ 1125 010e 0AE0     		b	.L82
+ 1126              	.LVL94:
+ 1127              	.L106:
+ 114:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 写到addr对齐page */
+ 1128              		.loc 1 114 9 is_stmt 1 view .LVU227
+ 114:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 写到addr对齐page */
+ 1129              		.loc 1 114 17 is_stmt 0 view .LVU228
+ 1130 0110 354B     		ldr	r3, .L109+8
+ 1131 0112 1868     		ldr	r0, [r3]
+ 1132              	.LVL95:
+ 114:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 写到addr对齐page */
+ 1133              		.loc 1 114 9 view .LVU229
+ 1134 0114 354B     		ldr	r3, .L109+12
+ 1135 0116 7222     		movs	r2, #114
+ 1136              	.LVL96:
+ 114:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 写到addr对齐page */
+ 1137              		.loc 1 114 9 view .LVU230
+ 1138 0118 3A49     		ldr	r1, .L109+36
+ 1139              	.LVL97:
+ 114:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 写到addr对齐page */
+ 1140              		.loc 1 114 9 view .LVU231
+ 1141 011a C068     		ldr	r0, [r0, #12]
+ 1142 011c FFF7FEFF 		bl	fprintf
+ 1143              	.LVL98:
+ 1144 0120 76E7     		b	.L66
+ 1145              	.LVL99:
+ 1146              	.L80:
+ 129:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     for(idx = 0; idx < count; ++idx){
+ 130:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_SendData(I2C1, dataPtr[idx]);
+ 131:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         CHECK_EVENT(I2C_EVENT_MASTER_BYTE_TRANSMITTED);
+ 1147              		.loc 1 131 55 is_stmt 1 discriminator 6 view .LVU232
+ 129:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     for(idx = 0; idx < count; ++idx){
+ 1148              		.loc 1 129 31 discriminator 6 view .LVU233
+ 1149 0122 0134     		adds	r4, r4, #1
+ 1150              	.LVL100:
+ 129:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     for(idx = 0; idx < count; ++idx){
+ 1151              		.loc 1 129 31 is_stmt 0 discriminator 6 view .LVU234
+ 1152 0124 E4B2     		uxtb	r4, r4
+ 1153              	.LVL101:
+ 1154              	.L82:
+ 129:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     for(idx = 0; idx < count; ++idx){
+ 1155              		.loc 1 129 22 is_stmt 1 discriminator 2 view .LVU235
+ 1156 0126 AC42     		cmp	r4, r5
+ 1157 0128 1ED2     		bcs	.L107
+ 130:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         CHECK_EVENT(I2C_EVENT_MASTER_BYTE_TRANSMITTED);
+ 1158              		.loc 1 130 9 view .LVU236
+ 1159 012a 395D     		ldrb	r1, [r7, r4]	@ zero_extendqisi2
+ 1160 012c 2D48     		ldr	r0, .L109+4
+ 1161 012e FFF7FEFF 		bl	I2C_SendData
+ 1162              	.LVL102:
+ 1163              		.loc 1 131 9 view .LVU237
+ 1164 0132 2B4B     		ldr	r3, .L109
+ 1165 0134 C822     		movs	r2, #200
+ 1166 0136 1A70     		strb	r2, [r3]
+ 1167              		.loc 1 131 9 view .LVU238
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 24
+
+
+ 1168              	.L79:
+ 1169              		.loc 1 131 9 discriminator 1 view .LVU239
+ 1170 0138 3349     		ldr	r1, .L109+40
+ 1171 013a 2A48     		ldr	r0, .L109+4
+ 1172 013c FFF7FEFF 		bl	I2C_CheckEvent
+ 1173              	.LVL103:
+ 1174 0140 0128     		cmp	r0, #1
+ 1175 0142 EED0     		beq	.L80
+ 1176              		.loc 1 131 9 discriminator 5 view .LVU240
+ 1177 0144 0520     		movs	r0, #5
+ 1178 0146 FFF7FEFF 		bl	delay_us
+ 1179              	.LVL104:
+ 1180              		.loc 1 131 9 discriminator 5 view .LVU241
+ 1181 014a 2549     		ldr	r1, .L109
+ 1182 014c 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 1183 014e 5A1E     		subs	r2, r3, #1
+ 1184 0150 0A70     		strb	r2, [r1]
+ 1185 0152 002B     		cmp	r3, #0
+ 1186 0154 F0D1     		bne	.L79
+ 1187              		.loc 1 131 9 discriminator 2 view .LVU242
+ 1188 0156 244B     		ldr	r3, .L109+8
+ 1189 0158 1868     		ldr	r0, [r3]
+ 1190 015a 244B     		ldr	r3, .L109+12
+ 1191 015c 8322     		movs	r2, #131
+ 1192 015e 2649     		ldr	r1, .L109+24
+ 1193 0160 C068     		ldr	r0, [r0, #12]
+ 1194 0162 FFF7FEFF 		bl	fprintf
+ 1195              	.LVL105:
+ 1196              		.loc 1 131 9 discriminator 2 view .LVU243
+ 1197 0166 DCE7     		b	.L80
+ 1198              	.L107:
+ 132:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     }
+ 133:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_GenerateSTOP(I2C1, ENABLE);
+ 1199              		.loc 1 133 5 view .LVU244
+ 1200 0168 0121     		movs	r1, #1
+ 1201 016a 1E48     		ldr	r0, .L109+4
+ 1202 016c FFF7FEFF 		bl	I2C_GenerateSTOP
+ 1203              	.LVL106:
+ 134:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     addr += count;
+ 1204              		.loc 1 134 5 view .LVU245
+ 1205              		.loc 1 134 10 is_stmt 0 view .LVU246
+ 1206 0170 A944     		add	r9, r9, r5
+ 1207 0172 5FFA89F9 		uxtb	r9, r9
+ 1208              	.LVL107:
+ 135:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     dataPtr += count;
+ 1209              		.loc 1 135 5 is_stmt 1 view .LVU247
+ 1210              		.loc 1 135 13 is_stmt 0 view .LVU248
+ 1211 0176 5FFA88F8 		uxtb	r8, r8
+ 1212              	.LVL108:
+ 136:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     dataLen -= count;
+ 1213              		.loc 1 136 5 is_stmt 1 view .LVU249
+ 1214              		.loc 1 136 13 is_stmt 0 view .LVU250
+ 1215 017a 761B     		subs	r6, r6, r5
+ 1216 017c F6B2     		uxtb	r6, r6
+ 1217              	.LVL109:
+ 137:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 138:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 把剩下的数据写入 */
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 25
+
+
+ 139:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     uint8_t pages = (dataLen + 7) / 8;
+ 1218              		.loc 1 139 5 is_stmt 1 view .LVU251
+ 1219              		.loc 1 139 35 is_stmt 0 view .LVU252
+ 1220 017e 06F1070A 		add	r10, r6, #7
+ 1221              		.loc 1 139 13 view .LVU253
+ 1222 0182 4FEADA0A 		lsr	r10, r10, #3
+ 1223              	.LVL110:
+ 140:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     uint8_t p;
+ 1224              		.loc 1 140 5 is_stmt 1 view .LVU254
+ 141:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     for(p = 0; p < pages; ++p){
+ 1225              		.loc 1 141 5 view .LVU255
+ 1226              		.loc 1 141 11 is_stmt 0 view .LVU256
+ 1227 0186 0025     		movs	r5, #0
+ 1228              	.LVL111:
+ 1229              		.loc 1 141 5 view .LVU257
+ 1230 0188 46E0     		b	.L85
+ 1231              	.LVL112:
+ 1232              	.L100:
+ 1233              	.LBB2:
+ 142:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         delay_ms(5);
+ 143:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         CHECK_FLAG(I2C_FLAG_BUSY);
+ 144:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_GenerateSTART(I2C1, ENABLE);
+ 145:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         CHECK_EVENT(I2C_EVENT_MASTER_MODE_SELECT);
+ 146:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_Send7bitAddress(I2C1, EEPROM_ADDRESS, I2C_Direction_Transmitter);
+ 147:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         CHECK_EVENT(I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED);
+ 148:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_SendData(I2C1, addr);
+ 149:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         CHECK_EVENT(I2C_EVENT_MASTER_BYTE_TRANSMITTING);
+ 150:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         for(int i = 0; i < 8; ++i){
+ 151:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****             idx = i + p * 8;
+ 152:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****             if(idx >= dataLen) 
+ 153:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****                 break;
+ 154:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****             I2C_SendData(I2C1, dataPtr[idx]);
+ 155:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****             CHECK_EVENT(I2C_EVENT_MASTER_BYTE_TRANSMITTED);
+ 1234              		.loc 1 155 59 is_stmt 1 discriminator 6 view .LVU258
+ 150:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****             idx = i + p * 8;
+ 1235              		.loc 1 150 31 discriminator 6 view .LVU259
+ 1236 018a 0134     		adds	r4, r4, #1
+ 1237              	.LVL113:
+ 1238              	.L102:
+ 150:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****             idx = i + p * 8;
+ 1239              		.loc 1 150 26 discriminator 2 view .LVU260
+ 1240 018c 072C     		cmp	r4, #7
+ 1241 018e 3DDC     		bgt	.L98
+ 151:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****             if(idx >= dataLen) 
+ 1242              		.loc 1 151 13 view .LVU261
+ 151:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****             if(idx >= dataLen) 
+ 1243              		.loc 1 151 21 is_stmt 0 view .LVU262
+ 1244 0190 EB00     		lsls	r3, r5, #3
+ 1245 0192 DBB2     		uxtb	r3, r3
+ 1246 0194 E2B2     		uxtb	r2, r4
+ 151:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****             if(idx >= dataLen) 
+ 1247              		.loc 1 151 17 view .LVU263
+ 1248 0196 1344     		add	r3, r3, r2
+ 1249 0198 DBB2     		uxtb	r3, r3
+ 1250              	.LVL114:
+ 152:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****                 break;
+ 1251              		.loc 1 152 13 is_stmt 1 view .LVU264
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 26
+
+
+ 152:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****                 break;
+ 1252              		.loc 1 152 15 is_stmt 0 view .LVU265
+ 1253 019a 9E42     		cmp	r6, r3
+ 1254 019c 36D9     		bls	.L98
+ 154:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****             CHECK_EVENT(I2C_EVENT_MASTER_BYTE_TRANSMITTED);
+ 1255              		.loc 1 154 13 is_stmt 1 view .LVU266
+ 154:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****             CHECK_EVENT(I2C_EVENT_MASTER_BYTE_TRANSMITTED);
+ 1256              		.loc 1 154 39 is_stmt 0 view .LVU267
+ 1257 019e 4344     		add	r3, r3, r8
+ 1258              	.LVL115:
+ 154:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****             CHECK_EVENT(I2C_EVENT_MASTER_BYTE_TRANSMITTED);
+ 1259              		.loc 1 154 13 view .LVU268
+ 1260 01a0 F95C     		ldrb	r1, [r7, r3]	@ zero_extendqisi2
+ 1261 01a2 1048     		ldr	r0, .L109+4
+ 1262 01a4 FFF7FEFF 		bl	I2C_SendData
+ 1263              	.LVL116:
+ 1264              		.loc 1 155 13 is_stmt 1 view .LVU269
+ 1265 01a8 0D4B     		ldr	r3, .L109
+ 1266 01aa C822     		movs	r2, #200
+ 1267 01ac 1A70     		strb	r2, [r3]
+ 1268              		.loc 1 155 13 view .LVU270
+ 1269              	.L99:
+ 1270              		.loc 1 155 13 discriminator 1 view .LVU271
+ 1271 01ae 1649     		ldr	r1, .L109+40
+ 1272 01b0 0C48     		ldr	r0, .L109+4
+ 1273 01b2 FFF7FEFF 		bl	I2C_CheckEvent
+ 1274              	.LVL117:
+ 1275 01b6 0128     		cmp	r0, #1
+ 1276 01b8 E7D0     		beq	.L100
+ 1277              		.loc 1 155 13 discriminator 5 view .LVU272
+ 1278 01ba 0520     		movs	r0, #5
+ 1279 01bc FFF7FEFF 		bl	delay_us
+ 1280              	.LVL118:
+ 1281              		.loc 1 155 13 discriminator 5 view .LVU273
+ 1282 01c0 074A     		ldr	r2, .L109
+ 1283 01c2 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 1284 01c4 591E     		subs	r1, r3, #1
+ 1285 01c6 1170     		strb	r1, [r2]
+ 1286 01c8 002B     		cmp	r3, #0
+ 1287 01ca F0D1     		bne	.L99
+ 1288              		.loc 1 155 13 discriminator 2 view .LVU274
+ 1289 01cc 064B     		ldr	r3, .L109+8
+ 1290 01ce 1868     		ldr	r0, [r3]
+ 1291 01d0 064B     		ldr	r3, .L109+12
+ 1292 01d2 9B22     		movs	r2, #155
+ 1293 01d4 0849     		ldr	r1, .L109+24
+ 1294 01d6 C068     		ldr	r0, [r0, #12]
+ 1295 01d8 FFF7FEFF 		bl	fprintf
+ 1296              	.LVL119:
+ 1297              		.loc 1 155 13 discriminator 2 view .LVU275
+ 1298 01dc D5E7     		b	.L100
+ 1299              	.L110:
+ 1300 01de 00BF     		.align	2
+ 1301              	.L109:
+ 1302 01e0 00000000 		.word	eventTimeOut
+ 1303 01e4 00540040 		.word	1073763328
+ 1304 01e8 00000000 		.word	_impure_ptr
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 27
+
+
+ 1305 01ec 00000000 		.word	__FUNCTION__.1
+ 1306 01f0 00000000 		.word	.LC0
+ 1307 01f4 01000300 		.word	196609
+ 1308 01f8 28000000 		.word	.LC1
+ 1309 01fc 82000700 		.word	458882
+ 1310 0200 80000700 		.word	458880
+ 1311 0204 00000000 		.word	.LC2
+ 1312 0208 84000700 		.word	458884
+ 1313              	.LVL120:
+ 1314              	.L98:
+ 1315              		.loc 1 155 13 is_stmt 0 discriminator 2 view .LVU276
+ 1316              	.LBE2:
+ 156:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         }
+ 157:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_GenerateSTOP(I2C1, ENABLE);
+ 1317              		.loc 1 157 9 is_stmt 1 discriminator 2 view .LVU277
+ 1318 020c 0121     		movs	r1, #1
+ 1319 020e 4148     		ldr	r0, .L111
+ 1320 0210 FFF7FEFF 		bl	I2C_GenerateSTOP
+ 1321              	.LVL121:
+ 141:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         delay_ms(5);
+ 1322              		.loc 1 141 27 discriminator 2 view .LVU278
+ 1323 0214 0135     		adds	r5, r5, #1
+ 1324              	.LVL122:
+ 141:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         delay_ms(5);
+ 1325              		.loc 1 141 27 is_stmt 0 discriminator 2 view .LVU279
+ 1326 0216 EDB2     		uxtb	r5, r5
+ 1327              	.LVL123:
+ 1328              	.L85:
+ 141:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         delay_ms(5);
+ 1329              		.loc 1 141 18 is_stmt 1 discriminator 1 view .LVU280
+ 1330 0218 5545     		cmp	r5, r10
+ 1331 021a 79D2     		bcs	.L108
+ 142:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         CHECK_FLAG(I2C_FLAG_BUSY);
+ 1332              		.loc 1 142 9 view .LVU281
+ 1333 021c 0520     		movs	r0, #5
+ 1334 021e FFF7FEFF 		bl	delay_ms
+ 1335              	.LVL124:
+ 143:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_GenerateSTART(I2C1, ENABLE);
+ 1336              		.loc 1 143 9 view .LVU282
+ 1337 0222 3D4B     		ldr	r3, .L111+4
+ 1338 0224 C822     		movs	r2, #200
+ 1339 0226 1A70     		strb	r2, [r3]
+ 143:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_GenerateSTART(I2C1, ENABLE);
+ 1340              		.loc 1 143 9 view .LVU283
+ 1341              	.L86:
+ 143:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_GenerateSTART(I2C1, ENABLE);
+ 1342              		.loc 1 143 9 discriminator 1 view .LVU284
+ 1343 0228 4FF40031 		mov	r1, #131072
+ 1344 022c 3948     		ldr	r0, .L111
+ 1345 022e FFF7FEFF 		bl	I2C_GetFlagStatus
+ 1346              	.LVL125:
+ 1347 0232 80B1     		cbz	r0, .L87
+ 143:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_GenerateSTART(I2C1, ENABLE);
+ 1348              		.loc 1 143 9 discriminator 5 view .LVU285
+ 1349 0234 0520     		movs	r0, #5
+ 1350 0236 FFF7FEFF 		bl	delay_us
+ 1351              	.LVL126:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 28
+
+
+ 143:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_GenerateSTART(I2C1, ENABLE);
+ 1352              		.loc 1 143 9 discriminator 5 view .LVU286
+ 1353 023a 374A     		ldr	r2, .L111+4
+ 1354 023c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 1355 023e 591E     		subs	r1, r3, #1
+ 1356 0240 1170     		strb	r1, [r2]
+ 1357 0242 002B     		cmp	r3, #0
+ 1358 0244 F0D1     		bne	.L86
+ 143:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_GenerateSTART(I2C1, ENABLE);
+ 1359              		.loc 1 143 9 discriminator 2 view .LVU287
+ 1360 0246 354B     		ldr	r3, .L111+8
+ 1361 0248 1868     		ldr	r0, [r3]
+ 1362 024a 354B     		ldr	r3, .L111+12
+ 1363 024c 8F22     		movs	r2, #143
+ 1364 024e 3549     		ldr	r1, .L111+16
+ 1365 0250 C068     		ldr	r0, [r0, #12]
+ 1366 0252 FFF7FEFF 		bl	fprintf
+ 1367              	.LVL127:
+ 143:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_GenerateSTART(I2C1, ENABLE);
+ 1368              		.loc 1 143 9 discriminator 2 view .LVU288
+ 1369              	.L87:
+ 143:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_GenerateSTART(I2C1, ENABLE);
+ 1370              		.loc 1 143 34 discriminator 6 view .LVU289
+ 144:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         CHECK_EVENT(I2C_EVENT_MASTER_MODE_SELECT);
+ 1371              		.loc 1 144 9 discriminator 6 view .LVU290
+ 1372 0256 0121     		movs	r1, #1
+ 1373 0258 2E48     		ldr	r0, .L111
+ 1374 025a FFF7FEFF 		bl	I2C_GenerateSTART
+ 1375              	.LVL128:
+ 145:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_Send7bitAddress(I2C1, EEPROM_ADDRESS, I2C_Direction_Transmitter);
+ 1376              		.loc 1 145 9 discriminator 6 view .LVU291
+ 1377 025e 2E4B     		ldr	r3, .L111+4
+ 1378 0260 C822     		movs	r2, #200
+ 1379 0262 1A70     		strb	r2, [r3]
+ 145:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_Send7bitAddress(I2C1, EEPROM_ADDRESS, I2C_Direction_Transmitter);
+ 1380              		.loc 1 145 9 discriminator 6 view .LVU292
+ 1381              	.L89:
+ 145:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_Send7bitAddress(I2C1, EEPROM_ADDRESS, I2C_Direction_Transmitter);
+ 1382              		.loc 1 145 9 discriminator 1 view .LVU293
+ 1383 0264 3049     		ldr	r1, .L111+20
+ 1384 0266 2B48     		ldr	r0, .L111
+ 1385 0268 FFF7FEFF 		bl	I2C_CheckEvent
+ 1386              	.LVL129:
+ 1387 026c 0128     		cmp	r0, #1
+ 1388 026e 10D0     		beq	.L90
+ 145:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_Send7bitAddress(I2C1, EEPROM_ADDRESS, I2C_Direction_Transmitter);
+ 1389              		.loc 1 145 9 discriminator 5 view .LVU294
+ 1390 0270 0520     		movs	r0, #5
+ 1391 0272 FFF7FEFF 		bl	delay_us
+ 1392              	.LVL130:
+ 145:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_Send7bitAddress(I2C1, EEPROM_ADDRESS, I2C_Direction_Transmitter);
+ 1393              		.loc 1 145 9 discriminator 5 view .LVU295
+ 1394 0276 284A     		ldr	r2, .L111+4
+ 1395 0278 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 1396 027a 591E     		subs	r1, r3, #1
+ 1397 027c 1170     		strb	r1, [r2]
+ 1398 027e 002B     		cmp	r3, #0
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 29
+
+
+ 1399 0280 F0D1     		bne	.L89
+ 145:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_Send7bitAddress(I2C1, EEPROM_ADDRESS, I2C_Direction_Transmitter);
+ 1400              		.loc 1 145 9 discriminator 2 view .LVU296
+ 1401 0282 264B     		ldr	r3, .L111+8
+ 1402 0284 1868     		ldr	r0, [r3]
+ 1403 0286 264B     		ldr	r3, .L111+12
+ 1404 0288 9122     		movs	r2, #145
+ 1405 028a 2849     		ldr	r1, .L111+24
+ 1406 028c C068     		ldr	r0, [r0, #12]
+ 1407 028e FFF7FEFF 		bl	fprintf
+ 1408              	.LVL131:
+ 145:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_Send7bitAddress(I2C1, EEPROM_ADDRESS, I2C_Direction_Transmitter);
+ 1409              		.loc 1 145 9 discriminator 2 view .LVU297
+ 1410              	.L90:
+ 145:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_Send7bitAddress(I2C1, EEPROM_ADDRESS, I2C_Direction_Transmitter);
+ 1411              		.loc 1 145 50 discriminator 6 view .LVU298
+ 146:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         CHECK_EVENT(I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED);
+ 1412              		.loc 1 146 9 discriminator 6 view .LVU299
+ 1413 0292 0022     		movs	r2, #0
+ 1414 0294 A021     		movs	r1, #160
+ 1415 0296 1F48     		ldr	r0, .L111
+ 1416 0298 FFF7FEFF 		bl	I2C_Send7bitAddress
+ 1417              	.LVL132:
+ 147:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_SendData(I2C1, addr);
+ 1418              		.loc 1 147 9 discriminator 6 view .LVU300
+ 1419 029c 1E4B     		ldr	r3, .L111+4
+ 1420 029e C822     		movs	r2, #200
+ 1421 02a0 1A70     		strb	r2, [r3]
+ 147:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_SendData(I2C1, addr);
+ 1422              		.loc 1 147 9 discriminator 6 view .LVU301
+ 1423              	.L92:
+ 147:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_SendData(I2C1, addr);
+ 1424              		.loc 1 147 9 discriminator 1 view .LVU302
+ 1425 02a2 2349     		ldr	r1, .L111+28
+ 1426 02a4 1B48     		ldr	r0, .L111
+ 1427 02a6 FFF7FEFF 		bl	I2C_CheckEvent
+ 1428              	.LVL133:
+ 1429 02aa 0128     		cmp	r0, #1
+ 1430 02ac 10D0     		beq	.L93
+ 147:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_SendData(I2C1, addr);
+ 1431              		.loc 1 147 9 discriminator 5 view .LVU303
+ 1432 02ae 0520     		movs	r0, #5
+ 1433 02b0 FFF7FEFF 		bl	delay_us
+ 1434              	.LVL134:
+ 147:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_SendData(I2C1, addr);
+ 1435              		.loc 1 147 9 discriminator 5 view .LVU304
+ 1436 02b4 184A     		ldr	r2, .L111+4
+ 1437 02b6 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 1438 02b8 591E     		subs	r1, r3, #1
+ 1439 02ba 1170     		strb	r1, [r2]
+ 1440 02bc 002B     		cmp	r3, #0
+ 1441 02be F0D1     		bne	.L92
+ 147:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_SendData(I2C1, addr);
+ 1442              		.loc 1 147 9 discriminator 2 view .LVU305
+ 1443 02c0 164B     		ldr	r3, .L111+8
+ 1444 02c2 1868     		ldr	r0, [r3]
+ 1445 02c4 164B     		ldr	r3, .L111+12
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 30
+
+
+ 1446 02c6 9322     		movs	r2, #147
+ 1447 02c8 1849     		ldr	r1, .L111+24
+ 1448 02ca C068     		ldr	r0, [r0, #12]
+ 1449 02cc FFF7FEFF 		bl	fprintf
+ 1450              	.LVL135:
+ 147:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_SendData(I2C1, addr);
+ 1451              		.loc 1 147 9 discriminator 2 view .LVU306
+ 1452              	.L93:
+ 147:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         I2C_SendData(I2C1, addr);
+ 1453              		.loc 1 147 64 discriminator 6 view .LVU307
+ 148:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         CHECK_EVENT(I2C_EVENT_MASTER_BYTE_TRANSMITTING);
+ 1454              		.loc 1 148 9 discriminator 6 view .LVU308
+ 1455 02d0 4946     		mov	r1, r9
+ 1456 02d2 1048     		ldr	r0, .L111
+ 1457 02d4 FFF7FEFF 		bl	I2C_SendData
+ 1458              	.LVL136:
+ 149:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         for(int i = 0; i < 8; ++i){
+ 1459              		.loc 1 149 9 discriminator 6 view .LVU309
+ 1460 02d8 0F4B     		ldr	r3, .L111+4
+ 1461 02da C822     		movs	r2, #200
+ 1462 02dc 1A70     		strb	r2, [r3]
+ 149:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         for(int i = 0; i < 8; ++i){
+ 1463              		.loc 1 149 9 discriminator 6 view .LVU310
+ 1464              	.L95:
+ 149:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         for(int i = 0; i < 8; ++i){
+ 1465              		.loc 1 149 9 discriminator 1 view .LVU311
+ 1466 02de 1549     		ldr	r1, .L111+32
+ 1467 02e0 0C48     		ldr	r0, .L111
+ 1468 02e2 FFF7FEFF 		bl	I2C_CheckEvent
+ 1469              	.LVL137:
+ 1470 02e6 0128     		cmp	r0, #1
+ 1471 02e8 10D0     		beq	.L96
+ 149:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         for(int i = 0; i < 8; ++i){
+ 1472              		.loc 1 149 9 discriminator 5 view .LVU312
+ 1473 02ea 0520     		movs	r0, #5
+ 1474 02ec FFF7FEFF 		bl	delay_us
+ 1475              	.LVL138:
+ 149:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         for(int i = 0; i < 8; ++i){
+ 1476              		.loc 1 149 9 discriminator 5 view .LVU313
+ 1477 02f0 094A     		ldr	r2, .L111+4
+ 1478 02f2 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 1479 02f4 591E     		subs	r1, r3, #1
+ 1480 02f6 1170     		strb	r1, [r2]
+ 1481 02f8 002B     		cmp	r3, #0
+ 1482 02fa F0D1     		bne	.L95
+ 149:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         for(int i = 0; i < 8; ++i){
+ 1483              		.loc 1 149 9 discriminator 2 view .LVU314
+ 1484 02fc 074B     		ldr	r3, .L111+8
+ 1485 02fe 1868     		ldr	r0, [r3]
+ 1486 0300 074B     		ldr	r3, .L111+12
+ 1487 0302 9522     		movs	r2, #149
+ 1488 0304 0949     		ldr	r1, .L111+24
+ 1489 0306 C068     		ldr	r0, [r0, #12]
+ 1490 0308 FFF7FEFF 		bl	fprintf
+ 1491              	.LVL139:
+ 149:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         for(int i = 0; i < 8; ++i){
+ 1492              		.loc 1 149 9 discriminator 2 view .LVU315
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 31
+
+
+ 1493              	.L96:
+ 112:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     if((uint16_t)addr + (uint16_t)dataLen > 0XFF)
+ 1494              		.loc 1 112 81 is_stmt 0 discriminator 2 view .LVU316
+ 1495 030c 0024     		movs	r4, #0
+ 1496 030e 3DE7     		b	.L102
+ 1497              	.L108:
+ 158:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     }
+ 159:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** }
+ 1498              		.loc 1 159 1 view .LVU317
+ 1499 0310 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 1500              	.LVL140:
+ 1501              	.L112:
+ 1502              		.loc 1 159 1 view .LVU318
+ 1503              		.align	2
+ 1504              	.L111:
+ 1505 0314 00540040 		.word	1073763328
+ 1506 0318 00000000 		.word	eventTimeOut
+ 1507 031c 00000000 		.word	_impure_ptr
+ 1508 0320 00000000 		.word	__FUNCTION__.1
+ 1509 0324 00000000 		.word	.LC0
+ 1510 0328 01000300 		.word	196609
+ 1511 032c 28000000 		.word	.LC1
+ 1512 0330 82000700 		.word	458882
+ 1513 0334 80000700 		.word	458880
+ 1514              		.cfi_endproc
+ 1515              	.LFE36:
+ 1517              		.section	.rodata.EEPROM_Read_Sequential_IH.str1.4,"aMS",%progbits,1
+ 1518              		.align	2
+ 1519              	.LC3:
+ 1520 0000 52656164 		.ascii	"Read bytes overflowed, line: %d, function: %s\015\012"
+ 1520      20627974 
+ 1520      6573206F 
+ 1520      76657266 
+ 1520      6C6F7765 
+ 1521 002f 00       		.ascii	"\000"
+ 1522              		.section	.text.EEPROM_Read_Sequential_IH,"ax",%progbits
+ 1523              		.align	1
+ 1524              		.global	EEPROM_Read_Sequential_IH
+ 1525              		.syntax unified
+ 1526              		.thumb
+ 1527              		.thumb_func
+ 1529              	EEPROM_Read_Sequential_IH:
+ 1530              	.LVL141:
+ 1531              	.LFB37:
+ 160:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 161:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** void EEPROM_Read_Sequential_IH(uint8_t addr, uint8_t* dataPtr, uint8_t dataLen){
+ 1532              		.loc 1 161 80 is_stmt 1 view -0
+ 1533              		.cfi_startproc
+ 1534              		@ args = 0, pretend = 0, frame = 0
+ 1535              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1536              		.loc 1 161 80 is_stmt 0 view .LVU320
+ 1537 0000 70B5     		push	{r4, r5, r6, lr}
+ 1538              	.LCFI7:
+ 1539              		.cfi_def_cfa_offset 16
+ 1540              		.cfi_offset 4, -16
+ 1541              		.cfi_offset 5, -12
+ 1542              		.cfi_offset 6, -8
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 32
+
+
+ 1543              		.cfi_offset 14, -4
+ 1544 0002 0446     		mov	r4, r0
+ 1545 0004 0D46     		mov	r5, r1
+ 1546 0006 1646     		mov	r6, r2
+ 162:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     if((uint16_t)addr + (uint16_t)dataLen > 0XFF)
+ 1547              		.loc 1 162 5 is_stmt 1 view .LVU321
+ 1548              		.loc 1 162 23 is_stmt 0 view .LVU322
+ 1549 0008 8318     		adds	r3, r0, r2
+ 1550              		.loc 1 162 7 view .LVU323
+ 1551 000a FF2B     		cmp	r3, #255
+ 1552 000c 00F3B480 		bgt	.L145
+ 1553              	.LVL142:
+ 1554              	.L114:
+ 163:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         fprintf(stderr, "Read bytes overflowed, line: %d, function: %s\r\n", __LINE__, __FUNCTION__
+ 164:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 165:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 等待上一次的I2C信号结束 */
+ 166:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_FLAG(I2C_FLAG_BUSY);
+ 1555              		.loc 1 166 5 is_stmt 1 view .LVU324
+ 1556 0010 944B     		ldr	r3, .L147
+ 1557 0012 C822     		movs	r2, #200
+ 1558 0014 1A70     		strb	r2, [r3]
+ 1559              		.loc 1 166 5 view .LVU325
+ 1560              	.L115:
+ 1561              		.loc 1 166 5 discriminator 1 view .LVU326
+ 1562 0016 4FF40031 		mov	r1, #131072
+ 1563 001a 9348     		ldr	r0, .L147+4
+ 1564 001c FFF7FEFF 		bl	I2C_GetFlagStatus
+ 1565              	.LVL143:
+ 1566 0020 80B1     		cbz	r0, .L116
+ 1567              		.loc 1 166 5 discriminator 5 view .LVU327
+ 1568 0022 0520     		movs	r0, #5
+ 1569 0024 FFF7FEFF 		bl	delay_us
+ 1570              	.LVL144:
+ 1571              		.loc 1 166 5 discriminator 5 view .LVU328
+ 1572 0028 8E4A     		ldr	r2, .L147
+ 1573 002a 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 1574 002c 591E     		subs	r1, r3, #1
+ 1575 002e 1170     		strb	r1, [r2]
+ 1576 0030 002B     		cmp	r3, #0
+ 1577 0032 F0D1     		bne	.L115
+ 1578              		.loc 1 166 5 discriminator 2 view .LVU329
+ 1579 0034 8D4B     		ldr	r3, .L147+8
+ 1580 0036 1868     		ldr	r0, [r3]
+ 1581 0038 8D4B     		ldr	r3, .L147+12
+ 1582 003a A622     		movs	r2, #166
+ 1583 003c 8D49     		ldr	r1, .L147+16
+ 1584 003e C068     		ldr	r0, [r0, #12]
+ 1585 0040 FFF7FEFF 		bl	fprintf
+ 1586              	.LVL145:
+ 1587              		.loc 1 166 5 discriminator 2 view .LVU330
+ 1588              	.L116:
+ 1589              		.loc 1 166 30 discriminator 6 view .LVU331
+ 167:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 168:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 读取多个数据 */
+ 169:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_GenerateSTART(I2C1, ENABLE);
+ 1590              		.loc 1 169 5 discriminator 6 view .LVU332
+ 1591 0044 0121     		movs	r1, #1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 33
+
+
+ 1592 0046 8848     		ldr	r0, .L147+4
+ 1593 0048 FFF7FEFF 		bl	I2C_GenerateSTART
+ 1594              	.LVL146:
+ 170:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_EVENT_MASTER_MODE_SELECT);
+ 1595              		.loc 1 170 5 discriminator 6 view .LVU333
+ 1596 004c 854B     		ldr	r3, .L147
+ 1597 004e C822     		movs	r2, #200
+ 1598 0050 1A70     		strb	r2, [r3]
+ 1599              		.loc 1 170 5 discriminator 6 view .LVU334
+ 1600              	.L118:
+ 1601              		.loc 1 170 5 discriminator 1 view .LVU335
+ 1602 0052 8949     		ldr	r1, .L147+20
+ 1603 0054 8448     		ldr	r0, .L147+4
+ 1604 0056 FFF7FEFF 		bl	I2C_CheckEvent
+ 1605              	.LVL147:
+ 1606 005a 0128     		cmp	r0, #1
+ 1607 005c 10D0     		beq	.L119
+ 1608              		.loc 1 170 5 discriminator 5 view .LVU336
+ 1609 005e 0520     		movs	r0, #5
+ 1610 0060 FFF7FEFF 		bl	delay_us
+ 1611              	.LVL148:
+ 1612              		.loc 1 170 5 discriminator 5 view .LVU337
+ 1613 0064 7F4A     		ldr	r2, .L147
+ 1614 0066 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 1615 0068 591E     		subs	r1, r3, #1
+ 1616 006a 1170     		strb	r1, [r2]
+ 1617 006c 002B     		cmp	r3, #0
+ 1618 006e F0D1     		bne	.L118
+ 1619              		.loc 1 170 5 discriminator 2 view .LVU338
+ 1620 0070 7E4B     		ldr	r3, .L147+8
+ 1621 0072 1868     		ldr	r0, [r3]
+ 1622 0074 7E4B     		ldr	r3, .L147+12
+ 1623 0076 AA22     		movs	r2, #170
+ 1624 0078 8049     		ldr	r1, .L147+24
+ 1625 007a C068     		ldr	r0, [r0, #12]
+ 1626 007c FFF7FEFF 		bl	fprintf
+ 1627              	.LVL149:
+ 1628              		.loc 1 170 5 discriminator 2 view .LVU339
+ 1629              	.L119:
+ 1630              		.loc 1 170 46 discriminator 6 view .LVU340
+ 171:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_Send7bitAddress(I2C1, EEPROM_ADDRESS, I2C_Direction_Transmitter);
+ 1631              		.loc 1 171 5 discriminator 6 view .LVU341
+ 1632 0080 0022     		movs	r2, #0
+ 1633 0082 A021     		movs	r1, #160
+ 1634 0084 7848     		ldr	r0, .L147+4
+ 1635 0086 FFF7FEFF 		bl	I2C_Send7bitAddress
+ 1636              	.LVL150:
+ 172:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED);
+ 1637              		.loc 1 172 5 discriminator 6 view .LVU342
+ 1638 008a 764B     		ldr	r3, .L147
+ 1639 008c C822     		movs	r2, #200
+ 1640 008e 1A70     		strb	r2, [r3]
+ 1641              		.loc 1 172 5 discriminator 6 view .LVU343
+ 1642              	.L121:
+ 1643              		.loc 1 172 5 discriminator 1 view .LVU344
+ 1644 0090 7B49     		ldr	r1, .L147+28
+ 1645 0092 7548     		ldr	r0, .L147+4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 34
+
+
+ 1646 0094 FFF7FEFF 		bl	I2C_CheckEvent
+ 1647              	.LVL151:
+ 1648 0098 0128     		cmp	r0, #1
+ 1649 009a 10D0     		beq	.L122
+ 1650              		.loc 1 172 5 discriminator 5 view .LVU345
+ 1651 009c 0520     		movs	r0, #5
+ 1652 009e FFF7FEFF 		bl	delay_us
+ 1653              	.LVL152:
+ 1654              		.loc 1 172 5 discriminator 5 view .LVU346
+ 1655 00a2 704A     		ldr	r2, .L147
+ 1656 00a4 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 1657 00a6 591E     		subs	r1, r3, #1
+ 1658 00a8 1170     		strb	r1, [r2]
+ 1659 00aa 002B     		cmp	r3, #0
+ 1660 00ac F0D1     		bne	.L121
+ 1661              		.loc 1 172 5 discriminator 2 view .LVU347
+ 1662 00ae 6F4B     		ldr	r3, .L147+8
+ 1663 00b0 1868     		ldr	r0, [r3]
+ 1664 00b2 6F4B     		ldr	r3, .L147+12
+ 1665 00b4 AC22     		movs	r2, #172
+ 1666 00b6 7149     		ldr	r1, .L147+24
+ 1667 00b8 C068     		ldr	r0, [r0, #12]
+ 1668 00ba FFF7FEFF 		bl	fprintf
+ 1669              	.LVL153:
+ 1670              		.loc 1 172 5 discriminator 2 view .LVU348
+ 1671              	.L122:
+ 1672              		.loc 1 172 60 discriminator 6 view .LVU349
+ 173:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_SendData(I2C1, addr);
+ 1673              		.loc 1 173 5 discriminator 6 view .LVU350
+ 1674 00be 2146     		mov	r1, r4
+ 1675 00c0 6948     		ldr	r0, .L147+4
+ 1676 00c2 FFF7FEFF 		bl	I2C_SendData
+ 1677              	.LVL154:
+ 174:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_EVENT_MASTER_BYTE_TRANSMITTED);
+ 1678              		.loc 1 174 5 discriminator 6 view .LVU351
+ 1679 00c6 674B     		ldr	r3, .L147
+ 1680 00c8 C822     		movs	r2, #200
+ 1681 00ca 1A70     		strb	r2, [r3]
+ 1682              		.loc 1 174 5 discriminator 6 view .LVU352
+ 1683              	.L124:
+ 1684              		.loc 1 174 5 discriminator 1 view .LVU353
+ 1685 00cc 6D49     		ldr	r1, .L147+32
+ 1686 00ce 6648     		ldr	r0, .L147+4
+ 1687 00d0 FFF7FEFF 		bl	I2C_CheckEvent
+ 1688              	.LVL155:
+ 1689 00d4 0128     		cmp	r0, #1
+ 1690 00d6 10D0     		beq	.L125
+ 1691              		.loc 1 174 5 discriminator 5 view .LVU354
+ 1692 00d8 0520     		movs	r0, #5
+ 1693 00da FFF7FEFF 		bl	delay_us
+ 1694              	.LVL156:
+ 1695              		.loc 1 174 5 discriminator 5 view .LVU355
+ 1696 00de 614A     		ldr	r2, .L147
+ 1697 00e0 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 1698 00e2 591E     		subs	r1, r3, #1
+ 1699 00e4 1170     		strb	r1, [r2]
+ 1700 00e6 002B     		cmp	r3, #0
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 35
+
+
+ 1701 00e8 F0D1     		bne	.L124
+ 1702              		.loc 1 174 5 discriminator 2 view .LVU356
+ 1703 00ea 604B     		ldr	r3, .L147+8
+ 1704 00ec 1868     		ldr	r0, [r3]
+ 1705 00ee 604B     		ldr	r3, .L147+12
+ 1706 00f0 AE22     		movs	r2, #174
+ 1707 00f2 6249     		ldr	r1, .L147+24
+ 1708 00f4 C068     		ldr	r0, [r0, #12]
+ 1709 00f6 FFF7FEFF 		bl	fprintf
+ 1710              	.LVL157:
+ 1711              		.loc 1 174 5 discriminator 2 view .LVU357
+ 1712              	.L125:
+ 1713              		.loc 1 174 51 discriminator 6 view .LVU358
+ 175:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_GenerateSTART(I2C1, ENABLE);
+ 1714              		.loc 1 175 5 discriminator 6 view .LVU359
+ 1715 00fa 0121     		movs	r1, #1
+ 1716 00fc 5A48     		ldr	r0, .L147+4
+ 1717 00fe FFF7FEFF 		bl	I2C_GenerateSTART
+ 1718              	.LVL158:
+ 176:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_EVENT_MASTER_MODE_SELECT);
+ 1719              		.loc 1 176 5 discriminator 6 view .LVU360
+ 1720 0102 584B     		ldr	r3, .L147
+ 1721 0104 C822     		movs	r2, #200
+ 1722 0106 1A70     		strb	r2, [r3]
+ 1723              		.loc 1 176 5 discriminator 6 view .LVU361
+ 1724              	.L127:
+ 1725              		.loc 1 176 5 discriminator 1 view .LVU362
+ 1726 0108 5B49     		ldr	r1, .L147+20
+ 1727 010a 5748     		ldr	r0, .L147+4
+ 1728 010c FFF7FEFF 		bl	I2C_CheckEvent
+ 1729              	.LVL159:
+ 1730 0110 0128     		cmp	r0, #1
+ 1731 0112 10D0     		beq	.L128
+ 1732              		.loc 1 176 5 discriminator 5 view .LVU363
+ 1733 0114 0520     		movs	r0, #5
+ 1734 0116 FFF7FEFF 		bl	delay_us
+ 1735              	.LVL160:
+ 1736              		.loc 1 176 5 discriminator 5 view .LVU364
+ 1737 011a 524A     		ldr	r2, .L147
+ 1738 011c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 1739 011e 591E     		subs	r1, r3, #1
+ 1740 0120 1170     		strb	r1, [r2]
+ 1741 0122 002B     		cmp	r3, #0
+ 1742 0124 F0D1     		bne	.L127
+ 1743              		.loc 1 176 5 discriminator 2 view .LVU365
+ 1744 0126 514B     		ldr	r3, .L147+8
+ 1745 0128 1868     		ldr	r0, [r3]
+ 1746 012a 514B     		ldr	r3, .L147+12
+ 1747 012c B022     		movs	r2, #176
+ 1748 012e 5349     		ldr	r1, .L147+24
+ 1749 0130 C068     		ldr	r0, [r0, #12]
+ 1750 0132 FFF7FEFF 		bl	fprintf
+ 1751              	.LVL161:
+ 1752              		.loc 1 176 5 discriminator 2 view .LVU366
+ 1753              	.L128:
+ 1754              		.loc 1 176 46 discriminator 6 view .LVU367
+ 177:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_Send7bitAddress(I2C1, EEPROM_ADDRESS, I2C_Direction_Receiver);
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 36
+
+
+ 1755              		.loc 1 177 5 discriminator 6 view .LVU368
+ 1756 0136 0122     		movs	r2, #1
+ 1757 0138 A021     		movs	r1, #160
+ 1758 013a 4B48     		ldr	r0, .L147+4
+ 1759 013c FFF7FEFF 		bl	I2C_Send7bitAddress
+ 1760              	.LVL162:
+ 178:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED);
+ 1761              		.loc 1 178 5 discriminator 6 view .LVU369
+ 1762 0140 484B     		ldr	r3, .L147
+ 1763 0142 C822     		movs	r2, #200
+ 1764 0144 1A70     		strb	r2, [r3]
+ 1765              		.loc 1 178 5 discriminator 6 view .LVU370
+ 1766              	.L130:
+ 1767              		.loc 1 178 5 discriminator 1 view .LVU371
+ 1768 0146 5049     		ldr	r1, .L147+36
+ 1769 0148 4748     		ldr	r0, .L147+4
+ 1770 014a FFF7FEFF 		bl	I2C_CheckEvent
+ 1771              	.LVL163:
+ 1772 014e 0128     		cmp	r0, #1
+ 1773 0150 10D0     		beq	.L133
+ 1774              		.loc 1 178 5 discriminator 5 view .LVU372
+ 1775 0152 0520     		movs	r0, #5
+ 1776 0154 FFF7FEFF 		bl	delay_us
+ 1777              	.LVL164:
+ 1778              		.loc 1 178 5 discriminator 5 view .LVU373
+ 1779 0158 424A     		ldr	r2, .L147
+ 1780 015a 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 1781 015c 591E     		subs	r1, r3, #1
+ 1782 015e 1170     		strb	r1, [r2]
+ 1783 0160 002B     		cmp	r3, #0
+ 1784 0162 F0D1     		bne	.L130
+ 1785              		.loc 1 178 5 discriminator 2 view .LVU374
+ 1786 0164 414B     		ldr	r3, .L147+8
+ 1787 0166 1868     		ldr	r0, [r3]
+ 1788 0168 414B     		ldr	r3, .L147+12
+ 1789 016a B222     		movs	r2, #178
+ 1790 016c 4349     		ldr	r1, .L147+24
+ 1791 016e C068     		ldr	r0, [r0, #12]
+ 1792 0170 FFF7FEFF 		bl	fprintf
+ 1793              	.LVL165:
+ 1794              		.loc 1 178 5 discriminator 2 view .LVU375
+ 1795              	.L133:
+ 161:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     if((uint16_t)addr + (uint16_t)dataLen > 0XFF)
+ 1796              		.loc 1 161 80 is_stmt 0 discriminator 2 view .LVU376
+ 1797 0174 0024     		movs	r4, #0
+ 1798 0176 0EE0     		b	.L131
+ 1799              	.LVL166:
+ 1800              	.L145:
+ 163:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 1801              		.loc 1 163 9 is_stmt 1 view .LVU377
+ 163:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 1802              		.loc 1 163 17 is_stmt 0 view .LVU378
+ 1803 0178 3C4B     		ldr	r3, .L147+8
+ 1804 017a 1868     		ldr	r0, [r3]
+ 1805              	.LVL167:
+ 163:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 1806              		.loc 1 163 9 view .LVU379
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 37
+
+
+ 1807 017c 3C4B     		ldr	r3, .L147+12
+ 1808 017e A322     		movs	r2, #163
+ 1809              	.LVL168:
+ 163:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 1810              		.loc 1 163 9 view .LVU380
+ 1811 0180 4249     		ldr	r1, .L147+40
+ 1812              	.LVL169:
+ 163:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 1813              		.loc 1 163 9 view .LVU381
+ 1814 0182 C068     		ldr	r0, [r0, #12]
+ 1815 0184 FFF7FEFF 		bl	fprintf
+ 1816              	.LVL170:
+ 1817 0188 42E7     		b	.L114
+ 1818              	.LVL171:
+ 1819              	.L135:
+ 179:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     uint8_t idx;
+ 180:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     for(idx = 0; idx < dataLen - 1; ++idx){
+ 181:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         CHECK_EVENT(I2C_EVENT_MASTER_BYTE_RECEIVED);    // 注意一定要先等待EV7再读取DR�
+ 1820              		.loc 1 181 52 is_stmt 1 discriminator 6 view .LVU382
+ 182:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         dataPtr[idx] = I2C_ReceiveData(I2C1);
+ 1821              		.loc 1 182 9 discriminator 6 view .LVU383
+ 1822              		.loc 1 182 24 is_stmt 0 discriminator 6 view .LVU384
+ 1823 018a 3748     		ldr	r0, .L147+4
+ 1824 018c FFF7FEFF 		bl	I2C_ReceiveData
+ 1825              	.LVL172:
+ 1826              		.loc 1 182 22 discriminator 6 view .LVU385
+ 1827 0190 2855     		strb	r0, [r5, r4]
+ 180:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         CHECK_EVENT(I2C_EVENT_MASTER_BYTE_RECEIVED);    // 注意一定要先等待EV7再读取DR�
+ 1828              		.loc 1 180 37 is_stmt 1 discriminator 6 view .LVU386
+ 1829 0192 0134     		adds	r4, r4, #1
+ 1830              	.LVL173:
+ 180:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         CHECK_EVENT(I2C_EVENT_MASTER_BYTE_RECEIVED);    // 注意一定要先等待EV7再读取DR�
+ 1831              		.loc 1 180 37 is_stmt 0 discriminator 6 view .LVU387
+ 1832 0194 E4B2     		uxtb	r4, r4
+ 1833              	.LVL174:
+ 1834              	.L131:
+ 180:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         CHECK_EVENT(I2C_EVENT_MASTER_BYTE_RECEIVED);    // 注意一定要先等待EV7再读取DR�
+ 1835              		.loc 1 180 22 is_stmt 1 discriminator 2 view .LVU388
+ 180:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         CHECK_EVENT(I2C_EVENT_MASTER_BYTE_RECEIVED);    // 注意一定要先等待EV7再读取DR�
+ 1836              		.loc 1 180 32 is_stmt 0 discriminator 2 view .LVU389
+ 1837 0196 731E     		subs	r3, r6, #1
+ 180:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         CHECK_EVENT(I2C_EVENT_MASTER_BYTE_RECEIVED);    // 注意一定要先等待EV7再读取DR�
+ 1838              		.loc 1 180 22 discriminator 2 view .LVU390
+ 1839 0198 9C42     		cmp	r4, r3
+ 1840 019a 1CDA     		bge	.L146
+ 181:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         dataPtr[idx] = I2C_ReceiveData(I2C1);
+ 1841              		.loc 1 181 9 is_stmt 1 view .LVU391
+ 1842 019c 314B     		ldr	r3, .L147
+ 1843 019e C822     		movs	r2, #200
+ 1844 01a0 1A70     		strb	r2, [r3]
+ 181:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         dataPtr[idx] = I2C_ReceiveData(I2C1);
+ 1845              		.loc 1 181 9 view .LVU392
+ 1846              	.L134:
+ 181:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         dataPtr[idx] = I2C_ReceiveData(I2C1);
+ 1847              		.loc 1 181 9 discriminator 1 view .LVU393
+ 1848 01a2 3B49     		ldr	r1, .L147+44
+ 1849 01a4 3048     		ldr	r0, .L147+4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 38
+
+
+ 1850 01a6 FFF7FEFF 		bl	I2C_CheckEvent
+ 1851              	.LVL175:
+ 1852 01aa 0128     		cmp	r0, #1
+ 1853 01ac EDD0     		beq	.L135
+ 181:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         dataPtr[idx] = I2C_ReceiveData(I2C1);
+ 1854              		.loc 1 181 9 discriminator 5 view .LVU394
+ 1855 01ae 0520     		movs	r0, #5
+ 1856 01b0 FFF7FEFF 		bl	delay_us
+ 1857              	.LVL176:
+ 181:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         dataPtr[idx] = I2C_ReceiveData(I2C1);
+ 1858              		.loc 1 181 9 discriminator 5 view .LVU395
+ 1859 01b4 2B48     		ldr	r0, .L147
+ 1860 01b6 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 1861 01b8 03F1FF3C 		add	ip, r3, #-1
+ 1862 01bc 80F800C0 		strb	ip, [r0]
+ 1863 01c0 002B     		cmp	r3, #0
+ 1864 01c2 EED1     		bne	.L134
+ 181:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         dataPtr[idx] = I2C_ReceiveData(I2C1);
+ 1865              		.loc 1 181 9 discriminator 2 view .LVU396
+ 1866 01c4 294B     		ldr	r3, .L147+8
+ 1867 01c6 1868     		ldr	r0, [r3]
+ 1868 01c8 294B     		ldr	r3, .L147+12
+ 1869 01ca B522     		movs	r2, #181
+ 1870 01cc 2B49     		ldr	r1, .L147+24
+ 1871 01ce C068     		ldr	r0, [r0, #12]
+ 1872 01d0 FFF7FEFF 		bl	fprintf
+ 1873              	.LVL177:
+ 181:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****         dataPtr[idx] = I2C_ReceiveData(I2C1);
+ 1874              		.loc 1 181 9 discriminator 2 view .LVU397
+ 1875 01d4 D9E7     		b	.L135
+ 1876              	.L146:
+ 183:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     }
+ 184:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_AcknowledgeConfig(I2C1, DISABLE);           // 最后一个receive信号之前关闭ACK信�
+ 1877              		.loc 1 184 5 view .LVU398
+ 1878 01d6 0021     		movs	r1, #0
+ 1879 01d8 2348     		ldr	r0, .L147+4
+ 1880 01da FFF7FEFF 		bl	I2C_AcknowledgeConfig
+ 1881              	.LVL178:
+ 185:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_EVENT(I2C_EVENT_MASTER_BYTE_RECEIVED);    // 注意一定要先等待EV7再读取DR寄存
+ 1882              		.loc 1 185 5 view .LVU399
+ 1883 01de 214B     		ldr	r3, .L147
+ 1884 01e0 C822     		movs	r2, #200
+ 1885 01e2 1A70     		strb	r2, [r3]
+ 1886              		.loc 1 185 5 view .LVU400
+ 1887              	.L138:
+ 1888              		.loc 1 185 5 discriminator 1 view .LVU401
+ 1889 01e4 2A49     		ldr	r1, .L147+44
+ 1890 01e6 2048     		ldr	r0, .L147+4
+ 1891 01e8 FFF7FEFF 		bl	I2C_CheckEvent
+ 1892              	.LVL179:
+ 1893 01ec 0128     		cmp	r0, #1
+ 1894 01ee 10D0     		beq	.L139
+ 1895              		.loc 1 185 5 discriminator 5 view .LVU402
+ 1896 01f0 0520     		movs	r0, #5
+ 1897 01f2 FFF7FEFF 		bl	delay_us
+ 1898              	.LVL180:
+ 1899              		.loc 1 185 5 discriminator 5 view .LVU403
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 39
+
+
+ 1900 01f6 1B4A     		ldr	r2, .L147
+ 1901 01f8 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 1902 01fa 591E     		subs	r1, r3, #1
+ 1903 01fc 1170     		strb	r1, [r2]
+ 1904 01fe 002B     		cmp	r3, #0
+ 1905 0200 F0D1     		bne	.L138
+ 1906              		.loc 1 185 5 discriminator 2 view .LVU404
+ 1907 0202 1A4B     		ldr	r3, .L147+8
+ 1908 0204 1868     		ldr	r0, [r3]
+ 1909 0206 1A4B     		ldr	r3, .L147+12
+ 1910 0208 B922     		movs	r2, #185
+ 1911 020a 1C49     		ldr	r1, .L147+24
+ 1912 020c C068     		ldr	r0, [r0, #12]
+ 1913 020e FFF7FEFF 		bl	fprintf
+ 1914              	.LVL181:
+ 1915              		.loc 1 185 5 discriminator 2 view .LVU405
+ 1916              	.L139:
+ 1917              		.loc 1 185 48 discriminator 6 view .LVU406
+ 186:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     dataPtr[idx] = I2C_ReceiveData(I2C1);
+ 1918              		.loc 1 186 5 discriminator 6 view .LVU407
+ 1919              		.loc 1 186 20 is_stmt 0 discriminator 6 view .LVU408
+ 1920 0212 154E     		ldr	r6, .L147+4
+ 1921 0214 3046     		mov	r0, r6
+ 1922 0216 FFF7FEFF 		bl	I2C_ReceiveData
+ 1923              	.LVL182:
+ 1924              		.loc 1 186 18 discriminator 6 view .LVU409
+ 1925 021a 2855     		strb	r0, [r5, r4]
+ 187:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_GenerateSTOP(I2C1, ENABLE);
+ 1926              		.loc 1 187 5 is_stmt 1 discriminator 6 view .LVU410
+ 1927 021c 0121     		movs	r1, #1
+ 1928 021e 3046     		mov	r0, r6
+ 1929 0220 FFF7FEFF 		bl	I2C_GenerateSTOP
+ 1930              	.LVL183:
+ 188:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 189:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* 等待stop信号完成后重新使能ACK信号 */
+ 190:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     CHECK_FLAG(I2C_FLAG_BUSY);
+ 1931              		.loc 1 190 5 discriminator 6 view .LVU411
+ 1932 0224 0F4B     		ldr	r3, .L147
+ 1933 0226 C822     		movs	r2, #200
+ 1934 0228 1A70     		strb	r2, [r3]
+ 1935              		.loc 1 190 5 discriminator 6 view .LVU412
+ 1936              	.L141:
+ 1937              		.loc 1 190 5 discriminator 1 view .LVU413
+ 1938 022a 4FF40031 		mov	r1, #131072
+ 1939 022e 0E48     		ldr	r0, .L147+4
+ 1940 0230 FFF7FEFF 		bl	I2C_GetFlagStatus
+ 1941              	.LVL184:
+ 1942 0234 80B1     		cbz	r0, .L142
+ 1943              		.loc 1 190 5 discriminator 5 view .LVU414
+ 1944 0236 0520     		movs	r0, #5
+ 1945 0238 FFF7FEFF 		bl	delay_us
+ 1946              	.LVL185:
+ 1947              		.loc 1 190 5 discriminator 5 view .LVU415
+ 1948 023c 094A     		ldr	r2, .L147
+ 1949 023e 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 1950 0240 591E     		subs	r1, r3, #1
+ 1951 0242 1170     		strb	r1, [r2]
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 40
+
+
+ 1952 0244 002B     		cmp	r3, #0
+ 1953 0246 F0D1     		bne	.L141
+ 1954              		.loc 1 190 5 discriminator 2 view .LVU416
+ 1955 0248 084B     		ldr	r3, .L147+8
+ 1956 024a 1868     		ldr	r0, [r3]
+ 1957 024c 084B     		ldr	r3, .L147+12
+ 1958 024e BE22     		movs	r2, #190
+ 1959 0250 0849     		ldr	r1, .L147+16
+ 1960 0252 C068     		ldr	r0, [r0, #12]
+ 1961 0254 FFF7FEFF 		bl	fprintf
+ 1962              	.LVL186:
+ 1963              		.loc 1 190 5 discriminator 2 view .LVU417
+ 1964              	.L142:
+ 1965              		.loc 1 190 30 discriminator 6 view .LVU418
+ 191:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_AcknowledgeConfig(I2C1, ENABLE);
+ 1966              		.loc 1 191 5 discriminator 6 view .LVU419
+ 1967 0258 0121     		movs	r1, #1
+ 1968 025a 0348     		ldr	r0, .L147+4
+ 1969 025c FFF7FEFF 		bl	I2C_AcknowledgeConfig
+ 1970              	.LVL187:
+ 192:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** }
+ 1971              		.loc 1 192 1 is_stmt 0 discriminator 6 view .LVU420
+ 1972 0260 70BD     		pop	{r4, r5, r6, pc}
+ 1973              	.LVL188:
+ 1974              	.L148:
+ 1975              		.loc 1 192 1 discriminator 6 view .LVU421
+ 1976 0262 00BF     		.align	2
+ 1977              	.L147:
+ 1978 0264 00000000 		.word	eventTimeOut
+ 1979 0268 00540040 		.word	1073763328
+ 1980 026c 00000000 		.word	_impure_ptr
+ 1981 0270 00000000 		.word	__FUNCTION__.0
+ 1982 0274 00000000 		.word	.LC0
+ 1983 0278 01000300 		.word	196609
+ 1984 027c 28000000 		.word	.LC1
+ 1985 0280 82000700 		.word	458882
+ 1986 0284 84000700 		.word	458884
+ 1987 0288 02000300 		.word	196610
+ 1988 028c 00000000 		.word	.LC3
+ 1989 0290 40000300 		.word	196672
+ 1990              		.cfi_endproc
+ 1991              	.LFE37:
+ 1993              		.section	.rodata.I2C_Hardware_Run.str1.4,"aMS",%progbits,1
+ 1994              		.align	2
+ 1995              	.LC5:
+ 1996 0000 57726974 		.ascii	"Write byte success\015\000"
+ 1996      65206279 
+ 1996      74652073 
+ 1996      75636365 
+ 1996      73730D00 
+ 1997              		.align	2
+ 1998              	.LC6:
+ 1999 0014 52656164 		.ascii	"Read byte success: %c\015\012\000"
+ 1999      20627974 
+ 1999      65207375 
+ 1999      63636573 
+ 1999      733A2025 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 41
+
+
+ 2000              		.align	2
+ 2001              	.LC7:
+ 2002 002c 57726974 		.ascii	"Write sequential success\015\000"
+ 2002      65207365 
+ 2002      7175656E 
+ 2002      7469616C 
+ 2002      20737563 
+ 2003 0046 0000     		.align	2
+ 2004              	.LC8:
+ 2005 0048 52656164 		.ascii	"Read sequential success: %s\015\012\000"
+ 2005      20736571 
+ 2005      75656E74 
+ 2005      69616C20 
+ 2005      73756363 
+ 2006              		.section	.text.I2C_Hardware_Run,"ax",%progbits
+ 2007              		.align	1
+ 2008              		.global	I2C_Hardware_Run
+ 2009              		.syntax unified
+ 2010              		.thumb
+ 2011              		.thumb_func
+ 2013              	I2C_Hardware_Run:
+ 2014              	.LFB38:
+ 193:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 194:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** extern void USART1_Init();
+ 195:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 196:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** void I2C_Hardware_Run(){
+ 2015              		.loc 1 196 24 is_stmt 1 view -0
+ 2016              		.cfi_startproc
+ 2017              		@ args = 0, pretend = 0, frame = 24
+ 2018              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2019 0000 00B5     		push	{lr}
+ 2020              	.LCFI8:
+ 2021              		.cfi_def_cfa_offset 4
+ 2022              		.cfi_offset 14, -4
+ 2023 0002 87B0     		sub	sp, sp, #28
+ 2024              	.LCFI9:
+ 2025              		.cfi_def_cfa_offset 32
+ 197:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     delay_init();
+ 2026              		.loc 1 197 5 view .LVU423
+ 2027 0004 FFF7FEFF 		bl	delay_init
+ 2028              	.LVL189:
+ 198:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     USART1_Init();
+ 2029              		.loc 1 198 5 view .LVU424
+ 2030 0008 FFF7FEFF 		bl	USART1_Init
+ 2031              	.LVL190:
+ 199:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     I2C_Hardware_Init();
+ 2032              		.loc 1 199 5 view .LVU425
+ 2033 000c FFF7FEFF 		bl	I2C_Hardware_Init
+ 2034              	.LVL191:
+ 200:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 201:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* Check */
+ 202:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     Check_EEROM_IH();
+ 2035              		.loc 1 202 5 view .LVU426
+ 2036 0010 FFF7FEFF 		bl	Check_EEROM_IH
+ 2037              	.LVL192:
+ 203:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 204:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     const char src[10] = "A1234567";
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 42
+
+
+ 2038              		.loc 1 204 5 view .LVU427
+ 2039              		.loc 1 204 16 is_stmt 0 view .LVU428
+ 2040 0014 174A     		ldr	r2, .L151
+ 2041 0016 03AB     		add	r3, sp, #12
+ 2042 0018 07CA     		ldm	r2, {r0, r1, r2}
+ 2043 001a 03C3     		stmia	r3!, {r0, r1}
+ 2044 001c 1A70     		strb	r2, [r3]
+ 2045 001e 0023     		movs	r3, #0
+ 2046 0020 8DF81530 		strb	r3, [sp, #21]
+ 205:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     char dst[10] = "";
+ 2047              		.loc 1 205 5 is_stmt 1 view .LVU429
+ 2048              		.loc 1 205 10 is_stmt 0 view .LVU430
+ 2049 0024 0093     		str	r3, [sp]
+ 2050 0026 0193     		str	r3, [sp, #4]
+ 2051 0028 ADF80830 		strh	r3, [sp, #8]	@ movhi
+ 206:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     uint8_t addr = 100;
+ 2052              		.loc 1 206 5 is_stmt 1 view .LVU431
+ 2053              	.LVL193:
+ 207:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 208:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* Byte write */
+ 209:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     EEPROM_Write_Byte_IH(addr, (uint8_t)src[0]);
+ 2054              		.loc 1 209 5 view .LVU432
+ 2055 002c 4121     		movs	r1, #65
+ 2056 002e 6420     		movs	r0, #100
+ 2057 0030 FFF7FEFF 		bl	EEPROM_Write_Byte_IH
+ 2058              	.LVL194:
+ 210:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     printf("Write byte success\r\n");
+ 2059              		.loc 1 210 5 view .LVU433
+ 2060 0034 1048     		ldr	r0, .L151+4
+ 2061 0036 FFF7FEFF 		bl	puts
+ 2062              	.LVL195:
+ 211:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 212:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* Byte read */
+ 213:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     dst[0] = EEPROM_Read_Byte_IH(addr);
+ 2063              		.loc 1 213 5 view .LVU434
+ 2064              		.loc 1 213 14 is_stmt 0 view .LVU435
+ 2065 003a 6420     		movs	r0, #100
+ 2066 003c FFF7FEFF 		bl	EEPROM_Read_Byte_IH
+ 2067              	.LVL196:
+ 2068 0040 0146     		mov	r1, r0
+ 2069              		.loc 1 213 12 view .LVU436
+ 2070 0042 8DF80000 		strb	r0, [sp]
+ 214:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     printf("Read byte success: %c\r\n", dst[0]);
+ 2071              		.loc 1 214 5 is_stmt 1 view .LVU437
+ 2072 0046 0D48     		ldr	r0, .L151+8
+ 2073 0048 FFF7FEFF 		bl	printf
+ 2074              	.LVL197:
+ 215:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 216:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* Sequential Write */
+ 217:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     EEPROM_Write_Sequential_IH(addr, (uint8_t*)src, 8);
+ 2075              		.loc 1 217 5 view .LVU438
+ 2076 004c 0822     		movs	r2, #8
+ 2077 004e 03A9     		add	r1, sp, #12
+ 2078 0050 6420     		movs	r0, #100
+ 2079 0052 FFF7FEFF 		bl	EEPROM_Write_Sequential_IH
+ 2080              	.LVL198:
+ 218:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     printf("Write sequential success\r\n");
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 43
+
+
+ 2081              		.loc 1 218 5 view .LVU439
+ 2082 0056 0A48     		ldr	r0, .L151+12
+ 2083 0058 FFF7FEFF 		bl	puts
+ 2084              	.LVL199:
+ 219:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** 
+ 220:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     /* Sequential Read */
+ 221:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     EEPROM_Read_Sequential_IH(addr, (uint8_t*)dst, 8);
+ 2085              		.loc 1 221 5 view .LVU440
+ 2086 005c 0822     		movs	r2, #8
+ 2087 005e 6946     		mov	r1, sp
+ 2088 0060 6420     		movs	r0, #100
+ 2089 0062 FFF7FEFF 		bl	EEPROM_Read_Sequential_IH
+ 2090              	.LVL200:
+ 222:HW/EEPROM/I2C_Hardware/i2c_hardware.c ****     printf("Read sequential success: %s\r\n", dst);
+ 2091              		.loc 1 222 5 view .LVU441
+ 2092 0066 6946     		mov	r1, sp
+ 2093 0068 0648     		ldr	r0, .L151+16
+ 2094 006a FFF7FEFF 		bl	printf
+ 2095              	.LVL201:
+ 223:HW/EEPROM/I2C_Hardware/i2c_hardware.c **** }...
+ 2096              		.loc 1 223 1 is_stmt 0 view .LVU442
+ 2097 006e 07B0     		add	sp, sp, #28
+ 2098              	.LCFI10:
+ 2099              		.cfi_def_cfa_offset 4
+ 2100              		@ sp needed
+ 2101 0070 5DF804FB 		ldr	pc, [sp], #4
+ 2102              	.L152:
+ 2103              		.align	2
+ 2104              	.L151:
+ 2105 0074 00000000 		.word	.LANCHOR0
+ 2106 0078 00000000 		.word	.LC5
+ 2107 007c 14000000 		.word	.LC6
+ 2108 0080 2C000000 		.word	.LC7
+ 2109 0084 48000000 		.word	.LC8
+ 2110              		.cfi_endproc
+ 2111              	.LFE38:
+ 2113              		.section	.rodata.__FUNCTION__.0,"a"
+ 2114              		.align	2
+ 2117              	__FUNCTION__.0:
+ 2118 0000 45455052 		.ascii	"EEPROM_Read_Sequential_IH\000"
+ 2118      4F4D5F52 
+ 2118      6561645F 
+ 2118      53657175 
+ 2118      656E7469 
+ 2119              		.section	.rodata.__FUNCTION__.1,"a"
+ 2120              		.align	2
+ 2123              	__FUNCTION__.1:
+ 2124 0000 45455052 		.ascii	"EEPROM_Write_Sequential_IH\000"
+ 2124      4F4D5F57 
+ 2124      72697465 
+ 2124      5F536571 
+ 2124      75656E74 
+ 2125              		.section	.rodata.__FUNCTION__.2,"a"
+ 2126              		.align	2
+ 2129              	__FUNCTION__.2:
+ 2130 0000 45455052 		.ascii	"EEPROM_Read_Byte_IH\000"
+ 2130      4F4D5F52 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 44
+
+
+ 2130      6561645F 
+ 2130      42797465 
+ 2130      5F494800 
+ 2131              		.section	.rodata.__FUNCTION__.3,"a"
+ 2132              		.align	2
+ 2135              	__FUNCTION__.3:
+ 2136 0000 45455052 		.ascii	"EEPROM_Write_Byte_IH\000"
+ 2136      4F4D5F57 
+ 2136      72697465 
+ 2136      5F427974 
+ 2136      655F4948 
+ 2137              		.section	.rodata.__FUNCTION__.4,"a"
+ 2138              		.align	2
+ 2141              	__FUNCTION__.4:
+ 2142 0000 43686563 		.ascii	"Check_EEROM_IH\000"
+ 2142      6B5F4545 
+ 2142      524F4D5F 
+ 2142      494800
+ 2143              		.section	.bss.eventTimeOut,"aw",%nobits
+ 2146              	eventTimeOut:
+ 2147 0000 00       		.space	1
+ 2148              		.section	.rodata
+ 2149              		.align	2
+ 2150              		.set	.LANCHOR0,. + 0
+ 2151              	.LC4:
+ 2152 0000 41313233 		.ascii	"A1234567\000"
+ 2152      34353637 
+ 2152      00
+ 2153 0009 00       		.space	1
+ 2154              		.text
+ 2155              	.Letext0:
+ 2156              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 2157              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 2158              		.file 4 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 2159              		.file 5 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 2160              		.file 6 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 2161              		.file 7 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 2162              		.file 8 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 2163              		.file 9 "USER/stm32f10x.h"
+ 2164              		.file 10 "STM32F10x_FWLib/inc/stm32f10x_gpio.h"
+ 2165              		.file 11 "STM32F10x_FWLib/inc/stm32f10x_i2c.h"
+ 2166              		.file 12 "SYSTEM/delay/delay.h"
+ 2167              		.file 13 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
+ 2168              		.file 14 "<built-in>"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 45
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 i2c_hardware.c
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:19     .text.I2C_Hardware_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:25     .text.I2C_Hardware_Init:00000000 I2C_Hardware_Init
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:112    .text.I2C_Hardware_Init:00000070 $d
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:119    .rodata.Check_EEROM_IH.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:126    .text.Check_EEROM_IH:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:132    .text.Check_EEROM_IH:00000000 Check_EEROM_IH
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:271    .text.Check_EEROM_IH:000000bc $d
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:2146   .bss.eventTimeOut:00000000 eventTimeOut
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:2141   .rodata.__FUNCTION__.4:00000000 __FUNCTION__.4
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:282    .text.EEPROM_Write_Byte_IH:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:288    .text.EEPROM_Write_Byte_IH:00000000 EEPROM_Write_Byte_IH
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:516    .text.EEPROM_Write_Byte_IH:00000138 $d
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:2135   .rodata.__FUNCTION__.3:00000000 __FUNCTION__.3
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:530    .text.EEPROM_Read_Byte_IH:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:536    .text.EEPROM_Read_Byte_IH:00000000 EEPROM_Read_Byte_IH
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:898    .text.EEPROM_Read_Byte_IH:000001f8 $d
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:2129   .rodata.__FUNCTION__.2:00000000 __FUNCTION__.2
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:913    .rodata.EEPROM_Write_Sequential_IH.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:918    .text.EEPROM_Write_Sequential_IH:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:924    .text.EEPROM_Write_Sequential_IH:00000000 EEPROM_Write_Sequential_IH
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:1302   .text.EEPROM_Write_Sequential_IH:000001e0 $d
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:2123   .rodata.__FUNCTION__.1:00000000 __FUNCTION__.1
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:1318   .text.EEPROM_Write_Sequential_IH:0000020c $t
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:1505   .text.EEPROM_Write_Sequential_IH:00000314 $d
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:1518   .rodata.EEPROM_Read_Sequential_IH.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:1523   .text.EEPROM_Read_Sequential_IH:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:1529   .text.EEPROM_Read_Sequential_IH:00000000 EEPROM_Read_Sequential_IH
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:1978   .text.EEPROM_Read_Sequential_IH:00000264 $d
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:2117   .rodata.__FUNCTION__.0:00000000 __FUNCTION__.0
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:1994   .rodata.I2C_Hardware_Run.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:2007   .text.I2C_Hardware_Run:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:2013   .text.I2C_Hardware_Run:00000000 I2C_Hardware_Run
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:2105   .text.I2C_Hardware_Run:00000074 $d
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:2114   .rodata.__FUNCTION__.0:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:2120   .rodata.__FUNCTION__.1:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:2126   .rodata.__FUNCTION__.2:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:2132   .rodata.__FUNCTION__.3:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:2138   .rodata.__FUNCTION__.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:2147   .bss.eventTimeOut:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc491SEg.s:2149   .rodata:00000000 $d
+
+UNDEFINED SYMBOLS
+RCC_APB1PeriphClockCmd
+RCC_APB2PeriphClockCmd
+GPIO_Init
+I2C_Init
+I2C_Cmd
+I2C_GetFlagStatus
+delay_us
+fprintf
+I2C_GenerateSTART
+I2C_CheckEvent
+I2C_Send7bitAddress
+I2C_GenerateSTOP
+_impure_ptr
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc491SEg.s 			page 46
+
+
+I2C_SendData
+I2C_AcknowledgeConfig
+I2C_ReceiveData
+delay_ms
+delay_init
+USART1_Init
+puts
+printf

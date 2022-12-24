@@ -1,0 +1,18 @@
+{
+    "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
+    "files.associations": {
+        "stm32f10x.h": "c",
+        "led.h": "c",
+        "key.h": "c",
+        "usart.h": "c",
+        "stm32f10x_usart.h": "c",
+        "delay.h": "c",
+        "sys.h": "c",
+        "stm32f10x_wwdg.h": "c",
+        "cstdlib": "c",
+        "compare": "c",
+        "limits": "c",
+        "*.tcc": "c",
+        "stm32f10x_i2c.h": "c"
+    }
+}
