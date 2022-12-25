@@ -14,7 +14,7 @@ OBJ/wwdg.o: HW/WWDG/wwdg.c USER/stm32f10x.h Core/core_cm3.h \
  STM32F10x_FWLib/inc/stm32f10x_tim.h \
  STM32F10x_FWLib/inc/stm32f10x_usart.h \
  STM32F10x_FWLib/inc/stm32f10x_wwdg.h STM32F10x_FWLib/inc/misc.h \
- SYSTEM/sys/sys.h SYSTEM/delay/delay.h HW\LED/LED.h
+ SYSTEM/sys/sys.h SYSTEM/delay/delay.h HW/LED/LED.h
 USER/stm32f10x.h:
 Core/core_cm3.h:
 USER/system_stm32f10x.h:
@@ -44,4 +44,4 @@ STM32F10x_FWLib/inc/stm32f10x_wwdg.h:
 STM32F10x_FWLib/inc/misc.h:
 SYSTEM/sys/sys.h:
 SYSTEM/delay/delay.h:
-HW\LED/LED.h:
+HW/LED/LED.h:

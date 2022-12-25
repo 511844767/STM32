@@ -1,0 +1,1028 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"exFlashFatFs.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "HW/FLASH/External_Flash_FatFs/exFlashFatFs.c"
+  18              		.section	.rodata.Flash_EX_FatFs_Run.str1.4,"aMS",%progbits,1
+  19              		.align	2
+  20              	.LC0:
+  21 0000 313A00   		.ascii	"1:\000"
+  22 0003 00       		.align	2
+  23              	.LC1:
+  24 0004 E69CAAE5 		.ascii	"\346\234\252\345\212\240\350\275\275FatFs\347\263\273"
+  24      8AA0E8BD 
+  24      BD466174 
+  24      4673E7B3 
+  24      BB
+  25 0015 E7BB9FEF 		.ascii	"\347\273\237\357\274\214\351\234\200\350\246\201\346"
+  25      BC8CE99C 
+  25      80E8A681 
+  25      E6
+  26 0022 A0BCE5BC 		.ascii	"\240\274\345\274\217\345\214\226\015\000"
+  26      8FE58C96 
+  26      0D00
+  27              		.align	2
+  28              	.LC2:
+  29 002c 4572726F 		.ascii	"Error line: %d, function: %s, info: %s\015\012\000"
+  29      72206C69 
+  29      6E653A20 
+  29      25642C20 
+  29      66756E63 
+  30 0055 000000   		.align	2
+  31              	.LC3:
+  32 0058 313AE6B5 		.ascii	"1:\346\265\213\350\257\225.txt\000"
+  32      8BE8AF95 
+  32      2E747874 
+  32      00
+  33 0065 000000   		.align	2
+  34              	.LC5:
+  35 0068 4572726F 		.ascii	"Error line: %d, function: %s, info: write error\015"
+  35      72206C69 
+  35      6E653A20 
+  35      25642C20 
+  35      66756E63 
+  36 0098 0A00     		.ascii	"\012\000"
+  37 009a 0000     		.align	2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s 			page 2
+
+
+  38              	.LC6:
+  39 009c E69687E4 		.ascii	"\346\226\207\344\273\266\345\206\231\345\205\245\346"
+  39      BBB6E586 
+  39      99E585A5 
+  39      E6
+  40 00a9 8890E58A 		.ascii	"\210\220\345\212\237\015\000"
+  40      9F0D00
+  41              		.align	2
+  42              	.LC7:
+  43 00b0 4572726F 		.ascii	"Error line: %d, function: %s, info: read error\015\012"
+  43      72206C69 
+  43      6E653A20 
+  43      25642C20 
+  43      66756E63 
+  44 00e0 00       		.ascii	"\000"
+  45 00e1 000000   		.align	2
+  46              	.LC8:
+  47 00e4 E69687E4 		.ascii	"\346\226\207\344\273\266\350\257\273\345\217\226\346"
+  47      BBB6E8AF 
+  47      BBE58F96 
+  47      E6
+  48 00f1 8890E58A 		.ascii	"\210\220\345\212\237\357\274\232%s\015\012\000"
+  48      9FEFBC9A 
+  48      25730D0A 
+  48      00
+  49              		.section	.text.Flash_EX_FatFs_Run,"ax",%progbits
+  50              		.align	1
+  51              		.global	Flash_EX_FatFs_Run
+  52              		.syntax unified
+  53              		.thumb
+  54              		.thumb_func
+  56              	Flash_EX_FatFs_Run:
+  57              	.LFB3:
+   1:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** #include"ff.h"
+   2:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** #include"stdio.h"
+   3:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** #include"stdlib.h"
+   4:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** 
+   5:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** /* 异常检查 */
+   6:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** typedef struct{
+   7:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     const char info[72];
+   8:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** } FATFS_Errors_Info_t;
+   9:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** 
+  10:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** static FATFS_Errors_Info_t errInfo[20] = {
+  11:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     { "(0) Succeeded" },
+  12:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     { "(1) A hard error occurred in the low level disk I/O layer" },
+  13:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     { "(2) Assertion failed" },
+  14:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     { "(3) The physical drive cannot work" },
+  15:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     { "(4) Could not find the file" },
+  16:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     { "(5) Could not find the path" },
+  17:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     { "(6) The path name format is invalid" },
+  18:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     { "(7) Access denied due to prohibited access or directory full" },
+  19:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     { "(8) Access denied due to prohibited access" },
+  20:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     { "(9) The file/directory object is invalid" },
+  21:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     { "(10) The physical drive is write protected" },
+  22:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     { "(11) The logical drive number is invalid" },
+  23:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     { "(12) The volume has no work area" },
+  24:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     { "(13) There is no valid FAT volume" },
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s 			page 3
+
+
+  25:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     { "(14) The f_mkfs() aborted due to any problem" },
+  26:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     { "(15) Could not get a grant to access the volume within defined perio" },
+  27:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     { "(16) The operation is rejected according to the file sharing policy" },
+  28:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     { "(17) LFN working src could not be allocated" },
+  29:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     { "(18) Number of open files > FF_FS_LOCK" },
+  30:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     { "(19) Given parameter is invalid" },
+  31:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** };
+  32:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** 
+  33:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** #define FATFS_CHECK(func){ \
+  34:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     err = func; \
+  35:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     if(err != FR_OK){ \
+  36:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         fprintf(stderr, "Error line: %d, function: %s, info: %s\r\n", __LINE__, __FUNCTION__, errIn
+  37:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         goto FATFS_ERR_FLAG; \
+  38:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     } \
+  39:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** }
+  40:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** 
+  41:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** void Flash_EX_FatFs_Run(){
+  58              		.loc 1 41 26 view -0
+  59              		.cfi_startproc
+  60              		@ args = 0, pretend = 0, frame = 48
+  61              		@ frame_needed = 0, uses_anonymous_args = 0
+  62 0000 30B5     		push	{r4, r5, lr}
+  63              	.LCFI0:
+  64              		.cfi_def_cfa_offset 12
+  65              		.cfi_offset 4, -12
+  66              		.cfi_offset 5, -8
+  67              		.cfi_offset 14, -4
+  68 0002 8FB0     		sub	sp, sp, #60
+  69              	.LCFI1:
+  70              		.cfi_def_cfa_offset 72
+  42:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FRESULT err = 0;
+  71              		.loc 1 42 5 view .LVU1
+  72              	.LVL0:
+  43:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FIL* fp = 0;
+  73              		.loc 1 43 5 view .LVU2
+  44:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** 
+  45:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     /* 挂载flash */
+  46:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     /* FATFS和FIL结构体内存较大，放在堆空间比较合适 */
+  47:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS* fs = malloc(sizeof(FATFS));
+  74              		.loc 1 47 5 view .LVU3
+  75              		.loc 1 47 17 is_stmt 0 view .LVU4
+  76 0004 41F23800 		movw	r0, #4152
+  77 0008 FFF7FEFF 		bl	malloc
+  78              	.LVL1:
+  79 000c 0446     		mov	r4, r0
+  80              	.LVL2:
+  48:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     err = f_mount(fs, "1:", 1);                 // path为diskio.c中定义的DEV_FLASH_EX，opt为
+  81              		.loc 1 48 5 is_stmt 1 view .LVU5
+  82              		.loc 1 48 11 is_stmt 0 view .LVU6
+  83 000e 0122     		movs	r2, #1
+  84 0010 8649     		ldr	r1, .L26
+  85 0012 FFF7FEFF 		bl	f_mount
+  86              	.LVL3:
+  49:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** 
+  50:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     /* 第一次挂载如果没找到FatFs文件系统，则格式化加载文件系统 */
+  51:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     if(err == FR_NO_FILESYSTEM){ 
+  87              		.loc 1 51 5 is_stmt 1 view .LVU7
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s 			page 4
+
+
+  88              		.loc 1 51 7 is_stmt 0 view .LVU8
+  89 0016 0D28     		cmp	r0, #13
+  90 0018 2ED0     		beq	.L17
+  52:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         printf("未加载FatFs系统，需要格式化\r\n");
+  53:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         uint8_t* work = malloc(4096);           // 格式化工作空间
+  54:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         FATFS_CHECK(f_mkfs("1:", NULL, work, 4096));
+  55:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         free(work);
+  56:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         FATFS_CHECK(f_mount(fs, "1:", 1));      // 格式化之后重新挂载
+  57:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     }else if(err != FR_OK){
+  91              		.loc 1 57 11 is_stmt 1 view .LVU9
+  92              		.loc 1 57 13 is_stmt 0 view .LVU10
+  93 001a 0028     		cmp	r0, #0
+  94 001c 66D1     		bne	.L18
+  95              	.L5:
+  58:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         fprintf(stderr, "Error line: %d, function: %s, info: %s\r\n", __LINE__, __FUNCTION__, errIn
+  59:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         goto FATFS_ERR_FLAG;
+  60:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     }
+  61:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** 
+  62:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     /* 打开文件 */
+  63:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     fp = malloc(sizeof(FIL));
+  96              		.loc 1 63 5 is_stmt 1 view .LVU11
+  97              		.loc 1 63 10 is_stmt 0 view .LVU12
+  98 001e 41F22800 		movw	r0, #4136
+  99              	.LVL4:
+ 100              		.loc 1 63 10 view .LVU13
+ 101 0022 FFF7FEFF 		bl	malloc
+ 102              	.LVL5:
+ 103 0026 0546     		mov	r5, r0
+ 104              	.LVL6:
+  64:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_open(fp, "1:测试.txt", FA_CREATE_ALWAYS | FA_READ | FA_WRITE));
+ 105              		.loc 1 64 5 is_stmt 1 view .LVU14
+ 106 0028 0B22     		movs	r2, #11
+ 107 002a 8149     		ldr	r1, .L26+4
+ 108 002c FFF7FEFF 		bl	f_open
+ 109              	.LVL7:
+ 110              		.loc 1 64 5 view .LVU15
+ 111 0030 0346     		mov	r3, r0
+ 112 0032 0028     		cmp	r0, #0
+ 113 0034 6AD1     		bne	.L19
+ 114              		.loc 1 64 83 discriminator 2 view .LVU16
+  65:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** 
+  66:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     /* 写入文件 */
+  67:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     const char src[20] = "Diana Ava";
+ 115              		.loc 1 67 5 discriminator 2 view .LVU17
+ 116              		.loc 1 67 16 is_stmt 0 discriminator 2 view .LVU18
+ 117 0036 7F4A     		ldr	r2, .L26+8
+ 118 0038 09AB     		add	r3, sp, #36
+ 119 003a 07CA     		ldm	r2, {r0, r1, r2}
+ 120              	.LVL8:
+ 121              		.loc 1 67 16 discriminator 2 view .LVU19
+ 122 003c 03C3     		stmia	r3!, {r0, r1}
+ 123 003e 1A80     		strh	r2, [r3]	@ movhi
+ 124 0040 0023     		movs	r3, #0
+ 125 0042 CDF82E30 		str	r3, [sp, #46]	@ unaligned
+ 126 0046 CDF83230 		str	r3, [sp, #50]	@ unaligned
+ 127 004a ADF83630 		strh	r3, [sp, #54]	@ movhi
+  68:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     UINT bw;
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s 			page 5
+
+
+ 128              		.loc 1 68 5 is_stmt 1 discriminator 2 view .LVU20
+  69:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_write(fp, src, 20, &bw));
+ 129              		.loc 1 69 5 discriminator 2 view .LVU21
+ 130 004e 08AB     		add	r3, sp, #32
+ 131 0050 1422     		movs	r2, #20
+ 132 0052 09A9     		add	r1, sp, #36
+ 133 0054 2846     		mov	r0, r5
+ 134 0056 FFF7FEFF 		bl	f_write
+ 135              	.LVL9:
+ 136              		.loc 1 69 5 discriminator 2 view .LVU22
+ 137 005a 0346     		mov	r3, r0
+ 138 005c 0028     		cmp	r0, #0
+ 139 005e 6DD1     		bne	.L20
+ 140              		.loc 1 69 43 discriminator 2 view .LVU23
+  70:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     if(bw != 20){   // bw返回实际写入长度，应该等于理论写入长度
+ 141              		.loc 1 70 5 discriminator 2 view .LVU24
+ 142              		.loc 1 70 11 is_stmt 0 discriminator 2 view .LVU25
+ 143 0060 089B     		ldr	r3, [sp, #32]
+ 144              		.loc 1 70 7 discriminator 2 view .LVU26
+ 145 0062 142B     		cmp	r3, #20
+ 146 0064 79D0     		beq	.L9
+  71:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         fprintf(stderr, "Error line: %d, function: %s, info: write error\r\n", __LINE__, __FUNCTION
+ 147              		.loc 1 71 9 is_stmt 1 view .LVU27
+ 148              		.loc 1 71 17 is_stmt 0 view .LVU28
+ 149 0066 744B     		ldr	r3, .L26+12
+ 150 0068 1868     		ldr	r0, [r3]
+ 151              	.LVL10:
+ 152              		.loc 1 71 9 view .LVU29
+ 153 006a 744B     		ldr	r3, .L26+16
+ 154 006c 4722     		movs	r2, #71
+ 155 006e 7449     		ldr	r1, .L26+20
+ 156 0070 C068     		ldr	r0, [r0, #12]
+ 157 0072 FFF7FEFF 		bl	fprintf
+ 158              	.LVL11:
+  72:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         goto FATFS_ERR_FLAG;
+ 159              		.loc 1 72 9 is_stmt 1 view .LVU30
+ 160 0076 57E0     		b	.L7
+ 161              	.LVL12:
+ 162              	.L17:
+ 163              	.LBB2:
+  52:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         uint8_t* work = malloc(4096);           // 格式化工作空间
+ 164              		.loc 1 52 9 view .LVU31
+ 165 0078 7248     		ldr	r0, .L26+24
+ 166              	.LVL13:
+  52:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         uint8_t* work = malloc(4096);           // 格式化工作空间
+ 167              		.loc 1 52 9 is_stmt 0 view .LVU32
+ 168 007a FFF7FEFF 		bl	puts
+ 169              	.LVL14:
+  53:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         FATFS_CHECK(f_mkfs("1:", NULL, work, 4096));
+ 170              		.loc 1 53 9 is_stmt 1 view .LVU33
+  53:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         FATFS_CHECK(f_mkfs("1:", NULL, work, 4096));
+ 171              		.loc 1 53 25 is_stmt 0 view .LVU34
+ 172 007e 4FF48050 		mov	r0, #4096
+ 173 0082 FFF7FEFF 		bl	malloc
+ 174              	.LVL15:
+ 175 0086 0546     		mov	r5, r0
+ 176              	.LVL16:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s 			page 6
+
+
+  54:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         free(work);
+ 177              		.loc 1 54 9 is_stmt 1 view .LVU35
+ 178 0088 4FF48053 		mov	r3, #4096
+ 179 008c 0246     		mov	r2, r0
+ 180 008e 0021     		movs	r1, #0
+ 181 0090 6648     		ldr	r0, .L26
+ 182              	.LVL17:
+  54:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         free(work);
+ 183              		.loc 1 54 9 is_stmt 0 view .LVU36
+ 184 0092 FFF7FEFF 		bl	f_mkfs
+ 185              	.LVL18:
+  54:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         free(work);
+ 186              		.loc 1 54 9 is_stmt 1 view .LVU37
+ 187 0096 0346     		mov	r3, r0
+ 188 0098 C8B9     		cbnz	r0, .L21
+  54:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         free(work);
+ 189              		.loc 1 54 52 discriminator 2 view .LVU38
+  55:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         FATFS_CHECK(f_mount(fs, "1:", 1));      // 格式化之后重新挂载
+ 190              		.loc 1 55 9 discriminator 2 view .LVU39
+ 191 009a 2846     		mov	r0, r5
+ 192              	.LVL19:
+  55:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         FATFS_CHECK(f_mount(fs, "1:", 1));      // 格式化之后重新挂载
+ 193              		.loc 1 55 9 is_stmt 0 discriminator 2 view .LVU40
+ 194 009c FFF7FEFF 		bl	free
+ 195              	.LVL20:
+  56:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     }else if(err != FR_OK){
+ 196              		.loc 1 56 9 is_stmt 1 discriminator 2 view .LVU41
+ 197 00a0 0122     		movs	r2, #1
+ 198 00a2 6249     		ldr	r1, .L26
+ 199 00a4 2046     		mov	r0, r4
+ 200 00a6 FFF7FEFF 		bl	f_mount
+ 201              	.LVL21:
+  56:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     }else if(err != FR_OK){
+ 202              		.loc 1 56 9 discriminator 2 view .LVU42
+ 203 00aa 0346     		mov	r3, r0
+ 204 00ac 0028     		cmp	r0, #0
+ 205 00ae B6D0     		beq	.L5
+  56:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     }else if(err != FR_OK){
+ 206              		.loc 1 56 9 discriminator 1 view .LVU43
+ 207 00b0 614A     		ldr	r2, .L26+12
+ 208 00b2 1268     		ldr	r2, [r2]
+ 209 00b4 D068     		ldr	r0, [r2, #12]
+ 210              	.LVL22:
+  56:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     }else if(err != FR_OK){
+ 211              		.loc 1 56 9 is_stmt 0 discriminator 1 view .LVU44
+ 212 00b6 03EBC303 		add	r3, r3, r3, lsl #3
+ 213 00ba 634A     		ldr	r2, .L26+28
+ 214 00bc 02EBC303 		add	r3, r2, r3, lsl #3
+ 215 00c0 0093     		str	r3, [sp]
+ 216 00c2 5E4B     		ldr	r3, .L26+16
+ 217 00c4 3822     		movs	r2, #56
+ 218 00c6 6149     		ldr	r1, .L26+32
+ 219 00c8 FFF7FEFF 		bl	fprintf
+ 220              	.LVL23:
+  56:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     }else if(err != FR_OK){
+ 221              		.loc 1 56 9 is_stmt 1 discriminator 1 view .LVU45
+  56:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     }else if(err != FR_OK){
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s 			page 7
+
+
+ 222              		.loc 1 56 9 is_stmt 0 discriminator 1 view .LVU46
+ 223              	.LBE2:
+  73:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     }
+  74:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** 
+  75:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     /* 关闭文件 */
+  76:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_close(fp));
+  77:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** 
+  78:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     printf("文件写入成功\r\n");
+  79:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** 
+  80:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     /* 读取文件 */
+  81:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_open(fp, "1:测试.txt", FA_READ | FA_OPEN_EXISTING));
+  82:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     char dst[20];
+  83:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     UINT br;
+  84:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_read(fp, dst, 20, &br));
+  85:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     if(br != 20){   // br返回实际读取长度，应该等于理论读取长度
+  86:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         fprintf(stderr, "Error line: %d, function: %s, info: read error\r\n", __LINE__, __FUNCTION_
+  87:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         goto FATFS_ERR_FLAG;
+  88:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     }
+  89:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** 
+  90:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     /* 关闭文件 */
+  91:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_close(fp));
+  92:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** 
+  93:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     printf("文件读取成功：%s\r\n", dst);
+  94:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** FATFS_ERR_FLAG:
+  95:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     if(fp) free(fp);
+ 224              		.loc 1 95 5 is_stmt 1 discriminator 1 view .LVU47
+ 225 00cc 30E0     		b	.L4
+ 226              	.LVL24:
+ 227              	.L21:
+ 228              	.LBB3:
+  54:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         free(work);
+ 229              		.loc 1 54 9 discriminator 1 view .LVU48
+ 230 00ce 5A4A     		ldr	r2, .L26+12
+ 231 00d0 1268     		ldr	r2, [r2]
+ 232 00d2 D068     		ldr	r0, [r2, #12]
+ 233              	.LVL25:
+  54:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         free(work);
+ 234              		.loc 1 54 9 is_stmt 0 discriminator 1 view .LVU49
+ 235 00d4 03EBC303 		add	r3, r3, r3, lsl #3
+ 236 00d8 5B4A     		ldr	r2, .L26+28
+ 237 00da 02EBC303 		add	r3, r2, r3, lsl #3
+ 238 00de 0093     		str	r3, [sp]
+ 239 00e0 564B     		ldr	r3, .L26+16
+ 240 00e2 3622     		movs	r2, #54
+ 241 00e4 5949     		ldr	r1, .L26+32
+ 242 00e6 FFF7FEFF 		bl	fprintf
+ 243              	.LVL26:
+  54:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         free(work);
+ 244              		.loc 1 54 9 is_stmt 1 discriminator 1 view .LVU50
+  54:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         free(work);
+ 245              		.loc 1 54 9 is_stmt 0 discriminator 1 view .LVU51
+ 246              	.LBE3:
+ 247              		.loc 1 95 5 is_stmt 1 discriminator 1 view .LVU52
+ 248 00ea 21E0     		b	.L4
+ 249              	.LVL27:
+ 250              	.L18:
+  58:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         goto FATFS_ERR_FLAG;
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s 			page 8
+
+
+ 251              		.loc 1 58 9 view .LVU53
+  58:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         goto FATFS_ERR_FLAG;
+ 252              		.loc 1 58 17 is_stmt 0 view .LVU54
+ 253 00ec 524B     		ldr	r3, .L26+12
+ 254 00ee 1B68     		ldr	r3, [r3]
+ 255 00f0 DD68     		ldr	r5, [r3, #12]
+  58:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         goto FATFS_ERR_FLAG;
+ 256              		.loc 1 58 107 view .LVU55
+ 257 00f2 00EBC003 		add	r3, r0, r0, lsl #3
+ 258 00f6 544A     		ldr	r2, .L26+28
+ 259 00f8 02EBC303 		add	r3, r2, r3, lsl #3
+  58:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         goto FATFS_ERR_FLAG;
+ 260              		.loc 1 58 9 view .LVU56
+ 261 00fc 0093     		str	r3, [sp]
+ 262 00fe 4F4B     		ldr	r3, .L26+16
+ 263 0100 3A22     		movs	r2, #58
+ 264 0102 5249     		ldr	r1, .L26+32
+ 265 0104 2846     		mov	r0, r5
+ 266              	.LVL28:
+  58:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         goto FATFS_ERR_FLAG;
+ 267              		.loc 1 58 9 view .LVU57
+ 268 0106 FFF7FEFF 		bl	fprintf
+ 269              	.LVL29:
+  59:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     }
+ 270              		.loc 1 59 9 is_stmt 1 view .LVU58
+ 271              		.loc 1 95 5 view .LVU59
+ 272 010a 11E0     		b	.L4
+ 273              	.LVL30:
+ 274              	.L19:
+  64:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** 
+ 275              		.loc 1 64 5 discriminator 1 view .LVU60
+ 276 010c 4A4A     		ldr	r2, .L26+12
+ 277 010e 1268     		ldr	r2, [r2]
+ 278 0110 D068     		ldr	r0, [r2, #12]
+ 279              	.LVL31:
+  64:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** 
+ 280              		.loc 1 64 5 is_stmt 0 discriminator 1 view .LVU61
+ 281 0112 03EBC303 		add	r3, r3, r3, lsl #3
+ 282 0116 4C4A     		ldr	r2, .L26+28
+ 283 0118 02EBC303 		add	r3, r2, r3, lsl #3
+ 284 011c 0093     		str	r3, [sp]
+ 285 011e 474B     		ldr	r3, .L26+16
+ 286 0120 4022     		movs	r2, #64
+ 287 0122 4A49     		ldr	r1, .L26+32
+ 288 0124 FFF7FEFF 		bl	fprintf
+ 289              	.LVL32:
+  64:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** 
+ 290              		.loc 1 64 5 is_stmt 1 discriminator 1 view .LVU62
+ 291              	.L7:
+ 292              		.loc 1 95 5 view .LVU63
+ 293              		.loc 1 95 7 is_stmt 0 view .LVU64
+ 294 0128 15B1     		cbz	r5, .L4
+ 295              		.loc 1 95 12 is_stmt 1 discriminator 1 view .LVU65
+ 296 012a 2846     		mov	r0, r5
+ 297 012c FFF7FEFF 		bl	free
+ 298              	.LVL33:
+ 299              	.L4:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s 			page 9
+
+
+  96:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     if(fs) free(fs);
+ 300              		.loc 1 96 5 view .LVU66
+ 301              		.loc 1 96 7 is_stmt 0 view .LVU67
+ 302 0130 14B1     		cbz	r4, .L1
+ 303              		.loc 1 96 12 is_stmt 1 discriminator 1 view .LVU68
+ 304 0132 2046     		mov	r0, r4
+ 305 0134 FFF7FEFF 		bl	free
+ 306              	.LVL34:
+ 307              	.L1:
+  97:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c **** }...
+ 308              		.loc 1 97 1 is_stmt 0 view .LVU69
+ 309 0138 0FB0     		add	sp, sp, #60
+ 310              	.LCFI2:
+ 311              		.cfi_remember_state
+ 312              		.cfi_def_cfa_offset 12
+ 313              		@ sp needed
+ 314 013a 30BD     		pop	{r4, r5, pc}
+ 315              	.LVL35:
+ 316              	.L20:
+ 317              	.LCFI3:
+ 318              		.cfi_restore_state
+  69:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_write(fp, src, 20, &bw));
+ 319              		.loc 1 69 5 is_stmt 1 discriminator 1 view .LVU70
+ 320 013c 3E4A     		ldr	r2, .L26+12
+ 321 013e 1268     		ldr	r2, [r2]
+ 322 0140 D068     		ldr	r0, [r2, #12]
+ 323              	.LVL36:
+  69:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_write(fp, src, 20, &bw));
+ 324              		.loc 1 69 5 is_stmt 0 discriminator 1 view .LVU71
+ 325 0142 03EBC303 		add	r3, r3, r3, lsl #3
+ 326 0146 404A     		ldr	r2, .L26+28
+ 327 0148 02EBC303 		add	r3, r2, r3, lsl #3
+ 328 014c 0093     		str	r3, [sp]
+ 329 014e 3B4B     		ldr	r3, .L26+16
+ 330 0150 4522     		movs	r2, #69
+ 331 0152 3E49     		ldr	r1, .L26+32
+ 332 0154 FFF7FEFF 		bl	fprintf
+ 333              	.LVL37:
+  69:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_write(fp, src, 20, &bw));
+ 334              		.loc 1 69 5 is_stmt 1 discriminator 1 view .LVU72
+ 335 0158 E6E7     		b	.L7
+ 336              	.LVL38:
+ 337              	.L9:
+  76:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_close(fp));
+ 338              		.loc 1 76 5 view .LVU73
+ 339 015a 2846     		mov	r0, r5
+ 340              	.LVL39:
+  76:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_close(fp));
+ 341              		.loc 1 76 5 is_stmt 0 view .LVU74
+ 342 015c FFF7FEFF 		bl	f_close
+ 343              	.LVL40:
+  76:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_close(fp));
+ 344              		.loc 1 76 5 is_stmt 1 view .LVU75
+ 345 0160 0346     		mov	r3, r0
+ 346 0162 E8B9     		cbnz	r0, .L22
+  76:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_close(fp));
+ 347              		.loc 1 76 29 discriminator 2 view .LVU76
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s 			page 10
+
+
+  78:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     printf("文件写入成功\r\n");
+ 348              		.loc 1 78 5 discriminator 2 view .LVU77
+ 349 0164 3A48     		ldr	r0, .L26+36
+ 350              	.LVL41:
+  78:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     printf("文件写入成功\r\n");
+ 351              		.loc 1 78 5 is_stmt 0 discriminator 2 view .LVU78
+ 352 0166 FFF7FEFF 		bl	puts
+ 353              	.LVL42:
+  81:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_open(fp, "1:测试.txt", FA_READ | FA_OPEN_EXISTING));
+ 354              		.loc 1 81 5 is_stmt 1 discriminator 2 view .LVU79
+ 355 016a 0122     		movs	r2, #1
+ 356 016c 3049     		ldr	r1, .L26+4
+ 357 016e 2846     		mov	r0, r5
+ 358 0170 FFF7FEFF 		bl	f_open
+ 359              	.LVL43:
+  81:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_open(fp, "1:测试.txt", FA_READ | FA_OPEN_EXISTING));
+ 360              		.loc 1 81 5 discriminator 2 view .LVU80
+ 361 0174 0346     		mov	r3, r0
+ 362 0176 10BB     		cbnz	r0, .L23
+  81:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_open(fp, "1:测试.txt", FA_READ | FA_OPEN_EXISTING));
+ 363              		.loc 1 81 72 discriminator 2 view .LVU81
+  82:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     char dst[20];
+ 364              		.loc 1 82 5 discriminator 2 view .LVU82
+  83:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     UINT br;
+ 365              		.loc 1 83 5 discriminator 2 view .LVU83
+  84:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_read(fp, dst, 20, &br));
+ 366              		.loc 1 84 5 discriminator 2 view .LVU84
+ 367 0178 02AB     		add	r3, sp, #8
+ 368 017a 1422     		movs	r2, #20
+ 369 017c 03A9     		add	r1, sp, #12
+ 370 017e 2846     		mov	r0, r5
+ 371              	.LVL44:
+  84:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_read(fp, dst, 20, &br));
+ 372              		.loc 1 84 5 is_stmt 0 discriminator 2 view .LVU85
+ 373 0180 FFF7FEFF 		bl	f_read
+ 374              	.LVL45:
+  84:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_read(fp, dst, 20, &br));
+ 375              		.loc 1 84 5 is_stmt 1 discriminator 2 view .LVU86
+ 376 0184 0346     		mov	r3, r0
+ 377 0186 48BB     		cbnz	r0, .L24
+  84:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_read(fp, dst, 20, &br));
+ 378              		.loc 1 84 42 discriminator 2 view .LVU87
+  85:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     if(br != 20){   // br返回实际读取长度，应该等于理论读取长度
+ 379              		.loc 1 85 5 discriminator 2 view .LVU88
+  85:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     if(br != 20){   // br返回实际读取长度，应该等于理论读取长度
+ 380              		.loc 1 85 11 is_stmt 0 discriminator 2 view .LVU89
+ 381 0188 029B     		ldr	r3, [sp, #8]
+  85:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     if(br != 20){   // br返回实际读取长度，应该等于理论读取长度
+ 382              		.loc 1 85 7 discriminator 2 view .LVU90
+ 383 018a 142B     		cmp	r3, #20
+ 384 018c 35D0     		beq	.L13
+  86:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         fprintf(stderr, "Error line: %d, function: %s, info: read error\r\n", __LINE__, __FUNCTION_
+ 385              		.loc 1 86 9 is_stmt 1 view .LVU91
+  86:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         fprintf(stderr, "Error line: %d, function: %s, info: read error\r\n", __LINE__, __FUNCTION_
+ 386              		.loc 1 86 17 is_stmt 0 view .LVU92
+ 387 018e 2A4B     		ldr	r3, .L26+12
+ 388 0190 1868     		ldr	r0, [r3]
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s 			page 11
+
+
+ 389              	.LVL46:
+  86:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         fprintf(stderr, "Error line: %d, function: %s, info: read error\r\n", __LINE__, __FUNCTION_
+ 390              		.loc 1 86 9 view .LVU93
+ 391 0192 2A4B     		ldr	r3, .L26+16
+ 392 0194 5622     		movs	r2, #86
+ 393 0196 2F49     		ldr	r1, .L26+40
+ 394 0198 C068     		ldr	r0, [r0, #12]
+ 395 019a FFF7FEFF 		bl	fprintf
+ 396              	.LVL47:
+  87:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****         goto FATFS_ERR_FLAG;
+ 397              		.loc 1 87 9 is_stmt 1 view .LVU94
+ 398 019e C3E7     		b	.L7
+ 399              	.LVL48:
+ 400              	.L22:
+  76:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_close(fp));
+ 401              		.loc 1 76 5 discriminator 1 view .LVU95
+ 402 01a0 254A     		ldr	r2, .L26+12
+ 403 01a2 1268     		ldr	r2, [r2]
+ 404 01a4 D068     		ldr	r0, [r2, #12]
+ 405              	.LVL49:
+  76:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_close(fp));
+ 406              		.loc 1 76 5 is_stmt 0 discriminator 1 view .LVU96
+ 407 01a6 03EBC303 		add	r3, r3, r3, lsl #3
+ 408 01aa 274A     		ldr	r2, .L26+28
+ 409 01ac 02EBC303 		add	r3, r2, r3, lsl #3
+ 410 01b0 0093     		str	r3, [sp]
+ 411 01b2 224B     		ldr	r3, .L26+16
+ 412 01b4 4C22     		movs	r2, #76
+ 413 01b6 2549     		ldr	r1, .L26+32
+ 414 01b8 FFF7FEFF 		bl	fprintf
+ 415              	.LVL50:
+  76:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_close(fp));
+ 416              		.loc 1 76 5 is_stmt 1 discriminator 1 view .LVU97
+ 417 01bc B4E7     		b	.L7
+ 418              	.LVL51:
+ 419              	.L23:
+  81:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_open(fp, "1:测试.txt", FA_READ | FA_OPEN_EXISTING));
+ 420              		.loc 1 81 5 discriminator 1 view .LVU98
+ 421 01be 1E4A     		ldr	r2, .L26+12
+ 422 01c0 1268     		ldr	r2, [r2]
+ 423 01c2 D068     		ldr	r0, [r2, #12]
+ 424              	.LVL52:
+  81:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_open(fp, "1:测试.txt", FA_READ | FA_OPEN_EXISTING));
+ 425              		.loc 1 81 5 is_stmt 0 discriminator 1 view .LVU99
+ 426 01c4 03EBC303 		add	r3, r3, r3, lsl #3
+ 427 01c8 1F4A     		ldr	r2, .L26+28
+ 428 01ca 02EBC303 		add	r3, r2, r3, lsl #3
+ 429 01ce 0093     		str	r3, [sp]
+ 430 01d0 1A4B     		ldr	r3, .L26+16
+ 431 01d2 5122     		movs	r2, #81
+ 432 01d4 1D49     		ldr	r1, .L26+32
+ 433 01d6 FFF7FEFF 		bl	fprintf
+ 434              	.LVL53:
+  81:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_open(fp, "1:测试.txt", FA_READ | FA_OPEN_EXISTING));
+ 435              		.loc 1 81 5 is_stmt 1 discriminator 1 view .LVU100
+ 436 01da A5E7     		b	.L7
+ 437              	.LVL54:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s 			page 12
+
+
+ 438              	.L24:
+  84:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_read(fp, dst, 20, &br));
+ 439              		.loc 1 84 5 discriminator 1 view .LVU101
+ 440 01dc 164A     		ldr	r2, .L26+12
+ 441 01de 1268     		ldr	r2, [r2]
+ 442 01e0 D068     		ldr	r0, [r2, #12]
+ 443              	.LVL55:
+  84:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_read(fp, dst, 20, &br));
+ 444              		.loc 1 84 5 is_stmt 0 discriminator 1 view .LVU102
+ 445 01e2 03EBC303 		add	r3, r3, r3, lsl #3
+ 446 01e6 184A     		ldr	r2, .L26+28
+ 447 01e8 02EBC303 		add	r3, r2, r3, lsl #3
+ 448 01ec 0093     		str	r3, [sp]
+ 449 01ee 134B     		ldr	r3, .L26+16
+ 450 01f0 5422     		movs	r2, #84
+ 451 01f2 1649     		ldr	r1, .L26+32
+ 452 01f4 FFF7FEFF 		bl	fprintf
+ 453              	.LVL56:
+  84:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_read(fp, dst, 20, &br));
+ 454              		.loc 1 84 5 is_stmt 1 discriminator 1 view .LVU103
+ 455 01f8 96E7     		b	.L7
+ 456              	.LVL57:
+ 457              	.L13:
+  91:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_close(fp));
+ 458              		.loc 1 91 5 view .LVU104
+ 459 01fa 2846     		mov	r0, r5
+ 460              	.LVL58:
+  91:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_close(fp));
+ 461              		.loc 1 91 5 is_stmt 0 view .LVU105
+ 462 01fc FFF7FEFF 		bl	f_close
+ 463              	.LVL59:
+  91:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_close(fp));
+ 464              		.loc 1 91 5 is_stmt 1 view .LVU106
+ 465 0200 0346     		mov	r3, r0
+ 466 0202 20B9     		cbnz	r0, .L25
+  91:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_close(fp));
+ 467              		.loc 1 91 29 discriminator 2 view .LVU107
+  93:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     printf("文件读取成功：%s\r\n", dst);
+ 468              		.loc 1 93 5 discriminator 2 view .LVU108
+ 469 0204 03A9     		add	r1, sp, #12
+ 470 0206 1448     		ldr	r0, .L26+44
+ 471              	.LVL60:
+  93:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     printf("文件读取成功：%s\r\n", dst);
+ 472              		.loc 1 93 5 is_stmt 0 discriminator 2 view .LVU109
+ 473 0208 FFF7FEFF 		bl	printf
+ 474              	.LVL61:
+ 475 020c 8CE7     		b	.L7
+ 476              	.LVL62:
+ 477              	.L25:
+  91:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_close(fp));
+ 478              		.loc 1 91 5 is_stmt 1 discriminator 1 view .LVU110
+ 479 020e 0A4A     		ldr	r2, .L26+12
+ 480 0210 1268     		ldr	r2, [r2]
+ 481 0212 D068     		ldr	r0, [r2, #12]
+ 482              	.LVL63:
+  91:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_close(fp));
+ 483              		.loc 1 91 5 is_stmt 0 discriminator 1 view .LVU111
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s 			page 13
+
+
+ 484 0214 03EBC303 		add	r3, r3, r3, lsl #3
+ 485 0218 0B4A     		ldr	r2, .L26+28
+ 486 021a 02EBC303 		add	r3, r2, r3, lsl #3
+ 487 021e 0093     		str	r3, [sp]
+ 488 0220 064B     		ldr	r3, .L26+16
+ 489 0222 5B22     		movs	r2, #91
+ 490 0224 0949     		ldr	r1, .L26+32
+ 491 0226 FFF7FEFF 		bl	fprintf
+ 492              	.LVL64:
+  91:HW/FLASH/External_Flash_FatFs/exFlashFatFs.c ****     FATFS_CHECK(f_close(fp));
+ 493              		.loc 1 91 5 is_stmt 1 discriminator 1 view .LVU112
+ 494 022a 7DE7     		b	.L7
+ 495              	.L27:
+ 496              		.align	2
+ 497              	.L26:
+ 498 022c 00000000 		.word	.LC0
+ 499 0230 58000000 		.word	.LC3
+ 500 0234 00000000 		.word	.LANCHOR0
+ 501 0238 00000000 		.word	_impure_ptr
+ 502 023c 00000000 		.word	__FUNCTION__.0
+ 503 0240 68000000 		.word	.LC5
+ 504 0244 04000000 		.word	.LC1
+ 505 0248 00000000 		.word	errInfo
+ 506 024c 2C000000 		.word	.LC2
+ 507 0250 9C000000 		.word	.LC6
+ 508 0254 B0000000 		.word	.LC7
+ 509 0258 E4000000 		.word	.LC8
+ 510              		.cfi_endproc
+ 511              	.LFE3:
+ 513              		.section	.rodata.__FUNCTION__.0,"a"
+ 514              		.align	2
+ 517              	__FUNCTION__.0:
+ 518 0000 466C6173 		.ascii	"Flash_EX_FatFs_Run\000"
+ 518      685F4558 
+ 518      5F466174 
+ 518      46735F52 
+ 518      756E00
+ 519              		.section	.data.errInfo,"aw"
+ 520              		.align	2
+ 523              	errInfo:
+ 524 0000 28302920 		.ascii	"(0) Succeeded\000"
+ 524      53756363 
+ 524      65656465 
+ 524      6400
+ 525 000e 00000000 		.space	58
+ 525      00000000 
+ 525      00000000 
+ 525      00000000 
+ 525      00000000 
+ 526 0048 28312920 		.ascii	"(1) A hard error occurred in the low level disk I/O"
+ 526      41206861 
+ 526      72642065 
+ 526      72726F72 
+ 526      206F6363 
+ 527 007b 206C6179 		.ascii	" layer\000"
+ 527      657200
+ 528 0082 00000000 		.space	14
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s 			page 14
+
+
+ 528      00000000 
+ 528      00000000 
+ 528      0000
+ 529 0090 28322920 		.ascii	"(2) Assertion failed\000"
+ 529      41737365 
+ 529      7274696F 
+ 529      6E206661 
+ 529      696C6564 
+ 530 00a5 00000000 		.space	51
+ 530      00000000 
+ 530      00000000 
+ 530      00000000 
+ 530      00000000 
+ 531 00d8 28332920 		.ascii	"(3) The physical drive cannot work\000"
+ 531      54686520 
+ 531      70687973 
+ 531      6963616C 
+ 531      20647269 
+ 532 00fb 00000000 		.space	37
+ 532      00000000 
+ 532      00000000 
+ 532      00000000 
+ 532      00000000 
+ 533 0120 28342920 		.ascii	"(4) Could not find the file\000"
+ 533      436F756C 
+ 533      64206E6F 
+ 533      74206669 
+ 533      6E642074 
+ 534 013c 00000000 		.space	44
+ 534      00000000 
+ 534      00000000 
+ 534      00000000 
+ 534      00000000 
+ 535 0168 28352920 		.ascii	"(5) Could not find the path\000"
+ 535      436F756C 
+ 535      64206E6F 
+ 535      74206669 
+ 535      6E642074 
+ 536 0184 00000000 		.space	44
+ 536      00000000 
+ 536      00000000 
+ 536      00000000 
+ 536      00000000 
+ 537 01b0 28362920 		.ascii	"(6) The path name format is invalid\000"
+ 537      54686520 
+ 537      70617468 
+ 537      206E616D 
+ 537      6520666F 
+ 538 01d4 00000000 		.space	36
+ 538      00000000 
+ 538      00000000 
+ 538      00000000 
+ 538      00000000 
+ 539 01f8 28372920 		.ascii	"(7) Access denied due to prohibited access or direc"
+ 539      41636365 
+ 539      73732064 
+ 539      656E6965 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s 			page 15
+
+
+ 539      64206475 
+ 540 022b 746F7279 		.ascii	"tory full\000"
+ 540      2066756C 
+ 540      6C00
+ 541 0235 00000000 		.space	11
+ 541      00000000 
+ 541      000000
+ 542 0240 28382920 		.ascii	"(8) Access denied due to prohibited access\000"
+ 542      41636365 
+ 542      73732064 
+ 542      656E6965 
+ 542      64206475 
+ 543 026b 00000000 		.space	29
+ 543      00000000 
+ 543      00000000 
+ 543      00000000 
+ 543      00000000 
+ 544 0288 28392920 		.ascii	"(9) The file/directory object is invalid\000"
+ 544      54686520 
+ 544      66696C65 
+ 544      2F646972 
+ 544      6563746F 
+ 545 02b1 00000000 		.space	31
+ 545      00000000 
+ 545      00000000 
+ 545      00000000 
+ 545      00000000 
+ 546 02d0 28313029 		.ascii	"(10) The physical drive is write protected\000"
+ 546      20546865 
+ 546      20706879 
+ 546      73696361 
+ 546      6C206472 
+ 547 02fb 00000000 		.space	29
+ 547      00000000 
+ 547      00000000 
+ 547      00000000 
+ 547      00000000 
+ 548 0318 28313129 		.ascii	"(11) The logical drive number is invalid\000"
+ 548      20546865 
+ 548      206C6F67 
+ 548      6963616C 
+ 548      20647269 
+ 549 0341 00000000 		.space	31
+ 549      00000000 
+ 549      00000000 
+ 549      00000000 
+ 549      00000000 
+ 550 0360 28313229 		.ascii	"(12) The volume has no work area\000"
+ 550      20546865 
+ 550      20766F6C 
+ 550      756D6520 
+ 550      68617320 
+ 551 0381 00000000 		.space	39
+ 551      00000000 
+ 551      00000000 
+ 551      00000000 
+ 551      00000000 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s 			page 16
+
+
+ 552 03a8 28313329 		.ascii	"(13) There is no valid FAT volume\000"
+ 552      20546865 
+ 552      72652069 
+ 552      73206E6F 
+ 552      2076616C 
+ 553 03ca 00000000 		.space	38
+ 553      00000000 
+ 553      00000000 
+ 553      00000000 
+ 553      00000000 
+ 554 03f0 28313429 		.ascii	"(14) The f_mkfs() aborted due to any problem\000"
+ 554      20546865 
+ 554      20665F6D 
+ 554      6B667328 
+ 554      29206162 
+ 555 041d 00000000 		.space	27
+ 555      00000000 
+ 555      00000000 
+ 555      00000000 
+ 555      00000000 
+ 556 0438 28313529 		.ascii	"(15) Could not get a grant to access the volume wit"
+ 556      20436F75 
+ 556      6C64206E 
+ 556      6F742067 
+ 556      65742061 
+ 557 046b 68696E20 		.ascii	"hin defined perio\000"
+ 557      64656669 
+ 557      6E656420 
+ 557      70657269 
+ 557      6F00
+ 558 047d 000000   		.space	3
+ 559 0480 28313629 		.ascii	"(16) The operation is rejected according to the fil"
+ 559      20546865 
+ 559      206F7065 
+ 559      72617469 
+ 559      6F6E2069 
+ 560 04b3 65207368 		.ascii	"e sharing policy\000"
+ 560      6172696E 
+ 560      6720706F 
+ 560      6C696379 
+ 560      00
+ 561 04c4 00000000 		.space	4
+ 562 04c8 28313729 		.ascii	"(17) LFN working src could not be allocated\000"
+ 562      204C464E 
+ 562      20776F72 
+ 562      6B696E67 
+ 562      20737263 
+ 563 04f4 00000000 		.space	28
+ 563      00000000 
+ 563      00000000 
+ 563      00000000 
+ 563      00000000 
+ 564 0510 28313829 		.ascii	"(18) Number of open files > FF_FS_LOCK\000"
+ 564      204E756D 
+ 564      62657220 
+ 564      6F66206F 
+ 564      70656E20 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s 			page 17
+
+
+ 565 0537 00000000 		.space	33
+ 565      00000000 
+ 565      00000000 
+ 565      00000000 
+ 565      00000000 
+ 566 0558 28313929 		.ascii	"(19) Given parameter is invalid\000"
+ 566      20476976 
+ 566      656E2070 
+ 566      6172616D 
+ 566      65746572 
+ 567 0578 00000000 		.space	40
+ 567      00000000 
+ 567      00000000 
+ 567      00000000 
+ 567      00000000 
+ 568              		.section	.rodata
+ 569              		.align	2
+ 570              		.set	.LANCHOR0,. + 0
+ 571              	.LC4:
+ 572 0000 4469616E 		.ascii	"Diana Ava\000"
+ 572      61204176 
+ 572      6100
+ 573 000a 00000000 		.space	10
+ 573      00000000 
+ 573      0000
+ 574              		.text
+ 575              	.Letext0:
+ 576              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 577              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 578              		.file 4 "DRIVER/FatFs/source/ff.h"
+ 579              		.file 5 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 580              		.file 6 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 581              		.file 7 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 582              		.file 8 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 583              		.file 9 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 584              		.file 10 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\
+ 585              		.file 11 "<built-in>"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s 			page 18
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 exFlashFatFs.c
+C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s:19     .rodata.Flash_EX_FatFs_Run.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s:50     .text.Flash_EX_FatFs_Run:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s:56     .text.Flash_EX_FatFs_Run:00000000 Flash_EX_FatFs_Run
+C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s:498    .text.Flash_EX_FatFs_Run:0000022c $d
+C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s:517    .rodata.__FUNCTION__.0:00000000 __FUNCTION__.0
+C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s:523    .data.errInfo:00000000 errInfo
+C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s:514    .rodata.__FUNCTION__.0:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s:520    .data.errInfo:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccPwjmkD.s:569    .rodata:00000000 $d
+
+UNDEFINED SYMBOLS
+malloc
+f_mount
+f_open
+f_write
+fprintf
+puts
+f_mkfs
+free
+f_close
+f_read
+printf
+_impure_ptr

@@ -28,7 +28,8 @@ extern void I2C_Software_Run();	// 软件仿真I2C协议读写EEPROM
 extern void I2C_Hardware_Run();	// 硬件I2C读写EEPROM
 /* FLASH实验 */
 extern void Flash_EX_Run();		// 外部flash
+extern void Flash_EX_FatFs_Run();	// 外部flash安装FatFs文件系统
 
 int main(){
-	Flash_EX_Run();
+	Flash_EX_FatFs_Run();
 }

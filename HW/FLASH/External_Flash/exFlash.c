@@ -1,15 +1,27 @@
 #include"stdio.h"
-#include"stdbool.h"
 #include"stm32f10x.h"
 #include"stm32f10x_spi.h"
-#include"delay.h"
+#include"exFlash.h"
+#include"stdlib.h"
 
 /**
- * @brief 用SPI协议读写外部FLASH
- * @note  NM25Q128EVB重置后第一个command有问题，用Wake Up函数消耗它
- * TODO:测试一下不同SPI模式能不能读写flash
- * 
+ * @brief       用SPI协议读写外部FLASH
+ *              NM25Q128EVB支持SPI Mode 0和Mode 3(Datasheet中写了)
+ * @note        NM25Q128EVB重置后第一个command有问题，用Wake Up函数消耗它
+ * @attention   正点原子提供的图纸上写的外部Flash是W25Q128，实际上硬件确是NM25Q128EVB
+ *  
  */
+
+/* 异常信息输出 */
+typedef struct Flash_EX_Errors_Info{
+    const char info[20];
+} Flash_EX_Errors_Info_t;
+
+static Flash_EX_Errors_Info_t errInfo[3] = {
+    {"success"}, 
+    {"time out"}, 
+    {"out of bounds"}
+};
 
 #define MIN(a, b) (a < b)? a: b 
 
@@ -38,8 +50,8 @@ void Flash_EX_Init(){
     GPIO_Init(GPIOB, &gpioDef);
     /* 配置SPI2 */
     SPI_InitTypeDef spiDef;
-    spiDef.SPI_CPHA             = SPI_CPHA_2Edge;                   // SPI模式0
-    spiDef.SPI_CPOL             = SPI_CPOL_High;                    // SPI模式0
+    spiDef.SPI_CPHA             = SPI_CPHA_2Edge;                   // SPI模式3
+    spiDef.SPI_CPOL             = SPI_CPOL_High;                    // SPI模式3
     spiDef.SPI_CRCPolynomial    = 0X7;                              // CRC校验位（用不上）
     spiDef.SPI_DataSize         = SPI_DataSize_8b;                  // 数据大小
     spiDef.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_2;         // 二分频（PCLK1为36MHz，SPI2分频到18MHz）
@@ -54,22 +66,6 @@ void Flash_EX_Init(){
     SPI_Cmd(SPI2, ENABLE);
 }
 
-/* 异常检查 */
-typedef enum Flash_EX_Errors{
-    FLASH_EX_ERR_SUCCESS = 0, 
-    FLASH_EX_ERR_TIMEOUT, 
-    FLASH_EX_OVERFLOWED
-}Flash_EX_Errors_t;
-
-typedef struct Flash_EX_Errors_Info{
-    const char info[20];
-} Flash_EX_Errors_Info_t;
-
-static Flash_EX_Errors_Info_t errInfo[3] = {
-    {"success"}, 
-    {"time out"}, 
-    {"out of bounds"}
-};
 
 #define FLASH_EX_CHECK(func){ \
     err = func; \
@@ -144,7 +140,7 @@ FLASH_EX_ERR_FLAG:
 }
 
 /* 读取并检查 */
-Flash_EX_Errors_t Flash_EX_Check_JEDEC_ID(){
+Flash_EX_Errors_t Flash_EX_Check_JEDEC_ID(bool* flag){
     Flash_EX_Errors_t err = 0;
     Flash_EX_CS_Low();
     FLASH_EX_CHECK(Flash_EX_Send_Byte(0X9F));
@@ -155,9 +151,9 @@ Flash_EX_Errors_t Flash_EX_Check_JEDEC_ID(){
     Flash_EX_CS_High();
     uint32_t id = ((uint32_t)idPart[0] << 16) | ((uint32_t)idPart[1] << 8) | ((uint32_t)idPart[2]);
     if(id == 0X522118){
-        printf("JEDEC verify success!\r\n");
+        *flag = true;
     }else{
-        printf("JEDEC verify failed: id=%#x\r\n", (unsigned int)id);
+        *flag = false;
     }
 FLASH_EX_ERR_FLAG:
     Flash_EX_CS_High();
@@ -346,14 +342,16 @@ Flash_EX_Errors_t Flash_EX_Write(uint8_t* src, uint32_t addr, uint32_t size){
 
     /* 再把剩下的数据写完 */
     uint32_t pages = (size + 255) / 256;
+    uint16_t i;
     for(uint32_t p = 0; p < pages; ++p){
+        FLASH_EX_CHECK(Flash_EX_Write_Enable());    // 每次写完1page后，需要重新写使能
         FLASH_EX_CHECK(Flash_EX_Synchronize());
         Flash_EX_CS_Low();
         FLASH_EX_CHECK(Flash_EX_Send_Byte(0X02));   // Page Program
         FLASH_EX_CHECK(Flash_EX_Send_Byte((addr & 0XFF0000) >> 16));
         FLASH_EX_CHECK(Flash_EX_Send_Byte((addr & 0X00FF00) >>  8));
         FLASH_EX_CHECK(Flash_EX_Send_Byte((addr & 0X0000FF) >>  0));
-        for(uint8_t i = 0; i < 256; ++i){
+        for(i = 0; i < 256; ++i){
             idx = i + p * 256;
             if(idx >= size) 
                 break;
@@ -361,8 +359,8 @@ Flash_EX_Errors_t Flash_EX_Write(uint8_t* src, uint32_t addr, uint32_t size){
         }
         addr += 256;
         Flash_EX_CS_High();
+        FLASH_EX_CHECK(Flash_EX_Synchronize());
     }
-    FLASH_EX_CHECK(Flash_EX_Synchronize());
 
     /* 写失能 */
     FLASH_EX_CHECK(Flash_EX_Write_Disable());
@@ -371,7 +369,6 @@ FLASH_EX_ERR_FLAG:
     return err;
 }
 
-extern void USART1_Init();
 
 void Flash_EX_Run(){
     Flash_EX_Errors_t err = 0;
@@ -385,22 +382,48 @@ void Flash_EX_Run(){
     FLASH_EX_CHECK(Flash_EX_Wake_Up());
 
     /* 验证JEDEC设备ID */
-    FLASH_EX_CHECK(Flash_EX_Check_JEDEC_ID());
+    bool flag;
+    FLASH_EX_CHECK(Flash_EX_Check_JEDEC_ID(&flag));
+    if(flag)
+        printf("JEDEC verify success!\r\n");
+    else
+        printf("JEDEC verify failed!\r\n");
 
-    /* 擦除扇区 */
-    uint32_t addr = FLASH_EX_SIZE - 100;
-    FLASH_EX_CHECK(Flash_EX_Erase_Sector(addr));    // 擦除最后一个扇区
-    printf("Erase sector success!\r\n");
+    // /* 擦除扇区 */
+    // uint32_t addr = FLASH_EX_SIZE - 100;
+    // FLASH_EX_CHECK(Flash_EX_Erase_Sector(addr));    // 擦除最后一个扇区
+    // printf("Erase sector success!\r\n");
 
-    /* 写数据 */
-    const char src[100] = "Ava Diana";
-    FLASH_EX_CHECK(Flash_EX_Write((uint8_t*)src, addr, 100));
+    // /* 写数据 */
+    // const char src[100] = "Ava Diana";
+    // FLASH_EX_CHECK(Flash_EX_Write((uint8_t*)src, addr, 100));
 
-    /* 读取数据 */
-    char buffer[100];
-    FLASH_EX_CHECK(Flash_EX_Read((uint8_t*)buffer, addr, 100));
-    printf("Read Data: %s\r\n", buffer);
+    // /* 读取数据 */
+    // char buffer[100];
+    // FLASH_EX_CHECK(Flash_EX_Read((uint8_t*)buffer, addr, 100));
+    // printf("Read Data: %s\r\n", buffer);
 
+    /* 8K读写测试 */
+    uint32_t begin = 10 * 4096 + 2055 + 249;  // 任意地址
+    uint32_t len = 1024 * 8;
+    uint8_t* src = malloc(len);
+    uint8_t* dst = malloc(len);
+    for(uint32_t i = 0; i < len; ++i){
+        src[i] = i % 256;
+    }
+    FLASH_EX_CHECK(Flash_EX_Write(src, begin, len));
+    FLASH_EX_CHECK(Flash_EX_Read(dst, begin, len));
+    flag = true;
+    for(uint32_t i = 0; i < len; ++i){
+        if(src[i] != dst[i]){
+            flag = false;
+            break;
+        }
+    }
+    free(src);
+    free(dst);
+    if(flag) printf("通过读写测试\r\n");
+    else printf("读写测试失败\r\n");
 FLASH_EX_ERR_FLAG:
     return;
 }

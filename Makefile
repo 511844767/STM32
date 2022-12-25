@@ -51,6 +51,9 @@ STM32F10x_FWLib/src/stm32f10x_i2c.c \
 STM32F10x_FWLib/src/stm32f10x_spi.c \
 SYSTEM/delay/delay.c \
 SYSTEM/sys/sys.c \
+DRIVER/FatFs/source/ff.c \
+DRIVER/FatFs/source/diskio.c \
+DRIVER/FatFs/source/ffunicode.c \
 USER/stm32f10x_it.c \
 USER/system_stm32f10x.c \
 USER/main.c \
@@ -68,7 +71,8 @@ HW/TPAD/tpad.c \
 HW/DMA/dma.c \
 HW/EEPROM/I2C_Software/i2c_software.c \
 HW/EEPROM/I2C_Hardware/i2c_hardware.c \
-HW/FLASH/External_Flash/exFlash.c
+HW/FLASH/External_Flash/exFlash.c \
+HW/FLASH/External_Flash_FatFs/exFlashFatFs.c
 
 # ASM sources
 ASM_SOURCES =  \
@@ -127,9 +131,11 @@ C_INCLUDES =  \
 -ICore \
 -ISTM32F10x_FWLib/inc \
 -ISYSTEM/delay \
+-IDRIVER/FatFs/source \
 -IUSER \
 -ISYSTEM/sys \
--IHW\LED
+-IHW/LED \
+-IHW/FLASH/External_Flash
 
 # compile gcc flags
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections

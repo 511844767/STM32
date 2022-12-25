@@ -13,6 +13,10 @@
         "compare": "c",
         "limits": "c",
         "*.tcc": "c",
-        "stm32f10x_i2c.h": "c"
+        "stm32f10x_i2c.h": "c",
+        "diskio.h": "c",
+        "stm32f10x_spi.h": "c",
+        "stdio.h": "c",
+        "stdlib.h": "c"
     }
 }

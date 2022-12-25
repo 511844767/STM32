@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc8KnOej.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 1
   42              		.loc 1 14 5 view .LVU1
   43 0004 0121     		movs	r1, #1
   44 0006 0820     		movs	r0, #8
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc8KnOej.s 			page 2
 
 
   45 0008 FFF7FEFF 		bl	RCC_APB1PeriphClockCmd
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 1
   85              		.loc 1 28 5 is_stmt 1 view .LVU20
   86              		.loc 1 28 41 is_stmt 0 view .LVU21
   87 0044 8DF81840 		strb	r4, [sp, #24]
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 3
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc8KnOej.s 			page 3
 
 
   29:HW/TIM/CAP/cap.c ****     TIM_TimeBaseInit(TIM5, &timeBaseDef);
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 1
  127              		.loc 1 43 49 is_stmt 0 view .LVU43
  128 007c 8DF80260 		strb	r6, [sp, #2]
   44:HW/TIM/CAP/cap.c ****     NVIC_Init(&nvicDef);
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc8KnOej.s 			page 4
 
 
  129              		.loc 1 44 5 is_stmt 1 view .LVU44
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 1
  173              		.cfi_def_cfa_offset 8
  174              		.cfi_offset 3, -8
  175              		.cfi_offset 14, -4
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 5
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc8KnOej.s 			page 5
 
 
   57:HW/TIM/CAP/cap.c ****     if(!captured){                                                      // 如果没有捕获到信
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 1
   69:HW/TIM/CAP/cap.c ****             if(polarity == TIM_ICPolarity_Rising){                  // 如果捕获到了上升沿
  202              		.loc 1 69 12 is_stmt 0 view .LVU58
  203 001e 0221     		movs	r1, #2
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 6
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc8KnOej.s 			page 6
 
 
  204 0020 1D48     		ldr	r0, .L15+4
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 1
  244 0050 134B     		ldr	r3, .L15+12
  245 0052 1B68     		ldr	r3, [r3]
   60:HW/TIM/CAP/cap.c ****                     captured = true; polarity = TIM_ICPolarity_Rising;
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 7
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc8KnOej.s 			page 7
 
 
  246              		.loc 1 60 19 view .LVU73
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 1
  287 0086 0122     		movs	r2, #1
  288 0088 1A70     		strb	r2, [r3]
   74:HW/TIM/CAP/cap.c ****             }
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 8
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc8KnOej.s 			page 8
 
 
  289              		.loc 1 74 34 is_stmt 1 view .LVU87
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 1
   89:HW/TIM/CAP/cap.c ****     delay_init();
  333              		.loc 1 89 5 view .LVU91
  334 000a FFF7FEFF 		bl	delay_init
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 9
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc8KnOej.s 			page 9
 
 
  335              	.LVL15:
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 1
  379              		.loc 1 99 22 is_stmt 0 view .LVU108
  380 0044 014B     		ldr	r3, .L21
  381 0046 0022     		movs	r2, #0
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 10
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc8KnOej.s 			page 10
 
 
  382 0048 1A70     		strb	r2, [r3]
@@ -579,29 +579,29 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 1
  426              		.file 8 "SYSTEM/delay/delay.h"
  427              		.file 9 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
  428              		.file 10 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s 			page 11
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc8KnOej.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 cap.c
-C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:19     .text.TIM5_Cap_Init:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:25     .text.TIM5_Cap_Init:00000000 TIM5_Cap_Init
-C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:153    .text.TIM5_Cap_Init:0000009c $d
-C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:159    .text.TIM5_IRQHandler:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:165    .text.TIM5_IRQHandler:00000000 TIM5_IRQHandler
-C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:298    .text.TIM5_IRQHandler:00000094 $d
-C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:398    .bss.captured:00000000 captured
-C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:416    .bss.polarity:00000000 polarity
-C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:410    .bss.cycles:00000000 cycles
-C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:404    .bss.value:00000000 value
-C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:308    .rodata.TIM5_Cap_Run.str1.4:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:312    .text.TIM5_Cap_Run:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:318    .text.TIM5_Cap_Run:00000000 TIM5_Cap_Run
-C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:387    .text.TIM5_Cap_Run:0000004c $d
-C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:399    .bss.captured:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:401    .bss.value:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:407    .bss.cycles:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccwQ6gaf.s:413    .bss.polarity:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc8KnOej.s:19     .text.TIM5_Cap_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc8KnOej.s:25     .text.TIM5_Cap_Init:00000000 TIM5_Cap_Init
+C:\Users\86157\AppData\Local\Temp\cc8KnOej.s:153    .text.TIM5_Cap_Init:0000009c $d
+C:\Users\86157\AppData\Local\Temp\cc8KnOej.s:159    .text.TIM5_IRQHandler:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc8KnOej.s:165    .text.TIM5_IRQHandler:00000000 TIM5_IRQHandler
+C:\Users\86157\AppData\Local\Temp\cc8KnOej.s:298    .text.TIM5_IRQHandler:00000094 $d
+C:\Users\86157\AppData\Local\Temp\cc8KnOej.s:398    .bss.captured:00000000 captured
+C:\Users\86157\AppData\Local\Temp\cc8KnOej.s:416    .bss.polarity:00000000 polarity
+C:\Users\86157\AppData\Local\Temp\cc8KnOej.s:410    .bss.cycles:00000000 cycles
+C:\Users\86157\AppData\Local\Temp\cc8KnOej.s:404    .bss.value:00000000 value
+C:\Users\86157\AppData\Local\Temp\cc8KnOej.s:308    .rodata.TIM5_Cap_Run.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc8KnOej.s:312    .text.TIM5_Cap_Run:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc8KnOej.s:318    .text.TIM5_Cap_Run:00000000 TIM5_Cap_Run
+C:\Users\86157\AppData\Local\Temp\cc8KnOej.s:387    .text.TIM5_Cap_Run:0000004c $d
+C:\Users\86157\AppData\Local\Temp\cc8KnOej.s:399    .bss.captured:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc8KnOej.s:401    .bss.value:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc8KnOej.s:407    .bss.cycles:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc8KnOej.s:413    .bss.polarity:00000000 $d
 
 UNDEFINED SYMBOLS
 RCC_APB1PeriphClockCmd

@@ -1,0 +1,773 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"diskio.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "DRIVER/FatFs/source/diskio.c"
+  18              		.section	.text.disk_status,"ax",%progbits
+  19              		.align	1
+  20              		.global	disk_status
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	disk_status:
+  26              	.LVL0:
+  27              	.LFB29:
+   1:DRIVER/FatFs/source/diskio.c **** /*-----------------------------------------------------------------------*/
+   2:DRIVER/FatFs/source/diskio.c **** /* Low level disk I/O module SKELETON for FatFs     (C)ChaN, 2019        */
+   3:DRIVER/FatFs/source/diskio.c **** /*-----------------------------------------------------------------------*/
+   4:DRIVER/FatFs/source/diskio.c **** /* If a working storage control module is available, it should be        */
+   5:DRIVER/FatFs/source/diskio.c **** /* attached to the FatFs via a glue function rather than modifying it.   */
+   6:DRIVER/FatFs/source/diskio.c **** /* This is an example of glue functions to attach various exsisting      */
+   7:DRIVER/FatFs/source/diskio.c **** /* storage control modules to the FatFs module with a defined API.       */
+   8:DRIVER/FatFs/source/diskio.c **** /*-----------------------------------------------------------------------*/
+   9:DRIVER/FatFs/source/diskio.c **** 
+  10:DRIVER/FatFs/source/diskio.c **** #include "ff.h"			/* Obtains integer types */
+  11:DRIVER/FatFs/source/diskio.c **** #include "diskio.h"		/* Declarations of disk functions */
+  12:DRIVER/FatFs/source/diskio.c **** #include "exFlash.h"	/* 外部Flash底层函数 */
+  13:DRIVER/FatFs/source/diskio.c **** 
+  14:DRIVER/FatFs/source/diskio.c **** /* Definitions of physical drive number for each drive */
+  15:DRIVER/FatFs/source/diskio.c **** #define DEV_CARD		0	/* SD卡 */
+  16:DRIVER/FatFs/source/diskio.c **** #define DEV_FLASH_EX	1	/* 外部flash */
+  17:DRIVER/FatFs/source/diskio.c **** 
+  18:DRIVER/FatFs/source/diskio.c **** /*-----------------------------------------------------------------------*/
+  19:DRIVER/FatFs/source/diskio.c **** /* Get Drive Status                                                      */
+  20:DRIVER/FatFs/source/diskio.c **** /*-----------------------------------------------------------------------*/
+  21:DRIVER/FatFs/source/diskio.c **** 
+  22:DRIVER/FatFs/source/diskio.c **** DSTATUS disk_status (
+  23:DRIVER/FatFs/source/diskio.c **** 	BYTE pdrv		/* Physical drive nmuber to identify the drive */
+  24:DRIVER/FatFs/source/diskio.c **** )
+  25:DRIVER/FatFs/source/diskio.c **** {
+  28              		.loc 1 25 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 8
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  26:DRIVER/FatFs/source/diskio.c **** 	DSTATUS stat;
+  32              		.loc 1 26 2 view .LVU1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s 			page 2
+
+
+  27:DRIVER/FatFs/source/diskio.c **** 
+  28:DRIVER/FatFs/source/diskio.c **** 	switch (pdrv) {
+  33              		.loc 1 28 2 view .LVU2
+  34 0000 70B1     		cbz	r0, .L4
+  25:DRIVER/FatFs/source/diskio.c **** 	DSTATUS stat;
+  35              		.loc 1 25 1 is_stmt 0 view .LVU3
+  36 0002 10B5     		push	{r4, lr}
+  37              	.LCFI0:
+  38              		.cfi_def_cfa_offset 8
+  39              		.cfi_offset 4, -8
+  40              		.cfi_offset 14, -4
+  41 0004 82B0     		sub	sp, sp, #8
+  42              	.LCFI1:
+  43              		.cfi_def_cfa_offset 16
+  44 0006 0446     		mov	r4, r0
+  45              		.loc 1 28 2 view .LVU4
+  46 0008 0128     		cmp	r0, #1
+  47 000a 0DD1     		bne	.L5
+  48              	.LBB2:
+  29:DRIVER/FatFs/source/diskio.c **** 	case DEV_CARD :
+  30:DRIVER/FatFs/source/diskio.c **** 		return STA_NOINIT;
+  31:DRIVER/FatFs/source/diskio.c **** 
+  32:DRIVER/FatFs/source/diskio.c **** 	case DEV_FLASH_EX :
+  33:DRIVER/FatFs/source/diskio.c **** 		stat = 0;
+  49              		.loc 1 33 3 is_stmt 1 view .LVU5
+  50              	.LVL1:
+  34:DRIVER/FatFs/source/diskio.c **** 		bool flag;
+  51              		.loc 1 34 3 view .LVU6
+  35:DRIVER/FatFs/source/diskio.c **** 		Flash_EX_Errors_t err = Flash_EX_Check_JEDEC_ID(&flag);
+  52              		.loc 1 35 3 view .LVU7
+  53              		.loc 1 35 27 is_stmt 0 view .LVU8
+  54 000c 0DF10700 		add	r0, sp, #7
+  55              	.LVL2:
+  56              		.loc 1 35 27 view .LVU9
+  57 0010 FFF7FEFF 		bl	Flash_EX_Check_JEDEC_ID
+  58              	.LVL3:
+  36:DRIVER/FatFs/source/diskio.c **** 		if((!flag) || (err != FLASH_EX_ERR_SUCCESS)){	// ID错误或者函数报错
+  59              		.loc 1 36 3 is_stmt 1 view .LVU10
+  60              		.loc 1 36 7 is_stmt 0 view .LVU11
+  61 0014 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+  62              		.loc 1 36 5 view .LVU12
+  63 0018 23B1     		cbz	r3, .L6
+  64              		.loc 1 36 14 discriminator 1 view .LVU13
+  65 001a 30B1     		cbz	r0, .L3
+  37:DRIVER/FatFs/source/diskio.c **** 			stat |= STA_NOINIT;
+  66              		.loc 1 37 9 view .LVU14
+  67 001c 2046     		mov	r0, r4
+  68              	.LVL4:
+  69              		.loc 1 37 9 view .LVU15
+  70 001e 04E0     		b	.L3
+  71              	.LVL5:
+  72              	.L4:
+  73              	.LCFI2:
+  74              		.cfi_def_cfa_offset 0
+  75              		.cfi_restore 4
+  76              		.cfi_restore 14
+  77              		.loc 1 37 9 view .LVU16
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s 			page 3
+
+
+  78              	.LBE2:
+  28:DRIVER/FatFs/source/diskio.c **** 	case DEV_CARD :
+  79              		.loc 1 28 2 view .LVU17
+  80 0020 0120     		movs	r0, #1
+  81              	.LVL6:
+  38:DRIVER/FatFs/source/diskio.c **** 		}
+  39:DRIVER/FatFs/source/diskio.c **** 		return stat;
+  40:DRIVER/FatFs/source/diskio.c **** 	}
+  41:DRIVER/FatFs/source/diskio.c **** 	return STA_NOINIT;
+  42:DRIVER/FatFs/source/diskio.c **** }
+  82              		.loc 1 42 1 view .LVU18
+  83 0022 7047     		bx	lr
+  84              	.LVL7:
+  85              	.L6:
+  86              	.LCFI3:
+  87              		.cfi_def_cfa_offset 16
+  88              		.cfi_offset 4, -8
+  89              		.cfi_offset 14, -4
+  90              	.LBB3:
+  37:DRIVER/FatFs/source/diskio.c **** 		}
+  91              		.loc 1 37 9 view .LVU19
+  92 0024 2046     		mov	r0, r4
+  93              	.LVL8:
+  37:DRIVER/FatFs/source/diskio.c **** 		}
+  94              		.loc 1 37 9 view .LVU20
+  95 0026 00E0     		b	.L3
+  96              	.LVL9:
+  97              	.L5:
+  37:DRIVER/FatFs/source/diskio.c **** 		}
+  98              		.loc 1 37 9 view .LVU21
+  99              	.LBE3:
+  28:DRIVER/FatFs/source/diskio.c **** 	case DEV_CARD :
+ 100              		.loc 1 28 2 view .LVU22
+ 101 0028 0120     		movs	r0, #1
+ 102              	.LVL10:
+ 103              	.L3:
+ 104              		.loc 1 42 1 discriminator 1 view .LVU23
+ 105 002a 02B0     		add	sp, sp, #8
+ 106              	.LCFI4:
+ 107              		.cfi_def_cfa_offset 8
+ 108              		@ sp needed
+ 109 002c 10BD     		pop	{r4, pc}
+ 110              		.cfi_endproc
+ 111              	.LFE29:
+ 113              		.section	.text.disk_initialize,"ax",%progbits
+ 114              		.align	1
+ 115              		.global	disk_initialize
+ 116              		.syntax unified
+ 117              		.thumb
+ 118              		.thumb_func
+ 120              	disk_initialize:
+ 121              	.LVL11:
+ 122              	.LFB30:
+  43:DRIVER/FatFs/source/diskio.c **** 
+  44:DRIVER/FatFs/source/diskio.c **** 
+  45:DRIVER/FatFs/source/diskio.c **** 
+  46:DRIVER/FatFs/source/diskio.c **** /*-----------------------------------------------------------------------*/
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s 			page 4
+
+
+  47:DRIVER/FatFs/source/diskio.c **** /* Inidialize a Drive                                                    */
+  48:DRIVER/FatFs/source/diskio.c **** /*-----------------------------------------------------------------------*/
+  49:DRIVER/FatFs/source/diskio.c **** 
+  50:DRIVER/FatFs/source/diskio.c **** DSTATUS disk_initialize (
+  51:DRIVER/FatFs/source/diskio.c **** 	BYTE pdrv				/* Physical drive nmuber to identify the drive */
+  52:DRIVER/FatFs/source/diskio.c **** )
+  53:DRIVER/FatFs/source/diskio.c **** {
+ 123              		.loc 1 53 1 is_stmt 1 view -0
+ 124              		.cfi_startproc
+ 125              		@ args = 0, pretend = 0, frame = 0
+ 126              		@ frame_needed = 0, uses_anonymous_args = 0
+  54:DRIVER/FatFs/source/diskio.c **** 	DSTATUS stat;
+ 127              		.loc 1 54 2 view .LVU25
+  55:DRIVER/FatFs/source/diskio.c **** 
+  56:DRIVER/FatFs/source/diskio.c **** 	switch (pdrv) {
+ 128              		.loc 1 56 2 view .LVU26
+ 129 0000 0128     		cmp	r0, #1
+ 130 0002 01D0     		beq	.L20
+ 131              	.LBB4:
+  57:DRIVER/FatFs/source/diskio.c **** 	case DEV_CARD :
+  58:DRIVER/FatFs/source/diskio.c **** 		return STA_NOINIT;
+ 132              		.loc 1 58 10 is_stmt 0 view .LVU27
+ 133 0004 0120     		movs	r0, #1
+ 134              	.LVL12:
+ 135              		.loc 1 58 10 view .LVU28
+ 136              	.LBE4:
+  59:DRIVER/FatFs/source/diskio.c **** 
+  60:DRIVER/FatFs/source/diskio.c **** 	case DEV_FLASH_EX :
+  61:DRIVER/FatFs/source/diskio.c **** 		stat = 0;
+  62:DRIVER/FatFs/source/diskio.c **** 		delay_init();						// 延迟
+  63:DRIVER/FatFs/source/diskio.c **** 		USART1_Init();  					// 串口
+  64:DRIVER/FatFs/source/diskio.c **** 		Flash_EX_Init();					// flash初始化
+  65:DRIVER/FatFs/source/diskio.c **** 		Flash_EX_Errors_t err = Flash_EX_Wake_Up();	// 消耗掉第一个异常command
+  66:DRIVER/FatFs/source/diskio.c **** 		if(err != FLASH_EX_ERR_SUCCESS){
+  67:DRIVER/FatFs/source/diskio.c **** 			stat |= STA_NOINIT;
+  68:DRIVER/FatFs/source/diskio.c **** 		}
+  69:DRIVER/FatFs/source/diskio.c **** 		stat |= disk_status(DEV_FLASH_EX);	// 检查设备
+  70:DRIVER/FatFs/source/diskio.c **** 		return stat;
+  71:DRIVER/FatFs/source/diskio.c **** 	}
+  72:DRIVER/FatFs/source/diskio.c **** 	return STA_NOINIT;
+  73:DRIVER/FatFs/source/diskio.c **** }
+ 137              		.loc 1 73 1 view .LVU29
+ 138 0006 7047     		bx	lr
+ 139              	.LVL13:
+ 140              	.L20:
+  53:DRIVER/FatFs/source/diskio.c **** 	DSTATUS stat;
+ 141              		.loc 1 53 1 view .LVU30
+ 142 0008 10B5     		push	{r4, lr}
+ 143              	.LCFI5:
+ 144              		.cfi_def_cfa_offset 8
+ 145              		.cfi_offset 4, -8
+ 146              		.cfi_offset 14, -4
+ 147 000a 0446     		mov	r4, r0
+ 148              	.LBB5:
+  61:DRIVER/FatFs/source/diskio.c **** 		delay_init();						// 延迟
+ 149              		.loc 1 61 3 is_stmt 1 view .LVU31
+ 150              	.LVL14:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s 			page 5
+
+
+  62:DRIVER/FatFs/source/diskio.c **** 		USART1_Init();  					// 串口
+ 151              		.loc 1 62 3 view .LVU32
+ 152 000c FFF7FEFF 		bl	delay_init
+ 153              	.LVL15:
+  63:DRIVER/FatFs/source/diskio.c **** 		Flash_EX_Init();					// flash初始化
+ 154              		.loc 1 63 3 view .LVU33
+ 155 0010 FFF7FEFF 		bl	USART1_Init
+ 156              	.LVL16:
+  64:DRIVER/FatFs/source/diskio.c **** 		Flash_EX_Errors_t err = Flash_EX_Wake_Up();	// 消耗掉第一个异常command
+ 157              		.loc 1 64 3 view .LVU34
+ 158 0014 FFF7FEFF 		bl	Flash_EX_Init
+ 159              	.LVL17:
+  65:DRIVER/FatFs/source/diskio.c **** 		if(err != FLASH_EX_ERR_SUCCESS){
+ 160              		.loc 1 65 3 view .LVU35
+  65:DRIVER/FatFs/source/diskio.c **** 		if(err != FLASH_EX_ERR_SUCCESS){
+ 161              		.loc 1 65 27 is_stmt 0 view .LVU36
+ 162 0018 FFF7FEFF 		bl	Flash_EX_Wake_Up
+ 163              	.LVL18:
+  66:DRIVER/FatFs/source/diskio.c **** 			stat |= STA_NOINIT;
+ 164              		.loc 1 66 3 is_stmt 1 view .LVU37
+  66:DRIVER/FatFs/source/diskio.c **** 			stat |= STA_NOINIT;
+ 165              		.loc 1 66 5 is_stmt 0 view .LVU38
+ 166 001c 00B9     		cbnz	r0, .L14
+  61:DRIVER/FatFs/source/diskio.c **** 		delay_init();						// 延迟
+ 167              		.loc 1 61 8 view .LVU39
+ 168 001e 0446     		mov	r4, r0
+ 169              	.L14:
+ 170              	.LVL19:
+  69:DRIVER/FatFs/source/diskio.c **** 		return stat;
+ 171              		.loc 1 69 3 is_stmt 1 view .LVU40
+  69:DRIVER/FatFs/source/diskio.c **** 		return stat;
+ 172              		.loc 1 69 11 is_stmt 0 view .LVU41
+ 173 0020 0120     		movs	r0, #1
+ 174              	.LVL20:
+  69:DRIVER/FatFs/source/diskio.c **** 		return stat;
+ 175              		.loc 1 69 11 view .LVU42
+ 176 0022 FFF7FEFF 		bl	disk_status
+ 177              	.LVL21:
+  69:DRIVER/FatFs/source/diskio.c **** 		return stat;
+ 178              		.loc 1 69 8 view .LVU43
+ 179 0026 2043     		orrs	r0, r0, r4
+ 180 0028 C0B2     		uxtb	r0, r0
+ 181              	.LVL22:
+  70:DRIVER/FatFs/source/diskio.c **** 	}
+ 182              		.loc 1 70 3 is_stmt 1 view .LVU44
+ 183              	.LBE5:
+ 184              		.loc 1 73 1 is_stmt 0 view .LVU45
+ 185 002a 10BD     		pop	{r4, pc}
+ 186              		.cfi_endproc
+ 187              	.LFE30:
+ 189              		.section	.text.disk_read,"ax",%progbits
+ 190              		.align	1
+ 191              		.global	disk_read
+ 192              		.syntax unified
+ 193              		.thumb
+ 194              		.thumb_func
+ 196              	disk_read:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s 			page 6
+
+
+ 197              	.LVL23:
+ 198              	.LFB31:
+  74:DRIVER/FatFs/source/diskio.c **** 
+  75:DRIVER/FatFs/source/diskio.c **** 
+  76:DRIVER/FatFs/source/diskio.c **** 
+  77:DRIVER/FatFs/source/diskio.c **** /*-----------------------------------------------------------------------*/
+  78:DRIVER/FatFs/source/diskio.c **** /* Read Sector(s)                                                        */
+  79:DRIVER/FatFs/source/diskio.c **** /*-----------------------------------------------------------------------*/
+  80:DRIVER/FatFs/source/diskio.c **** 
+  81:DRIVER/FatFs/source/diskio.c **** DRESULT disk_read (
+  82:DRIVER/FatFs/source/diskio.c **** 	BYTE pdrv,		/* Physical drive nmuber to identify the drive */
+  83:DRIVER/FatFs/source/diskio.c **** 	BYTE *buff,		/* Data buffer to store read data */
+  84:DRIVER/FatFs/source/diskio.c **** 	LBA_t sector,	/* Start sector in LBA */
+  85:DRIVER/FatFs/source/diskio.c **** 	UINT count		/* Number of sectors to read */
+  86:DRIVER/FatFs/source/diskio.c **** )
+  87:DRIVER/FatFs/source/diskio.c **** {
+ 199              		.loc 1 87 1 is_stmt 1 view -0
+ 200              		.cfi_startproc
+ 201              		@ args = 0, pretend = 0, frame = 0
+ 202              		@ frame_needed = 0, uses_anonymous_args = 0
+ 203              		.loc 1 87 1 is_stmt 0 view .LVU47
+ 204 0000 10B5     		push	{r4, lr}
+ 205              	.LCFI6:
+ 206              		.cfi_def_cfa_offset 8
+ 207              		.cfi_offset 4, -8
+ 208              		.cfi_offset 14, -4
+ 209 0002 0446     		mov	r4, r0
+  88:DRIVER/FatFs/source/diskio.c **** 	switch (pdrv) {
+ 210              		.loc 1 88 2 is_stmt 1 view .LVU48
+ 211 0004 0128     		cmp	r0, #1
+ 212 0006 01D0     		beq	.L28
+ 213              	.LBB6:
+  89:DRIVER/FatFs/source/diskio.c **** 	case DEV_CARD :
+  90:DRIVER/FatFs/source/diskio.c **** 		return RES_PARERR;
+ 214              		.loc 1 90 10 is_stmt 0 view .LVU49
+ 215 0008 0420     		movs	r0, #4
+ 216              	.LVL24:
+ 217              	.L22:
+ 218              		.loc 1 90 10 view .LVU50
+ 219              	.LBE6:
+  91:DRIVER/FatFs/source/diskio.c **** 
+  92:DRIVER/FatFs/source/diskio.c **** 	case DEV_FLASH_EX :
+  93:DRIVER/FatFs/source/diskio.c **** 		Flash_EX_Errors_t err = Flash_EX_Read((uint8_t*)buff, sector * 4096, count * 4096);
+  94:DRIVER/FatFs/source/diskio.c **** 		switch (err){
+  95:DRIVER/FatFs/source/diskio.c **** 		case FLASH_EX_ERR_SUCCESS:
+  96:DRIVER/FatFs/source/diskio.c **** 			return RES_OK;		// 成功读取
+  97:DRIVER/FatFs/source/diskio.c **** 			break;
+  98:DRIVER/FatFs/source/diskio.c **** 		case FLASH_EX_ERR_TIMEOUT:
+  99:DRIVER/FatFs/source/diskio.c **** 			return RES_NOTRDY;	// 运行超时
+ 100:DRIVER/FatFs/source/diskio.c **** 			break;
+ 101:DRIVER/FatFs/source/diskio.c **** 		case FLASH_EX_OVERFLOWED:
+ 102:DRIVER/FatFs/source/diskio.c **** 			return RES_ERROR;	// 地址溢出
+ 103:DRIVER/FatFs/source/diskio.c **** 			break;
+ 104:DRIVER/FatFs/source/diskio.c **** 		default:
+ 105:DRIVER/FatFs/source/diskio.c **** 			return RES_PARERR;	// Not allowed
+ 106:DRIVER/FatFs/source/diskio.c **** 		}
+ 107:DRIVER/FatFs/source/diskio.c **** 	}
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s 			page 7
+
+
+ 108:DRIVER/FatFs/source/diskio.c **** 
+ 109:DRIVER/FatFs/source/diskio.c **** 	return RES_PARERR;
+ 110:DRIVER/FatFs/source/diskio.c **** }
+ 220              		.loc 1 110 1 view .LVU51
+ 221 000a 10BD     		pop	{r4, pc}
+ 222              	.LVL25:
+ 223              	.L28:
+ 224              		.loc 1 110 1 view .LVU52
+ 225 000c 0846     		mov	r0, r1
+ 226              	.LVL26:
+ 227              		.loc 1 110 1 view .LVU53
+ 228 000e 1146     		mov	r1, r2
+ 229              	.LVL27:
+ 230              	.LBB7:
+  93:DRIVER/FatFs/source/diskio.c **** 		switch (err){
+ 231              		.loc 1 93 3 is_stmt 1 view .LVU54
+  93:DRIVER/FatFs/source/diskio.c **** 		switch (err){
+ 232              		.loc 1 93 27 is_stmt 0 view .LVU55
+ 233 0010 1A03     		lsls	r2, r3, #12
+ 234              	.LVL28:
+  93:DRIVER/FatFs/source/diskio.c **** 		switch (err){
+ 235              		.loc 1 93 27 view .LVU56
+ 236 0012 0903     		lsls	r1, r1, #12
+ 237              	.LVL29:
+  93:DRIVER/FatFs/source/diskio.c **** 		switch (err){
+ 238              		.loc 1 93 27 view .LVU57
+ 239 0014 FFF7FEFF 		bl	Flash_EX_Read
+ 240              	.LVL30:
+  94:DRIVER/FatFs/source/diskio.c **** 		case FLASH_EX_ERR_SUCCESS:
+ 241              		.loc 1 94 3 is_stmt 1 view .LVU58
+ 242 0018 0128     		cmp	r0, #1
+ 243 001a 05D0     		beq	.L24
+ 244 001c 0228     		cmp	r0, #2
+ 245 001e 05D0     		beq	.L25
+ 246 0020 0028     		cmp	r0, #0
+ 247 0022 F2D0     		beq	.L22
+ 105:DRIVER/FatFs/source/diskio.c **** 		}
+ 248              		.loc 1 105 11 is_stmt 0 view .LVU59
+ 249 0024 0420     		movs	r0, #4
+ 250              	.LVL31:
+ 105:DRIVER/FatFs/source/diskio.c **** 		}
+ 251              		.loc 1 105 11 view .LVU60
+ 252 0026 F0E7     		b	.L22
+ 253              	.LVL32:
+ 254              	.L24:
+  99:DRIVER/FatFs/source/diskio.c **** 			break;
+ 255              		.loc 1 99 11 view .LVU61
+ 256 0028 0320     		movs	r0, #3
+ 257              	.LVL33:
+  99:DRIVER/FatFs/source/diskio.c **** 			break;
+ 258              		.loc 1 99 11 view .LVU62
+ 259 002a EEE7     		b	.L22
+ 260              	.LVL34:
+ 261              	.L25:
+ 102:DRIVER/FatFs/source/diskio.c **** 			break;
+ 262              		.loc 1 102 11 view .LVU63
+ 263 002c 2046     		mov	r0, r4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s 			page 8
+
+
+ 264              	.LVL35:
+ 102:DRIVER/FatFs/source/diskio.c **** 			break;
+ 265              		.loc 1 102 11 view .LVU64
+ 266 002e ECE7     		b	.L22
+ 267              	.LBE7:
+ 268              		.cfi_endproc
+ 269              	.LFE31:
+ 271              		.section	.text.disk_write,"ax",%progbits
+ 272              		.align	1
+ 273              		.global	disk_write
+ 274              		.syntax unified
+ 275              		.thumb
+ 276              		.thumb_func
+ 278              	disk_write:
+ 279              	.LVL36:
+ 280              	.LFB32:
+ 111:DRIVER/FatFs/source/diskio.c **** 
+ 112:DRIVER/FatFs/source/diskio.c **** 
+ 113:DRIVER/FatFs/source/diskio.c **** 
+ 114:DRIVER/FatFs/source/diskio.c **** /*-----------------------------------------------------------------------*/
+ 115:DRIVER/FatFs/source/diskio.c **** /* Write Sector(s)                                                       */
+ 116:DRIVER/FatFs/source/diskio.c **** /*-----------------------------------------------------------------------*/
+ 117:DRIVER/FatFs/source/diskio.c **** 
+ 118:DRIVER/FatFs/source/diskio.c **** #if FF_FS_READONLY == 0
+ 119:DRIVER/FatFs/source/diskio.c **** 
+ 120:DRIVER/FatFs/source/diskio.c **** DRESULT disk_write (
+ 121:DRIVER/FatFs/source/diskio.c **** 	BYTE pdrv,			/* Physical drive nmuber to identify the drive */
+ 122:DRIVER/FatFs/source/diskio.c **** 	const BYTE *buff,	/* Data to be written */
+ 123:DRIVER/FatFs/source/diskio.c **** 	LBA_t sector,		/* Start sector in LBA */
+ 124:DRIVER/FatFs/source/diskio.c **** 	UINT count			/* Number of sectors to write */
+ 125:DRIVER/FatFs/source/diskio.c **** )
+ 126:DRIVER/FatFs/source/diskio.c **** {
+ 281              		.loc 1 126 1 is_stmt 1 view -0
+ 282              		.cfi_startproc
+ 283              		@ args = 0, pretend = 0, frame = 0
+ 284              		@ frame_needed = 0, uses_anonymous_args = 0
+ 285              		.loc 1 126 1 is_stmt 0 view .LVU66
+ 286 0000 10B5     		push	{r4, lr}
+ 287              	.LCFI7:
+ 288              		.cfi_def_cfa_offset 8
+ 289              		.cfi_offset 4, -8
+ 290              		.cfi_offset 14, -4
+ 291 0002 0446     		mov	r4, r0
+ 127:DRIVER/FatFs/source/diskio.c **** 	switch (pdrv) {
+ 292              		.loc 1 127 2 is_stmt 1 view .LVU67
+ 293 0004 0128     		cmp	r0, #1
+ 294 0006 01D0     		beq	.L36
+ 295              	.LBB8:
+ 128:DRIVER/FatFs/source/diskio.c **** 	case DEV_CARD :
+ 129:DRIVER/FatFs/source/diskio.c **** 		return RES_PARERR;
+ 296              		.loc 1 129 10 is_stmt 0 view .LVU68
+ 297 0008 0420     		movs	r0, #4
+ 298              	.LVL37:
+ 299              	.L30:
+ 300              		.loc 1 129 10 view .LVU69
+ 301              	.LBE8:
+ 130:DRIVER/FatFs/source/diskio.c **** 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s 			page 9
+
+
+ 131:DRIVER/FatFs/source/diskio.c **** 	case DEV_FLASH_EX :
+ 132:DRIVER/FatFs/source/diskio.c **** 		Flash_EX_Errors_t err = Flash_EX_Write((uint8_t*)buff, sector * 4096, count * 4096);
+ 133:DRIVER/FatFs/source/diskio.c **** 		switch (err){
+ 134:DRIVER/FatFs/source/diskio.c **** 		case FLASH_EX_ERR_SUCCESS:
+ 135:DRIVER/FatFs/source/diskio.c **** 			return RES_OK;		// 成功读取
+ 136:DRIVER/FatFs/source/diskio.c **** 			break;
+ 137:DRIVER/FatFs/source/diskio.c **** 		case FLASH_EX_ERR_TIMEOUT:
+ 138:DRIVER/FatFs/source/diskio.c **** 			return RES_NOTRDY;	// 运行超时
+ 139:DRIVER/FatFs/source/diskio.c **** 			break;
+ 140:DRIVER/FatFs/source/diskio.c **** 		case FLASH_EX_OVERFLOWED:
+ 141:DRIVER/FatFs/source/diskio.c **** 			return RES_ERROR;	// 地址溢出
+ 142:DRIVER/FatFs/source/diskio.c **** 			break;
+ 143:DRIVER/FatFs/source/diskio.c **** 		default:
+ 144:DRIVER/FatFs/source/diskio.c **** 			return RES_PARERR;	// Not allowed
+ 145:DRIVER/FatFs/source/diskio.c **** 		}
+ 146:DRIVER/FatFs/source/diskio.c **** 	}
+ 147:DRIVER/FatFs/source/diskio.c **** 
+ 148:DRIVER/FatFs/source/diskio.c **** 	return RES_PARERR;
+ 149:DRIVER/FatFs/source/diskio.c **** }
+ 302              		.loc 1 149 1 view .LVU70
+ 303 000a 10BD     		pop	{r4, pc}
+ 304              	.LVL38:
+ 305              	.L36:
+ 306              		.loc 1 149 1 view .LVU71
+ 307 000c 0846     		mov	r0, r1
+ 308              	.LVL39:
+ 309              		.loc 1 149 1 view .LVU72
+ 310 000e 1146     		mov	r1, r2
+ 311              	.LVL40:
+ 312              	.LBB9:
+ 132:DRIVER/FatFs/source/diskio.c **** 		switch (err){
+ 313              		.loc 1 132 3 is_stmt 1 view .LVU73
+ 132:DRIVER/FatFs/source/diskio.c **** 		switch (err){
+ 314              		.loc 1 132 27 is_stmt 0 view .LVU74
+ 315 0010 1A03     		lsls	r2, r3, #12
+ 316              	.LVL41:
+ 132:DRIVER/FatFs/source/diskio.c **** 		switch (err){
+ 317              		.loc 1 132 27 view .LVU75
+ 318 0012 0903     		lsls	r1, r1, #12
+ 319              	.LVL42:
+ 132:DRIVER/FatFs/source/diskio.c **** 		switch (err){
+ 320              		.loc 1 132 27 view .LVU76
+ 321 0014 FFF7FEFF 		bl	Flash_EX_Write
+ 322              	.LVL43:
+ 133:DRIVER/FatFs/source/diskio.c **** 		case FLASH_EX_ERR_SUCCESS:
+ 323              		.loc 1 133 3 is_stmt 1 view .LVU77
+ 324 0018 0128     		cmp	r0, #1
+ 325 001a 05D0     		beq	.L32
+ 326 001c 0228     		cmp	r0, #2
+ 327 001e 05D0     		beq	.L33
+ 328 0020 0028     		cmp	r0, #0
+ 329 0022 F2D0     		beq	.L30
+ 144:DRIVER/FatFs/source/diskio.c **** 		}
+ 330              		.loc 1 144 11 is_stmt 0 view .LVU78
+ 331 0024 0420     		movs	r0, #4
+ 332              	.LVL44:
+ 144:DRIVER/FatFs/source/diskio.c **** 		}
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s 			page 10
+
+
+ 333              		.loc 1 144 11 view .LVU79
+ 334 0026 F0E7     		b	.L30
+ 335              	.LVL45:
+ 336              	.L32:
+ 138:DRIVER/FatFs/source/diskio.c **** 			break;
+ 337              		.loc 1 138 11 view .LVU80
+ 338 0028 0320     		movs	r0, #3
+ 339              	.LVL46:
+ 138:DRIVER/FatFs/source/diskio.c **** 			break;
+ 340              		.loc 1 138 11 view .LVU81
+ 341 002a EEE7     		b	.L30
+ 342              	.LVL47:
+ 343              	.L33:
+ 141:DRIVER/FatFs/source/diskio.c **** 			break;
+ 344              		.loc 1 141 11 view .LVU82
+ 345 002c 2046     		mov	r0, r4
+ 346              	.LVL48:
+ 141:DRIVER/FatFs/source/diskio.c **** 			break;
+ 347              		.loc 1 141 11 view .LVU83
+ 348 002e ECE7     		b	.L30
+ 349              	.LBE9:
+ 350              		.cfi_endproc
+ 351              	.LFE32:
+ 353              		.section	.text.disk_ioctl,"ax",%progbits
+ 354              		.align	1
+ 355              		.global	disk_ioctl
+ 356              		.syntax unified
+ 357              		.thumb
+ 358              		.thumb_func
+ 360              	disk_ioctl:
+ 361              	.LVL49:
+ 362              	.LFB33:
+ 150:DRIVER/FatFs/source/diskio.c **** 
+ 151:DRIVER/FatFs/source/diskio.c **** #endif
+ 152:DRIVER/FatFs/source/diskio.c **** 
+ 153:DRIVER/FatFs/source/diskio.c **** 
+ 154:DRIVER/FatFs/source/diskio.c **** /*-----------------------------------------------------------------------*/
+ 155:DRIVER/FatFs/source/diskio.c **** /* Miscellaneous Functions获取一些芯片信息                                */
+ 156:DRIVER/FatFs/source/diskio.c **** /*-----------------------------------------------------------------------*/
+ 157:DRIVER/FatFs/source/diskio.c **** 
+ 158:DRIVER/FatFs/source/diskio.c **** DRESULT disk_ioctl (
+ 159:DRIVER/FatFs/source/diskio.c **** 	BYTE pdrv,		/* Physical drive nmuber (0..) */
+ 160:DRIVER/FatFs/source/diskio.c **** 	BYTE cmd,		/* Control code */
+ 161:DRIVER/FatFs/source/diskio.c **** 	void *buff		/* Buffer to send/receive control data */
+ 162:DRIVER/FatFs/source/diskio.c **** )
+ 163:DRIVER/FatFs/source/diskio.c **** {
+ 363              		.loc 1 163 1 is_stmt 1 view -0
+ 364              		.cfi_startproc
+ 365              		@ args = 0, pretend = 0, frame = 0
+ 366              		@ frame_needed = 0, uses_anonymous_args = 0
+ 367              		@ link register save eliminated.
+ 164:DRIVER/FatFs/source/diskio.c **** 	DRESULT res = RES_OK;
+ 368              		.loc 1 164 2 view .LVU85
+ 165:DRIVER/FatFs/source/diskio.c **** 
+ 166:DRIVER/FatFs/source/diskio.c **** 	switch (pdrv) {
+ 369              		.loc 1 166 2 view .LVU86
+ 370 0000 B8B1     		cbz	r0, .L41
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s 			page 11
+
+
+ 371 0002 0128     		cmp	r0, #1
+ 372 0004 16D1     		bne	.L42
+ 167:DRIVER/FatFs/source/diskio.c **** 	case DEV_CARD :
+ 168:DRIVER/FatFs/source/diskio.c **** 		return res;
+ 169:DRIVER/FatFs/source/diskio.c **** 
+ 170:DRIVER/FatFs/source/diskio.c **** 	case DEV_FLASH_EX :
+ 171:DRIVER/FatFs/source/diskio.c **** 		switch (cmd)
+ 373              		.loc 1 171 3 view .LVU87
+ 374 0006 0229     		cmp	r1, #2
+ 375 0008 0AD0     		beq	.L39
+ 376 000a 0329     		cmp	r1, #3
+ 377 000c 0DD0     		beq	.L40
+ 378 000e 0129     		cmp	r1, #1
+ 379 0010 01D0     		beq	.L44
+ 380 0012 0020     		movs	r0, #0
+ 381              	.LVL50:
+ 172:DRIVER/FatFs/source/diskio.c **** 		{
+ 173:DRIVER/FatFs/source/diskio.c **** 		case GET_SECTOR_COUNT:	// 扇区个数
+ 174:DRIVER/FatFs/source/diskio.c **** 			*(LBA_t*)buff = 4096;
+ 175:DRIVER/FatFs/source/diskio.c **** 			break;
+ 176:DRIVER/FatFs/source/diskio.c **** 		case GET_SECTOR_SIZE:	// 扇区大小
+ 177:DRIVER/FatFs/source/diskio.c **** 			*(WORD*)buff = 4096;
+ 178:DRIVER/FatFs/source/diskio.c **** 			break;
+ 179:DRIVER/FatFs/source/diskio.c **** 		case GET_BLOCK_SIZE:	// FatFs block的含义是最小擦除粒度，而Flash的block含义是16�
+ 180:DRIVER/FatFs/source/diskio.c **** 			*(DWORD*)buff = 1;
+ 181:DRIVER/FatFs/source/diskio.c **** 			break;
+ 182:DRIVER/FatFs/source/diskio.c **** 		default:
+ 183:DRIVER/FatFs/source/diskio.c **** 			break;
+ 184:DRIVER/FatFs/source/diskio.c **** 		}
+ 185:DRIVER/FatFs/source/diskio.c **** 		return res;
+ 186:DRIVER/FatFs/source/diskio.c **** 	}
+ 187:DRIVER/FatFs/source/diskio.c **** 
+ 188:DRIVER/FatFs/source/diskio.c **** 	return RES_PARERR;
+ 189:DRIVER/FatFs/source/diskio.c **** }
+ 382              		.loc 1 189 1 is_stmt 0 view .LVU88
+ 383 0014 7047     		bx	lr
+ 384              	.LVL51:
+ 385              	.L44:
+ 174:DRIVER/FatFs/source/diskio.c **** 			break;
+ 386              		.loc 1 174 4 is_stmt 1 view .LVU89
+ 174:DRIVER/FatFs/source/diskio.c **** 			break;
+ 387              		.loc 1 174 18 is_stmt 0 view .LVU90
+ 388 0016 4FF48053 		mov	r3, #4096
+ 389 001a 1360     		str	r3, [r2]
+ 175:DRIVER/FatFs/source/diskio.c **** 		case GET_SECTOR_SIZE:	// 扇区大小
+ 390              		.loc 1 175 4 is_stmt 1 view .LVU91
+ 185:DRIVER/FatFs/source/diskio.c **** 	}
+ 391              		.loc 1 185 10 is_stmt 0 view .LVU92
+ 392 001c 0020     		movs	r0, #0
+ 393              	.LVL52:
+ 175:DRIVER/FatFs/source/diskio.c **** 		case GET_SECTOR_SIZE:	// 扇区大小
+ 394              		.loc 1 175 4 view .LVU93
+ 395 001e 7047     		bx	lr
+ 396              	.LVL53:
+ 397              	.L39:
+ 177:DRIVER/FatFs/source/diskio.c **** 			break;
+ 398              		.loc 1 177 4 is_stmt 1 view .LVU94
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s 			page 12
+
+
+ 177:DRIVER/FatFs/source/diskio.c **** 			break;
+ 399              		.loc 1 177 17 is_stmt 0 view .LVU95
+ 400 0020 4FF48053 		mov	r3, #4096
+ 401 0024 1380     		strh	r3, [r2]	@ movhi
+ 178:DRIVER/FatFs/source/diskio.c **** 		case GET_BLOCK_SIZE:	// FatFs block的含义是最小擦除粒度，而Flash的block含义是16�
+ 402              		.loc 1 178 4 is_stmt 1 view .LVU96
+ 185:DRIVER/FatFs/source/diskio.c **** 	}
+ 403              		.loc 1 185 10 is_stmt 0 view .LVU97
+ 404 0026 0020     		movs	r0, #0
+ 405              	.LVL54:
+ 178:DRIVER/FatFs/source/diskio.c **** 		case GET_BLOCK_SIZE:	// FatFs block的含义是最小擦除粒度，而Flash的block含义是16�
+ 406              		.loc 1 178 4 view .LVU98
+ 407 0028 7047     		bx	lr
+ 408              	.LVL55:
+ 409              	.L40:
+ 180:DRIVER/FatFs/source/diskio.c **** 			break;
+ 410              		.loc 1 180 4 is_stmt 1 view .LVU99
+ 180:DRIVER/FatFs/source/diskio.c **** 			break;
+ 411              		.loc 1 180 18 is_stmt 0 view .LVU100
+ 412 002a 0123     		movs	r3, #1
+ 413 002c 1360     		str	r3, [r2]
+ 181:DRIVER/FatFs/source/diskio.c **** 		default:
+ 414              		.loc 1 181 4 is_stmt 1 view .LVU101
+ 185:DRIVER/FatFs/source/diskio.c **** 	}
+ 415              		.loc 1 185 10 is_stmt 0 view .LVU102
+ 416 002e 0020     		movs	r0, #0
+ 417              	.LVL56:
+ 181:DRIVER/FatFs/source/diskio.c **** 		default:
+ 418              		.loc 1 181 4 view .LVU103
+ 419 0030 7047     		bx	lr
+ 420              	.LVL57:
+ 421              	.L41:
+ 181:DRIVER/FatFs/source/diskio.c **** 		default:
+ 422              		.loc 1 181 4 view .LVU104
+ 423 0032 7047     		bx	lr
+ 424              	.L42:
+ 188:DRIVER/FatFs/source/diskio.c **** }
+ 425              		.loc 1 188 9 view .LVU105
+ 426 0034 0420     		movs	r0, #4
+ 427              	.LVL58:
+ 188:DRIVER/FatFs/source/diskio.c **** }
+ 428              		.loc 1 188 9 view .LVU106
+ 429 0036 7047     		bx	lr
+ 430              		.cfi_endproc
+ 431              	.LFE33:
+ 433              		.section	.text.get_fattime,"ax",%progbits
+ 434              		.align	1
+ 435              		.global	get_fattime
+ 436              		.syntax unified
+ 437              		.thumb
+ 438              		.thumb_func
+ 440              	get_fattime:
+ 441              	.LFB34:
+ 190:DRIVER/FatFs/source/diskio.c **** 
+ 191:DRIVER/FatFs/source/diskio.c **** /**
+ 192:DRIVER/FatFs/source/diskio.c ****  * @brief 	获取文件时间
+ 193:DRIVER/FatFs/source/diskio.c ****  * @note 	STM32暂时无法获取时间，返回0
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s 			page 13
+
+
+ 194:DRIVER/FatFs/source/diskio.c ****  * TODO: 如果需要获取实时时间，需要参考教程RTC章节
+ 195:DRIVER/FatFs/source/diskio.c ****  */
+ 196:DRIVER/FatFs/source/diskio.c **** DWORD get_fattime (void){
+ 442              		.loc 1 196 25 is_stmt 1 view -0
+ 443              		.cfi_startproc
+ 444              		@ args = 0, pretend = 0, frame = 0
+ 445              		@ frame_needed = 0, uses_anonymous_args = 0
+ 446              		@ link register save eliminated.
+ 197:DRIVER/FatFs/source/diskio.c **** 	return 0;
+ 447              		.loc 1 197 2 view .LVU108
+ 198:DRIVER/FatFs/source/diskio.c **** }...
+ 448              		.loc 1 198 1 is_stmt 0 view .LVU109
+ 449 0000 0020     		movs	r0, #0
+ 450 0002 7047     		bx	lr
+ 451              		.cfi_endproc
+ 452              	.LFE34:
+ 454              		.text
+ 455              	.Letext0:
+ 456              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 457              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 458              		.file 4 "DRIVER/FatFs/source/ff.h"
+ 459              		.file 5 "DRIVER/FatFs/source/diskio.h"
+ 460              		.file 6 "HW/FLASH/External_Flash/exFlash.h"
+ 461              		.file 7 "SYSTEM/delay/delay.h"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s 			page 14
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 diskio.c
+C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s:19     .text.disk_status:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s:25     .text.disk_status:00000000 disk_status
+C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s:114    .text.disk_initialize:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s:120    .text.disk_initialize:00000000 disk_initialize
+C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s:190    .text.disk_read:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s:196    .text.disk_read:00000000 disk_read
+C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s:272    .text.disk_write:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s:278    .text.disk_write:00000000 disk_write
+C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s:354    .text.disk_ioctl:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s:360    .text.disk_ioctl:00000000 disk_ioctl
+C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s:434    .text.get_fattime:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc3fuo6x.s:440    .text.get_fattime:00000000 get_fattime
+
+UNDEFINED SYMBOLS
+Flash_EX_Check_JEDEC_ID
+delay_init
+USART1_Init
+Flash_EX_Init
+Flash_EX_Wake_Up
+Flash_EX_Read
+Flash_EX_Write
