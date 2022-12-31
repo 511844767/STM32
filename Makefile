@@ -35,6 +35,12 @@ BUILD_DIR = OBJ
 ######################################
 # source
 ######################################
+# FatFs sources
+FATFS_SOURCES = \
+DRIVER/FatFs/source/ff.c \
+DRIVER/FatFs/source/diskio.c \
+DRIVER/FatFs/source/ffunicode.c
+
 # C sources
 C_SOURCES =  \
 CORE/core_cm3.c \
@@ -49,11 +55,11 @@ STM32F10x_FWLib/src/stm32f10x_tim.c \
 STM32F10x_FWLib/src/stm32f10x_dma.c \
 STM32F10x_FWLib/src/stm32f10x_i2c.c \
 STM32F10x_FWLib/src/stm32f10x_spi.c \
+STM32F10x_FWLib/src/stm32f10x_fsmc.c \
+STM32F10x_FWLib/src/stm32f10x_sdio.c \
 SYSTEM/delay/delay.c \
 SYSTEM/sys/sys.c \
-DRIVER/FatFs/source/ff.c \
-DRIVER/FatFs/source/diskio.c \
-DRIVER/FatFs/source/ffunicode.c \
+${FATFS_SOURCES} \
 USER/stm32f10x_it.c \
 USER/system_stm32f10x.c \
 USER/main.c \
@@ -72,7 +78,10 @@ HW/DMA/dma.c \
 HW/EEPROM/I2C_Software/i2c_software.c \
 HW/EEPROM/I2C_Hardware/i2c_hardware.c \
 HW/FLASH/External_Flash/exFlash.c \
-HW/FLASH/External_Flash_FatFs/exFlashFatFs.c
+HW/FLASH/External_Flash_FatFs/exFlashFatFs.c \
+HW/LCD/lcd.c \
+HW/SDCard/stm32_eval_sdio_sd.c \
+HW/SDCard/SDCard.c
 
 # ASM sources
 ASM_SOURCES =  \
@@ -132,10 +141,14 @@ C_INCLUDES =  \
 -ISTM32F10x_FWLib/inc \
 -ISYSTEM/delay \
 -IDRIVER/FatFs/source \
+-IDRIVER/STM32_USB-FS-Device_Lib_V4.1.0/STM32_USB-FS-Device_Driver/inc \
+-IDRIVER/STM32_USB-FS-Device_Lib_V4.1.0/Virtual_COM_Port/inc \
 -IUSER \
 -ISYSTEM/sys \
 -IHW/LED \
--IHW/FLASH/External_Flash
+-IHW/FLASH/External_Flash \
+-IHW/LCD \
+-IHW/SDCard
 
 # compile gcc flags
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections

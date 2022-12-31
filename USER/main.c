@@ -16,20 +16,26 @@ extern void IWDG_Run();
 /* 窗口看门狗实验 */
 extern void WWDG_Run();
 /* 定时器实验 */
-extern void TIM3_Run();			// 定时器中断
-extern void TIM3_PWMOut_Run();	// 定时器PWM输出
-extern void TIM5_Cap_Run();		// 定时器输入捕获
+extern void TIM3_Run();				// 定时器中断
+extern void TIM3_PWMOut_Run();		// 定时器PWM输出
+extern void TIM5_Cap_Run();			// 定时器输入捕获
 /* TPAD电容按键实验 */
 extern void TPAD_Run();
 /* DMA实验 */
 extern void DMA_USART_Run();
 /* EEPROM实验 */
-extern void I2C_Software_Run();	// 软件仿真I2C协议读写EEPROM
-extern void I2C_Hardware_Run();	// 硬件I2C读写EEPROM
+extern void I2C_Software_Run();		// 软件仿真I2C协议读写EEPROM
+extern void I2C_Hardware_Run();		// 硬件I2C读写EEPROM
 /* FLASH实验 */
-extern void Flash_EX_Run();		// 外部flash
+extern void Flash_EX_Run();			// 外部flash读写测试
 extern void Flash_EX_FatFs_Run();	// 外部flash安装FatFs文件系统
+/* LCD实验 */
+extern void LCD_Run();
+/* SD卡实验 */
+extern void SDCard_Run();			// SD卡读写测试
+extern void SDCard_Fats_Run();		// SD卡FatFs文件系统
+
 
 int main(){
-	Flash_EX_FatFs_Run();
+	SDCard_Fats_Run();
 }

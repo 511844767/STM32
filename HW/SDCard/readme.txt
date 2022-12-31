@@ -1,0 +1,2 @@
+stm32_eval_sdio_sd.c和stm32_eval_sdio_sd.h来自标准库移植，只有小小的改动（SD_DETECT函数、读写BlockSize的更新）
+SD_LowLevel_Implement.h是为了移植上述文件，对底层函数的实现

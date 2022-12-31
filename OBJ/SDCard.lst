@@ -1,0 +1,2369 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"SDCard.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "HW/SDCard/SDCard.c"
+  18              		.section	.rodata.SDCard_Fats_Run.str1.4,"aMS",%progbits,1
+  19              		.align	2
+  20              	.LC0:
+  21 0000 303A00   		.ascii	"0:\000"
+  22 0003 00       		.align	2
+  23              	.LC1:
+  24 0004 E69CAAE5 		.ascii	"\346\234\252\345\212\240\350\275\275FatFs\347\263\273"
+  24      8AA0E8BD 
+  24      BD466174 
+  24      4673E7B3 
+  24      BB
+  25 0015 E7BB9FEF 		.ascii	"\347\273\237\357\274\214\351\234\200\350\246\201\346"
+  25      BC8CE99C 
+  25      80E8A681 
+  25      E6
+  26 0022 A0BCE5BC 		.ascii	"\240\274\345\274\217\345\214\226\015\000"
+  26      8FE58C96 
+  26      0D00
+  27              		.align	2
+  28              	.LC2:
+  29 002c 4572726F 		.ascii	"Error line: %d, function: %s, info: %s\015\012\000"
+  29      72206C69 
+  29      6E653A20 
+  29      25642C20 
+  29      66756E63 
+  30 0055 000000   		.align	2
+  31              	.LC3:
+  32 0058 303A5465 		.ascii	"0:Test.txt\000"
+  32      73742E74 
+  32      787400
+  33 0063 00       		.align	2
+  34              	.LC5:
+  35 0064 4572726F 		.ascii	"Error line: %d, function: %s, info: write error\015"
+  35      72206C69 
+  35      6E653A20 
+  35      25642C20 
+  35      66756E63 
+  36 0094 0A00     		.ascii	"\012\000"
+  37 0096 0000     		.align	2
+  38              	.LC6:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 2
+
+
+  39 0098 E69687E4 		.ascii	"\346\226\207\344\273\266\345\206\231\345\205\245\346"
+  39      BBB6E586 
+  39      99E585A5 
+  39      E6
+  40 00a5 8890E58A 		.ascii	"\210\220\345\212\237\015\000"
+  40      9F0D00
+  41              		.align	2
+  42              	.LC7:
+  43 00ac 4572726F 		.ascii	"Error line: %d, function: %s, info: read error\015\012"
+  43      72206C69 
+  43      6E653A20 
+  43      25642C20 
+  43      66756E63 
+  44 00dc 00       		.ascii	"\000"
+  45 00dd 000000   		.align	2
+  46              	.LC8:
+  47 00e0 E69687E4 		.ascii	"\346\226\207\344\273\266\350\257\273\345\217\226\346"
+  47      BBB6E8AF 
+  47      BBE58F96 
+  47      E6
+  48 00ed 8890E58A 		.ascii	"\210\220\345\212\237\357\274\232%s\015\012\000"
+  48      9FEFBC9A 
+  48      25730D0A 
+  48      00
+  49 00fa 0000     		.align	2
+  50              	.LC9:
+  51 00fc 256C7520 		.ascii	"%lu KiB total drive space.\012%lu KiB available.\015"
+  51      4B694220 
+  51      746F7461 
+  51      6C206472 
+  51      69766520 
+  52 012a 0A00     		.ascii	"\012\000"
+  53              		.section	.text.SDCard_Fats_Run,"ax",%progbits
+  54              		.align	1
+  55              		.global	SDCard_Fats_Run
+  56              		.syntax unified
+  57              		.thumb
+  58              		.thumb_func
+  60              	SDCard_Fats_Run:
+  61              	.LFB33:
+   1:HW/SDCard/SDCard.c **** #include"stdio.h"
+   2:HW/SDCard/SDCard.c **** #include"stdlib.h"
+   3:HW/SDCard/SDCard.c **** #include"stm32_eval_sdio_sd.h"
+   4:HW/SDCard/SDCard.c **** #include"ff.h"
+   5:HW/SDCard/SDCard.c **** 
+   6:HW/SDCard/SDCard.c **** void SD_EraseTest(void);
+   7:HW/SDCard/SDCard.c **** void SD_SingleBlockTest(void);
+   8:HW/SDCard/SDCard.c **** void SD_MultiBlockTest(void);
+   9:HW/SDCard/SDCard.c **** void Fill_Buffer(uint8_t *pBuffer, uint32_t BufferLength, uint32_t Offset);
+  10:HW/SDCard/SDCard.c **** 
+  11:HW/SDCard/SDCard.c **** extern void USART1_Init();
+  12:HW/SDCard/SDCard.c **** 
+  13:HW/SDCard/SDCard.c **** /************************读写测试**********************/
+  14:HW/SDCard/SDCard.c **** void SDCard_Run(){
+  15:HW/SDCard/SDCard.c ****     /* 配置中断优先级组 */
+  16:HW/SDCard/SDCard.c ****     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+  17:HW/SDCard/SDCard.c **** 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 3
+
+
+  18:HW/SDCard/SDCard.c ****     /* 初始化 */
+  19:HW/SDCard/SDCard.c ****     USART1_Init();
+  20:HW/SDCard/SDCard.c ****     SD_Error err = SD_Init();
+  21:HW/SDCard/SDCard.c ****     if(err != SD_OK){
+  22:HW/SDCard/SDCard.c ****         printf("SD卡初始化失败: %d\r\n", err);
+  23:HW/SDCard/SDCard.c ****         return;
+  24:HW/SDCard/SDCard.c ****     }else{
+  25:HW/SDCard/SDCard.c ****         printf("SD卡初始化成功\r\n");
+  26:HW/SDCard/SDCard.c ****     }
+  27:HW/SDCard/SDCard.c ****     
+  28:HW/SDCard/SDCard.c ****     /* 读写测试 */
+  29:HW/SDCard/SDCard.c ****     SD_EraseTest();
+  30:HW/SDCard/SDCard.c ****     SD_SingleBlockTest();
+  31:HW/SDCard/SDCard.c ****     SD_MultiBlockTest();
+  32:HW/SDCard/SDCard.c **** }
+  33:HW/SDCard/SDCard.c **** 
+  34:HW/SDCard/SDCard.c **** /************************文件系统测试**********************/
+  35:HW/SDCard/SDCard.c **** /* 异常检查 */
+  36:HW/SDCard/SDCard.c **** typedef struct{
+  37:HW/SDCard/SDCard.c ****     const char info[72];
+  38:HW/SDCard/SDCard.c **** } FATFS_Errors_Info_t;
+  39:HW/SDCard/SDCard.c **** 
+  40:HW/SDCard/SDCard.c **** static FATFS_Errors_Info_t errInfo[20] = {
+  41:HW/SDCard/SDCard.c ****     { "(0) Succeeded" },
+  42:HW/SDCard/SDCard.c ****     { "(1) A hard error occurred in the low level disk I/O layer" },
+  43:HW/SDCard/SDCard.c ****     { "(2) Assertion failed" },
+  44:HW/SDCard/SDCard.c ****     { "(3) The physical drive cannot work" },
+  45:HW/SDCard/SDCard.c ****     { "(4) Could not find the file" },
+  46:HW/SDCard/SDCard.c ****     { "(5) Could not find the path" },
+  47:HW/SDCard/SDCard.c ****     { "(6) The path name format is invalid" },
+  48:HW/SDCard/SDCard.c ****     { "(7) Access denied due to prohibited access or directory full" },
+  49:HW/SDCard/SDCard.c ****     { "(8) Access denied due to prohibited access" },
+  50:HW/SDCard/SDCard.c ****     { "(9) The file/directory object is invalid" },
+  51:HW/SDCard/SDCard.c ****     { "(10) The physical drive is write protected" },
+  52:HW/SDCard/SDCard.c ****     { "(11) The logical drive number is invalid" },
+  53:HW/SDCard/SDCard.c ****     { "(12) The volume has no work area" },
+  54:HW/SDCard/SDCard.c ****     { "(13) There is no valid FAT volume" },
+  55:HW/SDCard/SDCard.c ****     { "(14) The f_mkfs() aborted due to any problem" },
+  56:HW/SDCard/SDCard.c ****     { "(15) Could not get a grant to access the volume within defined perio" },
+  57:HW/SDCard/SDCard.c ****     { "(16) The operation is rejected according to the file sharing policy" },
+  58:HW/SDCard/SDCard.c ****     { "(17) LFN working src could not be allocated" },
+  59:HW/SDCard/SDCard.c ****     { "(18) Number of open files > FF_FS_LOCK" },
+  60:HW/SDCard/SDCard.c ****     { "(19) Given parameter is invalid" },
+  61:HW/SDCard/SDCard.c **** };
+  62:HW/SDCard/SDCard.c **** 
+  63:HW/SDCard/SDCard.c **** #define FATFS_CHECK(func){ \
+  64:HW/SDCard/SDCard.c ****     err = func; \
+  65:HW/SDCard/SDCard.c ****     if(err != FR_OK){ \
+  66:HW/SDCard/SDCard.c ****         fprintf(stderr, "Error line: %d, function: %s, info: %s\r\n", __LINE__, __FUNCTION__, errIn
+  67:HW/SDCard/SDCard.c ****         goto FATFS_ERR_FLAG; \
+  68:HW/SDCard/SDCard.c ****     } \
+  69:HW/SDCard/SDCard.c **** }
+  70:HW/SDCard/SDCard.c **** 
+  71:HW/SDCard/SDCard.c **** void SDCard_Fats_Run(){
+  62              		.loc 1 71 23 view -0
+  63              		.cfi_startproc
+  64              		@ args = 0, pretend = 0, frame = 56
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 4
+
+
+  65              		@ frame_needed = 0, uses_anonymous_args = 0
+  66 0000 30B5     		push	{r4, r5, lr}
+  67              	.LCFI0:
+  68              		.cfi_def_cfa_offset 12
+  69              		.cfi_offset 4, -12
+  70              		.cfi_offset 5, -8
+  71              		.cfi_offset 14, -4
+  72 0002 91B0     		sub	sp, sp, #68
+  73              	.LCFI1:
+  74              		.cfi_def_cfa_offset 80
+  72:HW/SDCard/SDCard.c ****     FRESULT err = 0;
+  75              		.loc 1 72 5 view .LVU1
+  76              	.LVL0:
+  73:HW/SDCard/SDCard.c ****     FIL* fp = 0;
+  77              		.loc 1 73 5 view .LVU2
+  74:HW/SDCard/SDCard.c **** 
+  75:HW/SDCard/SDCard.c ****     /* 初始化 */
+  76:HW/SDCard/SDCard.c ****     USART1_Init();
+  78              		.loc 1 76 5 view .LVU3
+  79 0004 FFF7FEFF 		bl	USART1_Init
+  80              	.LVL1:
+  77:HW/SDCard/SDCard.c **** 
+  78:HW/SDCard/SDCard.c ****     /* 挂载flash */
+  79:HW/SDCard/SDCard.c ****     /* FATFS和FIL结构体内存较大，放在堆空间比较合适 */
+  80:HW/SDCard/SDCard.c ****     FATFS* fs = malloc(sizeof(FATFS));
+  81              		.loc 1 80 5 view .LVU4
+  82              		.loc 1 80 17 is_stmt 0 view .LVU5
+  83 0008 41F23800 		movw	r0, #4152
+  84 000c FFF7FEFF 		bl	malloc
+  85              	.LVL2:
+  86              		.loc 1 80 12 view .LVU6
+  87 0010 0F90     		str	r0, [sp, #60]
+  81:HW/SDCard/SDCard.c ****     err = f_mount(fs, "0:", 1);                 // path为diskio.c中定义的DEV_SDCARD，opt为1�
+  88              		.loc 1 81 5 is_stmt 1 view .LVU7
+  89              		.loc 1 81 11 is_stmt 0 view .LVU8
+  90 0012 904D     		ldr	r5, .L26
+  91 0014 0122     		movs	r2, #1
+  92 0016 2946     		mov	r1, r5
+  93 0018 FFF7FEFF 		bl	f_mount
+  94              	.LVL3:
+  82:HW/SDCard/SDCard.c ****     err = FR_NO_FILESYSTEM;
+  95              		.loc 1 82 5 is_stmt 1 view .LVU9
+  83:HW/SDCard/SDCard.c ****     /* 第一次挂载如果没找到FatFs文件系统，则格式化加载文件系统 */
+  84:HW/SDCard/SDCard.c ****     if(err == FR_NO_FILESYSTEM){ 
+  96              		.loc 1 84 5 view .LVU10
+  97              	.LBB2:
+  85:HW/SDCard/SDCard.c ****         printf("未加载FatFs系统，需要格式化\r\n");
+  98              		.loc 1 85 9 view .LVU11
+  99 001c 8E48     		ldr	r0, .L26+4
+ 100 001e FFF7FEFF 		bl	puts
+ 101              	.LVL4:
+  86:HW/SDCard/SDCard.c ****         uint8_t* work = malloc(512);           // 格式化工作空间
+ 102              		.loc 1 86 9 view .LVU12
+ 103              		.loc 1 86 25 is_stmt 0 view .LVU13
+ 104 0022 4FF40070 		mov	r0, #512
+ 105 0026 FFF7FEFF 		bl	malloc
+ 106              	.LVL5:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 5
+
+
+ 107 002a 0446     		mov	r4, r0
+ 108              	.LVL6:
+  87:HW/SDCard/SDCard.c ****         FATFS_CHECK(f_mkfs("0:", NULL, work, 512));
+ 109              		.loc 1 87 9 is_stmt 1 view .LVU14
+ 110 002c 4FF40073 		mov	r3, #512
+ 111 0030 0246     		mov	r2, r0
+ 112 0032 0021     		movs	r1, #0
+ 113 0034 2846     		mov	r0, r5
+ 114              	.LVL7:
+ 115              		.loc 1 87 9 is_stmt 0 view .LVU15
+ 116 0036 FFF7FEFF 		bl	f_mkfs
+ 117              	.LVL8:
+ 118              		.loc 1 87 9 is_stmt 1 view .LVU16
+ 119 003a 0028     		cmp	r0, #0
+ 120 003c 37D1     		bne	.L17
+ 121              		.loc 1 87 51 discriminator 2 view .LVU17
+  88:HW/SDCard/SDCard.c ****         free(work);
+ 122              		.loc 1 88 9 discriminator 2 view .LVU18
+ 123 003e 2046     		mov	r0, r4
+ 124              	.LVL9:
+ 125              		.loc 1 88 9 is_stmt 0 discriminator 2 view .LVU19
+ 126 0040 FFF7FEFF 		bl	free
+ 127              	.LVL10:
+  89:HW/SDCard/SDCard.c ****         FATFS_CHECK(f_mount(fs, "0:", 1));      // 格式化之后重新挂载
+ 128              		.loc 1 89 9 is_stmt 1 discriminator 2 view .LVU20
+ 129 0044 0122     		movs	r2, #1
+ 130 0046 8349     		ldr	r1, .L26
+ 131 0048 0F98     		ldr	r0, [sp, #60]
+ 132 004a FFF7FEFF 		bl	f_mount
+ 133              	.LVL11:
+ 134              		.loc 1 89 9 discriminator 2 view .LVU21
+ 135 004e 0346     		mov	r3, r0
+ 136 0050 0028     		cmp	r0, #0
+ 137 0052 3CD1     		bne	.L18
+ 138              	.LBE2:
+  90:HW/SDCard/SDCard.c ****     }else if(err != FR_OK){
+  91:HW/SDCard/SDCard.c ****         fprintf(stderr, "Error line: %d, function: %s, info: %s\r\n", __LINE__, __FUNCTION__, errIn
+  92:HW/SDCard/SDCard.c ****         goto FATFS_ERR_FLAG;
+  93:HW/SDCard/SDCard.c ****     }
+  94:HW/SDCard/SDCard.c **** 
+  95:HW/SDCard/SDCard.c ****     /* 打开文件 */
+  96:HW/SDCard/SDCard.c ****     fp = malloc(sizeof(FIL));
+ 139              		.loc 1 96 5 view .LVU22
+ 140              		.loc 1 96 10 is_stmt 0 view .LVU23
+ 141 0054 41F22800 		movw	r0, #4136
+ 142              	.LVL12:
+ 143              		.loc 1 96 10 view .LVU24
+ 144 0058 FFF7FEFF 		bl	malloc
+ 145              	.LVL13:
+ 146 005c 0446     		mov	r4, r0
+ 147              	.LVL14:
+  97:HW/SDCard/SDCard.c ****     FATFS_CHECK(f_open(fp, "0:Test.txt", FA_CREATE_ALWAYS | FA_READ | FA_WRITE));
+ 148              		.loc 1 97 5 is_stmt 1 view .LVU25
+ 149 005e 0B22     		movs	r2, #11
+ 150 0060 7E49     		ldr	r1, .L26+8
+ 151 0062 FFF7FEFF 		bl	f_open
+ 152              	.LVL15:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 6
+
+
+ 153              		.loc 1 97 5 view .LVU26
+ 154 0066 0346     		mov	r3, r0
+ 155 0068 0028     		cmp	r0, #0
+ 156 006a 3FD1     		bne	.L19
+ 157              		.loc 1 97 81 discriminator 2 view .LVU27
+  98:HW/SDCard/SDCard.c **** 
+  99:HW/SDCard/SDCard.c ****     /* 写入文件 */
+ 100:HW/SDCard/SDCard.c ****     const char src[20] = "Diana Ava";
+ 158              		.loc 1 100 5 discriminator 2 view .LVU28
+ 159              		.loc 1 100 16 is_stmt 0 discriminator 2 view .LVU29
+ 160 006c 7C4A     		ldr	r2, .L26+12
+ 161 006e 0AAB     		add	r3, sp, #40
+ 162 0070 07CA     		ldm	r2, {r0, r1, r2}
+ 163              	.LVL16:
+ 164              		.loc 1 100 16 discriminator 2 view .LVU30
+ 165 0072 03C3     		stmia	r3!, {r0, r1}
+ 166 0074 1A80     		strh	r2, [r3]	@ movhi
+ 167 0076 0023     		movs	r3, #0
+ 168 0078 CDF83230 		str	r3, [sp, #50]	@ unaligned
+ 169 007c CDF83630 		str	r3, [sp, #54]	@ unaligned
+ 170 0080 ADF83A30 		strh	r3, [sp, #58]	@ movhi
+ 101:HW/SDCard/SDCard.c ****     UINT bw;
+ 171              		.loc 1 101 5 is_stmt 1 discriminator 2 view .LVU31
+ 102:HW/SDCard/SDCard.c ****     FATFS_CHECK(f_write(fp, src, 20, &bw));
+ 172              		.loc 1 102 5 discriminator 2 view .LVU32
+ 173 0084 09AB     		add	r3, sp, #36
+ 174 0086 1422     		movs	r2, #20
+ 175 0088 0AA9     		add	r1, sp, #40
+ 176 008a 2046     		mov	r0, r4
+ 177 008c FFF7FEFF 		bl	f_write
+ 178              	.LVL17:
+ 179              		.loc 1 102 5 discriminator 2 view .LVU33
+ 180 0090 0346     		mov	r3, r0
+ 181 0092 0028     		cmp	r0, #0
+ 182 0094 42D1     		bne	.L20
+ 183              		.loc 1 102 43 discriminator 2 view .LVU34
+ 103:HW/SDCard/SDCard.c ****     if(bw != 20){   // bw返回实际写入长度，应该等于理论写入长度
+ 184              		.loc 1 103 5 discriminator 2 view .LVU35
+ 185              		.loc 1 103 11 is_stmt 0 discriminator 2 view .LVU36
+ 186 0096 099B     		ldr	r3, [sp, #36]
+ 187              		.loc 1 103 7 discriminator 2 view .LVU37
+ 188 0098 142B     		cmp	r3, #20
+ 189 009a 4ED0     		beq	.L8
+ 104:HW/SDCard/SDCard.c ****         fprintf(stderr, "Error line: %d, function: %s, info: write error\r\n", __LINE__, __FUNCTION
+ 190              		.loc 1 104 9 is_stmt 1 view .LVU38
+ 191              		.loc 1 104 17 is_stmt 0 view .LVU39
+ 192 009c 714B     		ldr	r3, .L26+16
+ 193 009e 1868     		ldr	r0, [r3]
+ 194              	.LVL18:
+ 195              		.loc 1 104 9 view .LVU40
+ 196 00a0 714B     		ldr	r3, .L26+20
+ 197 00a2 6822     		movs	r2, #104
+ 198 00a4 7149     		ldr	r1, .L26+24
+ 199 00a6 C068     		ldr	r0, [r0, #12]
+ 200 00a8 FFF7FEFF 		bl	fprintf
+ 201              	.LVL19:
+ 105:HW/SDCard/SDCard.c ****         goto FATFS_ERR_FLAG;
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 7
+
+
+ 202              		.loc 1 105 9 is_stmt 1 view .LVU41
+ 203 00ac 2CE0     		b	.L6
+ 204              	.LVL20:
+ 205              	.L17:
+ 206              		.loc 1 105 9 is_stmt 0 view .LVU42
+ 207 00ae 0346     		mov	r3, r0
+ 208              	.LBB3:
+  87:HW/SDCard/SDCard.c ****         free(work);
+ 209              		.loc 1 87 9 is_stmt 1 discriminator 1 view .LVU43
+ 210 00b0 6C4A     		ldr	r2, .L26+16
+ 211 00b2 1268     		ldr	r2, [r2]
+ 212 00b4 D068     		ldr	r0, [r2, #12]
+ 213              	.LVL21:
+  87:HW/SDCard/SDCard.c ****         free(work);
+ 214              		.loc 1 87 9 is_stmt 0 discriminator 1 view .LVU44
+ 215 00b6 03EBC303 		add	r3, r3, r3, lsl #3
+ 216 00ba 6D4A     		ldr	r2, .L26+28
+ 217 00bc 02EBC303 		add	r3, r2, r3, lsl #3
+ 218 00c0 0093     		str	r3, [sp]
+ 219 00c2 694B     		ldr	r3, .L26+20
+ 220 00c4 5722     		movs	r2, #87
+ 221 00c6 6B49     		ldr	r1, .L26+32
+ 222 00c8 FFF7FEFF 		bl	fprintf
+ 223              	.LVL22:
+  87:HW/SDCard/SDCard.c ****         free(work);
+ 224              		.loc 1 87 9 is_stmt 1 discriminator 1 view .LVU45
+  87:HW/SDCard/SDCard.c ****         free(work);
+ 225              		.loc 1 87 9 is_stmt 0 discriminator 1 view .LVU46
+ 226              	.LBE3:
+ 106:HW/SDCard/SDCard.c ****     }
+ 107:HW/SDCard/SDCard.c **** 
+ 108:HW/SDCard/SDCard.c ****     /* 关闭文件 */
+ 109:HW/SDCard/SDCard.c ****     FATFS_CHECK(f_close(fp));
+ 110:HW/SDCard/SDCard.c **** 
+ 111:HW/SDCard/SDCard.c ****     printf("文件写入成功\r\n");
+ 112:HW/SDCard/SDCard.c **** 
+ 113:HW/SDCard/SDCard.c ****     /* 读取文件 */
+ 114:HW/SDCard/SDCard.c ****     FATFS_CHECK(f_open(fp, "0:Test.txt", FA_READ | FA_OPEN_EXISTING));
+ 115:HW/SDCard/SDCard.c ****     char dst[20];
+ 116:HW/SDCard/SDCard.c ****     UINT br;
+ 117:HW/SDCard/SDCard.c ****     FATFS_CHECK(f_read(fp, dst, 20, &br));
+ 118:HW/SDCard/SDCard.c ****     if(br != 20){   // br返回实际读取长度，应该等于理论读取长度
+ 119:HW/SDCard/SDCard.c ****         fprintf(stderr, "Error line: %d, function: %s, info: read error\r\n", __LINE__, __FUNCTION_
+ 120:HW/SDCard/SDCard.c ****         goto FATFS_ERR_FLAG;
+ 121:HW/SDCard/SDCard.c ****     }
+ 122:HW/SDCard/SDCard.c **** 
+ 123:HW/SDCard/SDCard.c ****     /* 关闭文件 */
+ 124:HW/SDCard/SDCard.c ****     FATFS_CHECK(f_close(fp));
+ 125:HW/SDCard/SDCard.c **** 
+ 126:HW/SDCard/SDCard.c ****     printf("文件读取成功：%s\r\n", dst);
+ 127:HW/SDCard/SDCard.c **** 
+ 128:HW/SDCard/SDCard.c ****     /* 查看系统容量大小 */
+ 129:HW/SDCard/SDCard.c ****     DWORD nclst;
+ 130:HW/SDCard/SDCard.c ****     FATFS_CHECK(f_getfree("0:", &nclst, &fs));
+ 131:HW/SDCard/SDCard.c ****     DWORD tot_sect = (fs->n_fatent - 2) * fs->csize;
+ 132:HW/SDCard/SDCard.c ****     DWORD fre_sect = nclst * fs->csize;
+ 133:HW/SDCard/SDCard.c **** 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 8
+
+
+ 134:HW/SDCard/SDCard.c ****     /* Print the free space (assuming 512 bytes/sector) */
+ 135:HW/SDCard/SDCard.c ****     printf("%lu KiB total drive space.\n%lu KiB available.\r\n", tot_sect / 2, fre_sect / 2);
+ 136:HW/SDCard/SDCard.c **** FATFS_ERR_FLAG:
+ 137:HW/SDCard/SDCard.c ****     if(fp) free(fp);
+ 227              		.loc 1 137 5 is_stmt 1 discriminator 1 view .LVU47
+ 228 00cc 20E0     		b	.L3
+ 229              	.LVL23:
+ 230              	.L18:
+ 231              	.LBB4:
+  89:HW/SDCard/SDCard.c ****     }else if(err != FR_OK){
+ 232              		.loc 1 89 9 discriminator 1 view .LVU48
+ 233 00ce 654A     		ldr	r2, .L26+16
+ 234 00d0 1268     		ldr	r2, [r2]
+ 235 00d2 D068     		ldr	r0, [r2, #12]
+ 236              	.LVL24:
+  89:HW/SDCard/SDCard.c ****     }else if(err != FR_OK){
+ 237              		.loc 1 89 9 is_stmt 0 discriminator 1 view .LVU49
+ 238 00d4 03EBC303 		add	r3, r3, r3, lsl #3
+ 239 00d8 654A     		ldr	r2, .L26+28
+ 240 00da 02EBC303 		add	r3, r2, r3, lsl #3
+ 241 00de 0093     		str	r3, [sp]
+ 242 00e0 614B     		ldr	r3, .L26+20
+ 243 00e2 5922     		movs	r2, #89
+ 244 00e4 6349     		ldr	r1, .L26+32
+ 245 00e6 FFF7FEFF 		bl	fprintf
+ 246              	.LVL25:
+  89:HW/SDCard/SDCard.c ****     }else if(err != FR_OK){
+ 247              		.loc 1 89 9 is_stmt 1 discriminator 1 view .LVU50
+  89:HW/SDCard/SDCard.c ****     }else if(err != FR_OK){
+ 248              		.loc 1 89 9 is_stmt 0 discriminator 1 view .LVU51
+ 249              	.LBE4:
+ 250              		.loc 1 137 5 is_stmt 1 discriminator 1 view .LVU52
+ 251 00ea 11E0     		b	.L3
+ 252              	.LVL26:
+ 253              	.L19:
+  97:HW/SDCard/SDCard.c **** 
+ 254              		.loc 1 97 5 discriminator 1 view .LVU53
+ 255 00ec 5D4A     		ldr	r2, .L26+16
+ 256 00ee 1268     		ldr	r2, [r2]
+ 257 00f0 D068     		ldr	r0, [r2, #12]
+ 258              	.LVL27:
+  97:HW/SDCard/SDCard.c **** 
+ 259              		.loc 1 97 5 is_stmt 0 discriminator 1 view .LVU54
+ 260 00f2 03EBC303 		add	r3, r3, r3, lsl #3
+ 261 00f6 5E4A     		ldr	r2, .L26+28
+ 262 00f8 02EBC303 		add	r3, r2, r3, lsl #3
+ 263 00fc 0093     		str	r3, [sp]
+ 264 00fe 5A4B     		ldr	r3, .L26+20
+ 265 0100 6122     		movs	r2, #97
+ 266 0102 5C49     		ldr	r1, .L26+32
+ 267 0104 FFF7FEFF 		bl	fprintf
+ 268              	.LVL28:
+  97:HW/SDCard/SDCard.c **** 
+ 269              		.loc 1 97 5 is_stmt 1 discriminator 1 view .LVU55
+ 270              	.L6:
+ 271              		.loc 1 137 5 view .LVU56
+ 272              		.loc 1 137 7 is_stmt 0 view .LVU57
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 9
+
+
+ 273 0108 14B1     		cbz	r4, .L3
+ 274              		.loc 1 137 12 is_stmt 1 discriminator 1 view .LVU58
+ 275 010a 2046     		mov	r0, r4
+ 276 010c FFF7FEFF 		bl	free
+ 277              	.LVL29:
+ 278              	.L3:
+ 138:HW/SDCard/SDCard.c ****     if(fs) free(fs);
+ 279              		.loc 1 138 5 view .LVU59
+ 280              		.loc 1 138 8 is_stmt 0 view .LVU60
+ 281 0110 0F98     		ldr	r0, [sp, #60]
+ 282              		.loc 1 138 7 view .LVU61
+ 283 0112 08B1     		cbz	r0, .L1
+ 284              		.loc 1 138 12 is_stmt 1 discriminator 1 view .LVU62
+ 285 0114 FFF7FEFF 		bl	free
+ 286              	.LVL30:
+ 287              	.L1:
+ 139:HW/SDCard/SDCard.c **** }
+ 288              		.loc 1 139 1 is_stmt 0 view .LVU63
+ 289 0118 11B0     		add	sp, sp, #68
+ 290              	.LCFI2:
+ 291              		.cfi_remember_state
+ 292              		.cfi_def_cfa_offset 12
+ 293              		@ sp needed
+ 294 011a 30BD     		pop	{r4, r5, pc}
+ 295              	.LVL31:
+ 296              	.L20:
+ 297              	.LCFI3:
+ 298              		.cfi_restore_state
+ 102:HW/SDCard/SDCard.c ****     if(bw != 20){   // bw返回实际写入长度，应该等于理论写入长度
+ 299              		.loc 1 102 5 is_stmt 1 discriminator 1 view .LVU64
+ 300 011c 514A     		ldr	r2, .L26+16
+ 301 011e 1268     		ldr	r2, [r2]
+ 302 0120 D068     		ldr	r0, [r2, #12]
+ 303              	.LVL32:
+ 102:HW/SDCard/SDCard.c ****     if(bw != 20){   // bw返回实际写入长度，应该等于理论写入长度
+ 304              		.loc 1 102 5 is_stmt 0 discriminator 1 view .LVU65
+ 305 0122 03EBC303 		add	r3, r3, r3, lsl #3
+ 306 0126 524A     		ldr	r2, .L26+28
+ 307 0128 02EBC303 		add	r3, r2, r3, lsl #3
+ 308 012c 0093     		str	r3, [sp]
+ 309 012e 4E4B     		ldr	r3, .L26+20
+ 310 0130 6622     		movs	r2, #102
+ 311 0132 5049     		ldr	r1, .L26+32
+ 312 0134 FFF7FEFF 		bl	fprintf
+ 313              	.LVL33:
+ 102:HW/SDCard/SDCard.c ****     if(bw != 20){   // bw返回实际写入长度，应该等于理论写入长度
+ 314              		.loc 1 102 5 is_stmt 1 discriminator 1 view .LVU66
+ 315 0138 E6E7     		b	.L6
+ 316              	.LVL34:
+ 317              	.L8:
+ 109:HW/SDCard/SDCard.c **** 
+ 318              		.loc 1 109 5 view .LVU67
+ 319 013a 2046     		mov	r0, r4
+ 320              	.LVL35:
+ 109:HW/SDCard/SDCard.c **** 
+ 321              		.loc 1 109 5 is_stmt 0 view .LVU68
+ 322 013c FFF7FEFF 		bl	f_close
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 10
+
+
+ 323              	.LVL36:
+ 109:HW/SDCard/SDCard.c **** 
+ 324              		.loc 1 109 5 is_stmt 1 view .LVU69
+ 325 0140 0346     		mov	r3, r0
+ 326 0142 E8B9     		cbnz	r0, .L21
+ 109:HW/SDCard/SDCard.c **** 
+ 327              		.loc 1 109 29 discriminator 2 view .LVU70
+ 111:HW/SDCard/SDCard.c **** 
+ 328              		.loc 1 111 5 discriminator 2 view .LVU71
+ 329 0144 4C48     		ldr	r0, .L26+36
+ 330              	.LVL37:
+ 111:HW/SDCard/SDCard.c **** 
+ 331              		.loc 1 111 5 is_stmt 0 discriminator 2 view .LVU72
+ 332 0146 FFF7FEFF 		bl	puts
+ 333              	.LVL38:
+ 114:HW/SDCard/SDCard.c ****     char dst[20];
+ 334              		.loc 1 114 5 is_stmt 1 discriminator 2 view .LVU73
+ 335 014a 0122     		movs	r2, #1
+ 336 014c 4349     		ldr	r1, .L26+8
+ 337 014e 2046     		mov	r0, r4
+ 338 0150 FFF7FEFF 		bl	f_open
+ 339              	.LVL39:
+ 114:HW/SDCard/SDCard.c ****     char dst[20];
+ 340              		.loc 1 114 5 discriminator 2 view .LVU74
+ 341 0154 0346     		mov	r3, r0
+ 342 0156 10BB     		cbnz	r0, .L22
+ 114:HW/SDCard/SDCard.c ****     char dst[20];
+ 343              		.loc 1 114 70 discriminator 2 view .LVU75
+ 115:HW/SDCard/SDCard.c ****     UINT br;
+ 344              		.loc 1 115 5 discriminator 2 view .LVU76
+ 116:HW/SDCard/SDCard.c ****     FATFS_CHECK(f_read(fp, dst, 20, &br));
+ 345              		.loc 1 116 5 discriminator 2 view .LVU77
+ 117:HW/SDCard/SDCard.c ****     if(br != 20){   // br返回实际读取长度，应该等于理论读取长度
+ 346              		.loc 1 117 5 discriminator 2 view .LVU78
+ 347 0158 03AB     		add	r3, sp, #12
+ 348 015a 1422     		movs	r2, #20
+ 349 015c 04A9     		add	r1, sp, #16
+ 350 015e 2046     		mov	r0, r4
+ 351              	.LVL40:
+ 117:HW/SDCard/SDCard.c ****     if(br != 20){   // br返回实际读取长度，应该等于理论读取长度
+ 352              		.loc 1 117 5 is_stmt 0 discriminator 2 view .LVU79
+ 353 0160 FFF7FEFF 		bl	f_read
+ 354              	.LVL41:
+ 117:HW/SDCard/SDCard.c ****     if(br != 20){   // br返回实际读取长度，应该等于理论读取长度
+ 355              		.loc 1 117 5 is_stmt 1 discriminator 2 view .LVU80
+ 356 0164 0346     		mov	r3, r0
+ 357 0166 48BB     		cbnz	r0, .L23
+ 117:HW/SDCard/SDCard.c ****     if(br != 20){   // br返回实际读取长度，应该等于理论读取长度
+ 358              		.loc 1 117 42 discriminator 2 view .LVU81
+ 118:HW/SDCard/SDCard.c ****         fprintf(stderr, "Error line: %d, function: %s, info: read error\r\n", __LINE__, __FUNCTION_
+ 359              		.loc 1 118 5 discriminator 2 view .LVU82
+ 118:HW/SDCard/SDCard.c ****         fprintf(stderr, "Error line: %d, function: %s, info: read error\r\n", __LINE__, __FUNCTION_
+ 360              		.loc 1 118 11 is_stmt 0 discriminator 2 view .LVU83
+ 361 0168 039B     		ldr	r3, [sp, #12]
+ 118:HW/SDCard/SDCard.c ****         fprintf(stderr, "Error line: %d, function: %s, info: read error\r\n", __LINE__, __FUNCTION_
+ 362              		.loc 1 118 7 discriminator 2 view .LVU84
+ 363 016a 142B     		cmp	r3, #20
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 11
+
+
+ 364 016c 35D0     		beq	.L12
+ 119:HW/SDCard/SDCard.c ****         goto FATFS_ERR_FLAG;
+ 365              		.loc 1 119 9 is_stmt 1 view .LVU85
+ 119:HW/SDCard/SDCard.c ****         goto FATFS_ERR_FLAG;
+ 366              		.loc 1 119 17 is_stmt 0 view .LVU86
+ 367 016e 3D4B     		ldr	r3, .L26+16
+ 368 0170 1868     		ldr	r0, [r3]
+ 369              	.LVL42:
+ 119:HW/SDCard/SDCard.c ****         goto FATFS_ERR_FLAG;
+ 370              		.loc 1 119 9 view .LVU87
+ 371 0172 3D4B     		ldr	r3, .L26+20
+ 372 0174 7722     		movs	r2, #119
+ 373 0176 4149     		ldr	r1, .L26+40
+ 374 0178 C068     		ldr	r0, [r0, #12]
+ 375 017a FFF7FEFF 		bl	fprintf
+ 376              	.LVL43:
+ 120:HW/SDCard/SDCard.c ****     }
+ 377              		.loc 1 120 9 is_stmt 1 view .LVU88
+ 378 017e C3E7     		b	.L6
+ 379              	.LVL44:
+ 380              	.L21:
+ 109:HW/SDCard/SDCard.c **** 
+ 381              		.loc 1 109 5 discriminator 1 view .LVU89
+ 382 0180 384A     		ldr	r2, .L26+16
+ 383 0182 1268     		ldr	r2, [r2]
+ 384 0184 D068     		ldr	r0, [r2, #12]
+ 385              	.LVL45:
+ 109:HW/SDCard/SDCard.c **** 
+ 386              		.loc 1 109 5 is_stmt 0 discriminator 1 view .LVU90
+ 387 0186 03EBC303 		add	r3, r3, r3, lsl #3
+ 388 018a 394A     		ldr	r2, .L26+28
+ 389 018c 02EBC303 		add	r3, r2, r3, lsl #3
+ 390 0190 0093     		str	r3, [sp]
+ 391 0192 354B     		ldr	r3, .L26+20
+ 392 0194 6D22     		movs	r2, #109
+ 393 0196 3749     		ldr	r1, .L26+32
+ 394 0198 FFF7FEFF 		bl	fprintf
+ 395              	.LVL46:
+ 109:HW/SDCard/SDCard.c **** 
+ 396              		.loc 1 109 5 is_stmt 1 discriminator 1 view .LVU91
+ 397 019c B4E7     		b	.L6
+ 398              	.LVL47:
+ 399              	.L22:
+ 114:HW/SDCard/SDCard.c ****     char dst[20];
+ 400              		.loc 1 114 5 discriminator 1 view .LVU92
+ 401 019e 314A     		ldr	r2, .L26+16
+ 402 01a0 1268     		ldr	r2, [r2]
+ 403 01a2 D068     		ldr	r0, [r2, #12]
+ 404              	.LVL48:
+ 114:HW/SDCard/SDCard.c ****     char dst[20];
+ 405              		.loc 1 114 5 is_stmt 0 discriminator 1 view .LVU93
+ 406 01a4 03EBC303 		add	r3, r3, r3, lsl #3
+ 407 01a8 314A     		ldr	r2, .L26+28
+ 408 01aa 02EBC303 		add	r3, r2, r3, lsl #3
+ 409 01ae 0093     		str	r3, [sp]
+ 410 01b0 2D4B     		ldr	r3, .L26+20
+ 411 01b2 7222     		movs	r2, #114
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 12
+
+
+ 412 01b4 2F49     		ldr	r1, .L26+32
+ 413 01b6 FFF7FEFF 		bl	fprintf
+ 414              	.LVL49:
+ 114:HW/SDCard/SDCard.c ****     char dst[20];
+ 415              		.loc 1 114 5 is_stmt 1 discriminator 1 view .LVU94
+ 416 01ba A5E7     		b	.L6
+ 417              	.LVL50:
+ 418              	.L23:
+ 117:HW/SDCard/SDCard.c ****     if(br != 20){   // br返回实际读取长度，应该等于理论读取长度
+ 419              		.loc 1 117 5 discriminator 1 view .LVU95
+ 420 01bc 294A     		ldr	r2, .L26+16
+ 421 01be 1268     		ldr	r2, [r2]
+ 422 01c0 D068     		ldr	r0, [r2, #12]
+ 423              	.LVL51:
+ 117:HW/SDCard/SDCard.c ****     if(br != 20){   // br返回实际读取长度，应该等于理论读取长度
+ 424              		.loc 1 117 5 is_stmt 0 discriminator 1 view .LVU96
+ 425 01c2 03EBC303 		add	r3, r3, r3, lsl #3
+ 426 01c6 2A4A     		ldr	r2, .L26+28
+ 427 01c8 02EBC303 		add	r3, r2, r3, lsl #3
+ 428 01cc 0093     		str	r3, [sp]
+ 429 01ce 264B     		ldr	r3, .L26+20
+ 430 01d0 7522     		movs	r2, #117
+ 431 01d2 2849     		ldr	r1, .L26+32
+ 432 01d4 FFF7FEFF 		bl	fprintf
+ 433              	.LVL52:
+ 117:HW/SDCard/SDCard.c ****     if(br != 20){   // br返回实际读取长度，应该等于理论读取长度
+ 434              		.loc 1 117 5 is_stmt 1 discriminator 1 view .LVU97
+ 435 01d8 96E7     		b	.L6
+ 436              	.LVL53:
+ 437              	.L12:
+ 124:HW/SDCard/SDCard.c **** 
+ 438              		.loc 1 124 5 view .LVU98
+ 439 01da 2046     		mov	r0, r4
+ 440              	.LVL54:
+ 124:HW/SDCard/SDCard.c **** 
+ 441              		.loc 1 124 5 is_stmt 0 view .LVU99
+ 442 01dc FFF7FEFF 		bl	f_close
+ 443              	.LVL55:
+ 124:HW/SDCard/SDCard.c **** 
+ 444              		.loc 1 124 5 is_stmt 1 view .LVU100
+ 445 01e0 0346     		mov	r3, r0
+ 446 01e2 C8B9     		cbnz	r0, .L24
+ 124:HW/SDCard/SDCard.c **** 
+ 447              		.loc 1 124 29 discriminator 2 view .LVU101
+ 126:HW/SDCard/SDCard.c **** 
+ 448              		.loc 1 126 5 discriminator 2 view .LVU102
+ 449 01e4 04A9     		add	r1, sp, #16
+ 450 01e6 2648     		ldr	r0, .L26+44
+ 451              	.LVL56:
+ 126:HW/SDCard/SDCard.c **** 
+ 452              		.loc 1 126 5 is_stmt 0 discriminator 2 view .LVU103
+ 453 01e8 FFF7FEFF 		bl	printf
+ 454              	.LVL57:
+ 129:HW/SDCard/SDCard.c ****     FATFS_CHECK(f_getfree("0:", &nclst, &fs));
+ 455              		.loc 1 129 5 is_stmt 1 discriminator 2 view .LVU104
+ 130:HW/SDCard/SDCard.c ****     DWORD tot_sect = (fs->n_fatent - 2) * fs->csize;
+ 456              		.loc 1 130 5 discriminator 2 view .LVU105
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 13
+
+
+ 457 01ec 0FAA     		add	r2, sp, #60
+ 458 01ee 02A9     		add	r1, sp, #8
+ 459 01f0 1848     		ldr	r0, .L26
+ 460 01f2 FFF7FEFF 		bl	f_getfree
+ 461              	.LVL58:
+ 130:HW/SDCard/SDCard.c ****     DWORD tot_sect = (fs->n_fatent - 2) * fs->csize;
+ 462              		.loc 1 130 5 discriminator 2 view .LVU106
+ 463 01f6 0346     		mov	r3, r0
+ 464 01f8 E8B9     		cbnz	r0, .L25
+ 130:HW/SDCard/SDCard.c ****     DWORD tot_sect = (fs->n_fatent - 2) * fs->csize;
+ 465              		.loc 1 130 46 discriminator 2 view .LVU107
+ 131:HW/SDCard/SDCard.c ****     DWORD fre_sect = nclst * fs->csize;
+ 466              		.loc 1 131 5 discriminator 2 view .LVU108
+ 131:HW/SDCard/SDCard.c ****     DWORD fre_sect = nclst * fs->csize;
+ 467              		.loc 1 131 25 is_stmt 0 discriminator 2 view .LVU109
+ 468 01fa 0F9A     		ldr	r2, [sp, #60]
+ 469 01fc D369     		ldr	r3, [r2, #28]
+ 131:HW/SDCard/SDCard.c ****     DWORD fre_sect = nclst * fs->csize;
+ 470              		.loc 1 131 36 discriminator 2 view .LVU110
+ 471 01fe 023B     		subs	r3, r3, #2
+ 131:HW/SDCard/SDCard.c ****     DWORD fre_sect = nclst * fs->csize;
+ 472              		.loc 1 131 45 discriminator 2 view .LVU111
+ 473 0200 5289     		ldrh	r2, [r2, #10]
+ 131:HW/SDCard/SDCard.c ****     DWORD fre_sect = nclst * fs->csize;
+ 474              		.loc 1 131 11 discriminator 2 view .LVU112
+ 475 0202 02FB03F1 		mul	r1, r2, r3
+ 476              	.LVL59:
+ 132:HW/SDCard/SDCard.c **** 
+ 477              		.loc 1 132 5 is_stmt 1 discriminator 2 view .LVU113
+ 132:HW/SDCard/SDCard.c **** 
+ 478              		.loc 1 132 28 is_stmt 0 discriminator 2 view .LVU114
+ 479 0206 029B     		ldr	r3, [sp, #8]
+ 132:HW/SDCard/SDCard.c **** 
+ 480              		.loc 1 132 11 discriminator 2 view .LVU115
+ 481 0208 03FB02F2 		mul	r2, r3, r2
+ 482              	.LVL60:
+ 135:HW/SDCard/SDCard.c **** FATFS_ERR_FLAG:
+ 483              		.loc 1 135 5 is_stmt 1 discriminator 2 view .LVU116
+ 484 020c 5208     		lsrs	r2, r2, #1
+ 485              	.LVL61:
+ 135:HW/SDCard/SDCard.c **** FATFS_ERR_FLAG:
+ 486              		.loc 1 135 5 is_stmt 0 discriminator 2 view .LVU117
+ 487 020e 4908     		lsrs	r1, r1, #1
+ 488              	.LVL62:
+ 135:HW/SDCard/SDCard.c **** FATFS_ERR_FLAG:
+ 489              		.loc 1 135 5 discriminator 2 view .LVU118
+ 490 0210 1C48     		ldr	r0, .L26+48
+ 491              	.LVL63:
+ 135:HW/SDCard/SDCard.c **** FATFS_ERR_FLAG:
+ 492              		.loc 1 135 5 discriminator 2 view .LVU119
+ 493 0212 FFF7FEFF 		bl	printf
+ 494              	.LVL64:
+ 135:HW/SDCard/SDCard.c **** FATFS_ERR_FLAG:
+ 495              		.loc 1 135 5 discriminator 2 view .LVU120
+ 496 0216 77E7     		b	.L6
+ 497              	.LVL65:
+ 498              	.L24:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 14
+
+
+ 124:HW/SDCard/SDCard.c **** 
+ 499              		.loc 1 124 5 is_stmt 1 discriminator 1 view .LVU121
+ 500 0218 124A     		ldr	r2, .L26+16
+ 501 021a 1268     		ldr	r2, [r2]
+ 502 021c D068     		ldr	r0, [r2, #12]
+ 503              	.LVL66:
+ 124:HW/SDCard/SDCard.c **** 
+ 504              		.loc 1 124 5 is_stmt 0 discriminator 1 view .LVU122
+ 505 021e 03EBC303 		add	r3, r3, r3, lsl #3
+ 506 0222 134A     		ldr	r2, .L26+28
+ 507 0224 02EBC303 		add	r3, r2, r3, lsl #3
+ 508 0228 0093     		str	r3, [sp]
+ 509 022a 0F4B     		ldr	r3, .L26+20
+ 510 022c 7C22     		movs	r2, #124
+ 511 022e 1149     		ldr	r1, .L26+32
+ 512 0230 FFF7FEFF 		bl	fprintf
+ 513              	.LVL67:
+ 124:HW/SDCard/SDCard.c **** 
+ 514              		.loc 1 124 5 is_stmt 1 discriminator 1 view .LVU123
+ 515 0234 68E7     		b	.L6
+ 516              	.LVL68:
+ 517              	.L25:
+ 130:HW/SDCard/SDCard.c ****     DWORD tot_sect = (fs->n_fatent - 2) * fs->csize;
+ 518              		.loc 1 130 5 discriminator 1 view .LVU124
+ 519 0236 0B4A     		ldr	r2, .L26+16
+ 520 0238 1268     		ldr	r2, [r2]
+ 521 023a D068     		ldr	r0, [r2, #12]
+ 522              	.LVL69:
+ 130:HW/SDCard/SDCard.c ****     DWORD tot_sect = (fs->n_fatent - 2) * fs->csize;
+ 523              		.loc 1 130 5 is_stmt 0 discriminator 1 view .LVU125
+ 524 023c 03EBC303 		add	r3, r3, r3, lsl #3
+ 525 0240 0B4A     		ldr	r2, .L26+28
+ 526 0242 02EBC303 		add	r3, r2, r3, lsl #3
+ 527 0246 0093     		str	r3, [sp]
+ 528 0248 074B     		ldr	r3, .L26+20
+ 529 024a 8222     		movs	r2, #130
+ 530 024c 0949     		ldr	r1, .L26+32
+ 531 024e FFF7FEFF 		bl	fprintf
+ 532              	.LVL70:
+ 130:HW/SDCard/SDCard.c ****     DWORD tot_sect = (fs->n_fatent - 2) * fs->csize;
+ 533              		.loc 1 130 5 is_stmt 1 discriminator 1 view .LVU126
+ 534 0252 59E7     		b	.L6
+ 535              	.L27:
+ 536              		.align	2
+ 537              	.L26:
+ 538 0254 00000000 		.word	.LC0
+ 539 0258 04000000 		.word	.LC1
+ 540 025c 58000000 		.word	.LC3
+ 541 0260 00000000 		.word	.LANCHOR0
+ 542 0264 00000000 		.word	_impure_ptr
+ 543 0268 00000000 		.word	__FUNCTION__.0
+ 544 026c 64000000 		.word	.LC5
+ 545 0270 00000000 		.word	errInfo
+ 546 0274 2C000000 		.word	.LC2
+ 547 0278 98000000 		.word	.LC6
+ 548 027c AC000000 		.word	.LC7
+ 549 0280 E0000000 		.word	.LC8
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 15
+
+
+ 550 0284 FC000000 		.word	.LC9
+ 551              		.cfi_endproc
+ 552              	.LFE33:
+ 554              		.section	.text.Buffercmp,"ax",%progbits
+ 555              		.align	1
+ 556              		.global	Buffercmp
+ 557              		.syntax unified
+ 558              		.thumb
+ 559              		.thumb_func
+ 561              	Buffercmp:
+ 562              	.LVL71:
+ 563              	.LFB37:
+ 140:HW/SDCard/SDCard.c **** 
+ 141:HW/SDCard/SDCard.c **** /* Private typedef -----------------------------------------------------------*/
+ 142:HW/SDCard/SDCard.c **** typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
+ 143:HW/SDCard/SDCard.c **** 
+ 144:HW/SDCard/SDCard.c **** /* Private define ------------------------------------------------------------*/
+ 145:HW/SDCard/SDCard.c **** #define BLOCK_SIZE            512 /* Block Size in Bytes */
+ 146:HW/SDCard/SDCard.c **** 
+ 147:HW/SDCard/SDCard.c **** #define NUMBER_OF_BLOCKS      32  /* For Multi Blocks operation (Read/Write) */
+ 148:HW/SDCard/SDCard.c **** #define MULTI_BUFFER_SIZE    (BLOCK_SIZE * NUMBER_OF_BLOCKS)
+ 149:HW/SDCard/SDCard.c **** 
+ 150:HW/SDCard/SDCard.c **** #define SD_OPERATION_ERASE          0
+ 151:HW/SDCard/SDCard.c **** #define SD_OPERATION_BLOCK          1
+ 152:HW/SDCard/SDCard.c **** #define SD_OPERATION_MULTI_BLOCK    2 
+ 153:HW/SDCard/SDCard.c **** #define SD_OPERATION_END            3
+ 154:HW/SDCard/SDCard.c **** 
+ 155:HW/SDCard/SDCard.c **** /* Private macro -------------------------------------------------------------*/
+ 156:HW/SDCard/SDCard.c **** /* Private variables ---------------------------------------------------------*/
+ 157:HW/SDCard/SDCard.c **** uint8_t Buffer_Block_Tx[BLOCK_SIZE], Buffer_Block_Rx[BLOCK_SIZE];
+ 158:HW/SDCard/SDCard.c **** uint8_t Buffer_MultiBlock_Tx[MULTI_BUFFER_SIZE], Buffer_MultiBlock_Rx[MULTI_BUFFER_SIZE];
+ 159:HW/SDCard/SDCard.c **** volatile TestStatus EraseStatus = FAILED, TransferStatus1 = FAILED, TransferStatus2 = FAILED;
+ 160:HW/SDCard/SDCard.c **** SD_Error Status = SD_OK;
+ 161:HW/SDCard/SDCard.c **** __IO uint32_t SDCardOperation = SD_OPERATION_ERASE;
+ 162:HW/SDCard/SDCard.c **** 
+ 163:HW/SDCard/SDCard.c **** TestStatus Buffercmp(uint8_t* pBuffer1, uint8_t* pBuffer2, uint32_t BufferLength);
+ 164:HW/SDCard/SDCard.c **** TestStatus eBuffercmp(uint8_t* pBuffer, uint32_t BufferLength);
+ 165:HW/SDCard/SDCard.c **** 
+ 166:HW/SDCard/SDCard.c **** /**
+ 167:HW/SDCard/SDCard.c ****   * @brief  Tests the SD card erase operation.
+ 168:HW/SDCard/SDCard.c ****   * @param  None
+ 169:HW/SDCard/SDCard.c ****   * @retval None
+ 170:HW/SDCard/SDCard.c ****   */
+ 171:HW/SDCard/SDCard.c **** void SD_EraseTest(void)
+ 172:HW/SDCard/SDCard.c **** {
+ 173:HW/SDCard/SDCard.c ****   /*------------------- Block Erase ------------------------------------------*/
+ 174:HW/SDCard/SDCard.c ****   if (Status == SD_OK)
+ 175:HW/SDCard/SDCard.c ****   {
+ 176:HW/SDCard/SDCard.c ****     /* Erase NumberOfBlocks Blocks of WRITE_BL_LEN(512 Bytes) */
+ 177:HW/SDCard/SDCard.c ****     Status = SD_Erase(0x00, (BLOCK_SIZE * NUMBER_OF_BLOCKS));
+ 178:HW/SDCard/SDCard.c ****   }
+ 179:HW/SDCard/SDCard.c **** 
+ 180:HW/SDCard/SDCard.c ****   if (Status == SD_OK)
+ 181:HW/SDCard/SDCard.c ****   {
+ 182:HW/SDCard/SDCard.c ****     Status = SD_ReadMultiBlocks(Buffer_MultiBlock_Rx, 0x00, BLOCK_SIZE, NUMBER_OF_BLOCKS);
+ 183:HW/SDCard/SDCard.c **** 
+ 184:HW/SDCard/SDCard.c ****     /* Check if the Transfer is finished */
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 16
+
+
+ 185:HW/SDCard/SDCard.c ****     Status = SD_WaitReadOperation();
+ 186:HW/SDCard/SDCard.c **** 
+ 187:HW/SDCard/SDCard.c ****     /* Wait until end of DMA transfer */
+ 188:HW/SDCard/SDCard.c ****     while(SD_GetStatus() != SD_TRANSFER_OK);
+ 189:HW/SDCard/SDCard.c ****   }
+ 190:HW/SDCard/SDCard.c **** 
+ 191:HW/SDCard/SDCard.c ****   /* Check the correctness of erased blocks */
+ 192:HW/SDCard/SDCard.c ****   if (Status == SD_OK)
+ 193:HW/SDCard/SDCard.c ****   {
+ 194:HW/SDCard/SDCard.c ****     EraseStatus = eBuffercmp(Buffer_MultiBlock_Rx, MULTI_BUFFER_SIZE);
+ 195:HW/SDCard/SDCard.c ****   }
+ 196:HW/SDCard/SDCard.c ****   
+ 197:HW/SDCard/SDCard.c ****   if(EraseStatus == PASSED)
+ 198:HW/SDCard/SDCard.c ****   {
+ 199:HW/SDCard/SDCard.c ****     printf("擦除测试成功\r\n");
+ 200:HW/SDCard/SDCard.c ****   }
+ 201:HW/SDCard/SDCard.c ****   else
+ 202:HW/SDCard/SDCard.c ****   {
+ 203:HW/SDCard/SDCard.c ****     printf("擦除测试失败\r\n");
+ 204:HW/SDCard/SDCard.c ****   }
+ 205:HW/SDCard/SDCard.c **** }
+ 206:HW/SDCard/SDCard.c **** 
+ 207:HW/SDCard/SDCard.c **** /**
+ 208:HW/SDCard/SDCard.c ****   * @brief  Tests the SD card Single Blocks operations.
+ 209:HW/SDCard/SDCard.c ****   * @param  None
+ 210:HW/SDCard/SDCard.c ****   * @retval None
+ 211:HW/SDCard/SDCard.c ****   */
+ 212:HW/SDCard/SDCard.c **** void SD_SingleBlockTest(void)
+ 213:HW/SDCard/SDCard.c **** {
+ 214:HW/SDCard/SDCard.c ****   /*------------------- Block Read/Write --------------------------*/
+ 215:HW/SDCard/SDCard.c ****   /* Fill the buffer to send */
+ 216:HW/SDCard/SDCard.c ****   Fill_Buffer(Buffer_Block_Tx, BLOCK_SIZE, 0x320F);
+ 217:HW/SDCard/SDCard.c **** 
+ 218:HW/SDCard/SDCard.c ****   if (Status == SD_OK)
+ 219:HW/SDCard/SDCard.c ****   {
+ 220:HW/SDCard/SDCard.c ****     /* Write block of 512 bytes on address 0 */
+ 221:HW/SDCard/SDCard.c ****     Status = SD_WriteBlock(Buffer_Block_Tx, 0x00, BLOCK_SIZE);
+ 222:HW/SDCard/SDCard.c ****     /* Check if the Transfer is finished */
+ 223:HW/SDCard/SDCard.c ****     Status = SD_WaitWriteOperation();
+ 224:HW/SDCard/SDCard.c ****     while(SD_GetStatus() != SD_TRANSFER_OK);
+ 225:HW/SDCard/SDCard.c ****   }
+ 226:HW/SDCard/SDCard.c **** 
+ 227:HW/SDCard/SDCard.c ****   if (Status == SD_OK)
+ 228:HW/SDCard/SDCard.c ****   {
+ 229:HW/SDCard/SDCard.c ****     /* Read block of 512 bytes from address 0 */
+ 230:HW/SDCard/SDCard.c ****     Status = SD_ReadBlock(Buffer_Block_Rx, 0x00, BLOCK_SIZE);
+ 231:HW/SDCard/SDCard.c ****     /* Check if the Transfer is finished */
+ 232:HW/SDCard/SDCard.c ****     Status = SD_WaitReadOperation();
+ 233:HW/SDCard/SDCard.c ****     while(SD_GetStatus() != SD_TRANSFER_OK);
+ 234:HW/SDCard/SDCard.c ****   }
+ 235:HW/SDCard/SDCard.c **** 
+ 236:HW/SDCard/SDCard.c ****   /* Check the correctness of written data */
+ 237:HW/SDCard/SDCard.c ****   if (Status == SD_OK)
+ 238:HW/SDCard/SDCard.c ****   {
+ 239:HW/SDCard/SDCard.c ****     TransferStatus1 = Buffercmp(Buffer_Block_Tx, Buffer_Block_Rx, BLOCK_SIZE);
+ 240:HW/SDCard/SDCard.c ****   }
+ 241:HW/SDCard/SDCard.c ****   
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 17
+
+
+ 242:HW/SDCard/SDCard.c ****   if(TransferStatus1 == PASSED)
+ 243:HW/SDCard/SDCard.c ****   {
+ 244:HW/SDCard/SDCard.c ****     printf("单block写入测试成功\r\n");
+ 245:HW/SDCard/SDCard.c ****   }
+ 246:HW/SDCard/SDCard.c ****   else
+ 247:HW/SDCard/SDCard.c ****   {
+ 248:HW/SDCard/SDCard.c ****     printf("单block写入测试失败\r\n");
+ 249:HW/SDCard/SDCard.c ****   }
+ 250:HW/SDCard/SDCard.c **** }
+ 251:HW/SDCard/SDCard.c **** 
+ 252:HW/SDCard/SDCard.c **** /**
+ 253:HW/SDCard/SDCard.c ****   * @brief  Tests the SD card Multiple Blocks operations.
+ 254:HW/SDCard/SDCard.c ****   * @param  None
+ 255:HW/SDCard/SDCard.c ****   * @retval None
+ 256:HW/SDCard/SDCard.c ****   */
+ 257:HW/SDCard/SDCard.c **** void SD_MultiBlockTest(void)
+ 258:HW/SDCard/SDCard.c **** {
+ 259:HW/SDCard/SDCard.c ****   /*--------------- Multiple Block Read/Write ---------------------*/
+ 260:HW/SDCard/SDCard.c ****   /* Fill the buffer to send */
+ 261:HW/SDCard/SDCard.c ****   Fill_Buffer(Buffer_MultiBlock_Tx, MULTI_BUFFER_SIZE, 0x0);
+ 262:HW/SDCard/SDCard.c **** 
+ 263:HW/SDCard/SDCard.c ****   if (Status == SD_OK)
+ 264:HW/SDCard/SDCard.c ****   {
+ 265:HW/SDCard/SDCard.c ****     /* Write multiple block of many bytes on address 0 */
+ 266:HW/SDCard/SDCard.c ****     Status = SD_WriteMultiBlocks(Buffer_MultiBlock_Tx, 0x00, BLOCK_SIZE, NUMBER_OF_BLOCKS);
+ 267:HW/SDCard/SDCard.c ****     /* Check if the Transfer is finished */
+ 268:HW/SDCard/SDCard.c ****     Status = SD_WaitWriteOperation();
+ 269:HW/SDCard/SDCard.c ****     while(SD_GetStatus() != SD_TRANSFER_OK);
+ 270:HW/SDCard/SDCard.c ****   }
+ 271:HW/SDCard/SDCard.c **** 
+ 272:HW/SDCard/SDCard.c ****   if (Status == SD_OK)
+ 273:HW/SDCard/SDCard.c ****   {
+ 274:HW/SDCard/SDCard.c ****     /* Read block of many bytes from address 0 */
+ 275:HW/SDCard/SDCard.c ****     Status = SD_ReadMultiBlocks(Buffer_MultiBlock_Rx, 0x00, BLOCK_SIZE, NUMBER_OF_BLOCKS);
+ 276:HW/SDCard/SDCard.c ****     /* Check if the Transfer is finished */
+ 277:HW/SDCard/SDCard.c ****     Status = SD_WaitReadOperation();
+ 278:HW/SDCard/SDCard.c ****     while(SD_GetStatus() != SD_TRANSFER_OK);
+ 279:HW/SDCard/SDCard.c ****   }
+ 280:HW/SDCard/SDCard.c **** 
+ 281:HW/SDCard/SDCard.c ****   /* Check the correctness of written data */
+ 282:HW/SDCard/SDCard.c ****   if (Status == SD_OK)
+ 283:HW/SDCard/SDCard.c ****   {
+ 284:HW/SDCard/SDCard.c ****     TransferStatus2 = Buffercmp(Buffer_MultiBlock_Tx, Buffer_MultiBlock_Rx, MULTI_BUFFER_SIZE);
+ 285:HW/SDCard/SDCard.c ****   }
+ 286:HW/SDCard/SDCard.c ****   
+ 287:HW/SDCard/SDCard.c ****   if(TransferStatus2 == PASSED)
+ 288:HW/SDCard/SDCard.c ****   {
+ 289:HW/SDCard/SDCard.c ****     printf("多block写入测试成功\r\n");
+ 290:HW/SDCard/SDCard.c ****   }
+ 291:HW/SDCard/SDCard.c ****   else
+ 292:HW/SDCard/SDCard.c ****   {
+ 293:HW/SDCard/SDCard.c ****     printf("多block写入测试失败\r\n");
+ 294:HW/SDCard/SDCard.c ****   }
+ 295:HW/SDCard/SDCard.c **** }
+ 296:HW/SDCard/SDCard.c **** 
+ 297:HW/SDCard/SDCard.c **** /**
+ 298:HW/SDCard/SDCard.c ****   * @brief  Compares two buffers.
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 18
+
+
+ 299:HW/SDCard/SDCard.c ****   * @param  pBuffer1, pBuffer2: buffers to be compared.
+ 300:HW/SDCard/SDCard.c ****   * @param  BufferLength: buffer's length
+ 301:HW/SDCard/SDCard.c ****   * @retval PASSED: pBuffer1 identical to pBuffer2
+ 302:HW/SDCard/SDCard.c ****   *         FAILED: pBuffer1 differs from pBuffer2
+ 303:HW/SDCard/SDCard.c ****   */
+ 304:HW/SDCard/SDCard.c **** TestStatus Buffercmp(uint8_t* pBuffer1, uint8_t* pBuffer2, uint32_t BufferLength)
+ 305:HW/SDCard/SDCard.c **** {
+ 564              		.loc 1 305 1 view -0
+ 565              		.cfi_startproc
+ 566              		@ args = 0, pretend = 0, frame = 0
+ 567              		@ frame_needed = 0, uses_anonymous_args = 0
+ 568              		@ link register save eliminated.
+ 306:HW/SDCard/SDCard.c ****   while (BufferLength--)
+ 569              		.loc 1 306 3 view .LVU128
+ 570              		.loc 1 306 9 is_stmt 0 view .LVU129
+ 571 0000 02E0     		b	.L29
+ 572              	.LVL72:
+ 573              	.L34:
+ 307:HW/SDCard/SDCard.c ****   {
+ 308:HW/SDCard/SDCard.c ****     if (*pBuffer1 != *pBuffer2)
+ 309:HW/SDCard/SDCard.c ****     {
+ 310:HW/SDCard/SDCard.c ****       return FAILED;
+ 311:HW/SDCard/SDCard.c ****     }
+ 312:HW/SDCard/SDCard.c **** 
+ 313:HW/SDCard/SDCard.c ****     pBuffer1++;
+ 574              		.loc 1 313 5 is_stmt 1 view .LVU130
+ 575              		.loc 1 313 13 is_stmt 0 view .LVU131
+ 576 0002 0130     		adds	r0, r0, #1
+ 577              	.LVL73:
+ 314:HW/SDCard/SDCard.c ****     pBuffer2++;
+ 578              		.loc 1 314 5 is_stmt 1 view .LVU132
+ 579              		.loc 1 314 13 is_stmt 0 view .LVU133
+ 580 0004 0131     		adds	r1, r1, #1
+ 581              	.LVL74:
+ 306:HW/SDCard/SDCard.c ****   while (BufferLength--)
+ 582              		.loc 1 306 22 view .LVU134
+ 583 0006 1A46     		mov	r2, r3
+ 584              	.LVL75:
+ 585              	.L29:
+ 306:HW/SDCard/SDCard.c ****   while (BufferLength--)
+ 586              		.loc 1 306 10 is_stmt 1 view .LVU135
+ 306:HW/SDCard/SDCard.c ****   while (BufferLength--)
+ 587              		.loc 1 306 22 is_stmt 0 view .LVU136
+ 588 0008 531E     		subs	r3, r2, #1
+ 589              	.LVL76:
+ 306:HW/SDCard/SDCard.c ****   while (BufferLength--)
+ 590              		.loc 1 306 10 view .LVU137
+ 591 000a 32B1     		cbz	r2, .L33
+ 308:HW/SDCard/SDCard.c ****     {
+ 592              		.loc 1 308 5 is_stmt 1 view .LVU138
+ 308:HW/SDCard/SDCard.c ****     {
+ 593              		.loc 1 308 9 is_stmt 0 view .LVU139
+ 594 000c 90F800C0 		ldrb	ip, [r0]	@ zero_extendqisi2
+ 308:HW/SDCard/SDCard.c ****     {
+ 595              		.loc 1 308 22 view .LVU140
+ 596 0010 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ 308:HW/SDCard/SDCard.c ****     {
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 19
+
+
+ 597              		.loc 1 308 8 view .LVU141
+ 598 0012 9445     		cmp	ip, r2
+ 599 0014 F5D0     		beq	.L34
+ 310:HW/SDCard/SDCard.c ****     }
+ 600              		.loc 1 310 14 view .LVU142
+ 601 0016 0020     		movs	r0, #0
+ 602              	.LVL77:
+ 315:HW/SDCard/SDCard.c ****   }
+ 316:HW/SDCard/SDCard.c **** 
+ 317:HW/SDCard/SDCard.c ****   return PASSED;
+ 318:HW/SDCard/SDCard.c **** }
+ 603              		.loc 1 318 1 view .LVU143
+ 604 0018 7047     		bx	lr
+ 605              	.LVL78:
+ 606              	.L33:
+ 317:HW/SDCard/SDCard.c **** }
+ 607              		.loc 1 317 10 view .LVU144
+ 608 001a 0120     		movs	r0, #1
+ 609              	.LVL79:
+ 317:HW/SDCard/SDCard.c **** }
+ 610              		.loc 1 317 10 view .LVU145
+ 611 001c 7047     		bx	lr
+ 612              		.cfi_endproc
+ 613              	.LFE37:
+ 615              		.section	.text.Fill_Buffer,"ax",%progbits
+ 616              		.align	1
+ 617              		.global	Fill_Buffer
+ 618              		.syntax unified
+ 619              		.thumb
+ 620              		.thumb_func
+ 622              	Fill_Buffer:
+ 623              	.LVL80:
+ 624              	.LFB38:
+ 319:HW/SDCard/SDCard.c **** 
+ 320:HW/SDCard/SDCard.c **** /**
+ 321:HW/SDCard/SDCard.c ****   * @brief  Fills buffer with user predefined data.
+ 322:HW/SDCard/SDCard.c ****   * @param  pBuffer: pointer on the Buffer to fill
+ 323:HW/SDCard/SDCard.c ****   * @param  BufferLength: size of the buffer to fill
+ 324:HW/SDCard/SDCard.c ****   * @param  Offset: first value to fill on the Buffer
+ 325:HW/SDCard/SDCard.c ****   * @retval None
+ 326:HW/SDCard/SDCard.c ****   */
+ 327:HW/SDCard/SDCard.c **** void Fill_Buffer(uint8_t *pBuffer, uint32_t BufferLength, uint32_t Offset)
+ 328:HW/SDCard/SDCard.c **** {
+ 625              		.loc 1 328 1 is_stmt 1 view -0
+ 626              		.cfi_startproc
+ 627              		@ args = 0, pretend = 0, frame = 0
+ 628              		@ frame_needed = 0, uses_anonymous_args = 0
+ 629              		@ link register save eliminated.
+ 329:HW/SDCard/SDCard.c ****   uint16_t index = 0;
+ 630              		.loc 1 329 3 view .LVU147
+ 330:HW/SDCard/SDCard.c **** 
+ 331:HW/SDCard/SDCard.c ****   /* Put in global buffer same values */
+ 332:HW/SDCard/SDCard.c ****   for (index = 0; index < BufferLength; index++)
+ 631              		.loc 1 332 3 view .LVU148
+ 632              		.loc 1 332 14 is_stmt 0 view .LVU149
+ 633 0000 0023     		movs	r3, #0
+ 634              		.loc 1 332 3 view .LVU150
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 20
+
+
+ 635 0002 05E0     		b	.L36
+ 636              	.LVL81:
+ 637              	.L37:
+ 333:HW/SDCard/SDCard.c ****   {
+ 334:HW/SDCard/SDCard.c ****     pBuffer[index] = index + Offset;
+ 638              		.loc 1 334 5 is_stmt 1 discriminator 3 view .LVU151
+ 639              		.loc 1 334 28 is_stmt 0 discriminator 3 view .LVU152
+ 640 0004 03EB020C 		add	ip, r3, r2
+ 641              		.loc 1 334 20 discriminator 3 view .LVU153
+ 642 0008 00F803C0 		strb	ip, [r0, r3]
+ 332:HW/SDCard/SDCard.c ****   {
+ 643              		.loc 1 332 46 is_stmt 1 discriminator 3 view .LVU154
+ 644 000c 0133     		adds	r3, r3, #1
+ 645              	.LVL82:
+ 332:HW/SDCard/SDCard.c ****   {
+ 646              		.loc 1 332 46 is_stmt 0 discriminator 3 view .LVU155
+ 647 000e 9BB2     		uxth	r3, r3
+ 648              	.LVL83:
+ 649              	.L36:
+ 332:HW/SDCard/SDCard.c ****   {
+ 650              		.loc 1 332 25 is_stmt 1 discriminator 1 view .LVU156
+ 651 0010 8B42     		cmp	r3, r1
+ 652 0012 F7D3     		bcc	.L37
+ 335:HW/SDCard/SDCard.c ****   }
+ 336:HW/SDCard/SDCard.c **** }
+ 653              		.loc 1 336 1 is_stmt 0 view .LVU157
+ 654 0014 7047     		bx	lr
+ 655              		.cfi_endproc
+ 656              	.LFE38:
+ 658              		.section	.rodata.SD_SingleBlockTest.str1.4,"aMS",%progbits,1
+ 659              		.align	2
+ 660              	.LC10:
+ 661 0000 E58D9562 		.ascii	"\345\215\225block\345\206\231\345\205\245\346\265\213"
+ 661      6C6F636B 
+ 661      E58699E5 
+ 661      85A5E6B5 
+ 661      8B
+ 662 0011 E8AF95E6 		.ascii	"\350\257\225\346\210\220\345\212\237\015\000"
+ 662      8890E58A 
+ 662      9F0D00
+ 663              		.align	2
+ 664              	.LC11:
+ 665 001c E58D9562 		.ascii	"\345\215\225block\345\206\231\345\205\245\346\265\213"
+ 665      6C6F636B 
+ 665      E58699E5 
+ 665      85A5E6B5 
+ 665      8B
+ 666 002d E8AF95E5 		.ascii	"\350\257\225\345\244\261\350\264\245\015\000"
+ 666      A4B1E8B4 
+ 666      A50D00
+ 667              		.section	.text.SD_SingleBlockTest,"ax",%progbits
+ 668              		.align	1
+ 669              		.global	SD_SingleBlockTest
+ 670              		.syntax unified
+ 671              		.thumb
+ 672              		.thumb_func
+ 674              	SD_SingleBlockTest:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 21
+
+
+ 675              	.LFB35:
+ 213:HW/SDCard/SDCard.c ****   /*------------------- Block Read/Write --------------------------*/
+ 676              		.loc 1 213 1 is_stmt 1 view -0
+ 677              		.cfi_startproc
+ 678              		@ args = 0, pretend = 0, frame = 0
+ 679              		@ frame_needed = 0, uses_anonymous_args = 0
+ 680 0000 10B5     		push	{r4, lr}
+ 681              	.LCFI4:
+ 682              		.cfi_def_cfa_offset 8
+ 683              		.cfi_offset 4, -8
+ 684              		.cfi_offset 14, -4
+ 216:HW/SDCard/SDCard.c **** 
+ 685              		.loc 1 216 3 view .LVU159
+ 686 0002 43F20F22 		movw	r2, #12815
+ 687 0006 4FF40071 		mov	r1, #512
+ 688 000a 2048     		ldr	r0, .L50
+ 689 000c FFF7FEFF 		bl	Fill_Buffer
+ 690              	.LVL84:
+ 218:HW/SDCard/SDCard.c ****   {
+ 691              		.loc 1 218 3 view .LVU160
+ 218:HW/SDCard/SDCard.c ****   {
+ 692              		.loc 1 218 14 is_stmt 0 view .LVU161
+ 693 0010 1F4B     		ldr	r3, .L50+4
+ 694 0012 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 218:HW/SDCard/SDCard.c ****   {
+ 695              		.loc 1 218 6 view .LVU162
+ 696 0014 B3B1     		cbz	r3, .L47
+ 697              	.L39:
+ 227:HW/SDCard/SDCard.c ****   {
+ 698              		.loc 1 227 3 is_stmt 1 view .LVU163
+ 227:HW/SDCard/SDCard.c ****   {
+ 699              		.loc 1 227 14 is_stmt 0 view .LVU164
+ 700 0016 1E4B     		ldr	r3, .L50+4
+ 701 0018 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 227:HW/SDCard/SDCard.c ****   {
+ 702              		.loc 1 227 6 view .LVU165
+ 703 001a 1BB3     		cbz	r3, .L48
+ 704              	.L41:
+ 237:HW/SDCard/SDCard.c ****   {
+ 705              		.loc 1 237 3 is_stmt 1 view .LVU166
+ 237:HW/SDCard/SDCard.c ****   {
+ 706              		.loc 1 237 14 is_stmt 0 view .LVU167
+ 707 001c 1C4B     		ldr	r3, .L50+4
+ 708 001e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 237:HW/SDCard/SDCard.c ****   {
+ 709              		.loc 1 237 6 view .LVU168
+ 710 0020 3BB9     		cbnz	r3, .L43
+ 239:HW/SDCard/SDCard.c ****   }
+ 711              		.loc 1 239 5 is_stmt 1 view .LVU169
+ 239:HW/SDCard/SDCard.c ****   }
+ 712              		.loc 1 239 23 is_stmt 0 view .LVU170
+ 713 0022 4FF40072 		mov	r2, #512
+ 714 0026 1B49     		ldr	r1, .L50+8
+ 715 0028 1848     		ldr	r0, .L50
+ 716 002a FFF7FEFF 		bl	Buffercmp
+ 717              	.LVL85:
+ 239:HW/SDCard/SDCard.c ****   }
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 22
+
+
+ 718              		.loc 1 239 21 view .LVU171
+ 719 002e 1A4B     		ldr	r3, .L50+12
+ 720 0030 1870     		strb	r0, [r3]
+ 721              	.L43:
+ 242:HW/SDCard/SDCard.c ****   {
+ 722              		.loc 1 242 3 is_stmt 1 view .LVU172
+ 242:HW/SDCard/SDCard.c ****   {
+ 723              		.loc 1 242 22 is_stmt 0 view .LVU173
+ 724 0032 194B     		ldr	r3, .L50+12
+ 725 0034 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 726 0036 DBB2     		uxtb	r3, r3
+ 242:HW/SDCard/SDCard.c ****   {
+ 727              		.loc 1 242 5 view .LVU174
+ 728 0038 012B     		cmp	r3, #1
+ 729 003a 23D0     		beq	.L49
+ 248:HW/SDCard/SDCard.c ****   }
+ 730              		.loc 1 248 5 is_stmt 1 view .LVU175
+ 731 003c 1748     		ldr	r0, .L50+16
+ 732 003e FFF7FEFF 		bl	puts
+ 733              	.LVL86:
+ 734              	.L38:
+ 250:HW/SDCard/SDCard.c **** 
+ 735              		.loc 1 250 1 is_stmt 0 view .LVU176
+ 736 0042 10BD     		pop	{r4, pc}
+ 737              	.L47:
+ 221:HW/SDCard/SDCard.c ****     /* Check if the Transfer is finished */
+ 738              		.loc 1 221 5 is_stmt 1 view .LVU177
+ 221:HW/SDCard/SDCard.c ****     /* Check if the Transfer is finished */
+ 739              		.loc 1 221 14 is_stmt 0 view .LVU178
+ 740 0044 4FF40072 		mov	r2, #512
+ 741 0048 0021     		movs	r1, #0
+ 742 004a 1048     		ldr	r0, .L50
+ 743 004c FFF7FEFF 		bl	SD_WriteBlock
+ 744              	.LVL87:
+ 221:HW/SDCard/SDCard.c ****     /* Check if the Transfer is finished */
+ 745              		.loc 1 221 12 view .LVU179
+ 746 0050 0F4C     		ldr	r4, .L50+4
+ 747 0052 2070     		strb	r0, [r4]
+ 223:HW/SDCard/SDCard.c ****     while(SD_GetStatus() != SD_TRANSFER_OK);
+ 748              		.loc 1 223 5 is_stmt 1 view .LVU180
+ 223:HW/SDCard/SDCard.c ****     while(SD_GetStatus() != SD_TRANSFER_OK);
+ 749              		.loc 1 223 14 is_stmt 0 view .LVU181
+ 750 0054 FFF7FEFF 		bl	SD_WaitWriteOperation
+ 751              	.LVL88:
+ 223:HW/SDCard/SDCard.c ****     while(SD_GetStatus() != SD_TRANSFER_OK);
+ 752              		.loc 1 223 12 view .LVU182
+ 753 0058 2070     		strb	r0, [r4]
+ 224:HW/SDCard/SDCard.c ****   }
+ 754              		.loc 1 224 5 is_stmt 1 view .LVU183
+ 755              	.L40:
+ 224:HW/SDCard/SDCard.c ****   }
+ 756              		.loc 1 224 26 discriminator 1 view .LVU184
+ 224:HW/SDCard/SDCard.c ****   }
+ 757              		.loc 1 224 11 is_stmt 0 discriminator 1 view .LVU185
+ 758 005a FFF7FEFF 		bl	SD_GetStatus
+ 759              	.LVL89:
+ 224:HW/SDCard/SDCard.c ****   }
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 23
+
+
+ 760              		.loc 1 224 26 discriminator 1 view .LVU186
+ 761 005e 0028     		cmp	r0, #0
+ 762 0060 FBD1     		bne	.L40
+ 763 0062 D8E7     		b	.L39
+ 764              	.L48:
+ 230:HW/SDCard/SDCard.c ****     /* Check if the Transfer is finished */
+ 765              		.loc 1 230 5 is_stmt 1 view .LVU187
+ 230:HW/SDCard/SDCard.c ****     /* Check if the Transfer is finished */
+ 766              		.loc 1 230 14 is_stmt 0 view .LVU188
+ 767 0064 4FF40072 		mov	r2, #512
+ 768 0068 0021     		movs	r1, #0
+ 769 006a 0A48     		ldr	r0, .L50+8
+ 770 006c FFF7FEFF 		bl	SD_ReadBlock
+ 771              	.LVL90:
+ 230:HW/SDCard/SDCard.c ****     /* Check if the Transfer is finished */
+ 772              		.loc 1 230 12 view .LVU189
+ 773 0070 074C     		ldr	r4, .L50+4
+ 774 0072 2070     		strb	r0, [r4]
+ 232:HW/SDCard/SDCard.c ****     while(SD_GetStatus() != SD_TRANSFER_OK);
+ 775              		.loc 1 232 5 is_stmt 1 view .LVU190
+ 232:HW/SDCard/SDCard.c ****     while(SD_GetStatus() != SD_TRANSFER_OK);
+ 776              		.loc 1 232 14 is_stmt 0 view .LVU191
+ 777 0074 FFF7FEFF 		bl	SD_WaitReadOperation
+ 778              	.LVL91:
+ 232:HW/SDCard/SDCard.c ****     while(SD_GetStatus() != SD_TRANSFER_OK);
+ 779              		.loc 1 232 12 view .LVU192
+ 780 0078 2070     		strb	r0, [r4]
+ 233:HW/SDCard/SDCard.c ****   }
+ 781              		.loc 1 233 5 is_stmt 1 view .LVU193
+ 782              	.L42:
+ 233:HW/SDCard/SDCard.c ****   }
+ 783              		.loc 1 233 26 discriminator 1 view .LVU194
+ 233:HW/SDCard/SDCard.c ****   }
+ 784              		.loc 1 233 11 is_stmt 0 discriminator 1 view .LVU195
+ 785 007a FFF7FEFF 		bl	SD_GetStatus
+ 786              	.LVL92:
+ 233:HW/SDCard/SDCard.c ****   }
+ 787              		.loc 1 233 26 discriminator 1 view .LVU196
+ 788 007e 0028     		cmp	r0, #0
+ 789 0080 FBD1     		bne	.L42
+ 790 0082 CBE7     		b	.L41
+ 791              	.L49:
+ 244:HW/SDCard/SDCard.c ****   }
+ 792              		.loc 1 244 5 is_stmt 1 view .LVU197
+ 793 0084 0648     		ldr	r0, .L50+20
+ 794 0086 FFF7FEFF 		bl	puts
+ 795              	.LVL93:
+ 796 008a DAE7     		b	.L38
+ 797              	.L51:
+ 798              		.align	2
+ 799              	.L50:
+ 800 008c 00000000 		.word	Buffer_Block_Tx
+ 801 0090 00000000 		.word	Status
+ 802 0094 00000000 		.word	Buffer_Block_Rx
+ 803 0098 00000000 		.word	TransferStatus1
+ 804 009c 1C000000 		.word	.LC11
+ 805 00a0 00000000 		.word	.LC10
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 24
+
+
+ 806              		.cfi_endproc
+ 807              	.LFE35:
+ 809              		.section	.rodata.SD_MultiBlockTest.str1.4,"aMS",%progbits,1
+ 810              		.align	2
+ 811              	.LC12:
+ 812 0000 E5A49A62 		.ascii	"\345\244\232block\345\206\231\345\205\245\346\265\213"
+ 812      6C6F636B 
+ 812      E58699E5 
+ 812      85A5E6B5 
+ 812      8B
+ 813 0011 E8AF95E6 		.ascii	"\350\257\225\346\210\220\345\212\237\015\000"
+ 813      8890E58A 
+ 813      9F0D00
+ 814              		.align	2
+ 815              	.LC13:
+ 816 001c E5A49A62 		.ascii	"\345\244\232block\345\206\231\345\205\245\346\265\213"
+ 816      6C6F636B 
+ 816      E58699E5 
+ 816      85A5E6B5 
+ 816      8B
+ 817 002d E8AF95E5 		.ascii	"\350\257\225\345\244\261\350\264\245\015\000"
+ 817      A4B1E8B4 
+ 817      A50D00
+ 818              		.section	.text.SD_MultiBlockTest,"ax",%progbits
+ 819              		.align	1
+ 820              		.global	SD_MultiBlockTest
+ 821              		.syntax unified
+ 822              		.thumb
+ 823              		.thumb_func
+ 825              	SD_MultiBlockTest:
+ 826              	.LFB36:
+ 258:HW/SDCard/SDCard.c ****   /*--------------- Multiple Block Read/Write ---------------------*/
+ 827              		.loc 1 258 1 view -0
+ 828              		.cfi_startproc
+ 829              		@ args = 0, pretend = 0, frame = 0
+ 830              		@ frame_needed = 0, uses_anonymous_args = 0
+ 831 0000 10B5     		push	{r4, lr}
+ 832              	.LCFI5:
+ 833              		.cfi_def_cfa_offset 8
+ 834              		.cfi_offset 4, -8
+ 835              		.cfi_offset 14, -4
+ 261:HW/SDCard/SDCard.c **** 
+ 836              		.loc 1 261 3 view .LVU199
+ 837 0002 0022     		movs	r2, #0
+ 838 0004 4FF48041 		mov	r1, #16384
+ 839 0008 2148     		ldr	r0, .L64
+ 840 000a FFF7FEFF 		bl	Fill_Buffer
+ 841              	.LVL94:
+ 263:HW/SDCard/SDCard.c ****   {
+ 842              		.loc 1 263 3 view .LVU200
+ 263:HW/SDCard/SDCard.c ****   {
+ 843              		.loc 1 263 14 is_stmt 0 view .LVU201
+ 844 000e 214B     		ldr	r3, .L64+4
+ 845 0010 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 263:HW/SDCard/SDCard.c ****   {
+ 846              		.loc 1 263 6 view .LVU202
+ 847 0012 B3B1     		cbz	r3, .L61
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 25
+
+
+ 848              	.L53:
+ 272:HW/SDCard/SDCard.c ****   {
+ 849              		.loc 1 272 3 is_stmt 1 view .LVU203
+ 272:HW/SDCard/SDCard.c ****   {
+ 850              		.loc 1 272 14 is_stmt 0 view .LVU204
+ 851 0014 1F4B     		ldr	r3, .L64+4
+ 852 0016 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 272:HW/SDCard/SDCard.c ****   {
+ 853              		.loc 1 272 6 view .LVU205
+ 854 0018 23B3     		cbz	r3, .L62
+ 855              	.L55:
+ 282:HW/SDCard/SDCard.c ****   {
+ 856              		.loc 1 282 3 is_stmt 1 view .LVU206
+ 282:HW/SDCard/SDCard.c ****   {
+ 857              		.loc 1 282 14 is_stmt 0 view .LVU207
+ 858 001a 1E4B     		ldr	r3, .L64+4
+ 859 001c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 282:HW/SDCard/SDCard.c ****   {
+ 860              		.loc 1 282 6 view .LVU208
+ 861 001e 3BB9     		cbnz	r3, .L57
+ 284:HW/SDCard/SDCard.c ****   }
+ 862              		.loc 1 284 5 is_stmt 1 view .LVU209
+ 284:HW/SDCard/SDCard.c ****   }
+ 863              		.loc 1 284 23 is_stmt 0 view .LVU210
+ 864 0020 4FF48042 		mov	r2, #16384
+ 865 0024 1C49     		ldr	r1, .L64+8
+ 866 0026 1A48     		ldr	r0, .L64
+ 867 0028 FFF7FEFF 		bl	Buffercmp
+ 868              	.LVL95:
+ 284:HW/SDCard/SDCard.c ****   }
+ 869              		.loc 1 284 21 view .LVU211
+ 870 002c 1B4B     		ldr	r3, .L64+12
+ 871 002e 1870     		strb	r0, [r3]
+ 872              	.L57:
+ 287:HW/SDCard/SDCard.c ****   {
+ 873              		.loc 1 287 3 is_stmt 1 view .LVU212
+ 287:HW/SDCard/SDCard.c ****   {
+ 874              		.loc 1 287 22 is_stmt 0 view .LVU213
+ 875 0030 1A4B     		ldr	r3, .L64+12
+ 876 0032 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 877 0034 DBB2     		uxtb	r3, r3
+ 287:HW/SDCard/SDCard.c ****   {
+ 878              		.loc 1 287 5 view .LVU214
+ 879 0036 012B     		cmp	r3, #1
+ 880 0038 25D0     		beq	.L63
+ 293:HW/SDCard/SDCard.c ****   }
+ 881              		.loc 1 293 5 is_stmt 1 view .LVU215
+ 882 003a 1948     		ldr	r0, .L64+16
+ 883 003c FFF7FEFF 		bl	puts
+ 884              	.LVL96:
+ 885              	.L52:
+ 295:HW/SDCard/SDCard.c **** 
+ 886              		.loc 1 295 1 is_stmt 0 view .LVU216
+ 887 0040 10BD     		pop	{r4, pc}
+ 888              	.L61:
+ 266:HW/SDCard/SDCard.c ****     /* Check if the Transfer is finished */
+ 889              		.loc 1 266 5 is_stmt 1 view .LVU217
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 26
+
+
+ 266:HW/SDCard/SDCard.c ****     /* Check if the Transfer is finished */
+ 890              		.loc 1 266 14 is_stmt 0 view .LVU218
+ 891 0042 2023     		movs	r3, #32
+ 892 0044 4FF40072 		mov	r2, #512
+ 893 0048 0021     		movs	r1, #0
+ 894 004a 1148     		ldr	r0, .L64
+ 895 004c FFF7FEFF 		bl	SD_WriteMultiBlocks
+ 896              	.LVL97:
+ 266:HW/SDCard/SDCard.c ****     /* Check if the Transfer is finished */
+ 897              		.loc 1 266 12 view .LVU219
+ 898 0050 104C     		ldr	r4, .L64+4
+ 899 0052 2070     		strb	r0, [r4]
+ 268:HW/SDCard/SDCard.c ****     while(SD_GetStatus() != SD_TRANSFER_OK);
+ 900              		.loc 1 268 5 is_stmt 1 view .LVU220
+ 268:HW/SDCard/SDCard.c ****     while(SD_GetStatus() != SD_TRANSFER_OK);
+ 901              		.loc 1 268 14 is_stmt 0 view .LVU221
+ 902 0054 FFF7FEFF 		bl	SD_WaitWriteOperation
+ 903              	.LVL98:
+ 268:HW/SDCard/SDCard.c ****     while(SD_GetStatus() != SD_TRANSFER_OK);
+ 904              		.loc 1 268 12 view .LVU222
+ 905 0058 2070     		strb	r0, [r4]
+ 269:HW/SDCard/SDCard.c ****   }
+ 906              		.loc 1 269 5 is_stmt 1 view .LVU223
+ 907              	.L54:
+ 269:HW/SDCard/SDCard.c ****   }
+ 908              		.loc 1 269 26 discriminator 1 view .LVU224
+ 269:HW/SDCard/SDCard.c ****   }
+ 909              		.loc 1 269 11 is_stmt 0 discriminator 1 view .LVU225
+ 910 005a FFF7FEFF 		bl	SD_GetStatus
+ 911              	.LVL99:
+ 269:HW/SDCard/SDCard.c ****   }
+ 912              		.loc 1 269 26 discriminator 1 view .LVU226
+ 913 005e 0028     		cmp	r0, #0
+ 914 0060 FBD1     		bne	.L54
+ 915 0062 D7E7     		b	.L53
+ 916              	.L62:
+ 275:HW/SDCard/SDCard.c ****     /* Check if the Transfer is finished */
+ 917              		.loc 1 275 5 is_stmt 1 view .LVU227
+ 275:HW/SDCard/SDCard.c ****     /* Check if the Transfer is finished */
+ 918              		.loc 1 275 14 is_stmt 0 view .LVU228
+ 919 0064 2023     		movs	r3, #32
+ 920 0066 4FF40072 		mov	r2, #512
+ 921 006a 0021     		movs	r1, #0
+ 922 006c 0A48     		ldr	r0, .L64+8
+ 923 006e FFF7FEFF 		bl	SD_ReadMultiBlocks
+ 924              	.LVL100:
+ 275:HW/SDCard/SDCard.c ****     /* Check if the Transfer is finished */
+ 925              		.loc 1 275 12 view .LVU229
+ 926 0072 084C     		ldr	r4, .L64+4
+ 927 0074 2070     		strb	r0, [r4]
+ 277:HW/SDCard/SDCard.c ****     while(SD_GetStatus() != SD_TRANSFER_OK);
+ 928              		.loc 1 277 5 is_stmt 1 view .LVU230
+ 277:HW/SDCard/SDCard.c ****     while(SD_GetStatus() != SD_TRANSFER_OK);
+ 929              		.loc 1 277 14 is_stmt 0 view .LVU231
+ 930 0076 FFF7FEFF 		bl	SD_WaitReadOperation
+ 931              	.LVL101:
+ 277:HW/SDCard/SDCard.c ****     while(SD_GetStatus() != SD_TRANSFER_OK);
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 27
+
+
+ 932              		.loc 1 277 12 view .LVU232
+ 933 007a 2070     		strb	r0, [r4]
+ 278:HW/SDCard/SDCard.c ****   }
+ 934              		.loc 1 278 5 is_stmt 1 view .LVU233
+ 935              	.L56:
+ 278:HW/SDCard/SDCard.c ****   }
+ 936              		.loc 1 278 26 discriminator 1 view .LVU234
+ 278:HW/SDCard/SDCard.c ****   }
+ 937              		.loc 1 278 11 is_stmt 0 discriminator 1 view .LVU235
+ 938 007c FFF7FEFF 		bl	SD_GetStatus
+ 939              	.LVL102:
+ 278:HW/SDCard/SDCard.c ****   }
+ 940              		.loc 1 278 26 discriminator 1 view .LVU236
+ 941 0080 0028     		cmp	r0, #0
+ 942 0082 FBD1     		bne	.L56
+ 943 0084 C9E7     		b	.L55
+ 944              	.L63:
+ 289:HW/SDCard/SDCard.c ****   }
+ 945              		.loc 1 289 5 is_stmt 1 view .LVU237
+ 946 0086 0748     		ldr	r0, .L64+20
+ 947 0088 FFF7FEFF 		bl	puts
+ 948              	.LVL103:
+ 949 008c D8E7     		b	.L52
+ 950              	.L65:
+ 951 008e 00BF     		.align	2
+ 952              	.L64:
+ 953 0090 00000000 		.word	Buffer_MultiBlock_Tx
+ 954 0094 00000000 		.word	Status
+ 955 0098 00000000 		.word	Buffer_MultiBlock_Rx
+ 956 009c 00000000 		.word	TransferStatus2
+ 957 00a0 1C000000 		.word	.LC13
+ 958 00a4 00000000 		.word	.LC12
+ 959              		.cfi_endproc
+ 960              	.LFE36:
+ 962              		.section	.text.eBuffercmp,"ax",%progbits
+ 963              		.align	1
+ 964              		.global	eBuffercmp
+ 965              		.syntax unified
+ 966              		.thumb
+ 967              		.thumb_func
+ 969              	eBuffercmp:
+ 970              	.LVL104:
+ 971              	.LFB39:
+ 337:HW/SDCard/SDCard.c **** 
+ 338:HW/SDCard/SDCard.c **** /**
+ 339:HW/SDCard/SDCard.c ****   * @brief  Checks if a buffer has all its values are equal to zero.
+ 340:HW/SDCard/SDCard.c ****   * @param  pBuffer: buffer to be compared.
+ 341:HW/SDCard/SDCard.c ****   * @param  BufferLength: buffer's length
+ 342:HW/SDCard/SDCard.c ****   * @retval PASSED: pBuffer values are zero
+ 343:HW/SDCard/SDCard.c ****   *         FAILED: At least one value from pBuffer buffer is different from zero.
+ 344:HW/SDCard/SDCard.c ****   */
+ 345:HW/SDCard/SDCard.c **** TestStatus eBuffercmp(uint8_t* pBuffer, uint32_t BufferLength)
+ 346:HW/SDCard/SDCard.c **** {
+ 972              		.loc 1 346 1 view -0
+ 973              		.cfi_startproc
+ 974              		@ args = 0, pretend = 0, frame = 0
+ 975              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 28
+
+
+ 976              		@ link register save eliminated.
+ 347:HW/SDCard/SDCard.c ****   while (BufferLength--)
+ 977              		.loc 1 347 3 view .LVU239
+ 978              		.loc 1 347 9 is_stmt 0 view .LVU240
+ 979 0000 01E0     		b	.L67
+ 980              	.LVL105:
+ 981              	.L72:
+ 348:HW/SDCard/SDCard.c ****   {
+ 349:HW/SDCard/SDCard.c ****     /* In some SD Cards the erased state is 0xFF, in others it's 0x00 */
+ 350:HW/SDCard/SDCard.c ****     if ((*pBuffer != 0xFF) && (*pBuffer != 0x00))
+ 351:HW/SDCard/SDCard.c ****     {
+ 352:HW/SDCard/SDCard.c ****       return FAILED;
+ 353:HW/SDCard/SDCard.c ****     }
+ 354:HW/SDCard/SDCard.c **** 
+ 355:HW/SDCard/SDCard.c ****     pBuffer++;
+ 982              		.loc 1 355 5 is_stmt 1 view .LVU241
+ 983              		.loc 1 355 12 is_stmt 0 view .LVU242
+ 984 0002 0130     		adds	r0, r0, #1
+ 985              	.LVL106:
+ 347:HW/SDCard/SDCard.c ****   while (BufferLength--)
+ 986              		.loc 1 347 22 view .LVU243
+ 987 0004 1146     		mov	r1, r2
+ 988              	.LVL107:
+ 989              	.L67:
+ 347:HW/SDCard/SDCard.c ****   while (BufferLength--)
+ 990              		.loc 1 347 10 is_stmt 1 view .LVU244
+ 347:HW/SDCard/SDCard.c ****   while (BufferLength--)
+ 991              		.loc 1 347 22 is_stmt 0 view .LVU245
+ 992 0006 4A1E     		subs	r2, r1, #1
+ 993              	.LVL108:
+ 347:HW/SDCard/SDCard.c ****   while (BufferLength--)
+ 994              		.loc 1 347 10 view .LVU246
+ 995 0008 31B1     		cbz	r1, .L71
+ 350:HW/SDCard/SDCard.c ****     {
+ 996              		.loc 1 350 5 is_stmt 1 view .LVU247
+ 350:HW/SDCard/SDCard.c ****     {
+ 997              		.loc 1 350 10 is_stmt 0 view .LVU248
+ 998 000a 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 350:HW/SDCard/SDCard.c ****     {
+ 999              		.loc 1 350 28 view .LVU249
+ 1000 000c 013B     		subs	r3, r3, #1
+ 1001 000e DBB2     		uxtb	r3, r3
+ 350:HW/SDCard/SDCard.c ****     {
+ 1002              		.loc 1 350 8 view .LVU250
+ 1003 0010 FD2B     		cmp	r3, #253
+ 1004 0012 F6D8     		bhi	.L72
+ 352:HW/SDCard/SDCard.c ****     }
+ 1005              		.loc 1 352 14 view .LVU251
+ 1006 0014 0020     		movs	r0, #0
+ 1007              	.LVL109:
+ 356:HW/SDCard/SDCard.c ****   }
+ 357:HW/SDCard/SDCard.c **** 
+ 358:HW/SDCard/SDCard.c ****   return PASSED;
+ 359:HW/SDCard/SDCard.c **** }
+ 1008              		.loc 1 359 1 view .LVU252
+ 1009 0016 7047     		bx	lr
+ 1010              	.LVL110:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 29
+
+
+ 1011              	.L71:
+ 358:HW/SDCard/SDCard.c **** }
+ 1012              		.loc 1 358 10 view .LVU253
+ 1013 0018 0120     		movs	r0, #1
+ 1014              	.LVL111:
+ 358:HW/SDCard/SDCard.c **** }
+ 1015              		.loc 1 358 10 view .LVU254
+ 1016 001a 7047     		bx	lr
+ 1017              		.cfi_endproc
+ 1018              	.LFE39:
+ 1020              		.section	.rodata.SD_EraseTest.str1.4,"aMS",%progbits,1
+ 1021              		.align	2
+ 1022              	.LC14:
+ 1023 0000 E693A6E9 		.ascii	"\346\223\246\351\231\244\346\265\213\350\257\225\346"
+ 1023      99A4E6B5 
+ 1023      8BE8AF95 
+ 1023      E6
+ 1024 000d 8890E58A 		.ascii	"\210\220\345\212\237\015\000"
+ 1024      9F0D00
+ 1025              		.align	2
+ 1026              	.LC15:
+ 1027 0014 E693A6E9 		.ascii	"\346\223\246\351\231\244\346\265\213\350\257\225\345"
+ 1027      99A4E6B5 
+ 1027      8BE8AF95 
+ 1027      E5
+ 1028 0021 A4B1E8B4 		.ascii	"\244\261\350\264\245\015\000"
+ 1028      A50D00
+ 1029              		.section	.text.SD_EraseTest,"ax",%progbits
+ 1030              		.align	1
+ 1031              		.global	SD_EraseTest
+ 1032              		.syntax unified
+ 1033              		.thumb
+ 1034              		.thumb_func
+ 1036              	SD_EraseTest:
+ 1037              	.LFB34:
+ 172:HW/SDCard/SDCard.c ****   /*------------------- Block Erase ------------------------------------------*/
+ 1038              		.loc 1 172 1 is_stmt 1 view -0
+ 1039              		.cfi_startproc
+ 1040              		@ args = 0, pretend = 0, frame = 0
+ 1041              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1042 0000 10B5     		push	{r4, lr}
+ 1043              	.LCFI6:
+ 1044              		.cfi_def_cfa_offset 8
+ 1045              		.cfi_offset 4, -8
+ 1046              		.cfi_offset 14, -4
+ 174:HW/SDCard/SDCard.c ****   {
+ 1047              		.loc 1 174 3 view .LVU256
+ 174:HW/SDCard/SDCard.c ****   {
+ 1048              		.loc 1 174 14 is_stmt 0 view .LVU257
+ 1049 0002 1B4B     		ldr	r3, .L84
+ 1050 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 174:HW/SDCard/SDCard.c ****   {
+ 1051              		.loc 1 174 6 view .LVU258
+ 1052 0006 ABB1     		cbz	r3, .L81
+ 1053              	.L74:
+ 180:HW/SDCard/SDCard.c ****   {
+ 1054              		.loc 1 180 3 is_stmt 1 view .LVU259
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 30
+
+
+ 180:HW/SDCard/SDCard.c ****   {
+ 1055              		.loc 1 180 14 is_stmt 0 view .LVU260
+ 1056 0008 194B     		ldr	r3, .L84
+ 1057 000a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 180:HW/SDCard/SDCard.c ****   {
+ 1058              		.loc 1 180 6 view .LVU261
+ 1059 000c D3B1     		cbz	r3, .L82
+ 1060              	.L75:
+ 192:HW/SDCard/SDCard.c ****   {
+ 1061              		.loc 1 192 3 is_stmt 1 view .LVU262
+ 192:HW/SDCard/SDCard.c ****   {
+ 1062              		.loc 1 192 14 is_stmt 0 view .LVU263
+ 1063 000e 184B     		ldr	r3, .L84
+ 1064 0010 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 192:HW/SDCard/SDCard.c ****   {
+ 1065              		.loc 1 192 6 view .LVU264
+ 1066 0012 33B9     		cbnz	r3, .L77
+ 194:HW/SDCard/SDCard.c ****   }
+ 1067              		.loc 1 194 5 is_stmt 1 view .LVU265
+ 194:HW/SDCard/SDCard.c ****   }
+ 1068              		.loc 1 194 19 is_stmt 0 view .LVU266
+ 1069 0014 4FF48041 		mov	r1, #16384
+ 1070 0018 1648     		ldr	r0, .L84+4
+ 1071 001a FFF7FEFF 		bl	eBuffercmp
+ 1072              	.LVL112:
+ 194:HW/SDCard/SDCard.c ****   }
+ 1073              		.loc 1 194 17 view .LVU267
+ 1074 001e 164B     		ldr	r3, .L84+8
+ 1075 0020 1870     		strb	r0, [r3]
+ 1076              	.L77:
+ 197:HW/SDCard/SDCard.c ****   {
+ 1077              		.loc 1 197 3 is_stmt 1 view .LVU268
+ 197:HW/SDCard/SDCard.c ****   {
+ 1078              		.loc 1 197 18 is_stmt 0 view .LVU269
+ 1079 0022 154B     		ldr	r3, .L84+8
+ 1080 0024 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1081 0026 DBB2     		uxtb	r3, r3
+ 197:HW/SDCard/SDCard.c ****   {
+ 1082              		.loc 1 197 5 view .LVU270
+ 1083 0028 012B     		cmp	r3, #1
+ 1084 002a 1CD0     		beq	.L83
+ 203:HW/SDCard/SDCard.c ****   }
+ 1085              		.loc 1 203 5 is_stmt 1 view .LVU271
+ 1086 002c 1348     		ldr	r0, .L84+12
+ 1087 002e FFF7FEFF 		bl	puts
+ 1088              	.LVL113:
+ 1089              	.L73:
+ 205:HW/SDCard/SDCard.c **** 
+ 1090              		.loc 1 205 1 is_stmt 0 view .LVU272
+ 1091 0032 10BD     		pop	{r4, pc}
+ 1092              	.L81:
+ 177:HW/SDCard/SDCard.c ****   }
+ 1093              		.loc 1 177 5 is_stmt 1 view .LVU273
+ 177:HW/SDCard/SDCard.c ****   }
+ 1094              		.loc 1 177 14 is_stmt 0 view .LVU274
+ 1095 0034 4FF48041 		mov	r1, #16384
+ 1096 0038 0020     		movs	r0, #0
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 31
+
+
+ 1097 003a FFF7FEFF 		bl	SD_Erase
+ 1098              	.LVL114:
+ 177:HW/SDCard/SDCard.c ****   }
+ 1099              		.loc 1 177 12 view .LVU275
+ 1100 003e 0C4B     		ldr	r3, .L84
+ 1101 0040 1870     		strb	r0, [r3]
+ 1102 0042 E1E7     		b	.L74
+ 1103              	.L82:
+ 182:HW/SDCard/SDCard.c **** 
+ 1104              		.loc 1 182 5 is_stmt 1 view .LVU276
+ 182:HW/SDCard/SDCard.c **** 
+ 1105              		.loc 1 182 14 is_stmt 0 view .LVU277
+ 1106 0044 2023     		movs	r3, #32
+ 1107 0046 4FF40072 		mov	r2, #512
+ 1108 004a 0021     		movs	r1, #0
+ 1109 004c 0948     		ldr	r0, .L84+4
+ 1110 004e FFF7FEFF 		bl	SD_ReadMultiBlocks
+ 1111              	.LVL115:
+ 182:HW/SDCard/SDCard.c **** 
+ 1112              		.loc 1 182 12 view .LVU278
+ 1113 0052 074C     		ldr	r4, .L84
+ 1114 0054 2070     		strb	r0, [r4]
+ 185:HW/SDCard/SDCard.c **** 
+ 1115              		.loc 1 185 5 is_stmt 1 view .LVU279
+ 185:HW/SDCard/SDCard.c **** 
+ 1116              		.loc 1 185 14 is_stmt 0 view .LVU280
+ 1117 0056 FFF7FEFF 		bl	SD_WaitReadOperation
+ 1118              	.LVL116:
+ 185:HW/SDCard/SDCard.c **** 
+ 1119              		.loc 1 185 12 view .LVU281
+ 1120 005a 2070     		strb	r0, [r4]
+ 188:HW/SDCard/SDCard.c ****   }
+ 1121              		.loc 1 188 5 is_stmt 1 view .LVU282
+ 1122              	.L76:
+ 188:HW/SDCard/SDCard.c ****   }
+ 1123              		.loc 1 188 26 discriminator 1 view .LVU283
+ 188:HW/SDCard/SDCard.c ****   }
+ 1124              		.loc 1 188 11 is_stmt 0 discriminator 1 view .LVU284
+ 1125 005c FFF7FEFF 		bl	SD_GetStatus
+ 1126              	.LVL117:
+ 188:HW/SDCard/SDCard.c ****   }
+ 1127              		.loc 1 188 26 discriminator 1 view .LVU285
+ 1128 0060 0028     		cmp	r0, #0
+ 1129 0062 FBD1     		bne	.L76
+ 1130 0064 D3E7     		b	.L75
+ 1131              	.L83:
+ 199:HW/SDCard/SDCard.c ****   }
+ 1132              		.loc 1 199 5 is_stmt 1 view .LVU286
+ 1133 0066 0648     		ldr	r0, .L84+16
+ 1134 0068 FFF7FEFF 		bl	puts
+ 1135              	.LVL118:
+ 1136 006c E1E7     		b	.L73
+ 1137              	.L85:
+ 1138 006e 00BF     		.align	2
+ 1139              	.L84:
+ 1140 0070 00000000 		.word	Status
+ 1141 0074 00000000 		.word	Buffer_MultiBlock_Rx
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 32
+
+
+ 1142 0078 00000000 		.word	EraseStatus
+ 1143 007c 14000000 		.word	.LC15
+ 1144 0080 00000000 		.word	.LC14
+ 1145              		.cfi_endproc
+ 1146              	.LFE34:
+ 1148              		.section	.rodata.SDCard_Run.str1.4,"aMS",%progbits,1
+ 1149              		.align	2
+ 1150              	.LC16:
+ 1151 0000 5344E58D 		.ascii	"SD\345\215\241\345\210\235\345\247\213\345\214\226\345"
+ 1151      A1E5889D 
+ 1151      E5A78BE5 
+ 1151      8C96E5
+ 1152 000f A4B1E8B4 		.ascii	"\244\261\350\264\245: %d\015\012\000"
+ 1152      A53A2025 
+ 1152      640D0A00 
+ 1153 001b 00       		.align	2
+ 1154              	.LC17:
+ 1155 001c 5344E58D 		.ascii	"SD\345\215\241\345\210\235\345\247\213\345\214\226\346"
+ 1155      A1E5889D 
+ 1155      E5A78BE5 
+ 1155      8C96E6
+ 1156 002b 8890E58A 		.ascii	"\210\220\345\212\237\015\000"
+ 1156      9F0D00
+ 1157              		.section	.text.SDCard_Run,"ax",%progbits
+ 1158              		.align	1
+ 1159              		.global	SDCard_Run
+ 1160              		.syntax unified
+ 1161              		.thumb
+ 1162              		.thumb_func
+ 1164              	SDCard_Run:
+ 1165              	.LFB32:
+  14:HW/SDCard/SDCard.c ****     /* 配置中断优先级组 */
+ 1166              		.loc 1 14 18 view -0
+ 1167              		.cfi_startproc
+ 1168              		@ args = 0, pretend = 0, frame = 0
+ 1169              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1170 0000 08B5     		push	{r3, lr}
+ 1171              	.LCFI7:
+ 1172              		.cfi_def_cfa_offset 8
+ 1173              		.cfi_offset 3, -8
+ 1174              		.cfi_offset 14, -4
+  16:HW/SDCard/SDCard.c **** 
+ 1175              		.loc 1 16 5 view .LVU288
+ 1176 0002 4FF4A060 		mov	r0, #1280
+ 1177 0006 FFF7FEFF 		bl	NVIC_PriorityGroupConfig
+ 1178              	.LVL119:
+  19:HW/SDCard/SDCard.c ****     SD_Error err = SD_Init();
+ 1179              		.loc 1 19 5 view .LVU289
+ 1180 000a FFF7FEFF 		bl	USART1_Init
+ 1181              	.LVL120:
+  20:HW/SDCard/SDCard.c ****     if(err != SD_OK){
+ 1182              		.loc 1 20 5 view .LVU290
+  20:HW/SDCard/SDCard.c ****     if(err != SD_OK){
+ 1183              		.loc 1 20 20 is_stmt 0 view .LVU291
+ 1184 000e FFF7FEFF 		bl	SD_Init
+ 1185              	.LVL121:
+  21:HW/SDCard/SDCard.c ****         printf("SD卡初始化失败: %d\r\n", err);
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 33
+
+
+ 1186              		.loc 1 21 5 is_stmt 1 view .LVU292
+  21:HW/SDCard/SDCard.c ****         printf("SD卡初始化失败: %d\r\n", err);
+ 1187              		.loc 1 21 7 is_stmt 0 view .LVU293
+ 1188 0012 48B9     		cbnz	r0, .L90
+  25:HW/SDCard/SDCard.c ****     }
+ 1189              		.loc 1 25 9 is_stmt 1 view .LVU294
+ 1190 0014 0748     		ldr	r0, .L91
+ 1191              	.LVL122:
+  25:HW/SDCard/SDCard.c ****     }
+ 1192              		.loc 1 25 9 is_stmt 0 view .LVU295
+ 1193 0016 FFF7FEFF 		bl	puts
+ 1194              	.LVL123:
+  29:HW/SDCard/SDCard.c ****     SD_SingleBlockTest();
+ 1195              		.loc 1 29 5 is_stmt 1 view .LVU296
+ 1196 001a FFF7FEFF 		bl	SD_EraseTest
+ 1197              	.LVL124:
+  30:HW/SDCard/SDCard.c ****     SD_MultiBlockTest();
+ 1198              		.loc 1 30 5 view .LVU297
+ 1199 001e FFF7FEFF 		bl	SD_SingleBlockTest
+ 1200              	.LVL125:
+  31:HW/SDCard/SDCard.c **** }
+ 1201              		.loc 1 31 5 view .LVU298
+ 1202 0022 FFF7FEFF 		bl	SD_MultiBlockTest
+ 1203              	.LVL126:
+ 1204              	.L86:
+  32:HW/SDCard/SDCard.c **** 
+ 1205              		.loc 1 32 1 is_stmt 0 view .LVU299
+ 1206 0026 08BD     		pop	{r3, pc}
+ 1207              	.LVL127:
+ 1208              	.L90:
+  32:HW/SDCard/SDCard.c **** 
+ 1209              		.loc 1 32 1 view .LVU300
+ 1210 0028 0146     		mov	r1, r0
+  22:HW/SDCard/SDCard.c ****         return;
+ 1211              		.loc 1 22 9 is_stmt 1 view .LVU301
+ 1212 002a 0348     		ldr	r0, .L91+4
+ 1213              	.LVL128:
+  22:HW/SDCard/SDCard.c ****         return;
+ 1214              		.loc 1 22 9 is_stmt 0 view .LVU302
+ 1215 002c FFF7FEFF 		bl	printf
+ 1216              	.LVL129:
+  23:HW/SDCard/SDCard.c ****     }else{
+ 1217              		.loc 1 23 9 is_stmt 1 view .LVU303
+ 1218 0030 F9E7     		b	.L86
+ 1219              	.L92:
+ 1220 0032 00BF     		.align	2
+ 1221              	.L91:
+ 1222 0034 1C000000 		.word	.LC17
+ 1223 0038 00000000 		.word	.LC16
+ 1224              		.cfi_endproc
+ 1225              	.LFE32:
+ 1227              		.section	.rodata.__FUNCTION__.0,"a"
+ 1228              		.align	2
+ 1231              	__FUNCTION__.0:
+ 1232 0000 53444361 		.ascii	"SDCard_Fats_Run\000"
+ 1232      72645F46 
+ 1232      6174735F 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 34
+
+
+ 1232      52756E00 
+ 1233              		.global	SDCardOperation
+ 1234              		.section	.bss.SDCardOperation,"aw",%nobits
+ 1235              		.align	2
+ 1238              	SDCardOperation:
+ 1239 0000 00000000 		.space	4
+ 1240              		.global	Status
+ 1241              		.section	.bss.Status,"aw",%nobits
+ 1244              	Status:
+ 1245 0000 00       		.space	1
+ 1246              		.global	TransferStatus2
+ 1247              		.section	.bss.TransferStatus2,"aw",%nobits
+ 1250              	TransferStatus2:
+ 1251 0000 00       		.space	1
+ 1252              		.global	TransferStatus1
+ 1253              		.section	.bss.TransferStatus1,"aw",%nobits
+ 1256              	TransferStatus1:
+ 1257 0000 00       		.space	1
+ 1258              		.global	EraseStatus
+ 1259              		.section	.bss.EraseStatus,"aw",%nobits
+ 1262              	EraseStatus:
+ 1263 0000 00       		.space	1
+ 1264              		.global	Buffer_MultiBlock_Rx
+ 1265              		.section	.bss.Buffer_MultiBlock_Rx,"aw",%nobits
+ 1266              		.align	2
+ 1269              	Buffer_MultiBlock_Rx:
+ 1270 0000 00000000 		.space	16384
+ 1270      00000000 
+ 1270      00000000 
+ 1270      00000000 
+ 1270      00000000 
+ 1271              		.global	Buffer_MultiBlock_Tx
+ 1272              		.section	.bss.Buffer_MultiBlock_Tx,"aw",%nobits
+ 1273              		.align	2
+ 1276              	Buffer_MultiBlock_Tx:
+ 1277 0000 00000000 		.space	16384
+ 1277      00000000 
+ 1277      00000000 
+ 1277      00000000 
+ 1277      00000000 
+ 1278              		.global	Buffer_Block_Rx
+ 1279              		.section	.bss.Buffer_Block_Rx,"aw",%nobits
+ 1280              		.align	2
+ 1283              	Buffer_Block_Rx:
+ 1284 0000 00000000 		.space	512
+ 1284      00000000 
+ 1284      00000000 
+ 1284      00000000 
+ 1284      00000000 
+ 1285              		.global	Buffer_Block_Tx
+ 1286              		.section	.bss.Buffer_Block_Tx,"aw",%nobits
+ 1287              		.align	2
+ 1290              	Buffer_Block_Tx:
+ 1291 0000 00000000 		.space	512
+ 1291      00000000 
+ 1291      00000000 
+ 1291      00000000 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 35
+
+
+ 1291      00000000 
+ 1292              		.section	.data.errInfo,"aw"
+ 1293              		.align	2
+ 1296              	errInfo:
+ 1297 0000 28302920 		.ascii	"(0) Succeeded\000"
+ 1297      53756363 
+ 1297      65656465 
+ 1297      6400
+ 1298 000e 00000000 		.space	58
+ 1298      00000000 
+ 1298      00000000 
+ 1298      00000000 
+ 1298      00000000 
+ 1299 0048 28312920 		.ascii	"(1) A hard error occurred in the low level disk I/O"
+ 1299      41206861 
+ 1299      72642065 
+ 1299      72726F72 
+ 1299      206F6363 
+ 1300 007b 206C6179 		.ascii	" layer\000"
+ 1300      657200
+ 1301 0082 00000000 		.space	14
+ 1301      00000000 
+ 1301      00000000 
+ 1301      0000
+ 1302 0090 28322920 		.ascii	"(2) Assertion failed\000"
+ 1302      41737365 
+ 1302      7274696F 
+ 1302      6E206661 
+ 1302      696C6564 
+ 1303 00a5 00000000 		.space	51
+ 1303      00000000 
+ 1303      00000000 
+ 1303      00000000 
+ 1303      00000000 
+ 1304 00d8 28332920 		.ascii	"(3) The physical drive cannot work\000"
+ 1304      54686520 
+ 1304      70687973 
+ 1304      6963616C 
+ 1304      20647269 
+ 1305 00fb 00000000 		.space	37
+ 1305      00000000 
+ 1305      00000000 
+ 1305      00000000 
+ 1305      00000000 
+ 1306 0120 28342920 		.ascii	"(4) Could not find the file\000"
+ 1306      436F756C 
+ 1306      64206E6F 
+ 1306      74206669 
+ 1306      6E642074 
+ 1307 013c 00000000 		.space	44
+ 1307      00000000 
+ 1307      00000000 
+ 1307      00000000 
+ 1307      00000000 
+ 1308 0168 28352920 		.ascii	"(5) Could not find the path\000"
+ 1308      436F756C 
+ 1308      64206E6F 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 36
+
+
+ 1308      74206669 
+ 1308      6E642074 
+ 1309 0184 00000000 		.space	44
+ 1309      00000000 
+ 1309      00000000 
+ 1309      00000000 
+ 1309      00000000 
+ 1310 01b0 28362920 		.ascii	"(6) The path name format is invalid\000"
+ 1310      54686520 
+ 1310      70617468 
+ 1310      206E616D 
+ 1310      6520666F 
+ 1311 01d4 00000000 		.space	36
+ 1311      00000000 
+ 1311      00000000 
+ 1311      00000000 
+ 1311      00000000 
+ 1312 01f8 28372920 		.ascii	"(7) Access denied due to prohibited access or direc"
+ 1312      41636365 
+ 1312      73732064 
+ 1312      656E6965 
+ 1312      64206475 
+ 1313 022b 746F7279 		.ascii	"tory full\000"
+ 1313      2066756C 
+ 1313      6C00
+ 1314 0235 00000000 		.space	11
+ 1314      00000000 
+ 1314      000000
+ 1315 0240 28382920 		.ascii	"(8) Access denied due to prohibited access\000"
+ 1315      41636365 
+ 1315      73732064 
+ 1315      656E6965 
+ 1315      64206475 
+ 1316 026b 00000000 		.space	29
+ 1316      00000000 
+ 1316      00000000 
+ 1316      00000000 
+ 1316      00000000 
+ 1317 0288 28392920 		.ascii	"(9) The file/directory object is invalid\000"
+ 1317      54686520 
+ 1317      66696C65 
+ 1317      2F646972 
+ 1317      6563746F 
+ 1318 02b1 00000000 		.space	31
+ 1318      00000000 
+ 1318      00000000 
+ 1318      00000000 
+ 1318      00000000 
+ 1319 02d0 28313029 		.ascii	"(10) The physical drive is write protected\000"
+ 1319      20546865 
+ 1319      20706879 
+ 1319      73696361 
+ 1319      6C206472 
+ 1320 02fb 00000000 		.space	29
+ 1320      00000000 
+ 1320      00000000 
+ 1320      00000000 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 37
+
+
+ 1320      00000000 
+ 1321 0318 28313129 		.ascii	"(11) The logical drive number is invalid\000"
+ 1321      20546865 
+ 1321      206C6F67 
+ 1321      6963616C 
+ 1321      20647269 
+ 1322 0341 00000000 		.space	31
+ 1322      00000000 
+ 1322      00000000 
+ 1322      00000000 
+ 1322      00000000 
+ 1323 0360 28313229 		.ascii	"(12) The volume has no work area\000"
+ 1323      20546865 
+ 1323      20766F6C 
+ 1323      756D6520 
+ 1323      68617320 
+ 1324 0381 00000000 		.space	39
+ 1324      00000000 
+ 1324      00000000 
+ 1324      00000000 
+ 1324      00000000 
+ 1325 03a8 28313329 		.ascii	"(13) There is no valid FAT volume\000"
+ 1325      20546865 
+ 1325      72652069 
+ 1325      73206E6F 
+ 1325      2076616C 
+ 1326 03ca 00000000 		.space	38
+ 1326      00000000 
+ 1326      00000000 
+ 1326      00000000 
+ 1326      00000000 
+ 1327 03f0 28313429 		.ascii	"(14) The f_mkfs() aborted due to any problem\000"
+ 1327      20546865 
+ 1327      20665F6D 
+ 1327      6B667328 
+ 1327      29206162 
+ 1328 041d 00000000 		.space	27
+ 1328      00000000 
+ 1328      00000000 
+ 1328      00000000 
+ 1328      00000000 
+ 1329 0438 28313529 		.ascii	"(15) Could not get a grant to access the volume wit"
+ 1329      20436F75 
+ 1329      6C64206E 
+ 1329      6F742067 
+ 1329      65742061 
+ 1330 046b 68696E20 		.ascii	"hin defined perio\000"
+ 1330      64656669 
+ 1330      6E656420 
+ 1330      70657269 
+ 1330      6F00
+ 1331 047d 000000   		.space	3
+ 1332 0480 28313629 		.ascii	"(16) The operation is rejected according to the fil"
+ 1332      20546865 
+ 1332      206F7065 
+ 1332      72617469 
+ 1332      6F6E2069 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 38
+
+
+ 1333 04b3 65207368 		.ascii	"e sharing policy\000"
+ 1333      6172696E 
+ 1333      6720706F 
+ 1333      6C696379 
+ 1333      00
+ 1334 04c4 00000000 		.space	4
+ 1335 04c8 28313729 		.ascii	"(17) LFN working src could not be allocated\000"
+ 1335      204C464E 
+ 1335      20776F72 
+ 1335      6B696E67 
+ 1335      20737263 
+ 1336 04f4 00000000 		.space	28
+ 1336      00000000 
+ 1336      00000000 
+ 1336      00000000 
+ 1336      00000000 
+ 1337 0510 28313829 		.ascii	"(18) Number of open files > FF_FS_LOCK\000"
+ 1337      204E756D 
+ 1337      62657220 
+ 1337      6F66206F 
+ 1337      70656E20 
+ 1338 0537 00000000 		.space	33
+ 1338      00000000 
+ 1338      00000000 
+ 1338      00000000 
+ 1338      00000000 
+ 1339 0558 28313929 		.ascii	"(19) Given parameter is invalid\000"
+ 1339      20476976 
+ 1339      656E2070 
+ 1339      6172616D 
+ 1339      65746572 
+ 1340 0578 00000000 		.space	40
+ 1340      00000000 
+ 1340      00000000 
+ 1340      00000000 
+ 1340      00000000 
+ 1341              		.section	.rodata
+ 1342              		.align	2
+ 1343              		.set	.LANCHOR0,. + 0
+ 1344              	.LC4:
+ 1345 0000 4469616E 		.ascii	"Diana Ava\000"
+ 1345      61204176 
+ 1345      6100
+ 1346 000a 00000000 		.space	10
+ 1346      00000000 
+ 1346      0000
+ 1347              		.text
+ 1348              	.Letext0:
+ 1349              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1350              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1351              		.file 4 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1352              		.file 5 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1353              		.file 6 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1354              		.file 7 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1355              		.file 8 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1356              		.file 9 "HW/SDCard/stm32_eval_sdio_sd.h"
+ 1357              		.file 10 "DRIVER/FatFs/source/ff.h"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 39
+
+
+ 1358              		.file 11 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\
+ 1359              		.file 12 "STM32F10x_FWLib/inc/misc.h"
+ 1360              		.file 13 "<built-in>"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 40
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 SDCard.c
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:19     .rodata.SDCard_Fats_Run.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:54     .text.SDCard_Fats_Run:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:60     .text.SDCard_Fats_Run:00000000 SDCard_Fats_Run
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:538    .text.SDCard_Fats_Run:00000254 $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1231   .rodata.__FUNCTION__.0:00000000 __FUNCTION__.0
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1296   .data.errInfo:00000000 errInfo
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:555    .text.Buffercmp:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:561    .text.Buffercmp:00000000 Buffercmp
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:616    .text.Fill_Buffer:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:622    .text.Fill_Buffer:00000000 Fill_Buffer
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:659    .rodata.SD_SingleBlockTest.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:668    .text.SD_SingleBlockTest:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:674    .text.SD_SingleBlockTest:00000000 SD_SingleBlockTest
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:800    .text.SD_SingleBlockTest:0000008c $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1290   .bss.Buffer_Block_Tx:00000000 Buffer_Block_Tx
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1244   .bss.Status:00000000 Status
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1283   .bss.Buffer_Block_Rx:00000000 Buffer_Block_Rx
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1256   .bss.TransferStatus1:00000000 TransferStatus1
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:810    .rodata.SD_MultiBlockTest.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:819    .text.SD_MultiBlockTest:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:825    .text.SD_MultiBlockTest:00000000 SD_MultiBlockTest
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:953    .text.SD_MultiBlockTest:00000090 $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1276   .bss.Buffer_MultiBlock_Tx:00000000 Buffer_MultiBlock_Tx
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1269   .bss.Buffer_MultiBlock_Rx:00000000 Buffer_MultiBlock_Rx
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1250   .bss.TransferStatus2:00000000 TransferStatus2
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:963    .text.eBuffercmp:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:969    .text.eBuffercmp:00000000 eBuffercmp
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1021   .rodata.SD_EraseTest.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1030   .text.SD_EraseTest:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1036   .text.SD_EraseTest:00000000 SD_EraseTest
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1140   .text.SD_EraseTest:00000070 $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1262   .bss.EraseStatus:00000000 EraseStatus
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1149   .rodata.SDCard_Run.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1158   .text.SDCard_Run:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1164   .text.SDCard_Run:00000000 SDCard_Run
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1222   .text.SDCard_Run:00000034 $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1228   .rodata.__FUNCTION__.0:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1238   .bss.SDCardOperation:00000000 SDCardOperation
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1235   .bss.SDCardOperation:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1245   .bss.Status:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1251   .bss.TransferStatus2:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1257   .bss.TransferStatus1:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1263   .bss.EraseStatus:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1266   .bss.Buffer_MultiBlock_Rx:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1273   .bss.Buffer_MultiBlock_Tx:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1280   .bss.Buffer_Block_Rx:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1287   .bss.Buffer_Block_Tx:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1293   .data.errInfo:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s:1342   .rodata:00000000 $d
+
+UNDEFINED SYMBOLS
+USART1_Init
+malloc
+f_mount
+puts
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2jZ4j.s 			page 41
+
+
+f_mkfs
+free
+f_open
+f_write
+fprintf
+f_close
+f_read
+printf
+f_getfree
+_impure_ptr
+SD_WriteBlock
+SD_WaitWriteOperation
+SD_GetStatus
+SD_ReadBlock
+SD_WaitReadOperation
+SD_WriteMultiBlocks
+SD_ReadMultiBlocks
+SD_Erase
+NVIC_PriorityGroupConfig
+SD_Init

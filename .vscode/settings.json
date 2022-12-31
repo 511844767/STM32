@@ -17,6 +17,15 @@
         "diskio.h": "c",
         "stm32f10x_spi.h": "c",
         "stdio.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "usb_lib.h": "c",
+        "hw_config.h": "c",
+        "platform_config.h": "c",
+        "usb_prop.h": "c",
+        "lcd_utils.h": "c",
+        "stm32_eval_sdio_sd.h": "c",
+        "sdcard_sdio.h": "c",
+        "sd_lowlevel_implement.h": "c",
+        "ff.h": "c"
     }
 }

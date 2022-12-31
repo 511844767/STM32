@@ -145,9 +145,9 @@ typedef struct
   * @{
   */
 
-#define DMA_PeripheralDataSize_Byte        ((uint32_t)0x00000000)
-#define DMA_PeripheralDataSize_HalfWord    ((uint32_t)0x00000100)
-#define DMA_PeripheralDataSize_Word        ((uint32_t)0x00000200)
+#define DMA_PeripheralDataSize_Byte        ((uint32_t)0x00000000) // 8bit
+#define DMA_PeripheralDataSize_HalfWord    ((uint32_t)0x00000100) // 16bit
+#define DMA_PeripheralDataSize_Word        ((uint32_t)0x00000200) // 32bit
 #define IS_DMA_PERIPHERAL_DATA_SIZE(SIZE) (((SIZE) == DMA_PeripheralDataSize_Byte) || \
                                            ((SIZE) == DMA_PeripheralDataSize_HalfWord) || \
                                            ((SIZE) == DMA_PeripheralDataSize_Word))
@@ -159,9 +159,9 @@ typedef struct
   * @{
   */
 
-#define DMA_MemoryDataSize_Byte            ((uint32_t)0x00000000)
-#define DMA_MemoryDataSize_HalfWord        ((uint32_t)0x00000400)
-#define DMA_MemoryDataSize_Word            ((uint32_t)0x00000800)
+#define DMA_MemoryDataSize_Byte            ((uint32_t)0x00000000) // 8bit
+#define DMA_MemoryDataSize_HalfWord        ((uint32_t)0x00000400) // 16bit
+#define DMA_MemoryDataSize_Word            ((uint32_t)0x00000800) // 32bit
 #define IS_DMA_MEMORY_DATA_SIZE(SIZE) (((SIZE) == DMA_MemoryDataSize_Byte) || \
                                        ((SIZE) == DMA_MemoryDataSize_HalfWord) || \
                                        ((SIZE) == DMA_MemoryDataSize_Word))

@@ -16,7 +16,8 @@ OBJ/diskio.o: DRIVER/FatFs/source/diskio.c DRIVER/FatFs/source/ff.h \
  STM32F10x_FWLib/inc/stm32f10x_sdio.h STM32F10x_FWLib/inc/stm32f10x_spi.h \
  STM32F10x_FWLib/inc/stm32f10x_tim.h \
  STM32F10x_FWLib/inc/stm32f10x_usart.h \
- STM32F10x_FWLib/inc/stm32f10x_wwdg.h STM32F10x_FWLib/inc/misc.h
+ STM32F10x_FWLib/inc/stm32f10x_wwdg.h STM32F10x_FWLib/inc/misc.h \
+ HW/SDCard/stm32_eval_sdio_sd.h
 DRIVER/FatFs/source/ff.h:
 DRIVER/FatFs/source/ffconf.h:
 DRIVER/FatFs/source/diskio.h:
@@ -50,3 +51,4 @@ STM32F10x_FWLib/inc/stm32f10x_tim.h:
 STM32F10x_FWLib/inc/stm32f10x_usart.h:
 STM32F10x_FWLib/inc/stm32f10x_wwdg.h:
 STM32F10x_FWLib/inc/misc.h:
+HW/SDCard/stm32_eval_sdio_sd.h:
