@@ -26,6 +26,7 @@
         "stm32_eval_sdio_sd.h": "c",
         "sdcard_sdio.h": "c",
         "sd_lowlevel_implement.h": "c",
-        "ff.h": "c"
+        "ff.h": "c",
+        "flash_font.h": "c"
     }
 }

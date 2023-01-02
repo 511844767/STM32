@@ -18,5 +18,6 @@ Flash_EX_Errors_t Flash_EX_Wake_Up();
 Flash_EX_Errors_t Flash_EX_Check_JEDEC_ID(bool* flag);
 Flash_EX_Errors_t Flash_EX_Read(uint8_t* dst, uint32_t addr, uint32_t size);
 Flash_EX_Errors_t Flash_EX_Write(uint8_t* src, uint32_t addr, uint32_t size);
+Flash_EX_Errors_t Flash_EX_Erase_NonEmpty(uint32_t addr, uint32_t size);
 
 #endif

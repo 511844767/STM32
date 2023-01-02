@@ -1,17 +1,7 @@
 #include "stm32f10x.h"
 #include"delay.h"
+#include"KEY.h"
 
-typedef enum{
-    KEY_NONE_PRESS = 0,
-    KEY0_PRESS, 
-    KEY1_PRESS, 
-    KEYUP_PRESS, 
-} KEY_STATUS_t;
-
-typedef enum{
-    KEY_SCAN_CONTINUE = 0,
-    KEY_SCAN_ONCE,
-} KEY_SCAN_MODE_t;
 
 /* 配置时钟、输入模式 */
 void KEY_Init(){

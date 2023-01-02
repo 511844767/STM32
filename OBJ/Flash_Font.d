@@ -1,4 +1,6 @@
-OBJ/SDCard_sdio.o: HW/SDCard/SDCard_sdio.c HW/SDCard/SDCard_sdio.h \
+OBJ/Flash_Font.o: HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c \
+ HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.h \
+ HW/FLASH/External_Flash/exFlash.h SYSTEM/delay/delay.h SYSTEM/sys/sys.h \
  USER/stm32f10x.h Core/core_cm3.h USER/system_stm32f10x.h \
  USER/stm32f10x_conf.h STM32F10x_FWLib/inc/stm32f10x_adc.h \
  STM32F10x_FWLib/inc/stm32f10x_bkp.h STM32F10x_FWLib/inc/stm32f10x_can.h \
@@ -15,7 +17,10 @@ OBJ/SDCard_sdio.o: HW/SDCard/SDCard_sdio.c HW/SDCard/SDCard_sdio.h \
  STM32F10x_FWLib/inc/stm32f10x_tim.h \
  STM32F10x_FWLib/inc/stm32f10x_usart.h \
  STM32F10x_FWLib/inc/stm32f10x_wwdg.h STM32F10x_FWLib/inc/misc.h
-HW/SDCard/SDCard_sdio.h:
+HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.h:
+HW/FLASH/External_Flash/exFlash.h:
+SYSTEM/delay/delay.h:
+SYSTEM/sys/sys.h:
 USER/stm32f10x.h:
 Core/core_cm3.h:
 USER/system_stm32f10x.h:

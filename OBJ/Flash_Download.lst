@@ -1,0 +1,1941 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"Flash_Download.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c"
+  18              		.section	.rodata.Font_Burn.str1.4,"aMS",%progbits,1
+  19              		.align	2
+  20              	.LC0:
+  21 0000 09466C61 		.ascii	"\011Flash\346\255\243\345\234\250\345\201\232\346\223"
+  21      7368E6AD 
+  21      A3E59CA8 
+  21      E5819AE6 
+  21      93
+  22 0011 A6E999A4 		.ascii	"\246\351\231\244\345\207\206\345\244\207...\015\000"
+  22      E58786E5 
+  22      A4872E2E 
+  22      2E0D00
+  23              		.align	2
+  24              	.LC1:
+  25 0020 4572726F 		.ascii	"Error line: %d, function: %s, err[%d]\015\012\000"
+  25      72206C69 
+  25      6E653A20 
+  25      25642C20 
+  25      66756E63 
+  26              		.align	2
+  27              	.LC2:
+  28 0048 09466C61 		.ascii	"\011Flash\346\223\246\351\231\244\345\244\261\350\264"
+  28      7368E693 
+  28      A6E999A4 
+  28      E5A4B1E8 
+  28      B4
+  29 0059 A55B6C69 		.ascii	"\245[line: %d]\015\012\000"
+  29      6E653A20 
+  29      25645D0D 
+  29      0A00
+  30 0067 00       		.align	2
+  31              	.LC3:
+  32 0068 09466C61 		.ascii	"\011Flash\346\223\246\351\231\244\345\207\206\345\244"
+  32      7368E693 
+  32      A6E999A4 
+  32      E58786E5 
+  32      A4
+  33 0079 87E5AE8C 		.ascii	"\207\345\256\214\346\210\220\015\000"
+  33      E688900D 
+  33      00
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 2
+
+
+  34 0082 0000     		.align	2
+  35              	.LC4:
+  36 0084 09E6ADA3 		.ascii	"\011\346\255\243\345\234\250\345\206\231\345\205\245"
+  36      E59CA8E5 
+  36      8699E585 
+  36      A5
+  37 0091 E69687E4 		.ascii	"\346\226\207\344\273\266...\015\000"
+  37      BBB62E2E 
+  37      2E0D00
+  38              		.align	2
+  39              	.LC5:
+  40 009c 09E58685 		.ascii	"\011\345\206\205\345\255\230\345\210\206\351\205\215"
+  40      E5AD98E5 
+  40      8886E985 
+  40      8D
+  41 00a9 E5A4B1E8 		.ascii	"\345\244\261\350\264\245\357\274\232%dByte\015\012\000"
+  41      B4A5EFBC 
+  41      9A256442 
+  41      7974650D 
+  41      0A00
+  42 00bb 00       		.align	2
+  43              	.LC6:
+  44 00bc 09E69687 		.ascii	"\011\346\226\207\344\273\266\350\257\273\345\217\226"
+  44      E4BBB6E8 
+  44      AFBBE58F 
+  44      96
+  45 00c9 E5A4B1E8 		.ascii	"\345\244\261\350\264\245[line: %d]\015\012\000"
+  45      B4A55B6C 
+  45      696E653A 
+  45      2025645D 
+  45      0D0A00
+  46              		.align	2
+  47              	.LC7:
+  48 00dc 09E69687 		.ascii	"\011\346\226\207\344\273\266\345\206\231\345\205\245"
+  48      E4BBB6E5 
+  48      8699E585 
+  48      A5
+  49 00e9 E5A4B1E8 		.ascii	"\345\244\261\350\264\245[line: %d]\015\012\000"
+  49      B4A55B6C 
+  49      696E653A 
+  49      2025645D 
+  49      0D0A00
+  50              		.align	2
+  51              	.LC8:
+  52 00fc 09E69687 		.ascii	"\011\346\226\207\344\273\266\345\206\231\345\205\245"
+  52      E4BBB6E5 
+  52      8699E585 
+  52      A5
+  53 0109 E68890E5 		.ascii	"\346\210\220\345\212\237\357\274\232%s\015\012\000"
+  53      8A9FEFBC 
+  53      9A25730D 
+  53      0A00
+  54 0117 00       		.align	2
+  55              	.LC9:
+  56 0118 0909E586 		.ascii	"\011\011\345\206\205\345\255\230\350\214\203\345\233"
+  56      85E5AD98 
+  56      E88C83E5 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 3
+
+
+  56      9B
+  57 0125 B45B2025 		.ascii	"\264[ %#x - %#x ]\015\012\000"
+  57      2378202D 
+  57      20252378 
+  57      205D0D0A 
+  57      00
+  58              		.section	.text.Font_Burn,"ax",%progbits
+  59              		.align	1
+  60              		.syntax unified
+  61              		.thumb
+  62              		.thumb_func
+  64              	Font_Burn:
+  65              	.LFB32:
+   1:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** /**
+   2:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****  * @file Flash_Download.c
+   3:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****  * @author 511844767
+   4:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****  * @brief 将字模从SD卡中读取出来（要求SD卡安装了FatFs文件系统），烧录到�
+   5:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****  * @version 0.1
+   6:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****  * @date 2023-01-01
+   7:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****  * 
+   8:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****  * @copyright Copyright (c) 2023
+   9:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****  * 
+  10:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****  */
+  11:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** /*
+  12:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 串口输出：
+  13:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     SD卡挂载成功
+  14:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     Flash正在做擦除准备...
+  15:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     Flash擦除准备完成
+  16:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     正在写入文件...
+  17:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     文件写入成功：0:Fonts/eng.bin
+  18:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         内存范围[ 0 - 0x1036 ]
+  19:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     文件写入成功：0:Fonts/math.bin
+  20:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         内存范围[ 0x1037 - 0x306d ]
+  21:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     文件写入成功：0:Fonts/zh.bin
+  22:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         内存范围[ 0x306e - 0xa6564 ]
+  23:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     文件写入成功：0:Fonts/zh_symbol.bin
+  24:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         内存范围[ 0xa6565 - 0xa839b ]
+  25:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     文件读写完成，正在校验文件...
+  26:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     文件校验合格：0:Fonts/eng.bin
+  27:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         内存范围[ 0 - 0x1036 ]
+  28:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     文件校验合格：0:Fonts/math.bin
+  29:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         内存范围[ 0x1037 - 0x306d ]
+  30:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     文件校验合格：0:Fonts/zh.bin
+  31:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         内存范围[ 0x306e - 0xa6564 ]
+  32:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     文件校验合格：0:Fonts/zh_symbol.bin
+  33:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         内存范围[ 0xa6565 - 0xa839b ]
+  34:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     所有文件校验合格，本次烧录完成
+  35:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** */
+  36:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** #include"stdio.h"
+  37:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** #include"stdlib.h"
+  38:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** #include"ff.h"
+  39:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** #include"Flash_Font.h"
+  40:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** #include"exFlash.h"
+  41:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** #include"delay.h"
+  42:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** #include"KEY.h"
+  43:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+  44:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 4
+
+
+  45:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** #define FATFS_CHECK(func){ \
+  46:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     err = func; \
+  47:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(err != FR_OK){ \
+  48:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         fprintf(stderr, "Error line: %d, function: %s, err[%d]\r\n", __LINE__, __FUNCTION__, err); 
+  49:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         goto FONTS_ERR_FLAG; \
+  50:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     } \
+  51:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** }
+  52:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+  53:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** #define MIN(a, b) ((a) <= (b)) ? (a) : (b)
+  54:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+  55:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** typedef struct{
+  56:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     const char path[50];
+  57:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** } PATH_t;
+  58:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+  59:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** #define RW_GRID_MAX_SIZE 4096   /* 读写粒度（防止文件太大导致内存溢出） */
+  60:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+  61:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** /* 文件信息 */
+  62:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** #define FILES_NUM 4
+  63:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** static PATH_t filesPath[FILES_NUM] = {
+  64:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     {"0:Fonts/eng.bin"},
+  65:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     {"0:Fonts/math.bin"},
+  66:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     {"0:Fonts/zh.bin"},
+  67:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     {"0:Fonts/zh_symbol.bin"}
+  68:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** };
+  69:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+  70:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** #define FLASH_START_OFFSET 0    /* 从flash的什么位置开始写 */
+  71:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+  72:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** extern void USART1_Init();
+  73:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+  74:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** static FIL* fp;
+  75:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+  76:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** static void Font_Burn(){
+  66              		.loc 1 76 24 view -0
+  67              		.cfi_startproc
+  68              		@ args = 0, pretend = 0, frame = 16
+  69              		@ frame_needed = 0, uses_anonymous_args = 0
+  70 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  71              	.LCFI0:
+  72              		.cfi_def_cfa_offset 36
+  73              		.cfi_offset 4, -36
+  74              		.cfi_offset 5, -32
+  75              		.cfi_offset 6, -28
+  76              		.cfi_offset 7, -24
+  77              		.cfi_offset 8, -20
+  78              		.cfi_offset 9, -16
+  79              		.cfi_offset 10, -12
+  80              		.cfi_offset 11, -8
+  81              		.cfi_offset 14, -4
+  82 0004 87B0     		sub	sp, sp, #28
+  83              	.LCFI1:
+  84              		.cfi_def_cfa_offset 64
+  77:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     FRESULT err = 0;
+  85              		.loc 1 77 5 view .LVU1
+  86              	.LVL0:
+  78:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     uint8_t* dataSD = 0;
+  87              		.loc 1 78 5 view .LVU2
+  79:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     Flash_EX_Errors_t flashErr;
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 5
+
+
+  88              		.loc 1 79 5 view .LVU3
+  80:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     /* 擦除Flash */
+  81:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     printf("\tFlash正在做擦除准备...\r\n");
+  89              		.loc 1 81 5 view .LVU4
+  90 0006 7648     		ldr	r0, .L35
+  91 0008 FFF7FEFF 		bl	puts
+  92              	.LVL1:
+  82:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     int i, j, size, gridNum, gridSize;
+  93              		.loc 1 82 5 view .LVU5
+  83:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     size = 0;
+  94              		.loc 1 83 5 view .LVU6
+  84:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     for(i = 0; i < FILES_NUM; ++i){
+  95              		.loc 1 84 5 view .LVU7
+  83:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     size = 0;
+  96              		.loc 1 83 10 is_stmt 0 view .LVU8
+  97 000c 0025     		movs	r5, #0
+  98              		.loc 1 84 11 view .LVU9
+  99 000e 2C46     		mov	r4, r5
+ 100              	.LVL2:
+ 101              	.L2:
+ 102              		.loc 1 84 18 is_stmt 1 discriminator 2 view .LVU10
+ 103 0010 032C     		cmp	r4, #3
+ 104 0012 28DC     		bgt	.L22
+  85:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         FATFS_CHECK(f_open(fp, filesPath[i].path, FA_READ)); /* 打开文件 */
+ 105              		.loc 1 85 9 view .LVU11
+ 106 0014 0122     		movs	r2, #1
+ 107 0016 3221     		movs	r1, #50
+ 108 0018 724B     		ldr	r3, .L35+4
+ 109 001a 01FB0431 		mla	r1, r1, r4, r3
+ 110 001e 724B     		ldr	r3, .L35+8
+ 111 0020 1868     		ldr	r0, [r3]
+ 112 0022 FFF7FEFF 		bl	f_open
+ 113              	.LVL3:
+ 114              		.loc 1 85 9 view .LVU12
+ 115 0026 0346     		mov	r3, r0
+ 116 0028 48B9     		cbnz	r0, .L23
+ 117              		.loc 1 85 60 discriminator 2 view .LVU13
+  86:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         size += f_size(fp); /* 文件总大小 */
+ 118              		.loc 1 86 9 discriminator 2 view .LVU14
+ 119              		.loc 1 86 17 is_stmt 0 discriminator 2 view .LVU15
+ 120 002a 6F4B     		ldr	r3, .L35+8
+ 121 002c 1868     		ldr	r0, [r3]
+ 122              	.LVL4:
+ 123              		.loc 1 86 17 discriminator 2 view .LVU16
+ 124 002e C368     		ldr	r3, [r0, #12]
+ 125              		.loc 1 86 14 discriminator 2 view .LVU17
+ 126 0030 1D44     		add	r5, r5, r3
+ 127              	.LVL5:
+  87:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         FATFS_CHECK(f_close(fp));
+ 128              		.loc 1 87 9 is_stmt 1 discriminator 2 view .LVU18
+ 129 0032 FFF7FEFF 		bl	f_close
+ 130              	.LVL6:
+ 131              		.loc 1 87 9 discriminator 2 view .LVU19
+ 132 0036 0346     		mov	r3, r0
+ 133 0038 58B9     		cbnz	r0, .L24
+ 134              		.loc 1 87 33 discriminator 2 view .LVU20
+  84:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         FATFS_CHECK(f_open(fp, filesPath[i].path, FA_READ)); /* 打开文件 */
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 6
+
+
+ 135              		.loc 1 84 31 discriminator 2 view .LVU21
+ 136 003a 0134     		adds	r4, r4, #1
+ 137              	.LVL7:
+  84:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         FATFS_CHECK(f_open(fp, filesPath[i].path, FA_READ)); /* 打开文件 */
+ 138              		.loc 1 84 31 is_stmt 0 discriminator 2 view .LVU22
+ 139 003c E8E7     		b	.L2
+ 140              	.L23:
+  85:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         size += f_size(fp); /* 文件总大小 */
+ 141              		.loc 1 85 9 is_stmt 1 discriminator 1 view .LVU23
+ 142 003e 6B4A     		ldr	r2, .L35+12
+ 143 0040 1268     		ldr	r2, [r2]
+ 144 0042 D068     		ldr	r0, [r2, #12]
+ 145              	.LVL8:
+  85:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         size += f_size(fp); /* 文件总大小 */
+ 146              		.loc 1 85 9 is_stmt 0 discriminator 1 view .LVU24
+ 147 0044 0093     		str	r3, [sp]
+ 148 0046 6A4B     		ldr	r3, .L35+16
+ 149 0048 5522     		movs	r2, #85
+ 150 004a 6A49     		ldr	r1, .L35+20
+ 151 004c FFF7FEFF 		bl	fprintf
+ 152              	.LVL9:
+  85:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         size += f_size(fp); /* 文件总大小 */
+ 153              		.loc 1 85 9 is_stmt 1 discriminator 1 view .LVU25
+  88:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+  89:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     flashErr = Flash_EX_Erase_NonEmpty(FLASH_START_OFFSET, (uint32_t)size);
+  90:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(flashErr != FLASH_EX_ERR_SUCCESS){
+  91:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("\tFlash擦除失败[line: %d]\r\n", __LINE__);
+  92:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         goto FONTS_ERR_FLAG;
+  93:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+  94:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     printf("\tFlash擦除准备完成\r\n");
+  95:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+  96:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     /* 读写 */
+  97:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     printf("\t正在写入文件...\r\n");
+  98:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     dataSD = (uint8_t*)malloc(RW_GRID_MAX_SIZE);
+  99:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(!dataSD) {
+ 100:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("\t内存分配失败：%dByte\r\n", RW_GRID_MAX_SIZE);
+ 101:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         goto FONTS_ERR_FLAG;
+ 102:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 103:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+ 104:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     uint32_t addr = FLASH_START_OFFSET;  /* 文件起点 */
+ 105:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     UINT br;
+ 106:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     for(i = 0; i < FILES_NUM; ++i){
+ 107:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         FATFS_CHECK(f_open(fp, filesPath[i].path, FA_READ)); /* 打开文件 */
+ 108:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         f_rewind(fp);   /* 指向文件开头 */
+ 109:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         size = f_size(fp); /* 文件总大小 */
+ 110:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         gridNum = (size + RW_GRID_MAX_SIZE - 1) / RW_GRID_MAX_SIZE; /* 要分几次读写 */
+ 111:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         for(j = 0; j < gridNum; ++j){
+ 112:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             gridSize = MIN(RW_GRID_MAX_SIZE, size - j * RW_GRID_MAX_SIZE);  /* 本次读写大小 *
+ 113:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             FATFS_CHECK(f_lseek(fp, j * RW_GRID_MAX_SIZE));     /* 指针偏移 */
+ 114:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             FATFS_CHECK(f_read(fp, dataSD, gridSize, &br));        /* 读取文件 */
+ 115:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             if(br != gridSize){
+ 116:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 printf("\t文件读取失败[line: %d]\r\n", __LINE__);
+ 117:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 goto FONTS_ERR_FLAG;
+ 118:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             }
+ 119:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             flashErr = Flash_EX_Write(dataSD, addr + (uint32_t)(j * RW_GRID_MAX_SIZE), gridSize); /
+ 120:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             if(flashErr != FLASH_EX_ERR_SUCCESS){
+ 121:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 printf("\t文件写入失败[line: %d]\r\n", __LINE__);
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 7
+
+
+ 122:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 goto FONTS_ERR_FLAG;
+ 123:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             }
+ 124:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         }
+ 125:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         
+ 126:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("\t文件写入成功：%s\r\n", filesPath[i].path);
+ 127:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("\t\t内存范围[ %#x - %#x ]\r\n", (unsigned int)addr, (unsigned int)(addr + size 
+ 128:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         addr += size;   /* 移动文件起点 */
+ 129:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         FATFS_CHECK(f_close(fp));
+ 130:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 131:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** FONTS_ERR_FLAG:
+ 132:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(dataSD)      free(dataSD);
+ 154              		.loc 1 132 5 discriminator 1 view .LVU26
+ 155 0050 8EE0     		b	.L1
+ 156              	.LVL10:
+ 157              	.L24:
+  87:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 158              		.loc 1 87 9 discriminator 1 view .LVU27
+ 159 0052 664A     		ldr	r2, .L35+12
+ 160 0054 1268     		ldr	r2, [r2]
+ 161 0056 D068     		ldr	r0, [r2, #12]
+ 162              	.LVL11:
+  87:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 163              		.loc 1 87 9 is_stmt 0 discriminator 1 view .LVU28
+ 164 0058 0093     		str	r3, [sp]
+ 165 005a 654B     		ldr	r3, .L35+16
+ 166 005c 5722     		movs	r2, #87
+ 167 005e 6549     		ldr	r1, .L35+20
+ 168 0060 FFF7FEFF 		bl	fprintf
+ 169              	.LVL12:
+  87:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 170              		.loc 1 87 9 is_stmt 1 discriminator 1 view .LVU29
+ 171              		.loc 1 132 5 discriminator 1 view .LVU30
+ 172 0064 84E0     		b	.L1
+ 173              	.LVL13:
+ 174              	.L22:
+  89:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(flashErr != FLASH_EX_ERR_SUCCESS){
+ 175              		.loc 1 89 5 view .LVU31
+  89:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(flashErr != FLASH_EX_ERR_SUCCESS){
+ 176              		.loc 1 89 16 is_stmt 0 view .LVU32
+ 177 0066 2946     		mov	r1, r5
+ 178 0068 0020     		movs	r0, #0
+ 179 006a FFF7FEFF 		bl	Flash_EX_Erase_NonEmpty
+ 180              	.LVL14:
+  90:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("\tFlash擦除失败[line: %d]\r\n", __LINE__);
+ 181              		.loc 1 90 5 is_stmt 1 view .LVU33
+  90:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("\tFlash擦除失败[line: %d]\r\n", __LINE__);
+ 182              		.loc 1 90 7 is_stmt 0 view .LVU34
+ 183 006e 0028     		cmp	r0, #0
+ 184 0070 59D1     		bne	.L25
+  94:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+ 185              		.loc 1 94 5 is_stmt 1 view .LVU35
+ 186 0072 6148     		ldr	r0, .L35+24
+ 187              	.LVL15:
+  94:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+ 188              		.loc 1 94 5 is_stmt 0 view .LVU36
+ 189 0074 FFF7FEFF 		bl	puts
+ 190              	.LVL16:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 8
+
+
+  97:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     dataSD = (uint8_t*)malloc(RW_GRID_MAX_SIZE);
+ 191              		.loc 1 97 5 is_stmt 1 view .LVU37
+ 192 0078 6048     		ldr	r0, .L35+28
+ 193 007a FFF7FEFF 		bl	puts
+ 194              	.LVL17:
+  98:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(!dataSD) {
+ 195              		.loc 1 98 5 view .LVU38
+  98:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(!dataSD) {
+ 196              		.loc 1 98 24 is_stmt 0 view .LVU39
+ 197 007e 4FF48050 		mov	r0, #4096
+ 198 0082 FFF7FEFF 		bl	malloc
+ 199              	.LVL18:
+  99:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("\t内存分配失败：%dByte\r\n", RW_GRID_MAX_SIZE);
+ 200              		.loc 1 99 5 is_stmt 1 view .LVU40
+  99:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("\t内存分配失败：%dByte\r\n", RW_GRID_MAX_SIZE);
+ 201              		.loc 1 99 7 is_stmt 0 view .LVU41
+ 202 0086 0746     		mov	r7, r0
+ 203 0088 0028     		cmp	r0, #0
+ 204 008a 51D0     		beq	.L26
+ 104:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     UINT br;
+ 205              		.loc 1 104 14 view .LVU42
+ 206 008c 4FF0000A 		mov	r10, #0
+ 106:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         FATFS_CHECK(f_open(fp, filesPath[i].path, FA_READ)); /* 打开文件 */
+ 207              		.loc 1 106 11 view .LVU43
+ 208 0090 5646     		mov	r6, r10
+ 209              	.LVL19:
+ 210              	.L8:
+ 106:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         FATFS_CHECK(f_open(fp, filesPath[i].path, FA_READ)); /* 打开文件 */
+ 211              		.loc 1 106 18 is_stmt 1 discriminator 2 view .LVU44
+ 212 0092 032E     		cmp	r6, #3
+ 213 0094 68DC     		bgt	.L9
+ 107:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         f_rewind(fp);   /* 指向文件开头 */
+ 214              		.loc 1 107 9 view .LVU45
+ 215 0096 3222     		movs	r2, #50
+ 216 0098 524B     		ldr	r3, .L35+4
+ 217 009a 02FB0638 		mla	r8, r2, r6, r3
+ 218 009e 0122     		movs	r2, #1
+ 219 00a0 4146     		mov	r1, r8
+ 220 00a2 514B     		ldr	r3, .L35+8
+ 221 00a4 1868     		ldr	r0, [r3]
+ 222 00a6 FFF7FEFF 		bl	f_open
+ 223              	.LVL20:
+ 107:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         f_rewind(fp);   /* 指向文件开头 */
+ 224              		.loc 1 107 9 view .LVU46
+ 225 00aa 0346     		mov	r3, r0
+ 226 00ac 0028     		cmp	r0, #0
+ 227 00ae 45D1     		bne	.L27
+ 107:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         f_rewind(fp);   /* 指向文件开头 */
+ 228              		.loc 1 107 60 discriminator 2 view .LVU47
+ 108:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         size = f_size(fp); /* 文件总大小 */
+ 229              		.loc 1 108 9 discriminator 2 view .LVU48
+ 230 00b0 4D4C     		ldr	r4, .L35+8
+ 231 00b2 0021     		movs	r1, #0
+ 232 00b4 2068     		ldr	r0, [r4]
+ 233              	.LVL21:
+ 108:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         size = f_size(fp); /* 文件总大小 */
+ 234              		.loc 1 108 9 is_stmt 0 discriminator 2 view .LVU49
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 9
+
+
+ 235 00b6 FFF7FEFF 		bl	f_lseek
+ 236              	.LVL22:
+ 109:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         gridNum = (size + RW_GRID_MAX_SIZE - 1) / RW_GRID_MAX_SIZE; /* 要分几次读写 */
+ 237              		.loc 1 109 9 is_stmt 1 discriminator 2 view .LVU50
+ 109:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         gridNum = (size + RW_GRID_MAX_SIZE - 1) / RW_GRID_MAX_SIZE; /* 要分几次读写 */
+ 238              		.loc 1 109 16 is_stmt 0 discriminator 2 view .LVU51
+ 239 00ba 2368     		ldr	r3, [r4]
+ 240 00bc D3F80CB0 		ldr	fp, [r3, #12]
+ 241              	.LVL23:
+ 110:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         for(j = 0; j < gridNum; ++j){
+ 242              		.loc 1 110 9 is_stmt 1 discriminator 2 view .LVU52
+ 110:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         for(j = 0; j < gridNum; ++j){
+ 243              		.loc 1 110 44 is_stmt 0 discriminator 2 view .LVU53
+ 244 00c0 0BF6FF79 		addw	r9, fp, #4095
+ 110:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         for(j = 0; j < gridNum; ++j){
+ 245              		.loc 1 110 17 discriminator 2 view .LVU54
+ 246 00c4 B9F1000F 		cmp	r9, #0
+ 247 00c8 42DB     		blt	.L28
+ 248              	.L11:
+ 249 00ca 4FEA2939 		asr	r9, r9, #12
+ 250              	.LVL24:
+ 111:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             gridSize = MIN(RW_GRID_MAX_SIZE, size - j * RW_GRID_MAX_SIZE);  /* 本次读写大小 *
+ 251              		.loc 1 111 9 is_stmt 1 discriminator 2 view .LVU55
+ 111:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             gridSize = MIN(RW_GRID_MAX_SIZE, size - j * RW_GRID_MAX_SIZE);  /* 本次读写大小 *
+ 252              		.loc 1 111 15 is_stmt 0 discriminator 2 view .LVU56
+ 253 00ce 0025     		movs	r5, #0
+ 254 00d0 CDF80C80 		str	r8, [sp, #12]
+ 255              	.LVL25:
+ 256              	.L12:
+ 111:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             gridSize = MIN(RW_GRID_MAX_SIZE, size - j * RW_GRID_MAX_SIZE);  /* 本次读写大小 *
+ 257              		.loc 1 111 22 is_stmt 1 discriminator 1 view .LVU57
+ 258 00d4 4D45     		cmp	r5, r9
+ 259 00d6 62DA     		bge	.L29
+ 112:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             FATFS_CHECK(f_lseek(fp, j * RW_GRID_MAX_SIZE));     /* 指针偏移 */
+ 260              		.loc 1 112 13 view .LVU58
+ 112:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             FATFS_CHECK(f_lseek(fp, j * RW_GRID_MAX_SIZE));     /* 指针偏移 */
+ 261              		.loc 1 112 24 is_stmt 0 view .LVU59
+ 262 00d8 4FEA0538 		lsl	r8, r5, #12
+ 263 00dc ABEB0534 		sub	r4, fp, r5, lsl #12
+ 112:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             FATFS_CHECK(f_lseek(fp, j * RW_GRID_MAX_SIZE));     /* 指针偏移 */
+ 264              		.loc 1 112 22 view .LVU60
+ 265 00e0 B4F5805F 		cmp	r4, #4096
+ 266 00e4 A8BF     		it	ge
+ 267 00e6 4FF48054 		movge	r4, #4096
+ 268              	.LVL26:
+ 113:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             FATFS_CHECK(f_read(fp, dataSD, gridSize, &br));        /* 读取文件 */
+ 269              		.loc 1 113 13 is_stmt 1 view .LVU61
+ 270 00ea 4146     		mov	r1, r8
+ 271 00ec 3E4B     		ldr	r3, .L35+8
+ 272 00ee 1868     		ldr	r0, [r3]
+ 273 00f0 FFF7FEFF 		bl	f_lseek
+ 274              	.LVL27:
+ 113:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             FATFS_CHECK(f_read(fp, dataSD, gridSize, &br));        /* 读取文件 */
+ 275              		.loc 1 113 13 view .LVU62
+ 276 00f4 0346     		mov	r3, r0
+ 277 00f6 70BB     		cbnz	r0, .L30
+ 113:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             FATFS_CHECK(f_read(fp, dataSD, gridSize, &br));        /* 读取文件 */
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 10
+
+
+ 278              		.loc 1 113 59 discriminator 2 view .LVU63
+ 114:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             if(br != gridSize){
+ 279              		.loc 1 114 13 discriminator 2 view .LVU64
+ 280 00f8 05AB     		add	r3, sp, #20
+ 281 00fa 2246     		mov	r2, r4
+ 282 00fc 3946     		mov	r1, r7
+ 283 00fe 3A48     		ldr	r0, .L35+8
+ 284              	.LVL28:
+ 114:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             if(br != gridSize){
+ 285              		.loc 1 114 13 is_stmt 0 discriminator 2 view .LVU65
+ 286 0100 0068     		ldr	r0, [r0]
+ 287 0102 FFF7FEFF 		bl	f_read
+ 288              	.LVL29:
+ 114:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             if(br != gridSize){
+ 289              		.loc 1 114 13 is_stmt 1 discriminator 2 view .LVU66
+ 290 0106 0346     		mov	r3, r0
+ 291 0108 0028     		cmp	r0, #0
+ 292 010a 34D1     		bne	.L31
+ 114:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             if(br != gridSize){
+ 293              		.loc 1 114 59 discriminator 2 view .LVU67
+ 115:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 printf("\t文件读取失败[line: %d]\r\n", __LINE__);
+ 294              		.loc 1 115 13 discriminator 2 view .LVU68
+ 115:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 printf("\t文件读取失败[line: %d]\r\n", __LINE__);
+ 295              		.loc 1 115 19 is_stmt 0 discriminator 2 view .LVU69
+ 296 010c 059B     		ldr	r3, [sp, #20]
+ 115:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 printf("\t文件读取失败[line: %d]\r\n", __LINE__);
+ 297              		.loc 1 115 15 discriminator 2 view .LVU70
+ 298 010e 9C42     		cmp	r4, r3
+ 299 0110 3BD1     		bne	.L32
+ 119:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             if(flashErr != FLASH_EX_ERR_SUCCESS){
+ 300              		.loc 1 119 13 is_stmt 1 view .LVU71
+ 119:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             if(flashErr != FLASH_EX_ERR_SUCCESS){
+ 301              		.loc 1 119 24 is_stmt 0 view .LVU72
+ 302 0112 2246     		mov	r2, r4
+ 303 0114 08EB0A01 		add	r1, r8, r10
+ 304 0118 3846     		mov	r0, r7
+ 305              	.LVL30:
+ 119:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             if(flashErr != FLASH_EX_ERR_SUCCESS){
+ 306              		.loc 1 119 24 view .LVU73
+ 307 011a FFF7FEFF 		bl	Flash_EX_Write
+ 308              	.LVL31:
+ 120:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 printf("\t文件写入失败[line: %d]\r\n", __LINE__);
+ 309              		.loc 1 120 13 is_stmt 1 view .LVU74
+ 120:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 printf("\t文件写入失败[line: %d]\r\n", __LINE__);
+ 310              		.loc 1 120 15 is_stmt 0 view .LVU75
+ 311 011e 0028     		cmp	r0, #0
+ 312 0120 38D1     		bne	.L33
+ 111:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             gridSize = MIN(RW_GRID_MAX_SIZE, size - j * RW_GRID_MAX_SIZE);  /* 本次读写大小 *
+ 313              		.loc 1 111 33 is_stmt 1 discriminator 2 view .LVU76
+ 314 0122 0135     		adds	r5, r5, #1
+ 315              	.LVL32:
+ 111:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             gridSize = MIN(RW_GRID_MAX_SIZE, size - j * RW_GRID_MAX_SIZE);  /* 本次读写大小 *
+ 316              		.loc 1 111 33 is_stmt 0 discriminator 2 view .LVU77
+ 317 0124 D6E7     		b	.L12
+ 318              	.LVL33:
+ 319              	.L25:
+  91:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         goto FONTS_ERR_FLAG;
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 11
+
+
+ 320              		.loc 1 91 9 is_stmt 1 view .LVU78
+ 321 0126 5B21     		movs	r1, #91
+ 322 0128 3548     		ldr	r0, .L35+32
+ 323              	.LVL34:
+  91:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         goto FONTS_ERR_FLAG;
+ 324              		.loc 1 91 9 is_stmt 0 view .LVU79
+ 325 012a FFF7FEFF 		bl	printf
+ 326              	.LVL35:
+  92:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 327              		.loc 1 92 9 is_stmt 1 view .LVU80
+ 328              		.loc 1 132 5 view .LVU81
+ 329 012e 1FE0     		b	.L1
+ 330              	.LVL36:
+ 331              	.L26:
+ 100:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         goto FONTS_ERR_FLAG;
+ 332              		.loc 1 100 9 view .LVU82
+ 333 0130 4FF48051 		mov	r1, #4096
+ 334 0134 3348     		ldr	r0, .L35+36
+ 335              	.LVL37:
+ 100:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         goto FONTS_ERR_FLAG;
+ 336              		.loc 1 100 9 is_stmt 0 view .LVU83
+ 337 0136 FFF7FEFF 		bl	printf
+ 338              	.LVL38:
+ 101:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 339              		.loc 1 101 9 is_stmt 1 view .LVU84
+ 340 013a 15E0     		b	.L9
+ 341              	.LVL39:
+ 342              	.L27:
+ 107:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         f_rewind(fp);   /* 指向文件开头 */
+ 343              		.loc 1 107 9 discriminator 1 view .LVU85
+ 344 013c 2B4A     		ldr	r2, .L35+12
+ 345 013e 1268     		ldr	r2, [r2]
+ 346 0140 D068     		ldr	r0, [r2, #12]
+ 347              	.LVL40:
+ 107:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         f_rewind(fp);   /* 指向文件开头 */
+ 348              		.loc 1 107 9 is_stmt 0 discriminator 1 view .LVU86
+ 349 0142 0093     		str	r3, [sp]
+ 350 0144 2A4B     		ldr	r3, .L35+16
+ 351 0146 6B22     		movs	r2, #107
+ 352 0148 2A49     		ldr	r1, .L35+20
+ 353 014a FFF7FEFF 		bl	fprintf
+ 354              	.LVL41:
+ 107:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         f_rewind(fp);   /* 指向文件开头 */
+ 355              		.loc 1 107 9 is_stmt 1 discriminator 1 view .LVU87
+ 356 014e 0BE0     		b	.L9
+ 357              	.LVL42:
+ 358              	.L28:
+ 110:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         for(j = 0; j < gridNum; ++j){
+ 359              		.loc 1 110 17 is_stmt 0 discriminator 2 view .LVU88
+ 360 0150 09F6FF79 		addw	r9, r9, #4095
+ 361 0154 B9E7     		b	.L11
+ 362              	.LVL43:
+ 363              	.L30:
+ 113:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             FATFS_CHECK(f_read(fp, dataSD, gridSize, &br));        /* 读取文件 */
+ 364              		.loc 1 113 13 is_stmt 1 discriminator 1 view .LVU89
+ 365 0156 254A     		ldr	r2, .L35+12
+ 366 0158 1268     		ldr	r2, [r2]
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 12
+
+
+ 367 015a D068     		ldr	r0, [r2, #12]
+ 368              	.LVL44:
+ 113:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             FATFS_CHECK(f_read(fp, dataSD, gridSize, &br));        /* 读取文件 */
+ 369              		.loc 1 113 13 is_stmt 0 discriminator 1 view .LVU90
+ 370 015c 0093     		str	r3, [sp]
+ 371 015e 244B     		ldr	r3, .L35+16
+ 372 0160 7122     		movs	r2, #113
+ 373 0162 2449     		ldr	r1, .L35+20
+ 374 0164 FFF7FEFF 		bl	fprintf
+ 375              	.LVL45:
+ 113:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             FATFS_CHECK(f_read(fp, dataSD, gridSize, &br));        /* 读取文件 */
+ 376              		.loc 1 113 13 is_stmt 1 discriminator 1 view .LVU91
+ 377              	.L9:
+ 378              		.loc 1 132 5 view .LVU92
+ 379              		.loc 1 132 7 is_stmt 0 view .LVU93
+ 380 0168 17B1     		cbz	r7, .L1
+ 381              		.loc 1 132 21 is_stmt 1 discriminator 1 view .LVU94
+ 382 016a 3846     		mov	r0, r7
+ 383 016c FFF7FEFF 		bl	free
+ 384              	.LVL46:
+ 385              	.L1:
+ 133:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** }
+ 386              		.loc 1 133 1 is_stmt 0 view .LVU95
+ 387 0170 07B0     		add	sp, sp, #28
+ 388              	.LCFI2:
+ 389              		.cfi_remember_state
+ 390              		.cfi_def_cfa_offset 36
+ 391              		@ sp needed
+ 392 0172 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 393              	.LVL47:
+ 394              	.L31:
+ 395              	.LCFI3:
+ 396              		.cfi_restore_state
+ 114:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             if(br != gridSize){
+ 397              		.loc 1 114 13 is_stmt 1 discriminator 1 view .LVU96
+ 398 0176 1D4A     		ldr	r2, .L35+12
+ 399 0178 1268     		ldr	r2, [r2]
+ 400 017a D068     		ldr	r0, [r2, #12]
+ 401              	.LVL48:
+ 114:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             if(br != gridSize){
+ 402              		.loc 1 114 13 is_stmt 0 discriminator 1 view .LVU97
+ 403 017c 0093     		str	r3, [sp]
+ 404 017e 1C4B     		ldr	r3, .L35+16
+ 405 0180 7222     		movs	r2, #114
+ 406 0182 1C49     		ldr	r1, .L35+20
+ 407 0184 FFF7FEFF 		bl	fprintf
+ 408              	.LVL49:
+ 114:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             if(br != gridSize){
+ 409              		.loc 1 114 13 is_stmt 1 discriminator 1 view .LVU98
+ 410 0188 EEE7     		b	.L9
+ 411              	.LVL50:
+ 412              	.L32:
+ 116:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 goto FONTS_ERR_FLAG;
+ 413              		.loc 1 116 17 view .LVU99
+ 414 018a 7421     		movs	r1, #116
+ 415 018c 1E48     		ldr	r0, .L35+40
+ 416              	.LVL51:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 13
+
+
+ 116:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 goto FONTS_ERR_FLAG;
+ 417              		.loc 1 116 17 is_stmt 0 view .LVU100
+ 418 018e FFF7FEFF 		bl	printf
+ 419              	.LVL52:
+ 117:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             }
+ 420              		.loc 1 117 17 is_stmt 1 view .LVU101
+ 421 0192 E9E7     		b	.L9
+ 422              	.LVL53:
+ 423              	.L33:
+ 121:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 goto FONTS_ERR_FLAG;
+ 424              		.loc 1 121 17 view .LVU102
+ 425 0194 7921     		movs	r1, #121
+ 426 0196 1D48     		ldr	r0, .L35+44
+ 427              	.LVL54:
+ 121:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 goto FONTS_ERR_FLAG;
+ 428              		.loc 1 121 17 is_stmt 0 view .LVU103
+ 429 0198 FFF7FEFF 		bl	printf
+ 430              	.LVL55:
+ 122:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             }
+ 431              		.loc 1 122 17 is_stmt 1 view .LVU104
+ 432 019c E4E7     		b	.L9
+ 433              	.LVL56:
+ 434              	.L29:
+ 126:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("\t\t内存范围[ %#x - %#x ]\r\n", (unsigned int)addr, (unsigned int)(addr + size 
+ 435              		.loc 1 126 9 is_stmt 0 view .LVU105
+ 436 019e DDF80C80 		ldr	r8, [sp, #12]
+ 126:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("\t\t内存范围[ %#x - %#x ]\r\n", (unsigned int)addr, (unsigned int)(addr + size 
+ 437              		.loc 1 126 9 is_stmt 1 view .LVU106
+ 438 01a2 4146     		mov	r1, r8
+ 439 01a4 1A48     		ldr	r0, .L35+48
+ 440 01a6 FFF7FEFF 		bl	printf
+ 441              	.LVL57:
+ 127:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         addr += size;   /* 移动文件起点 */
+ 442              		.loc 1 127 9 view .LVU107
+ 127:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         addr += size;   /* 移动文件起点 */
+ 443              		.loc 1 127 93 is_stmt 0 view .LVU108
+ 444 01aa D344     		add	fp, fp, r10
+ 445              	.LVL58:
+ 127:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         addr += size;   /* 移动文件起点 */
+ 446              		.loc 1 127 9 view .LVU109
+ 447 01ac 0BF1FF32 		add	r2, fp, #-1
+ 448 01b0 5146     		mov	r1, r10
+ 449 01b2 1848     		ldr	r0, .L35+52
+ 450 01b4 FFF7FEFF 		bl	printf
+ 451              	.LVL59:
+ 128:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         FATFS_CHECK(f_close(fp));
+ 452              		.loc 1 128 9 is_stmt 1 view .LVU110
+ 129:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 453              		.loc 1 129 9 view .LVU111
+ 454 01b8 0B4B     		ldr	r3, .L35+8
+ 455 01ba 1868     		ldr	r0, [r3]
+ 456 01bc FFF7FEFF 		bl	f_close
+ 457              	.LVL60:
+ 129:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 458              		.loc 1 129 9 view .LVU112
+ 459 01c0 0346     		mov	r3, r0
+ 460 01c2 10B9     		cbnz	r0, .L34
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 14
+
+
+ 129:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 461              		.loc 1 129 33 discriminator 2 view .LVU113
+ 106:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         FATFS_CHECK(f_open(fp, filesPath[i].path, FA_READ)); /* 打开文件 */
+ 462              		.loc 1 106 31 discriminator 2 view .LVU114
+ 463 01c4 0136     		adds	r6, r6, #1
+ 464              	.LVL61:
+ 128:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         FATFS_CHECK(f_close(fp));
+ 465              		.loc 1 128 14 is_stmt 0 discriminator 2 view .LVU115
+ 466 01c6 DA46     		mov	r10, fp
+ 467 01c8 63E7     		b	.L8
+ 468              	.L34:
+ 129:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 469              		.loc 1 129 9 is_stmt 1 discriminator 1 view .LVU116
+ 470 01ca 084A     		ldr	r2, .L35+12
+ 471 01cc 1268     		ldr	r2, [r2]
+ 472 01ce D068     		ldr	r0, [r2, #12]
+ 473              	.LVL62:
+ 129:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 474              		.loc 1 129 9 is_stmt 0 discriminator 1 view .LVU117
+ 475 01d0 0093     		str	r3, [sp]
+ 476 01d2 074B     		ldr	r3, .L35+16
+ 477 01d4 8122     		movs	r2, #129
+ 478 01d6 0749     		ldr	r1, .L35+20
+ 479 01d8 FFF7FEFF 		bl	fprintf
+ 480              	.LVL63:
+ 129:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 481              		.loc 1 129 9 is_stmt 1 discriminator 1 view .LVU118
+ 482 01dc C4E7     		b	.L9
+ 483              	.L36:
+ 484 01de 00BF     		.align	2
+ 485              	.L35:
+ 486 01e0 00000000 		.word	.LC0
+ 487 01e4 00000000 		.word	filesPath
+ 488 01e8 00000000 		.word	fp
+ 489 01ec 00000000 		.word	_impure_ptr
+ 490 01f0 00000000 		.word	__FUNCTION__.1
+ 491 01f4 20000000 		.word	.LC1
+ 492 01f8 68000000 		.word	.LC3
+ 493 01fc 84000000 		.word	.LC4
+ 494 0200 48000000 		.word	.LC2
+ 495 0204 9C000000 		.word	.LC5
+ 496 0208 BC000000 		.word	.LC6
+ 497 020c DC000000 		.word	.LC7
+ 498 0210 FC000000 		.word	.LC8
+ 499 0214 18010000 		.word	.LC9
+ 500              		.cfi_endproc
+ 501              	.LFE32:
+ 503              		.section	.rodata.Font_Check.str1.4,"aMS",%progbits,1
+ 504              		.align	2
+ 505              	.LC10:
+ 506 0000 09E6ADA3 		.ascii	"\011\346\255\243\345\234\250\346\240\241\351\252\214"
+ 506      E59CA8E6 
+ 506      A0A1E9AA 
+ 506      8C
+ 507 000d E69687E4 		.ascii	"\346\226\207\344\273\266...\015\000"
+ 507      BBB62E2E 
+ 507      2E0D00
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 15
+
+
+ 508              		.align	2
+ 509              	.LC11:
+ 510 0018 09E6A0A1 		.ascii	"\011\346\240\241\351\252\214\344\270\215\345\220\210"
+ 510      E9AA8CE4 
+ 510      B88DE590 
+ 510      88
+ 511 0025 E6A0BC0D 		.ascii	"\346\240\274\015\000"
+ 511      00
+ 512 002a 0000     		.align	2
+ 513              	.LC12:
+ 514 002c 09E69687 		.ascii	"\011\346\226\207\344\273\266\346\240\241\351\252\214"
+ 514      E4BBB6E6 
+ 514      A0A1E9AA 
+ 514      8C
+ 515 0039 E59088E6 		.ascii	"\345\220\210\346\240\274\357\274\232%s\015\012\000"
+ 515      A0BCEFBC 
+ 515      9A25730D 
+ 515      0A00
+ 516 0047 00       		.align	2
+ 517              	.LC13:
+ 518 0048 09E68980 		.ascii	"\011\346\211\200\346\234\211\346\226\207\344\273\266"
+ 518      E69C89E6 
+ 518      9687E4BB 
+ 518      B6
+ 519 0055 E6A0A1E9 		.ascii	"\346\240\241\351\252\214\345\220\210\346\240\274\015"
+ 519      AA8CE590 
+ 519      88E6A0BC 
+ 519      0D
+ 520 0062 00       		.ascii	"\000"
+ 521              		.section	.text.Font_Check,"ax",%progbits
+ 522              		.align	1
+ 523              		.syntax unified
+ 524              		.thumb
+ 525              		.thumb_func
+ 527              	Font_Check:
+ 528              	.LFB33:
+ 134:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+ 135:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** static void Font_Check(){
+ 529              		.loc 1 135 25 view -0
+ 530              		.cfi_startproc
+ 531              		@ args = 0, pretend = 0, frame = 16
+ 532              		@ frame_needed = 0, uses_anonymous_args = 0
+ 533 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 534              	.LCFI4:
+ 535              		.cfi_def_cfa_offset 36
+ 536              		.cfi_offset 4, -36
+ 537              		.cfi_offset 5, -32
+ 538              		.cfi_offset 6, -28
+ 539              		.cfi_offset 7, -24
+ 540              		.cfi_offset 8, -20
+ 541              		.cfi_offset 9, -16
+ 542              		.cfi_offset 10, -12
+ 543              		.cfi_offset 11, -8
+ 544              		.cfi_offset 14, -4
+ 545 0004 87B0     		sub	sp, sp, #28
+ 546              	.LCFI5:
+ 547              		.cfi_def_cfa_offset 64
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 16
+
+
+ 136:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     FRESULT err = 0;
+ 548              		.loc 1 136 5 view .LVU120
+ 549              	.LVL64:
+ 137:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     uint8_t* dataFlash = 0;
+ 550              		.loc 1 137 5 view .LVU121
+ 138:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     uint8_t* dataSD = 0;
+ 551              		.loc 1 138 5 view .LVU122
+ 139:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     int i, j, k, size, gridNum, gridSize;
+ 552              		.loc 1 139 5 view .LVU123
+ 140:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     UINT br;
+ 553              		.loc 1 140 5 view .LVU124
+ 141:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     Flash_EX_Errors_t flashErr;
+ 554              		.loc 1 141 5 view .LVU125
+ 142:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     /* 校验 */
+ 143:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     printf("\t正在校验文件...\r\n");
+ 555              		.loc 1 143 5 view .LVU126
+ 556 0006 6A48     		ldr	r0, .L71
+ 557 0008 FFF7FEFF 		bl	puts
+ 558              	.LVL65:
+ 144:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     dataFlash = (uint8_t*)malloc(RW_GRID_MAX_SIZE);
+ 559              		.loc 1 144 5 view .LVU127
+ 560              		.loc 1 144 27 is_stmt 0 view .LVU128
+ 561 000c 4FF48050 		mov	r0, #4096
+ 562 0010 FFF7FEFF 		bl	malloc
+ 563              	.LVL66:
+ 145:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(!dataFlash) {
+ 564              		.loc 1 145 5 is_stmt 1 view .LVU129
+ 565              		.loc 1 145 7 is_stmt 0 view .LVU130
+ 566 0014 0646     		mov	r6, r0
+ 567 0016 0028     		cmp	r0, #0
+ 568 0018 5DD0     		beq	.L58
+ 146:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("\t内存分配失败：%dByte\r\n", RW_GRID_MAX_SIZE);
+ 147:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         goto FONTS_ERR_FLAG;
+ 148:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 149:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     dataSD = (uint8_t*)malloc(RW_GRID_MAX_SIZE);
+ 569              		.loc 1 149 5 is_stmt 1 view .LVU131
+ 570              		.loc 1 149 24 is_stmt 0 view .LVU132
+ 571 001a 4FF48050 		mov	r0, #4096
+ 572              	.LVL67:
+ 573              		.loc 1 149 24 view .LVU133
+ 574 001e FFF7FEFF 		bl	malloc
+ 575              	.LVL68:
+ 150:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(!dataSD) {
+ 576              		.loc 1 150 5 is_stmt 1 view .LVU134
+ 577              		.loc 1 150 7 is_stmt 0 view .LVU135
+ 578 0022 0546     		mov	r5, r0
+ 579 0024 0028     		cmp	r0, #0
+ 580 0026 5CD0     		beq	.L59
+ 151:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("\t内存分配失败：%dByte\r\n", RW_GRID_MAX_SIZE);
+ 152:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         goto FONTS_ERR_FLAG;
+ 153:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 154:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     
+ 155:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     uint32_t addr = FLASH_START_OFFSET;  /* 读取开始点 */
+ 581              		.loc 1 155 14 view .LVU136
+ 582 0028 4FF0000B 		mov	fp, #0
+ 156:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     for(i = 0; i < FILES_NUM; ++i){
+ 583              		.loc 1 156 11 view .LVU137
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 17
+
+
+ 584 002c 5C46     		mov	r4, fp
+ 585              	.LVL69:
+ 586              	.L40:
+ 587              		.loc 1 156 18 is_stmt 1 discriminator 2 view .LVU138
+ 588 002e 032C     		cmp	r4, #3
+ 589 0030 00F3B980 		bgt	.L60
+ 157:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         FATFS_CHECK(f_open(fp, filesPath[i].path, FA_READ)); /* 打开文件 */
+ 590              		.loc 1 157 9 view .LVU139
+ 591 0034 3222     		movs	r2, #50
+ 592 0036 5F4B     		ldr	r3, .L71+4
+ 593 0038 02FB0439 		mla	r9, r2, r4, r3
+ 594 003c 0122     		movs	r2, #1
+ 595 003e 4946     		mov	r1, r9
+ 596 0040 5D4B     		ldr	r3, .L71+8
+ 597 0042 1868     		ldr	r0, [r3]
+ 598 0044 FFF7FEFF 		bl	f_open
+ 599              	.LVL70:
+ 600              		.loc 1 157 9 view .LVU140
+ 601 0048 0346     		mov	r3, r0
+ 602 004a 0028     		cmp	r0, #0
+ 603 004c 4FD1     		bne	.L61
+ 604              		.loc 1 157 60 discriminator 2 view .LVU141
+ 158:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         f_rewind(fp);   /* 指向文件开头 */
+ 605              		.loc 1 158 9 discriminator 2 view .LVU142
+ 606 004e 5A4F     		ldr	r7, .L71+8
+ 607 0050 0021     		movs	r1, #0
+ 608 0052 3868     		ldr	r0, [r7]
+ 609              	.LVL71:
+ 610              		.loc 1 158 9 is_stmt 0 discriminator 2 view .LVU143
+ 611 0054 FFF7FEFF 		bl	f_lseek
+ 612              	.LVL72:
+ 159:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         size = f_size(fp); /* 文件大小 */
+ 613              		.loc 1 159 9 is_stmt 1 discriminator 2 view .LVU144
+ 614              		.loc 1 159 16 is_stmt 0 discriminator 2 view .LVU145
+ 615 0058 3B68     		ldr	r3, [r7]
+ 616 005a D3F80CA0 		ldr	r10, [r3, #12]
+ 617              	.LVL73:
+ 160:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         gridNum = (size + RW_GRID_MAX_SIZE - 1) / RW_GRID_MAX_SIZE; /* 要分几次读写 */
+ 618              		.loc 1 160 9 is_stmt 1 discriminator 2 view .LVU146
+ 619              		.loc 1 160 44 is_stmt 0 discriminator 2 view .LVU147
+ 620 005e 0AF6FF73 		addw	r3, r10, #4095
+ 621              		.loc 1 160 17 discriminator 2 view .LVU148
+ 622 0062 002B     		cmp	r3, #0
+ 623 0064 4DDB     		blt	.L62
+ 624              	.L43:
+ 625 0066 1B13     		asrs	r3, r3, #12
+ 626 0068 0293     		str	r3, [sp, #8]
+ 627              	.LVL74:
+ 161:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         for(j = 0; j < gridNum; ++j){
+ 628              		.loc 1 161 9 is_stmt 1 discriminator 2 view .LVU149
+ 629              		.loc 1 161 15 is_stmt 0 discriminator 2 view .LVU150
+ 630 006a 4FF00008 		mov	r8, #0
+ 631 006e CDF80C90 		str	r9, [sp, #12]
+ 632              	.LVL75:
+ 633              	.L44:
+ 634              		.loc 1 161 22 is_stmt 1 discriminator 1 view .LVU151
+ 635 0072 029B     		ldr	r3, [sp, #8]
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 18
+
+
+ 636 0074 9845     		cmp	r8, r3
+ 637 0076 76DA     		bge	.L63
+ 162:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             gridSize = MIN(RW_GRID_MAX_SIZE, size - j * RW_GRID_MAX_SIZE);  /* 本次读写大小 *
+ 638              		.loc 1 162 13 view .LVU152
+ 639              		.loc 1 162 24 is_stmt 0 view .LVU153
+ 640 0078 4FEA0839 		lsl	r9, r8, #12
+ 641 007c AAEB0837 		sub	r7, r10, r8, lsl #12
+ 642              		.loc 1 162 22 view .LVU154
+ 643 0080 B7F5805F 		cmp	r7, #4096
+ 644 0084 A8BF     		it	ge
+ 645 0086 4FF48057 		movge	r7, #4096
+ 646              	.LVL76:
+ 163:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             FATFS_CHECK(f_lseek(fp, j * RW_GRID_MAX_SIZE));     /* 指针偏移 */
+ 647              		.loc 1 163 13 is_stmt 1 view .LVU155
+ 648 008a 4946     		mov	r1, r9
+ 649 008c 4A4B     		ldr	r3, .L71+8
+ 650 008e 1868     		ldr	r0, [r3]
+ 651 0090 FFF7FEFF 		bl	f_lseek
+ 652              	.LVL77:
+ 653              		.loc 1 163 13 view .LVU156
+ 654 0094 0346     		mov	r3, r0
+ 655 0096 0028     		cmp	r0, #0
+ 656 0098 36D1     		bne	.L64
+ 657              		.loc 1 163 59 discriminator 2 view .LVU157
+ 164:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             FATFS_CHECK(f_read(fp, dataSD, gridSize, &br));        /* 读取SD文件 */
+ 658              		.loc 1 164 13 discriminator 2 view .LVU158
+ 659 009a 05AB     		add	r3, sp, #20
+ 660 009c 3A46     		mov	r2, r7
+ 661 009e 2946     		mov	r1, r5
+ 662 00a0 4548     		ldr	r0, .L71+8
+ 663              	.LVL78:
+ 664              		.loc 1 164 13 is_stmt 0 discriminator 2 view .LVU159
+ 665 00a2 0068     		ldr	r0, [r0]
+ 666 00a4 FFF7FEFF 		bl	f_read
+ 667              	.LVL79:
+ 668              		.loc 1 164 13 is_stmt 1 discriminator 2 view .LVU160
+ 669 00a8 0346     		mov	r3, r0
+ 670 00aa 0028     		cmp	r0, #0
+ 671 00ac 36D1     		bne	.L65
+ 672              		.loc 1 164 59 discriminator 2 view .LVU161
+ 165:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             if(br != gridSize){
+ 673              		.loc 1 165 13 discriminator 2 view .LVU162
+ 674              		.loc 1 165 19 is_stmt 0 discriminator 2 view .LVU163
+ 675 00ae 059B     		ldr	r3, [sp, #20]
+ 676              		.loc 1 165 15 discriminator 2 view .LVU164
+ 677 00b0 9F42     		cmp	r7, r3
+ 678 00b2 3DD1     		bne	.L66
+ 166:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 printf("\t文件读取失败[line: %d]\r\n", __LINE__);
+ 167:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 goto FONTS_ERR_FLAG;
+ 168:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             }
+ 169:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             flashErr = Flash_EX_Read(dataFlash, addr + (uint32_t)(j * RW_GRID_MAX_SIZE), gridSize);
+ 679              		.loc 1 169 13 is_stmt 1 view .LVU165
+ 680              		.loc 1 169 24 is_stmt 0 view .LVU166
+ 681 00b4 3A46     		mov	r2, r7
+ 682 00b6 09EB0B01 		add	r1, r9, fp
+ 683 00ba 3046     		mov	r0, r6
+ 684              	.LVL80:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 19
+
+
+ 685              		.loc 1 169 24 view .LVU167
+ 686 00bc FFF7FEFF 		bl	Flash_EX_Read
+ 687              	.LVL81:
+ 170:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             
+ 171:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             if(flashErr != FLASH_EX_ERR_SUCCESS){
+ 688              		.loc 1 171 13 is_stmt 1 view .LVU168
+ 689              		.loc 1 171 15 is_stmt 0 view .LVU169
+ 690 00c0 0028     		cmp	r0, #0
+ 691 00c2 3AD1     		bne	.L67
+ 172:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 printf("\t文件读取失败[line: %d]\r\n", __LINE__);
+ 173:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 goto FONTS_ERR_FLAG;
+ 174:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             }
+ 175:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+ 176:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             for(k = 0; k < gridSize; ++k){  /* 校验SD和Flash的内容 */
+ 692              		.loc 1 176 19 view .LVU170
+ 693 00c4 0023     		movs	r3, #0
+ 694              	.L48:
+ 695              	.LVL82:
+ 696              		.loc 1 176 26 is_stmt 1 discriminator 1 view .LVU171
+ 697 00c6 BB42     		cmp	r3, r7
+ 698 00c8 4ADA     		bge	.L68
+ 177:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 if(dataSD[k] != dataFlash[k]){
+ 699              		.loc 1 177 17 view .LVU172
+ 700              		.loc 1 177 26 is_stmt 0 view .LVU173
+ 701 00ca E95C     		ldrb	r1, [r5, r3]	@ zero_extendqisi2
+ 702              		.loc 1 177 42 view .LVU174
+ 703 00cc F25C     		ldrb	r2, [r6, r3]	@ zero_extendqisi2
+ 704              		.loc 1 177 19 view .LVU175
+ 705 00ce 9142     		cmp	r1, r2
+ 706 00d0 38D1     		bne	.L69
+ 176:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 if(dataSD[k] != dataFlash[k]){
+ 707              		.loc 1 176 38 is_stmt 1 discriminator 2 view .LVU176
+ 708 00d2 0133     		adds	r3, r3, #1
+ 709              	.LVL83:
+ 176:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 if(dataSD[k] != dataFlash[k]){
+ 710              		.loc 1 176 38 is_stmt 0 discriminator 2 view .LVU177
+ 711 00d4 F7E7     		b	.L48
+ 712              	.LVL84:
+ 713              	.L58:
+ 146:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         goto FONTS_ERR_FLAG;
+ 714              		.loc 1 146 9 is_stmt 1 view .LVU178
+ 715 00d6 4FF48051 		mov	r1, #4096
+ 716 00da 3848     		ldr	r0, .L71+12
+ 717              	.LVL85:
+ 146:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         goto FONTS_ERR_FLAG;
+ 718              		.loc 1 146 9 is_stmt 0 view .LVU179
+ 719 00dc FFF7FEFF 		bl	printf
+ 720              	.LVL86:
+ 147:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 721              		.loc 1 147 9 is_stmt 1 view .LVU180
+ 178:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                     printf("\t校验不合格\r\n");
+ 179:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                     goto FONTS_ERR_FLAG;
+ 180:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 }
+ 181:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             }
+ 182:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         }
+ 183:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         
+ 184:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("\t文件校验合格：%s\r\n", filesPath[i].path);
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 20
+
+
+ 185:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("\t\t内存范围[ %#x - %#x ]\r\n", (unsigned int)addr, (unsigned int)(addr + size 
+ 186:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         addr += size;   /* 移动文件起点 */
+ 187:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         FATFS_CHECK(f_close(fp));
+ 188:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 189:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+ 190:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     printf("\t所有文件校验合格\r\n");
+ 191:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** FONTS_ERR_FLAG:
+ 192:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(dataSD)      free(dataSD);
+ 722              		.loc 1 192 5 view .LVU181
+ 723 00e0 37E0     		b	.L39
+ 724              	.LVL87:
+ 725              	.L59:
+ 151:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         goto FONTS_ERR_FLAG;
+ 726              		.loc 1 151 9 view .LVU182
+ 727 00e2 4FF48051 		mov	r1, #4096
+ 728 00e6 3548     		ldr	r0, .L71+12
+ 729              	.LVL88:
+ 151:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         goto FONTS_ERR_FLAG;
+ 730              		.loc 1 151 9 is_stmt 0 view .LVU183
+ 731 00e8 FFF7FEFF 		bl	printf
+ 732              	.LVL89:
+ 152:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 733              		.loc 1 152 9 is_stmt 1 view .LVU184
+ 734 00ec 2DE0     		b	.L41
+ 735              	.LVL90:
+ 736              	.L61:
+ 157:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         f_rewind(fp);   /* 指向文件开头 */
+ 737              		.loc 1 157 9 discriminator 1 view .LVU185
+ 738 00ee 344A     		ldr	r2, .L71+16
+ 739 00f0 1268     		ldr	r2, [r2]
+ 740 00f2 D068     		ldr	r0, [r2, #12]
+ 741              	.LVL91:
+ 157:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         f_rewind(fp);   /* 指向文件开头 */
+ 742              		.loc 1 157 9 is_stmt 0 discriminator 1 view .LVU186
+ 743 00f4 0093     		str	r3, [sp]
+ 744 00f6 334B     		ldr	r3, .L71+20
+ 745 00f8 9D22     		movs	r2, #157
+ 746 00fa 3349     		ldr	r1, .L71+24
+ 747 00fc FFF7FEFF 		bl	fprintf
+ 748              	.LVL92:
+ 157:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         f_rewind(fp);   /* 指向文件开头 */
+ 749              		.loc 1 157 9 is_stmt 1 discriminator 1 view .LVU187
+ 750 0100 23E0     		b	.L41
+ 751              	.LVL93:
+ 752              	.L62:
+ 160:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         for(j = 0; j < gridNum; ++j){
+ 753              		.loc 1 160 17 is_stmt 0 discriminator 2 view .LVU188
+ 754 0102 03F6FF73 		addw	r3, r3, #4095
+ 755 0106 AEE7     		b	.L43
+ 756              	.LVL94:
+ 757              	.L64:
+ 163:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             FATFS_CHECK(f_read(fp, dataSD, gridSize, &br));        /* 读取SD文件 */
+ 758              		.loc 1 163 13 is_stmt 1 discriminator 1 view .LVU189
+ 759 0108 2D4A     		ldr	r2, .L71+16
+ 760 010a 1268     		ldr	r2, [r2]
+ 761 010c D068     		ldr	r0, [r2, #12]
+ 762              	.LVL95:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 21
+
+
+ 163:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             FATFS_CHECK(f_read(fp, dataSD, gridSize, &br));        /* 读取SD文件 */
+ 763              		.loc 1 163 13 is_stmt 0 discriminator 1 view .LVU190
+ 764 010e 0093     		str	r3, [sp]
+ 765 0110 2C4B     		ldr	r3, .L71+20
+ 766 0112 A322     		movs	r2, #163
+ 767 0114 2C49     		ldr	r1, .L71+24
+ 768 0116 FFF7FEFF 		bl	fprintf
+ 769              	.LVL96:
+ 163:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             FATFS_CHECK(f_read(fp, dataSD, gridSize, &br));        /* 读取SD文件 */
+ 770              		.loc 1 163 13 is_stmt 1 discriminator 1 view .LVU191
+ 771 011a 16E0     		b	.L41
+ 772              	.LVL97:
+ 773              	.L65:
+ 164:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             if(br != gridSize){
+ 774              		.loc 1 164 13 discriminator 1 view .LVU192
+ 775 011c 284A     		ldr	r2, .L71+16
+ 776 011e 1268     		ldr	r2, [r2]
+ 777 0120 D068     		ldr	r0, [r2, #12]
+ 778              	.LVL98:
+ 164:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             if(br != gridSize){
+ 779              		.loc 1 164 13 is_stmt 0 discriminator 1 view .LVU193
+ 780 0122 0093     		str	r3, [sp]
+ 781 0124 274B     		ldr	r3, .L71+20
+ 782 0126 A422     		movs	r2, #164
+ 783 0128 2749     		ldr	r1, .L71+24
+ 784 012a FFF7FEFF 		bl	fprintf
+ 785              	.LVL99:
+ 164:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             if(br != gridSize){
+ 786              		.loc 1 164 13 is_stmt 1 discriminator 1 view .LVU194
+ 787 012e 0CE0     		b	.L41
+ 788              	.LVL100:
+ 789              	.L66:
+ 166:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 goto FONTS_ERR_FLAG;
+ 790              		.loc 1 166 17 view .LVU195
+ 791 0130 A621     		movs	r1, #166
+ 792 0132 2648     		ldr	r0, .L71+28
+ 793              	.LVL101:
+ 166:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 goto FONTS_ERR_FLAG;
+ 794              		.loc 1 166 17 is_stmt 0 view .LVU196
+ 795 0134 FFF7FEFF 		bl	printf
+ 796              	.LVL102:
+ 167:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             }
+ 797              		.loc 1 167 17 is_stmt 1 view .LVU197
+ 798 0138 07E0     		b	.L41
+ 799              	.LVL103:
+ 800              	.L67:
+ 172:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 goto FONTS_ERR_FLAG;
+ 801              		.loc 1 172 17 view .LVU198
+ 802 013a AC21     		movs	r1, #172
+ 803 013c 2348     		ldr	r0, .L71+28
+ 804              	.LVL104:
+ 172:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 goto FONTS_ERR_FLAG;
+ 805              		.loc 1 172 17 is_stmt 0 view .LVU199
+ 806 013e FFF7FEFF 		bl	printf
+ 807              	.LVL105:
+ 173:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             }
+ 808              		.loc 1 173 17 is_stmt 1 view .LVU200
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 22
+
+
+ 809 0142 02E0     		b	.L41
+ 810              	.LVL106:
+ 811              	.L69:
+ 178:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                     goto FONTS_ERR_FLAG;
+ 812              		.loc 1 178 21 view .LVU201
+ 813 0144 2248     		ldr	r0, .L71+32
+ 814              	.LVL107:
+ 178:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                     goto FONTS_ERR_FLAG;
+ 815              		.loc 1 178 21 is_stmt 0 view .LVU202
+ 816 0146 FFF7FEFF 		bl	puts
+ 817              	.LVL108:
+ 179:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 }
+ 818              		.loc 1 179 21 is_stmt 1 view .LVU203
+ 819              	.L41:
+ 820              		.loc 1 192 5 view .LVU204
+ 821              		.loc 1 192 7 is_stmt 0 view .LVU205
+ 822 014a 15B1     		cbz	r5, .L39
+ 823              		.loc 1 192 21 is_stmt 1 discriminator 1 view .LVU206
+ 824 014c 2846     		mov	r0, r5
+ 825 014e FFF7FEFF 		bl	free
+ 826              	.LVL109:
+ 827              	.L39:
+ 193:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(dataFlash)   free(dataFlash);
+ 828              		.loc 1 193 5 view .LVU207
+ 829              		.loc 1 193 7 is_stmt 0 view .LVU208
+ 830 0152 16B1     		cbz	r6, .L37
+ 831              		.loc 1 193 21 is_stmt 1 discriminator 1 view .LVU209
+ 832 0154 3046     		mov	r0, r6
+ 833 0156 FFF7FEFF 		bl	free
+ 834              	.LVL110:
+ 835              	.L37:
+ 194:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** }
+ 836              		.loc 1 194 1 is_stmt 0 view .LVU210
+ 837 015a 07B0     		add	sp, sp, #28
+ 838              	.LCFI6:
+ 839              		.cfi_remember_state
+ 840              		.cfi_def_cfa_offset 36
+ 841              		@ sp needed
+ 842 015c BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 843              	.LVL111:
+ 844              	.L68:
+ 845              	.LCFI7:
+ 846              		.cfi_restore_state
+ 161:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             gridSize = MIN(RW_GRID_MAX_SIZE, size - j * RW_GRID_MAX_SIZE);  /* 本次读写大小 *
+ 847              		.loc 1 161 33 is_stmt 1 discriminator 2 view .LVU211
+ 848 0160 08F10108 		add	r8, r8, #1
+ 849              	.LVL112:
+ 161:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             gridSize = MIN(RW_GRID_MAX_SIZE, size - j * RW_GRID_MAX_SIZE);  /* 本次读写大小 *
+ 850              		.loc 1 161 33 is_stmt 0 discriminator 2 view .LVU212
+ 851 0164 85E7     		b	.L44
+ 852              	.LVL113:
+ 853              	.L63:
+ 184:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("\t\t内存范围[ %#x - %#x ]\r\n", (unsigned int)addr, (unsigned int)(addr + size 
+ 854              		.loc 1 184 9 view .LVU213
+ 855 0166 DDF80C90 		ldr	r9, [sp, #12]
+ 184:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("\t\t内存范围[ %#x - %#x ]\r\n", (unsigned int)addr, (unsigned int)(addr + size 
+ 856              		.loc 1 184 9 is_stmt 1 view .LVU214
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 23
+
+
+ 857 016a 4946     		mov	r1, r9
+ 858 016c 1948     		ldr	r0, .L71+36
+ 859 016e FFF7FEFF 		bl	printf
+ 860              	.LVL114:
+ 185:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         addr += size;   /* 移动文件起点 */
+ 861              		.loc 1 185 9 view .LVU215
+ 185:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         addr += size;   /* 移动文件起点 */
+ 862              		.loc 1 185 93 is_stmt 0 view .LVU216
+ 863 0172 DA44     		add	r10, r10, fp
+ 864              	.LVL115:
+ 185:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         addr += size;   /* 移动文件起点 */
+ 865              		.loc 1 185 9 view .LVU217
+ 866 0174 0AF1FF32 		add	r2, r10, #-1
+ 867 0178 5946     		mov	r1, fp
+ 868 017a 1748     		ldr	r0, .L71+40
+ 869 017c FFF7FEFF 		bl	printf
+ 870              	.LVL116:
+ 186:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         FATFS_CHECK(f_close(fp));
+ 871              		.loc 1 186 9 is_stmt 1 view .LVU218
+ 187:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 872              		.loc 1 187 9 view .LVU219
+ 873 0180 0D4B     		ldr	r3, .L71+8
+ 874 0182 1868     		ldr	r0, [r3]
+ 875 0184 FFF7FEFF 		bl	f_close
+ 876              	.LVL117:
+ 187:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 877              		.loc 1 187 9 view .LVU220
+ 878 0188 0346     		mov	r3, r0
+ 879 018a 10B9     		cbnz	r0, .L70
+ 187:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 880              		.loc 1 187 33 discriminator 2 view .LVU221
+ 156:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         FATFS_CHECK(f_open(fp, filesPath[i].path, FA_READ)); /* 打开文件 */
+ 881              		.loc 1 156 31 discriminator 2 view .LVU222
+ 882 018c 0134     		adds	r4, r4, #1
+ 883              	.LVL118:
+ 186:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         FATFS_CHECK(f_close(fp));
+ 884              		.loc 1 186 14 is_stmt 0 discriminator 2 view .LVU223
+ 885 018e D346     		mov	fp, r10
+ 886 0190 4DE7     		b	.L40
+ 887              	.L70:
+ 187:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 888              		.loc 1 187 9 is_stmt 1 discriminator 1 view .LVU224
+ 889 0192 0B4A     		ldr	r2, .L71+16
+ 890 0194 1268     		ldr	r2, [r2]
+ 891 0196 D068     		ldr	r0, [r2, #12]
+ 892              	.LVL119:
+ 187:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 893              		.loc 1 187 9 is_stmt 0 discriminator 1 view .LVU225
+ 894 0198 0093     		str	r3, [sp]
+ 895 019a 0A4B     		ldr	r3, .L71+20
+ 896 019c BB22     		movs	r2, #187
+ 897 019e 0A49     		ldr	r1, .L71+24
+ 898 01a0 FFF7FEFF 		bl	fprintf
+ 899              	.LVL120:
+ 187:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 900              		.loc 1 187 9 is_stmt 1 discriminator 1 view .LVU226
+ 901 01a4 D1E7     		b	.L41
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 24
+
+
+ 902              	.LVL121:
+ 903              	.L60:
+ 190:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** FONTS_ERR_FLAG:
+ 904              		.loc 1 190 5 view .LVU227
+ 905 01a6 0D48     		ldr	r0, .L71+44
+ 906 01a8 FFF7FEFF 		bl	puts
+ 907              	.LVL122:
+ 908 01ac CDE7     		b	.L41
+ 909              	.L72:
+ 910 01ae 00BF     		.align	2
+ 911              	.L71:
+ 912 01b0 00000000 		.word	.LC10
+ 913 01b4 00000000 		.word	filesPath
+ 914 01b8 00000000 		.word	fp
+ 915 01bc 9C000000 		.word	.LC5
+ 916 01c0 00000000 		.word	_impure_ptr
+ 917 01c4 00000000 		.word	__FUNCTION__.0
+ 918 01c8 20000000 		.word	.LC1
+ 919 01cc BC000000 		.word	.LC6
+ 920 01d0 18000000 		.word	.LC11
+ 921 01d4 2C000000 		.word	.LC12
+ 922 01d8 18010000 		.word	.LC9
+ 923 01dc 48000000 		.word	.LC13
+ 924              		.cfi_endproc
+ 925              	.LFE33:
+ 927              		.section	.rodata.Font_Download.str1.4,"aMS",%progbits,1
+ 928              		.align	2
+ 929              	.LC14:
+ 930 0000 466C6173 		.ascii	"Flash\345\224\244\351\206\222\345\244\261\350\264\245"
+ 930      68E594A4 
+ 930      E98692E5 
+ 930      A4B1E8B4 
+ 930      A5
+ 931 0011 0D00     		.ascii	"\015\000"
+ 932 0013 00       		.align	2
+ 933              	.LC15:
+ 934 0014 466C6173 		.ascii	"Flash ID\351\224\231\350\257\257\015\000"
+ 934      68204944 
+ 934      E99499E8 
+ 934      AFAF0D00 
+ 935              		.align	2
+ 936              	.LC16:
+ 937 0024 303A00   		.ascii	"0:\000"
+ 938 0027 00       		.align	2
+ 939              	.LC17:
+ 940 0028 5344E58D 		.ascii	"SD\345\215\241\346\214\202\350\275\275\346\210\220\345"
+ 940      A1E68C82 
+ 940      E8BDBDE6 
+ 940      8890E5
+ 941 0037 8A9F0D00 		.ascii	"\212\237\015\000"
+ 942 003b 00       		.align	2
+ 943              	.LC18:
+ 944 003c E68C89E4 		.ascii	"\346\214\211\344\270\213Key0\357\274\210\347\203\247"
+ 944      B88B4B65 
+ 944      7930EFBC 
+ 944      88E783A7 
+ 945 004c E5BD95EF 		.ascii	"\345\275\225\357\274\211\357\274\214Key1\357\274\210"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 25
+
+
+ 945      BC89EFBC 
+ 945      8C4B6579 
+ 945      31EFBC88 
+ 946 005c E6A0A1E9 		.ascii	"\346\240\241\351\252\214\357\274\211\357\274\214Key"
+ 946      AA8CEFBC 
+ 946      89EFBC8C 
+ 946      4B6579
+ 947 006b 5F7570EF 		.ascii	"_up\357\274\210\347\203\247\345\275\225 + \346\240\241"
+ 947      BC88E783 
+ 947      A7E5BD95 
+ 947      202B20E6 
+ 947      A0A1
+ 948 007d E9AA8CEF 		.ascii	"\351\252\214\357\274\211\357\274\232\015\000"
+ 948      BC89EFBC 
+ 948      9A0D00
+ 949              		.section	.text.Font_Download,"ax",%progbits
+ 950              		.align	1
+ 951              		.global	Font_Download
+ 952              		.syntax unified
+ 953              		.thumb
+ 954              		.thumb_func
+ 956              	Font_Download:
+ 957              	.LFB34:
+ 195:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+ 196:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** void Font_Download(){
+ 958              		.loc 1 196 21 view -0
+ 959              		.cfi_startproc
+ 960              		@ args = 0, pretend = 0, frame = 8
+ 961              		@ frame_needed = 0, uses_anonymous_args = 0
+ 962 0000 10B5     		push	{r4, lr}
+ 963              	.LCFI8:
+ 964              		.cfi_def_cfa_offset 8
+ 965              		.cfi_offset 4, -8
+ 966              		.cfi_offset 14, -4
+ 967 0002 84B0     		sub	sp, sp, #16
+ 968              	.LCFI9:
+ 969              		.cfi_def_cfa_offset 24
+ 197:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     Flash_EX_Errors_t flashErr;
+ 970              		.loc 1 197 5 view .LVU229
+ 198:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+ 199:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     /* 初始化 */
+ 200:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     delay_init();
+ 971              		.loc 1 200 5 view .LVU230
+ 972 0004 FFF7FEFF 		bl	delay_init
+ 973              	.LVL123:
+ 201:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     USART1_Init();
+ 974              		.loc 1 201 5 view .LVU231
+ 975 0008 FFF7FEFF 		bl	USART1_Init
+ 976              	.LVL124:
+ 202:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     KEY_Init();
+ 977              		.loc 1 202 5 view .LVU232
+ 978 000c FFF7FEFF 		bl	KEY_Init
+ 979              	.LVL125:
+ 203:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     Flash_EX_Init();
+ 980              		.loc 1 203 5 view .LVU233
+ 981 0010 FFF7FEFF 		bl	Flash_EX_Init
+ 982              	.LVL126:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 26
+
+
+ 204:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     flashErr = Flash_EX_Wake_Up();
+ 983              		.loc 1 204 5 view .LVU234
+ 984              		.loc 1 204 16 is_stmt 0 view .LVU235
+ 985 0014 FFF7FEFF 		bl	Flash_EX_Wake_Up
+ 986              	.LVL127:
+ 205:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(flashErr != FLASH_EX_ERR_SUCCESS){
+ 987              		.loc 1 205 5 is_stmt 1 view .LVU236
+ 988              		.loc 1 205 7 is_stmt 0 view .LVU237
+ 989 0018 60B9     		cbnz	r0, .L86
+ 206:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("Flash唤醒失败\r\n");
+ 207:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         return;
+ 208:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 209:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     bool flag;
+ 990              		.loc 1 209 5 is_stmt 1 view .LVU238
+ 210:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     flashErr = Flash_EX_Check_JEDEC_ID(&flag);
+ 991              		.loc 1 210 5 view .LVU239
+ 992              		.loc 1 210 16 is_stmt 0 view .LVU240
+ 993 001a 0DF10F00 		add	r0, sp, #15
+ 994              	.LVL128:
+ 995              		.loc 1 210 16 view .LVU241
+ 996 001e FFF7FEFF 		bl	Flash_EX_Check_JEDEC_ID
+ 997              	.LVL129:
+ 211:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if((!flag) || flashErr != FLASH_EX_ERR_SUCCESS){
+ 998              		.loc 1 211 5 is_stmt 1 view .LVU242
+ 999              		.loc 1 211 9 is_stmt 0 view .LVU243
+ 1000 0022 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+ 1001              		.loc 1 211 7 view .LVU244
+ 1002 0026 03B1     		cbz	r3, .L76
+ 1003              		.loc 1 211 16 discriminator 1 view .LVU245
+ 1004 0028 40B1     		cbz	r0, .L77
+ 1005              	.L76:
+ 212:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("Flash ID错误\r\n");
+ 1006              		.loc 1 212 9 is_stmt 1 view .LVU246
+ 1007 002a 2948     		ldr	r0, .L88
+ 1008              	.LVL130:
+ 1009              		.loc 1 212 9 is_stmt 0 view .LVU247
+ 1010 002c FFF7FEFF 		bl	puts
+ 1011              	.LVL131:
+ 213:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         return;
+ 1012              		.loc 1 213 9 is_stmt 1 view .LVU248
+ 1013              	.L73:
+ 214:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 215:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+ 216:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     /* 挂载SD卡 */
+ 217:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     FRESULT err = 0;
+ 218:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     FATFS* fs = malloc(sizeof(FATFS));
+ 219:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     FATFS_CHECK(f_mount(fs, "0:", 1)); // path为diskio.c中定义的DEV_SDCARD，opt为1表示立�
+ 220:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     fp = malloc(sizeof(FIL));
+ 221:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     printf("SD卡挂载成功\r\n");
+ 222:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+ 223:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     /* 根据按键选择执行 */
+ 224:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** #define KEY_PRINT() printf("按下Key0（烧录），Key1（校验），Key_up（烧录 + 校验）
+ 225:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     KEY_PRINT();
+ 226:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     while(1){
+ 227:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         KEY_STATUS_t key = KEY_Scan(KEY_SCAN_ONCE);
+ 228:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         if(key != KEY_NONE_PRESS){
+ 229:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             switch (key)
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 27
+
+
+ 230:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             {
+ 231:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             case KEY0_PRESS:    // 烧录
+ 232:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 Font_Burn();
+ 233:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 KEY_PRINT();
+ 234:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 break;
+ 235:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             case KEY1_PRESS:    // 校验
+ 236:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 Font_Check();
+ 237:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 KEY_PRINT();
+ 238:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 break;
+ 239:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             case KEYUP_PRESS:   // 烧录 + 校验
+ 240:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 Font_Burn();
+ 241:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 Font_Check();
+ 242:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 KEY_PRINT();
+ 243:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 break;
+ 244:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             default:
+ 245:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 break;
+ 246:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             }
+ 247:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         }
+ 248:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
+ 249:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** #undef KEY_PRINT
+ 250:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+ 251:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
+ 252:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** FONTS_ERR_FLAG:
+ 253:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(fp)          free(fp);
+ 254:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(fs)          free(fs);
+ 255:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     return;
+ 256:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** }...
+ 1014              		.loc 1 256 1 is_stmt 0 view .LVU249
+ 1015 0030 04B0     		add	sp, sp, #16
+ 1016              	.LCFI10:
+ 1017              		.cfi_remember_state
+ 1018              		.cfi_def_cfa_offset 8
+ 1019              		@ sp needed
+ 1020 0032 10BD     		pop	{r4, pc}
+ 1021              	.LVL132:
+ 1022              	.L86:
+ 1023              	.LCFI11:
+ 1024              		.cfi_restore_state
+ 206:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("Flash唤醒失败\r\n");
+ 1025              		.loc 1 206 9 is_stmt 1 view .LVU250
+ 1026 0034 2748     		ldr	r0, .L88+4
+ 1027              	.LVL133:
+ 206:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("Flash唤醒失败\r\n");
+ 1028              		.loc 1 206 9 is_stmt 0 view .LVU251
+ 1029 0036 FFF7FEFF 		bl	puts
+ 1030              	.LVL134:
+ 207:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         return;
+ 1031              		.loc 1 207 9 is_stmt 1 view .LVU252
+ 1032 003a F9E7     		b	.L73
+ 1033              	.LVL135:
+ 1034              	.L77:
+ 217:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     FRESULT err = 0;
+ 1035              		.loc 1 217 5 view .LVU253
+ 218:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     FATFS* fs = malloc(sizeof(FATFS));
+ 1036              		.loc 1 218 5 view .LVU254
+ 218:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     FATFS* fs = malloc(sizeof(FATFS));
+ 1037              		.loc 1 218 17 is_stmt 0 view .LVU255
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 28
+
+
+ 1038 003c 41F23800 		movw	r0, #4152
+ 1039              	.LVL136:
+ 218:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     FATFS* fs = malloc(sizeof(FATFS));
+ 1040              		.loc 1 218 17 view .LVU256
+ 1041 0040 FFF7FEFF 		bl	malloc
+ 1042              	.LVL137:
+ 1043 0044 0446     		mov	r4, r0
+ 1044              	.LVL138:
+ 219:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     FATFS_CHECK(f_mount(fs, "0:", 1)); // path为diskio.c中定义的DEV_SDCARD，opt为1表示立�
+ 1045              		.loc 1 219 5 is_stmt 1 view .LVU257
+ 1046 0046 0122     		movs	r2, #1
+ 1047 0048 2349     		ldr	r1, .L88+8
+ 1048 004a FFF7FEFF 		bl	f_mount
+ 1049              	.LVL139:
+ 219:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     FATFS_CHECK(f_mount(fs, "0:", 1)); // path为diskio.c中定义的DEV_SDCARD，opt为1表示立�
+ 1050              		.loc 1 219 5 view .LVU258
+ 1051 004e 0346     		mov	r3, r0
+ 1052 0050 60B9     		cbnz	r0, .L87
+ 219:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     FATFS_CHECK(f_mount(fs, "0:", 1)); // path为diskio.c中定义的DEV_SDCARD，opt为1表示立�
+ 1053              		.loc 1 219 38 discriminator 2 view .LVU259
+ 220:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     fp = malloc(sizeof(FIL));
+ 1054              		.loc 1 220 5 discriminator 2 view .LVU260
+ 220:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     fp = malloc(sizeof(FIL));
+ 1055              		.loc 1 220 10 is_stmt 0 discriminator 2 view .LVU261
+ 1056 0052 41F22800 		movw	r0, #4136
+ 1057              	.LVL140:
+ 220:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     fp = malloc(sizeof(FIL));
+ 1058              		.loc 1 220 10 discriminator 2 view .LVU262
+ 1059 0056 FFF7FEFF 		bl	malloc
+ 1060              	.LVL141:
+ 220:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     fp = malloc(sizeof(FIL));
+ 1061              		.loc 1 220 8 discriminator 2 view .LVU263
+ 1062 005a 204B     		ldr	r3, .L88+12
+ 1063 005c 1860     		str	r0, [r3]
+ 221:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     printf("SD卡挂载成功\r\n");
+ 1064              		.loc 1 221 5 is_stmt 1 discriminator 2 view .LVU264
+ 1065 005e 2048     		ldr	r0, .L88+16
+ 1066 0060 FFF7FEFF 		bl	puts
+ 1067              	.LVL142:
+ 225:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     KEY_PRINT();
+ 1068              		.loc 1 225 5 discriminator 2 view .LVU265
+ 1069 0064 1F48     		ldr	r0, .L88+20
+ 1070 0066 FFF7FEFF 		bl	puts
+ 1071              	.LVL143:
+ 1072 006a 18E0     		b	.L81
+ 1073              	.LVL144:
+ 1074              	.L87:
+ 219:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     FATFS_CHECK(f_mount(fs, "0:", 1)); // path为diskio.c中定义的DEV_SDCARD，opt为1表示立�
+ 1075              		.loc 1 219 5 discriminator 1 view .LVU266
+ 1076 006c 1E4A     		ldr	r2, .L88+24
+ 1077 006e 1268     		ldr	r2, [r2]
+ 1078 0070 D068     		ldr	r0, [r2, #12]
+ 1079              	.LVL145:
+ 219:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     FATFS_CHECK(f_mount(fs, "0:", 1)); // path为diskio.c中定义的DEV_SDCARD，opt为1表示立�
+ 1080              		.loc 1 219 5 is_stmt 0 discriminator 1 view .LVU267
+ 1081 0072 0093     		str	r3, [sp]
+ 1082 0074 1D4B     		ldr	r3, .L88+28
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 29
+
+
+ 1083 0076 DB22     		movs	r2, #219
+ 1084 0078 1D49     		ldr	r1, .L88+32
+ 1085 007a FFF7FEFF 		bl	fprintf
+ 1086              	.LVL146:
+ 219:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     FATFS_CHECK(f_mount(fs, "0:", 1)); // path为diskio.c中定义的DEV_SDCARD，opt为1表示立�
+ 1087              		.loc 1 219 5 is_stmt 1 discriminator 1 view .LVU268
+ 1088              	.LDL1:
+ 253:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(fp)          free(fp);
+ 1089              		.loc 1 253 5 discriminator 1 view .LVU269
+ 253:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(fp)          free(fp);
+ 1090              		.loc 1 253 8 is_stmt 0 discriminator 1 view .LVU270
+ 1091 007e 174B     		ldr	r3, .L88+12
+ 1092 0080 1868     		ldr	r0, [r3]
+ 253:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(fp)          free(fp);
+ 1093              		.loc 1 253 7 discriminator 1 view .LVU271
+ 1094 0082 08B1     		cbz	r0, .L80
+ 253:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(fp)          free(fp);
+ 1095              		.loc 1 253 21 is_stmt 1 discriminator 1 view .LVU272
+ 1096 0084 FFF7FEFF 		bl	free
+ 1097              	.LVL147:
+ 1098              	.L80:
+ 254:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(fs)          free(fs);
+ 1099              		.loc 1 254 5 view .LVU273
+ 254:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(fs)          free(fs);
+ 1100              		.loc 1 254 7 is_stmt 0 view .LVU274
+ 1101 0088 002C     		cmp	r4, #0
+ 1102 008a D1D0     		beq	.L73
+ 254:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     if(fs)          free(fs);
+ 1103              		.loc 1 254 21 is_stmt 1 discriminator 1 view .LVU275
+ 1104 008c 2046     		mov	r0, r4
+ 1105 008e FFF7FEFF 		bl	free
+ 1106              	.LVL148:
+ 1107 0092 CDE7     		b	.L73
+ 1108              	.LVL149:
+ 1109              	.L83:
+ 1110              	.LBB2:
+ 236:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 Font_Check();
+ 1111              		.loc 1 236 17 view .LVU276
+ 1112 0094 FFF7FEFF 		bl	Font_Check
+ 1113              	.LVL150:
+ 237:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 KEY_PRINT();
+ 1114              		.loc 1 237 17 view .LVU277
+ 1115 0098 1248     		ldr	r0, .L88+20
+ 1116 009a FFF7FEFF 		bl	puts
+ 1117              	.LVL151:
+ 238:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 break;
+ 1118              		.loc 1 238 17 view .LVU278
+ 1119              	.L81:
+ 238:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 break;
+ 1120              		.loc 1 238 17 is_stmt 0 view .LVU279
+ 1121              	.LBE2:
+ 226:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     while(1){
+ 1122              		.loc 1 226 5 is_stmt 1 view .LVU280
+ 1123              	.LBB3:
+ 227:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         KEY_STATUS_t key = KEY_Scan(KEY_SCAN_ONCE);
+ 1124              		.loc 1 227 9 view .LVU281
+ 227:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         KEY_STATUS_t key = KEY_Scan(KEY_SCAN_ONCE);
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 30
+
+
+ 1125              		.loc 1 227 28 is_stmt 0 view .LVU282
+ 1126 009e 0120     		movs	r0, #1
+ 1127 00a0 FFF7FEFF 		bl	KEY_Scan
+ 1128              	.LVL152:
+ 228:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         if(key != KEY_NONE_PRESS){
+ 1129              		.loc 1 228 9 is_stmt 1 view .LVU283
+ 228:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         if(key != KEY_NONE_PRESS){
+ 1130              		.loc 1 228 11 is_stmt 0 view .LVU284
+ 1131 00a4 0028     		cmp	r0, #0
+ 1132 00a6 FAD0     		beq	.L81
+ 229:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             switch (key)
+ 1133              		.loc 1 229 13 is_stmt 1 view .LVU285
+ 1134 00a8 0228     		cmp	r0, #2
+ 1135 00aa F3D0     		beq	.L83
+ 1136 00ac 0328     		cmp	r0, #3
+ 1137 00ae 07D0     		beq	.L84
+ 1138 00b0 0128     		cmp	r0, #1
+ 1139 00b2 F4D1     		bne	.L81
+ 232:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 Font_Burn();
+ 1140              		.loc 1 232 17 view .LVU286
+ 1141 00b4 FFF7FEFF 		bl	Font_Burn
+ 1142              	.LVL153:
+ 233:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 KEY_PRINT();
+ 1143              		.loc 1 233 17 view .LVU287
+ 1144 00b8 0A48     		ldr	r0, .L88+20
+ 1145 00ba FFF7FEFF 		bl	puts
+ 1146              	.LVL154:
+ 234:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 break;
+ 1147              		.loc 1 234 17 view .LVU288
+ 1148 00be EEE7     		b	.L81
+ 1149              	.LVL155:
+ 1150              	.L84:
+ 240:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 Font_Burn();
+ 1151              		.loc 1 240 17 view .LVU289
+ 1152 00c0 FFF7FEFF 		bl	Font_Burn
+ 1153              	.LVL156:
+ 241:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 Font_Check();
+ 1154              		.loc 1 241 17 view .LVU290
+ 1155 00c4 FFF7FEFF 		bl	Font_Check
+ 1156              	.LVL157:
+ 242:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 KEY_PRINT();
+ 1157              		.loc 1 242 17 view .LVU291
+ 1158 00c8 0648     		ldr	r0, .L88+20
+ 1159 00ca FFF7FEFF 		bl	puts
+ 1160              	.LVL158:
+ 243:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 break;
+ 1161              		.loc 1 243 17 view .LVU292
+ 1162 00ce E6E7     		b	.L81
+ 1163              	.L89:
+ 1164              		.align	2
+ 1165              	.L88:
+ 1166 00d0 14000000 		.word	.LC15
+ 1167 00d4 00000000 		.word	.LC14
+ 1168 00d8 24000000 		.word	.LC16
+ 1169 00dc 00000000 		.word	fp
+ 1170 00e0 28000000 		.word	.LC17
+ 1171 00e4 3C000000 		.word	.LC18
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 31
+
+
+ 1172 00e8 00000000 		.word	_impure_ptr
+ 1173 00ec 00000000 		.word	__FUNCTION__.2
+ 1174 00f0 20000000 		.word	.LC1
+ 1175              	.LBE3:
+ 1176              		.cfi_endproc
+ 1177              	.LFE34:
+ 1179              		.section	.rodata.__FUNCTION__.0,"a"
+ 1180              		.align	2
+ 1183              	__FUNCTION__.0:
+ 1184 0000 466F6E74 		.ascii	"Font_Check\000"
+ 1184      5F436865 
+ 1184      636B00
+ 1185              		.section	.rodata.__FUNCTION__.1,"a"
+ 1186              		.align	2
+ 1189              	__FUNCTION__.1:
+ 1190 0000 466F6E74 		.ascii	"Font_Burn\000"
+ 1190      5F427572 
+ 1190      6E00
+ 1191              		.section	.rodata.__FUNCTION__.2,"a"
+ 1192              		.align	2
+ 1195              	__FUNCTION__.2:
+ 1196 0000 466F6E74 		.ascii	"Font_Download\000"
+ 1196      5F446F77 
+ 1196      6E6C6F61 
+ 1196      6400
+ 1197              		.section	.bss.fp,"aw",%nobits
+ 1198              		.align	2
+ 1201              	fp:
+ 1202 0000 00000000 		.space	4
+ 1203              		.section	.data.filesPath,"aw"
+ 1204              		.align	2
+ 1207              	filesPath:
+ 1208 0000 303A466F 		.ascii	"0:Fonts/eng.bin\000"
+ 1208      6E74732F 
+ 1208      656E672E 
+ 1208      62696E00 
+ 1209 0010 00000000 		.space	34
+ 1209      00000000 
+ 1209      00000000 
+ 1209      00000000 
+ 1209      00000000 
+ 1210 0032 303A466F 		.ascii	"0:Fonts/math.bin\000"
+ 1210      6E74732F 
+ 1210      6D617468 
+ 1210      2E62696E 
+ 1210      00
+ 1211 0043 00000000 		.space	33
+ 1211      00000000 
+ 1211      00000000 
+ 1211      00000000 
+ 1211      00000000 
+ 1212 0064 303A466F 		.ascii	"0:Fonts/zh.bin\000"
+ 1212      6E74732F 
+ 1212      7A682E62 
+ 1212      696E00
+ 1213 0073 00000000 		.space	35
+ 1213      00000000 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 32
+
+
+ 1213      00000000 
+ 1213      00000000 
+ 1213      00000000 
+ 1214 0096 303A466F 		.ascii	"0:Fonts/zh_symbol.bin\000"
+ 1214      6E74732F 
+ 1214      7A685F73 
+ 1214      796D626F 
+ 1214      6C2E6269 
+ 1215 00ac 00000000 		.space	28
+ 1215      00000000 
+ 1215      00000000 
+ 1215      00000000 
+ 1215      00000000 
+ 1216              		.text
+ 1217              	.Letext0:
+ 1218              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1219              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1220              		.file 4 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1221              		.file 5 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1222              		.file 6 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1223              		.file 7 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1224              		.file 8 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 1225              		.file 9 "DRIVER/FatFs/source/ff.h"
+ 1226              		.file 10 "HW/FLASH/External_Flash/exFlash.h"
+ 1227              		.file 11 "HW/KEY/KEY.h"
+ 1228              		.file 12 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\
+ 1229              		.file 13 "SYSTEM/delay/delay.h"
+ 1230              		.file 14 "<built-in>"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s 			page 33
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 Flash_Download.c
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:19     .rodata.Font_Burn.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:59     .text.Font_Burn:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:64     .text.Font_Burn:00000000 Font_Burn
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:486    .text.Font_Burn:000001e0 $d
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:1207   .data.filesPath:00000000 filesPath
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:1201   .bss.fp:00000000 fp
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:1189   .rodata.__FUNCTION__.1:00000000 __FUNCTION__.1
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:504    .rodata.Font_Check.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:522    .text.Font_Check:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:527    .text.Font_Check:00000000 Font_Check
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:912    .text.Font_Check:000001b0 $d
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:1183   .rodata.__FUNCTION__.0:00000000 __FUNCTION__.0
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:928    .rodata.Font_Download.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:950    .text.Font_Download:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:956    .text.Font_Download:00000000 Font_Download
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:1166   .text.Font_Download:000000d0 $d
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:1195   .rodata.__FUNCTION__.2:00000000 __FUNCTION__.2
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:1180   .rodata.__FUNCTION__.0:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:1186   .rodata.__FUNCTION__.1:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:1192   .rodata.__FUNCTION__.2:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:1198   .bss.fp:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccD0Q4Ob.s:1204   .data.filesPath:00000000 $d
+
+UNDEFINED SYMBOLS
+puts
+f_open
+f_close
+fprintf
+Flash_EX_Erase_NonEmpty
+malloc
+f_lseek
+f_read
+Flash_EX_Write
+printf
+free
+_impure_ptr
+Flash_EX_Read
+delay_init
+USART1_Init
+KEY_Init
+Flash_EX_Init
+Flash_EX_Wake_Up
+Flash_EX_Check_JEDEC_ID
+f_mount
+KEY_Scan

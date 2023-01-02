@@ -81,7 +81,9 @@ HW/FLASH/External_Flash/exFlash.c \
 HW/FLASH/External_Flash_FatFs/exFlashFatFs.c \
 HW/LCD/lcd.c \
 HW/SDCard/stm32_eval_sdio_sd.c \
-HW/SDCard/SDCard.c
+HW/SDCard/SDCard.c \
+HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c \
+HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c
 
 # ASM sources
 ASM_SOURCES =  \
@@ -146,9 +148,11 @@ C_INCLUDES =  \
 -IUSER \
 -ISYSTEM/sys \
 -IHW/LED \
+-IHW/KEY \
 -IHW/FLASH/External_Flash \
 -IHW/LCD \
--IHW/SDCard
+-IHW/SDCard \
+-IHW/LCD/Fonts/Song_Unicode_Resolution_16_16
 
 # compile gcc flags
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections

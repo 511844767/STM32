@@ -1,0 +1,694 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"Flash_Font.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c"
+  18              		.section	.text.Flash_Utf8_To_Unicode,"ax",%progbits
+  19              		.align	1
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	Flash_Utf8_To_Unicode:
+  25              	.LVL0:
+  26              	.LFB29:
+   1:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** #include"Flash_Font.h"
+   2:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** 
+   3:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** /* 解码错误的字符 */
+   4:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** static uint8_t dummyCharacter[FLASH_FONT_GRID_SIZE] = {0XFF};
+   5:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** 
+   6:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** /* 文字框滑动距离，区分英文、中文每个字符的大小问题 */
+   7:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** uint16_t font_slop_x = FLASH_FONT_WIDTH;
+   8:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** uint16_t font_slop_y = 0;
+   9:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** 
+  10:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** /**
+  11:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****  * @brief utf-8解码为unicode
+  12:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****  * @return 返回utf-8长度，如果返回0，表示解码错误
+  13:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****  */
+  14:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** static uint8_t Flash_Utf8_To_Unicode(uint32_t* unicode, uint8_t* utf_8){
+  27              		.loc 1 14 72 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32              		.loc 1 14 72 is_stmt 0 view .LVU1
+  33 0000 8446     		mov	ip, r0
+  15:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     /* 判断字符长度 */
+  16:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     uint8_t i;
+  34              		.loc 1 16 5 is_stmt 1 view .LVU2
+  17:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     for(i = 0; i < 6; ++i){
+  35              		.loc 1 17 5 view .LVU3
+  36              	.LVL1:
+  37              		.loc 1 17 11 is_stmt 0 view .LVU4
+  38 0002 0020     		movs	r0, #0
+  39              	.LVL2:
+  40              	.L2:
+  41              		.loc 1 17 18 is_stmt 1 discriminator 1 view .LVU5
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s 			page 2
+
+
+  42 0004 0528     		cmp	r0, #5
+  43 0006 07D8     		bhi	.L3
+  18:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         if((utf_8[0] & (0B10000000 >> i)) == 0) break;
+  44              		.loc 1 18 9 view .LVU6
+  45              		.loc 1 18 18 is_stmt 0 view .LVU7
+  46 0008 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+  47              		.loc 1 18 36 view .LVU8
+  48 000a 8023     		movs	r3, #128
+  49 000c 0341     		asrs	r3, r3, r0
+  50              		.loc 1 18 11 view .LVU9
+  51 000e 1A42     		tst	r2, r3
+  52 0010 02D0     		beq	.L3
+  17:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     for(i = 0; i < 6; ++i){
+  53              		.loc 1 17 23 is_stmt 1 discriminator 2 view .LVU10
+  54 0012 0130     		adds	r0, r0, #1
+  55              	.LVL3:
+  17:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     for(i = 0; i < 6; ++i){
+  56              		.loc 1 17 23 is_stmt 0 discriminator 2 view .LVU11
+  57 0014 C0B2     		uxtb	r0, r0
+  58              	.LVL4:
+  17:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     for(i = 0; i < 6; ++i){
+  59              		.loc 1 17 23 discriminator 2 view .LVU12
+  60 0016 F5E7     		b	.L2
+  61              	.L3:
+  19:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     }
+  20:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** 
+  21:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     /* 根据字符长度选择解码方式 */
+  22:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     switch (i)
+  62              		.loc 1 22 5 is_stmt 1 view .LVU13
+  63 0018 0628     		cmp	r0, #6
+  64 001a 74D8     		bhi	.L5
+  65 001c DFE800F0 		tbb	[pc, r0]
+  66              	.L7:
+  67 0020 04       		.byte	(.L12-.L7)/2
+  68 0021 73       		.byte	(.L5-.L7)/2
+  69 0022 0B       		.byte	(.L11-.L7)/2
+  70 0023 16       		.byte	(.L10-.L7)/2
+  71 0024 25       		.byte	(.L9-.L7)/2
+  72 0025 3A       		.byte	(.L8-.L7)/2
+  73 0026 54       		.byte	(.L6-.L7)/2
+  74 0027 00       		.p2align 1
+  75              	.L12:
+  23:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     {
+  24:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     case 0: // 0xxxxxxx
+  25:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         *unicode = \
+  76              		.loc 1 25 9 view .LVU14
+  26:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[0] & 0B01111111) <<  0);
+  77              		.loc 1 26 20 is_stmt 0 view .LVU15
+  78 0028 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+  79              		.loc 1 26 38 view .LVU16
+  80 002a 03F07F03 		and	r3, r3, #127
+  25:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[0] & 0B01111111) <<  0);
+  81              		.loc 1 25 18 view .LVU17
+  82 002e CCF80030 		str	r3, [ip]
+  27:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         return 1;
+  83              		.loc 1 27 9 is_stmt 1 view .LVU18
+  84              		.loc 1 27 16 is_stmt 0 view .LVU19
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s 			page 3
+
+
+  85 0032 0120     		movs	r0, #1
+  86              	.LVL5:
+  87              		.loc 1 27 16 view .LVU20
+  88 0034 7047     		bx	lr
+  89              	.LVL6:
+  90              	.L11:
+  28:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** 
+  29:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     case 2: // 110xxxxx 10xxxxxx
+  30:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         *unicode = \
+  91              		.loc 1 30 9 is_stmt 1 view .LVU21
+  31:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[0] & 0B00011111) << 6) | \
+  92              		.loc 1 31 20 is_stmt 0 view .LVU22
+  93 0036 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+  94              		.loc 1 31 38 view .LVU23
+  95 0038 9B01     		lsls	r3, r3, #6
+  96 003a 03F4F863 		and	r3, r3, #1984
+  32:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[1] & 0B00111111) <<  0);
+  97              		.loc 1 32 20 view .LVU24
+  98 003e 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+  99              		.loc 1 32 38 view .LVU25
+ 100 0040 02F03F02 		and	r2, r2, #63
+  31:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[0] & 0B00011111) << 6) | \
+ 101              		.loc 1 31 44 view .LVU26
+ 102 0044 1343     		orrs	r3, r3, r2
+  30:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[0] & 0B00011111) << 6) | \
+ 103              		.loc 1 30 18 view .LVU27
+ 104 0046 CCF80030 		str	r3, [ip]
+  33:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         return 2;
+ 105              		.loc 1 33 9 is_stmt 1 view .LVU28
+ 106              		.loc 1 33 16 is_stmt 0 view .LVU29
+ 107 004a 7047     		bx	lr
+ 108              	.L10:
+  34:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** 
+  35:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     case 3: // 1110xxxx 10xxxxxx 10xxxxxx
+  36:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         *unicode = \
+ 109              		.loc 1 36 9 is_stmt 1 view .LVU30
+  37:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[0] & 0B00001111) << 12) | \
+ 110              		.loc 1 37 20 is_stmt 0 view .LVU31
+ 111 004c 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 112              		.loc 1 37 38 view .LVU32
+ 113 004e 1B03     		lsls	r3, r3, #12
+ 114 0050 9BB2     		uxth	r3, r3
+  38:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[1] & 0B00111111) <<  6) | \
+ 115              		.loc 1 38 20 view .LVU33
+ 116 0052 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+ 117              		.loc 1 38 38 view .LVU34
+ 118 0054 9201     		lsls	r2, r2, #6
+ 119 0056 02F47C62 		and	r2, r2, #4032
+  37:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[0] & 0B00001111) << 12) | \
+ 120              		.loc 1 37 45 view .LVU35
+ 121 005a 1343     		orrs	r3, r3, r2
+  39:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[2] & 0B00111111) <<  0);
+ 122              		.loc 1 39 20 view .LVU36
+ 123 005c 8A78     		ldrb	r2, [r1, #2]	@ zero_extendqisi2
+ 124              		.loc 1 39 38 view .LVU37
+ 125 005e 02F03F02 		and	r2, r2, #63
+  38:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[1] & 0B00111111) <<  6) | \
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s 			page 4
+
+
+ 126              		.loc 1 38 45 view .LVU38
+ 127 0062 1343     		orrs	r3, r3, r2
+  36:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[0] & 0B00001111) << 12) | \
+ 128              		.loc 1 36 18 view .LVU39
+ 129 0064 CCF80030 		str	r3, [ip]
+  40:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         return 3;
+ 130              		.loc 1 40 9 is_stmt 1 view .LVU40
+ 131              		.loc 1 40 16 is_stmt 0 view .LVU41
+ 132 0068 7047     		bx	lr
+ 133              	.L9:
+  41:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** 
+  42:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     case 4: // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+  43:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         *unicode = \
+ 134              		.loc 1 43 9 is_stmt 1 view .LVU42
+  44:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[0] & 0B00000111) << 18) | \
+ 135              		.loc 1 44 20 is_stmt 0 view .LVU43
+ 136 006a 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 137              		.loc 1 44 38 view .LVU44
+ 138 006c 9B04     		lsls	r3, r3, #18
+ 139 006e 03F4E013 		and	r3, r3, #1835008
+  45:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[1] & 0B00111111) << 12) | \
+ 140              		.loc 1 45 20 view .LVU45
+ 141 0072 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+ 142              		.loc 1 45 38 view .LVU46
+ 143 0074 1203     		lsls	r2, r2, #12
+ 144 0076 02F47C32 		and	r2, r2, #258048
+  44:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[0] & 0B00000111) << 18) | \
+ 145              		.loc 1 44 45 view .LVU47
+ 146 007a 1343     		orrs	r3, r3, r2
+  46:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[2] & 0B00111111) <<  6) | \
+ 147              		.loc 1 46 20 view .LVU48
+ 148 007c 8A78     		ldrb	r2, [r1, #2]	@ zero_extendqisi2
+ 149              		.loc 1 46 38 view .LVU49
+ 150 007e 9201     		lsls	r2, r2, #6
+ 151 0080 02F47C62 		and	r2, r2, #4032
+  45:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[1] & 0B00111111) << 12) | \
+ 152              		.loc 1 45 45 view .LVU50
+ 153 0084 1343     		orrs	r3, r3, r2
+  47:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[3] & 0B00111111) <<  0);
+ 154              		.loc 1 47 20 view .LVU51
+ 155 0086 CA78     		ldrb	r2, [r1, #3]	@ zero_extendqisi2
+ 156              		.loc 1 47 38 view .LVU52
+ 157 0088 02F03F02 		and	r2, r2, #63
+  46:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[2] & 0B00111111) <<  6) | \
+ 158              		.loc 1 46 45 view .LVU53
+ 159 008c 1343     		orrs	r3, r3, r2
+  43:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[0] & 0B00000111) << 18) | \
+ 160              		.loc 1 43 18 view .LVU54
+ 161 008e CCF80030 		str	r3, [ip]
+  48:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         return 4;
+ 162              		.loc 1 48 9 is_stmt 1 view .LVU55
+ 163              		.loc 1 48 16 is_stmt 0 view .LVU56
+ 164 0092 7047     		bx	lr
+ 165              	.L8:
+  49:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** 
+  50:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     case 5: // 111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx
+  51:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         *unicode = \
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s 			page 5
+
+
+ 166              		.loc 1 51 9 is_stmt 1 view .LVU57
+  52:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[0] & 0B00000011) << 24) | \
+ 167              		.loc 1 52 20 is_stmt 0 view .LVU58
+ 168 0094 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 169              		.loc 1 52 38 view .LVU59
+ 170 0096 1B06     		lsls	r3, r3, #24
+ 171 0098 03F04073 		and	r3, r3, #50331648
+  53:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[1] & 0B00111111) << 18) | \
+ 172              		.loc 1 53 20 view .LVU60
+ 173 009c 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+ 174              		.loc 1 53 38 view .LVU61
+ 175 009e 9204     		lsls	r2, r2, #18
+ 176 00a0 02F47C02 		and	r2, r2, #16515072
+  52:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[0] & 0B00000011) << 24) | \
+ 177              		.loc 1 52 45 view .LVU62
+ 178 00a4 1343     		orrs	r3, r3, r2
+  54:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[2] & 0B00111111) << 12) | \
+ 179              		.loc 1 54 20 view .LVU63
+ 180 00a6 8A78     		ldrb	r2, [r1, #2]	@ zero_extendqisi2
+ 181              		.loc 1 54 38 view .LVU64
+ 182 00a8 1203     		lsls	r2, r2, #12
+ 183 00aa 02F47C32 		and	r2, r2, #258048
+  53:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[1] & 0B00111111) << 18) | \
+ 184              		.loc 1 53 45 view .LVU65
+ 185 00ae 1343     		orrs	r3, r3, r2
+  55:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[3] & 0B00111111) <<  6) | \
+ 186              		.loc 1 55 20 view .LVU66
+ 187 00b0 CA78     		ldrb	r2, [r1, #3]	@ zero_extendqisi2
+ 188              		.loc 1 55 38 view .LVU67
+ 189 00b2 9201     		lsls	r2, r2, #6
+ 190 00b4 02F47C62 		and	r2, r2, #4032
+  54:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[2] & 0B00111111) << 12) | \
+ 191              		.loc 1 54 45 view .LVU68
+ 192 00b8 1343     		orrs	r3, r3, r2
+  56:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[4] & 0B00111111) <<  0);
+ 193              		.loc 1 56 20 view .LVU69
+ 194 00ba 0A79     		ldrb	r2, [r1, #4]	@ zero_extendqisi2
+ 195              		.loc 1 56 38 view .LVU70
+ 196 00bc 02F03F02 		and	r2, r2, #63
+  55:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[3] & 0B00111111) <<  6) | \
+ 197              		.loc 1 55 45 view .LVU71
+ 198 00c0 1343     		orrs	r3, r3, r2
+  51:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[0] & 0B00000011) << 24) | \
+ 199              		.loc 1 51 18 view .LVU72
+ 200 00c2 CCF80030 		str	r3, [ip]
+  57:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         return 5;
+ 201              		.loc 1 57 9 is_stmt 1 view .LVU73
+ 202              		.loc 1 57 16 is_stmt 0 view .LVU74
+ 203 00c6 7047     		bx	lr
+ 204              	.L6:
+  58:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** 
+  59:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     case 6: // 1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx
+  60:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         *unicode = \
+ 205              		.loc 1 60 9 is_stmt 1 view .LVU75
+  61:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[0] & 0B00000001) << 30) | \
+ 206              		.loc 1 61 20 is_stmt 0 view .LVU76
+ 207 00c8 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s 			page 6
+
+
+ 208              		.loc 1 61 38 view .LVU77
+ 209 00ca 9B07     		lsls	r3, r3, #30
+ 210 00cc 03F08043 		and	r3, r3, #1073741824
+  62:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[1] & 0B00111111) << 24) | \
+ 211              		.loc 1 62 20 view .LVU78
+ 212 00d0 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+ 213              		.loc 1 62 38 view .LVU79
+ 214 00d2 1206     		lsls	r2, r2, #24
+ 215 00d4 02F07C52 		and	r2, r2, #1056964608
+  61:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[0] & 0B00000001) << 30) | \
+ 216              		.loc 1 61 45 view .LVU80
+ 217 00d8 1343     		orrs	r3, r3, r2
+  63:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[2] & 0B00111111) << 18) | \
+ 218              		.loc 1 63 20 view .LVU81
+ 219 00da 8A78     		ldrb	r2, [r1, #2]	@ zero_extendqisi2
+ 220              		.loc 1 63 38 view .LVU82
+ 221 00dc 9204     		lsls	r2, r2, #18
+ 222 00de 02F47C02 		and	r2, r2, #16515072
+  62:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[1] & 0B00111111) << 24) | \
+ 223              		.loc 1 62 45 view .LVU83
+ 224 00e2 1343     		orrs	r3, r3, r2
+  64:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[3] & 0B00111111) << 12) | \
+ 225              		.loc 1 64 20 view .LVU84
+ 226 00e4 CA78     		ldrb	r2, [r1, #3]	@ zero_extendqisi2
+ 227              		.loc 1 64 38 view .LVU85
+ 228 00e6 1203     		lsls	r2, r2, #12
+ 229 00e8 02F47C32 		and	r2, r2, #258048
+  63:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[2] & 0B00111111) << 18) | \
+ 230              		.loc 1 63 45 view .LVU86
+ 231 00ec 1343     		orrs	r3, r3, r2
+  65:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[4] & 0B00111111) <<  6) | \
+ 232              		.loc 1 65 20 view .LVU87
+ 233 00ee 0A79     		ldrb	r2, [r1, #4]	@ zero_extendqisi2
+ 234              		.loc 1 65 38 view .LVU88
+ 235 00f0 9201     		lsls	r2, r2, #6
+ 236 00f2 02F47C62 		and	r2, r2, #4032
+  64:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[3] & 0B00111111) << 12) | \
+ 237              		.loc 1 64 45 view .LVU89
+ 238 00f6 1343     		orrs	r3, r3, r2
+  66:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[5] & 0B00111111) <<  0);
+ 239              		.loc 1 66 20 view .LVU90
+ 240 00f8 4A79     		ldrb	r2, [r1, #5]	@ zero_extendqisi2
+ 241              		.loc 1 66 38 view .LVU91
+ 242 00fa 02F03F02 		and	r2, r2, #63
+  65:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[4] & 0B00111111) <<  6) | \
+ 243              		.loc 1 65 45 view .LVU92
+ 244 00fe 1343     		orrs	r3, r3, r2
+  60:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[0] & 0B00000001) << 30) | \
+ 245              		.loc 1 60 18 view .LVU93
+ 246 0100 CCF80030 		str	r3, [ip]
+  67:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         return 6;
+ 247              		.loc 1 67 9 is_stmt 1 view .LVU94
+ 248              		.loc 1 67 16 is_stmt 0 view .LVU95
+ 249 0104 7047     		bx	lr
+ 250              	.L5:
+  68:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** 
+  69:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     default: // 编码错误：遇到10xxxxxx或者不再utf-8范围内的编码
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s 			page 7
+
+
+  70:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         *unicode = 0;
+ 251              		.loc 1 70 9 is_stmt 1 view .LVU96
+ 252              		.loc 1 70 18 is_stmt 0 view .LVU97
+ 253 0106 0020     		movs	r0, #0
+ 254              	.LVL7:
+ 255              		.loc 1 70 18 view .LVU98
+ 256 0108 CCF80000 		str	r0, [ip]
+  71:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         return 0;
+ 257              		.loc 1 71 9 is_stmt 1 view .LVU99
+  72:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     }
+  73:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** }
+ 258              		.loc 1 73 1 is_stmt 0 view .LVU100
+ 259 010c 7047     		bx	lr
+ 260              		.cfi_endproc
+ 261              	.LFE29:
+ 263              		.section	.text.FLASH_Font_DeCode,"ax",%progbits
+ 264              		.align	1
+ 265              		.global	FLASH_Font_DeCode
+ 266              		.syntax unified
+ 267              		.thumb
+ 268              		.thumb_func
+ 270              	FLASH_Font_DeCode:
+ 271              	.LVL8:
+ 272              	.LFB30:
+  74:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** 
+  75:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** 
+  76:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** uint32_t FLASH_Font_DeCode(uint8_t* dstBuffer, const char* srcBuffer){
+ 273              		.loc 1 76 70 is_stmt 1 view -0
+ 274              		.cfi_startproc
+ 275              		@ args = 0, pretend = 0, frame = 8
+ 276              		@ frame_needed = 0, uses_anonymous_args = 0
+ 277              		.loc 1 76 70 is_stmt 0 view .LVU102
+ 278 0000 30B5     		push	{r4, r5, lr}
+ 279              	.LCFI0:
+ 280              		.cfi_def_cfa_offset 12
+ 281              		.cfi_offset 4, -12
+ 282              		.cfi_offset 5, -8
+ 283              		.cfi_offset 14, -4
+ 284 0002 83B0     		sub	sp, sp, #12
+ 285              	.LCFI1:
+ 286              		.cfi_def_cfa_offset 24
+ 287 0004 0446     		mov	r4, r0
+  77:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     uint32_t unicode;
+ 288              		.loc 1 77 5 is_stmt 1 view .LVU103
+  78:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     uint32_t acc;
+ 289              		.loc 1 78 5 view .LVU104
+  79:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     /* 解码utf-8为unicode */
+  80:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     acc = Flash_Utf8_To_Unicode(&unicode, (uint8_t*)srcBuffer);
+ 290              		.loc 1 80 5 view .LVU105
+ 291              		.loc 1 80 11 is_stmt 0 view .LVU106
+ 292 0006 01A8     		add	r0, sp, #4
+ 293              	.LVL9:
+ 294              		.loc 1 80 11 view .LVU107
+ 295 0008 FFF7FEFF 		bl	Flash_Utf8_To_Unicode
+ 296              	.LVL10:
+  81:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     if(acc == 0){    // 解码错误，字符设置为dummyCharacter
+ 297              		.loc 1 81 5 is_stmt 1 view .LVU108
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s 			page 8
+
+
+ 298              		.loc 1 81 7 is_stmt 0 view .LVU109
+ 299 000c F0B1     		cbz	r0, .L22
+ 300 000e 0546     		mov	r5, r0
+  82:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         memcpy(dstBuffer, dummyCharacter, FLASH_FONT_GRID_SIZE);
+  83:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         return 1;
+  84:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     }else{           // 解码正常，从字库中取字模
+  85:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         if((ENG_UNICODE_START <= unicode)  && (unicode <= ENG_UNICODE_END)){    // eng编码范围
+ 301              		.loc 1 85 9 is_stmt 1 view .LVU110
+ 302              		.loc 1 85 44 is_stmt 0 view .LVU111
+ 303 0010 019B     		ldr	r3, [sp, #4]
+ 304              		.loc 1 85 11 view .LVU112
+ 305 0012 7F2B     		cmp	r3, #127
+ 306 0014 29D9     		bls	.L23
+  86:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             Flash_EX_Read(
+  87:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****                 dstBuffer, 
+  88:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****                 ENG_FLASH_OFFSET + (unicode - ENG_UNICODE_START) * FLASH_FONT_REAL_SIZE, 
+  89:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****                 FLASH_FONT_REAL_SIZE
+  90:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             );
+  91:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             font_slop_x = FLASH_FONT_WIDTH / 2;
+  92:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         }else if((MATH_UNICODE_START <= unicode) && (unicode <= MATH_UNICODE_END)){ // math编码�
+ 307              		.loc 1 92 15 is_stmt 1 view .LVU113
+ 308              		.loc 1 92 50 is_stmt 0 view .LVU114
+ 309 0016 A3F50851 		sub	r1, r3, #8704
+ 310              		.loc 1 92 17 view .LVU115
+ 311 001a FF29     		cmp	r1, #255
+ 312 001c 2ED9     		bls	.L24
+  93:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             Flash_EX_Read(
+  94:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****                 dstBuffer, 
+  95:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****                 MATH_FLASH_OFFSET + (unicode - MATH_UNICODE_START) * FLASH_FONT_REAL_SIZE, 
+  96:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****                 FLASH_FONT_REAL_SIZE
+  97:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             );
+  98:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             font_slop_x = FLASH_FONT_WIDTH / 2;
+  99:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         }else if((ZH_UNICODE_START <= unicode) && (unicode <= ZH_UNICODE_END)){ // zh编码范围
+ 313              		.loc 1 99 15 is_stmt 1 view .LVU116
+ 314              		.loc 1 99 48 is_stmt 0 view .LVU117
+ 315 001e A3F59C41 		sub	r1, r3, #19968
+ 316              		.loc 1 99 17 view .LVU118
+ 317 0022 45F2A512 		movw	r2, #20901
+ 318 0026 9142     		cmp	r1, r2
+ 319 0028 34D9     		bls	.L25
+ 100:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             Flash_EX_Read(
+ 101:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****                 dstBuffer, 
+ 102:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****                 ZH_FLASH_OFFSET + (unicode - ZH_UNICODE_START) * FLASH_FONT_REAL_SIZE, 
+ 103:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****                 FLASH_FONT_REAL_SIZE
+ 104:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             );
+ 105:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             font_slop_x = FLASH_FONT_WIDTH;
+ 106:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         }else if((ZH_SYMBOL_UNICODE_START <= unicode) && (unicode <= ZH_SYMBOL_UNICODE_END)){   // 
+ 320              		.loc 1 106 15 is_stmt 1 view .LVU119
+ 321              		.loc 1 106 55 is_stmt 0 view .LVU120
+ 322 002a A3F57F43 		sub	r3, r3, #65280
+ 323              		.loc 1 106 17 view .LVU121
+ 324 002e EF2B     		cmp	r3, #239
+ 325 0030 3CD9     		bls	.L26
+ 107:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             Flash_EX_Read(
+ 108:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****                 dstBuffer, 
+ 109:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****                 ZH_SYMBOL_FLASH_OFFSET + (unicode - ZH_SYMBOL_UNICODE_START) * FLASH_FONT_REAL_SIZE
+ 110:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****                 FLASH_FONT_REAL_SIZE
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s 			page 9
+
+
+ 111:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             );
+ 112:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             font_slop_x = FLASH_FONT_WIDTH;
+ 113:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         }else{  // 超出预设的编码范围，字符设置为dummyCharacter
+ 114:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             memcpy(dstBuffer, dummyCharacter, FLASH_FONT_GRID_SIZE);
+ 326              		.loc 1 114 13 is_stmt 1 view .LVU122
+ 327 0032 254D     		ldr	r5, .L27
+ 328 0034 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 329              	.LVL11:
+ 330              		.loc 1 114 13 is_stmt 0 view .LVU123
+ 331 0036 2060     		str	r0, [r4]	@ unaligned
+ 332 0038 6160     		str	r1, [r4, #4]	@ unaligned
+ 333 003a A260     		str	r2, [r4, #8]	@ unaligned
+ 334 003c E360     		str	r3, [r4, #12]	@ unaligned
+ 335 003e 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 336 0040 2061     		str	r0, [r4, #16]	@ unaligned
+ 337 0042 6161     		str	r1, [r4, #20]	@ unaligned
+ 338 0044 A261     		str	r2, [r4, #24]	@ unaligned
+ 339 0046 E361     		str	r3, [r4, #28]	@ unaligned
+ 115:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             return 1;
+ 340              		.loc 1 115 13 is_stmt 1 view .LVU124
+ 341              		.loc 1 115 20 is_stmt 0 view .LVU125
+ 342 0048 0125     		movs	r5, #1
+ 343 004a 0BE0     		b	.L14
+ 344              	.LVL12:
+ 345              	.L22:
+  82:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         return 1;
+ 346              		.loc 1 82 9 is_stmt 1 view .LVU126
+ 347 004c 1E4D     		ldr	r5, .L27
+ 348 004e 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 349              	.LVL13:
+  82:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         return 1;
+ 350              		.loc 1 82 9 is_stmt 0 view .LVU127
+ 351 0050 2060     		str	r0, [r4]	@ unaligned
+ 352 0052 6160     		str	r1, [r4, #4]	@ unaligned
+ 353 0054 A260     		str	r2, [r4, #8]	@ unaligned
+ 354 0056 E360     		str	r3, [r4, #12]	@ unaligned
+ 355 0058 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 356 005a 2061     		str	r0, [r4, #16]	@ unaligned
+ 357 005c 6161     		str	r1, [r4, #20]	@ unaligned
+ 358 005e A261     		str	r2, [r4, #24]	@ unaligned
+ 359 0060 E361     		str	r3, [r4, #28]	@ unaligned
+  83:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     }else{           // 解码正常，从字库中取字模
+ 360              		.loc 1 83 9 is_stmt 1 view .LVU128
+  83:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     }else{           // 解码正常，从字库中取字模
+ 361              		.loc 1 83 16 is_stmt 0 view .LVU129
+ 362 0062 0125     		movs	r5, #1
+ 363              	.L14:
+ 116:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         }
+ 117:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     }
+ 118:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     return acc;
+ 119:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** }...
+ 364              		.loc 1 119 1 view .LVU130
+ 365 0064 2846     		mov	r0, r5
+ 366 0066 03B0     		add	sp, sp, #12
+ 367              	.LCFI2:
+ 368              		.cfi_remember_state
+ 369              		.cfi_def_cfa_offset 12
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s 			page 10
+
+
+ 370              		@ sp needed
+ 371 0068 30BD     		pop	{r4, r5, pc}
+ 372              	.LVL14:
+ 373              	.L23:
+ 374              	.LCFI3:
+ 375              		.cfi_restore_state
+  86:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             Flash_EX_Read(
+ 376              		.loc 1 86 13 is_stmt 1 view .LVU131
+ 377 006a 2022     		movs	r2, #32
+ 378 006c 5901     		lsls	r1, r3, #5
+ 379 006e 2046     		mov	r0, r4
+ 380              	.LVL15:
+  86:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             Flash_EX_Read(
+ 381              		.loc 1 86 13 is_stmt 0 view .LVU132
+ 382 0070 FFF7FEFF 		bl	Flash_EX_Read
+ 383              	.LVL16:
+  91:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             font_slop_x = FLASH_FONT_WIDTH / 2;
+ 384              		.loc 1 91 13 is_stmt 1 view .LVU133
+  91:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             font_slop_x = FLASH_FONT_WIDTH / 2;
+ 385              		.loc 1 91 25 is_stmt 0 view .LVU134
+ 386 0074 154B     		ldr	r3, .L27+4
+ 387 0076 0822     		movs	r2, #8
+ 388 0078 1A80     		strh	r2, [r3]	@ movhi
+ 389 007a F3E7     		b	.L14
+ 390              	.LVL17:
+ 391              	.L24:
+  93:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             Flash_EX_Read(
+ 392              		.loc 1 93 13 is_stmt 1 view .LVU135
+ 393 007c 2022     		movs	r2, #32
+ 394 007e 41F23703 		movw	r3, #4151
+ 395 0082 03EB4111 		add	r1, r3, r1, lsl #5
+ 396 0086 2046     		mov	r0, r4
+ 397              	.LVL18:
+  93:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             Flash_EX_Read(
+ 398              		.loc 1 93 13 is_stmt 0 view .LVU136
+ 399 0088 FFF7FEFF 		bl	Flash_EX_Read
+ 400              	.LVL19:
+  98:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             font_slop_x = FLASH_FONT_WIDTH / 2;
+ 401              		.loc 1 98 13 is_stmt 1 view .LVU137
+  98:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             font_slop_x = FLASH_FONT_WIDTH / 2;
+ 402              		.loc 1 98 25 is_stmt 0 view .LVU138
+ 403 008c 0F4B     		ldr	r3, .L27+4
+ 404 008e 0822     		movs	r2, #8
+ 405 0090 1A80     		strh	r2, [r3]	@ movhi
+ 406 0092 E7E7     		b	.L14
+ 407              	.LVL20:
+ 408              	.L25:
+ 100:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             Flash_EX_Read(
+ 409              		.loc 1 100 13 is_stmt 1 view .LVU139
+ 410 0094 2022     		movs	r2, #32
+ 411 0096 43F26E03 		movw	r3, #12398
+ 412 009a 03EB4111 		add	r1, r3, r1, lsl #5
+ 413 009e 2046     		mov	r0, r4
+ 414              	.LVL21:
+ 100:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             Flash_EX_Read(
+ 415              		.loc 1 100 13 is_stmt 0 view .LVU140
+ 416 00a0 FFF7FEFF 		bl	Flash_EX_Read
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s 			page 11
+
+
+ 417              	.LVL22:
+ 105:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             font_slop_x = FLASH_FONT_WIDTH;
+ 418              		.loc 1 105 13 is_stmt 1 view .LVU141
+ 105:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             font_slop_x = FLASH_FONT_WIDTH;
+ 419              		.loc 1 105 25 is_stmt 0 view .LVU142
+ 420 00a4 094B     		ldr	r3, .L27+4
+ 421 00a6 1022     		movs	r2, #16
+ 422 00a8 1A80     		strh	r2, [r3]	@ movhi
+ 423 00aa DBE7     		b	.L14
+ 424              	.LVL23:
+ 425              	.L26:
+ 107:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             Flash_EX_Read(
+ 426              		.loc 1 107 13 is_stmt 1 view .LVU143
+ 109:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****                 ZH_SYMBOL_FLASH_OFFSET + (unicode - ZH_SYMBOL_UNICODE_START) * FLASH_FONT_REAL_SIZE
+ 427              		.loc 1 109 78 is_stmt 0 view .LVU144
+ 428 00ac 5B01     		lsls	r3, r3, #5
+ 107:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             Flash_EX_Read(
+ 429              		.loc 1 107 13 view .LVU145
+ 430 00ae 2022     		movs	r2, #32
+ 431 00b0 03F52621 		add	r1, r3, #679936
+ 432 00b4 01F26551 		addw	r1, r1, #1381
+ 433 00b8 2046     		mov	r0, r4
+ 434              	.LVL24:
+ 107:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             Flash_EX_Read(
+ 435              		.loc 1 107 13 view .LVU146
+ 436 00ba FFF7FEFF 		bl	Flash_EX_Read
+ 437              	.LVL25:
+ 112:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             font_slop_x = FLASH_FONT_WIDTH;
+ 438              		.loc 1 112 13 is_stmt 1 view .LVU147
+ 112:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             font_slop_x = FLASH_FONT_WIDTH;
+ 439              		.loc 1 112 25 is_stmt 0 view .LVU148
+ 440 00be 034B     		ldr	r3, .L27+4
+ 441 00c0 1022     		movs	r2, #16
+ 442 00c2 1A80     		strh	r2, [r3]	@ movhi
+ 443 00c4 CEE7     		b	.L14
+ 444              	.L28:
+ 445 00c6 00BF     		.align	2
+ 446              	.L27:
+ 447 00c8 00000000 		.word	dummyCharacter
+ 448 00cc 00000000 		.word	font_slop_x
+ 449              		.cfi_endproc
+ 450              	.LFE30:
+ 452              		.global	font_slop_y
+ 453              		.section	.bss.font_slop_y,"aw",%nobits
+ 454              		.align	1
+ 457              	font_slop_y:
+ 458 0000 0000     		.space	2
+ 459              		.global	font_slop_x
+ 460              		.section	.data.font_slop_x,"aw"
+ 461              		.align	1
+ 464              	font_slop_x:
+ 465 0000 1000     		.short	16
+ 466              		.section	.rodata.dummyCharacter,"a"
+ 467              		.align	2
+ 470              	dummyCharacter:
+ 471 0000 FF00     		.ascii	"\377\000"
+ 472 0002 00000000 		.space	30
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s 			page 12
+
+
+ 472      00000000 
+ 472      00000000 
+ 472      00000000 
+ 472      00000000 
+ 473              		.text
+ 474              	.Letext0:
+ 475              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 476              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 477              		.file 4 "HW/FLASH/External_Flash/exFlash.h"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 Flash_Font.c
+C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s:19     .text.Flash_Utf8_To_Unicode:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s:24     .text.Flash_Utf8_To_Unicode:00000000 Flash_Utf8_To_Unicode
+C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s:67     .text.Flash_Utf8_To_Unicode:00000020 $d
+C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s:264    .text.FLASH_Font_DeCode:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s:270    .text.FLASH_Font_DeCode:00000000 FLASH_Font_DeCode
+C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s:447    .text.FLASH_Font_DeCode:000000c8 $d
+C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s:470    .rodata.dummyCharacter:00000000 dummyCharacter
+C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s:464    .data.font_slop_x:00000000 font_slop_x
+C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s:457    .bss.font_slop_y:00000000 font_slop_y
+C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s:454    .bss.font_slop_y:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s:461    .data.font_slop_x:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s:467    .rodata.dummyCharacter:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s:74     .text.Flash_Utf8_To_Unicode:00000027 $d
+C:\Users\86157\AppData\Local\Temp\ccxrxI1a.s:74     .text.Flash_Utf8_To_Unicode:00000028 $t
+
+UNDEFINED SYMBOLS
+Flash_EX_Read

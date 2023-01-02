@@ -14,7 +14,9 @@ OBJ/lcd.o: HW/LCD/lcd.c HW/LCD/lcd_utils.h USER/stm32f10x.h \
  STM32F10x_FWLib/inc/stm32f10x_tim.h \
  STM32F10x_FWLib/inc/stm32f10x_usart.h \
  STM32F10x_FWLib/inc/stm32f10x_wwdg.h STM32F10x_FWLib/inc/misc.h \
- SYSTEM/delay/delay.h SYSTEM/sys/sys.h
+ SYSTEM/delay/delay.h SYSTEM/sys/sys.h \
+ HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.h \
+ HW/FLASH/External_Flash/exFlash.h
 HW/LCD/lcd_utils.h:
 USER/stm32f10x.h:
 Core/core_cm3.h:
@@ -45,3 +47,5 @@ STM32F10x_FWLib/inc/stm32f10x_wwdg.h:
 STM32F10x_FWLib/inc/misc.h:
 SYSTEM/delay/delay.h:
 SYSTEM/sys/sys.h:
+HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.h:
+HW/FLASH/External_Flash/exFlash.h:

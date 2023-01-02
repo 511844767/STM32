@@ -29,13 +29,14 @@ extern void I2C_Hardware_Run();		// 硬件I2C读写EEPROM
 /* FLASH实验 */
 extern void Flash_EX_Run();			// 外部flash读写测试
 extern void Flash_EX_FatFs_Run();	// 外部flash安装FatFs文件系统
-/* LCD实验 */
-extern void LCD_Run();
 /* SD卡实验 */
 extern void SDCard_Run();			// SD卡读写测试
 extern void SDCard_Fats_Run();		// SD卡FatFs文件系统
+/* LCD实验 */
+extern void LCD_Run();				// LCD底层驱动实验
+extern void Font_Download();		// 字体文件烧录实验（从SD卡烧录到Flash）
 
 
 int main(){
-	SDCard_Fats_Run();
+	LCD_Run();
 }

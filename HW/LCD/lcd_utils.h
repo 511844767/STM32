@@ -929,6 +929,4 @@ typedef uint16_t LCD_Color_t;
 /* 计算式 */
 #define LCD_MIN(a, b) ((a <= b)? a: b)
 #define LCD_MAX(a, b) ((a >= b)? a: b)
-static uint16_t __LCD_Temp;
-#define LCD_SWAP(a, b) { __LCD_Temp = a; a = b; b = __LCD_Temp; }
 #endif

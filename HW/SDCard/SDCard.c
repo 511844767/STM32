@@ -75,7 +75,7 @@ void SDCard_Fats_Run(){
     /* 初始化 */
     USART1_Init();
 
-    /* 挂载flash */
+    /* 挂载SD */
     /* FATFS和FIL结构体内存较大，放在堆空间比较合适 */
     FATFS* fs = malloc(sizeof(FATFS));
     err = f_mount(fs, "0:", 1);                 // path为diskio.c中定义的DEV_SDCARD，opt为1表示立即挂载

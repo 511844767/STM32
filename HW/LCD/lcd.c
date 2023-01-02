@@ -1,5 +1,7 @@
-#include"lcd_utils.h"
 #include"math.h"
+#include"string.h"
+#include"lcd_utils.h"
+#include"Flash_Font.h"
 
 void LCD_Init(){
     /* 使能时钟源 */
@@ -102,10 +104,9 @@ void LCD_Draw_Point(uint16_t x, uint16_t y, LCD_Color_t color){
 
 /**
  * @brief Bresenham算法绘制直线
- * @note  这里的代码不是效率最高的实现，并且无法支持线宽，
- *        一般直接移植图形库即可，不需要自己写这些底层绘图算法
+ * @note  无法支持线宽，一般直接移植图形库即可，不需要自己写这些底层绘图算法
  *        常见的图形库例如：https://github.com/lvgl/lvgl
- * @remark 我悟了！学STM32原来就是为了去移植这些开源库，而不是自己去实现这些功能。
+ * @remark 本来移植了OpenCV的直线绘制，结果不小心误删了，唉
  */
 void LCD_Draw_Line(LCD_Line_t line, LCD_Color_t color){
     /* 如果直线长度为0，只有1个像素点 */
@@ -136,15 +137,18 @@ void LCD_Draw_Line(LCD_Line_t line, LCD_Color_t color){
     LCD_Draw_Point(line.x1, line.y1, color); /* 绘制起点 */
     LCD_Draw_Point(line.x2, line.y2, color); /* 绘制终点 */
 
+    uint16_t tmp;
+#define SWAP(a, b) {tmp = a; a = b; b = tmp;}
+
     /* 将二、三象限的直线变换到一、四象限 */
     if(line.x1 > line.x2){
-        LCD_SWAP(line.x1, line.x2);
-        LCD_SWAP(line.y1, line.y2);
+        SWAP(line.x1, line.x2);
+        SWAP(line.y1, line.y2);
     }
     /* 如果在第四象限，沿x轴镜像翻转 */
     bool        xAxisMirrorFlipFlag     = (line.y2 < line.y1);
     uint16_t    xAxisCoordinateYAY      = (line.y1 + line.y2);  /* x轴的y坐标的两倍（用于计算镜像还原的值） */
-    if(xAxisMirrorFlipFlag){ LCD_SWAP(line.y1, line.y2); }
+    if(xAxisMirrorFlipFlag){ SWAP(line.y1, line.y2); }
     /* 如果斜率大于45°，则沿y=x轴镜像翻转 */
     bool        yExLineMirrorFlipFlag   = ((line.y2 - line.y1) > (line.x2 - line.x1));
     uint16_t    yExLineMirrorDeltaX, yExLineMirrorDeltaY;       /* 相对坐标的原点位置 */
@@ -155,8 +159,8 @@ void LCD_Draw_Line(LCD_Line_t line, LCD_Color_t color){
         line.y1             -= yExLineMirrorDeltaY;
         line.x2             -= yExLineMirrorDeltaX; 
         line.y2             -= yExLineMirrorDeltaY;
-        LCD_SWAP(line.x1, line.y1);
-        LCD_SWAP(line.x2, line.y2);
+        SWAP(line.x1, line.y1);
+        SWAP(line.x2, line.y2);
     }
 
     /* 绘制第一象限、斜率小于45°的直线 */
@@ -182,6 +186,54 @@ void LCD_Draw_Line(LCD_Line_t line, LCD_Color_t color){
         }
         if(xAxisMirrorFlipFlag){ yAbsolute = xAxisCoordinateYAY - yAbsolute; }          /* 还原第四象限 */
         LCD_Draw_Point(xAbsolute, yAbsolute, color);
+    }
+#undef SWAP
+}
+
+
+/**
+ * @brief 绘制文字（utf-8编码）,支持常用中文、英文、数学符号、标点符号、换行
+ * @note 除了换行之外的转译字符无法正常绘制
+ * 
+ * @param x 文字框左上角x坐标
+ * @param y 文字框左上角y坐标
+ * @param text 文字内容
+ */
+void LCD_Draw_Text(uint16_t x, uint16_t y, const char* text, LCD_Color_t fg, LCD_Color_t bg){
+    uint8_t buffer[FLASH_FONT_GRID_SIZE];
+    uint32_t finishedLen = 0, acc;
+    LCD_Rectangle_t rect;
+    /* 文字框滑动距离，区分英文、中文字符的大小不一问题 */
+    extern uint16_t font_slop_x, font_slop_y;
+    rect.x1 = x; rect.y1 = y; rect.x2 = x + FLASH_FONT_WIDTH - 1; rect.y2 = y + FLASH_FONT_HEIGHT - 1;
+    size_t len = strlen(text);
+    
+    while(finishedLen <= len){
+        /* 字符解码 */
+        acc = FLASH_Font_DeCode(buffer, text);
+        /* 写入像素点 */
+        if(rect.x1 <= LCD_WIDTH && rect.y1 <= LCD_HEIGHT){  // 在边界内
+            /* 设置窗口 */
+            __LCD_Set_Window(rect);
+            LCD_Write_Cmd(0X2C);
+            for(uint32_t i = 0; i < FLASH_FONT_REAL_SIZE * 8; ++i){
+                if(buffer[i / 8] & (0B10000000 >> (i % 8))){
+                    LCD_Write_Data(fg);
+                }else{
+                    LCD_Write_Data(bg);
+                }
+            }
+        }
+        /* 移动绘图点 */
+        if(text[0] == '\n'){    // 换行
+            rect.x1 = x; rect.y1 += FLASH_FONT_HEIGHT;
+            rect.x2 = x + FLASH_FONT_WIDTH - 1; rect.y2 += FLASH_FONT_HEIGHT;
+        }else{                  // 前进一格
+            rect.x1 += font_slop_x; rect.x2 += font_slop_x;
+            rect.y1 += font_slop_y; rect.y2 += font_slop_y;
+        }
+        text += acc;
+        finishedLen += acc;
     }
 }
 
@@ -214,6 +266,8 @@ void LCD_Run(){
         line.y2 = (uint16_t)((double)line.y1 + 100 * sin((double)i / 180 * LCD_PI));
         LCD_Draw_Line(line, LCD_Color_RGB565(0X1F, 0, 0));
     }
-
+    /* 绘制文字 */
+    Flash_EX_Init();
+    LCD_Draw_Text(200, 50, "Diana + Ava\n文字测试", LCD_Color_RGB565(0, 0, 0), LCD_Color_RGB565(255, 255, 255));
     while(1);
 }
