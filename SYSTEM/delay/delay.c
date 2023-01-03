@@ -13,7 +13,7 @@ void delay_init()
 }								    
 
 
-static void __delay_impl(u32 fac){
+__INLINE static void __delay_impl(u32 fac){
 	/* 记录寄存器中的旧值 */
 	u32 oldLoad = SysTick->LOAD;
 	u32 oldVal = SysTick->VAL;

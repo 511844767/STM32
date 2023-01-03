@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s 			page 1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -30,17 +30,19 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s 			page 1
    1:HW/USART/USART.c **** #include"stm32f10x.h"
    2:HW/USART/USART.c **** #include"stm32f10x_usart.h"
    3:HW/USART/USART.c **** #include"stdio.h"
-   4:HW/USART/USART.c **** #include"delay.h"
-   5:HW/USART/USART.c **** #include"math.h"
-   6:HW/USART/USART.c **** 
-   7:HW/USART/USART.c **** /* 将printf重定向到USART1 */
-   8:HW/USART/USART.c **** int _write(int fd, char *ptr, int len)  
-   9:HW/USART/USART.c **** {  
-  28              		.loc 1 9 1 view -0
+   4:HW/USART/USART.c **** #include"stdlib.h"
+   5:HW/USART/USART.c **** #include"string.h"
+   6:HW/USART/USART.c **** #include"delay.h"
+   7:HW/USART/USART.c **** #include"math.h"
+   8:HW/USART/USART.c **** 
+   9:HW/USART/USART.c **** /* 将printf重定向到USART1 */
+  10:HW/USART/USART.c **** int _write(int fd, char *ptr, int len)  
+  11:HW/USART/USART.c **** {  
+  28              		.loc 1 11 1 view -0
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 0
   31              		@ frame_needed = 0, uses_anonymous_args = 0
-  32              		.loc 1 9 1 is_stmt 0 view .LVU1
+  32              		.loc 1 11 1 is_stmt 0 view .LVU1
   33 0000 70B5     		push	{r4, r5, r6, lr}
   34              	.LCFI0:
   35              		.cfi_def_cfa_offset 16
@@ -50,55 +52,55 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s 			page 1
   39              		.cfi_offset 14, -4
   40 0002 0E46     		mov	r6, r1
   41 0004 1546     		mov	r5, r2
-  10:HW/USART/USART.c ****     int i;
-  42              		.loc 1 10 5 is_stmt 1 view .LVU2
-  11:HW/USART/USART.c ****     for(i = 0; i < len; ++i){
-  43              		.loc 1 11 5 view .LVU3
+  12:HW/USART/USART.c ****     int i;
+  42              		.loc 1 12 5 is_stmt 1 view .LVU2
+  13:HW/USART/USART.c ****     for(i = 0; i < len; ++i){
+  43              		.loc 1 13 5 view .LVU3
   44              	.LVL1:
-  45              		.loc 1 11 11 is_stmt 0 view .LVU4
+  45              		.loc 1 13 11 is_stmt 0 view .LVU4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s 			page 2
+
+
   46 0006 0024     		movs	r4, #0
-  47              		.loc 1 11 5 view .LVU5
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s 			page 2
-
-
+  47              		.loc 1 13 5 view .LVU5
   48 0008 09E0     		b	.L2
   49              	.LVL2:
   50              	.L3:
-  12:HW/USART/USART.c ****         /* 等待上一个数据发送完成 */
-  13:HW/USART/USART.c ****         while((USART1->SR & 0X40) == 0);
-  51              		.loc 1 13 35 is_stmt 1 discriminator 1 view .LVU6
-  52              		.loc 1 13 22 is_stmt 0 discriminator 1 view .LVU7
+  14:HW/USART/USART.c ****         /* 等待上一个数据发送完成 */
+  15:HW/USART/USART.c ****         while((USART1->SR & 0X40) == 0);
+  51              		.loc 1 15 35 is_stmt 1 discriminator 1 view .LVU6
+  52              		.loc 1 15 22 is_stmt 0 discriminator 1 view .LVU7
   53 000a 074B     		ldr	r3, .L5
   54 000c 1B88     		ldrh	r3, [r3]
-  55              		.loc 1 13 35 discriminator 1 view .LVU8
+  55              		.loc 1 15 35 discriminator 1 view .LVU8
   56 000e 13F0400F 		tst	r3, #64
   57 0012 FAD0     		beq	.L3
-  14:HW/USART/USART.c ****         /* 发送当前数据 */
-  15:HW/USART/USART.c ****         USART_SendData(USART1, ptr[i]);
-  58              		.loc 1 15 9 is_stmt 1 discriminator 2 view .LVU9
+  16:HW/USART/USART.c ****         /* 发送当前数据 */
+  17:HW/USART/USART.c ****         USART_SendData(USART1, ptr[i]);
+  58              		.loc 1 17 9 is_stmt 1 discriminator 2 view .LVU9
   59 0014 315D     		ldrb	r1, [r6, r4]	@ zero_extendqisi2
   60 0016 0448     		ldr	r0, .L5
   61 0018 FFF7FEFF 		bl	USART_SendData
   62              	.LVL3:
-  11:HW/USART/USART.c ****         /* 等待上一个数据发送完成 */
-  63              		.loc 1 11 25 discriminator 2 view .LVU10
+  13:HW/USART/USART.c ****         /* 等待上一个数据发送完成 */
+  63              		.loc 1 13 25 discriminator 2 view .LVU10
   64 001c 0134     		adds	r4, r4, #1
   65              	.LVL4:
   66              	.L2:
-  11:HW/USART/USART.c ****         /* 等待上一个数据发送完成 */
-  67              		.loc 1 11 18 discriminator 1 view .LVU11
+  13:HW/USART/USART.c ****         /* 等待上一个数据发送完成 */
+  67              		.loc 1 13 18 discriminator 1 view .LVU11
   68 001e AC42     		cmp	r4, r5
   69 0020 F3DB     		blt	.L3
-  16:HW/USART/USART.c ****     }
-  17:HW/USART/USART.c ****     return len;
-  70              		.loc 1 17 5 view .LVU12
-  18:HW/USART/USART.c **** }
-  71              		.loc 1 18 1 is_stmt 0 view .LVU13
+  18:HW/USART/USART.c ****     }
+  19:HW/USART/USART.c ****     return len;
+  70              		.loc 1 19 5 view .LVU12
+  20:HW/USART/USART.c **** }
+  71              		.loc 1 20 1 is_stmt 0 view .LVU13
   72 0022 2846     		mov	r0, r5
   73 0024 70BD     		pop	{r4, r5, r6, pc}
   74              	.LVL5:
   75              	.L6:
-  76              		.loc 1 18 1 view .LVU14
+  76              		.loc 1 20 1 view .LVU14
   77 0026 00BF     		.align	2
   78              	.L5:
   79 0028 00380140 		.word	1073821696
@@ -112,15 +114,15 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s 			page 1
   88              		.thumb_func
   90              	USART1_Init:
   91              	.LFB33:
-  19:HW/USART/USART.c **** 
-  20:HW/USART/USART.c **** /* 串口初始化 */
-  21:HW/USART/USART.c **** void USART1_Init(){
-  92              		.loc 1 21 19 is_stmt 1 view -0
+  21:HW/USART/USART.c **** 
+  22:HW/USART/USART.c **** /* 串口初始化 */
+  23:HW/USART/USART.c **** void USART1_Init(){
+  92              		.loc 1 23 19 is_stmt 1 view -0
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s 			page 3
+
+
   93              		.cfi_startproc
   94              		@ args = 0, pretend = 0, frame = 32
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s 			page 3
-
-
   95              		@ frame_needed = 0, uses_anonymous_args = 0
   96 0000 30B5     		push	{r4, r5, lr}
   97              	.LCFI1:
@@ -131,117 +133,117 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s 			page 1
  102 0002 89B0     		sub	sp, sp, #36
  103              	.LCFI2:
  104              		.cfi_def_cfa_offset 48
-  22:HW/USART/USART.c ****     /* 关闭printf缓冲，否则printf不会实时发送到串口 */
-  23:HW/USART/USART.c ****     setvbuf(stdout, NULL, _IONBF, 0);
- 105              		.loc 1 23 5 view .LVU16
- 106              		.loc 1 23 13 is_stmt 0 view .LVU17
+  24:HW/USART/USART.c ****     /* 关闭printf缓冲，否则printf不会实时发送到串口 */
+  25:HW/USART/USART.c ****     setvbuf(stdout, NULL, _IONBF, 0);
+ 105              		.loc 1 25 5 view .LVU16
+ 106              		.loc 1 25 13 is_stmt 0 view .LVU17
  107 0004 1E4B     		ldr	r3, .L9
  108 0006 1868     		ldr	r0, [r3]
- 109              		.loc 1 23 5 view .LVU18
+ 109              		.loc 1 25 5 view .LVU18
  110 0008 0023     		movs	r3, #0
  111 000a 0222     		movs	r2, #2
  112 000c 1946     		mov	r1, r3
  113 000e 8068     		ldr	r0, [r0, #8]
  114 0010 FFF7FEFF 		bl	setvbuf
  115              	.LVL6:
-  24:HW/USART/USART.c **** 
-  25:HW/USART/USART.c ****     /* USART1时钟使能 */
-  26:HW/USART/USART.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
- 116              		.loc 1 26 5 is_stmt 1 view .LVU19
+  26:HW/USART/USART.c **** 
+  27:HW/USART/USART.c ****     /* USART1时钟使能 */
+  28:HW/USART/USART.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+ 116              		.loc 1 28 5 is_stmt 1 view .LVU19
  117 0014 0121     		movs	r1, #1
  118 0016 0420     		movs	r0, #4
  119 0018 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
  120              	.LVL7:
-  27:HW/USART/USART.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
- 121              		.loc 1 27 5 view .LVU20
+  29:HW/USART/USART.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
+ 121              		.loc 1 29 5 view .LVU20
  122 001c 0121     		movs	r1, #1
  123 001e 4FF48040 		mov	r0, #16384
  124 0022 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
  125              	.LVL8:
-  28:HW/USART/USART.c **** 
-  29:HW/USART/USART.c ****     /* 配置GPIO复用为USART1 */
-  30:HW/USART/USART.c ****     GPIO_InitTypeDef gpioAPin9Def = { GPIO_Pin_9, GPIO_Speed_10MHz, GPIO_Mode_AF_PP };
- 126              		.loc 1 30 5 view .LVU21
- 127              		.loc 1 30 22 is_stmt 0 view .LVU22
+  30:HW/USART/USART.c **** 
+  31:HW/USART/USART.c ****     /* 配置GPIO复用为USART1 */
+  32:HW/USART/USART.c ****     GPIO_InitTypeDef gpioAPin9Def = { GPIO_Pin_9, GPIO_Speed_10MHz, GPIO_Mode_AF_PP };
+ 126              		.loc 1 32 5 view .LVU21
+ 127              		.loc 1 32 22 is_stmt 0 view .LVU22
  128 0026 174C     		ldr	r4, .L9+4
  129 0028 2368     		ldr	r3, [r4]
  130 002a 0793     		str	r3, [sp, #28]
-  31:HW/USART/USART.c ****     GPIO_InitTypeDef gpioAPin10Def = { GPIO_Pin_10, GPIO_Speed_10MHz, GPIO_Mode_IN_FLOATING };
- 131              		.loc 1 31 5 is_stmt 1 view .LVU23
- 132              		.loc 1 31 22 is_stmt 0 view .LVU24
+  33:HW/USART/USART.c ****     GPIO_InitTypeDef gpioAPin10Def = { GPIO_Pin_10, GPIO_Speed_10MHz, GPIO_Mode_IN_FLOATING };
+ 131              		.loc 1 33 5 is_stmt 1 view .LVU23
+ 132              		.loc 1 33 22 is_stmt 0 view .LVU24
  133 002c 6368     		ldr	r3, [r4, #4]
  134 002e 0693     		str	r3, [sp, #24]
-  32:HW/USART/USART.c ****     GPIO_Init(GPIOA, &gpioAPin9Def);
- 135              		.loc 1 32 5 is_stmt 1 view .LVU25
+  34:HW/USART/USART.c ****     GPIO_Init(GPIOA, &gpioAPin9Def);
+ 135              		.loc 1 34 5 is_stmt 1 view .LVU25
  136 0030 154D     		ldr	r5, .L9+8
  137 0032 07A9     		add	r1, sp, #28
  138 0034 2846     		mov	r0, r5
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s 			page 4
+
+
  139 0036 FFF7FEFF 		bl	GPIO_Init
  140              	.LVL9:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s 			page 4
-
-
-  33:HW/USART/USART.c ****     GPIO_Init(GPIOA, &gpioAPin10Def);
- 141              		.loc 1 33 5 view .LVU26
+  35:HW/USART/USART.c ****     GPIO_Init(GPIOA, &gpioAPin10Def);
+ 141              		.loc 1 35 5 view .LVU26
  142 003a 06A9     		add	r1, sp, #24
  143 003c 2846     		mov	r0, r5
  144 003e FFF7FEFF 		bl	GPIO_Init
  145              	.LVL10:
-  34:HW/USART/USART.c **** 
-  35:HW/USART/USART.c ****     /* 初始化USART1 */
-  36:HW/USART/USART.c ****     USART_InitTypeDef usart1Def = { 
- 146              		.loc 1 36 5 view .LVU27
- 147              		.loc 1 36 23 is_stmt 0 view .LVU28
+  36:HW/USART/USART.c **** 
+  37:HW/USART/USART.c ****     /* 初始化USART1 */
+  38:HW/USART/USART.c ****     USART_InitTypeDef usart1Def = { 
+ 146              		.loc 1 38 5 view .LVU27
+ 147              		.loc 1 38 23 is_stmt 0 view .LVU28
  148 0042 0DF1080C 		add	ip, sp, #8
  149 0046 04F10803 		add	r3, r4, #8
  150 004a 0FCB     		ldm	r3, {r0, r1, r2, r3}
  151 004c 8CE80F00 		stm	ip, {r0, r1, r2, r3}
-  37:HW/USART/USART.c ****         115200, 
-  38:HW/USART/USART.c ****         USART_WordLength_8b,
-  39:HW/USART/USART.c ****         USART_StopBits_1,  
-  40:HW/USART/USART.c ****         USART_Parity_No, 
-  41:HW/USART/USART.c ****         USART_Mode_Tx | USART_Mode_Rx, 
-  42:HW/USART/USART.c ****         USART_HardwareFlowControl_None,  
-  43:HW/USART/USART.c ****     };
-  44:HW/USART/USART.c ****     USART_Init(USART1, &usart1Def);
- 152              		.loc 1 44 5 is_stmt 1 view .LVU29
+  39:HW/USART/USART.c ****         115200, 
+  40:HW/USART/USART.c ****         USART_WordLength_8b,
+  41:HW/USART/USART.c ****         USART_StopBits_1,  
+  42:HW/USART/USART.c ****         USART_Parity_No, 
+  43:HW/USART/USART.c ****         USART_Mode_Tx | USART_Mode_Rx, 
+  44:HW/USART/USART.c ****         USART_HardwareFlowControl_None,  
+  45:HW/USART/USART.c ****     };
+  46:HW/USART/USART.c ****     USART_Init(USART1, &usart1Def);
+ 152              		.loc 1 46 5 is_stmt 1 view .LVU29
  153 0050 05F54055 		add	r5, r5, #12288
  154 0054 6146     		mov	r1, ip
  155 0056 2846     		mov	r0, r5
  156 0058 FFF7FEFF 		bl	USART_Init
  157              	.LVL11:
-  45:HW/USART/USART.c **** 
-  46:HW/USART/USART.c ****     /* 使能USART1 */
-  47:HW/USART/USART.c ****     USART_Cmd(USART1, ENABLE);
- 158              		.loc 1 47 5 view .LVU30
+  47:HW/USART/USART.c **** 
+  48:HW/USART/USART.c ****     /* 使能USART1 */
+  49:HW/USART/USART.c ****     USART_Cmd(USART1, ENABLE);
+ 158              		.loc 1 49 5 view .LVU30
  159 005c 0121     		movs	r1, #1
  160 005e 2846     		mov	r0, r5
  161 0060 FFF7FEFF 		bl	USART_Cmd
  162              	.LVL12:
-  48:HW/USART/USART.c **** 
-  49:HW/USART/USART.c ****     /* 使能USART1 RXNE状态寄存器中断（接收中断） */
-  50:HW/USART/USART.c ****     USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
- 163              		.loc 1 50 5 view .LVU31
+  50:HW/USART/USART.c **** 
+  51:HW/USART/USART.c ****     /* 使能USART1 RXNE状态寄存器中断（接收中断） */
+  52:HW/USART/USART.c ****     USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
+ 163              		.loc 1 52 5 view .LVU31
  164 0064 0122     		movs	r2, #1
  165 0066 40F22551 		movw	r1, #1317
  166 006a 2846     		mov	r0, r5
  167 006c FFF7FEFF 		bl	USART_ITConfig
  168              	.LVL13:
-  51:HW/USART/USART.c ****     NVIC_InitTypeDef nvicDef = { USART1_IRQn, 0XF, 0X0, ENABLE };
- 169              		.loc 1 51 5 view .LVU32
- 170              		.loc 1 51 22 is_stmt 0 view .LVU33
+  53:HW/USART/USART.c ****     NVIC_InitTypeDef nvicDef = { USART1_IRQn, 0XF, 0X0, ENABLE };
+ 169              		.loc 1 53 5 view .LVU32
+ 170              		.loc 1 53 22 is_stmt 0 view .LVU33
  171 0070 A369     		ldr	r3, [r4, #24]
  172 0072 0193     		str	r3, [sp, #4]
-  52:HW/USART/USART.c ****     NVIC_Init(&nvicDef);
- 173              		.loc 1 52 5 is_stmt 1 view .LVU34
+  54:HW/USART/USART.c ****     NVIC_Init(&nvicDef);
+ 173              		.loc 1 54 5 is_stmt 1 view .LVU34
  174 0074 01A8     		add	r0, sp, #4
  175 0076 FFF7FEFF 		bl	NVIC_Init
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s 			page 5
+
+
  176              	.LVL14:
-  53:HW/USART/USART.c **** }
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s 			page 5
-
-
- 177              		.loc 1 53 1 is_stmt 0 view .LVU35
+  55:HW/USART/USART.c **** }
+ 177              		.loc 1 55 1 is_stmt 0 view .LVU35
  178 007a 09B0     		add	sp, sp, #36
  179              	.LCFI3:
  180              		.cfi_def_cfa_offset 12
@@ -263,13 +265,13 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s 			page 1
  197              		.thumb_func
  199              	USART1_IRQHandler:
  200              	.LFB34:
-  54:HW/USART/USART.c **** 
-  55:HW/USART/USART.c **** /* 
-  56:HW/USART/USART.c ****     中断服务函数，在startup_stm32f103xe.s中定义了接口
-  57:HW/USART/USART.c ****     值得注意的是，如果接收了字符串str，则USART1_IRQHandler会被调用len(str)次
-  58:HW/USART/USART.c **** */
-  59:HW/USART/USART.c **** void USART1_IRQHandler(){
- 201              		.loc 1 59 25 is_stmt 1 view -0
+  56:HW/USART/USART.c **** 
+  57:HW/USART/USART.c **** /* 
+  58:HW/USART/USART.c ****     中断服务函数，在startup_stm32f103xe.s中定义了接口
+  59:HW/USART/USART.c ****     值得注意的是，如果接收了字符串str，则USART1_IRQHandler会被调用len(str)次
+  60:HW/USART/USART.c **** */
+  61:HW/USART/USART.c **** void USART1_IRQHandler(){
+ 201              		.loc 1 61 25 is_stmt 1 view -0
  202              		.cfi_startproc
  203              		@ args = 0, pretend = 0, frame = 0
  204              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -278,46 +280,46 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s 			page 1
  207              		.cfi_def_cfa_offset 8
  208              		.cfi_offset 4, -8
  209              		.cfi_offset 14, -4
-  60:HW/USART/USART.c ****     if(USART_GetITStatus(USART1, USART_IT_RXNE)){   // 判断是否为接收中断
- 210              		.loc 1 60 5 view .LVU37
- 211              		.loc 1 60 8 is_stmt 0 view .LVU38
+  62:HW/USART/USART.c ****     if(USART_GetITStatus(USART1, USART_IT_RXNE)){   // 判断是否为接收中断
+ 210              		.loc 1 62 5 view .LVU37
+ 211              		.loc 1 62 8 is_stmt 0 view .LVU38
  212 0002 40F22551 		movw	r1, #1317
  213 0006 0748     		ldr	r0, .L15
  214 0008 FFF7FEFF 		bl	USART_GetITStatus
  215              	.LVL15:
- 216              		.loc 1 60 7 view .LVU39
+ 216              		.loc 1 62 7 view .LVU39
  217 000c 00B9     		cbnz	r0, .L14
  218              	.L11:
-  61:HW/USART/USART.c ****         u16 res = USART_ReceiveData(USART1);        // 接收串口数据
-  62:HW/USART/USART.c ****         USART_SendData(USART1, res);                // 串口发送数据
-  63:HW/USART/USART.c ****     }
-  64:HW/USART/USART.c **** }
- 219              		.loc 1 64 1 view .LVU40
+  63:HW/USART/USART.c ****         u16 res = USART_ReceiveData(USART1);        // 接收串口数据
+  64:HW/USART/USART.c ****         USART_SendData(USART1, res);                // 串口发送数据
+  65:HW/USART/USART.c ****     }
+  66:HW/USART/USART.c **** }
+ 219              		.loc 1 66 1 view .LVU40
  220 000e 10BD     		pop	{r4, pc}
  221              	.L14:
  222              	.LBB2:
-  61:HW/USART/USART.c ****         u16 res = USART_ReceiveData(USART1);        // 接收串口数据
- 223              		.loc 1 61 9 is_stmt 1 view .LVU41
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s 			page 6
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s 			page 6
 
 
-  61:HW/USART/USART.c ****         u16 res = USART_ReceiveData(USART1);        // 接收串口数据
- 224              		.loc 1 61 19 is_stmt 0 view .LVU42
+  63:HW/USART/USART.c ****         u16 res = USART_ReceiveData(USART1);        // 接收串口数据
+ 223              		.loc 1 63 9 is_stmt 1 view .LVU41
+  63:HW/USART/USART.c ****         u16 res = USART_ReceiveData(USART1);        // 接收串口数据
+ 224              		.loc 1 63 19 is_stmt 0 view .LVU42
  225 0010 044C     		ldr	r4, .L15
  226 0012 2046     		mov	r0, r4
  227 0014 FFF7FEFF 		bl	USART_ReceiveData
  228              	.LVL16:
  229 0018 0146     		mov	r1, r0
  230              	.LVL17:
-  62:HW/USART/USART.c ****     }
- 231              		.loc 1 62 9 is_stmt 1 view .LVU43
+  64:HW/USART/USART.c ****     }
+ 231              		.loc 1 64 9 is_stmt 1 view .LVU43
  232 001a 2046     		mov	r0, r4
  233 001c FFF7FEFF 		bl	USART_SendData
  234              	.LVL18:
-  62:HW/USART/USART.c ****     }
- 235              		.loc 1 62 9 is_stmt 0 view .LVU44
+  64:HW/USART/USART.c ****     }
+ 235              		.loc 1 64 9 is_stmt 0 view .LVU44
  236              	.LBE2:
- 237              		.loc 1 64 1 view .LVU45
+ 237              		.loc 1 66 1 view .LVU45
  238 0020 F5E7     		b	.L11
  239              	.L16:
  240 0022 00BF     		.align	2
@@ -338,10 +340,10 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s 			page 1
  255              		.thumb_func
  257              	USART1_Run:
  258              	.LFB35:
-  65:HW/USART/USART.c **** 
-  66:HW/USART/USART.c **** 
-  67:HW/USART/USART.c **** void USART1_Run(){
- 259              		.loc 1 67 18 is_stmt 1 view -0
+  67:HW/USART/USART.c **** 
+  68:HW/USART/USART.c **** 
+  69:HW/USART/USART.c **** void USART1_Run(){
+ 259              		.loc 1 69 18 is_stmt 1 view -0
  260              		.cfi_startproc
  261              		@ args = 0, pretend = 0, frame = 0
  262              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -352,47 +354,47 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s 			page 1
  267              		.cfi_offset 4, -12
  268              		.cfi_offset 5, -8
  269              		.cfi_offset 14, -4
-  68:HW/USART/USART.c ****     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
- 270              		.loc 1 68 5 view .LVU47
+  70:HW/USART/USART.c ****     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
+ 270              		.loc 1 70 5 view .LVU47
  271 0002 4FF44070 		mov	r0, #768
  272 0006 FFF7FEFF 		bl	NVIC_PriorityGroupConfig
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s 			page 7
+
+
  273              	.LVL19:
-  69:HW/USART/USART.c ****     USART1_Init();
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s 			page 7
-
-
- 274              		.loc 1 69 5 view .LVU48
+  71:HW/USART/USART.c ****     USART1_Init();
+ 274              		.loc 1 71 5 view .LVU48
  275 000a FFF7FEFF 		bl	USART1_Init
  276              	.LVL20:
-  70:HW/USART/USART.c ****     delay_init();
- 277              		.loc 1 70 5 view .LVU49
+  72:HW/USART/USART.c ****     delay_init();
+ 277              		.loc 1 72 5 view .LVU49
  278 000e FFF7FEFF 		bl	delay_init
  279              	.LVL21:
-  71:HW/USART/USART.c ****     int t = 0;
- 280              		.loc 1 71 5 view .LVU50
- 281              		.loc 1 71 9 is_stmt 0 view .LVU51
+  73:HW/USART/USART.c ****     int t = 0;
+ 280              		.loc 1 73 5 view .LVU50
+ 281              		.loc 1 73 9 is_stmt 0 view .LVU51
  282 0012 0024     		movs	r4, #0
  283              	.LVL22:
  284              	.L18:
-  72:HW/USART/USART.c ****     while(1){
- 285              		.loc 1 72 5 is_stmt 1 discriminator 1 view .LVU52
-  73:HW/USART/USART.c ****         delay_ms(1000);
- 286              		.loc 1 73 9 discriminator 1 view .LVU53
+  74:HW/USART/USART.c ****     while(1){
+ 285              		.loc 1 74 5 is_stmt 1 discriminator 1 view .LVU52
+  75:HW/USART/USART.c ****         delay_ms(1000);
+ 286              		.loc 1 75 9 discriminator 1 view .LVU53
  287 0014 4FF47A70 		mov	r0, #1000
  288 0018 FFF7FEFF 		bl	delay_ms
  289              	.LVL23:
-  74:HW/USART/USART.c ****         printf("%d\r\n", t++);
- 290              		.loc 1 74 9 discriminator 1 view .LVU54
+  76:HW/USART/USART.c ****         printf("%d\r\n", t++);
+ 290              		.loc 1 76 9 discriminator 1 view .LVU54
  291 001c 651C     		adds	r5, r4, #1
  292              	.LVL24:
- 293              		.loc 1 74 9 is_stmt 0 discriminator 1 view .LVU55
+ 293              		.loc 1 76 9 is_stmt 0 discriminator 1 view .LVU55
  294 001e 2146     		mov	r1, r4
  295 0020 0248     		ldr	r0, .L20
  296 0022 FFF7FEFF 		bl	printf
  297              	.LVL25:
-  72:HW/USART/USART.c ****     while(1){
- 298              		.loc 1 72 10 is_stmt 1 discriminator 1 view .LVU56
- 299              		.loc 1 74 9 is_stmt 0 discriminator 1 view .LVU57
+  74:HW/USART/USART.c ****     while(1){
+ 298              		.loc 1 74 10 is_stmt 1 discriminator 1 view .LVU56
+ 299              		.loc 1 76 9 is_stmt 0 discriminator 1 view .LVU57
  300 0026 2C46     		mov	r4, r5
  301 0028 F4E7     		b	.L18
  302              	.L21:
@@ -416,11 +418,11 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s 			page 1
  321 0008 00C20100 		.word	115200
  322 000c 0000     		.short	0
  323 000e 0000     		.short	0
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s 			page 8
+
+
  324 0010 0000     		.short	0
  325 0012 0C00     		.short	12
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s 			page 8
-
-
  326 0014 0000     		.short	0
  327 0016 0000     		.space	2
  328              	.LC3:
@@ -443,25 +445,25 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s 			page 1
  345              		.file 12 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\
  346              		.file 13 "SYSTEM/delay/delay.h"
  347              		.file 14 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s 			page 9
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 USART.c
-C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s:19     .text._write:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s:25     .text._write:00000000 _write
-C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s:79     .text._write:00000028 $d
-C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s:84     .text.USART1_Init:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s:90     .text.USART1_Init:00000000 USART1_Init
-C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s:186    .text.USART1_Init:00000080 $d
-C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s:193    .text.USART1_IRQHandler:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s:199    .text.USART1_IRQHandler:00000000 USART1_IRQHandler
-C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s:242    .text.USART1_IRQHandler:00000024 $d
-C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s:247    .rodata.USART1_Run.str1.4:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s:251    .text.USART1_Run:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s:257    .text.USART1_Run:00000000 USART1_Run
-C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s:305    .text.USART1_Run:0000002c $d
-C:\Users\86157\AppData\Local\Temp\ccZWx9DO.s:310    .rodata:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s:19     .text._write:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s:25     .text._write:00000000 _write
+C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s:79     .text._write:00000028 $d
+C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s:84     .text.USART1_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s:90     .text.USART1_Init:00000000 USART1_Init
+C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s:186    .text.USART1_Init:00000080 $d
+C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s:193    .text.USART1_IRQHandler:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s:199    .text.USART1_IRQHandler:00000000 USART1_IRQHandler
+C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s:242    .text.USART1_IRQHandler:00000024 $d
+C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s:247    .rodata.USART1_Run.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s:251    .text.USART1_Run:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s:257    .text.USART1_Run:00000000 USART1_Run
+C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s:305    .text.USART1_Run:0000002c $d
+C:\Users\86157\AppData\Local\Temp\ccFwpqnw.s:310    .rodata:00000000 $d
 
 UNDEFINED SYMBOLS
 USART_SendData

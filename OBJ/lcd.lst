@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
   48 0008 4FF4B470 		mov	r0, #360
   49 000c FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
   50              	.LVL0:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 2
 
 
    9:HW/LCD/lcd.c  ****         RCC_APB2Periph_GPIOE | RCC_APB2Periph_GPIOB, ENABLE);
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  101 0072 2846     		mov	r0, r5
  102 0074 FFF7FEFF 		bl	GPIO_Init
  103              	.LVL5:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 3
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 3
 
 
  104              		.loc 1 12 5 view .LVU17
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  158              		.loc 1 12 5 view .LVU33
  159 00e2 8DF83F40 		strb	r4, [sp, #63]
  160              		.loc 1 12 5 view .LVU34
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 4
 
 
  161 00e6 924E     		ldr	r6, .L3+8
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  215 0156 0FAB     		add	r3, sp, #60
  216 0158 1946     		mov	r1, r3
  217 015a 3046     		mov	r0, r6
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 5
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 5
 
 
  218 015c FFF7FEFF 		bl	GPIO_Init
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  272 01c4 4FF48063 		mov	r3, #1024	@ movhi
  273 01c8 ADF83C30 		strh	r3, [sp, #60]	@ movhi
  274              		.loc 1 12 5 view .LVU66
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 6
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 6
 
 
  275 01cc 8DF83F40 		strb	r4, [sp, #63]
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  327              		.loc 1 14 5 view .LVU91
  328 0206 CDF84890 		str	r9, [sp, #72]
  329              		.loc 1 14 5 view .LVU92
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 7
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 7
 
 
  330 020a 0823     		movs	r3, #8
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  379 024e 1180     		strh	r1, [r2]	@ movhi
  380              		.loc 1 19 5 view .LVU109
  381 0250 DE21     		movs	r1, #222
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 8
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 8
 
 
  382 0252 1980     		strh	r1, [r3]	@ movhi
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  436 0296 1D80     		strh	r5, [r3]	@ movhi
  437              		.loc 1 19 5 view .LVU131
  438 0298 1921     		movs	r1, #25
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 9
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 9
 
 
  439 029a 1980     		strh	r1, [r3]	@ movhi
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  493 02dc 1D80     		strh	r5, [r3]	@ movhi
  494              		.loc 1 19 5 view .LVU155
  495 02de A3F800A0 		strh	r10, [r3]	@ movhi
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 10
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 10
 
 
  496              		.loc 1 19 5 view .LVU156
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  550 0318 B424     		movs	r4, #180
  551 031a 1480     		strh	r4, [r2]	@ movhi
  552              		.loc 1 19 5 view .LVU183
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 11
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 11
 
 
  553 031c 1880     		strh	r0, [r3]	@ movhi
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  607              		.loc 1 19 5 view .LVU203
  608 0366 1D80     		strh	r5, [r3]	@ movhi
  609              		.loc 1 19 5 view .LVU204
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 12
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 12
 
 
  610 0368 5E21     		movs	r1, #94
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  664              		.loc 1 19 5 view .LVU227
  665 03a8 1D80     		strh	r5, [r3]	@ movhi
  666              		.loc 1 19 5 view .LVU228
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 13
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 13
 
 
  667 03aa 1D80     		strh	r5, [r3]	@ movhi
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  721 03ec 1D80     		strh	r5, [r3]	@ movhi
  722              		.loc 1 19 5 view .LVU251
  723 03ee 3A20     		movs	r0, #58
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 14
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 14
 
 
  724 03f0 1880     		strh	r0, [r3]	@ movhi
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  778 042e 1D80     		strh	r5, [r3]	@ movhi
  779              		.loc 1 19 5 view .LVU275
  780 0430 2321     		movs	r1, #35
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 15
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 15
 
 
  781 0432 1980     		strh	r1, [r3]	@ movhi
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  835 0474 C427     		movs	r7, #196
  836 0476 0F80     		strh	r7, [r1]	@ movhi
  837              		.loc 1 19 5 view .LVU298
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 16
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 16
 
 
  838 0478 4FF06204 		mov	r4, #98	@ movhi
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  892 04c0 4FF0F309 		mov	r9, #243
  893 04c4 A3F80090 		strh	r9, [r3]	@ movhi
  894              		.loc 1 19 5 view .LVU321
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 17
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 17
 
 
  895 04c8 1A80     		strh	r2, [r3]	@ movhi
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  949 0514 1A80     		strh	r2, [r3]	@ movhi
  950              		.loc 1 19 5 view .LVU344
  951 0516 1A80     		strh	r2, [r3]	@ movhi
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 18
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 18
 
 
  952              		.loc 1 19 5 view .LVU345
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  1006 0550 4FF0160C 		mov	ip, #22	@ movhi
  1007 0554 A3F800C0 		strh	ip, [r3]	@ movhi
  1008              		.loc 1 19 5 view .LVU371
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 19
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 19
 
 
  1009 0558 1A80     		strh	r2, [r3]	@ movhi
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  1063 05ae 1A80     		strh	r2, [r3]	@ movhi
  1064              		.loc 1 19 5 view .LVU394
  1065 05b0 1F80     		strh	r7, [r3]	@ movhi
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 20
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 20
 
 
  1066              		.loc 1 19 5 view .LVU395
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  1120 060a 1880     		strh	r0, [r3]	@ movhi
  1121              		.loc 1 19 5 view .LVU418
  1122 060c 1A80     		strh	r2, [r3]	@ movhi
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 21
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 21
 
 
  1123              		.loc 1 19 5 view .LVU419
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  1177 0656 E220     		movs	r0, #226
  1178 0658 0880     		strh	r0, [r1]	@ movhi
  1179              		.loc 1 19 5 view .LVU444
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 22
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 22
 
 
  1180 065a 4FF0050B 		mov	fp, #5	@ movhi
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  1234              		.loc 1 19 5 view .LVU466
  1235 06a8 B726     		movs	r6, #183
  1236 06aa 1E80     		strh	r6, [r3]	@ movhi
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 23
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 23
 
 
  1237              		.loc 1 19 5 view .LVU467
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  1291 0702 A3F800E0 		strh	lr, [r3]	@ movhi
  1292              		.loc 1 19 5 view .LVU490
  1293 0706 1A80     		strh	r2, [r3]	@ movhi
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 24
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 24
 
 
  1294              		.loc 1 19 5 view .LVU491
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  1348 0756 A3F80090 		strh	r9, [r3]	@ movhi
  1349              		.loc 1 19 5 view .LVU516
  1350 075a 1A80     		strh	r2, [r3]	@ movhi
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 25
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 25
 
 
  1351              		.loc 1 19 5 view .LVU517
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  1405 07b0 4FF0A20C 		mov	ip, #162
  1406 07b4 A3F800C0 		strh	ip, [r3]	@ movhi
  1407              		.loc 1 19 5 view .LVU539
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 26
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 26
 
 
  1408 07b8 1D80     		strh	r5, [r3]	@ movhi
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  1462 0804 4FF0290B 		mov	fp, #41	@ movhi
  1463 0808 A4F800B0 		strh	fp, [r4]	@ movhi
  1464              		.loc 1 19 5 view .LVU562
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 27
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 27
 
 
  1465 080c 2580     		strh	r5, [r4]	@ movhi
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  1519              		.loc 1 19 5 view .LVU588
  1520 0858 2580     		strh	r5, [r4]	@ movhi
  1521              		.loc 1 19 5 view .LVU589
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 28
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 28
 
 
  1522 085a 4FF0F303 		mov	r3, #243	@ movhi
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  1576              		.loc 1 19 5 view .LVU611
  1577 08b0 2580     		strh	r5, [r4]	@ movhi
  1578              		.loc 1 19 5 view .LVU612
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 29
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 29
 
 
  1579 08b2 2280     		strh	r2, [r4]	@ movhi
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  1633              		.loc 1 19 5 view .LVU636
  1634 0904 2580     		strh	r5, [r4]	@ movhi
  1635              		.loc 1 19 5 view .LVU637
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 30
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 30
 
 
  1636 0906 4FF08709 		mov	r9, #135
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  1690 0956 A4F80090 		strh	r9, [r4]	@ movhi
  1691              		.loc 1 19 5 view .LVU663
  1692 095a 2580     		strh	r5, [r4]	@ movhi
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 31
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 31
 
 
  1693              		.loc 1 19 5 view .LVU664
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  1747 099c E923     		movs	r3, #233
  1748 099e 3380     		strh	r3, [r6]	@ movhi
  1749              		.loc 1 19 5 view .LVU691
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 32
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 32
 
 
  1750 09a0 A4F800C0 		strh	ip, [r4]	@ movhi
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  1804 09dc 5023     		movs	r3, #80
  1805 09de 2380     		strh	r3, [r4]	@ movhi
  1806              		.loc 1 19 5 view .LVU718
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 33
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 33
 
 
  1807 09e0 2580     		strh	r5, [r4]	@ movhi
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  1861 0a2e 2380     		strh	r3, [r4]	@ movhi
  1862              		.loc 1 19 5 view .LVU739
  1863 0a30 3780     		strh	r7, [r6]	@ movhi
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 34
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 34
 
 
  1864              		.loc 1 19 5 view .LVU740
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  1905              	LCD_Read_ID:
  1906              	.LFB33:
   23:HW/LCD/lcd.c  **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 35
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 35
 
 
   24:HW/LCD/lcd.c  **** /* 读取ID */
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  1952              		.loc 1 32 5 is_stmt 0 view .LVU759
  1953 002a 0748     		ldr	r0, .L10+4
  1954 002c FFF7FEFF 		bl	printf
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 36
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 36
 
 
  1955              	.LVL32:
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  2001              		.cfi_offset 14, -4
   39:HW/LCD/lcd.c  ****     LCD_Write_Cmd(0X0C);
  2002              		.loc 1 39 5 view .LVU765
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 37
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 37
 
 
  2003 0002 4FF0D843 		mov	r3, #1811939328
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
   48:HW/LCD/lcd.c  ****     LCD_Write_Cmd(0X2A);
  2051              		.loc 1 48 5 view .LVU774
  2052 0008 4FF0D841 		mov	r1, #1811939328
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 38
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 38
 
 
  2053 000c 2A23     		movs	r3, #42
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  2096 0054 0008006C 		.word	1811941376
  2097              		.cfi_endproc
  2098              	.LFE35:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 39
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 39
 
 
  2100              		.section	.text.LCD_Draw_SolidRect,"ax",%progbits
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  2148              		.loc 1 66 15 is_stmt 0 view .LVU795
  2149 002c BDF80220 		ldrh	r2, [sp, #2]
  2150 0030 40F2DF10 		movw	r0, #479
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 40
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 40
 
 
  2151 0034 8242     		cmp	r2, r0
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  2196 006a 0D80     		strh	r5, [r1]	@ movhi
   74:HW/LCD/lcd.c  ****     for(uint32_t i = 0; i < width * height; ++i){
  2197              		.loc 1 74 45 discriminator 3 view .LVU813
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 41
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 41
 
 
  2198 006c 0133     		adds	r3, r3, #1
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
   81:HW/LCD/lcd.c  ****     LCD_Rectangle_t rect = {0, 0, LCD_WIDTH - 1, LCD_HEIGHT - 1};
  2246              		.loc 1 81 5 is_stmt 1 view .LVU821
  2247              		.loc 1 81 21 is_stmt 0 view .LVU822
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 42
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 42
 
 
  2248 0006 0549     		ldr	r1, .L28
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
   89:HW/LCD/lcd.c  ****     LCD_Write_Cmd(0X2A);
  2296              		.loc 1 89 5 is_stmt 1 view .LVU831
  2297 000e 4FF0D84C 		mov	ip, #1811939328
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 43
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 43
 
 
  2298 0012 2A23     		movs	r3, #42
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  2338              		.cfi_def_cfa_offset 0
  2339              		.cfi_restore 14
  2340              		.loc 1 103 1 view .LVU846
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 44
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 44
 
 
  2341 004a 7047     		bx	lr
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  2387 0014 BDF81840 		ldrh	r4, [sp, #24]
  2388              		.loc 1 113 24 view .LVU851
  2389 0018 BDF81C50 		ldrh	r5, [sp, #28]
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 45
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 45
 
 
  2390              		.loc 1 113 7 view .LVU852
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  2419 0044 2846     		mov	r0, r5
  2420 0046 FFF7FEFF 		bl	LCD_Draw_Point
  2421              	.LVL57:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 46
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 46
 
 
  139:HW/LCD/lcd.c  **** 
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  2463              		.loc 1 151 30 discriminator 1 view .LVU883
  2464 0076 ADF81E90 		strh	r9, [sp, #30]	@ movhi
  2465              	.LVL64:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 47
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 47
 
 
  2466              	.L44:
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  2509              		.loc 1 162 31 view .LVU908
  163:HW/LCD/lcd.c  ****         SWAP(line.x2, line.y2);
  2510              		.loc 1 163 9 view .LVU909
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 48
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 48
 
 
  2511              		.loc 1 163 9 view .LVU910
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  2557              		.loc 1 169 17 discriminator 1 view .LVU930
  2558 00ec 2DB2     		sxth	r5, r5
  2559              	.LVL73:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 49
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 49
 
 
  170:HW/LCD/lcd.c  ****     uint16_t    xRelative = line.x1 + 1, yRelative = line.y1;                           /* 相对�
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  2601 011e 38BF     		it	cc
  2602 0120 2C46     		movcc	r4, r5
  122:HW/LCD/lcd.c  ****         rect.y1 = rect.y2 = line.y1;
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 50
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 50
 
 
  2603              		.loc 1 122 17 view .LVU946
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  133:HW/LCD/lcd.c  ****         return;
  2642              		.loc 1 133 9 is_stmt 1 view .LVU962
  2643 015a 009A     		ldr	r2, [sp]
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 51
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 51
 
 
  2644              	.LVL82:
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  2673              	.L53:
  185:HW/LCD/lcd.c  ****         }
  2674              		.loc 1 185 23 view .LVU970
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 52
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 52
 
 
  2675 0174 3146     		mov	r1, r6
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  2715              		.loc 1 180 11 is_stmt 0 view .LVU984
  2716 0196 B845     		cmp	r8, r7
  2717 0198 ECDD     		ble	.L53
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 53
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 53
 
 
  181:HW/LCD/lcd.c  ****             yAbsolute = xRelative + yExLineMirrorDeltaY;
@@ -3172,21 +3172,22 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  192:HW/LCD/lcd.c  **** 
  193:HW/LCD/lcd.c  **** 
  194:HW/LCD/lcd.c  **** /**
- 195:HW/LCD/lcd.c  ****  * @brief 绘制文字（utf-8编码）
- 196:HW/LCD/lcd.c  ****  * 
- 197:HW/LCD/lcd.c  ****  * @param x 文字框左上角x坐标
- 198:HW/LCD/lcd.c  ****  * @param y 文字框左上角y坐标
- 199:HW/LCD/lcd.c  ****  * @param text 文字内容
- 200:HW/LCD/lcd.c  ****  */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 54
+ 195:HW/LCD/lcd.c  ****  * @brief 绘制文字（utf-8编码）,支持常用中文、英文、数学符号、标点符号�
+ 196:HW/LCD/lcd.c  ****  * @note 除了换行之外的转译字符无法正常绘制
+ 197:HW/LCD/lcd.c  ****  * TODO: 字模可以通过上、下采样来缩放字体大小
+ 198:HW/LCD/lcd.c  ****  * @param x 文字框左上角x坐标
+ 199:HW/LCD/lcd.c  ****  * @param y 文字框左上角y坐标
+ 200:HW/LCD/lcd.c  ****  * @param text 文字内容
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 54
 
 
- 201:HW/LCD/lcd.c  **** void LCD_Draw_Text(uint16_t x, uint16_t y, const char* text, LCD_Color_t fg, LCD_Color_t bg){
- 2758              		.loc 1 201 93 is_stmt 1 view -0
+ 201:HW/LCD/lcd.c  ****  */
+ 202:HW/LCD/lcd.c  **** void LCD_Draw_Text(uint16_t x, uint16_t y, const char* text, LCD_Color_t fg, LCD_Color_t bg){
+ 2758              		.loc 1 202 93 is_stmt 1 view -0
  2759              		.cfi_startproc
  2760              		@ args = 4, pretend = 0, frame = 40
  2761              		@ frame_needed = 0, uses_anonymous_args = 0
- 2762              		.loc 1 201 93 is_stmt 0 view .LVU996
+ 2762              		.loc 1 202 93 is_stmt 0 view .LVU996
  2763 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
  2764              	.LCFI19:
  2765              		.cfi_def_cfa_offset 36
@@ -3206,285 +3207,285 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  2779 0008 1546     		mov	r5, r2
  2780 000a 1E46     		mov	r6, r3
  2781 000c BDF85070 		ldrh	r7, [sp, #80]
- 202:HW/LCD/lcd.c  ****     uint8_t buffer[FLASH_FONT_GRID_SIZE];
- 2782              		.loc 1 202 5 is_stmt 1 view .LVU997
- 203:HW/LCD/lcd.c  ****     uint32_t finishedLen = 0, acc;
- 2783              		.loc 1 203 5 view .LVU998
+ 203:HW/LCD/lcd.c  ****     uint8_t buffer[FLASH_FONT_GRID_SIZE];
+ 2782              		.loc 1 203 5 is_stmt 1 view .LVU997
+ 204:HW/LCD/lcd.c  ****     uint32_t finishedLen = 0, acc;
+ 2783              		.loc 1 204 5 view .LVU998
  2784              	.LVL100:
- 204:HW/LCD/lcd.c  ****     LCD_Rectangle_t rect;
- 2785              		.loc 1 204 5 view .LVU999
- 205:HW/LCD/lcd.c  ****     /* 文字框滑动距离，区分英文、中文字符的大小不一问题 */
- 206:HW/LCD/lcd.c  ****     extern uint16_t font_slop_x, font_slop_y;
- 2786              		.loc 1 206 5 view .LVU1000
- 207:HW/LCD/lcd.c  ****     rect.x1 = x; rect.y1 = y; rect.x2 = x + FLASH_FONT_WIDTH - 1; rect.y2 = y + FLASH_FONT_HEIGHT -
- 2787              		.loc 1 207 5 view .LVU1001
- 2788              		.loc 1 207 13 is_stmt 0 view .LVU1002
+ 205:HW/LCD/lcd.c  ****     LCD_Rectangle_t rect;
+ 2785              		.loc 1 205 5 view .LVU999
+ 206:HW/LCD/lcd.c  ****     /* 文字框滑动距离，区分英文、中文字符的大小不一问题 */
+ 207:HW/LCD/lcd.c  ****     extern uint16_t font_slop_x, font_slop_y;
+ 2786              		.loc 1 207 5 view .LVU1000
+ 208:HW/LCD/lcd.c  ****     rect.x1 = x; rect.y1 = y; rect.x2 = x + FLASH_FONT_WIDTH - 1; rect.y2 = y + FLASH_FONT_HEIGHT -
+ 2787              		.loc 1 208 5 view .LVU1001
+ 2788              		.loc 1 208 13 is_stmt 0 view .LVU1002
  2789 0010 ADF80000 		strh	r0, [sp]	@ movhi
- 2790              		.loc 1 207 18 is_stmt 1 view .LVU1003
- 2791              		.loc 1 207 26 is_stmt 0 view .LVU1004
+ 2790              		.loc 1 208 18 is_stmt 1 view .LVU1003
+ 2791              		.loc 1 208 26 is_stmt 0 view .LVU1004
  2792 0014 ADF80210 		strh	r1, [sp, #2]	@ movhi
- 2793              		.loc 1 207 31 is_stmt 1 view .LVU1005
- 2794              		.loc 1 207 62 is_stmt 0 view .LVU1006
+ 2793              		.loc 1 208 31 is_stmt 1 view .LVU1005
+ 2794              		.loc 1 208 62 is_stmt 0 view .LVU1006
  2795 0018 00F10F0B 		add	fp, r0, #15
  2796 001c 1FFA8BFB 		uxth	fp, fp
- 2797              		.loc 1 207 39 view .LVU1007
+ 2797              		.loc 1 208 39 view .LVU1007
  2798 0020 ADF804B0 		strh	fp, [sp, #4]	@ movhi
- 2799              		.loc 1 207 67 is_stmt 1 view .LVU1008
- 2800              		.loc 1 207 99 is_stmt 0 view .LVU1009
+ 2799              		.loc 1 208 67 is_stmt 1 view .LVU1008
+ 2800              		.loc 1 208 99 is_stmt 0 view .LVU1009
  2801 0024 0F31     		adds	r1, r1, #15
  2802              	.LVL101:
- 2803              		.loc 1 207 75 view .LVU1010
+ 2803              		.loc 1 208 75 view .LVU1010
  2804 0026 ADF80610 		strh	r1, [sp, #6]	@ movhi
- 208:HW/LCD/lcd.c  ****     size_t len = strlen(text);
- 2805              		.loc 1 208 5 is_stmt 1 view .LVU1011
- 2806              		.loc 1 208 18 is_stmt 0 view .LVU1012
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 55
+ 209:HW/LCD/lcd.c  ****     size_t len = strlen(text);
+ 2805              		.loc 1 209 5 is_stmt 1 view .LVU1011
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 55
 
 
+ 2806              		.loc 1 209 18 is_stmt 0 view .LVU1012
  2807 002a 1046     		mov	r0, r2
  2808              	.LVL102:
- 2809              		.loc 1 208 18 view .LVU1013
+ 2809              		.loc 1 209 18 view .LVU1013
  2810 002c FFF7FEFF 		bl	strlen
  2811              	.LVL103:
- 2812              		.loc 1 208 18 view .LVU1014
+ 2812              		.loc 1 209 18 view .LVU1014
  2813 0030 8146     		mov	r9, r0
  2814              	.LVL104:
- 209:HW/LCD/lcd.c  ****     
- 210:HW/LCD/lcd.c  ****     while(finishedLen <= len){
- 2815              		.loc 1 210 5 is_stmt 1 view .LVU1015
- 203:HW/LCD/lcd.c  ****     LCD_Rectangle_t rect;
- 2816              		.loc 1 203 14 is_stmt 0 view .LVU1016
+ 210:HW/LCD/lcd.c  ****     
+ 211:HW/LCD/lcd.c  ****     while(finishedLen <= len){
+ 2815              		.loc 1 211 5 is_stmt 1 view .LVU1015
+ 204:HW/LCD/lcd.c  ****     LCD_Rectangle_t rect;
+ 2816              		.loc 1 204 14 is_stmt 0 view .LVU1016
  2817 0032 4FF00008 		mov	r8, #0
- 2818              		.loc 1 210 10 view .LVU1017
+ 2818              		.loc 1 211 10 view .LVU1017
  2819 0036 2FE0     		b	.L60
  2820              	.LVL105:
  2821              	.L63:
  2822              	.LBB5:
- 211:HW/LCD/lcd.c  ****         /* 字符解码 */
- 212:HW/LCD/lcd.c  ****         acc = FLASH_Font_DeCode(buffer, text);
- 213:HW/LCD/lcd.c  ****         /* 写入像素点 */
- 214:HW/LCD/lcd.c  ****         if(rect.x1 <= LCD_WIDTH && rect.y1 <= LCD_HEIGHT){  // 在边界内
- 215:HW/LCD/lcd.c  ****             /* 设置窗口 */
- 216:HW/LCD/lcd.c  ****             __LCD_Set_Window(rect);
- 217:HW/LCD/lcd.c  ****             LCD_Write_Cmd(0X2C);
- 218:HW/LCD/lcd.c  ****             for(uint32_t i = 0; i < FLASH_FONT_REAL_SIZE * 8; ++i){
- 219:HW/LCD/lcd.c  ****                 if(buffer[i / 8] & (0B10000000 >> (i % 8))){
- 220:HW/LCD/lcd.c  ****                     LCD_Write_Data(fg);
- 221:HW/LCD/lcd.c  ****                 }else{
- 222:HW/LCD/lcd.c  ****                     LCD_Write_Data(bg);
- 2823              		.loc 1 222 21 is_stmt 1 view .LVU1018
+ 212:HW/LCD/lcd.c  ****         /* 字符解码 */
+ 213:HW/LCD/lcd.c  ****         acc = FLASH_Font_DeCode(buffer, text);
+ 214:HW/LCD/lcd.c  ****         /* 写入像素点 */
+ 215:HW/LCD/lcd.c  ****         if(rect.x1 <= LCD_WIDTH && rect.y1 <= LCD_HEIGHT){  // 在边界内
+ 216:HW/LCD/lcd.c  ****             /* 设置窗口 */
+ 217:HW/LCD/lcd.c  ****             __LCD_Set_Window(rect);
+ 218:HW/LCD/lcd.c  ****             LCD_Write_Cmd(0X2C);
+ 219:HW/LCD/lcd.c  ****             for(uint32_t i = 0; i < FLASH_FONT_REAL_SIZE * 8; ++i){
+ 220:HW/LCD/lcd.c  ****                 if(buffer[i / 8] & (0B10000000 >> (i % 8))){
+ 221:HW/LCD/lcd.c  ****                     LCD_Write_Data(fg);
+ 222:HW/LCD/lcd.c  ****                 }else{
+ 223:HW/LCD/lcd.c  ****                     LCD_Write_Data(bg);
+ 2823              		.loc 1 223 21 is_stmt 1 view .LVU1018
  2824 0038 2E4A     		ldr	r2, .L72
  2825 003a 1780     		strh	r7, [r2]	@ movhi
  2826              	.L64:
- 218:HW/LCD/lcd.c  ****                 if(buffer[i / 8] & (0B10000000 >> (i % 8))){
- 2827              		.loc 1 218 63 discriminator 2 view .LVU1019
+ 219:HW/LCD/lcd.c  ****                 if(buffer[i / 8] & (0B10000000 >> (i % 8))){
+ 2827              		.loc 1 219 63 discriminator 2 view .LVU1019
  2828 003c 0133     		adds	r3, r3, #1
  2829              	.LVL106:
  2830              	.L62:
- 218:HW/LCD/lcd.c  ****                 if(buffer[i / 8] & (0B10000000 >> (i % 8))){
- 2831              		.loc 1 218 35 discriminator 1 view .LVU1020
+ 219:HW/LCD/lcd.c  ****                 if(buffer[i / 8] & (0B10000000 >> (i % 8))){
+ 2831              		.loc 1 219 35 discriminator 1 view .LVU1020
  2832 003e FF2B     		cmp	r3, #255
  2833 0040 0DD8     		bhi	.L61
- 219:HW/LCD/lcd.c  ****                     LCD_Write_Data(fg);
- 2834              		.loc 1 219 17 view .LVU1021
- 219:HW/LCD/lcd.c  ****                     LCD_Write_Data(fg);
- 2835              		.loc 1 219 26 is_stmt 0 view .LVU1022
+ 220:HW/LCD/lcd.c  ****                     LCD_Write_Data(fg);
+ 2834              		.loc 1 220 17 view .LVU1021
+ 220:HW/LCD/lcd.c  ****                     LCD_Write_Data(fg);
+ 2835              		.loc 1 220 26 is_stmt 0 view .LVU1022
  2836 0042 0AAA     		add	r2, sp, #40
  2837 0044 02EBD302 		add	r2, r2, r3, lsr #3
  2838 0048 12F8201C 		ldrb	r1, [r2, #-32]	@ zero_extendqisi2
- 219:HW/LCD/lcd.c  ****                     LCD_Write_Data(fg);
- 2839              		.loc 1 219 54 view .LVU1023
+ 220:HW/LCD/lcd.c  ****                     LCD_Write_Data(fg);
+ 2839              		.loc 1 220 54 view .LVU1023
  2840 004c 03F00700 		and	r0, r3, #7
- 219:HW/LCD/lcd.c  ****                     LCD_Write_Data(fg);
- 2841              		.loc 1 219 48 view .LVU1024
+ 220:HW/LCD/lcd.c  ****                     LCD_Write_Data(fg);
+ 2841              		.loc 1 220 48 view .LVU1024
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 56
+
+
  2842 0050 8022     		movs	r2, #128
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 56
-
-
  2843 0052 0241     		asrs	r2, r2, r0
- 219:HW/LCD/lcd.c  ****                     LCD_Write_Data(fg);
- 2844              		.loc 1 219 19 view .LVU1025
+ 220:HW/LCD/lcd.c  ****                     LCD_Write_Data(fg);
+ 2844              		.loc 1 220 19 view .LVU1025
  2845 0054 1142     		tst	r1, r2
  2846 0056 EFD0     		beq	.L63
- 220:HW/LCD/lcd.c  ****                 }else{
- 2847              		.loc 1 220 21 is_stmt 1 view .LVU1026
+ 221:HW/LCD/lcd.c  ****                 }else{
+ 2847              		.loc 1 221 21 is_stmt 1 view .LVU1026
  2848 0058 264A     		ldr	r2, .L72
  2849 005a 1680     		strh	r6, [r2]	@ movhi
  2850 005c EEE7     		b	.L64
  2851              	.LVL107:
  2852              	.L61:
- 220:HW/LCD/lcd.c  ****                 }else{
- 2853              		.loc 1 220 21 is_stmt 0 view .LVU1027
+ 221:HW/LCD/lcd.c  ****                 }else{
+ 2853              		.loc 1 221 21 is_stmt 0 view .LVU1027
  2854              	.LBE5:
- 223:HW/LCD/lcd.c  ****                 }
- 224:HW/LCD/lcd.c  ****             }
- 225:HW/LCD/lcd.c  ****         }
- 226:HW/LCD/lcd.c  ****         /* 移动绘图点 */
- 227:HW/LCD/lcd.c  ****         if(text[0] == '\n'){    // 换行
- 2855              		.loc 1 227 9 is_stmt 1 view .LVU1028
- 2856              		.loc 1 227 16 is_stmt 0 view .LVU1029
+ 224:HW/LCD/lcd.c  ****                 }
+ 225:HW/LCD/lcd.c  ****             }
+ 226:HW/LCD/lcd.c  ****         }
+ 227:HW/LCD/lcd.c  ****         /* 移动绘图点 */
+ 228:HW/LCD/lcd.c  ****         if(text[0] == '\n'){    // 换行
+ 2855              		.loc 1 228 9 is_stmt 1 view .LVU1028
+ 2856              		.loc 1 228 16 is_stmt 0 view .LVU1029
  2857 005e 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
- 2858              		.loc 1 227 11 view .LVU1030
+ 2858              		.loc 1 228 11 view .LVU1030
  2859 0060 0A2B     		cmp	r3, #10
  2860 0062 35D0     		beq	.L70
- 228:HW/LCD/lcd.c  ****             rect.x1 = x; rect.y1 += FLASH_FONT_HEIGHT;
- 229:HW/LCD/lcd.c  ****             rect.x2 = x + FLASH_FONT_WIDTH - 1; rect.y2 += FLASH_FONT_HEIGHT;
- 230:HW/LCD/lcd.c  ****         }else{                  // 前进一格
- 231:HW/LCD/lcd.c  ****             rect.x1 += font_slop_x; rect.x2 += font_slop_x;
- 2861              		.loc 1 231 13 is_stmt 1 view .LVU1031
- 2862              		.loc 1 231 17 is_stmt 0 view .LVU1032
+ 229:HW/LCD/lcd.c  ****             rect.x1 = x; rect.y1 += FLASH_FONT_HEIGHT;
+ 230:HW/LCD/lcd.c  ****             rect.x2 = x + FLASH_FONT_WIDTH - 1; rect.y2 += FLASH_FONT_HEIGHT;
+ 231:HW/LCD/lcd.c  ****         }else{                  // 前进一格
+ 232:HW/LCD/lcd.c  ****             rect.x1 += font_slop_x; rect.x2 += font_slop_x;
+ 2861              		.loc 1 232 13 is_stmt 1 view .LVU1031
+ 2862              		.loc 1 232 17 is_stmt 0 view .LVU1032
  2863 0064 BDF80020 		ldrh	r2, [sp]
- 2864              		.loc 1 231 21 view .LVU1033
+ 2864              		.loc 1 232 21 view .LVU1033
  2865 0068 234B     		ldr	r3, .L72+4
  2866 006a 1B88     		ldrh	r3, [r3]
  2867 006c 1A44     		add	r2, r2, r3
  2868 006e ADF80020 		strh	r2, [sp]	@ movhi
- 2869              		.loc 1 231 37 is_stmt 1 view .LVU1034
- 2870              		.loc 1 231 41 is_stmt 0 view .LVU1035
+ 2869              		.loc 1 232 37 is_stmt 1 view .LVU1034
+ 2870              		.loc 1 232 41 is_stmt 0 view .LVU1035
  2871 0072 BDF80420 		ldrh	r2, [sp, #4]
- 2872              		.loc 1 231 45 view .LVU1036
+ 2872              		.loc 1 232 45 view .LVU1036
  2873 0076 1344     		add	r3, r3, r2
  2874 0078 ADF80430 		strh	r3, [sp, #4]	@ movhi
- 232:HW/LCD/lcd.c  ****             rect.y1 += font_slop_y; rect.y2 += font_slop_y;
- 2875              		.loc 1 232 13 is_stmt 1 view .LVU1037
- 2876              		.loc 1 232 17 is_stmt 0 view .LVU1038
+ 233:HW/LCD/lcd.c  ****             rect.y1 += font_slop_y; rect.y2 += font_slop_y;
+ 2875              		.loc 1 233 13 is_stmt 1 view .LVU1037
+ 2876              		.loc 1 233 17 is_stmt 0 view .LVU1038
  2877 007c BDF80220 		ldrh	r2, [sp, #2]
- 2878              		.loc 1 232 21 view .LVU1039
+ 2878              		.loc 1 233 21 view .LVU1039
  2879 0080 1E4B     		ldr	r3, .L72+8
  2880 0082 1B88     		ldrh	r3, [r3]
  2881 0084 1A44     		add	r2, r2, r3
  2882 0086 ADF80220 		strh	r2, [sp, #2]	@ movhi
- 2883              		.loc 1 232 37 is_stmt 1 view .LVU1040
- 2884              		.loc 1 232 41 is_stmt 0 view .LVU1041
+ 2883              		.loc 1 233 37 is_stmt 1 view .LVU1040
+ 2884              		.loc 1 233 41 is_stmt 0 view .LVU1041
  2885 008a BDF80620 		ldrh	r2, [sp, #6]
- 2886              		.loc 1 232 45 view .LVU1042
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 57
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 57
 
 
+ 2886              		.loc 1 233 45 view .LVU1042
  2887 008e 1344     		add	r3, r3, r2
  2888 0090 ADF80630 		strh	r3, [sp, #6]	@ movhi
  2889              	.L67:
- 233:HW/LCD/lcd.c  ****         }
- 234:HW/LCD/lcd.c  ****         text += acc;
- 2890              		.loc 1 234 9 is_stmt 1 view .LVU1043
- 2891              		.loc 1 234 14 is_stmt 0 view .LVU1044
+ 234:HW/LCD/lcd.c  ****         }
+ 235:HW/LCD/lcd.c  ****         text += acc;
+ 2890              		.loc 1 235 9 is_stmt 1 view .LVU1043
+ 2891              		.loc 1 235 14 is_stmt 0 view .LVU1044
  2892 0094 2544     		add	r5, r5, r4
  2893              	.LVL108:
- 235:HW/LCD/lcd.c  ****         finishedLen += acc;
- 2894              		.loc 1 235 9 is_stmt 1 view .LVU1045
- 2895              		.loc 1 235 21 is_stmt 0 view .LVU1046
+ 236:HW/LCD/lcd.c  ****         finishedLen += acc;
+ 2894              		.loc 1 236 9 is_stmt 1 view .LVU1045
+ 2895              		.loc 1 236 21 is_stmt 0 view .LVU1046
  2896 0096 A044     		add	r8, r8, r4
  2897              	.LVL109:
  2898              	.L60:
- 210:HW/LCD/lcd.c  ****         /* 字符解码 */
- 2899              		.loc 1 210 23 is_stmt 1 view .LVU1047
+ 211:HW/LCD/lcd.c  ****         /* 字符解码 */
+ 2899              		.loc 1 211 23 is_stmt 1 view .LVU1047
  2900 0098 C845     		cmp	r8, r9
  2901 009a 28D8     		bhi	.L71
- 212:HW/LCD/lcd.c  ****         /* 写入像素点 */
- 2902              		.loc 1 212 9 view .LVU1048
- 212:HW/LCD/lcd.c  ****         /* 写入像素点 */
- 2903              		.loc 1 212 15 is_stmt 0 view .LVU1049
+ 213:HW/LCD/lcd.c  ****         /* 写入像素点 */
+ 2902              		.loc 1 213 9 view .LVU1048
+ 213:HW/LCD/lcd.c  ****         /* 写入像素点 */
+ 2903              		.loc 1 213 15 is_stmt 0 view .LVU1049
  2904 009c 2946     		mov	r1, r5
  2905 009e 02A8     		add	r0, sp, #8
  2906 00a0 FFF7FEFF 		bl	FLASH_Font_DeCode
  2907              	.LVL110:
  2908 00a4 0446     		mov	r4, r0
  2909              	.LVL111:
- 214:HW/LCD/lcd.c  ****             /* 设置窗口 */
- 2910              		.loc 1 214 9 is_stmt 1 view .LVU1050
- 214:HW/LCD/lcd.c  ****             /* 设置窗口 */
- 2911              		.loc 1 214 16 is_stmt 0 view .LVU1051
+ 215:HW/LCD/lcd.c  ****             /* 设置窗口 */
+ 2910              		.loc 1 215 9 is_stmt 1 view .LVU1050
+ 215:HW/LCD/lcd.c  ****             /* 设置窗口 */
+ 2911              		.loc 1 215 16 is_stmt 0 view .LVU1051
  2912 00a6 BDF80030 		ldrh	r3, [sp]
- 214:HW/LCD/lcd.c  ****             /* 设置窗口 */
- 2913              		.loc 1 214 11 view .LVU1052
+ 215:HW/LCD/lcd.c  ****             /* 设置窗口 */
+ 2913              		.loc 1 215 11 view .LVU1052
  2914 00aa B3F5A07F 		cmp	r3, #320
  2915 00ae D6D8     		bhi	.L61
- 214:HW/LCD/lcd.c  ****             /* 设置窗口 */
- 2916              		.loc 1 214 40 discriminator 1 view .LVU1053
+ 215:HW/LCD/lcd.c  ****             /* 设置窗口 */
+ 2916              		.loc 1 215 40 discriminator 1 view .LVU1053
  2917 00b0 BDF80230 		ldrh	r3, [sp, #2]
- 214:HW/LCD/lcd.c  ****             /* 设置窗口 */
- 2918              		.loc 1 214 33 discriminator 1 view .LVU1054
+ 215:HW/LCD/lcd.c  ****             /* 设置窗口 */
+ 2918              		.loc 1 215 33 discriminator 1 view .LVU1054
  2919 00b4 B3F5F07F 		cmp	r3, #480
  2920 00b8 D1D8     		bhi	.L61
- 216:HW/LCD/lcd.c  ****             LCD_Write_Cmd(0X2C);
- 2921              		.loc 1 216 13 is_stmt 1 view .LVU1055
+ 217:HW/LCD/lcd.c  ****             LCD_Write_Cmd(0X2C);
+ 2921              		.loc 1 217 13 is_stmt 1 view .LVU1055
  2922 00ba 6B46     		mov	r3, sp
  2923 00bc 93E80300 		ldm	r3, {r0, r1}
  2924              	.LVL112:
- 216:HW/LCD/lcd.c  ****             LCD_Write_Cmd(0X2C);
- 2925              		.loc 1 216 13 is_stmt 0 view .LVU1056
+ 217:HW/LCD/lcd.c  ****             LCD_Write_Cmd(0X2C);
+ 2925              		.loc 1 217 13 is_stmt 0 view .LVU1056
  2926 00c0 FFF7FEFF 		bl	__LCD_Set_Window
  2927              	.LVL113:
- 217:HW/LCD/lcd.c  ****             for(uint32_t i = 0; i < FLASH_FONT_REAL_SIZE * 8; ++i){
- 2928              		.loc 1 217 13 is_stmt 1 view .LVU1057
+ 218:HW/LCD/lcd.c  ****             for(uint32_t i = 0; i < FLASH_FONT_REAL_SIZE * 8; ++i){
+ 2928              		.loc 1 218 13 is_stmt 1 view .LVU1057
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 58
+
+
  2929 00c4 4FF0D843 		mov	r3, #1811939328
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 58
-
-
  2930 00c8 2C22     		movs	r2, #44
  2931 00ca 1A80     		strh	r2, [r3]	@ movhi
- 218:HW/LCD/lcd.c  ****                 if(buffer[i / 8] & (0B10000000 >> (i % 8))){
- 2932              		.loc 1 218 13 view .LVU1058
+ 219:HW/LCD/lcd.c  ****                 if(buffer[i / 8] & (0B10000000 >> (i % 8))){
+ 2932              		.loc 1 219 13 view .LVU1058
  2933              	.LBB6:
- 218:HW/LCD/lcd.c  ****                 if(buffer[i / 8] & (0B10000000 >> (i % 8))){
- 2934              		.loc 1 218 17 view .LVU1059
+ 219:HW/LCD/lcd.c  ****                 if(buffer[i / 8] & (0B10000000 >> (i % 8))){
+ 2934              		.loc 1 219 17 view .LVU1059
  2935              	.LVL114:
- 218:HW/LCD/lcd.c  ****                 if(buffer[i / 8] & (0B10000000 >> (i % 8))){
- 2936              		.loc 1 218 26 is_stmt 0 view .LVU1060
+ 219:HW/LCD/lcd.c  ****                 if(buffer[i / 8] & (0B10000000 >> (i % 8))){
+ 2936              		.loc 1 219 26 is_stmt 0 view .LVU1060
  2937 00cc 0023     		movs	r3, #0
- 218:HW/LCD/lcd.c  ****                 if(buffer[i / 8] & (0B10000000 >> (i % 8))){
- 2938              		.loc 1 218 13 view .LVU1061
+ 219:HW/LCD/lcd.c  ****                 if(buffer[i / 8] & (0B10000000 >> (i % 8))){
+ 2938              		.loc 1 219 13 view .LVU1061
  2939 00ce B6E7     		b	.L62
  2940              	.LVL115:
  2941              	.L70:
- 218:HW/LCD/lcd.c  ****                 if(buffer[i / 8] & (0B10000000 >> (i % 8))){
- 2942              		.loc 1 218 13 view .LVU1062
+ 219:HW/LCD/lcd.c  ****                 if(buffer[i / 8] & (0B10000000 >> (i % 8))){
+ 2942              		.loc 1 219 13 view .LVU1062
  2943              	.LBE6:
- 228:HW/LCD/lcd.c  ****             rect.x2 = x + FLASH_FONT_WIDTH - 1; rect.y2 += FLASH_FONT_HEIGHT;
- 2944              		.loc 1 228 13 is_stmt 1 view .LVU1063
- 228:HW/LCD/lcd.c  ****             rect.x2 = x + FLASH_FONT_WIDTH - 1; rect.y2 += FLASH_FONT_HEIGHT;
- 2945              		.loc 1 228 21 is_stmt 0 view .LVU1064
+ 229:HW/LCD/lcd.c  ****             rect.x2 = x + FLASH_FONT_WIDTH - 1; rect.y2 += FLASH_FONT_HEIGHT;
+ 2944              		.loc 1 229 13 is_stmt 1 view .LVU1063
+ 229:HW/LCD/lcd.c  ****             rect.x2 = x + FLASH_FONT_WIDTH - 1; rect.y2 += FLASH_FONT_HEIGHT;
+ 2945              		.loc 1 229 21 is_stmt 0 view .LVU1064
  2946 00d0 ADF800A0 		strh	r10, [sp]	@ movhi
- 228:HW/LCD/lcd.c  ****             rect.x2 = x + FLASH_FONT_WIDTH - 1; rect.y2 += FLASH_FONT_HEIGHT;
- 2947              		.loc 1 228 26 is_stmt 1 view .LVU1065
- 228:HW/LCD/lcd.c  ****             rect.x2 = x + FLASH_FONT_WIDTH - 1; rect.y2 += FLASH_FONT_HEIGHT;
- 2948              		.loc 1 228 30 is_stmt 0 view .LVU1066
+ 229:HW/LCD/lcd.c  ****             rect.x2 = x + FLASH_FONT_WIDTH - 1; rect.y2 += FLASH_FONT_HEIGHT;
+ 2947              		.loc 1 229 26 is_stmt 1 view .LVU1065
+ 229:HW/LCD/lcd.c  ****             rect.x2 = x + FLASH_FONT_WIDTH - 1; rect.y2 += FLASH_FONT_HEIGHT;
+ 2948              		.loc 1 229 30 is_stmt 0 view .LVU1066
  2949 00d4 BDF80230 		ldrh	r3, [sp, #2]
- 228:HW/LCD/lcd.c  ****             rect.x2 = x + FLASH_FONT_WIDTH - 1; rect.y2 += FLASH_FONT_HEIGHT;
- 2950              		.loc 1 228 34 view .LVU1067
+ 229:HW/LCD/lcd.c  ****             rect.x2 = x + FLASH_FONT_WIDTH - 1; rect.y2 += FLASH_FONT_HEIGHT;
+ 2950              		.loc 1 229 34 view .LVU1067
  2951 00d8 1033     		adds	r3, r3, #16
  2952 00da ADF80230 		strh	r3, [sp, #2]	@ movhi
- 229:HW/LCD/lcd.c  ****         }else{                  // 前进一格
- 2953              		.loc 1 229 13 is_stmt 1 view .LVU1068
- 229:HW/LCD/lcd.c  ****         }else{                  // 前进一格
- 2954              		.loc 1 229 21 is_stmt 0 view .LVU1069
+ 230:HW/LCD/lcd.c  ****         }else{                  // 前进一格
+ 2953              		.loc 1 230 13 is_stmt 1 view .LVU1068
+ 230:HW/LCD/lcd.c  ****         }else{                  // 前进一格
+ 2954              		.loc 1 230 21 is_stmt 0 view .LVU1069
  2955 00de ADF804B0 		strh	fp, [sp, #4]	@ movhi
- 229:HW/LCD/lcd.c  ****         }else{                  // 前进一格
- 2956              		.loc 1 229 49 is_stmt 1 view .LVU1070
- 229:HW/LCD/lcd.c  ****         }else{                  // 前进一格
- 2957              		.loc 1 229 53 is_stmt 0 view .LVU1071
+ 230:HW/LCD/lcd.c  ****         }else{                  // 前进一格
+ 2956              		.loc 1 230 49 is_stmt 1 view .LVU1070
+ 230:HW/LCD/lcd.c  ****         }else{                  // 前进一格
+ 2957              		.loc 1 230 53 is_stmt 0 view .LVU1071
  2958 00e2 BDF80630 		ldrh	r3, [sp, #6]
- 229:HW/LCD/lcd.c  ****         }else{                  // 前进一格
- 2959              		.loc 1 229 57 view .LVU1072
+ 230:HW/LCD/lcd.c  ****         }else{                  // 前进一格
+ 2959              		.loc 1 230 57 view .LVU1072
  2960 00e6 1033     		adds	r3, r3, #16
  2961 00e8 ADF80630 		strh	r3, [sp, #6]	@ movhi
  2962 00ec D2E7     		b	.L67
  2963              	.LVL116:
  2964              	.L71:
- 236:HW/LCD/lcd.c  ****     }
- 237:HW/LCD/lcd.c  **** }
- 2965              		.loc 1 237 1 view .LVU1073
+ 237:HW/LCD/lcd.c  ****     }
+ 238:HW/LCD/lcd.c  **** }
+ 2965              		.loc 1 238 1 view .LVU1073
  2966 00ee 0BB0     		add	sp, sp, #44
  2967              	.LCFI21:
  2968              		.cfi_def_cfa_offset 36
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 59
+
+
  2969              		@ sp needed
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 59
-
-
  2970 00f0 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
  2971              	.LVL117:
  2972              	.L73:
- 2973              		.loc 1 237 1 view .LVU1074
+ 2973              		.loc 1 238 1 view .LVU1074
  2974              		.align	2
  2975              	.L72:
  2976 00f4 0008006C 		.word	1811941376
@@ -3514,11 +3515,11 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  2997              		.thumb_func
  2999              	LCD_Run:
  3000              	.LFB41:
- 238:HW/LCD/lcd.c  **** 
- 239:HW/LCD/lcd.c  **** extern void USART1_Init();
- 240:HW/LCD/lcd.c  **** 
- 241:HW/LCD/lcd.c  **** void LCD_Run(){
- 3001              		.loc 1 241 15 is_stmt 1 view -0
+ 239:HW/LCD/lcd.c  **** 
+ 240:HW/LCD/lcd.c  **** extern void USART1_Init();
+ 241:HW/LCD/lcd.c  **** 
+ 242:HW/LCD/lcd.c  **** void LCD_Run(){
+ 3001              		.loc 1 242 15 is_stmt 1 view -0
  3002              		.cfi_startproc
  3003              		@ args = 0, pretend = 0, frame = 32
  3004              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -3532,114 +3533,114 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  3012 0002 8AB0     		sub	sp, sp, #40
  3013              	.LCFI23:
  3014              		.cfi_def_cfa_offset 56
- 242:HW/LCD/lcd.c  ****     delay_init();
- 3015              		.loc 1 242 5 view .LVU1076
+ 243:HW/LCD/lcd.c  ****     delay_init();
+ 3015              		.loc 1 243 5 view .LVU1076
  3016 0004 FFF7FEFF 		bl	delay_init
  3017              	.LVL118:
- 243:HW/LCD/lcd.c  ****     LCD_Init();
- 3018              		.loc 1 243 5 view .LVU1077
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 60
+ 244:HW/LCD/lcd.c  ****     LCD_Init();
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 60
 
 
+ 3018              		.loc 1 244 5 view .LVU1077
  3019 0008 FFF7FEFF 		bl	LCD_Init
  3020              	.LVL119:
- 244:HW/LCD/lcd.c  ****     USART1_Init();
- 3021              		.loc 1 244 5 view .LVU1078
+ 245:HW/LCD/lcd.c  ****     USART1_Init();
+ 3021              		.loc 1 245 5 view .LVU1078
  3022 000c FFF7FEFF 		bl	USART1_Init
  3023              	.LVL120:
- 245:HW/LCD/lcd.c  **** 
- 246:HW/LCD/lcd.c  ****     /* 打印LCD ID */
- 247:HW/LCD/lcd.c  ****     LCD_Read_ID();
- 3024              		.loc 1 247 5 view .LVU1079
+ 246:HW/LCD/lcd.c  **** 
+ 247:HW/LCD/lcd.c  ****     /* 打印LCD ID */
+ 248:HW/LCD/lcd.c  ****     LCD_Read_ID();
+ 3024              		.loc 1 248 5 view .LVU1079
  3025 0010 FFF7FEFF 		bl	LCD_Read_ID
  3026              	.LVL121:
- 248:HW/LCD/lcd.c  ****     /* 打印像素格式 */
- 249:HW/LCD/lcd.c  ****     LCD_Read_Pixel_Format();
- 3027              		.loc 1 249 5 view .LVU1080
+ 249:HW/LCD/lcd.c  ****     /* 打印像素格式 */
+ 250:HW/LCD/lcd.c  ****     LCD_Read_Pixel_Format();
+ 3027              		.loc 1 250 5 view .LVU1080
  3028 0014 FFF7FEFF 		bl	LCD_Read_Pixel_Format
  3029              	.LVL122:
- 250:HW/LCD/lcd.c  ****     /* 清空屏幕 */
- 251:HW/LCD/lcd.c  ****     LCD_Fill(0XFFFF);
- 3030              		.loc 1 251 5 view .LVU1081
+ 251:HW/LCD/lcd.c  ****     /* 清空屏幕 */
+ 252:HW/LCD/lcd.c  ****     LCD_Fill(0XFFFF);
+ 3030              		.loc 1 252 5 view .LVU1081
  3031 0018 4FF6FF70 		movw	r0, #65535
  3032 001c FFF7FEFF 		bl	LCD_Fill
  3033              	.LVL123:
- 252:HW/LCD/lcd.c  ****     /* 绘制实心矩形 */
- 253:HW/LCD/lcd.c  ****     LCD_Rectangle_t rect = {50, 50, 100, 100};
- 3034              		.loc 1 253 5 view .LVU1082
- 3035              		.loc 1 253 21 is_stmt 0 view .LVU1083
+ 253:HW/LCD/lcd.c  ****     /* 绘制实心矩形 */
+ 254:HW/LCD/lcd.c  ****     LCD_Rectangle_t rect = {50, 50, 100, 100};
+ 3034              		.loc 1 254 5 view .LVU1082
+ 3035              		.loc 1 254 21 is_stmt 0 view .LVU1083
  3036 0020 374C     		ldr	r4, .L79+8
  3037 0022 08AB     		add	r3, sp, #32
  3038 0024 04F10802 		add	r2, r4, #8
  3039 0028 92E80300 		ldm	r2, {r0, r1}
  3040 002c 83E80300 		stm	r3, {r0, r1}
- 254:HW/LCD/lcd.c  ****     LCD_Draw_SolidRect(rect, LCD_Color_RGB565(0, 0, 0));
- 3041              		.loc 1 254 5 is_stmt 1 view .LVU1084
+ 255:HW/LCD/lcd.c  ****     LCD_Draw_SolidRect(rect, LCD_Color_RGB565(0, 0, 0));
+ 3041              		.loc 1 255 5 is_stmt 1 view .LVU1084
  3042 0030 0022     		movs	r2, #0
  3043 0032 FFF7FEFF 		bl	LCD_Draw_SolidRect
  3044              	.LVL124:
- 255:HW/LCD/lcd.c  ****     /* 绘制直线 */
- 256:HW/LCD/lcd.c  ****     LCD_Line_t xAxis = {0, 200, LCD_WIDTH, 200};
- 3045              		.loc 1 256 5 view .LVU1085
- 3046              		.loc 1 256 16 is_stmt 0 view .LVU1086
+ 256:HW/LCD/lcd.c  ****     /* 绘制直线 */
+ 257:HW/LCD/lcd.c  ****     LCD_Line_t xAxis = {0, 200, LCD_WIDTH, 200};
+ 3045              		.loc 1 257 5 view .LVU1085
+ 3046              		.loc 1 257 16 is_stmt 0 view .LVU1086
  3047 0036 06AB     		add	r3, sp, #24
  3048 0038 04F11002 		add	r2, r4, #16
  3049 003c 92E80300 		ldm	r2, {r0, r1}
  3050 0040 83E80300 		stm	r3, {r0, r1}
- 257:HW/LCD/lcd.c  ****     LCD_Draw_Line(xAxis, LCD_Color_RGB565(0, 0, 0));
- 3051              		.loc 1 257 5 is_stmt 1 view .LVU1087
+ 258:HW/LCD/lcd.c  ****     LCD_Draw_Line(xAxis, LCD_Color_RGB565(0, 0, 0));
+ 3051              		.loc 1 258 5 is_stmt 1 view .LVU1087
  3052 0044 0022     		movs	r2, #0
  3053 0046 FFF7FEFF 		bl	LCD_Draw_Line
  3054              	.LVL125:
- 258:HW/LCD/lcd.c  ****     LCD_Line_t yAxis = {200, 0, 200, LCD_HEIGHT};
- 3055              		.loc 1 258 5 view .LVU1088
- 3056              		.loc 1 258 16 is_stmt 0 view .LVU1089
+ 259:HW/LCD/lcd.c  ****     LCD_Line_t yAxis = {200, 0, 200, LCD_HEIGHT};
+ 3055              		.loc 1 259 5 view .LVU1088
+ 3056              		.loc 1 259 16 is_stmt 0 view .LVU1089
  3057 004a 04AB     		add	r3, sp, #16
  3058 004c 1834     		adds	r4, r4, #24
  3059 004e 94E80300 		ldm	r4, {r0, r1}
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 61
+
+
  3060 0052 83E80300 		stm	r3, {r0, r1}
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 61
-
-
- 259:HW/LCD/lcd.c  ****     LCD_Draw_Line(yAxis, LCD_Color_RGB565(0, 0, 0));
- 3061              		.loc 1 259 5 is_stmt 1 view .LVU1090
+ 260:HW/LCD/lcd.c  ****     LCD_Draw_Line(yAxis, LCD_Color_RGB565(0, 0, 0));
+ 3061              		.loc 1 260 5 is_stmt 1 view .LVU1090
  3062 0056 0022     		movs	r2, #0
  3063 0058 FFF7FEFF 		bl	LCD_Draw_Line
  3064              	.LVL126:
- 260:HW/LCD/lcd.c  ****     LCD_Line_t line;
- 3065              		.loc 1 260 5 view .LVU1091
- 261:HW/LCD/lcd.c  ****     line.x1 = 200; line.y1 = 200;
- 3066              		.loc 1 261 5 view .LVU1092
- 3067              		.loc 1 261 13 is_stmt 0 view .LVU1093
+ 261:HW/LCD/lcd.c  ****     LCD_Line_t line;
+ 3065              		.loc 1 261 5 view .LVU1091
+ 262:HW/LCD/lcd.c  ****     line.x1 = 200; line.y1 = 200;
+ 3066              		.loc 1 262 5 view .LVU1092
+ 3067              		.loc 1 262 13 is_stmt 0 view .LVU1093
  3068 005c C823     		movs	r3, #200
  3069 005e ADF80830 		strh	r3, [sp, #8]	@ movhi
- 3070              		.loc 1 261 20 is_stmt 1 view .LVU1094
- 3071              		.loc 1 261 28 is_stmt 0 view .LVU1095
+ 3070              		.loc 1 262 20 is_stmt 1 view .LVU1094
+ 3071              		.loc 1 262 28 is_stmt 0 view .LVU1095
  3072 0062 ADF80A30 		strh	r3, [sp, #10]	@ movhi
- 262:HW/LCD/lcd.c  **** #define LCD_PI		3.14159265358979323846
- 263:HW/LCD/lcd.c  ****     for(uint16_t i = 0; i < 360; i += 10){
- 3073              		.loc 1 263 5 is_stmt 1 view .LVU1096
+ 263:HW/LCD/lcd.c  **** #define LCD_PI		3.14159265358979323846
+ 264:HW/LCD/lcd.c  ****     for(uint16_t i = 0; i < 360; i += 10){
+ 3073              		.loc 1 264 5 is_stmt 1 view .LVU1096
  3074              	.LBB7:
- 3075              		.loc 1 263 9 view .LVU1097
+ 3075              		.loc 1 264 9 view .LVU1097
  3076              	.LVL127:
- 3077              		.loc 1 263 18 is_stmt 0 view .LVU1098
+ 3077              		.loc 1 264 18 is_stmt 0 view .LVU1098
  3078 0066 0024     		movs	r4, #0
- 3079              		.loc 1 263 5 view .LVU1099
+ 3079              		.loc 1 264 5 view .LVU1099
  3080 0068 34E0     		b	.L75
  3081              	.LVL128:
  3082              	.L76:
- 264:HW/LCD/lcd.c  ****         line.x2 = (uint16_t)((double)line.x1 + 100 * cos((double)i / 180 * LCD_PI));
- 3083              		.loc 1 264 9 is_stmt 1 discriminator 3 view .LVU1100
- 3084              		.loc 1 264 58 is_stmt 0 discriminator 3 view .LVU1101
+ 265:HW/LCD/lcd.c  ****         line.x2 = (uint16_t)((double)line.x1 + 100 * cos((double)i / 180 * LCD_PI));
+ 3083              		.loc 1 265 9 is_stmt 1 discriminator 3 view .LVU1100
+ 3084              		.loc 1 265 58 is_stmt 0 discriminator 3 view .LVU1101
  3085 006a 2046     		mov	r0, r4
  3086 006c FFF7FEFF 		bl	__aeabi_ui2d
  3087              	.LVL129:
- 3088              		.loc 1 264 68 discriminator 3 view .LVU1102
+ 3088              		.loc 1 265 68 discriminator 3 view .LVU1102
  3089 0070 0022     		movs	r2, #0
  3090 0072 244B     		ldr	r3, .L79+12
  3091 0074 FFF7FEFF 		bl	__aeabi_ddiv
  3092              	.LVL130:
- 3093              		.loc 1 264 54 discriminator 3 view .LVU1103
+ 3093              		.loc 1 265 54 discriminator 3 view .LVU1103
  3094 0078 1FA3     		adr	r3, .L79
  3095 007a D3E90023 		ldrd	r2, [r3]
  3096 007e FFF7FEFF 		bl	__aeabi_dmul
@@ -3648,79 +3649,79 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  3099 0084 0F46     		mov	r7, r1
  3100 0086 FFF7FEFF 		bl	cos
  3101              	.LVL132:
- 3102              		.loc 1 264 52 discriminator 3 view .LVU1104
+ 3102              		.loc 1 265 52 discriminator 3 view .LVU1104
  3103 008a 0022     		movs	r2, #0
  3104 008c 1E4B     		ldr	r3, .L79+16
  3105 008e FFF7FEFF 		bl	__aeabi_dmul
  3106              	.LVL133:
- 3107              		.loc 1 264 46 discriminator 3 view .LVU1105
+ 3107              		.loc 1 265 46 discriminator 3 view .LVU1105
  3108 0092 0022     		movs	r2, #0
  3109 0094 1D4B     		ldr	r3, .L79+20
  3110 0096 FFF7FEFF 		bl	__aeabi_dadd
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 62
+
+
  3111              	.LVL134:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 62
-
-
- 3112              		.loc 1 264 19 discriminator 3 view .LVU1106
+ 3112              		.loc 1 265 19 discriminator 3 view .LVU1106
  3113 009a FFF7FEFF 		bl	__aeabi_d2uiz
  3114              	.LVL135:
- 3115              		.loc 1 264 17 discriminator 3 view .LVU1107
+ 3115              		.loc 1 265 17 discriminator 3 view .LVU1107
  3116 009e ADF80C00 		strh	r0, [sp, #12]	@ movhi
- 265:HW/LCD/lcd.c  ****         line.y2 = (uint16_t)((double)line.y1 + 100 * sin((double)i / 180 * LCD_PI));
- 3117              		.loc 1 265 9 is_stmt 1 discriminator 3 view .LVU1108
- 3118              		.loc 1 265 54 is_stmt 0 discriminator 3 view .LVU1109
+ 266:HW/LCD/lcd.c  ****         line.y2 = (uint16_t)((double)line.y1 + 100 * sin((double)i / 180 * LCD_PI));
+ 3117              		.loc 1 266 9 is_stmt 1 discriminator 3 view .LVU1108
+ 3118              		.loc 1 266 54 is_stmt 0 discriminator 3 view .LVU1109
  3119 00a2 3046     		mov	r0, r6
  3120 00a4 3946     		mov	r1, r7
  3121 00a6 FFF7FEFF 		bl	sin
  3122              	.LVL136:
- 3123              		.loc 1 265 52 discriminator 3 view .LVU1110
+ 3123              		.loc 1 266 52 discriminator 3 view .LVU1110
  3124 00aa 0022     		movs	r2, #0
  3125 00ac 164B     		ldr	r3, .L79+16
  3126 00ae FFF7FEFF 		bl	__aeabi_dmul
  3127              	.LVL137:
- 3128              		.loc 1 265 46 discriminator 3 view .LVU1111
+ 3128              		.loc 1 266 46 discriminator 3 view .LVU1111
  3129 00b2 0022     		movs	r2, #0
  3130 00b4 154B     		ldr	r3, .L79+20
  3131 00b6 FFF7FEFF 		bl	__aeabi_dadd
  3132              	.LVL138:
- 3133              		.loc 1 265 19 discriminator 3 view .LVU1112
+ 3133              		.loc 1 266 19 discriminator 3 view .LVU1112
  3134 00ba FFF7FEFF 		bl	__aeabi_d2uiz
  3135              	.LVL139:
- 3136              		.loc 1 265 17 discriminator 3 view .LVU1113
+ 3136              		.loc 1 266 17 discriminator 3 view .LVU1113
  3137 00be ADF80E00 		strh	r0, [sp, #14]	@ movhi
- 266:HW/LCD/lcd.c  ****         LCD_Draw_Line(line, LCD_Color_RGB565(0X1F, 0, 0));
- 3138              		.loc 1 266 9 is_stmt 1 discriminator 3 view .LVU1114
+ 267:HW/LCD/lcd.c  ****         LCD_Draw_Line(line, LCD_Color_RGB565(0X1F, 0, 0));
+ 3138              		.loc 1 267 9 is_stmt 1 discriminator 3 view .LVU1114
  3139 00c2 4FF47842 		mov	r2, #63488
  3140 00c6 02AB     		add	r3, sp, #8
  3141 00c8 93E80300 		ldm	r3, {r0, r1}
  3142 00cc FFF7FEFF 		bl	LCD_Draw_Line
  3143              	.LVL140:
- 263:HW/LCD/lcd.c  ****         line.x2 = (uint16_t)((double)line.x1 + 100 * cos((double)i / 180 * LCD_PI));
- 3144              		.loc 1 263 36 discriminator 3 view .LVU1115
+ 264:HW/LCD/lcd.c  ****         line.x2 = (uint16_t)((double)line.x1 + 100 * cos((double)i / 180 * LCD_PI));
+ 3144              		.loc 1 264 36 discriminator 3 view .LVU1115
  3145 00d0 0A34     		adds	r4, r4, #10
  3146              	.LVL141:
- 263:HW/LCD/lcd.c  ****         line.x2 = (uint16_t)((double)line.x1 + 100 * cos((double)i / 180 * LCD_PI));
- 3147              		.loc 1 263 36 is_stmt 0 discriminator 3 view .LVU1116
+ 264:HW/LCD/lcd.c  ****         line.x2 = (uint16_t)((double)line.x1 + 100 * cos((double)i / 180 * LCD_PI));
+ 3147              		.loc 1 264 36 is_stmt 0 discriminator 3 view .LVU1116
  3148 00d2 A4B2     		uxth	r4, r4
  3149              	.LVL142:
  3150              	.L75:
- 263:HW/LCD/lcd.c  ****         line.x2 = (uint16_t)((double)line.x1 + 100 * cos((double)i / 180 * LCD_PI));
- 3151              		.loc 1 263 27 is_stmt 1 discriminator 1 view .LVU1117
+ 264:HW/LCD/lcd.c  ****         line.x2 = (uint16_t)((double)line.x1 + 100 * cos((double)i / 180 * LCD_PI));
+ 3151              		.loc 1 264 27 is_stmt 1 discriminator 1 view .LVU1117
  3152 00d4 B4F5B47F 		cmp	r4, #360
  3153 00d8 C7D3     		bcc	.L76
  3154              	.LBE7:
- 267:HW/LCD/lcd.c  ****     }
- 268:HW/LCD/lcd.c  ****     /* 绘制文字 */
- 269:HW/LCD/lcd.c  ****     Flash_EX_Init();
- 3155              		.loc 1 269 5 view .LVU1118
+ 268:HW/LCD/lcd.c  ****     }
+ 269:HW/LCD/lcd.c  ****     /* 绘制文字 */
+ 270:HW/LCD/lcd.c  ****     Flash_EX_Init();
+ 3155              		.loc 1 270 5 view .LVU1118
  3156 00da FFF7FEFF 		bl	Flash_EX_Init
  3157              	.LVL143:
- 270:HW/LCD/lcd.c  ****     LCD_Draw_Text(200, 50, "Diana + Ava\n文字测试", LCD_Color_RGB565(0, 0, 0), LCD_Color_RGB565
- 3158              		.loc 1 270 5 view .LVU1119
+ 271:HW/LCD/lcd.c  ****     LCD_Draw_Text(200, 50, "Diana + Ava\n文字测试", LCD_Color_RGB565(0, 0, 0), LCD_Color_RGB565
+ 3158              		.loc 1 271 5 view .LVU1119
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 63
+
+
  3159 00de 4FF6FF73 		movw	r3, #65535
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 63
-
-
  3160 00e2 0093     		str	r3, [sp]
  3161 00e4 0023     		movs	r3, #0
  3162 00e6 0A4A     		ldr	r2, .L79+24
@@ -3729,9 +3730,9 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  3165 00ec FFF7FEFF 		bl	LCD_Draw_Text
  3166              	.LVL144:
  3167              	.L77:
- 271:HW/LCD/lcd.c  ****     while(1);
- 3168              		.loc 1 271 5 discriminator 1 view .LVU1120
- 3169              		.loc 1 271 10 discriminator 1 view .LVU1121
+ 272:HW/LCD/lcd.c  ****     while(1);
+ 3168              		.loc 1 272 5 discriminator 1 view .LVU1120
+ 3169              		.loc 1 272 10 discriminator 1 view .LVU1121
  3170 00f0 FEE7     		b	.L77
  3171              	.L80:
  3172 00f2 00BFAFF3 		.align	3
@@ -3777,10 +3778,10 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  3214              	.Letext0:
  3215              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
  3216              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 64
+
+
  3217              		.file 4 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 64
-
-
  3218              		.file 5 "USER/stm32f10x.h"
  3219              		.file 6 "STM32F10x_FWLib/inc/stm32f10x_fsmc.h"
  3220              		.file 7 "STM32F10x_FWLib/inc/stm32f10x_gpio.h"
@@ -3792,48 +3793,48 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 1
  3226              		.file 13 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\
  3227              		.file 14 "SYSTEM/delay/delay.h"
  3228              		.file 15 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 65
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 65
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 lcd.c
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:19     .text.LCD_Init:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:25     .text.LCD_Init:00000000 LCD_Init
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:566    .text.LCD_Init:00000328 $d
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:571    .text.LCD_Init:00000338 $t
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:1884   .text.LCD_Init:00000a48 $d
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:1889   .rodata.LCD_Read_ID.str1.4:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:1899   .text.LCD_Read_ID:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:1905   .text.LCD_Read_ID:00000000 LCD_Read_ID
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:1973   .text.LCD_Read_ID:00000044 $d
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:3188   .bss.dummy:00000000 dummy
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:1981   .rodata.LCD_Read_Pixel_Format.str1.4:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:1985   .text.LCD_Read_Pixel_Format:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:1991   .text.LCD_Read_Pixel_Format:00000000 LCD_Read_Pixel_Format
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2027   .text.LCD_Read_Pixel_Format:00000020 $d
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2033   .text.__LCD_Set_Window:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2039   .text.__LCD_Set_Window:00000000 __LCD_Set_Window
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2096   .text.__LCD_Set_Window:00000054 $d
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2101   .text.LCD_Draw_SolidRect:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2107   .text.LCD_Draw_SolidRect:00000000 LCD_Draw_SolidRect
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2219   .text.LCD_Draw_SolidRect:0000007c $d
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2224   .text.LCD_Fill:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2230   .text.LCD_Fill:00000000 LCD_Fill
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2266   .text.LCD_Fill:0000001c $d
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2271   .text.LCD_Draw_Point:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2277   .text.LCD_Draw_Point:00000000 LCD_Draw_Point
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2345   .text.LCD_Draw_Point:0000004c $d
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2350   .text.LCD_Draw_Line:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2356   .text.LCD_Draw_Line:00000000 LCD_Draw_Line
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2749   .text.LCD_Draw_Text:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2755   .text.LCD_Draw_Text:00000000 LCD_Draw_Text
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2976   .text.LCD_Draw_Text:000000f4 $d
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2988   .rodata.LCD_Run.str1.4:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2993   .text.LCD_Run:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:2999   .text.LCD_Run:00000000 LCD_Run
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:3174   .text.LCD_Run:000000f8 $d
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:3185   .bss.dummy:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s:3191   .rodata:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:19     .text.LCD_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:25     .text.LCD_Init:00000000 LCD_Init
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:566    .text.LCD_Init:00000328 $d
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:571    .text.LCD_Init:00000338 $t
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:1884   .text.LCD_Init:00000a48 $d
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:1889   .rodata.LCD_Read_ID.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:1899   .text.LCD_Read_ID:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:1905   .text.LCD_Read_ID:00000000 LCD_Read_ID
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:1973   .text.LCD_Read_ID:00000044 $d
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:3188   .bss.dummy:00000000 dummy
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:1981   .rodata.LCD_Read_Pixel_Format.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:1985   .text.LCD_Read_Pixel_Format:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:1991   .text.LCD_Read_Pixel_Format:00000000 LCD_Read_Pixel_Format
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2027   .text.LCD_Read_Pixel_Format:00000020 $d
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2033   .text.__LCD_Set_Window:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2039   .text.__LCD_Set_Window:00000000 __LCD_Set_Window
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2096   .text.__LCD_Set_Window:00000054 $d
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2101   .text.LCD_Draw_SolidRect:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2107   .text.LCD_Draw_SolidRect:00000000 LCD_Draw_SolidRect
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2219   .text.LCD_Draw_SolidRect:0000007c $d
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2224   .text.LCD_Fill:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2230   .text.LCD_Fill:00000000 LCD_Fill
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2266   .text.LCD_Fill:0000001c $d
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2271   .text.LCD_Draw_Point:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2277   .text.LCD_Draw_Point:00000000 LCD_Draw_Point
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2345   .text.LCD_Draw_Point:0000004c $d
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2350   .text.LCD_Draw_Line:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2356   .text.LCD_Draw_Line:00000000 LCD_Draw_Line
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2749   .text.LCD_Draw_Text:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2755   .text.LCD_Draw_Text:00000000 LCD_Draw_Text
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2976   .text.LCD_Draw_Text:000000f4 $d
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2988   .rodata.LCD_Run.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2993   .text.LCD_Run:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:2999   .text.LCD_Run:00000000 LCD_Run
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:3174   .text.LCD_Run:000000f8 $d
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:3185   .bss.dummy:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cclIP9lS.s:3191   .rodata:00000000 $d
 
 UNDEFINED SYMBOLS
 RCC_APB2PeriphClockCmd
@@ -3852,7 +3853,7 @@ __aeabi_ui2d
 __aeabi_ddiv
 __aeabi_dmul
 __aeabi_dadd
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccYDWgiw.s 			page 66
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cclIP9lS.s 			page 66
 
 
 __aeabi_d2uiz

@@ -35,8 +35,9 @@ extern void SDCard_Fats_Run();		// SD卡FatFs文件系统
 /* LCD实验 */
 extern void LCD_Run();				// LCD底层驱动实验
 extern void Font_Download();		// 字体文件烧录实验（从SD卡烧录到Flash）
-
+/* 触摸屏实验 */
+extern void Touch_Run();
 
 int main(){
-	LCD_Run();
+	Touch_Run();
 }

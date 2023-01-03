@@ -194,7 +194,7 @@ void LCD_Draw_Line(LCD_Line_t line, LCD_Color_t color){
 /**
  * @brief 绘制文字（utf-8编码）,支持常用中文、英文、数学符号、标点符号、换行
  * @note 除了换行之外的转译字符无法正常绘制
- * 
+ * TODO: 字模可以通过上、下采样来缩放字体大小
  * @param x 文字框左上角x坐标
  * @param y 文字框左上角y坐标
  * @param text 文字内容

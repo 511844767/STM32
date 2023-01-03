@@ -83,7 +83,9 @@ HW/LCD/lcd.c \
 HW/SDCard/stm32_eval_sdio_sd.c \
 HW/SDCard/SDCard.c \
 HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c \
-HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c
+HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c \
+HW/TOUCH/gpio_spi.c \
+HW/TOUCH/touch.c
 
 # ASM sources
 ASM_SOURCES =  \
@@ -152,12 +154,13 @@ C_INCLUDES =  \
 -IHW/FLASH/External_Flash \
 -IHW/LCD \
 -IHW/SDCard \
--IHW/LCD/Fonts/Song_Unicode_Resolution_16_16
+-IHW/LCD/Fonts/Song_Unicode_Resolution_16_16 \
+-IHW/TOUCH
 
 # compile gcc flags
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
 
-CFLAGS += $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -std=$(C_STANDARD)
+CFLAGS += $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -std=$(C_STANDARD) -u _printf_float
 
 ifeq ($(DEBUG), 1)
 CFLAGS += -g -gdwarf-2
@@ -177,7 +180,8 @@ LDSCRIPT = CORE/STM32F103ZETx_FLASH.ld
 # libraries
 LIBS = -lc -lm -lnosys 
 LIBDIR = 
-LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections
+LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections -lc -lrdimon -u _printf_float
+# 打印浮点数的库：-lc -lrdimon -u _printf_float
 
 # default action: build all
 all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin

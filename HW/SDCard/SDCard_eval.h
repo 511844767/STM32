@@ -82,7 +82,7 @@ void SD_LowLevel_DeInit(){
 }
 
 
-static __inline void __SD_DMA_Conf_Impl(uint32_t* ptr, uint32_t size, uint32_t DMA_DIR){
+static __INLINE void __SD_DMA_Conf_Impl(uint32_t* ptr, uint32_t size, uint32_t DMA_DIR){
     /* 使能时钟源 */
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA2, ENABLE);          // 使能DMA时钟
     /* 清除DMA标志 */
@@ -132,7 +132,7 @@ void SD_LowLevel_DMA_TxConfig(uint32_t* src, uint32_t size){
  * @brief 查询DMA传输状态
  * @return DMA传输状态
  */
-__inline FlagStatus SD_DMAEndOfTransferStatus(void){
+__INLINE FlagStatus SD_DMAEndOfTransferStatus(void){
   return DMA_GetFlagStatus(DMA2_FLAG_TC4);
 }
 

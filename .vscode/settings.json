@@ -27,6 +27,10 @@
         "sdcard_sdio.h": "c",
         "sd_lowlevel_implement.h": "c",
         "ff.h": "c",
-        "flash_font.h": "c"
+        "flash_font.h": "c",
+        "gpio_spi.h": "c",
+        "gpio_spi_conf.h": "c",
+        "stm32f10x_exti.h": "c",
+        "math.h": "c"
     }
 }

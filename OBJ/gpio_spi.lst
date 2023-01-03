@@ -1,0 +1,943 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"gpio_spi.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "HW/TOUCH/gpio_spi.c"
+  18              		.section	.text.__GPIO_SPI_SendData,"ax",%progbits
+  19              		.align	1
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	__GPIO_SPI_SendData:
+  25              	.LVL0:
+  26              	.LFB30:
+   1:HW/TOUCH/gpio_spi.c **** /**
+   2:HW/TOUCH/gpio_spi.c ****  * @file gpio_spi.c
+   3:HW/TOUCH/gpio_spi.c ****  * @author 511844767
+   4:HW/TOUCH/gpio_spi.c ****  * @brief 用GPIO模拟SPI信号
+   5:HW/TOUCH/gpio_spi.c ****  * @version 0.1
+   6:HW/TOUCH/gpio_spi.c ****  * @date 2023-01-03
+   7:HW/TOUCH/gpio_spi.c ****  * 
+   8:HW/TOUCH/gpio_spi.c ****  * @copyright Copyright (c) 2023
+   9:HW/TOUCH/gpio_spi.c ****  * 
+  10:HW/TOUCH/gpio_spi.c ****  */
+  11:HW/TOUCH/gpio_spi.c **** #include"string.h"
+  12:HW/TOUCH/gpio_spi.c **** #include"stm32f10x.h"
+  13:HW/TOUCH/gpio_spi.c **** #include"gpio_spi_conf.h"
+  14:HW/TOUCH/gpio_spi.c **** #include"delay.h"
+  15:HW/TOUCH/gpio_spi.c **** 
+  16:HW/TOUCH/gpio_spi.c **** /* 输出控制 */
+  17:HW/TOUCH/gpio_spi.c **** #define SPI_MOSI_HIGH() GPIO_SetBits(SPI_MOSI_GPIO, SPI_MOSI_PIN)
+  18:HW/TOUCH/gpio_spi.c **** #define SPI_MOSI_LOW()  GPIO_ResetBits(SPI_MOSI_GPIO, SPI_MOSI_PIN)
+  19:HW/TOUCH/gpio_spi.c **** #define SPI_CS_HIGH()   GPIO_SetBits(SPI_CS_GPIO, SPI_CS_PIN)
+  20:HW/TOUCH/gpio_spi.c **** #define SPI_CS_LOW()    GPIO_ResetBits(SPI_CS_GPIO, SPI_CS_PIN)
+  21:HW/TOUCH/gpio_spi.c **** #define SPI_CLK_HIGH()  GPIO_SetBits(SPI_CLK_GPIO, SPI_CLK_PIN)
+  22:HW/TOUCH/gpio_spi.c **** #define SPI_CLK_LOW()   GPIO_ResetBits(SPI_CLK_GPIO, SPI_CLK_PIN)
+  23:HW/TOUCH/gpio_spi.c **** /* 输入读取 */
+  24:HW/TOUCH/gpio_spi.c **** #define SPI_MISO_READ() GPIO_ReadInputDataBit(SPI_MISO_GPIO, SPI_MISO_PIN)
+  25:HW/TOUCH/gpio_spi.c **** 
+  26:HW/TOUCH/gpio_spi.c **** void GPIO_SPI_Init(){
+  27:HW/TOUCH/gpio_spi.c ****     /* 使能时钟源 */
+  28:HW/TOUCH/gpio_spi.c ****     RCC_APB2PeriphClockCmd(SPI_MISO_Periph | SPI_CLK_Periph | SPI_MISO_Periph | SPI_MOSI_Periph, EN
+  29:HW/TOUCH/gpio_spi.c ****     /* 初始化GPIO */
+  30:HW/TOUCH/gpio_spi.c ****     GPIO_InitTypeDef gpioDef;
+  31:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Speed  = GPIO_Speed_50MHz;
+  32:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Pin    = SPI_MISO_PIN;             // MISO输入
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 2
+
+
+  33:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Mode   = GPIO_Mode_IN_FLOATING;
+  34:HW/TOUCH/gpio_spi.c ****     GPIO_Init(SPI_MISO_GPIO, &gpioDef);
+  35:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Pin    = SPI_MOSI_PIN;             // MOSI, CLK, CS输出
+  36:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Mode   = GPIO_Mode_Out_PP;
+  37:HW/TOUCH/gpio_spi.c ****     GPIO_Init(SPI_MOSI_GPIO, &gpioDef);
+  38:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Pin    = SPI_CS_PIN;
+  39:HW/TOUCH/gpio_spi.c ****     GPIO_Init(SPI_CS_GPIO, &gpioDef);
+  40:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Pin    = SPI_CLK_PIN;
+  41:HW/TOUCH/gpio_spi.c ****     GPIO_Init(SPI_CLK_GPIO, &gpioDef);
+  42:HW/TOUCH/gpio_spi.c ****     /* 取消片选 */
+  43:HW/TOUCH/gpio_spi.c ****     SPI_CS_HIGH();
+  44:HW/TOUCH/gpio_spi.c ****     /* 初始化延迟 */
+  45:HW/TOUCH/gpio_spi.c ****     delay_init();
+  46:HW/TOUCH/gpio_spi.c **** }
+  47:HW/TOUCH/gpio_spi.c **** 
+  48:HW/TOUCH/gpio_spi.c **** __INLINE static void __GPIO_SPI_SendData(uint8_t* src, uint8_t size){
+  27              		.loc 1 48 69 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		.loc 1 48 69 is_stmt 0 view .LVU1
+  32 0000 70B5     		push	{r4, r5, r6, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 16
+  35              		.cfi_offset 4, -16
+  36              		.cfi_offset 5, -12
+  37              		.cfi_offset 6, -8
+  38              		.cfi_offset 14, -4
+  39 0002 0646     		mov	r6, r0
+  40 0004 0D46     		mov	r5, r1
+  49:HW/TOUCH/gpio_spi.c ****     /* 初始状态 */
+  50:HW/TOUCH/gpio_spi.c ****     SPI_MOSI_LOW();
+  41              		.loc 1 50 5 is_stmt 1 view .LVU2
+  42 0006 1F4C     		ldr	r4, .L8
+  43 0008 4FF40071 		mov	r1, #512
+  44              	.LVL1:
+  45              		.loc 1 50 5 is_stmt 0 view .LVU3
+  46 000c 2046     		mov	r0, r4
+  47              	.LVL2:
+  48              		.loc 1 50 5 view .LVU4
+  49 000e FFF7FEFF 		bl	GPIO_ResetBits
+  50              	.LVL3:
+  51:HW/TOUCH/gpio_spi.c ****     SPI_CLK_LOW();
+  51              		.loc 1 51 5 is_stmt 1 view .LVU5
+  52 0012 0221     		movs	r1, #2
+  53 0014 1C48     		ldr	r0, .L8+4
+  54 0016 FFF7FEFF 		bl	GPIO_ResetBits
+  55              	.LVL4:
+  52:HW/TOUCH/gpio_spi.c **** 
+  53:HW/TOUCH/gpio_spi.c ****     /* 发送数据 */
+  54:HW/TOUCH/gpio_spi.c ****     SPI_CS_LOW();
+  56              		.loc 1 54 5 view .LVU6
+  57 001a 4FF40061 		mov	r1, #2048
+  58 001e 2046     		mov	r0, r4
+  59 0020 FFF7FEFF 		bl	GPIO_ResetBits
+  60              	.LVL5:
+  55:HW/TOUCH/gpio_spi.c ****     delay_us(1);    // >= 100ns
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 3
+
+
+  61              		.loc 1 55 5 view .LVU7
+  62 0024 0120     		movs	r0, #1
+  63 0026 FFF7FEFF 		bl	delay_us
+  64              	.LVL6:
+  56:HW/TOUCH/gpio_spi.c ****     /* 遍历每个bit */
+  57:HW/TOUCH/gpio_spi.c ****     for(uint8_t i = 0; i < 8 * size; ++i){
+  65              		.loc 1 57 5 view .LVU8
+  66              	.LBB2:
+  67              		.loc 1 57 9 view .LVU9
+  68              		.loc 1 57 17 is_stmt 0 view .LVU10
+  69 002a 0024     		movs	r4, #0
+  70              		.loc 1 57 5 view .LVU11
+  71 002c 0DE0     		b	.L2
+  72              	.LVL7:
+  73              	.L3:
+  58:HW/TOUCH/gpio_spi.c ****         SPI_CLK_LOW();
+  59:HW/TOUCH/gpio_spi.c ****         if(src[i / 8] & (0B10000000 >> (i % 8)))   // 先发送高位
+  60:HW/TOUCH/gpio_spi.c ****             SPI_MOSI_HIGH();
+  61:HW/TOUCH/gpio_spi.c ****         else
+  62:HW/TOUCH/gpio_spi.c ****             SPI_MOSI_LOW();
+  74              		.loc 1 62 13 is_stmt 1 view .LVU12
+  75 002e 4FF40071 		mov	r1, #512
+  76 0032 1448     		ldr	r0, .L8
+  77 0034 FFF7FEFF 		bl	GPIO_ResetBits
+  78              	.LVL8:
+  79              	.L4:
+  63:HW/TOUCH/gpio_spi.c ****         SPI_CLK_HIGH();
+  80              		.loc 1 63 9 discriminator 2 view .LVU13
+  81 0038 0221     		movs	r1, #2
+  82 003a 1348     		ldr	r0, .L8+4
+  83 003c FFF7FEFF 		bl	GPIO_SetBits
+  84              	.LVL9:
+  64:HW/TOUCH/gpio_spi.c ****         delay_us(1);    // >= 200ns
+  85              		.loc 1 64 9 discriminator 2 view .LVU14
+  86 0040 0120     		movs	r0, #1
+  87 0042 FFF7FEFF 		bl	delay_us
+  88              	.LVL10:
+  57:HW/TOUCH/gpio_spi.c ****         SPI_CLK_LOW();
+  89              		.loc 1 57 38 discriminator 2 view .LVU15
+  90 0046 0134     		adds	r4, r4, #1
+  91              	.LVL11:
+  57:HW/TOUCH/gpio_spi.c ****         SPI_CLK_LOW();
+  92              		.loc 1 57 38 is_stmt 0 discriminator 2 view .LVU16
+  93 0048 E4B2     		uxtb	r4, r4
+  94              	.LVL12:
+  95              	.L2:
+  57:HW/TOUCH/gpio_spi.c ****         SPI_CLK_LOW();
+  96              		.loc 1 57 26 is_stmt 1 discriminator 1 view .LVU17
+  97 004a B4EBC50F 		cmp	r4, r5, lsl #3
+  98 004e 12DA     		bge	.L7
+  58:HW/TOUCH/gpio_spi.c ****         if(src[i / 8] & (0B10000000 >> (i % 8)))   // 先发送高位
+  99              		.loc 1 58 9 view .LVU18
+ 100 0050 0221     		movs	r1, #2
+ 101 0052 0D48     		ldr	r0, .L8+4
+ 102 0054 FFF7FEFF 		bl	GPIO_ResetBits
+ 103              	.LVL13:
+  59:HW/TOUCH/gpio_spi.c ****             SPI_MOSI_HIGH();
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 4
+
+
+ 104              		.loc 1 59 9 view .LVU19
+  59:HW/TOUCH/gpio_spi.c ****             SPI_MOSI_HIGH();
+ 105              		.loc 1 59 18 is_stmt 0 view .LVU20
+ 106 0058 E308     		lsrs	r3, r4, #3
+  59:HW/TOUCH/gpio_spi.c ****             SPI_MOSI_HIGH();
+ 107              		.loc 1 59 15 view .LVU21
+ 108 005a F25C     		ldrb	r2, [r6, r3]	@ zero_extendqisi2
+  59:HW/TOUCH/gpio_spi.c ****             SPI_MOSI_HIGH();
+ 109              		.loc 1 59 43 view .LVU22
+ 110 005c 04F0070C 		and	ip, r4, #7
+  59:HW/TOUCH/gpio_spi.c ****             SPI_MOSI_HIGH();
+ 111              		.loc 1 59 37 view .LVU23
+ 112 0060 8023     		movs	r3, #128
+ 113 0062 43FA0CF3 		asr	r3, r3, ip
+  59:HW/TOUCH/gpio_spi.c ****             SPI_MOSI_HIGH();
+ 114              		.loc 1 59 11 view .LVU24
+ 115 0066 1A42     		tst	r2, r3
+ 116 0068 E1D0     		beq	.L3
+  60:HW/TOUCH/gpio_spi.c ****         else
+ 117              		.loc 1 60 13 is_stmt 1 view .LVU25
+ 118 006a 4FF40071 		mov	r1, #512
+ 119 006e 0548     		ldr	r0, .L8
+ 120 0070 FFF7FEFF 		bl	GPIO_SetBits
+ 121              	.LVL14:
+ 122 0074 E0E7     		b	.L4
+ 123              	.L7:
+  60:HW/TOUCH/gpio_spi.c ****         else
+ 124              		.loc 1 60 13 is_stmt 0 view .LVU26
+ 125              	.LBE2:
+  65:HW/TOUCH/gpio_spi.c ****     }
+  66:HW/TOUCH/gpio_spi.c ****     SPI_CS_HIGH();
+ 126              		.loc 1 66 5 is_stmt 1 view .LVU27
+ 127 0076 4FF40061 		mov	r1, #2048
+ 128 007a 0248     		ldr	r0, .L8
+ 129 007c FFF7FEFF 		bl	GPIO_SetBits
+ 130              	.LVL15:
+  67:HW/TOUCH/gpio_spi.c **** }
+ 131              		.loc 1 67 1 is_stmt 0 view .LVU28
+ 132 0080 70BD     		pop	{r4, r5, r6, pc}
+ 133              	.LVL16:
+ 134              	.L9:
+ 135              		.loc 1 67 1 view .LVU29
+ 136 0082 00BF     		.align	2
+ 137              	.L8:
+ 138 0084 001C0140 		.word	1073814528
+ 139 0088 000C0140 		.word	1073810432
+ 140              		.cfi_endproc
+ 141              	.LFE30:
+ 143              		.section	.text.__GPIO_SPI_RecieveData,"ax",%progbits
+ 144              		.align	1
+ 145              		.syntax unified
+ 146              		.thumb
+ 147              		.thumb_func
+ 149              	__GPIO_SPI_RecieveData:
+ 150              	.LVL17:
+ 151              	.LFB32:
+  68:HW/TOUCH/gpio_spi.c **** void GPIO_SPI_SendData(void* src, uint8_t size){
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 5
+
+
+  69:HW/TOUCH/gpio_spi.c ****     __GPIO_SPI_SendData((uint8_t*)src, size);
+  70:HW/TOUCH/gpio_spi.c **** }
+  71:HW/TOUCH/gpio_spi.c **** 
+  72:HW/TOUCH/gpio_spi.c **** 
+  73:HW/TOUCH/gpio_spi.c **** __INLINE static void __GPIO_SPI_RecieveData(uint8_t* dst, uint8_t size){
+ 152              		.loc 1 73 72 is_stmt 1 view -0
+ 153              		.cfi_startproc
+ 154              		@ args = 0, pretend = 0, frame = 0
+ 155              		@ frame_needed = 0, uses_anonymous_args = 0
+ 156              		.loc 1 73 72 is_stmt 0 view .LVU31
+ 157 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 158              	.LCFI1:
+ 159              		.cfi_def_cfa_offset 24
+ 160              		.cfi_offset 3, -24
+ 161              		.cfi_offset 4, -20
+ 162              		.cfi_offset 5, -16
+ 163              		.cfi_offset 6, -12
+ 164              		.cfi_offset 7, -8
+ 165              		.cfi_offset 14, -4
+ 166 0002 0746     		mov	r7, r0
+ 167 0004 0E46     		mov	r6, r1
+  74:HW/TOUCH/gpio_spi.c ****     /* 初始状态 */
+  75:HW/TOUCH/gpio_spi.c ****     SPI_MOSI_LOW();
+ 168              		.loc 1 75 5 is_stmt 1 view .LVU32
+ 169 0006 214C     		ldr	r4, .L16
+ 170 0008 4FF40071 		mov	r1, #512
+ 171              	.LVL18:
+ 172              		.loc 1 75 5 is_stmt 0 view .LVU33
+ 173 000c 2046     		mov	r0, r4
+ 174              	.LVL19:
+ 175              		.loc 1 75 5 view .LVU34
+ 176 000e FFF7FEFF 		bl	GPIO_ResetBits
+ 177              	.LVL20:
+  76:HW/TOUCH/gpio_spi.c ****     SPI_CLK_LOW();
+ 178              		.loc 1 76 5 is_stmt 1 view .LVU35
+ 179 0012 0221     		movs	r1, #2
+ 180 0014 1E48     		ldr	r0, .L16+4
+ 181 0016 FFF7FEFF 		bl	GPIO_ResetBits
+ 182              	.LVL21:
+  77:HW/TOUCH/gpio_spi.c ****     memset(dst, 0, size);
+ 183              		.loc 1 77 5 view .LVU36
+ 184 001a 3246     		mov	r2, r6
+ 185 001c 0021     		movs	r1, #0
+ 186 001e 3846     		mov	r0, r7
+ 187 0020 FFF7FEFF 		bl	memset
+ 188              	.LVL22:
+  78:HW/TOUCH/gpio_spi.c **** 
+  79:HW/TOUCH/gpio_spi.c ****     /* 接收数据 */
+  80:HW/TOUCH/gpio_spi.c ****     SPI_CS_LOW();
+ 189              		.loc 1 80 5 view .LVU37
+ 190 0024 4FF40061 		mov	r1, #2048
+ 191 0028 2046     		mov	r0, r4
+ 192 002a FFF7FEFF 		bl	GPIO_ResetBits
+ 193              	.LVL23:
+  81:HW/TOUCH/gpio_spi.c ****     delay_us(1);    // >= 100ns
+ 194              		.loc 1 81 5 view .LVU38
+ 195 002e 0120     		movs	r0, #1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 6
+
+
+ 196 0030 FFF7FEFF 		bl	delay_us
+ 197              	.LVL24:
+  82:HW/TOUCH/gpio_spi.c ****     /* 遍历每个bit */
+  83:HW/TOUCH/gpio_spi.c ****     for(uint8_t i = 0; i < 8 * size; ++i){
+ 198              		.loc 1 83 5 view .LVU39
+ 199              	.LBB3:
+ 200              		.loc 1 83 9 view .LVU40
+ 201              		.loc 1 83 17 is_stmt 0 view .LVU41
+ 202 0034 0024     		movs	r4, #0
+ 203              		.loc 1 83 5 view .LVU42
+ 204 0036 08E0     		b	.L11
+ 205              	.LVL25:
+ 206              	.L12:
+  84:HW/TOUCH/gpio_spi.c ****         SPI_CLK_HIGH();
+  85:HW/TOUCH/gpio_spi.c ****         delay_us(1);    // >= 200ns
+  86:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
+  87:HW/TOUCH/gpio_spi.c ****             dst[i / 8] |= 0B10000000 >> (i % 8);
+  88:HW/TOUCH/gpio_spi.c ****         }
+  89:HW/TOUCH/gpio_spi.c ****         SPI_CLK_LOW();
+ 207              		.loc 1 89 9 is_stmt 1 discriminator 2 view .LVU43
+ 208 0038 0221     		movs	r1, #2
+ 209 003a 1548     		ldr	r0, .L16+4
+ 210 003c FFF7FEFF 		bl	GPIO_ResetBits
+ 211              	.LVL26:
+  90:HW/TOUCH/gpio_spi.c ****         delay_us(1);    // >= 200ns
+ 212              		.loc 1 90 9 discriminator 2 view .LVU44
+ 213 0040 0120     		movs	r0, #1
+ 214 0042 FFF7FEFF 		bl	delay_us
+ 215              	.LVL27:
+  83:HW/TOUCH/gpio_spi.c ****         SPI_CLK_HIGH();
+ 216              		.loc 1 83 38 discriminator 2 view .LVU45
+ 217 0046 0134     		adds	r4, r4, #1
+ 218              	.LVL28:
+  83:HW/TOUCH/gpio_spi.c ****         SPI_CLK_HIGH();
+ 219              		.loc 1 83 38 is_stmt 0 discriminator 2 view .LVU46
+ 220 0048 E4B2     		uxtb	r4, r4
+ 221              	.LVL29:
+ 222              	.L11:
+  83:HW/TOUCH/gpio_spi.c ****         SPI_CLK_HIGH();
+ 223              		.loc 1 83 26 is_stmt 1 discriminator 1 view .LVU47
+ 224 004a B4EBC60F 		cmp	r4, r6, lsl #3
+ 225 004e 16DA     		bge	.L15
+  84:HW/TOUCH/gpio_spi.c ****         SPI_CLK_HIGH();
+ 226              		.loc 1 84 9 view .LVU48
+ 227 0050 0F4D     		ldr	r5, .L16+4
+ 228 0052 0221     		movs	r1, #2
+ 229 0054 2846     		mov	r0, r5
+ 230 0056 FFF7FEFF 		bl	GPIO_SetBits
+ 231              	.LVL30:
+  85:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
+ 232              		.loc 1 85 9 view .LVU49
+ 233 005a 0120     		movs	r0, #1
+ 234 005c FFF7FEFF 		bl	delay_us
+ 235              	.LVL31:
+  86:HW/TOUCH/gpio_spi.c ****             dst[i / 8] |= 0B10000000 >> (i % 8);
+ 236              		.loc 1 86 9 view .LVU50
+  86:HW/TOUCH/gpio_spi.c ****             dst[i / 8] |= 0B10000000 >> (i % 8);
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 7
+
+
+ 237              		.loc 1 86 12 is_stmt 0 view .LVU51
+ 238 0060 0421     		movs	r1, #4
+ 239 0062 2846     		mov	r0, r5
+ 240 0064 FFF7FEFF 		bl	GPIO_ReadInputDataBit
+ 241              	.LVL32:
+  86:HW/TOUCH/gpio_spi.c ****             dst[i / 8] |= 0B10000000 >> (i % 8);
+ 242              		.loc 1 86 11 view .LVU52
+ 243 0068 0028     		cmp	r0, #0
+ 244 006a E5D0     		beq	.L12
+  87:HW/TOUCH/gpio_spi.c ****         }
+ 245              		.loc 1 87 13 is_stmt 1 view .LVU53
+  87:HW/TOUCH/gpio_spi.c ****         }
+ 246              		.loc 1 87 16 is_stmt 0 view .LVU54
+ 247 006c E208     		lsrs	r2, r4, #3
+ 248 006e BB5C     		ldrb	r3, [r7, r2]	@ zero_extendqisi2
+  87:HW/TOUCH/gpio_spi.c ****         }
+ 249              		.loc 1 87 44 view .LVU55
+ 250 0070 04F00701 		and	r1, r4, #7
+  87:HW/TOUCH/gpio_spi.c ****         }
+ 251              		.loc 1 87 38 view .LVU56
+ 252 0074 8025     		movs	r5, #128
+ 253 0076 0D41     		asrs	r5, r5, r1
+  87:HW/TOUCH/gpio_spi.c ****         }
+ 254              		.loc 1 87 24 view .LVU57
+ 255 0078 2B43     		orrs	r3, r3, r5
+ 256 007a BB54     		strb	r3, [r7, r2]
+ 257 007c DCE7     		b	.L12
+ 258              	.L15:
+  87:HW/TOUCH/gpio_spi.c ****         }
+ 259              		.loc 1 87 24 view .LVU58
+ 260              	.LBE3:
+  91:HW/TOUCH/gpio_spi.c ****     }
+  92:HW/TOUCH/gpio_spi.c ****     SPI_CS_HIGH();
+ 261              		.loc 1 92 5 is_stmt 1 view .LVU59
+ 262 007e 4FF40061 		mov	r1, #2048
+ 263 0082 0248     		ldr	r0, .L16
+ 264 0084 FFF7FEFF 		bl	GPIO_SetBits
+ 265              	.LVL33:
+  93:HW/TOUCH/gpio_spi.c **** }
+ 266              		.loc 1 93 1 is_stmt 0 view .LVU60
+ 267 0088 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 268              	.LVL34:
+ 269              	.L17:
+ 270              		.loc 1 93 1 view .LVU61
+ 271 008a 00BF     		.align	2
+ 272              	.L16:
+ 273 008c 001C0140 		.word	1073814528
+ 274 0090 000C0140 		.word	1073810432
+ 275              		.cfi_endproc
+ 276              	.LFE32:
+ 278              		.section	.text.GPIO_SPI_Init,"ax",%progbits
+ 279              		.align	1
+ 280              		.global	GPIO_SPI_Init
+ 281              		.syntax unified
+ 282              		.thumb
+ 283              		.thumb_func
+ 285              	GPIO_SPI_Init:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 8
+
+
+ 286              	.LFB29:
+  26:HW/TOUCH/gpio_spi.c ****     /* 使能时钟源 */
+ 287              		.loc 1 26 21 is_stmt 1 view -0
+ 288              		.cfi_startproc
+ 289              		@ args = 0, pretend = 0, frame = 8
+ 290              		@ frame_needed = 0, uses_anonymous_args = 0
+ 291 0000 70B5     		push	{r4, r5, r6, lr}
+ 292              	.LCFI2:
+ 293              		.cfi_def_cfa_offset 16
+ 294              		.cfi_offset 4, -16
+ 295              		.cfi_offset 5, -12
+ 296              		.cfi_offset 6, -8
+ 297              		.cfi_offset 14, -4
+ 298 0002 82B0     		sub	sp, sp, #8
+ 299              	.LCFI3:
+ 300              		.cfi_def_cfa_offset 24
+  28:HW/TOUCH/gpio_spi.c ****     /* 初始化GPIO */
+ 301              		.loc 1 28 5 view .LVU63
+ 302 0004 0121     		movs	r1, #1
+ 303 0006 8820     		movs	r0, #136
+ 304 0008 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+ 305              	.LVL35:
+  30:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Speed  = GPIO_Speed_50MHz;
+ 306              		.loc 1 30 5 view .LVU64
+  31:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Pin    = SPI_MISO_PIN;             // MISO输入
+ 307              		.loc 1 31 5 view .LVU65
+  31:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Pin    = SPI_MISO_PIN;             // MISO输入
+ 308              		.loc 1 31 25 is_stmt 0 view .LVU66
+ 309 000c 0323     		movs	r3, #3
+ 310 000e 8DF80630 		strb	r3, [sp, #6]
+  32:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Mode   = GPIO_Mode_IN_FLOATING;
+ 311              		.loc 1 32 5 is_stmt 1 view .LVU67
+  32:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Mode   = GPIO_Mode_IN_FLOATING;
+ 312              		.loc 1 32 25 is_stmt 0 view .LVU68
+ 313 0012 0423     		movs	r3, #4
+ 314 0014 ADF80430 		strh	r3, [sp, #4]	@ movhi
+  33:HW/TOUCH/gpio_spi.c ****     GPIO_Init(SPI_MISO_GPIO, &gpioDef);
+ 315              		.loc 1 33 5 is_stmt 1 view .LVU69
+  33:HW/TOUCH/gpio_spi.c ****     GPIO_Init(SPI_MISO_GPIO, &gpioDef);
+ 316              		.loc 1 33 25 is_stmt 0 view .LVU70
+ 317 0018 8DF80730 		strb	r3, [sp, #7]
+  34:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Pin    = SPI_MOSI_PIN;             // MOSI, CLK, CS输出
+ 318              		.loc 1 34 5 is_stmt 1 view .LVU71
+ 319 001c 144E     		ldr	r6, .L20
+ 320 001e 0DEB0301 		add	r1, sp, r3
+ 321 0022 3046     		mov	r0, r6
+ 322 0024 FFF7FEFF 		bl	GPIO_Init
+ 323              	.LVL36:
+  35:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Mode   = GPIO_Mode_Out_PP;
+ 324              		.loc 1 35 5 view .LVU72
+  35:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Mode   = GPIO_Mode_Out_PP;
+ 325              		.loc 1 35 25 is_stmt 0 view .LVU73
+ 326 0028 4FF40073 		mov	r3, #512
+ 327 002c ADF80430 		strh	r3, [sp, #4]	@ movhi
+  36:HW/TOUCH/gpio_spi.c ****     GPIO_Init(SPI_MOSI_GPIO, &gpioDef);
+ 328              		.loc 1 36 5 is_stmt 1 view .LVU74
+  36:HW/TOUCH/gpio_spi.c ****     GPIO_Init(SPI_MOSI_GPIO, &gpioDef);
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 9
+
+
+ 329              		.loc 1 36 25 is_stmt 0 view .LVU75
+ 330 0030 1023     		movs	r3, #16
+ 331 0032 8DF80730 		strb	r3, [sp, #7]
+  37:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Pin    = SPI_CS_PIN;
+ 332              		.loc 1 37 5 is_stmt 1 view .LVU76
+ 333 0036 0F4C     		ldr	r4, .L20+4
+ 334 0038 01A9     		add	r1, sp, #4
+ 335 003a 2046     		mov	r0, r4
+ 336 003c FFF7FEFF 		bl	GPIO_Init
+ 337              	.LVL37:
+  38:HW/TOUCH/gpio_spi.c ****     GPIO_Init(SPI_CS_GPIO, &gpioDef);
+ 338              		.loc 1 38 5 view .LVU77
+  38:HW/TOUCH/gpio_spi.c ****     GPIO_Init(SPI_CS_GPIO, &gpioDef);
+ 339              		.loc 1 38 25 is_stmt 0 view .LVU78
+ 340 0040 4FF40065 		mov	r5, #2048
+ 341 0044 ADF80450 		strh	r5, [sp, #4]	@ movhi
+  39:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Pin    = SPI_CLK_PIN;
+ 342              		.loc 1 39 5 is_stmt 1 view .LVU79
+ 343 0048 01A9     		add	r1, sp, #4
+ 344 004a 2046     		mov	r0, r4
+ 345 004c FFF7FEFF 		bl	GPIO_Init
+ 346              	.LVL38:
+  40:HW/TOUCH/gpio_spi.c ****     GPIO_Init(SPI_CLK_GPIO, &gpioDef);
+ 347              		.loc 1 40 5 view .LVU80
+  40:HW/TOUCH/gpio_spi.c ****     GPIO_Init(SPI_CLK_GPIO, &gpioDef);
+ 348              		.loc 1 40 25 is_stmt 0 view .LVU81
+ 349 0050 0223     		movs	r3, #2
+ 350 0052 ADF80430 		strh	r3, [sp, #4]	@ movhi
+  41:HW/TOUCH/gpio_spi.c ****     /* 取消片选 */
+ 351              		.loc 1 41 5 is_stmt 1 view .LVU82
+ 352 0056 01A9     		add	r1, sp, #4
+ 353 0058 3046     		mov	r0, r6
+ 354 005a FFF7FEFF 		bl	GPIO_Init
+ 355              	.LVL39:
+  43:HW/TOUCH/gpio_spi.c ****     /* 初始化延迟 */
+ 356              		.loc 1 43 5 view .LVU83
+ 357 005e 2946     		mov	r1, r5
+ 358 0060 2046     		mov	r0, r4
+ 359 0062 FFF7FEFF 		bl	GPIO_SetBits
+ 360              	.LVL40:
+  45:HW/TOUCH/gpio_spi.c **** }
+ 361              		.loc 1 45 5 view .LVU84
+ 362 0066 FFF7FEFF 		bl	delay_init
+ 363              	.LVL41:
+  46:HW/TOUCH/gpio_spi.c **** 
+ 364              		.loc 1 46 1 is_stmt 0 view .LVU85
+ 365 006a 02B0     		add	sp, sp, #8
+ 366              	.LCFI4:
+ 367              		.cfi_def_cfa_offset 16
+ 368              		@ sp needed
+ 369 006c 70BD     		pop	{r4, r5, r6, pc}
+ 370              	.L21:
+ 371 006e 00BF     		.align	2
+ 372              	.L20:
+ 373 0070 000C0140 		.word	1073810432
+ 374 0074 001C0140 		.word	1073814528
+ 375              		.cfi_endproc
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 10
+
+
+ 376              	.LFE29:
+ 378              		.section	.text.GPIO_SPI_SendData,"ax",%progbits
+ 379              		.align	1
+ 380              		.global	GPIO_SPI_SendData
+ 381              		.syntax unified
+ 382              		.thumb
+ 383              		.thumb_func
+ 385              	GPIO_SPI_SendData:
+ 386              	.LVL42:
+ 387              	.LFB31:
+  68:HW/TOUCH/gpio_spi.c ****     __GPIO_SPI_SendData((uint8_t*)src, size);
+ 388              		.loc 1 68 48 is_stmt 1 view -0
+ 389              		.cfi_startproc
+ 390              		@ args = 0, pretend = 0, frame = 0
+ 391              		@ frame_needed = 0, uses_anonymous_args = 0
+  68:HW/TOUCH/gpio_spi.c ****     __GPIO_SPI_SendData((uint8_t*)src, size);
+ 392              		.loc 1 68 48 is_stmt 0 view .LVU87
+ 393 0000 08B5     		push	{r3, lr}
+ 394              	.LCFI5:
+ 395              		.cfi_def_cfa_offset 8
+ 396              		.cfi_offset 3, -8
+ 397              		.cfi_offset 14, -4
+  69:HW/TOUCH/gpio_spi.c **** }
+ 398              		.loc 1 69 5 is_stmt 1 view .LVU88
+ 399 0002 FFF7FEFF 		bl	__GPIO_SPI_SendData
+ 400              	.LVL43:
+  70:HW/TOUCH/gpio_spi.c **** 
+ 401              		.loc 1 70 1 is_stmt 0 view .LVU89
+ 402 0006 08BD     		pop	{r3, pc}
+ 403              		.cfi_endproc
+ 404              	.LFE31:
+ 406              		.section	.text.GPIO_SPI_RecieveData,"ax",%progbits
+ 407              		.align	1
+ 408              		.global	GPIO_SPI_RecieveData
+ 409              		.syntax unified
+ 410              		.thumb
+ 411              		.thumb_func
+ 413              	GPIO_SPI_RecieveData:
+ 414              	.LVL44:
+ 415              	.LFB33:
+  94:HW/TOUCH/gpio_spi.c **** void GPIO_SPI_RecieveData(void* dst, uint8_t size){
+ 416              		.loc 1 94 51 is_stmt 1 view -0
+ 417              		.cfi_startproc
+ 418              		@ args = 0, pretend = 0, frame = 0
+ 419              		@ frame_needed = 0, uses_anonymous_args = 0
+ 420              		.loc 1 94 51 is_stmt 0 view .LVU91
+ 421 0000 08B5     		push	{r3, lr}
+ 422              	.LCFI6:
+ 423              		.cfi_def_cfa_offset 8
+ 424              		.cfi_offset 3, -8
+ 425              		.cfi_offset 14, -4
+  95:HW/TOUCH/gpio_spi.c ****     __GPIO_SPI_RecieveData((uint8_t*)dst, size);
+ 426              		.loc 1 95 5 is_stmt 1 view .LVU92
+ 427 0002 FFF7FEFF 		bl	__GPIO_SPI_RecieveData
+ 428              	.LVL45:
+  96:HW/TOUCH/gpio_spi.c **** }
+ 429              		.loc 1 96 1 is_stmt 0 view .LVU93
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 11
+
+
+ 430 0006 08BD     		pop	{r3, pc}
+ 431              		.cfi_endproc
+ 432              	.LFE33:
+ 434              		.section	.text.GPIO_SPI_Touch_Func,"ax",%progbits
+ 435              		.align	1
+ 436              		.global	GPIO_SPI_Touch_Func
+ 437              		.syntax unified
+ 438              		.thumb
+ 439              		.thumb_func
+ 441              	GPIO_SPI_Touch_Func:
+ 442              	.LVL46:
+ 443              	.LFB34:
+  97:HW/TOUCH/gpio_spi.c **** 
+  98:HW/TOUCH/gpio_spi.c **** uint16_t GPIO_SPI_Touch_Func(uint8_t cmd){
+ 444              		.loc 1 98 42 is_stmt 1 view -0
+ 445              		.cfi_startproc
+ 446              		@ args = 0, pretend = 0, frame = 0
+ 447              		@ frame_needed = 0, uses_anonymous_args = 0
+ 448              		.loc 1 98 42 is_stmt 0 view .LVU95
+ 449 0000 70B5     		push	{r4, r5, r6, lr}
+ 450              	.LCFI7:
+ 451              		.cfi_def_cfa_offset 16
+ 452              		.cfi_offset 4, -16
+ 453              		.cfi_offset 5, -12
+ 454              		.cfi_offset 6, -8
+ 455              		.cfi_offset 14, -4
+ 456 0002 0546     		mov	r5, r0
+  99:HW/TOUCH/gpio_spi.c ****     /* 初始状态 */
+ 100:HW/TOUCH/gpio_spi.c ****     SPI_MOSI_LOW();
+ 457              		.loc 1 100 5 is_stmt 1 view .LVU96
+ 458 0004 384C     		ldr	r4, .L37
+ 459 0006 4FF40071 		mov	r1, #512
+ 460 000a 2046     		mov	r0, r4
+ 461              	.LVL47:
+ 462              		.loc 1 100 5 is_stmt 0 view .LVU97
+ 463 000c FFF7FEFF 		bl	GPIO_ResetBits
+ 464              	.LVL48:
+ 101:HW/TOUCH/gpio_spi.c ****     SPI_CLK_LOW();
+ 465              		.loc 1 101 5 is_stmt 1 view .LVU98
+ 466 0010 0221     		movs	r1, #2
+ 467 0012 3648     		ldr	r0, .L37+4
+ 468 0014 FFF7FEFF 		bl	GPIO_ResetBits
+ 469              	.LVL49:
+ 102:HW/TOUCH/gpio_spi.c ****     SPI_CS_LOW();
+ 470              		.loc 1 102 5 view .LVU99
+ 471 0018 4FF40061 		mov	r1, #2048
+ 472 001c 2046     		mov	r0, r4
+ 473 001e FFF7FEFF 		bl	GPIO_ResetBits
+ 474              	.LVL50:
+ 103:HW/TOUCH/gpio_spi.c ****     delay_us(1);    // >= 100ns
+ 475              		.loc 1 103 5 view .LVU100
+ 476 0022 0120     		movs	r0, #1
+ 477 0024 FFF7FEFF 		bl	delay_us
+ 478              	.LVL51:
+ 104:HW/TOUCH/gpio_spi.c **** 
+ 105:HW/TOUCH/gpio_spi.c ****     /* 发送命令 */
+ 106:HW/TOUCH/gpio_spi.c ****     for(uint8_t i = 0; i < 8; ++i){
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 12
+
+
+ 479              		.loc 1 106 5 view .LVU101
+ 480              	.LBB4:
+ 481              		.loc 1 106 9 view .LVU102
+ 482              		.loc 1 106 17 is_stmt 0 view .LVU103
+ 483 0028 0024     		movs	r4, #0
+ 484              		.loc 1 106 5 view .LVU104
+ 485 002a 10E0     		b	.L27
+ 486              	.LVL52:
+ 487              	.L28:
+ 107:HW/TOUCH/gpio_spi.c ****         SPI_CLK_LOW();
+ 108:HW/TOUCH/gpio_spi.c ****         if(cmd & (0B10000000 >> (i)))   // 先发送高位
+ 109:HW/TOUCH/gpio_spi.c ****             SPI_MOSI_HIGH();
+ 110:HW/TOUCH/gpio_spi.c ****         else
+ 111:HW/TOUCH/gpio_spi.c ****             SPI_MOSI_LOW();
+ 488              		.loc 1 111 13 is_stmt 1 view .LVU105
+ 489 002c 4FF40071 		mov	r1, #512
+ 490 0030 2D48     		ldr	r0, .L37
+ 491 0032 FFF7FEFF 		bl	GPIO_ResetBits
+ 492              	.LVL53:
+ 493              	.L29:
+ 112:HW/TOUCH/gpio_spi.c ****         delay_us(1);    // >= 200ns
+ 494              		.loc 1 112 9 discriminator 2 view .LVU106
+ 495 0036 0120     		movs	r0, #1
+ 496 0038 FFF7FEFF 		bl	delay_us
+ 497              	.LVL54:
+ 113:HW/TOUCH/gpio_spi.c ****         SPI_CLK_HIGH();
+ 498              		.loc 1 113 9 discriminator 2 view .LVU107
+ 499 003c 0221     		movs	r1, #2
+ 500 003e 2B48     		ldr	r0, .L37+4
+ 501 0040 FFF7FEFF 		bl	GPIO_SetBits
+ 502              	.LVL55:
+ 114:HW/TOUCH/gpio_spi.c ****         delay_us(1);    // >= 200ns
+ 503              		.loc 1 114 9 discriminator 2 view .LVU108
+ 504 0044 0120     		movs	r0, #1
+ 505 0046 FFF7FEFF 		bl	delay_us
+ 506              	.LVL56:
+ 106:HW/TOUCH/gpio_spi.c ****         SPI_CLK_LOW();
+ 507              		.loc 1 106 31 discriminator 2 view .LVU109
+ 508 004a 0134     		adds	r4, r4, #1
+ 509              	.LVL57:
+ 106:HW/TOUCH/gpio_spi.c ****         SPI_CLK_LOW();
+ 510              		.loc 1 106 31 is_stmt 0 discriminator 2 view .LVU110
+ 511 004c E4B2     		uxtb	r4, r4
+ 512              	.LVL58:
+ 513              	.L27:
+ 106:HW/TOUCH/gpio_spi.c ****         SPI_CLK_LOW();
+ 514              		.loc 1 106 26 is_stmt 1 discriminator 1 view .LVU111
+ 515 004e 072C     		cmp	r4, #7
+ 516 0050 0DD8     		bhi	.L35
+ 107:HW/TOUCH/gpio_spi.c ****         if(cmd & (0B10000000 >> (i)))   // 先发送高位
+ 517              		.loc 1 107 9 view .LVU112
+ 518 0052 0221     		movs	r1, #2
+ 519 0054 2548     		ldr	r0, .L37+4
+ 520 0056 FFF7FEFF 		bl	GPIO_ResetBits
+ 521              	.LVL59:
+ 108:HW/TOUCH/gpio_spi.c ****             SPI_MOSI_HIGH();
+ 522              		.loc 1 108 9 view .LVU113
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 13
+
+
+ 108:HW/TOUCH/gpio_spi.c ****             SPI_MOSI_HIGH();
+ 523              		.loc 1 108 30 is_stmt 0 view .LVU114
+ 524 005a 8023     		movs	r3, #128
+ 525 005c 2341     		asrs	r3, r3, r4
+ 108:HW/TOUCH/gpio_spi.c ****             SPI_MOSI_HIGH();
+ 526              		.loc 1 108 11 view .LVU115
+ 527 005e 1D42     		tst	r5, r3
+ 528 0060 E4D0     		beq	.L28
+ 109:HW/TOUCH/gpio_spi.c ****         else
+ 529              		.loc 1 109 13 is_stmt 1 view .LVU116
+ 530 0062 4FF40071 		mov	r1, #512
+ 531 0066 2048     		ldr	r0, .L37
+ 532 0068 FFF7FEFF 		bl	GPIO_SetBits
+ 533              	.LVL60:
+ 534 006c E3E7     		b	.L29
+ 535              	.L35:
+ 536              	.LBE4:
+ 115:HW/TOUCH/gpio_spi.c ****     }
+ 116:HW/TOUCH/gpio_spi.c **** 
+ 117:HW/TOUCH/gpio_spi.c ****     /* 等待BUSY */
+ 118:HW/TOUCH/gpio_spi.c ****     SPI_CLK_LOW();
+ 537              		.loc 1 118 5 view .LVU117
+ 538 006e 1F4C     		ldr	r4, .L37+4
+ 539              	.LVL61:
+ 540              		.loc 1 118 5 is_stmt 0 view .LVU118
+ 541 0070 0221     		movs	r1, #2
+ 542 0072 2046     		mov	r0, r4
+ 543 0074 FFF7FEFF 		bl	GPIO_ResetBits
+ 544              	.LVL62:
+ 119:HW/TOUCH/gpio_spi.c ****     delay_us(1);    // >= 200ns
+ 545              		.loc 1 119 5 is_stmt 1 view .LVU119
+ 546 0078 0120     		movs	r0, #1
+ 547 007a FFF7FEFF 		bl	delay_us
+ 548              	.LVL63:
+ 120:HW/TOUCH/gpio_spi.c ****     SPI_CLK_HIGH();
+ 549              		.loc 1 120 5 view .LVU120
+ 550 007e 0221     		movs	r1, #2
+ 551 0080 2046     		mov	r0, r4
+ 552 0082 FFF7FEFF 		bl	GPIO_SetBits
+ 553              	.LVL64:
+ 121:HW/TOUCH/gpio_spi.c ****     delay_us(1);    // >= 200ns
+ 554              		.loc 1 121 5 view .LVU121
+ 555 0086 0120     		movs	r0, #1
+ 556 0088 FFF7FEFF 		bl	delay_us
+ 557              	.LVL65:
+ 122:HW/TOUCH/gpio_spi.c ****     SPI_CLK_LOW();
+ 558              		.loc 1 122 5 view .LVU122
+ 559 008c 0221     		movs	r1, #2
+ 560 008e 2046     		mov	r0, r4
+ 561 0090 FFF7FEFF 		bl	GPIO_ResetBits
+ 562              	.LVL66:
+ 123:HW/TOUCH/gpio_spi.c **** 
+ 124:HW/TOUCH/gpio_spi.c ****     /* 接收返回值 */
+ 125:HW/TOUCH/gpio_spi.c ****     uint16_t data = 0;
+ 563              		.loc 1 125 5 view .LVU123
+ 126:HW/TOUCH/gpio_spi.c ****     for(uint8_t i = 0; i < 12; ++i){
+ 564              		.loc 1 126 5 view .LVU124
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 14
+
+
+ 565              	.LBB5:
+ 566              		.loc 1 126 9 view .LVU125
+ 567              		.loc 1 126 17 is_stmt 0 view .LVU126
+ 568 0094 0024     		movs	r4, #0
+ 569              	.LBE5:
+ 125:HW/TOUCH/gpio_spi.c ****     for(uint8_t i = 0; i < 12; ++i){
+ 570              		.loc 1 125 14 view .LVU127
+ 571 0096 2646     		mov	r6, r4
+ 572              	.LBB6:
+ 573              		.loc 1 126 5 view .LVU128
+ 574 0098 08E0     		b	.L31
+ 575              	.LVL67:
+ 576              	.L32:
+ 127:HW/TOUCH/gpio_spi.c ****         SPI_CLK_HIGH();
+ 128:HW/TOUCH/gpio_spi.c ****         delay_us(1);    // >= 200ns
+ 129:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
+ 130:HW/TOUCH/gpio_spi.c ****             data |= 0X800 >> (i);   // 先接收高位
+ 131:HW/TOUCH/gpio_spi.c ****         }
+ 132:HW/TOUCH/gpio_spi.c ****         SPI_CLK_LOW();
+ 577              		.loc 1 132 9 is_stmt 1 discriminator 2 view .LVU129
+ 578 009a 0221     		movs	r1, #2
+ 579 009c 1348     		ldr	r0, .L37+4
+ 580 009e FFF7FEFF 		bl	GPIO_ResetBits
+ 581              	.LVL68:
+ 133:HW/TOUCH/gpio_spi.c ****         delay_us(1);    // >= 200ns
+ 582              		.loc 1 133 9 discriminator 2 view .LVU130
+ 583 00a2 0120     		movs	r0, #1
+ 584 00a4 FFF7FEFF 		bl	delay_us
+ 585              	.LVL69:
+ 126:HW/TOUCH/gpio_spi.c ****         SPI_CLK_HIGH();
+ 586              		.loc 1 126 32 discriminator 2 view .LVU131
+ 587 00a8 0134     		adds	r4, r4, #1
+ 588              	.LVL70:
+ 126:HW/TOUCH/gpio_spi.c ****         SPI_CLK_HIGH();
+ 589              		.loc 1 126 32 is_stmt 0 discriminator 2 view .LVU132
+ 590 00aa E4B2     		uxtb	r4, r4
+ 591              	.LVL71:
+ 592              	.L31:
+ 126:HW/TOUCH/gpio_spi.c ****         SPI_CLK_HIGH();
+ 593              		.loc 1 126 26 is_stmt 1 discriminator 1 view .LVU133
+ 594 00ac 0B2C     		cmp	r4, #11
+ 595 00ae 13D8     		bhi	.L36
+ 127:HW/TOUCH/gpio_spi.c ****         SPI_CLK_HIGH();
+ 596              		.loc 1 127 9 view .LVU134
+ 597 00b0 0E4D     		ldr	r5, .L37+4
+ 598 00b2 0221     		movs	r1, #2
+ 599 00b4 2846     		mov	r0, r5
+ 600 00b6 FFF7FEFF 		bl	GPIO_SetBits
+ 601              	.LVL72:
+ 128:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
+ 602              		.loc 1 128 9 view .LVU135
+ 603 00ba 0120     		movs	r0, #1
+ 604 00bc FFF7FEFF 		bl	delay_us
+ 605              	.LVL73:
+ 129:HW/TOUCH/gpio_spi.c ****             data |= 0X800 >> (i);   // 先接收高位
+ 606              		.loc 1 129 9 view .LVU136
+ 129:HW/TOUCH/gpio_spi.c ****             data |= 0X800 >> (i);   // 先接收高位
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 15
+
+
+ 607              		.loc 1 129 12 is_stmt 0 view .LVU137
+ 608 00c0 0421     		movs	r1, #4
+ 609 00c2 2846     		mov	r0, r5
+ 610 00c4 FFF7FEFF 		bl	GPIO_ReadInputDataBit
+ 611              	.LVL74:
+ 129:HW/TOUCH/gpio_spi.c ****             data |= 0X800 >> (i);   // 先接收高位
+ 612              		.loc 1 129 11 view .LVU138
+ 613 00c8 0028     		cmp	r0, #0
+ 614 00ca E6D0     		beq	.L32
+ 130:HW/TOUCH/gpio_spi.c ****         }
+ 615              		.loc 1 130 13 is_stmt 1 view .LVU139
+ 130:HW/TOUCH/gpio_spi.c ****         }
+ 616              		.loc 1 130 27 is_stmt 0 view .LVU140
+ 617 00cc 4FF40063 		mov	r3, #2048
+ 618 00d0 2341     		asrs	r3, r3, r4
+ 130:HW/TOUCH/gpio_spi.c ****         }
+ 619              		.loc 1 130 18 view .LVU141
+ 620 00d2 1E43     		orrs	r6, r6, r3
+ 621              	.LVL75:
+ 130:HW/TOUCH/gpio_spi.c ****         }
+ 622              		.loc 1 130 18 view .LVU142
+ 623 00d4 B6B2     		uxth	r6, r6
+ 624              	.LVL76:
+ 130:HW/TOUCH/gpio_spi.c ****         }
+ 625              		.loc 1 130 18 view .LVU143
+ 626 00d6 E0E7     		b	.L32
+ 627              	.L36:
+ 130:HW/TOUCH/gpio_spi.c ****         }
+ 628              		.loc 1 130 18 view .LVU144
+ 629              	.LBE6:
+ 134:HW/TOUCH/gpio_spi.c ****     }
+ 135:HW/TOUCH/gpio_spi.c **** 
+ 136:HW/TOUCH/gpio_spi.c ****     /* 取消片选 */
+ 137:HW/TOUCH/gpio_spi.c ****     SPI_CS_HIGH();
+ 630              		.loc 1 137 5 is_stmt 1 view .LVU145
+ 631 00d8 4FF40061 		mov	r1, #2048
+ 632 00dc 0248     		ldr	r0, .L37
+ 633 00de FFF7FEFF 		bl	GPIO_SetBits
+ 634              	.LVL77:
+ 138:HW/TOUCH/gpio_spi.c **** 
+ 139:HW/TOUCH/gpio_spi.c ****     return data;
+ 635              		.loc 1 139 5 view .LVU146
+ 140:HW/TOUCH/gpio_spi.c **** }...
+ 636              		.loc 1 140 1 is_stmt 0 view .LVU147
+ 637 00e2 3046     		mov	r0, r6
+ 638 00e4 70BD     		pop	{r4, r5, r6, pc}
+ 639              	.LVL78:
+ 640              	.L38:
+ 641              		.loc 1 140 1 view .LVU148
+ 642 00e6 00BF     		.align	2
+ 643              	.L37:
+ 644 00e8 001C0140 		.word	1073814528
+ 645 00ec 000C0140 		.word	1073810432
+ 646              		.cfi_endproc
+ 647              	.LFE34:
+ 649              		.text
+ 650              	.Letext0:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 16
+
+
+ 651              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 652              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 653              		.file 4 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 654              		.file 5 "USER/stm32f10x.h"
+ 655              		.file 6 "STM32F10x_FWLib/inc/stm32f10x_gpio.h"
+ 656              		.file 7 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 657              		.file 8 "SYSTEM/delay/delay.h"
+ 658              		.file 9 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
+ 659              		.file 10 "<built-in>"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 17
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 gpio_spi.c
+C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:19     .text.__GPIO_SPI_SendData:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:24     .text.__GPIO_SPI_SendData:00000000 __GPIO_SPI_SendData
+C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:138    .text.__GPIO_SPI_SendData:00000084 $d
+C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:144    .text.__GPIO_SPI_RecieveData:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:149    .text.__GPIO_SPI_RecieveData:00000000 __GPIO_SPI_RecieveData
+C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:273    .text.__GPIO_SPI_RecieveData:0000008c $d
+C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:279    .text.GPIO_SPI_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:285    .text.GPIO_SPI_Init:00000000 GPIO_SPI_Init
+C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:373    .text.GPIO_SPI_Init:00000070 $d
+C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:379    .text.GPIO_SPI_SendData:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:385    .text.GPIO_SPI_SendData:00000000 GPIO_SPI_SendData
+C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:407    .text.GPIO_SPI_RecieveData:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:413    .text.GPIO_SPI_RecieveData:00000000 GPIO_SPI_RecieveData
+C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:435    .text.GPIO_SPI_Touch_Func:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:441    .text.GPIO_SPI_Touch_Func:00000000 GPIO_SPI_Touch_Func
+C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:644    .text.GPIO_SPI_Touch_Func:000000e8 $d
+
+UNDEFINED SYMBOLS
+GPIO_ResetBits
+delay_us
+GPIO_SetBits
+memset
+GPIO_ReadInputDataBit
+RCC_APB2PeriphClockCmd
+GPIO_Init
+delay_init
