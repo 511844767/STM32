@@ -100,7 +100,7 @@ uint16_t GPIO_SPI_Touch_Func(uint8_t cmd){
     SPI_MOSI_LOW();
     SPI_CLK_LOW();
     SPI_CS_LOW();
-    delay_us(1);    // >= 100ns
+    delay_111ns();    // >= 100ns
 
     /* 发送命令 */
     for(uint8_t i = 0; i < 8; ++i){
@@ -109,28 +109,28 @@ uint16_t GPIO_SPI_Touch_Func(uint8_t cmd){
             SPI_MOSI_HIGH();
         else
             SPI_MOSI_LOW();
-        delay_us(1);    // >= 200ns
+        delay_208ns();    // >= 200ns
         SPI_CLK_HIGH();
-        delay_us(1);    // >= 200ns
+        delay_208ns();    // >= 200ns
     }
 
     /* 等待BUSY */
     SPI_CLK_LOW();
-    delay_us(1);    // >= 200ns
+    delay_208ns();    // >= 200ns
     SPI_CLK_HIGH();
-    delay_us(1);    // >= 200ns
+    delay_208ns();    // >= 200ns
     SPI_CLK_LOW();
 
     /* 接收返回值 */
     uint16_t data = 0;
     for(uint8_t i = 0; i < 12; ++i){
         SPI_CLK_HIGH();
-        delay_us(1);    // >= 200ns
+        delay_208ns();    // >= 200ns
         if(SPI_MISO_READ()){
             data |= 0X800 >> (i);   // 先接收高位
         }
         SPI_CLK_LOW();
-        delay_us(1);    // >= 200ns
+        delay_208ns();    // >= 200ns
     }
 
     /* 取消片选 */

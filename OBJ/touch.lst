@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s 			page 1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cct5KLKd.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -21,14 +21,15 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s 			page 1
   18              		.global	__aeabi_i2f
   19              		.global	__aeabi_fadd
   20              		.global	__aeabi_fdiv
-  21              		.section	.text.Touch_Init,"ax",%progbits
-  22              		.align	1
-  23              		.global	Touch_Init
-  24              		.syntax unified
-  25              		.thumb
-  26              		.thumb_func
-  28              	Touch_Init:
-  29              	.LFB32:
+  21              		.global	__aeabi_f2uiz
+  22              		.section	.text.Touch_Init,"ax",%progbits
+  23              		.align	1
+  24              		.global	Touch_Init
+  25              		.syntax unified
+  26              		.thumb
+  27              		.thumb_func
+  29              	Touch_Init:
+  30              	.LFB32:
    1:HW/TOUCH/touch.c **** /**
    2:HW/TOUCH/touch.c ****  * @file touch.c
    3:HW/TOUCH/touch.c ****  * @author 511844767
@@ -54,826 +55,767 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s 			page 1
   23:HW/TOUCH/touch.c ****  */
   24:HW/TOUCH/touch.c **** extern uint16_t GPIO_SPI_Touch_Func(uint8_t cmd);
   25:HW/TOUCH/touch.c **** 
-  26:HW/TOUCH/touch.c **** /* 电压参考值 */
-  27:HW/TOUCH/touch.c **** typedef struct{
-  28:HW/TOUCH/touch.c ****     float x;
-  29:HW/TOUCH/touch.c ****     float y;
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s 			page 2
+  26:HW/TOUCH/touch.c **** /* 定点数表示Q12 */
+  27:HW/TOUCH/touch.c **** #define TOUCH_SHIFT 12
+  28:HW/TOUCH/touch.c **** 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cct5KLKd.s 			page 2
 
 
-  30:HW/TOUCH/touch.c **** } Touch_Ref_t;
-  31:HW/TOUCH/touch.c **** static Touch_Ref_t reference = {0};
-  32:HW/TOUCH/touch.c **** 
-  33:HW/TOUCH/touch.c **** 
-  34:HW/TOUCH/touch.c **** void Touch_Init(){
-  30              		.loc 1 34 18 view -0
-  31              		.cfi_startproc
-  32              		@ args = 0, pretend = 0, frame = 48
-  33              		@ frame_needed = 0, uses_anonymous_args = 0
-  34 0000 F0B5     		push	{r4, r5, r6, r7, lr}
-  35              	.LCFI0:
-  36              		.cfi_def_cfa_offset 20
-  37              		.cfi_offset 4, -20
-  38              		.cfi_offset 5, -16
-  39              		.cfi_offset 6, -12
-  40              		.cfi_offset 7, -8
-  41              		.cfi_offset 14, -4
-  42 0002 8DB0     		sub	sp, sp, #52
-  43              	.LCFI1:
-  44              		.cfi_def_cfa_offset 72
-  35:HW/TOUCH/touch.c ****     /* 初始化SPI引脚 */
-  36:HW/TOUCH/touch.c ****     GPIO_SPI_Init();
-  45              		.loc 1 36 5 view .LVU1
-  46 0004 FFF7FEFF 		bl	GPIO_SPI_Init
-  47              	.LVL0:
-  37:HW/TOUCH/touch.c ****     /* 初始化Pen引脚(PF10) */
-  38:HW/TOUCH/touch.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOF, ENABLE);
-  48              		.loc 1 38 5 view .LVU2
-  49 0008 0121     		movs	r1, #1
-  50 000a 8020     		movs	r0, #128
-  51 000c FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
-  52              	.LVL1:
-  39:HW/TOUCH/touch.c ****     GPIO_InitTypeDef gpioDef;
-  53              		.loc 1 39 5 view .LVU3
-  40:HW/TOUCH/touch.c ****     gpioDef.GPIO_Mode   = GPIO_Mode_IN_FLOATING;
-  54              		.loc 1 40 5 view .LVU4
-  55              		.loc 1 40 25 is_stmt 0 view .LVU5
-  56 0010 0423     		movs	r3, #4
-  57 0012 8DF82F30 		strb	r3, [sp, #47]
-  41:HW/TOUCH/touch.c ****     gpioDef.GPIO_Pin    = GPIO_Pin_10;
-  58              		.loc 1 41 5 is_stmt 1 view .LVU6
-  59              		.loc 1 41 25 is_stmt 0 view .LVU7
-  60 0016 4FF48063 		mov	r3, #1024
-  61 001a ADF82C30 		strh	r3, [sp, #44]	@ movhi
-  42:HW/TOUCH/touch.c ****     gpioDef.GPIO_Speed  = GPIO_Speed_50MHz;
-  62              		.loc 1 42 5 is_stmt 1 view .LVU8
-  63              		.loc 1 42 25 is_stmt 0 view .LVU9
-  64 001e 0323     		movs	r3, #3
-  65 0020 8DF82E30 		strb	r3, [sp, #46]
-  43:HW/TOUCH/touch.c ****     GPIO_Init(GPIOF, &gpioDef);
-  66              		.loc 1 43 5 is_stmt 1 view .LVU10
-  67 0024 0BA9     		add	r1, sp, #44
-  68 0026 3B48     		ldr	r0, .L16
-  69 0028 FFF7FEFF 		bl	GPIO_Init
-  70              	.LVL2:
-  71              	.LBB2:
-  44:HW/TOUCH/touch.c **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s 			page 3
+  29:HW/TOUCH/touch.c **** /* 电压参考值 */
+  30:HW/TOUCH/touch.c **** typedef struct{
+  31:HW/TOUCH/touch.c ****     uint16_t x; 
+  32:HW/TOUCH/touch.c ****     uint16_t y;
+  33:HW/TOUCH/touch.c **** } Touch_Ref_t;
+  34:HW/TOUCH/touch.c **** static Touch_Ref_t reference = {0};
+  35:HW/TOUCH/touch.c **** 
+  36:HW/TOUCH/touch.c **** 
+  37:HW/TOUCH/touch.c **** void Touch_Init(){
+  31              		.loc 1 37 18 view -0
+  32              		.cfi_startproc
+  33              		@ args = 0, pretend = 0, frame = 48
+  34              		@ frame_needed = 0, uses_anonymous_args = 0
+  35 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 20
+  38              		.cfi_offset 4, -20
+  39              		.cfi_offset 5, -16
+  40              		.cfi_offset 6, -12
+  41              		.cfi_offset 7, -8
+  42              		.cfi_offset 14, -4
+  43 0002 8DB0     		sub	sp, sp, #52
+  44              	.LCFI1:
+  45              		.cfi_def_cfa_offset 72
+  38:HW/TOUCH/touch.c ****     /* 初始化SPI引脚 */
+  39:HW/TOUCH/touch.c ****     GPIO_SPI_Init();
+  46              		.loc 1 39 5 view .LVU1
+  47 0004 FFF7FEFF 		bl	GPIO_SPI_Init
+  48              	.LVL0:
+  40:HW/TOUCH/touch.c ****     /* 初始化Pen引脚(PF10) */
+  41:HW/TOUCH/touch.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOF, ENABLE);
+  49              		.loc 1 41 5 view .LVU2
+  50 0008 0121     		movs	r1, #1
+  51 000a 8020     		movs	r0, #128
+  52 000c FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+  53              	.LVL1:
+  42:HW/TOUCH/touch.c ****     GPIO_InitTypeDef gpioDef;
+  54              		.loc 1 42 5 view .LVU3
+  43:HW/TOUCH/touch.c ****     gpioDef.GPIO_Mode   = GPIO_Mode_IN_FLOATING;
+  55              		.loc 1 43 5 view .LVU4
+  56              		.loc 1 43 25 is_stmt 0 view .LVU5
+  57 0010 0423     		movs	r3, #4
+  58 0012 8DF82F30 		strb	r3, [sp, #47]
+  44:HW/TOUCH/touch.c ****     gpioDef.GPIO_Pin    = GPIO_Pin_10;
+  59              		.loc 1 44 5 is_stmt 1 view .LVU6
+  60              		.loc 1 44 25 is_stmt 0 view .LVU7
+  61 0016 4FF48063 		mov	r3, #1024
+  62 001a ADF82C30 		strh	r3, [sp, #44]	@ movhi
+  45:HW/TOUCH/touch.c ****     gpioDef.GPIO_Speed  = GPIO_Speed_50MHz;
+  63              		.loc 1 45 5 is_stmt 1 view .LVU8
+  64              		.loc 1 45 25 is_stmt 0 view .LVU9
+  65 001e 0323     		movs	r3, #3
+  66 0020 8DF82E30 		strb	r3, [sp, #46]
+  46:HW/TOUCH/touch.c ****     GPIO_Init(GPIOF, &gpioDef);
+  67              		.loc 1 46 5 is_stmt 1 view .LVU10
+  68 0024 0BA9     		add	r1, sp, #44
+  69 0026 3D48     		ldr	r0, .L16
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cct5KLKd.s 			page 3
 
 
-  45:HW/TOUCH/touch.c ****     /* 检测空状态下的电压参考值 */
-  46:HW/TOUCH/touch.c ****     {
-  47:HW/TOUCH/touch.c ****         /* 记录10次 */
-  48:HW/TOUCH/touch.c ****         int i, j;
-  72              		.loc 1 48 9 view .LVU11
-  49:HW/TOUCH/touch.c ****         uint16_t xBuffer[10], yBuffer[10];
-  73              		.loc 1 49 9 view .LVU12
-  50:HW/TOUCH/touch.c ****         for(i = 0; i < 10; ++i) {
-  74              		.loc 1 50 9 view .LVU13
-  75              		.loc 1 50 15 is_stmt 0 view .LVU14
-  76 002c 0024     		movs	r4, #0
-  77              		.loc 1 50 9 view .LVU15
-  78 002e 0DE0     		b	.L2
-  79              	.LVL3:
-  80              	.L3:
-  51:HW/TOUCH/touch.c ****             xBuffer[i] = GPIO_SPI_Touch_Func(0B11010000);
-  81              		.loc 1 51 13 is_stmt 1 discriminator 3 view .LVU16
-  82              		.loc 1 51 26 is_stmt 0 discriminator 3 view .LVU17
-  83 0030 D020     		movs	r0, #208
-  84 0032 FFF7FEFF 		bl	GPIO_SPI_Touch_Func
-  85              	.LVL4:
-  86              		.loc 1 51 24 discriminator 3 view .LVU18
-  87 0036 0CAB     		add	r3, sp, #48
-  88 0038 03EB4405 		add	r5, r3, r4, lsl #1
-  89 003c 25F82C0C 		strh	r0, [r5, #-44]	@ movhi
-  52:HW/TOUCH/touch.c ****             yBuffer[i] = GPIO_SPI_Touch_Func(0B10010000);
-  90              		.loc 1 52 13 is_stmt 1 discriminator 3 view .LVU19
-  91              		.loc 1 52 26 is_stmt 0 discriminator 3 view .LVU20
-  92 0040 9020     		movs	r0, #144
-  93 0042 FFF7FEFF 		bl	GPIO_SPI_Touch_Func
-  94              	.LVL5:
-  95              		.loc 1 52 24 discriminator 3 view .LVU21
-  96 0046 25F8180C 		strh	r0, [r5, #-24]	@ movhi
-  50:HW/TOUCH/touch.c ****         for(i = 0; i < 10; ++i) {
-  97              		.loc 1 50 28 is_stmt 1 discriminator 3 view .LVU22
-  98 004a 0134     		adds	r4, r4, #1
-  99              	.LVL6:
- 100              	.L2:
-  50:HW/TOUCH/touch.c ****         for(i = 0; i < 10; ++i) {
- 101              		.loc 1 50 22 discriminator 1 view .LVU23
- 102 004c 092C     		cmp	r4, #9
- 103 004e EFDD     		ble	.L3
-  53:HW/TOUCH/touch.c ****         }
-  54:HW/TOUCH/touch.c **** 
-  55:HW/TOUCH/touch.c ****         /* 冒泡排序 */
-  56:HW/TOUCH/touch.c ****         uint16_t temp;
-  57:HW/TOUCH/touch.c ****         for(i = 10 - 1; i > 0; --i){
- 104              		.loc 1 57 15 is_stmt 0 view .LVU24
- 105 0050 4FF0090C 		mov	ip, #9
- 106 0054 30E0     		b	.L4
- 107              	.LVL7:
- 108              	.L6:
-  50:HW/TOUCH/touch.c ****             xBuffer[i] = GPIO_SPI_Touch_Func(0B11010000);
- 109              		.loc 1 50 15 discriminator 1 view .LVU25
- 110 0056 1346     		mov	r3, r2
- 111              	.LVL8:
- 112              	.L8:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s 			page 4
+  70 0028 FFF7FEFF 		bl	GPIO_Init
+  71              	.LVL2:
+  72              	.LBB2:
+  47:HW/TOUCH/touch.c **** 
+  48:HW/TOUCH/touch.c ****     /* 检测空状态下的电压参考值 */
+  49:HW/TOUCH/touch.c ****     {
+  50:HW/TOUCH/touch.c ****         /* 记录10次 */
+  51:HW/TOUCH/touch.c ****         int i, j;
+  73              		.loc 1 51 9 view .LVU11
+  52:HW/TOUCH/touch.c ****         uint16_t xBuffer[10], yBuffer[10];
+  74              		.loc 1 52 9 view .LVU12
+  53:HW/TOUCH/touch.c ****         for(i = 0; i < 10; ++i) {
+  75              		.loc 1 53 9 view .LVU13
+  76              		.loc 1 53 15 is_stmt 0 view .LVU14
+  77 002c 0024     		movs	r4, #0
+  78              		.loc 1 53 9 view .LVU15
+  79 002e 0DE0     		b	.L2
+  80              	.LVL3:
+  81              	.L3:
+  54:HW/TOUCH/touch.c ****             xBuffer[i] = GPIO_SPI_Touch_Func(0B11010000);
+  82              		.loc 1 54 13 is_stmt 1 discriminator 3 view .LVU16
+  83              		.loc 1 54 26 is_stmt 0 discriminator 3 view .LVU17
+  84 0030 D020     		movs	r0, #208
+  85 0032 FFF7FEFF 		bl	GPIO_SPI_Touch_Func
+  86              	.LVL4:
+  87              		.loc 1 54 24 discriminator 3 view .LVU18
+  88 0036 0CAB     		add	r3, sp, #48
+  89 0038 03EB4405 		add	r5, r3, r4, lsl #1
+  90 003c 25F82C0C 		strh	r0, [r5, #-44]	@ movhi
+  55:HW/TOUCH/touch.c ****             yBuffer[i] = GPIO_SPI_Touch_Func(0B10010000);
+  91              		.loc 1 55 13 is_stmt 1 discriminator 3 view .LVU19
+  92              		.loc 1 55 26 is_stmt 0 discriminator 3 view .LVU20
+  93 0040 9020     		movs	r0, #144
+  94 0042 FFF7FEFF 		bl	GPIO_SPI_Touch_Func
+  95              	.LVL5:
+  96              		.loc 1 55 24 discriminator 3 view .LVU21
+  97 0046 25F8180C 		strh	r0, [r5, #-24]	@ movhi
+  53:HW/TOUCH/touch.c ****         for(i = 0; i < 10; ++i) {
+  98              		.loc 1 53 28 is_stmt 1 discriminator 3 view .LVU22
+  99 004a 0134     		adds	r4, r4, #1
+ 100              	.LVL6:
+ 101              	.L2:
+  53:HW/TOUCH/touch.c ****         for(i = 0; i < 10; ++i) {
+ 102              		.loc 1 53 22 discriminator 1 view .LVU23
+ 103 004c 092C     		cmp	r4, #9
+ 104 004e EFDD     		ble	.L3
+  56:HW/TOUCH/touch.c ****         }
+  57:HW/TOUCH/touch.c **** 
+  58:HW/TOUCH/touch.c ****         /* 冒泡排序 */
+  59:HW/TOUCH/touch.c ****         uint16_t temp;
+  60:HW/TOUCH/touch.c ****         for(i = 10 - 1; i > 0; --i){
+ 105              		.loc 1 60 15 is_stmt 0 view .LVU24
+ 106 0050 4FF0090C 		mov	ip, #9
+ 107 0054 30E0     		b	.L4
+ 108              	.LVL7:
+ 109              	.L6:
+  53:HW/TOUCH/touch.c ****             xBuffer[i] = GPIO_SPI_Touch_Func(0B11010000);
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cct5KLKd.s 			page 4
 
 
-  58:HW/TOUCH/touch.c ****             for(j = 0; j < i; ++j){
- 113              		.loc 1 58 26 is_stmt 1 discriminator 1 view .LVU26
- 114 0058 9C45     		cmp	ip, r3
- 115 005a 2BDD     		ble	.L13
-  59:HW/TOUCH/touch.c ****                 if(xBuffer[j] > xBuffer[j + 1]){
- 116              		.loc 1 59 17 view .LVU27
- 117              		.loc 1 59 27 is_stmt 0 view .LVU28
- 118 005c 0CAA     		add	r2, sp, #48
- 119 005e 02EB4302 		add	r2, r2, r3, lsl #1
- 120 0062 32F82C1C 		ldrh	r1, [r2, #-44]
- 121              		.loc 1 59 43 view .LVU29
- 122 0066 5A1C     		adds	r2, r3, #1
- 123              		.loc 1 59 40 view .LVU30
- 124 0068 0CA8     		add	r0, sp, #48
- 125 006a 00EB4200 		add	r0, r0, r2, lsl #1
- 126 006e 30F82C0C 		ldrh	r0, [r0, #-44]
- 127              		.loc 1 59 19 view .LVU31
- 128 0072 8142     		cmp	r1, r0
- 129 0074 08D9     		bls	.L5
-  60:HW/TOUCH/touch.c ****                     temp = xBuffer[j]; xBuffer[j] = xBuffer[j + 1]; xBuffer[j + 1] = temp;  // swap
- 130              		.loc 1 60 21 is_stmt 1 view .LVU32
- 131              	.LVL9:
- 132              		.loc 1 60 40 view .LVU33
- 133              		.loc 1 60 51 is_stmt 0 view .LVU34
- 134 0076 0CAC     		add	r4, sp, #48
- 135 0078 04EB430E 		add	lr, r4, r3, lsl #1
- 136 007c 2EF82C0C 		strh	r0, [lr, #-44]	@ movhi
- 137              		.loc 1 60 69 is_stmt 1 view .LVU35
- 138              		.loc 1 60 84 is_stmt 0 view .LVU36
- 139 0080 04EB4200 		add	r0, r4, r2, lsl #1
- 140 0084 20F82C1C 		strh	r1, [r0, #-44]	@ movhi
- 141              	.LVL10:
- 142              	.L5:
-  61:HW/TOUCH/touch.c ****                 }
-  62:HW/TOUCH/touch.c ****                 if(yBuffer[j] > yBuffer[j + 1]){
- 143              		.loc 1 62 17 is_stmt 1 view .LVU37
- 144              		.loc 1 62 27 is_stmt 0 view .LVU38
- 145 0088 0CA9     		add	r1, sp, #48
- 146 008a 01EB4301 		add	r1, r1, r3, lsl #1
- 147 008e 31F8181C 		ldrh	r1, [r1, #-24]
- 148              		.loc 1 62 40 view .LVU39
- 149 0092 0CA8     		add	r0, sp, #48
- 150 0094 00EB4200 		add	r0, r0, r2, lsl #1
- 151 0098 30F8180C 		ldrh	r0, [r0, #-24]
- 152              		.loc 1 62 19 view .LVU40
- 153 009c 8142     		cmp	r1, r0
- 154 009e DAD9     		bls	.L6
-  63:HW/TOUCH/touch.c ****                     temp = yBuffer[j]; yBuffer[j] = yBuffer[j + 1]; yBuffer[j + 1] = temp;  // swap
- 155              		.loc 1 63 21 is_stmt 1 view .LVU41
- 156              	.LVL11:
- 157              		.loc 1 63 40 view .LVU42
- 158              		.loc 1 63 51 is_stmt 0 view .LVU43
- 159 00a0 0CAC     		add	r4, sp, #48
- 160 00a2 04EB4303 		add	r3, r4, r3, lsl #1
- 161              	.LVL12:
- 162              		.loc 1 63 51 view .LVU44
- 163 00a6 23F8180C 		strh	r0, [r3, #-24]	@ movhi
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s 			page 5
-
-
- 164              		.loc 1 63 69 is_stmt 1 view .LVU45
- 165              		.loc 1 63 84 is_stmt 0 view .LVU46
- 166 00aa 04EB4203 		add	r3, r4, r2, lsl #1
- 167 00ae 23F8181C 		strh	r1, [r3, #-24]	@ movhi
- 168 00b2 D0E7     		b	.L6
- 169              	.LVL13:
- 170              	.L13:
-  57:HW/TOUCH/touch.c ****             for(j = 0; j < i; ++j){
- 171              		.loc 1 57 32 is_stmt 1 discriminator 2 view .LVU47
- 172 00b4 0CF1FF3C 		add	ip, ip, #-1
- 173              	.LVL14:
- 174              	.L4:
-  57:HW/TOUCH/touch.c ****             for(j = 0; j < i; ++j){
- 175              		.loc 1 57 27 discriminator 1 view .LVU48
- 176 00b8 BCF1000F 		cmp	ip, #0
- 177 00bc 01DD     		ble	.L14
-  58:HW/TOUCH/touch.c ****                 if(xBuffer[j] > xBuffer[j + 1]){
- 178              		.loc 1 58 19 is_stmt 0 view .LVU49
- 179 00be 0023     		movs	r3, #0
- 180 00c0 CAE7     		b	.L8
- 181              	.L14:
+ 110              		.loc 1 53 15 discriminator 1 view .LVU25
+ 111 0056 1346     		mov	r3, r2
+ 112              	.LVL8:
+ 113              	.L8:
+  61:HW/TOUCH/touch.c ****             for(j = 0; j < i; ++j){
+ 114              		.loc 1 61 26 is_stmt 1 discriminator 1 view .LVU26
+ 115 0058 9C45     		cmp	ip, r3
+ 116 005a 2BDD     		ble	.L13
+  62:HW/TOUCH/touch.c ****                 if(xBuffer[j] > xBuffer[j + 1]){
+ 117              		.loc 1 62 17 view .LVU27
+ 118              		.loc 1 62 27 is_stmt 0 view .LVU28
+ 119 005c 0CAA     		add	r2, sp, #48
+ 120 005e 02EB4302 		add	r2, r2, r3, lsl #1
+ 121 0062 32F82C1C 		ldrh	r1, [r2, #-44]
+ 122              		.loc 1 62 43 view .LVU29
+ 123 0066 5A1C     		adds	r2, r3, #1
+ 124              		.loc 1 62 40 view .LVU30
+ 125 0068 0CA8     		add	r0, sp, #48
+ 126 006a 00EB4200 		add	r0, r0, r2, lsl #1
+ 127 006e 30F82C0C 		ldrh	r0, [r0, #-44]
+ 128              		.loc 1 62 19 view .LVU31
+ 129 0072 8142     		cmp	r1, r0
+ 130 0074 08D9     		bls	.L5
+  63:HW/TOUCH/touch.c ****                     temp = xBuffer[j]; xBuffer[j] = xBuffer[j + 1]; xBuffer[j + 1] = temp;  // swap
+ 131              		.loc 1 63 21 is_stmt 1 view .LVU32
+ 132              	.LVL9:
+ 133              		.loc 1 63 40 view .LVU33
+ 134              		.loc 1 63 51 is_stmt 0 view .LVU34
+ 135 0076 0CAC     		add	r4, sp, #48
+ 136 0078 04EB430E 		add	lr, r4, r3, lsl #1
+ 137 007c 2EF82C0C 		strh	r0, [lr, #-44]	@ movhi
+ 138              		.loc 1 63 69 is_stmt 1 view .LVU35
+ 139              		.loc 1 63 84 is_stmt 0 view .LVU36
+ 140 0080 04EB4200 		add	r0, r4, r2, lsl #1
+ 141 0084 20F82C1C 		strh	r1, [r0, #-44]	@ movhi
+ 142              	.LVL10:
+ 143              	.L5:
   64:HW/TOUCH/touch.c ****                 }
-  65:HW/TOUCH/touch.c ****             }
-  66:HW/TOUCH/touch.c ****         }
-  67:HW/TOUCH/touch.c ****         /* 统计其中的6次 */
-  68:HW/TOUCH/touch.c ****         float xSum = 0, ySum = 0;
- 182              		.loc 1 68 25 view .LVU50
- 183 00c2 0024     		movs	r4, #0
- 184              		.loc 1 68 15 view .LVU51
- 185 00c4 2546     		mov	r5, r4
-  69:HW/TOUCH/touch.c ****         for(i = 2; i < 8; ++i) {
- 186              		.loc 1 69 15 view .LVU52
- 187 00c6 0226     		movs	r6, #2
- 188              	.LVL15:
- 189              	.L9:
- 190              		.loc 1 69 22 is_stmt 1 discriminator 1 view .LVU53
- 191 00c8 072E     		cmp	r6, #7
- 192 00ca 16DC     		bgt	.L15
-  70:HW/TOUCH/touch.c ****             xSum += xBuffer[i];
- 193              		.loc 1 70 13 discriminator 3 view .LVU54
- 194              		.loc 1 70 28 is_stmt 0 discriminator 3 view .LVU55
- 195 00cc 0CAB     		add	r3, sp, #48
- 196 00ce 03EB4607 		add	r7, r3, r6, lsl #1
- 197              		.loc 1 70 18 discriminator 3 view .LVU56
- 198 00d2 37F82C0C 		ldrh	r0, [r7, #-44]
- 199 00d6 FFF7FEFF 		bl	__aeabi_i2f
- 200              	.LVL16:
- 201 00da 0146     		mov	r1, r0
- 202 00dc 2846     		mov	r0, r5
- 203 00de FFF7FEFF 		bl	__aeabi_fadd
- 204              	.LVL17:
- 205 00e2 0546     		mov	r5, r0
- 206              	.LVL18:
-  71:HW/TOUCH/touch.c ****             ySum += yBuffer[i];
- 207              		.loc 1 71 13 is_stmt 1 discriminator 3 view .LVU57
- 208              		.loc 1 71 18 is_stmt 0 discriminator 3 view .LVU58
- 209 00e4 37F8180C 		ldrh	r0, [r7, #-24]
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s 			page 6
+  65:HW/TOUCH/touch.c ****                 if(yBuffer[j] > yBuffer[j + 1]){
+ 144              		.loc 1 65 17 is_stmt 1 view .LVU37
+ 145              		.loc 1 65 27 is_stmt 0 view .LVU38
+ 146 0088 0CA9     		add	r1, sp, #48
+ 147 008a 01EB4301 		add	r1, r1, r3, lsl #1
+ 148 008e 31F8181C 		ldrh	r1, [r1, #-24]
+ 149              		.loc 1 65 40 view .LVU39
+ 150 0092 0CA8     		add	r0, sp, #48
+ 151 0094 00EB4200 		add	r0, r0, r2, lsl #1
+ 152 0098 30F8180C 		ldrh	r0, [r0, #-24]
+ 153              		.loc 1 65 19 view .LVU40
+ 154 009c 8142     		cmp	r1, r0
+ 155 009e DAD9     		bls	.L6
+  66:HW/TOUCH/touch.c ****                     temp = yBuffer[j]; yBuffer[j] = yBuffer[j + 1]; yBuffer[j + 1] = temp;  // swap
+ 156              		.loc 1 66 21 is_stmt 1 view .LVU41
+ 157              	.LVL11:
+ 158              		.loc 1 66 40 view .LVU42
+ 159              		.loc 1 66 51 is_stmt 0 view .LVU43
+ 160 00a0 0CAC     		add	r4, sp, #48
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cct5KLKd.s 			page 5
 
 
- 210              	.LVL19:
- 211              		.loc 1 71 18 discriminator 3 view .LVU59
- 212 00e8 FFF7FEFF 		bl	__aeabi_i2f
- 213              	.LVL20:
- 214 00ec 0146     		mov	r1, r0
- 215 00ee 2046     		mov	r0, r4
- 216 00f0 FFF7FEFF 		bl	__aeabi_fadd
- 217              	.LVL21:
- 218 00f4 0446     		mov	r4, r0
- 219              	.LVL22:
-  69:HW/TOUCH/touch.c ****         for(i = 2; i < 8; ++i) {
- 220              		.loc 1 69 27 is_stmt 1 discriminator 3 view .LVU60
- 221 00f6 0136     		adds	r6, r6, #1
- 222              	.LVL23:
-  69:HW/TOUCH/touch.c ****         for(i = 2; i < 8; ++i) {
- 223              		.loc 1 69 27 is_stmt 0 discriminator 3 view .LVU61
- 224 00f8 E6E7     		b	.L9
- 225              	.LVL24:
- 226              	.L15:
-  72:HW/TOUCH/touch.c ****         }
-  73:HW/TOUCH/touch.c **** 
-  74:HW/TOUCH/touch.c ****         reference.x = xSum / 6;
- 227              		.loc 1 74 9 is_stmt 1 view .LVU62
- 228              		.loc 1 74 28 is_stmt 0 view .LVU63
- 229 00fa 0749     		ldr	r1, .L16+4
- 230 00fc 2846     		mov	r0, r5
- 231 00fe FFF7FEFF 		bl	__aeabi_fdiv
- 232              	.LVL25:
- 233              		.loc 1 74 21 view .LVU64
- 234 0102 064D     		ldr	r5, .L16+8
- 235              	.LVL26:
- 236              		.loc 1 74 21 view .LVU65
- 237 0104 2860     		str	r0, [r5]	@ float
-  75:HW/TOUCH/touch.c ****         reference.y = ySum / 6;
- 238              		.loc 1 75 9 is_stmt 1 view .LVU66
- 239              		.loc 1 75 28 is_stmt 0 view .LVU67
- 240 0106 0449     		ldr	r1, .L16+4
- 241 0108 2046     		mov	r0, r4
- 242 010a FFF7FEFF 		bl	__aeabi_fdiv
- 243              	.LVL27:
- 244              		.loc 1 75 21 view .LVU68
- 245 010e 6860     		str	r0, [r5, #4]	@ float
- 246              	.LBE2:
-  76:HW/TOUCH/touch.c ****     }
-  77:HW/TOUCH/touch.c **** }
- 247              		.loc 1 77 1 view .LVU69
- 248 0110 0DB0     		add	sp, sp, #52
- 249              	.LCFI2:
- 250              		.cfi_def_cfa_offset 20
- 251              		@ sp needed
- 252 0112 F0BD     		pop	{r4, r5, r6, r7, pc}
- 253              	.LVL28:
- 254              	.L17:
- 255              		.loc 1 77 1 view .LVU70
- 256              		.align	2
- 257              	.L16:
- 258 0114 001C0140 		.word	1073814528
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s 			page 7
+ 161 00a2 04EB4303 		add	r3, r4, r3, lsl #1
+ 162              	.LVL12:
+ 163              		.loc 1 66 51 view .LVU44
+ 164 00a6 23F8180C 		strh	r0, [r3, #-24]	@ movhi
+ 165              		.loc 1 66 69 is_stmt 1 view .LVU45
+ 166              		.loc 1 66 84 is_stmt 0 view .LVU46
+ 167 00aa 04EB4203 		add	r3, r4, r2, lsl #1
+ 168 00ae 23F8181C 		strh	r1, [r3, #-24]	@ movhi
+ 169 00b2 D0E7     		b	.L6
+ 170              	.LVL13:
+ 171              	.L13:
+  60:HW/TOUCH/touch.c ****             for(j = 0; j < i; ++j){
+ 172              		.loc 1 60 32 is_stmt 1 discriminator 2 view .LVU47
+ 173 00b4 0CF1FF3C 		add	ip, ip, #-1
+ 174              	.LVL14:
+ 175              	.L4:
+  60:HW/TOUCH/touch.c ****             for(j = 0; j < i; ++j){
+ 176              		.loc 1 60 27 discriminator 1 view .LVU48
+ 177 00b8 BCF1000F 		cmp	ip, #0
+ 178 00bc 01DD     		ble	.L14
+  61:HW/TOUCH/touch.c ****                 if(xBuffer[j] > xBuffer[j + 1]){
+ 179              		.loc 1 61 19 is_stmt 0 view .LVU49
+ 180 00be 0023     		movs	r3, #0
+ 181 00c0 CAE7     		b	.L8
+ 182              	.L14:
+  67:HW/TOUCH/touch.c ****                 }
+  68:HW/TOUCH/touch.c ****             }
+  69:HW/TOUCH/touch.c ****         }
+  70:HW/TOUCH/touch.c ****         /* 统计其中的6次 */
+  71:HW/TOUCH/touch.c ****         float xSum = 0, ySum = 0;
+ 183              		.loc 1 71 25 view .LVU50
+ 184 00c2 0024     		movs	r4, #0
+ 185              		.loc 1 71 15 view .LVU51
+ 186 00c4 2546     		mov	r5, r4
+  72:HW/TOUCH/touch.c ****         for(i = 2; i < 8; ++i) {
+ 187              		.loc 1 72 15 view .LVU52
+ 188 00c6 0226     		movs	r6, #2
+ 189              	.LVL15:
+ 190              	.L9:
+ 191              		.loc 1 72 22 is_stmt 1 discriminator 1 view .LVU53
+ 192 00c8 072E     		cmp	r6, #7
+ 193 00ca 16DC     		bgt	.L15
+  73:HW/TOUCH/touch.c ****             xSum += xBuffer[i];
+ 194              		.loc 1 73 13 discriminator 3 view .LVU54
+ 195              		.loc 1 73 28 is_stmt 0 discriminator 3 view .LVU55
+ 196 00cc 0CAB     		add	r3, sp, #48
+ 197 00ce 03EB4607 		add	r7, r3, r6, lsl #1
+ 198              		.loc 1 73 18 discriminator 3 view .LVU56
+ 199 00d2 37F82C0C 		ldrh	r0, [r7, #-44]
+ 200 00d6 FFF7FEFF 		bl	__aeabi_i2f
+ 201              	.LVL16:
+ 202 00da 0146     		mov	r1, r0
+ 203 00dc 2846     		mov	r0, r5
+ 204 00de FFF7FEFF 		bl	__aeabi_fadd
+ 205              	.LVL17:
+ 206 00e2 0546     		mov	r5, r0
+ 207              	.LVL18:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cct5KLKd.s 			page 6
 
 
- 259 0118 0000C040 		.word	1086324736
- 260 011c 00000000 		.word	reference
- 261              		.cfi_endproc
- 262              	.LFE32:
- 264              		.global	__aeabi_fsub
- 265              		.section	.text.Touch_Scan,"ax",%progbits
- 266              		.align	1
- 267              		.global	Touch_Scan
- 268              		.syntax unified
- 269              		.thumb
- 270              		.thumb_func
- 272              	Touch_Scan:
- 273              	.LVL29:
- 274              	.LFB33:
-  78:HW/TOUCH/touch.c **** 
-  79:HW/TOUCH/touch.c **** typedef enum{
-  80:HW/TOUCH/touch.c ****     Touch_State_Release = 0, 
-  81:HW/TOUCH/touch.c ****     Touch_State_Waiting, 
-  82:HW/TOUCH/touch.c ****     Touch_State_Pressed
-  83:HW/TOUCH/touch.c **** } Touch_State_t;
-  84:HW/TOUCH/touch.c **** 
-  85:HW/TOUCH/touch.c **** typedef struct{
-  86:HW/TOUCH/touch.c ****     float x; 
-  87:HW/TOUCH/touch.c ****     float y;
-  88:HW/TOUCH/touch.c ****     Touch_State_t state;
-  89:HW/TOUCH/touch.c **** } Touch_Info_t;
-  90:HW/TOUCH/touch.c **** 
-  91:HW/TOUCH/touch.c **** /* 状态机检测 */
-  92:HW/TOUCH/touch.c **** Touch_Info_t Touch_Scan(){
- 275              		.loc 1 92 26 is_stmt 1 view -0
- 276              		.cfi_startproc
- 277              		@ args = 0, pretend = 0, frame = 0
- 278              		@ frame_needed = 0, uses_anonymous_args = 0
- 279              		.loc 1 92 26 is_stmt 0 view .LVU72
- 280 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
- 281              	.LCFI3:
- 282              		.cfi_def_cfa_offset 24
- 283              		.cfi_offset 3, -24
- 284              		.cfi_offset 4, -20
- 285              		.cfi_offset 5, -16
- 286              		.cfi_offset 6, -12
- 287              		.cfi_offset 7, -8
- 288              		.cfi_offset 14, -4
- 289 0002 0446     		mov	r4, r0
-  93:HW/TOUCH/touch.c ****     static Touch_Info_t touchInfo = {0};
- 290              		.loc 1 93 5 is_stmt 1 view .LVU73
-  94:HW/TOUCH/touch.c ****     static uint8_t acc;
- 291              		.loc 1 94 5 view .LVU74
-  95:HW/TOUCH/touch.c **** 
-  96:HW/TOUCH/touch.c ****     #define PEN (!GPIO_ReadInputDataBit(GPIOF, GPIO_Pin_10))
-  97:HW/TOUCH/touch.c ****     #define READ_X() GPIO_SPI_Touch_Func(0B11010000) / (4095 - reference.x)
-  98:HW/TOUCH/touch.c ****     #define READ_Y() (reference.y - GPIO_SPI_Touch_Func(0B10010000)) / reference.y
-  99:HW/TOUCH/touch.c **** 
- 100:HW/TOUCH/touch.c ****     switch (touchInfo.state)
- 292              		.loc 1 100 5 view .LVU75
- 293              		.loc 1 100 22 is_stmt 0 view .LVU76
- 294 0004 3F4B     		ldr	r3, .L27
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s 			page 8
+  74:HW/TOUCH/touch.c ****             ySum += yBuffer[i];
+ 208              		.loc 1 74 13 is_stmt 1 discriminator 3 view .LVU57
+ 209              		.loc 1 74 18 is_stmt 0 discriminator 3 view .LVU58
+ 210 00e4 37F8180C 		ldrh	r0, [r7, #-24]
+ 211              	.LVL19:
+ 212              		.loc 1 74 18 discriminator 3 view .LVU59
+ 213 00e8 FFF7FEFF 		bl	__aeabi_i2f
+ 214              	.LVL20:
+ 215 00ec 0146     		mov	r1, r0
+ 216 00ee 2046     		mov	r0, r4
+ 217 00f0 FFF7FEFF 		bl	__aeabi_fadd
+ 218              	.LVL21:
+ 219 00f4 0446     		mov	r4, r0
+ 220              	.LVL22:
+  72:HW/TOUCH/touch.c ****         for(i = 2; i < 8; ++i) {
+ 221              		.loc 1 72 27 is_stmt 1 discriminator 3 view .LVU60
+ 222 00f6 0136     		adds	r6, r6, #1
+ 223              	.LVL23:
+  72:HW/TOUCH/touch.c ****         for(i = 2; i < 8; ++i) {
+ 224              		.loc 1 72 27 is_stmt 0 discriminator 3 view .LVU61
+ 225 00f8 E6E7     		b	.L9
+ 226              	.LVL24:
+ 227              	.L15:
+  75:HW/TOUCH/touch.c ****         }
+  76:HW/TOUCH/touch.c **** 
+  77:HW/TOUCH/touch.c ****         reference.x = xSum / 6;
+ 228              		.loc 1 77 9 is_stmt 1 view .LVU62
+ 229              		.loc 1 77 28 is_stmt 0 view .LVU63
+ 230 00fa 0949     		ldr	r1, .L16+4
+ 231 00fc 2846     		mov	r0, r5
+ 232 00fe FFF7FEFF 		bl	__aeabi_fdiv
+ 233              	.LVL25:
+ 234              		.loc 1 77 21 view .LVU64
+ 235 0102 084D     		ldr	r5, .L16+8
+ 236              	.LVL26:
+ 237              		.loc 1 77 21 view .LVU65
+ 238 0104 FFF7FEFF 		bl	__aeabi_f2uiz
+ 239              	.LVL27:
+ 240 0108 2880     		strh	r0, [r5]	@ movhi
+  78:HW/TOUCH/touch.c ****         reference.y = ySum / 6;
+ 241              		.loc 1 78 9 is_stmt 1 view .LVU66
+ 242              		.loc 1 78 28 is_stmt 0 view .LVU67
+ 243 010a 0549     		ldr	r1, .L16+4
+ 244 010c 2046     		mov	r0, r4
+ 245 010e FFF7FEFF 		bl	__aeabi_fdiv
+ 246              	.LVL28:
+ 247              		.loc 1 78 21 view .LVU68
+ 248 0112 FFF7FEFF 		bl	__aeabi_f2uiz
+ 249              	.LVL29:
+ 250 0116 6880     		strh	r0, [r5, #2]	@ movhi
+ 251              	.LBE2:
+  79:HW/TOUCH/touch.c ****     }
+  80:HW/TOUCH/touch.c **** }
+ 252              		.loc 1 80 1 view .LVU69
+ 253 0118 0DB0     		add	sp, sp, #52
+ 254              	.LCFI2:
+ 255              		.cfi_def_cfa_offset 20
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cct5KLKd.s 			page 7
 
 
- 295 0006 1B7A     		ldrb	r3, [r3, #8]	@ zero_extendqisi2
- 296              		.loc 1 100 5 view .LVU77
- 297 0008 012B     		cmp	r3, #1
- 298 000a 18D0     		beq	.L19
- 299 000c 022B     		cmp	r3, #2
- 300 000e 4CD0     		beq	.L20
- 301 0010 33B1     		cbz	r3, .L25
- 302              	.LVL30:
- 303              	.L21:
- 101:HW/TOUCH/touch.c ****     {
- 102:HW/TOUCH/touch.c ****     case Touch_State_Release:
- 103:HW/TOUCH/touch.c ****         if(PEN){
- 104:HW/TOUCH/touch.c ****             ++acc;
- 105:HW/TOUCH/touch.c ****             touchInfo.state = Touch_State_Waiting;
- 106:HW/TOUCH/touch.c ****         }
- 107:HW/TOUCH/touch.c ****         break;
- 108:HW/TOUCH/touch.c ****     
- 109:HW/TOUCH/touch.c ****     case Touch_State_Waiting:
- 110:HW/TOUCH/touch.c ****         if(PEN){
- 111:HW/TOUCH/touch.c ****             ++acc;
- 112:HW/TOUCH/touch.c ****             if(acc >= 10){
- 113:HW/TOUCH/touch.c ****                 touchInfo.x = READ_X();
- 114:HW/TOUCH/touch.c ****                 touchInfo.y = READ_Y();
- 115:HW/TOUCH/touch.c ****                 touchInfo.state = Touch_State_Pressed;
- 116:HW/TOUCH/touch.c ****             }
- 117:HW/TOUCH/touch.c ****         }else{
- 118:HW/TOUCH/touch.c ****             acc = 0;
- 119:HW/TOUCH/touch.c ****             touchInfo.state = Touch_State_Release;
- 120:HW/TOUCH/touch.c ****         }
- 121:HW/TOUCH/touch.c ****         break;
- 122:HW/TOUCH/touch.c **** 
- 123:HW/TOUCH/touch.c ****     case Touch_State_Pressed:
- 124:HW/TOUCH/touch.c ****         if(PEN){
- 125:HW/TOUCH/touch.c ****             touchInfo.x = READ_X();
- 126:HW/TOUCH/touch.c ****             touchInfo.y = READ_Y();
- 127:HW/TOUCH/touch.c ****         }else{
- 128:HW/TOUCH/touch.c ****             touchInfo.state = Touch_State_Release;
- 129:HW/TOUCH/touch.c ****             acc = 0;
- 130:HW/TOUCH/touch.c ****         }
- 131:HW/TOUCH/touch.c ****         break;
- 132:HW/TOUCH/touch.c **** 
- 133:HW/TOUCH/touch.c ****     default:    // not allowed
+ 256              		@ sp needed
+ 257 011a F0BD     		pop	{r4, r5, r6, r7, pc}
+ 258              	.LVL30:
+ 259              	.L17:
+ 260              		.loc 1 80 1 view .LVU70
+ 261              		.align	2
+ 262              	.L16:
+ 263 011c 001C0140 		.word	1073814528
+ 264 0120 0000C040 		.word	1086324736
+ 265 0124 00000000 		.word	reference
+ 266              		.cfi_endproc
+ 267              	.LFE32:
+ 269              		.section	.text.Touch_Scan,"ax",%progbits
+ 270              		.align	1
+ 271              		.global	Touch_Scan
+ 272              		.syntax unified
+ 273              		.thumb
+ 274              		.thumb_func
+ 276              	Touch_Scan:
+ 277              	.LVL31:
+ 278              	.LFB33:
+  81:HW/TOUCH/touch.c **** 
+  82:HW/TOUCH/touch.c **** typedef enum{
+  83:HW/TOUCH/touch.c ****     Touch_State_Release = 0, 
+  84:HW/TOUCH/touch.c ****     Touch_State_Waiting, 
+  85:HW/TOUCH/touch.c ****     Touch_State_Pressed
+  86:HW/TOUCH/touch.c **** } Touch_State_t;
+  87:HW/TOUCH/touch.c **** 
+  88:HW/TOUCH/touch.c **** typedef struct{
+  89:HW/TOUCH/touch.c ****     uint16_t x; 
+  90:HW/TOUCH/touch.c ****     uint16_t y;
+  91:HW/TOUCH/touch.c ****     Touch_State_t state;
+  92:HW/TOUCH/touch.c **** } Touch_Info_t;
+  93:HW/TOUCH/touch.c **** 
+  94:HW/TOUCH/touch.c **** /* 状态机检测 */
+  95:HW/TOUCH/touch.c **** Touch_Info_t Touch_Scan(){
+ 279              		.loc 1 95 26 is_stmt 1 view -0
+ 280              		.cfi_startproc
+ 281              		@ args = 0, pretend = 0, frame = 0
+ 282              		@ frame_needed = 0, uses_anonymous_args = 0
+ 283              		.loc 1 95 26 is_stmt 0 view .LVU72
+ 284 0000 38B5     		push	{r3, r4, r5, lr}
+ 285              	.LCFI3:
+ 286              		.cfi_def_cfa_offset 16
+ 287              		.cfi_offset 3, -16
+ 288              		.cfi_offset 4, -12
+ 289              		.cfi_offset 5, -8
+ 290              		.cfi_offset 14, -4
+ 291 0002 0446     		mov	r4, r0
+  96:HW/TOUCH/touch.c ****     static Touch_Info_t touchInfo = {0};
+ 292              		.loc 1 96 5 is_stmt 1 view .LVU73
+  97:HW/TOUCH/touch.c ****     static uint8_t acc;
+ 293              		.loc 1 97 5 view .LVU74
+  98:HW/TOUCH/touch.c **** 
+  99:HW/TOUCH/touch.c ****     #define PEN (!GPIO_ReadInputDataBit(GPIOF, GPIO_Pin_10))
+ 100:HW/TOUCH/touch.c ****     #define READ_X() (GPIO_SPI_Touch_Func(0B11010000))
+ 101:HW/TOUCH/touch.c ****     #define READ_Y() (GPIO_SPI_Touch_Func(0B10010000))
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cct5KLKd.s 			page 8
+
+
+ 102:HW/TOUCH/touch.c **** 
+ 103:HW/TOUCH/touch.c ****     switch (touchInfo.state)
+ 294              		.loc 1 103 5 view .LVU75
+ 295              		.loc 1 103 22 is_stmt 0 view .LVU76
+ 296 0004 284B     		ldr	r3, .L27
+ 297 0006 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 298              		.loc 1 103 5 view .LVU77
+ 299 0008 012B     		cmp	r3, #1
+ 300 000a 18D0     		beq	.L19
+ 301 000c 022B     		cmp	r3, #2
+ 302 000e 35D0     		beq	.L20
+ 303 0010 33B1     		cbz	r3, .L25
+ 304              	.LVL32:
+ 305              	.L21:
+ 104:HW/TOUCH/touch.c ****     {
+ 105:HW/TOUCH/touch.c ****     case Touch_State_Release:
+ 106:HW/TOUCH/touch.c ****         if(PEN){
+ 107:HW/TOUCH/touch.c ****             ++acc;
+ 108:HW/TOUCH/touch.c ****             touchInfo.state = Touch_State_Waiting;
+ 109:HW/TOUCH/touch.c ****         }
+ 110:HW/TOUCH/touch.c ****         break;
+ 111:HW/TOUCH/touch.c ****     
+ 112:HW/TOUCH/touch.c ****     case Touch_State_Waiting:
+ 113:HW/TOUCH/touch.c ****         if(PEN){
+ 114:HW/TOUCH/touch.c ****             ++acc;
+ 115:HW/TOUCH/touch.c ****             if(acc >= 10){
+ 116:HW/TOUCH/touch.c ****                 touchInfo.x = READ_X();
+ 117:HW/TOUCH/touch.c ****                 touchInfo.y = READ_Y();
+ 118:HW/TOUCH/touch.c ****                 touchInfo.state = Touch_State_Pressed;
+ 119:HW/TOUCH/touch.c ****             }
+ 120:HW/TOUCH/touch.c ****         }else{
+ 121:HW/TOUCH/touch.c ****             acc = 0;
+ 122:HW/TOUCH/touch.c ****             touchInfo.state = Touch_State_Release;
+ 123:HW/TOUCH/touch.c ****         }
+ 124:HW/TOUCH/touch.c ****         break;
+ 125:HW/TOUCH/touch.c **** 
+ 126:HW/TOUCH/touch.c ****     case Touch_State_Pressed:
+ 127:HW/TOUCH/touch.c ****         if(PEN){
+ 128:HW/TOUCH/touch.c ****             touchInfo.x = READ_X();
+ 129:HW/TOUCH/touch.c ****             touchInfo.y = READ_Y();
+ 130:HW/TOUCH/touch.c ****         }else{
+ 131:HW/TOUCH/touch.c ****             touchInfo.state = Touch_State_Release;
+ 132:HW/TOUCH/touch.c ****             acc = 0;
+ 133:HW/TOUCH/touch.c ****         }
  134:HW/TOUCH/touch.c ****         break;
- 135:HW/TOUCH/touch.c ****     }
- 136:HW/TOUCH/touch.c **** 
- 137:HW/TOUCH/touch.c ****     #undef PEN
- 138:HW/TOUCH/touch.c ****     return touchInfo;
- 304              		.loc 1 138 5 is_stmt 1 view .LVU78
- 305              		.loc 1 138 12 is_stmt 0 view .LVU79
- 306 0012 3C4B     		ldr	r3, .L27
- 307 0014 93E80700 		ldm	r3, {r0, r1, r2}
- 308 0018 84E80700 		stm	r4, {r0, r1, r2}
- 139:HW/TOUCH/touch.c **** }
- 309              		.loc 1 139 1 view .LVU80
- 310 001c 2046     		mov	r0, r4
- 311 001e F8BD     		pop	{r3, r4, r5, r6, r7, pc}
- 312              	.LVL31:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s 			page 9
+ 135:HW/TOUCH/touch.c **** 
+ 136:HW/TOUCH/touch.c ****     default:    // not allowed
+ 137:HW/TOUCH/touch.c ****         break;
+ 138:HW/TOUCH/touch.c ****     }
+ 139:HW/TOUCH/touch.c **** 
+ 140:HW/TOUCH/touch.c ****     #undef PEN
+ 141:HW/TOUCH/touch.c ****     return touchInfo;
+ 306              		.loc 1 141 5 is_stmt 1 view .LVU78
+ 307              		.loc 1 141 12 is_stmt 0 view .LVU79
+ 308 0012 254B     		ldr	r3, .L27
+ 309 0014 1868     		ldr	r0, [r3]
+ 310 0016 2060     		str	r0, [r4]	@ unaligned
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cct5KLKd.s 			page 9
 
 
- 313              	.L25:
- 103:HW/TOUCH/touch.c ****             ++acc;
- 314              		.loc 1 103 9 is_stmt 1 view .LVU81
- 103:HW/TOUCH/touch.c ****             ++acc;
- 315              		.loc 1 103 12 is_stmt 0 view .LVU82
- 316 0020 4FF48061 		mov	r1, #1024
- 317 0024 3848     		ldr	r0, .L27+4
- 318              	.LVL32:
- 103:HW/TOUCH/touch.c ****             ++acc;
- 319              		.loc 1 103 12 view .LVU83
- 320 0026 FFF7FEFF 		bl	GPIO_ReadInputDataBit
- 321              	.LVL33:
- 103:HW/TOUCH/touch.c ****             ++acc;
- 322              		.loc 1 103 11 view .LVU84
- 323 002a 0028     		cmp	r0, #0
- 324 002c F1D1     		bne	.L21
- 104:HW/TOUCH/touch.c ****             touchInfo.state = Touch_State_Waiting;
- 325              		.loc 1 104 13 is_stmt 1 view .LVU85
- 326 002e 374A     		ldr	r2, .L27+8
- 327 0030 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
- 328 0032 0133     		adds	r3, r3, #1
- 329 0034 1370     		strb	r3, [r2]
- 105:HW/TOUCH/touch.c ****         }
- 330              		.loc 1 105 13 view .LVU86
- 105:HW/TOUCH/touch.c ****         }
- 331              		.loc 1 105 29 is_stmt 0 view .LVU87
- 332 0036 334B     		ldr	r3, .L27
- 333 0038 0122     		movs	r2, #1
- 334 003a 1A72     		strb	r2, [r3, #8]
- 335 003c E9E7     		b	.L21
- 336              	.LVL34:
- 337              	.L19:
- 110:HW/TOUCH/touch.c ****             ++acc;
- 338              		.loc 1 110 9 is_stmt 1 view .LVU88
- 110:HW/TOUCH/touch.c ****             ++acc;
- 339              		.loc 1 110 12 is_stmt 0 view .LVU89
- 340 003e 4FF48061 		mov	r1, #1024
- 341 0042 3148     		ldr	r0, .L27+4
- 342              	.LVL35:
- 110:HW/TOUCH/touch.c ****             ++acc;
- 343              		.loc 1 110 12 view .LVU90
- 344 0044 FFF7FEFF 		bl	GPIO_ReadInputDataBit
- 345              	.LVL36:
- 110:HW/TOUCH/touch.c ****             ++acc;
- 346              		.loc 1 110 11 view .LVU91
- 347 0048 48BB     		cbnz	r0, .L22
- 111:HW/TOUCH/touch.c ****             if(acc >= 10){
- 348              		.loc 1 111 13 is_stmt 1 view .LVU92
- 349 004a 304A     		ldr	r2, .L27+8
- 350 004c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
- 351 004e 0133     		adds	r3, r3, #1
- 352 0050 DBB2     		uxtb	r3, r3
- 353 0052 1370     		strb	r3, [r2]
- 112:HW/TOUCH/touch.c ****                 touchInfo.x = READ_X();
- 354              		.loc 1 112 13 view .LVU93
- 112:HW/TOUCH/touch.c ****                 touchInfo.x = READ_X();
- 355              		.loc 1 112 15 is_stmt 0 view .LVU94
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s 			page 10
+ 311 0018 9B88     		ldrh	r3, [r3, #4]	@ unaligned
+ 312 001a A380     		strh	r3, [r4, #4]	@ unaligned
+ 142:HW/TOUCH/touch.c **** }
+ 313              		.loc 1 142 1 view .LVU80
+ 314 001c 2046     		mov	r0, r4
+ 315 001e 38BD     		pop	{r3, r4, r5, pc}
+ 316              	.LVL33:
+ 317              	.L25:
+ 106:HW/TOUCH/touch.c ****             ++acc;
+ 318              		.loc 1 106 9 is_stmt 1 view .LVU81
+ 106:HW/TOUCH/touch.c ****             ++acc;
+ 319              		.loc 1 106 12 is_stmt 0 view .LVU82
+ 320 0020 4FF48061 		mov	r1, #1024
+ 321 0024 2148     		ldr	r0, .L27+4
+ 322              	.LVL34:
+ 106:HW/TOUCH/touch.c ****             ++acc;
+ 323              		.loc 1 106 12 view .LVU83
+ 324 0026 FFF7FEFF 		bl	GPIO_ReadInputDataBit
+ 325              	.LVL35:
+ 106:HW/TOUCH/touch.c ****             ++acc;
+ 326              		.loc 1 106 11 view .LVU84
+ 327 002a 0028     		cmp	r0, #0
+ 328 002c F1D1     		bne	.L21
+ 107:HW/TOUCH/touch.c ****             touchInfo.state = Touch_State_Waiting;
+ 329              		.loc 1 107 13 is_stmt 1 view .LVU85
+ 330 002e 204A     		ldr	r2, .L27+8
+ 331 0030 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 332 0032 0133     		adds	r3, r3, #1
+ 333 0034 1370     		strb	r3, [r2]
+ 108:HW/TOUCH/touch.c ****         }
+ 334              		.loc 1 108 13 view .LVU86
+ 108:HW/TOUCH/touch.c ****         }
+ 335              		.loc 1 108 29 is_stmt 0 view .LVU87
+ 336 0036 1C4B     		ldr	r3, .L27
+ 337 0038 0122     		movs	r2, #1
+ 338 003a 1A71     		strb	r2, [r3, #4]
+ 339 003c E9E7     		b	.L21
+ 340              	.LVL36:
+ 341              	.L19:
+ 113:HW/TOUCH/touch.c ****             ++acc;
+ 342              		.loc 1 113 9 is_stmt 1 view .LVU88
+ 113:HW/TOUCH/touch.c ****             ++acc;
+ 343              		.loc 1 113 12 is_stmt 0 view .LVU89
+ 344 003e 4FF48061 		mov	r1, #1024
+ 345 0042 1A48     		ldr	r0, .L27+4
+ 346              	.LVL37:
+ 113:HW/TOUCH/touch.c ****             ++acc;
+ 347              		.loc 1 113 12 view .LVU90
+ 348 0044 FFF7FEFF 		bl	GPIO_ReadInputDataBit
+ 349              	.LVL38:
+ 113:HW/TOUCH/touch.c ****             ++acc;
+ 350              		.loc 1 113 11 view .LVU91
+ 351 0048 90B9     		cbnz	r0, .L22
+ 114:HW/TOUCH/touch.c ****             if(acc >= 10){
+ 352              		.loc 1 114 13 is_stmt 1 view .LVU92
+ 353 004a 194A     		ldr	r2, .L27+8
+ 354 004c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cct5KLKd.s 			page 10
 
 
- 356 0054 092B     		cmp	r3, #9
- 357 0056 DCD9     		bls	.L21
- 113:HW/TOUCH/touch.c ****                 touchInfo.y = READ_Y();
- 358              		.loc 1 113 17 is_stmt 1 view .LVU95
- 113:HW/TOUCH/touch.c ****                 touchInfo.y = READ_Y();
- 359              		.loc 1 113 31 is_stmt 0 view .LVU96
- 360 0058 D020     		movs	r0, #208
- 361 005a FFF7FEFF 		bl	GPIO_SPI_Touch_Func
- 362              	.LVL37:
- 363 005e 0746     		mov	r7, r0
- 364 0060 2B4E     		ldr	r6, .L27+12
- 365 0062 3168     		ldr	r1, [r6]	@ float
- 366 0064 2B48     		ldr	r0, .L27+16
- 367 0066 FFF7FEFF 		bl	__aeabi_fsub
- 368              	.LVL38:
- 369 006a 0546     		mov	r5, r0
- 370 006c 3846     		mov	r0, r7
- 371 006e FFF7FEFF 		bl	__aeabi_i2f
- 372              	.LVL39:
- 373 0072 2946     		mov	r1, r5
- 374 0074 FFF7FEFF 		bl	__aeabi_fdiv
- 375              	.LVL40:
- 113:HW/TOUCH/touch.c ****                 touchInfo.y = READ_Y();
- 376              		.loc 1 113 29 view .LVU97
- 377 0078 224D     		ldr	r5, .L27
- 378 007a 2860     		str	r0, [r5]	@ float
- 114:HW/TOUCH/touch.c ****                 touchInfo.state = Touch_State_Pressed;
- 379              		.loc 1 114 17 is_stmt 1 view .LVU98
- 114:HW/TOUCH/touch.c ****                 touchInfo.state = Touch_State_Pressed;
- 380              		.loc 1 114 31 is_stmt 0 view .LVU99
- 381 007c 7768     		ldr	r7, [r6, #4]	@ float
- 382 007e 9020     		movs	r0, #144
- 383 0080 FFF7FEFF 		bl	GPIO_SPI_Touch_Func
- 384              	.LVL41:
- 385 0084 FFF7FEFF 		bl	__aeabi_i2f
- 386              	.LVL42:
- 387 0088 0146     		mov	r1, r0
- 388 008a 3846     		mov	r0, r7
- 389 008c FFF7FEFF 		bl	__aeabi_fsub
- 390              	.LVL43:
- 391 0090 7168     		ldr	r1, [r6, #4]	@ float
- 392 0092 FFF7FEFF 		bl	__aeabi_fdiv
- 393              	.LVL44:
- 114:HW/TOUCH/touch.c ****                 touchInfo.state = Touch_State_Pressed;
- 394              		.loc 1 114 29 view .LVU100
- 395 0096 6860     		str	r0, [r5, #4]	@ float
- 115:HW/TOUCH/touch.c ****             }
- 396              		.loc 1 115 17 is_stmt 1 view .LVU101
- 115:HW/TOUCH/touch.c ****             }
- 397              		.loc 1 115 33 is_stmt 0 view .LVU102
- 398 0098 0223     		movs	r3, #2
- 399 009a 2B72     		strb	r3, [r5, #8]
- 400 009c B9E7     		b	.L21
- 401              	.L22:
- 118:HW/TOUCH/touch.c ****             touchInfo.state = Touch_State_Release;
- 402              		.loc 1 118 13 is_stmt 1 view .LVU103
- 118:HW/TOUCH/touch.c ****             touchInfo.state = Touch_State_Release;
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s 			page 11
+ 355 004e 0133     		adds	r3, r3, #1
+ 356 0050 DBB2     		uxtb	r3, r3
+ 357 0052 1370     		strb	r3, [r2]
+ 115:HW/TOUCH/touch.c ****                 touchInfo.x = READ_X();
+ 358              		.loc 1 115 13 view .LVU93
+ 115:HW/TOUCH/touch.c ****                 touchInfo.x = READ_X();
+ 359              		.loc 1 115 15 is_stmt 0 view .LVU94
+ 360 0054 092B     		cmp	r3, #9
+ 361 0056 DCD9     		bls	.L21
+ 116:HW/TOUCH/touch.c ****                 touchInfo.y = READ_Y();
+ 362              		.loc 1 116 17 is_stmt 1 view .LVU95
+ 116:HW/TOUCH/touch.c ****                 touchInfo.y = READ_Y();
+ 363              		.loc 1 116 31 is_stmt 0 view .LVU96
+ 364 0058 D020     		movs	r0, #208
+ 365 005a FFF7FEFF 		bl	GPIO_SPI_Touch_Func
+ 366              	.LVL39:
+ 116:HW/TOUCH/touch.c ****                 touchInfo.y = READ_Y();
+ 367              		.loc 1 116 29 view .LVU97
+ 368 005e 124D     		ldr	r5, .L27
+ 369 0060 2880     		strh	r0, [r5]	@ movhi
+ 117:HW/TOUCH/touch.c ****                 touchInfo.state = Touch_State_Pressed;
+ 370              		.loc 1 117 17 is_stmt 1 view .LVU98
+ 117:HW/TOUCH/touch.c ****                 touchInfo.state = Touch_State_Pressed;
+ 371              		.loc 1 117 31 is_stmt 0 view .LVU99
+ 372 0062 9020     		movs	r0, #144
+ 373 0064 FFF7FEFF 		bl	GPIO_SPI_Touch_Func
+ 374              	.LVL40:
+ 117:HW/TOUCH/touch.c ****                 touchInfo.state = Touch_State_Pressed;
+ 375              		.loc 1 117 29 view .LVU100
+ 376 0068 6880     		strh	r0, [r5, #2]	@ movhi
+ 118:HW/TOUCH/touch.c ****             }
+ 377              		.loc 1 118 17 is_stmt 1 view .LVU101
+ 118:HW/TOUCH/touch.c ****             }
+ 378              		.loc 1 118 33 is_stmt 0 view .LVU102
+ 379 006a 0223     		movs	r3, #2
+ 380 006c 2B71     		strb	r3, [r5, #4]
+ 381 006e D0E7     		b	.L21
+ 382              	.L22:
+ 121:HW/TOUCH/touch.c ****             touchInfo.state = Touch_State_Release;
+ 383              		.loc 1 121 13 is_stmt 1 view .LVU103
+ 121:HW/TOUCH/touch.c ****             touchInfo.state = Touch_State_Release;
+ 384              		.loc 1 121 17 is_stmt 0 view .LVU104
+ 385 0070 0023     		movs	r3, #0
+ 386 0072 0F4A     		ldr	r2, .L27+8
+ 387 0074 1370     		strb	r3, [r2]
+ 122:HW/TOUCH/touch.c ****         }
+ 388              		.loc 1 122 13 is_stmt 1 view .LVU105
+ 122:HW/TOUCH/touch.c ****         }
+ 389              		.loc 1 122 29 is_stmt 0 view .LVU106
+ 390 0076 0C4A     		ldr	r2, .L27
+ 391 0078 1371     		strb	r3, [r2, #4]
+ 392 007a CAE7     		b	.L21
+ 393              	.LVL41:
+ 394              	.L20:
+ 127:HW/TOUCH/touch.c ****             touchInfo.x = READ_X();
+ 395              		.loc 1 127 9 is_stmt 1 view .LVU107
+ 127:HW/TOUCH/touch.c ****             touchInfo.x = READ_X();
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cct5KLKd.s 			page 11
 
 
- 403              		.loc 1 118 17 is_stmt 0 view .LVU104
- 404 009e 0023     		movs	r3, #0
- 405 00a0 1A4A     		ldr	r2, .L27+8
- 406 00a2 1370     		strb	r3, [r2]
- 119:HW/TOUCH/touch.c ****         }
- 407              		.loc 1 119 13 is_stmt 1 view .LVU105
- 119:HW/TOUCH/touch.c ****         }
- 408              		.loc 1 119 29 is_stmt 0 view .LVU106
- 409 00a4 174A     		ldr	r2, .L27
- 410 00a6 1372     		strb	r3, [r2, #8]
- 411 00a8 B3E7     		b	.L21
- 412              	.LVL45:
- 413              	.L20:
- 124:HW/TOUCH/touch.c ****             touchInfo.x = READ_X();
- 414              		.loc 1 124 9 is_stmt 1 view .LVU107
- 124:HW/TOUCH/touch.c ****             touchInfo.x = READ_X();
- 415              		.loc 1 124 12 is_stmt 0 view .LVU108
- 416 00aa 4FF48061 		mov	r1, #1024
- 417 00ae 1648     		ldr	r0, .L27+4
- 418              	.LVL46:
- 124:HW/TOUCH/touch.c ****             touchInfo.x = READ_X();
- 419              		.loc 1 124 12 view .LVU109
- 420 00b0 FFF7FEFF 		bl	GPIO_ReadInputDataBit
- 421              	.LVL47:
- 124:HW/TOUCH/touch.c ****             touchInfo.x = READ_X();
- 422              		.loc 1 124 11 view .LVU110
- 423 00b4 28B1     		cbz	r0, .L26
- 128:HW/TOUCH/touch.c ****             acc = 0;
- 424              		.loc 1 128 13 is_stmt 1 view .LVU111
- 128:HW/TOUCH/touch.c ****             acc = 0;
- 425              		.loc 1 128 29 is_stmt 0 view .LVU112
- 426 00b6 0023     		movs	r3, #0
- 427 00b8 124A     		ldr	r2, .L27
- 428 00ba 1372     		strb	r3, [r2, #8]
- 129:HW/TOUCH/touch.c ****         }
- 429              		.loc 1 129 13 is_stmt 1 view .LVU113
- 129:HW/TOUCH/touch.c ****         }
- 430              		.loc 1 129 17 is_stmt 0 view .LVU114
- 431 00bc 134A     		ldr	r2, .L27+8
- 432 00be 1370     		strb	r3, [r2]
- 433 00c0 A7E7     		b	.L21
- 434              	.L26:
- 125:HW/TOUCH/touch.c ****             touchInfo.y = READ_Y();
- 435              		.loc 1 125 13 is_stmt 1 view .LVU115
- 125:HW/TOUCH/touch.c ****             touchInfo.y = READ_Y();
- 436              		.loc 1 125 27 is_stmt 0 view .LVU116
- 437 00c2 D020     		movs	r0, #208
- 438 00c4 FFF7FEFF 		bl	GPIO_SPI_Touch_Func
- 439              	.LVL48:
- 440 00c8 0746     		mov	r7, r0
- 441 00ca 114D     		ldr	r5, .L27+12
- 442 00cc 2968     		ldr	r1, [r5]	@ float
- 443 00ce 1148     		ldr	r0, .L27+16
- 444 00d0 FFF7FEFF 		bl	__aeabi_fsub
- 445              	.LVL49:
- 446 00d4 0646     		mov	r6, r0
- 447 00d6 3846     		mov	r0, r7
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s 			page 12
+ 396              		.loc 1 127 12 is_stmt 0 view .LVU108
+ 397 007c 4FF48061 		mov	r1, #1024
+ 398 0080 0A48     		ldr	r0, .L27+4
+ 399              	.LVL42:
+ 127:HW/TOUCH/touch.c ****             touchInfo.x = READ_X();
+ 400              		.loc 1 127 12 view .LVU109
+ 401 0082 FFF7FEFF 		bl	GPIO_ReadInputDataBit
+ 402              	.LVL43:
+ 127:HW/TOUCH/touch.c ****             touchInfo.x = READ_X();
+ 403              		.loc 1 127 11 view .LVU110
+ 404 0086 28B1     		cbz	r0, .L26
+ 131:HW/TOUCH/touch.c ****             acc = 0;
+ 405              		.loc 1 131 13 is_stmt 1 view .LVU111
+ 131:HW/TOUCH/touch.c ****             acc = 0;
+ 406              		.loc 1 131 29 is_stmt 0 view .LVU112
+ 407 0088 0023     		movs	r3, #0
+ 408 008a 074A     		ldr	r2, .L27
+ 409 008c 1371     		strb	r3, [r2, #4]
+ 132:HW/TOUCH/touch.c ****         }
+ 410              		.loc 1 132 13 is_stmt 1 view .LVU113
+ 132:HW/TOUCH/touch.c ****         }
+ 411              		.loc 1 132 17 is_stmt 0 view .LVU114
+ 412 008e 084A     		ldr	r2, .L27+8
+ 413 0090 1370     		strb	r3, [r2]
+ 414 0092 BEE7     		b	.L21
+ 415              	.L26:
+ 128:HW/TOUCH/touch.c ****             touchInfo.y = READ_Y();
+ 416              		.loc 1 128 13 is_stmt 1 view .LVU115
+ 128:HW/TOUCH/touch.c ****             touchInfo.y = READ_Y();
+ 417              		.loc 1 128 27 is_stmt 0 view .LVU116
+ 418 0094 D020     		movs	r0, #208
+ 419 0096 FFF7FEFF 		bl	GPIO_SPI_Touch_Func
+ 420              	.LVL44:
+ 128:HW/TOUCH/touch.c ****             touchInfo.y = READ_Y();
+ 421              		.loc 1 128 25 view .LVU117
+ 422 009a 034D     		ldr	r5, .L27
+ 423 009c 2880     		strh	r0, [r5]	@ movhi
+ 129:HW/TOUCH/touch.c ****         }else{
+ 424              		.loc 1 129 13 is_stmt 1 view .LVU118
+ 129:HW/TOUCH/touch.c ****         }else{
+ 425              		.loc 1 129 27 is_stmt 0 view .LVU119
+ 426 009e 9020     		movs	r0, #144
+ 427 00a0 FFF7FEFF 		bl	GPIO_SPI_Touch_Func
+ 428              	.LVL45:
+ 129:HW/TOUCH/touch.c ****         }else{
+ 429              		.loc 1 129 25 view .LVU120
+ 430 00a4 6880     		strh	r0, [r5, #2]	@ movhi
+ 431 00a6 B4E7     		b	.L21
+ 432              	.L28:
+ 433              		.align	2
+ 434              	.L27:
+ 435 00a8 00000000 		.word	touchInfo.1
+ 436 00ac 001C0140 		.word	1073814528
+ 437 00b0 00000000 		.word	acc.0
+ 438              		.cfi_endproc
+ 439              	.LFE33:
+ 441              		.section	.rodata.Touch_Run.str1.4,"aMS",%progbits,1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cct5KLKd.s 			page 12
 
 
- 448 00d8 FFF7FEFF 		bl	__aeabi_i2f
- 449              	.LVL50:
- 450 00dc 3146     		mov	r1, r6
- 451 00de FFF7FEFF 		bl	__aeabi_fdiv
- 452              	.LVL51:
- 125:HW/TOUCH/touch.c ****             touchInfo.y = READ_Y();
- 453              		.loc 1 125 25 view .LVU117
- 454 00e2 084E     		ldr	r6, .L27
- 455 00e4 3060     		str	r0, [r6]	@ float
- 126:HW/TOUCH/touch.c ****         }else{
- 456              		.loc 1 126 13 is_stmt 1 view .LVU118
- 126:HW/TOUCH/touch.c ****         }else{
- 457              		.loc 1 126 27 is_stmt 0 view .LVU119
- 458 00e6 6F68     		ldr	r7, [r5, #4]	@ float
- 459 00e8 9020     		movs	r0, #144
- 460 00ea FFF7FEFF 		bl	GPIO_SPI_Touch_Func
- 461              	.LVL52:
- 462 00ee FFF7FEFF 		bl	__aeabi_i2f
- 463              	.LVL53:
- 464 00f2 0146     		mov	r1, r0
- 465 00f4 3846     		mov	r0, r7
- 466 00f6 FFF7FEFF 		bl	__aeabi_fsub
- 467              	.LVL54:
- 468 00fa 6968     		ldr	r1, [r5, #4]	@ float
- 469 00fc FFF7FEFF 		bl	__aeabi_fdiv
- 470              	.LVL55:
- 126:HW/TOUCH/touch.c ****         }else{
- 471              		.loc 1 126 25 view .LVU120
- 472 0100 7060     		str	r0, [r6, #4]	@ float
- 473 0102 86E7     		b	.L21
- 474              	.L28:
- 475              		.align	2
- 476              	.L27:
- 477 0104 00000000 		.word	touchInfo.1
- 478 0108 001C0140 		.word	1073814528
- 479 010c 00000000 		.word	acc.0
- 480 0110 00000000 		.word	reference
- 481 0114 00F07F45 		.word	1166012416
- 482              		.cfi_endproc
- 483              	.LFE33:
- 485              		.global	__aeabi_f2d
- 486              		.section	.rodata.Touch_Run.str1.4,"aMS",%progbits,1
- 487              		.align	2
- 488              	.LC0:
- 489 0000 78203D20 		.ascii	"x = %.3f\011y = %.3f\015\012\000"
- 489      252E3366 
- 489      0979203D 
- 489      20252E33 
- 489      660D0A00 
- 490              		.section	.text.Touch_Run,"ax",%progbits
- 491              		.align	1
- 492              		.global	Touch_Run
- 493              		.syntax unified
- 494              		.thumb
- 495              		.thumb_func
- 497              	Touch_Run:
- 498              	.LFB34:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s 			page 13
+ 442              		.align	2
+ 443              	.LC0:
+ 444 0000 78203D20 		.ascii	"x = %d\011y = %d\015\012\000"
+ 444      25640979 
+ 444      203D2025 
+ 444      640D0A00 
+ 445              		.section	.text.Touch_Run,"ax",%progbits
+ 446              		.align	1
+ 447              		.global	Touch_Run
+ 448              		.syntax unified
+ 449              		.thumb
+ 450              		.thumb_func
+ 452              	Touch_Run:
+ 453              	.LFB34:
+ 143:HW/TOUCH/touch.c **** 
+ 144:HW/TOUCH/touch.c **** extern void USART1_Init();
+ 145:HW/TOUCH/touch.c **** 
+ 146:HW/TOUCH/touch.c **** void Touch_Run(){
+ 454              		.loc 1 146 17 is_stmt 1 view -0
+ 455              		.cfi_startproc
+ 456              		@ Volatile: function does not return.
+ 457              		@ args = 0, pretend = 0, frame = 8
+ 458              		@ frame_needed = 0, uses_anonymous_args = 0
+ 459 0000 00B5     		push	{lr}
+ 460              	.LCFI4:
+ 461              		.cfi_def_cfa_offset 4
+ 462              		.cfi_offset 14, -4
+ 463 0002 83B0     		sub	sp, sp, #12
+ 464              	.LCFI5:
+ 465              		.cfi_def_cfa_offset 16
+ 147:HW/TOUCH/touch.c ****     /* 初始化 */
+ 148:HW/TOUCH/touch.c ****     USART1_Init();
+ 466              		.loc 1 148 5 view .LVU122
+ 467 0004 FFF7FEFF 		bl	USART1_Init
+ 468              	.LVL46:
+ 149:HW/TOUCH/touch.c ****     delay_init();
+ 469              		.loc 1 149 5 view .LVU123
+ 470 0008 FFF7FEFF 		bl	delay_init
+ 471              	.LVL47:
+ 150:HW/TOUCH/touch.c ****     Touch_Init();
+ 472              		.loc 1 150 5 view .LVU124
+ 473 000c FFF7FEFF 		bl	Touch_Init
+ 474              	.LVL48:
+ 475 0010 09E0     		b	.L31
+ 476              	.L33:
+ 151:HW/TOUCH/touch.c **** 
+ 152:HW/TOUCH/touch.c ****     /* 检测 */
+ 153:HW/TOUCH/touch.c ****     Touch_Info_t touchInfo;
+ 154:HW/TOUCH/touch.c ****     while(1){
+ 155:HW/TOUCH/touch.c ****         touchInfo = Touch_Scan();
+ 156:HW/TOUCH/touch.c ****         if(touchInfo.state == Touch_State_Pressed){
+ 157:HW/TOUCH/touch.c ****             printf("x = %d\ty = %d\r\n", touchInfo.x, touchInfo.y);
+ 477              		.loc 1 157 13 view .LVU125
+ 478 0012 BDF80220 		ldrh	r2, [sp, #2]
+ 479 0016 BDF80010 		ldrh	r1, [sp]
+ 480 001a 0748     		ldr	r0, .L34
+ 481 001c FFF7FEFF 		bl	printf
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cct5KLKd.s 			page 13
 
 
- 140:HW/TOUCH/touch.c **** 
- 141:HW/TOUCH/touch.c **** extern void USART1_Init();
- 142:HW/TOUCH/touch.c **** 
- 143:HW/TOUCH/touch.c **** void Touch_Run(){
- 499              		.loc 1 143 17 is_stmt 1 view -0
- 500              		.cfi_startproc
- 501              		@ Volatile: function does not return.
- 502              		@ args = 0, pretend = 0, frame = 16
- 503              		@ frame_needed = 0, uses_anonymous_args = 0
- 504 0000 00B5     		push	{lr}
- 505              	.LCFI4:
- 506              		.cfi_def_cfa_offset 4
- 507              		.cfi_offset 14, -4
- 508 0002 87B0     		sub	sp, sp, #28
- 509              	.LCFI5:
- 510              		.cfi_def_cfa_offset 32
- 144:HW/TOUCH/touch.c ****     /* 初始化 */
- 145:HW/TOUCH/touch.c ****     USART1_Init();
- 511              		.loc 1 145 5 view .LVU122
- 512 0004 FFF7FEFF 		bl	USART1_Init
- 513              	.LVL56:
- 146:HW/TOUCH/touch.c ****     delay_init();
- 514              		.loc 1 146 5 view .LVU123
- 515 0008 FFF7FEFF 		bl	delay_init
- 516              	.LVL57:
- 147:HW/TOUCH/touch.c ****     Touch_Init();
- 517              		.loc 1 147 5 view .LVU124
- 518 000c FFF7FEFF 		bl	Touch_Init
- 519              	.LVL58:
- 520 0010 11E0     		b	.L31
- 521              	.L33:
- 148:HW/TOUCH/touch.c **** 
- 149:HW/TOUCH/touch.c ****     /* 检测 */
- 150:HW/TOUCH/touch.c ****     Touch_Info_t touchInfo;
- 151:HW/TOUCH/touch.c ****     while(1){
- 152:HW/TOUCH/touch.c ****         touchInfo = Touch_Scan();
- 153:HW/TOUCH/touch.c ****         if(touchInfo.state == Touch_State_Pressed){
- 154:HW/TOUCH/touch.c ****             printf("x = %.3f\ty = %.3f\r\n", touchInfo.x, touchInfo.y);
- 522              		.loc 1 154 13 view .LVU125
- 523 0012 0398     		ldr	r0, [sp, #12]	@ float
- 524 0014 FFF7FEFF 		bl	__aeabi_f2d
- 525              	.LVL59:
- 526 0018 0446     		mov	r4, r0
- 527 001a 0D46     		mov	r5, r1
- 528 001c 0498     		ldr	r0, [sp, #16]	@ float
- 529 001e FFF7FEFF 		bl	__aeabi_f2d
- 530              	.LVL60:
- 531 0022 CDE90001 		strd	r0, [sp]
- 532 0026 2246     		mov	r2, r4
- 533 0028 2B46     		mov	r3, r5
- 534 002a 0748     		ldr	r0, .L34
- 535 002c FFF7FEFF 		bl	printf
- 536              	.LVL61:
- 537              	.L30:
- 155:HW/TOUCH/touch.c ****         }
- 156:HW/TOUCH/touch.c ****         delay_ms(5);
- 538              		.loc 1 156 9 view .LVU126
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s 			page 14
+ 482              	.LVL49:
+ 483              	.L30:
+ 158:HW/TOUCH/touch.c ****         }
+ 159:HW/TOUCH/touch.c ****         delay_ms(5);
+ 484              		.loc 1 159 9 view .LVU126
+ 485 0020 0520     		movs	r0, #5
+ 486 0022 FFF7FEFF 		bl	delay_ms
+ 487              	.LVL50:
+ 154:HW/TOUCH/touch.c ****         touchInfo = Touch_Scan();
+ 488              		.loc 1 154 10 view .LVU127
+ 489              	.L31:
+ 153:HW/TOUCH/touch.c ****     while(1){
+ 490              		.loc 1 153 5 view .LVU128
+ 154:HW/TOUCH/touch.c ****         touchInfo = Touch_Scan();
+ 491              		.loc 1 154 5 view .LVU129
+ 155:HW/TOUCH/touch.c ****         if(touchInfo.state == Touch_State_Pressed){
+ 492              		.loc 1 155 9 view .LVU130
+ 155:HW/TOUCH/touch.c ****         if(touchInfo.state == Touch_State_Pressed){
+ 493              		.loc 1 155 21 is_stmt 0 view .LVU131
+ 494 0026 6846     		mov	r0, sp
+ 495 0028 FFF7FEFF 		bl	Touch_Scan
+ 496              	.LVL51:
+ 156:HW/TOUCH/touch.c ****             printf("x = %d\ty = %d\r\n", touchInfo.x, touchInfo.y);
+ 497              		.loc 1 156 9 is_stmt 1 view .LVU132
+ 156:HW/TOUCH/touch.c ****             printf("x = %d\ty = %d\r\n", touchInfo.x, touchInfo.y);
+ 498              		.loc 1 156 21 is_stmt 0 view .LVU133
+ 499 002c 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 156:HW/TOUCH/touch.c ****             printf("x = %d\ty = %d\r\n", touchInfo.x, touchInfo.y);
+ 500              		.loc 1 156 11 view .LVU134
+ 501 0030 022B     		cmp	r3, #2
+ 502 0032 EED0     		beq	.L33
+ 503 0034 F4E7     		b	.L30
+ 504              	.L35:
+ 505 0036 00BF     		.align	2
+ 506              	.L34:
+ 507 0038 00000000 		.word	.LC0
+ 508              		.cfi_endproc
+ 509              	.LFE34:
+ 511              		.section	.bss.acc.0,"aw",%nobits
+ 514              	acc.0:
+ 515 0000 00       		.space	1
+ 516              		.section	.bss.touchInfo.1,"aw",%nobits
+ 517              		.align	2
+ 520              	touchInfo.1:
+ 521 0000 00000000 		.space	6
+ 521      0000
+ 522              		.section	.bss.reference,"aw",%nobits
+ 523              		.align	2
+ 526              	reference:
+ 527 0000 00000000 		.space	4
+ 528              		.text
+ 529              	.Letext0:
+ 530              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 531              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 532              		.file 4 "USER/stm32f10x.h"
+ 533              		.file 5 "STM32F10x_FWLib/inc/stm32f10x_gpio.h"
+ 534              		.file 6 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cct5KLKd.s 			page 14
 
 
- 539 0030 0520     		movs	r0, #5
- 540 0032 FFF7FEFF 		bl	delay_ms
- 541              	.LVL62:
- 151:HW/TOUCH/touch.c ****         touchInfo = Touch_Scan();
- 542              		.loc 1 151 10 view .LVU127
- 543              	.L31:
- 150:HW/TOUCH/touch.c ****     while(1){
- 544              		.loc 1 150 5 view .LVU128
- 151:HW/TOUCH/touch.c ****         touchInfo = Touch_Scan();
- 545              		.loc 1 151 5 view .LVU129
- 152:HW/TOUCH/touch.c ****         if(touchInfo.state == Touch_State_Pressed){
- 546              		.loc 1 152 9 view .LVU130
- 152:HW/TOUCH/touch.c ****         if(touchInfo.state == Touch_State_Pressed){
- 547              		.loc 1 152 21 is_stmt 0 view .LVU131
- 548 0036 03A8     		add	r0, sp, #12
- 549 0038 FFF7FEFF 		bl	Touch_Scan
- 550              	.LVL63:
- 153:HW/TOUCH/touch.c ****             printf("x = %.3f\ty = %.3f\r\n", touchInfo.x, touchInfo.y);
- 551              		.loc 1 153 9 is_stmt 1 view .LVU132
- 153:HW/TOUCH/touch.c ****             printf("x = %.3f\ty = %.3f\r\n", touchInfo.x, touchInfo.y);
- 552              		.loc 1 153 21 is_stmt 0 view .LVU133
- 553 003c 9DF81430 		ldrb	r3, [sp, #20]	@ zero_extendqisi2
- 153:HW/TOUCH/touch.c ****             printf("x = %.3f\ty = %.3f\r\n", touchInfo.x, touchInfo.y);
- 554              		.loc 1 153 11 view .LVU134
- 555 0040 022B     		cmp	r3, #2
- 556 0042 E6D0     		beq	.L33
- 557 0044 F4E7     		b	.L30
- 558              	.L35:
- 559 0046 00BF     		.align	2
- 560              	.L34:
- 561 0048 00000000 		.word	.LC0
- 562              		.cfi_endproc
- 563              	.LFE34:
- 565              		.section	.bss.acc.0,"aw",%nobits
- 568              	acc.0:
- 569 0000 00       		.space	1
- 570              		.section	.bss.touchInfo.1,"aw",%nobits
- 571              		.align	2
- 574              	touchInfo.1:
- 575 0000 00000000 		.space	12
- 575      00000000 
- 575      00000000 
- 576              		.section	.bss.reference,"aw",%nobits
- 577              		.align	2
- 580              	reference:
- 581 0000 00000000 		.space	8
- 581      00000000 
- 582              		.text
- 583              	.Letext0:
- 584              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
- 585              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
- 586              		.file 4 "USER/stm32f10x.h"
- 587              		.file 5 "STM32F10x_FWLib/inc/stm32f10x_gpio.h"
- 588              		.file 6 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
- 589              		.file 7 "SYSTEM/delay/delay.h"
- 590              		.file 8 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
- 591              		.file 9 "HW/TOUCH/gpio_spi.h"
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s 			page 15
-
-
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s 			page 16
+ 535              		.file 7 "SYSTEM/delay/delay.h"
+ 536              		.file 8 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
+ 537              		.file 9 "HW/TOUCH/gpio_spi.h"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cct5KLKd.s 			page 15
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 touch.c
-C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s:22     .text.Touch_Init:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s:28     .text.Touch_Init:00000000 Touch_Init
-C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s:258    .text.Touch_Init:00000114 $d
-C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s:580    .bss.reference:00000000 reference
-C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s:266    .text.Touch_Scan:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s:272    .text.Touch_Scan:00000000 Touch_Scan
-C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s:477    .text.Touch_Scan:00000104 $d
-C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s:574    .bss.touchInfo.1:00000000 touchInfo.1
-C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s:568    .bss.acc.0:00000000 acc.0
-C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s:487    .rodata.Touch_Run.str1.4:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s:491    .text.Touch_Run:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s:497    .text.Touch_Run:00000000 Touch_Run
-C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s:561    .text.Touch_Run:00000048 $d
-C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s:569    .bss.acc.0:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s:571    .bss.touchInfo.1:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccfnwqnB.s:577    .bss.reference:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cct5KLKd.s:23     .text.Touch_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cct5KLKd.s:29     .text.Touch_Init:00000000 Touch_Init
+C:\Users\86157\AppData\Local\Temp\cct5KLKd.s:263    .text.Touch_Init:0000011c $d
+C:\Users\86157\AppData\Local\Temp\cct5KLKd.s:526    .bss.reference:00000000 reference
+C:\Users\86157\AppData\Local\Temp\cct5KLKd.s:270    .text.Touch_Scan:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cct5KLKd.s:276    .text.Touch_Scan:00000000 Touch_Scan
+C:\Users\86157\AppData\Local\Temp\cct5KLKd.s:435    .text.Touch_Scan:000000a8 $d
+C:\Users\86157\AppData\Local\Temp\cct5KLKd.s:520    .bss.touchInfo.1:00000000 touchInfo.1
+C:\Users\86157\AppData\Local\Temp\cct5KLKd.s:514    .bss.acc.0:00000000 acc.0
+C:\Users\86157\AppData\Local\Temp\cct5KLKd.s:442    .rodata.Touch_Run.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cct5KLKd.s:446    .text.Touch_Run:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cct5KLKd.s:452    .text.Touch_Run:00000000 Touch_Run
+C:\Users\86157\AppData\Local\Temp\cct5KLKd.s:507    .text.Touch_Run:00000038 $d
+C:\Users\86157\AppData\Local\Temp\cct5KLKd.s:515    .bss.acc.0:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cct5KLKd.s:517    .bss.touchInfo.1:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cct5KLKd.s:523    .bss.reference:00000000 $d
 
 UNDEFINED SYMBOLS
 __aeabi_i2f
 __aeabi_fadd
 __aeabi_fdiv
+__aeabi_f2uiz
 GPIO_SPI_Init
 RCC_APB2PeriphClockCmd
 GPIO_Init
 GPIO_SPI_Touch_Func
-__aeabi_fsub
 GPIO_ReadInputDataBit
-__aeabi_f2d
 USART1_Init
 delay_init
 printf

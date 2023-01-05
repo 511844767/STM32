@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cchlR2xr.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 1
   39              	.LVL2:
   40              	.L2:
   41              		.loc 1 17 18 is_stmt 1 discriminator 1 view .LVU5
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cchlR2xr.s 			page 2
 
 
   42 0004 0528     		cmp	r0, #5
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 1
   27:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         return 1;
   83              		.loc 1 27 9 is_stmt 1 view .LVU18
   84              		.loc 1 27 16 is_stmt 0 view .LVU19
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 3
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cchlR2xr.s 			page 3
 
 
   85 0032 0120     		movs	r0, #1
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 1
  124              		.loc 1 39 38 view .LVU37
  125 005e 02F03F02 		and	r2, r2, #63
   38:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[1] & 0B00111111) <<  6) | \
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cchlR2xr.s 			page 4
 
 
  126              		.loc 1 38 45 view .LVU38
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 1
   49:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** 
   50:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     case 5: // 111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx
   51:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         *unicode = \
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 5
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cchlR2xr.s 			page 5
 
 
  166              		.loc 1 51 9 is_stmt 1 view .LVU57
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 1
   61:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             ((utf_8[0] & 0B00000001) << 30) | \
  206              		.loc 1 61 20 is_stmt 0 view .LVU76
  207 00c8 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 6
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cchlR2xr.s 			page 6
 
 
  208              		.loc 1 61 38 view .LVU77
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 1
  250              	.L5:
   68:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c **** 
   69:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     default: // 编码错误：遇到10xxxxxx或者不再utf-8范围内的编码
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 7
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cchlR2xr.s 			page 7
 
 
   70:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****         *unicode = 0;
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 1
  296              	.LVL10:
   81:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****     if(acc == 0){    // 解码错误，字符设置为dummyCharacter
  297              		.loc 1 81 5 is_stmt 1 view .LVU108
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 8
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cchlR2xr.s 			page 8
 
 
  298              		.loc 1 81 7 is_stmt 0 view .LVU109
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 1
  108:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****                 dstBuffer, 
  109:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****                 ZH_SYMBOL_FLASH_OFFSET + (unicode - ZH_SYMBOL_UNICODE_START) * FLASH_FONT_REAL_SIZE
  110:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****                 FLASH_FONT_REAL_SIZE
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 9
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cchlR2xr.s 			page 9
 
 
  111:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             );
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 1
  367              	.LCFI2:
  368              		.cfi_remember_state
  369              		.cfi_def_cfa_offset 12
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 10
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cchlR2xr.s 			page 10
 
 
  370              		@ sp needed
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 1
  100:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c ****             Flash_EX_Read(
  415              		.loc 1 100 13 is_stmt 0 view .LVU140
  416 00a0 FFF7FEFF 		bl	Flash_EX_Read
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 11
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cchlR2xr.s 			page 11
 
 
  417              	.LVL22:
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 1
  470              	dummyCharacter:
  471 0000 FF00     		.ascii	"\377\000"
  472 0002 00000000 		.space	30
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 12
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cchlR2xr.s 			page 12
 
 
  472      00000000 
@@ -670,25 +670,25 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 1
  475              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
  476              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
  477              		.file 4 "HW/FLASH/External_Flash/exFlash.h"
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s 			page 13
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cchlR2xr.s 			page 13
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 Flash_Font.c
-C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s:19     .text.Flash_Utf8_To_Unicode:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s:24     .text.Flash_Utf8_To_Unicode:00000000 Flash_Utf8_To_Unicode
-C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s:67     .text.Flash_Utf8_To_Unicode:00000020 $d
-C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s:264    .text.FLASH_Font_DeCode:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s:270    .text.FLASH_Font_DeCode:00000000 FLASH_Font_DeCode
-C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s:447    .text.FLASH_Font_DeCode:000000c8 $d
-C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s:470    .rodata.dummyCharacter:00000000 dummyCharacter
-C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s:464    .data.font_slop_x:00000000 font_slop_x
-C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s:457    .bss.font_slop_y:00000000 font_slop_y
-C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s:454    .bss.font_slop_y:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s:461    .data.font_slop_x:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s:467    .rodata.dummyCharacter:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s:74     .text.Flash_Utf8_To_Unicode:00000027 $d
-C:\Users\86157\AppData\Local\Temp\ccF0EO5V.s:74     .text.Flash_Utf8_To_Unicode:00000028 $t
+C:\Users\86157\AppData\Local\Temp\cchlR2xr.s:19     .text.Flash_Utf8_To_Unicode:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cchlR2xr.s:24     .text.Flash_Utf8_To_Unicode:00000000 Flash_Utf8_To_Unicode
+C:\Users\86157\AppData\Local\Temp\cchlR2xr.s:67     .text.Flash_Utf8_To_Unicode:00000020 $d
+C:\Users\86157\AppData\Local\Temp\cchlR2xr.s:264    .text.FLASH_Font_DeCode:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cchlR2xr.s:270    .text.FLASH_Font_DeCode:00000000 FLASH_Font_DeCode
+C:\Users\86157\AppData\Local\Temp\cchlR2xr.s:447    .text.FLASH_Font_DeCode:000000c8 $d
+C:\Users\86157\AppData\Local\Temp\cchlR2xr.s:470    .rodata.dummyCharacter:00000000 dummyCharacter
+C:\Users\86157\AppData\Local\Temp\cchlR2xr.s:464    .data.font_slop_x:00000000 font_slop_x
+C:\Users\86157\AppData\Local\Temp\cchlR2xr.s:457    .bss.font_slop_y:00000000 font_slop_y
+C:\Users\86157\AppData\Local\Temp\cchlR2xr.s:454    .bss.font_slop_y:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cchlR2xr.s:461    .data.font_slop_x:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cchlR2xr.s:467    .rodata.dummyCharacter:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cchlR2xr.s:74     .text.Flash_Utf8_To_Unicode:00000027 $d
+C:\Users\86157\AppData\Local\Temp\cchlR2xr.s:74     .text.Flash_Utf8_To_Unicode:00000028 $t
 
 UNDEFINED SYMBOLS
 Flash_EX_Read

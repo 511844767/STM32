@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
   36 0094 0A00     		.ascii	"\012\000"
   37 0096 0000     		.align	2
   38              	.LC6:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 2
 
 
   39 0098 E69687E4 		.ascii	"\346\226\207\344\273\266\345\206\231\345\205\245\346"
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
   15:HW/SDCard/SDCard.c ****     /* 配置中断优先级组 */
   16:HW/SDCard/SDCard.c ****     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
   17:HW/SDCard/SDCard.c **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 3
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 3
 
 
   18:HW/SDCard/SDCard.c ****     /* 初始化 */
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
   62              		.loc 1 71 23 view -0
   63              		.cfi_startproc
   64              		@ args = 0, pretend = 0, frame = 56
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 4
 
 
   65              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  100 0020 66D1     		bne	.L19
  101              	.L5:
   91:HW/SDCard/SDCard.c ****         fprintf(stderr, "Error line: %d, function: %s, info: %s\r\n", __LINE__, __FUNCTION__, errIn
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 5
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 5
 
 
   92:HW/SDCard/SDCard.c ****         goto FATFS_ERR_FLAG;
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  145 0062 6DD1     		bne	.L21
  146              		.loc 1 102 43 discriminator 2 view .LVU25
  103:HW/SDCard/SDCard.c ****     if(bw != 20){   // bw返回实际写入长度，应该等于理论写入长度
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 6
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 6
 
 
  147              		.loc 1 103 5 discriminator 2 view .LVU26
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  192              		.loc 1 87 9 is_stmt 1 view .LVU39
  193 009a 0346     		mov	r3, r0
  194 009c C8B9     		cbnz	r0, .L22
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 7
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 7
 
 
   87:HW/SDCard/SDCard.c ****         free(work);
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  116:HW/SDCard/SDCard.c ****     UINT br;
  117:HW/SDCard/SDCard.c ****     FATFS_CHECK(f_read(fp, dst, 20, &br));
  118:HW/SDCard/SDCard.c ****     if(br != 20){   // br返回实际读取长度，应该等于理论读取长度
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 8
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 8
 
 
  119:HW/SDCard/SDCard.c ****         fprintf(stderr, "Error line: %d, function: %s, info: read error\r\n", __LINE__, __FUNCTION_
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  259 00f0 644B     		ldr	r3, .L28+12
  260 00f2 1B68     		ldr	r3, [r3]
  261 00f4 DC68     		ldr	r4, [r3, #12]
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 9
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 9
 
 
   91:HW/SDCard/SDCard.c ****         goto FATFS_ERR_FLAG;
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  308 0134 0F98     		ldr	r0, [sp, #60]
  309              		.loc 1 138 7 view .LVU70
  310 0136 08B1     		cbz	r0, .L1
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 10
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 10
 
 
  311              		.loc 1 138 12 is_stmt 1 discriminator 1 view .LVU71
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  356 0168 4C48     		ldr	r0, .L28+36
  357              	.LVL41:
  111:HW/SDCard/SDCard.c **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 11
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 11
 
 
  358              		.loc 1 111 5 is_stmt 0 discriminator 2 view .LVU81
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  397              		.loc 1 119 9 view .LVU96
  398 0196 3C4B     		ldr	r3, .L28+16
  399 0198 7722     		movs	r2, #119
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 12
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 12
 
 
  400 019a 4149     		ldr	r1, .L28+40
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  446              		.loc 1 117 5 discriminator 1 view .LVU104
  447 01e0 284A     		ldr	r2, .L28+12
  448 01e2 1268     		ldr	r2, [r2]
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 13
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 13
 
 
  449 01e4 D068     		ldr	r0, [r2, #12]
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  130:HW/SDCard/SDCard.c ****     DWORD tot_sect = (fs->n_fatent - 2) * fs->csize;
  492              		.loc 1 130 46 discriminator 2 view .LVU116
  131:HW/SDCard/SDCard.c ****     DWORD fre_sect = nclst * fs->csize;
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 14
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 14
 
 
  493              		.loc 1 131 5 discriminator 2 view .LVU117
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  533 0246 134A     		ldr	r2, .L28+28
  534 0248 02EBC303 		add	r3, r2, r3, lsl #3
  535 024c 0093     		str	r3, [sp]
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 15
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 15
 
 
  536 024e 0E4B     		ldr	r3, .L28+16
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  588              	Buffercmp:
  589              	.LVL75:
  590              	.LFB37:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 16
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 16
 
 
  140:HW/SDCard/SDCard.c **** 
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  194:HW/SDCard/SDCard.c ****     EraseStatus = eBuffercmp(Buffer_MultiBlock_Rx, MULTI_BUFFER_SIZE);
  195:HW/SDCard/SDCard.c ****   }
  196:HW/SDCard/SDCard.c ****   
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 17
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 17
 
 
  197:HW/SDCard/SDCard.c ****   if(EraseStatus == PASSED)
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  251:HW/SDCard/SDCard.c **** 
  252:HW/SDCard/SDCard.c **** /**
  253:HW/SDCard/SDCard.c ****   * @brief  Tests the SD card Multiple Blocks operations.
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 18
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 18
 
 
  254:HW/SDCard/SDCard.c ****   * @param  None
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  593              		@ args = 0, pretend = 0, frame = 0
  594              		@ frame_needed = 0, uses_anonymous_args = 0
  595              		@ link register save eliminated.
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 19
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 19
 
 
  306:HW/SDCard/SDCard.c ****   while (BufferLength--)
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  317:HW/SDCard/SDCard.c ****   return PASSED;
  318:HW/SDCard/SDCard.c **** }
  630              		.loc 1 318 1 view .LVU152
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 20
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 20
 
 
  631 0018 7047     		bx	lr
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  669 0008 00F803C0 		strb	ip, [r0, r3]
  332:HW/SDCard/SDCard.c ****   {
  670              		.loc 1 332 46 is_stmt 1 discriminator 3 view .LVU163
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 21
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 21
 
 
  671 000c 0133     		adds	r3, r3, #1
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  710              		.cfi_offset 4, -8
  711              		.cfi_offset 14, -4
  216:HW/SDCard/SDCard.c **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 22
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 22
 
 
  712              		.loc 1 216 3 view .LVU168
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  752 0034 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  753 0036 DBB2     		uxtb	r3, r3
  242:HW/SDCard/SDCard.c ****   {
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 23
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 23
 
 
  754              		.loc 1 242 5 view .LVU183
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  794 0064 4FF40072 		mov	r2, #512
  795 0068 0021     		movs	r1, #0
  796 006a 0A48     		ldr	r0, .L52+8
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 24
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 24
 
 
  797 006c FFF7FEFF 		bl	SD_ReadBlock
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  839      8B
  840 0011 E8AF95E6 		.ascii	"\350\257\225\346\210\220\345\212\237\015\000"
  840      8890E58A 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 25
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 25
 
 
  840      9F0D00
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  881 0018 23B3     		cbz	r3, .L64
  882              	.L57:
  282:HW/SDCard/SDCard.c ****   {
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 26
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 26
 
 
  883              		.loc 1 282 3 is_stmt 1 view .LVU215
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  924              		.loc 1 266 12 view .LVU228
  925 0050 104C     		ldr	r4, .L66+4
  926 0052 2070     		strb	r0, [r4]
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 27
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 27
 
 
  268:HW/SDCard/SDCard.c ****     while(SD_GetStatus() != SD_TRANSFER_OK);
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  965 007c FFF7FEFF 		bl	SD_GetStatus
  966              	.LVL106:
  278:HW/SDCard/SDCard.c ****   }
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 28
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 28
 
 
  967              		.loc 1 278 26 discriminator 1 view .LVU245
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  350:HW/SDCard/SDCard.c ****     if ((*pBuffer != 0xFF) && (*pBuffer != 0x00))
  351:HW/SDCard/SDCard.c ****     {
  352:HW/SDCard/SDCard.c ****       return FAILED;
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 29
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 29
 
 
  353:HW/SDCard/SDCard.c ****     }
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  1045              	.LFE39:
  1047              		.section	.rodata.SD_EraseTest.str1.4,"aMS",%progbits,1
  1048              		.align	2
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 30
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 30
 
 
  1049              	.LC14:
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  1088              		.loc 1 192 3 is_stmt 1 view .LVU271
  192:HW/SDCard/SDCard.c ****   {
  1089              		.loc 1 192 14 is_stmt 0 view .LVU272
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 31
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 31
 
 
  1090 000e 184B     		ldr	r3, .L86
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  1131              		.loc 1 182 5 is_stmt 1 view .LVU285
  182:HW/SDCard/SDCard.c **** 
  1132              		.loc 1 182 14 is_stmt 0 view .LVU286
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 32
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 32
 
 
  1133 0044 2023     		movs	r3, #32
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  1178      A1E5889D 
  1178      E5A78BE5 
  1178      8C96E5
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 33
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 33
 
 
  1179 000f A4B1E8B4 		.ascii	"\244\261\350\264\245: %d\015\012\000"
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  1219              		.loc 1 25 9 is_stmt 0 view .LVU304
  1220 0016 FFF7FEFF 		bl	puts
  1221              	.LVL127:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 34
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 34
 
 
   29:HW/SDCard/SDCard.c ****     SD_SingleBlockTest();
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  1272 0000 00       		.space	1
  1273              		.global	TransferStatus2
  1274              		.section	.bss.TransferStatus2,"aw",%nobits
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 35
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 35
 
 
  1277              	TransferStatus2:
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  1325      00000000 
  1325      00000000 
  1325      00000000 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 36
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 36
 
 
  1325      00000000 
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  1337      70617468 
  1337      206E616D 
  1337      6520666F 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 37
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 37
 
 
  1338 01d4 00000000 		.space	36
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  1349      00000000 
  1349      00000000 
  1350 0360 28313229 		.ascii	"(12) The volume has no work area\000"
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 38
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 38
 
 
  1350      20546865 
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  1362      6B696E67 
  1362      20737263 
  1363 04f4 00000000 		.space	28
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 39
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 39
 
 
  1363      00000000 
@@ -2329,67 +2329,67 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 1
  1385              		.file 11 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\
  1386              		.file 12 "STM32F10x_FWLib/inc/misc.h"
  1387              		.file 13 "<built-in>"
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 40
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 40
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 SDCard.c
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:19     .rodata.SDCard_Fats_Run.str1.4:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:54     .text.SDCard_Fats_Run:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:60     .text.SDCard_Fats_Run:00000000 SDCard_Fats_Run
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:565    .text.SDCard_Fats_Run:00000278 $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1258   .rodata.__FUNCTION__.0:00000000 __FUNCTION__.0
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1323   .data.errInfo:00000000 errInfo
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:582    .text.Buffercmp:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:588    .text.Buffercmp:00000000 Buffercmp
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:643    .text.Fill_Buffer:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:649    .text.Fill_Buffer:00000000 Fill_Buffer
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:686    .rodata.SD_SingleBlockTest.str1.4:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:695    .text.SD_SingleBlockTest:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:701    .text.SD_SingleBlockTest:00000000 SD_SingleBlockTest
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:827    .text.SD_SingleBlockTest:0000008c $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1317   .bss.Buffer_Block_Tx:00000000 Buffer_Block_Tx
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1271   .bss.Status:00000000 Status
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1310   .bss.Buffer_Block_Rx:00000000 Buffer_Block_Rx
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1283   .bss.TransferStatus1:00000000 TransferStatus1
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:837    .rodata.SD_MultiBlockTest.str1.4:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:846    .text.SD_MultiBlockTest:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:852    .text.SD_MultiBlockTest:00000000 SD_MultiBlockTest
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:980    .text.SD_MultiBlockTest:00000090 $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1303   .bss.Buffer_MultiBlock_Tx:00000000 Buffer_MultiBlock_Tx
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1296   .bss.Buffer_MultiBlock_Rx:00000000 Buffer_MultiBlock_Rx
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1277   .bss.TransferStatus2:00000000 TransferStatus2
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:990    .text.eBuffercmp:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:996    .text.eBuffercmp:00000000 eBuffercmp
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1048   .rodata.SD_EraseTest.str1.4:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1057   .text.SD_EraseTest:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1063   .text.SD_EraseTest:00000000 SD_EraseTest
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1167   .text.SD_EraseTest:00000070 $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1289   .bss.EraseStatus:00000000 EraseStatus
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1176   .rodata.SDCard_Run.str1.4:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1185   .text.SDCard_Run:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1191   .text.SDCard_Run:00000000 SDCard_Run
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1249   .text.SDCard_Run:00000034 $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1255   .rodata.__FUNCTION__.0:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1265   .bss.SDCardOperation:00000000 SDCardOperation
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1262   .bss.SDCardOperation:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1272   .bss.Status:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1278   .bss.TransferStatus2:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1284   .bss.TransferStatus1:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1290   .bss.EraseStatus:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1293   .bss.Buffer_MultiBlock_Rx:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1300   .bss.Buffer_MultiBlock_Tx:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1307   .bss.Buffer_Block_Rx:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1314   .bss.Buffer_Block_Tx:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1320   .data.errInfo:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s:1369   .rodata:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:19     .rodata.SDCard_Fats_Run.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:54     .text.SDCard_Fats_Run:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:60     .text.SDCard_Fats_Run:00000000 SDCard_Fats_Run
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:565    .text.SDCard_Fats_Run:00000278 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1258   .rodata.__FUNCTION__.0:00000000 __FUNCTION__.0
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1323   .data.errInfo:00000000 errInfo
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:582    .text.Buffercmp:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:588    .text.Buffercmp:00000000 Buffercmp
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:643    .text.Fill_Buffer:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:649    .text.Fill_Buffer:00000000 Fill_Buffer
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:686    .rodata.SD_SingleBlockTest.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:695    .text.SD_SingleBlockTest:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:701    .text.SD_SingleBlockTest:00000000 SD_SingleBlockTest
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:827    .text.SD_SingleBlockTest:0000008c $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1317   .bss.Buffer_Block_Tx:00000000 Buffer_Block_Tx
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1271   .bss.Status:00000000 Status
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1310   .bss.Buffer_Block_Rx:00000000 Buffer_Block_Rx
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1283   .bss.TransferStatus1:00000000 TransferStatus1
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:837    .rodata.SD_MultiBlockTest.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:846    .text.SD_MultiBlockTest:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:852    .text.SD_MultiBlockTest:00000000 SD_MultiBlockTest
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:980    .text.SD_MultiBlockTest:00000090 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1303   .bss.Buffer_MultiBlock_Tx:00000000 Buffer_MultiBlock_Tx
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1296   .bss.Buffer_MultiBlock_Rx:00000000 Buffer_MultiBlock_Rx
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1277   .bss.TransferStatus2:00000000 TransferStatus2
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:990    .text.eBuffercmp:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:996    .text.eBuffercmp:00000000 eBuffercmp
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1048   .rodata.SD_EraseTest.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1057   .text.SD_EraseTest:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1063   .text.SD_EraseTest:00000000 SD_EraseTest
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1167   .text.SD_EraseTest:00000070 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1289   .bss.EraseStatus:00000000 EraseStatus
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1176   .rodata.SDCard_Run.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1185   .text.SDCard_Run:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1191   .text.SDCard_Run:00000000 SDCard_Run
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1249   .text.SDCard_Run:00000034 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1255   .rodata.__FUNCTION__.0:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1265   .bss.SDCardOperation:00000000 SDCardOperation
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1262   .bss.SDCardOperation:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1272   .bss.Status:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1278   .bss.TransferStatus2:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1284   .bss.TransferStatus1:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1290   .bss.EraseStatus:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1293   .bss.Buffer_MultiBlock_Rx:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1300   .bss.Buffer_MultiBlock_Tx:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1307   .bss.Buffer_Block_Rx:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1314   .bss.Buffer_Block_Tx:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1320   .data.errInfo:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccsD6I29.s:1369   .rodata:00000000 $d
 
 UNDEFINED SYMBOLS
 USART1_Init
 malloc
 f_mount
 f_open
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccj9AHzQ.s 			page 41
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccsD6I29.s 			page 41
 
 
 f_write

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
   33 0079 87E5AE8C 		.ascii	"\207\345\256\214\346\210\220\015\000"
   33      E688900D 
   33      00
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 2
 
 
   34 0082 0000     		.align	2
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
   56 0118 0909E586 		.ascii	"\011\011\345\206\205\345\255\230\350\214\203\345\233"
   56      85E5AD98 
   56      E88C83E5 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 3
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 3
 
 
   56      9B
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
   42:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** #include"KEY.h"
   43:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
   44:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 4
 
 
   45:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c **** #define FATFS_CHECK(func){ \
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
   78:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     uint8_t* dataSD = 0;
   87              		.loc 1 78 5 view .LVU2
   79:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     Flash_EX_Errors_t flashErr;
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 5
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 5
 
 
   88              		.loc 1 79 5 view .LVU3
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  133 0038 58B9     		cbnz	r0, .L24
  134              		.loc 1 87 33 discriminator 2 view .LVU20
   84:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         FATFS_CHECK(f_open(fp, filesPath[i].path, FA_READ)); /* 打开文件 */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 6
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 6
 
 
  135              		.loc 1 84 31 discriminator 2 view .LVU21
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  119:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             flashErr = Flash_EX_Write(dataSD, addr + (uint32_t)(j * RW_GRID_MAX_SIZE), gridSize); /
  120:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             if(flashErr != FLASH_EX_ERR_SUCCESS){
  121:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 printf("\t文件写入失败[line: %d]\r\n", __LINE__);
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 7
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 7
 
 
  122:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 goto FONTS_ERR_FLAG;
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  188              		.loc 1 94 5 is_stmt 0 view .LVU36
  189 0074 FFF7FEFF 		bl	puts
  190              	.LVL16:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 8
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 8
 
 
   97:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     dataSD = (uint8_t*)malloc(RW_GRID_MAX_SIZE);
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  233              	.LVL21:
  108:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         size = f_size(fp); /* 文件总大小 */
  234              		.loc 1 108 9 is_stmt 0 discriminator 2 view .LVU49
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 9
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 9
 
 
  235 00b6 FFF7FEFF 		bl	f_lseek
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  276 00f4 0346     		mov	r3, r0
  277 00f6 70BB     		cbnz	r0, .L30
  113:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             FATFS_CHECK(f_read(fp, dataSD, gridSize, &br));        /* 读取文件 */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 10
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 10
 
 
  278              		.loc 1 113 59 discriminator 2 view .LVU63
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  318              	.LVL33:
  319              	.L25:
   91:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         goto FONTS_ERR_FLAG;
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 11
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 11
 
 
  320              		.loc 1 91 9 is_stmt 1 view .LVU78
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  364              		.loc 1 113 13 is_stmt 1 discriminator 1 view .LVU89
  365 0156 254A     		ldr	r2, .L35+12
  366 0158 1268     		ldr	r2, [r2]
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 12
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 12
 
 
  367 015a D068     		ldr	r0, [r2, #12]
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  414 018a 7421     		movs	r1, #116
  415 018c 1E48     		ldr	r0, .L35+40
  416              	.LVL51:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 13
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 13
 
 
  116:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****                 goto FONTS_ERR_FLAG;
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  458              		.loc 1 129 9 view .LVU112
  459 01c0 0346     		mov	r3, r0
  460 01c2 10B9     		cbnz	r0, .L34
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 14
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 14
 
 
  129:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  507 000d E69687E4 		.ascii	"\346\226\207\344\273\266...\015\000"
  507      BBB62E2E 
  507      2E0D00
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 15
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 15
 
 
  508              		.align	2
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  545 0004 87B0     		sub	sp, sp, #28
  546              	.LCFI5:
  547              		.cfi_def_cfa_offset 64
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 16
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 16
 
 
  136:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     FRESULT err = 0;
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  582 0028 4FF0000B 		mov	fp, #0
  156:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     for(i = 0; i < FILES_NUM; ++i){
  583              		.loc 1 156 11 view .LVU137
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 17
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 17
 
 
  584 002c 5C46     		mov	r4, fp
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  633              	.L44:
  634              		.loc 1 161 22 is_stmt 1 discriminator 1 view .LVU151
  635 0072 029B     		ldr	r3, [sp, #8]
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 18
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 18
 
 
  636 0074 9845     		cmp	r8, r3
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  682 00b6 09EB0B01 		add	r1, r9, fp
  683 00ba 3046     		mov	r0, r6
  684              	.LVL80:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 19
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 19
 
 
  685              		.loc 1 169 24 view .LVU167
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  182:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         }
  183:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         
  184:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("\t文件校验合格：%s\r\n", filesPath[i].path);
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 20
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 20
 
 
  185:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("\t\t内存范围[ %#x - %#x ]\r\n", (unsigned int)addr, (unsigned int)(addr + size 
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  760 010a 1268     		ldr	r2, [r2]
  761 010c D068     		ldr	r0, [r2, #12]
  762              	.LVL95:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 21
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 21
 
 
  163:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             FATFS_CHECK(f_read(fp, dataSD, gridSize, &br));        /* 读取SD文件 */
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  807              	.LVL105:
  173:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             }
  808              		.loc 1 173 17 is_stmt 1 view .LVU200
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 22
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 22
 
 
  809 0142 02E0     		b	.L41
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  855 0166 DDF80C90 		ldr	r9, [sp, #12]
  184:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         printf("\t\t内存范围[ %#x - %#x ]\r\n", (unsigned int)addr, (unsigned int)(addr + size 
  856              		.loc 1 184 9 is_stmt 1 view .LVU214
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 23
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 23
 
 
  857 016a 4946     		mov	r1, r9
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  187:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     }
  900              		.loc 1 187 9 is_stmt 1 discriminator 1 view .LVU226
  901 01a4 D1E7     		b	.L41
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 24
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 24
 
 
  902              	.LVL121:
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  944      7930EFBC 
  944      88E783A7 
  945 004c E5BD95EF 		.ascii	"\345\275\225\357\274\211\357\274\214Key1\357\274\210"
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 25
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 25
 
 
  945      BC89EFBC 
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  980              		.loc 1 203 5 view .LVU233
  981 0010 FFF7FEFF 		bl	Flash_EX_Init
  982              	.LVL126:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 26
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 26
 
 
  204:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     flashErr = Flash_EX_Wake_Up();
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  227:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         KEY_STATUS_t key = KEY_Scan(KEY_SCAN_ONCE);
  228:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         if(key != KEY_NONE_PRESS){
  229:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             switch (key)
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 27
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 27
 
 
  230:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****             {
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  1036              		.loc 1 218 5 view .LVU254
  218:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****     FATFS* fs = malloc(sizeof(FATFS));
  1037              		.loc 1 218 17 is_stmt 0 view .LVU255
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 28
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 28
 
 
  1038 003c 41F23800 		movw	r0, #4152
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  1080              		.loc 1 219 5 is_stmt 0 discriminator 1 view .LVU267
  1081 0072 0093     		str	r3, [sp]
  1082 0074 1D4B     		ldr	r3, .L88+28
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 29
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 29
 
 
  1083 0076 DB22     		movs	r2, #219
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  227:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         KEY_STATUS_t key = KEY_Scan(KEY_SCAN_ONCE);
  1124              		.loc 1 227 9 view .LVU281
  227:HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Download.c ****         KEY_STATUS_t key = KEY_Scan(KEY_SCAN_ONCE);
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 30
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 30
 
 
  1125              		.loc 1 227 28 is_stmt 0 view .LVU282
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  1169 00dc 00000000 		.word	fp
  1170 00e0 28000000 		.word	.LC17
  1171 00e4 3C000000 		.word	.LC18
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 31
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 31
 
 
  1172 00e8 00000000 		.word	_impure_ptr
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  1212      696E00
  1213 0073 00000000 		.space	35
  1213      00000000 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 32
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 32
 
 
  1213      00000000 
@@ -1889,33 +1889,33 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 1
  1228              		.file 12 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\
  1229              		.file 13 "SYSTEM/delay/delay.h"
  1230              		.file 14 "<built-in>"
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s 			page 33
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s 			page 33
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 Flash_Download.c
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:19     .rodata.Font_Burn.str1.4:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:59     .text.Font_Burn:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:64     .text.Font_Burn:00000000 Font_Burn
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:486    .text.Font_Burn:000001e0 $d
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:1207   .data.filesPath:00000000 filesPath
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:1201   .bss.fp:00000000 fp
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:1189   .rodata.__FUNCTION__.1:00000000 __FUNCTION__.1
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:504    .rodata.Font_Check.str1.4:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:522    .text.Font_Check:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:527    .text.Font_Check:00000000 Font_Check
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:912    .text.Font_Check:000001b0 $d
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:1183   .rodata.__FUNCTION__.0:00000000 __FUNCTION__.0
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:928    .rodata.Font_Download.str1.4:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:950    .text.Font_Download:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:956    .text.Font_Download:00000000 Font_Download
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:1166   .text.Font_Download:000000d0 $d
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:1195   .rodata.__FUNCTION__.2:00000000 __FUNCTION__.2
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:1180   .rodata.__FUNCTION__.0:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:1186   .rodata.__FUNCTION__.1:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:1192   .rodata.__FUNCTION__.2:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:1198   .bss.fp:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccn7FRFW.s:1204   .data.filesPath:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:19     .rodata.Font_Burn.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:59     .text.Font_Burn:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:64     .text.Font_Burn:00000000 Font_Burn
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:486    .text.Font_Burn:000001e0 $d
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:1207   .data.filesPath:00000000 filesPath
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:1201   .bss.fp:00000000 fp
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:1189   .rodata.__FUNCTION__.1:00000000 __FUNCTION__.1
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:504    .rodata.Font_Check.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:522    .text.Font_Check:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:527    .text.Font_Check:00000000 Font_Check
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:912    .text.Font_Check:000001b0 $d
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:1183   .rodata.__FUNCTION__.0:00000000 __FUNCTION__.0
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:928    .rodata.Font_Download.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:950    .text.Font_Download:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:956    .text.Font_Download:00000000 Font_Download
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:1166   .text.Font_Download:000000d0 $d
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:1195   .rodata.__FUNCTION__.2:00000000 __FUNCTION__.2
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:1180   .rodata.__FUNCTION__.0:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:1186   .rodata.__FUNCTION__.1:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:1192   .rodata.__FUNCTION__.2:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:1198   .bss.fp:00000000 $d
+C:\Users\86157\AppData\Local\Temp\cc9Y9Fbs.s:1204   .data.filesPath:00000000 $d
 
 UNDEFINED SYMBOLS
 puts

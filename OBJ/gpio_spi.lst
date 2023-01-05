@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 1
   30:HW/TOUCH/gpio_spi.c ****     GPIO_InitTypeDef gpioDef;
   31:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Speed  = GPIO_Speed_50MHz;
   32:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Pin    = SPI_MISO_PIN;             // MISO输入
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 2
 
 
   33:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Mode   = GPIO_Mode_IN_FLOATING;
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 1
   59 0020 FFF7FEFF 		bl	GPIO_ResetBits
   60              	.LVL5:
   55:HW/TOUCH/gpio_spi.c ****     delay_us(1);    // >= 100ns
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 3
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 3
 
 
   61              		.loc 1 55 5 view .LVU7
@@ -128,7 +128,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 1
   56:HW/TOUCH/gpio_spi.c ****     /* 遍历每个bit */
   57:HW/TOUCH/gpio_spi.c ****     for(uint8_t i = 0; i < 8 * size; ++i){
   65              		.loc 1 57 5 view .LVU8
-  66              	.LBB2:
+  66              	.LBB200:
   67              		.loc 1 57 9 view .LVU9
   68              		.loc 1 57 17 is_stmt 0 view .LVU10
   69 002a 0024     		movs	r4, #0
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 1
  102 0054 FFF7FEFF 		bl	GPIO_ResetBits
  103              	.LVL13:
   59:HW/TOUCH/gpio_spi.c ****             SPI_MOSI_HIGH();
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 4
 
 
  104              		.loc 1 59 9 view .LVU19
@@ -209,7 +209,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 1
  123              	.L7:
   60:HW/TOUCH/gpio_spi.c ****         else
  124              		.loc 1 60 13 is_stmt 0 view .LVU26
- 125              	.LBE2:
+ 125              	.LBE200:
   65:HW/TOUCH/gpio_spi.c ****     }
   66:HW/TOUCH/gpio_spi.c ****     SPI_CS_HIGH();
  126              		.loc 1 66 5 is_stmt 1 view .LVU27
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 1
  150              	.LVL17:
  151              	.LFB32:
   68:HW/TOUCH/gpio_spi.c **** void GPIO_SPI_SendData(void* src, uint8_t size){
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 5
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 5
 
 
   69:HW/TOUCH/gpio_spi.c ****     __GPIO_SPI_SendData((uint8_t*)src, size);
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 1
   81:HW/TOUCH/gpio_spi.c ****     delay_us(1);    // >= 100ns
  194              		.loc 1 81 5 view .LVU38
  195 002e 0120     		movs	r0, #1
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 6
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 6
 
 
  196 0030 FFF7FEFF 		bl	delay_us
@@ -306,7 +306,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 1
   82:HW/TOUCH/gpio_spi.c ****     /* 遍历每个bit */
   83:HW/TOUCH/gpio_spi.c ****     for(uint8_t i = 0; i < 8 * size; ++i){
  198              		.loc 1 83 5 view .LVU39
- 199              	.LBB3:
+ 199              	.LBB201:
  200              		.loc 1 83 9 view .LVU40
  201              		.loc 1 83 17 is_stmt 0 view .LVU41
  202 0034 0024     		movs	r4, #0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 1
   86:HW/TOUCH/gpio_spi.c ****             dst[i / 8] |= 0B10000000 >> (i % 8);
  236              		.loc 1 86 9 view .LVU50
   86:HW/TOUCH/gpio_spi.c ****             dst[i / 8] |= 0B10000000 >> (i % 8);
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 7
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 7
 
 
  237              		.loc 1 86 12 is_stmt 0 view .LVU51
@@ -391,7 +391,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 1
  258              	.L15:
   87:HW/TOUCH/gpio_spi.c ****         }
  259              		.loc 1 87 24 view .LVU58
- 260              	.LBE3:
+ 260              	.LBE201:
   91:HW/TOUCH/gpio_spi.c ****     }
   92:HW/TOUCH/gpio_spi.c ****     SPI_CS_HIGH();
  261              		.loc 1 92 5 is_stmt 1 view .LVU59
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 1
  282              		.thumb
  283              		.thumb_func
  285              	GPIO_SPI_Init:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 8
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 8
 
 
  286              	.LFB29:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 1
   36:HW/TOUCH/gpio_spi.c ****     GPIO_Init(SPI_MOSI_GPIO, &gpioDef);
  328              		.loc 1 36 5 is_stmt 1 view .LVU74
   36:HW/TOUCH/gpio_spi.c ****     GPIO_Init(SPI_MOSI_GPIO, &gpioDef);
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 9
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 9
 
 
  329              		.loc 1 36 25 is_stmt 0 view .LVU75
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 1
  373 0070 000C0140 		.word	1073810432
  374 0074 001C0140 		.word	1073814528
  375              		.cfi_endproc
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 10
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 10
 
 
  376              	.LFE29:
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 1
  428              	.LVL45:
   96:HW/TOUCH/gpio_spi.c **** }
  429              		.loc 1 96 1 is_stmt 0 view .LVU93
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 11
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 11
 
 
  430 0006 08BD     		pop	{r3, pc}
@@ -631,7 +631,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 1
   99:HW/TOUCH/gpio_spi.c ****     /* 初始状态 */
  100:HW/TOUCH/gpio_spi.c ****     SPI_MOSI_LOW();
  457              		.loc 1 100 5 is_stmt 1 view .LVU96
- 458 0004 384C     		ldr	r4, .L37
+ 458 0004 5E4C     		ldr	r4, .L37
  459 0006 4FF40071 		mov	r1, #512
  460 000a 2046     		mov	r0, r4
  461              	.LVL47:
@@ -641,7 +641,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 1
  101:HW/TOUCH/gpio_spi.c ****     SPI_CLK_LOW();
  465              		.loc 1 101 5 is_stmt 1 view .LVU98
  466 0010 0221     		movs	r1, #2
- 467 0012 3648     		ldr	r0, .L37+4
+ 467 0012 5C48     		ldr	r0, .L37+4
  468 0014 FFF7FEFF 		bl	GPIO_ResetBits
  469              	.LVL49:
  102:HW/TOUCH/gpio_spi.c ****     SPI_CS_LOW();
@@ -650,287 +650,3000 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 1
  472 001c 2046     		mov	r0, r4
  473 001e FFF7FEFF 		bl	GPIO_ResetBits
  474              	.LVL50:
- 103:HW/TOUCH/gpio_spi.c ****     delay_us(1);    // >= 100ns
+ 103:HW/TOUCH/gpio_spi.c ****     delay_111ns();    // >= 100ns
  475              		.loc 1 103 5 view .LVU100
- 476 0022 0120     		movs	r0, #1
- 477 0024 FFF7FEFF 		bl	delay_us
- 478              	.LVL51:
+ 476              	.LBB202:
+ 477              	.LBI202:
+ 478              		.file 2 "Core/core_cm3.h"
+   1:Core/core_cm3.h **** /**************************************************************************//**
+   2:Core/core_cm3.h ****  * @file     core_cm3.h
+   3:Core/core_cm3.h ****  * @brief    CMSIS Cortex-M3 Core Peripheral Access Layer Header File
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 12
+
+
+   4:Core/core_cm3.h ****  * @version  V1.30
+   5:Core/core_cm3.h ****  * @date     30. October 2009
+   6:Core/core_cm3.h ****  *
+   7:Core/core_cm3.h ****  * @note
+   8:Core/core_cm3.h ****  * Copyright (C) 2009 ARM Limited. All rights reserved.
+   9:Core/core_cm3.h ****  *
+  10:Core/core_cm3.h ****  * @par
+  11:Core/core_cm3.h ****  * ARM Limited (ARM) is supplying this software for use with Cortex-M 
+  12:Core/core_cm3.h ****  * processor based microcontrollers.  This file can be freely distributed 
+  13:Core/core_cm3.h ****  * within development tools that are supporting such ARM based processors. 
+  14:Core/core_cm3.h ****  *
+  15:Core/core_cm3.h ****  * @par
+  16:Core/core_cm3.h ****  * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+  17:Core/core_cm3.h ****  * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+  18:Core/core_cm3.h ****  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+  19:Core/core_cm3.h ****  * ARM SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR
+  20:Core/core_cm3.h ****  * CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+  21:Core/core_cm3.h ****  *
+  22:Core/core_cm3.h ****  ******************************************************************************/
+  23:Core/core_cm3.h **** 
+  24:Core/core_cm3.h **** #ifndef __CM3_CORE_H__
+  25:Core/core_cm3.h **** #define __CM3_CORE_H__
+  26:Core/core_cm3.h **** 
+  27:Core/core_cm3.h **** /** @addtogroup CMSIS_CM3_core_LintCinfiguration CMSIS CM3 Core Lint Configuration
+  28:Core/core_cm3.h ****  *
+  29:Core/core_cm3.h ****  * List of Lint messages which will be suppressed and not shown:
+  30:Core/core_cm3.h ****  *   - Error 10: \n
+  31:Core/core_cm3.h ****  *     register uint32_t __regBasePri         __asm("basepri"); \n
+  32:Core/core_cm3.h ****  *     Error 10: Expecting ';'
+  33:Core/core_cm3.h ****  * .
+  34:Core/core_cm3.h ****  *   - Error 530: \n
+  35:Core/core_cm3.h ****  *     return(__regBasePri); \n
+  36:Core/core_cm3.h ****  *     Warning 530: Symbol '__regBasePri' (line 264) not initialized
+  37:Core/core_cm3.h ****  * . 
+  38:Core/core_cm3.h ****  *   - Error 550: \n
+  39:Core/core_cm3.h ****  *     __regBasePri = (basePri & 0x1ff); \n
+  40:Core/core_cm3.h ****  *     Warning 550: Symbol '__regBasePri' (line 271) not accessed
+  41:Core/core_cm3.h ****  * .
+  42:Core/core_cm3.h ****  *   - Error 754: \n
+  43:Core/core_cm3.h ****  *     uint32_t RESERVED0[24]; \n
+  44:Core/core_cm3.h ****  *     Info 754: local structure member '<some, not used in the HAL>' (line 109, file ./cm3_core.h)
+  45:Core/core_cm3.h ****  * .
+  46:Core/core_cm3.h ****  *   - Error 750: \n
+  47:Core/core_cm3.h ****  *     #define __CM3_CORE_H__ \n
+  48:Core/core_cm3.h ****  *     Info 750: local macro '__CM3_CORE_H__' (line 43, file./cm3_core.h) not referenced
+  49:Core/core_cm3.h ****  * .
+  50:Core/core_cm3.h ****  *   - Error 528: \n
+  51:Core/core_cm3.h ****  *     static __INLINE void NVIC_DisableIRQ(uint32_t IRQn) \n
+  52:Core/core_cm3.h ****  *     Warning 528: Symbol 'NVIC_DisableIRQ(unsigned int)' (line 419, file ./cm3_core.h) not refere
+  53:Core/core_cm3.h ****  * .
+  54:Core/core_cm3.h ****  *   - Error 751: \n
+  55:Core/core_cm3.h ****  *     } InterruptType_Type; \n
+  56:Core/core_cm3.h ****  *     Info 751: local typedef 'InterruptType_Type' (line 170, file ./cm3_core.h) not referenced
+  57:Core/core_cm3.h ****  * .
+  58:Core/core_cm3.h ****  * Note:  To re-enable a Message, insert a space before 'lint' *
+  59:Core/core_cm3.h ****  *
+  60:Core/core_cm3.h ****  */
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 13
+
+
+  61:Core/core_cm3.h **** 
+  62:Core/core_cm3.h **** /*lint -save */
+  63:Core/core_cm3.h **** /*lint -e10  */
+  64:Core/core_cm3.h **** /*lint -e530 */
+  65:Core/core_cm3.h **** /*lint -e550 */
+  66:Core/core_cm3.h **** /*lint -e754 */
+  67:Core/core_cm3.h **** /*lint -e750 */
+  68:Core/core_cm3.h **** /*lint -e528 */
+  69:Core/core_cm3.h **** /*lint -e751 */
+  70:Core/core_cm3.h **** 
+  71:Core/core_cm3.h **** 
+  72:Core/core_cm3.h **** /** @addtogroup CMSIS_CM3_core_definitions CM3 Core Definitions
+  73:Core/core_cm3.h ****   This file defines all structures and symbols for CMSIS core:
+  74:Core/core_cm3.h ****     - CMSIS version number
+  75:Core/core_cm3.h ****     - Cortex-M core registers and bitfields
+  76:Core/core_cm3.h ****     - Cortex-M core peripheral base address
+  77:Core/core_cm3.h ****   @{
+  78:Core/core_cm3.h ****  */
+  79:Core/core_cm3.h **** 
+  80:Core/core_cm3.h **** #ifdef __cplusplus
+  81:Core/core_cm3.h ****  extern "C" {
+  82:Core/core_cm3.h **** #endif 
+  83:Core/core_cm3.h **** 
+  84:Core/core_cm3.h **** #define __CM3_CMSIS_VERSION_MAIN  (0x01)                                                       /*!<
+  85:Core/core_cm3.h **** #define __CM3_CMSIS_VERSION_SUB   (0x30)                                                       /*!<
+  86:Core/core_cm3.h **** #define __CM3_CMSIS_VERSION       ((__CM3_CMSIS_VERSION_MAIN << 16) | __CM3_CMSIS_VERSION_SUB) /*!<
+  87:Core/core_cm3.h **** 
+  88:Core/core_cm3.h **** #define __CORTEX_M                (0x03)                                                       /*!<
+  89:Core/core_cm3.h **** 
+  90:Core/core_cm3.h **** #include <stdint.h>                           /* Include standard types */
+  91:Core/core_cm3.h **** 
+  92:Core/core_cm3.h **** #if defined (__ICCARM__)
+  93:Core/core_cm3.h ****   #include <intrinsics.h>                     /* IAR Intrinsics   */
+  94:Core/core_cm3.h **** #endif
+  95:Core/core_cm3.h **** 
+  96:Core/core_cm3.h **** 
+  97:Core/core_cm3.h **** #ifndef __NVIC_PRIO_BITS
+  98:Core/core_cm3.h ****   #define __NVIC_PRIO_BITS    4               /*!< standard definition for NVIC Priority Bits */
+  99:Core/core_cm3.h **** #endif
+ 100:Core/core_cm3.h **** 
+ 101:Core/core_cm3.h **** 
+ 102:Core/core_cm3.h **** 
+ 103:Core/core_cm3.h **** 
+ 104:Core/core_cm3.h **** /**
+ 105:Core/core_cm3.h ****  * IO definitions
+ 106:Core/core_cm3.h ****  *
+ 107:Core/core_cm3.h ****  * define access restrictions to peripheral registers
+ 108:Core/core_cm3.h ****  */
+ 109:Core/core_cm3.h **** 
+ 110:Core/core_cm3.h **** #ifdef __cplusplus
+ 111:Core/core_cm3.h ****   #define     __I     volatile                /*!< defines 'read only' permissions      */
+ 112:Core/core_cm3.h **** #else
+ 113:Core/core_cm3.h ****   #define     __I     volatile const          /*!< defines 'read only' permissions      */
+ 114:Core/core_cm3.h **** #endif
+ 115:Core/core_cm3.h **** #define     __O     volatile                  /*!< defines 'write only' permissions     */
+ 116:Core/core_cm3.h **** #define     __IO    volatile                  /*!< defines 'read / write' permissions   */
+ 117:Core/core_cm3.h **** 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 14
+
+
+ 118:Core/core_cm3.h **** 
+ 119:Core/core_cm3.h **** 
+ 120:Core/core_cm3.h **** /*******************************************************************************
+ 121:Core/core_cm3.h ****  *                 Register Abstraction
+ 122:Core/core_cm3.h ****  ******************************************************************************/
+ 123:Core/core_cm3.h **** /** @addtogroup CMSIS_CM3_core_register CMSIS CM3 Core Register
+ 124:Core/core_cm3.h ****  @{
+ 125:Core/core_cm3.h **** */
+ 126:Core/core_cm3.h **** 
+ 127:Core/core_cm3.h **** 
+ 128:Core/core_cm3.h **** /** @addtogroup CMSIS_CM3_NVIC CMSIS CM3 NVIC
+ 129:Core/core_cm3.h ****   memory mapped structure for Nested Vectored Interrupt Controller (NVIC)
+ 130:Core/core_cm3.h ****   @{
+ 131:Core/core_cm3.h ****  */
+ 132:Core/core_cm3.h **** typedef struct
+ 133:Core/core_cm3.h **** {
+ 134:Core/core_cm3.h ****   __IO uint32_t ISER[8];                      /*!< Offset: 0x000  Interrupt Set Enable Register    
+ 135:Core/core_cm3.h ****        uint32_t RESERVED0[24];                                   
+ 136:Core/core_cm3.h ****   __IO uint32_t ICER[8];                      /*!< Offset: 0x080  Interrupt Clear Enable Register  
+ 137:Core/core_cm3.h ****        uint32_t RSERVED1[24];                                    
+ 138:Core/core_cm3.h ****   __IO uint32_t ISPR[8];                      /*!< Offset: 0x100  Interrupt Set Pending Register   
+ 139:Core/core_cm3.h ****        uint32_t RESERVED2[24];                                   
+ 140:Core/core_cm3.h ****   __IO uint32_t ICPR[8];                      /*!< Offset: 0x180  Interrupt Clear Pending Register 
+ 141:Core/core_cm3.h ****        uint32_t RESERVED3[24];                                   
+ 142:Core/core_cm3.h ****   __IO uint32_t IABR[8];                      /*!< Offset: 0x200  Interrupt Active bit Register    
+ 143:Core/core_cm3.h ****        uint32_t RESERVED4[56];                                   
+ 144:Core/core_cm3.h ****   __IO uint8_t  IP[240];                      /*!< Offset: 0x300  Interrupt Priority Register (8Bit
+ 145:Core/core_cm3.h ****        uint32_t RESERVED5[644];                                  
+ 146:Core/core_cm3.h ****   __O  uint32_t STIR;                         /*!< Offset: 0xE00  Software Trigger Interrupt Regist
+ 147:Core/core_cm3.h **** }  NVIC_Type;                                               
+ 148:Core/core_cm3.h **** /*@}*/ /* end of group CMSIS_CM3_NVIC */
+ 149:Core/core_cm3.h **** 
+ 150:Core/core_cm3.h **** 
+ 151:Core/core_cm3.h **** /** @addtogroup CMSIS_CM3_SCB CMSIS CM3 SCB
+ 152:Core/core_cm3.h ****   memory mapped structure for System Control Block (SCB)
+ 153:Core/core_cm3.h ****   @{
+ 154:Core/core_cm3.h ****  */
+ 155:Core/core_cm3.h **** typedef struct
+ 156:Core/core_cm3.h **** {
+ 157:Core/core_cm3.h ****   __I  uint32_t CPUID;                        /*!< Offset: 0x00  CPU ID Base Register              
+ 158:Core/core_cm3.h ****   __IO uint32_t ICSR;                         /*!< Offset: 0x04  Interrupt Control State Register  
+ 159:Core/core_cm3.h ****   __IO uint32_t VTOR;                         /*!< Offset: 0x08  Vector Table Offset Register      
+ 160:Core/core_cm3.h ****   __IO uint32_t AIRCR;                        /*!< Offset: 0x0C  Application Interrupt / Reset Cont
+ 161:Core/core_cm3.h ****   __IO uint32_t SCR;                          /*!< Offset: 0x10  System Control Register           
+ 162:Core/core_cm3.h ****   __IO uint32_t CCR;                          /*!< Offset: 0x14  Configuration Control Register    
+ 163:Core/core_cm3.h ****   __IO uint8_t  SHP[12];                      /*!< Offset: 0x18  System Handlers Priority Registers
+ 164:Core/core_cm3.h ****   __IO uint32_t SHCSR;                        /*!< Offset: 0x24  System Handler Control and State R
+ 165:Core/core_cm3.h ****   __IO uint32_t CFSR;                         /*!< Offset: 0x28  Configurable Fault Status Register
+ 166:Core/core_cm3.h ****   __IO uint32_t HFSR;                         /*!< Offset: 0x2C  Hard Fault Status Register        
+ 167:Core/core_cm3.h ****   __IO uint32_t DFSR;                         /*!< Offset: 0x30  Debug Fault Status Register       
+ 168:Core/core_cm3.h ****   __IO uint32_t MMFAR;                        /*!< Offset: 0x34  Mem Manage Address Register       
+ 169:Core/core_cm3.h ****   __IO uint32_t BFAR;                         /*!< Offset: 0x38  Bus Fault Address Register        
+ 170:Core/core_cm3.h ****   __IO uint32_t AFSR;                         /*!< Offset: 0x3C  Auxiliary Fault Status Register   
+ 171:Core/core_cm3.h ****   __I  uint32_t PFR[2];                       /*!< Offset: 0x40  Processor Feature Register        
+ 172:Core/core_cm3.h ****   __I  uint32_t DFR;                          /*!< Offset: 0x48  Debug Feature Register            
+ 173:Core/core_cm3.h ****   __I  uint32_t ADR;                          /*!< Offset: 0x4C  Auxiliary Feature Register        
+ 174:Core/core_cm3.h ****   __I  uint32_t MMFR[4];                      /*!< Offset: 0x50  Memory Model Feature Register     
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 15
+
+
+ 175:Core/core_cm3.h ****   __I  uint32_t ISAR[5];                      /*!< Offset: 0x60  ISA Feature Register              
+ 176:Core/core_cm3.h **** } SCB_Type;                                                
+ 177:Core/core_cm3.h **** 
+ 178:Core/core_cm3.h **** /* SCB CPUID Register Definitions */
+ 179:Core/core_cm3.h **** #define SCB_CPUID_IMPLEMENTER_Pos          24                                             /*!< SCB 
+ 180:Core/core_cm3.h **** #define SCB_CPUID_IMPLEMENTER_Msk          (0xFFul << SCB_CPUID_IMPLEMENTER_Pos)          /*!< SCB 
+ 181:Core/core_cm3.h **** 
+ 182:Core/core_cm3.h **** #define SCB_CPUID_VARIANT_Pos              20                                             /*!< SCB 
+ 183:Core/core_cm3.h **** #define SCB_CPUID_VARIANT_Msk              (0xFul << SCB_CPUID_VARIANT_Pos)               /*!< SCB 
+ 184:Core/core_cm3.h **** 
+ 185:Core/core_cm3.h **** #define SCB_CPUID_PARTNO_Pos                4                                             /*!< SCB 
+ 186:Core/core_cm3.h **** #define SCB_CPUID_PARTNO_Msk               (0xFFFul << SCB_CPUID_PARTNO_Pos)              /*!< SCB 
+ 187:Core/core_cm3.h **** 
+ 188:Core/core_cm3.h **** #define SCB_CPUID_REVISION_Pos              0                                             /*!< SCB 
+ 189:Core/core_cm3.h **** #define SCB_CPUID_REVISION_Msk             (0xFul << SCB_CPUID_REVISION_Pos)              /*!< SCB 
+ 190:Core/core_cm3.h **** 
+ 191:Core/core_cm3.h **** /* SCB Interrupt Control State Register Definitions */
+ 192:Core/core_cm3.h **** #define SCB_ICSR_NMIPENDSET_Pos            31                                             /*!< SCB 
+ 193:Core/core_cm3.h **** #define SCB_ICSR_NMIPENDSET_Msk            (1ul << SCB_ICSR_NMIPENDSET_Pos)               /*!< SCB 
+ 194:Core/core_cm3.h **** 
+ 195:Core/core_cm3.h **** #define SCB_ICSR_PENDSVSET_Pos             28                                             /*!< SCB 
+ 196:Core/core_cm3.h **** #define SCB_ICSR_PENDSVSET_Msk             (1ul << SCB_ICSR_PENDSVSET_Pos)                /*!< SCB 
+ 197:Core/core_cm3.h **** 
+ 198:Core/core_cm3.h **** #define SCB_ICSR_PENDSVCLR_Pos             27                                             /*!< SCB 
+ 199:Core/core_cm3.h **** #define SCB_ICSR_PENDSVCLR_Msk             (1ul << SCB_ICSR_PENDSVCLR_Pos)                /*!< SCB 
+ 200:Core/core_cm3.h **** 
+ 201:Core/core_cm3.h **** #define SCB_ICSR_PENDSTSET_Pos             26                                             /*!< SCB 
+ 202:Core/core_cm3.h **** #define SCB_ICSR_PENDSTSET_Msk             (1ul << SCB_ICSR_PENDSTSET_Pos)                /*!< SCB 
+ 203:Core/core_cm3.h **** 
+ 204:Core/core_cm3.h **** #define SCB_ICSR_PENDSTCLR_Pos             25                                             /*!< SCB 
+ 205:Core/core_cm3.h **** #define SCB_ICSR_PENDSTCLR_Msk             (1ul << SCB_ICSR_PENDSTCLR_Pos)                /*!< SCB 
+ 206:Core/core_cm3.h **** 
+ 207:Core/core_cm3.h **** #define SCB_ICSR_ISRPREEMPT_Pos            23                                             /*!< SCB 
+ 208:Core/core_cm3.h **** #define SCB_ICSR_ISRPREEMPT_Msk            (1ul << SCB_ICSR_ISRPREEMPT_Pos)               /*!< SCB 
+ 209:Core/core_cm3.h **** 
+ 210:Core/core_cm3.h **** #define SCB_ICSR_ISRPENDING_Pos            22                                             /*!< SCB 
+ 211:Core/core_cm3.h **** #define SCB_ICSR_ISRPENDING_Msk            (1ul << SCB_ICSR_ISRPENDING_Pos)               /*!< SCB 
+ 212:Core/core_cm3.h **** 
+ 213:Core/core_cm3.h **** #define SCB_ICSR_VECTPENDING_Pos           12                                             /*!< SCB 
+ 214:Core/core_cm3.h **** #define SCB_ICSR_VECTPENDING_Msk           (0x1FFul << SCB_ICSR_VECTPENDING_Pos)          /*!< SCB 
+ 215:Core/core_cm3.h **** 
+ 216:Core/core_cm3.h **** #define SCB_ICSR_RETTOBASE_Pos             11                                             /*!< SCB 
+ 217:Core/core_cm3.h **** #define SCB_ICSR_RETTOBASE_Msk             (1ul << SCB_ICSR_RETTOBASE_Pos)                /*!< SCB 
+ 218:Core/core_cm3.h **** 
+ 219:Core/core_cm3.h **** #define SCB_ICSR_VECTACTIVE_Pos             0                                             /*!< SCB 
+ 220:Core/core_cm3.h **** #define SCB_ICSR_VECTACTIVE_Msk            (0x1FFul << SCB_ICSR_VECTACTIVE_Pos)           /*!< SCB 
+ 221:Core/core_cm3.h **** 
+ 222:Core/core_cm3.h **** /* SCB Interrupt Control State Register Definitions */
+ 223:Core/core_cm3.h **** #define SCB_VTOR_TBLBASE_Pos               29                                             /*!< SCB 
+ 224:Core/core_cm3.h **** #define SCB_VTOR_TBLBASE_Msk               (0x1FFul << SCB_VTOR_TBLBASE_Pos)              /*!< SCB 
+ 225:Core/core_cm3.h **** 
+ 226:Core/core_cm3.h **** #define SCB_VTOR_TBLOFF_Pos                 7                                             /*!< SCB 
+ 227:Core/core_cm3.h **** #define SCB_VTOR_TBLOFF_Msk                (0x3FFFFFul << SCB_VTOR_TBLOFF_Pos)            /*!< SCB 
+ 228:Core/core_cm3.h **** 
+ 229:Core/core_cm3.h **** /* SCB Application Interrupt and Reset Control Register Definitions */
+ 230:Core/core_cm3.h **** #define SCB_AIRCR_VECTKEY_Pos              16                                             /*!< SCB 
+ 231:Core/core_cm3.h **** #define SCB_AIRCR_VECTKEY_Msk              (0xFFFFul << SCB_AIRCR_VECTKEY_Pos)            /*!< SCB 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 16
+
+
+ 232:Core/core_cm3.h **** 
+ 233:Core/core_cm3.h **** #define SCB_AIRCR_VECTKEYSTAT_Pos          16                                             /*!< SCB 
+ 234:Core/core_cm3.h **** #define SCB_AIRCR_VECTKEYSTAT_Msk          (0xFFFFul << SCB_AIRCR_VECTKEYSTAT_Pos)        /*!< SCB 
+ 235:Core/core_cm3.h **** 
+ 236:Core/core_cm3.h **** #define SCB_AIRCR_ENDIANESS_Pos            15                                             /*!< SCB 
+ 237:Core/core_cm3.h **** #define SCB_AIRCR_ENDIANESS_Msk            (1ul << SCB_AIRCR_ENDIANESS_Pos)               /*!< SCB 
+ 238:Core/core_cm3.h **** 
+ 239:Core/core_cm3.h **** #define SCB_AIRCR_PRIGROUP_Pos              8                                             /*!< SCB 
+ 240:Core/core_cm3.h **** #define SCB_AIRCR_PRIGROUP_Msk             (7ul << SCB_AIRCR_PRIGROUP_Pos)                /*!< SCB 
+ 241:Core/core_cm3.h **** 
+ 242:Core/core_cm3.h **** #define SCB_AIRCR_SYSRESETREQ_Pos           2                                             /*!< SCB 
+ 243:Core/core_cm3.h **** #define SCB_AIRCR_SYSRESETREQ_Msk          (1ul << SCB_AIRCR_SYSRESETREQ_Pos)             /*!< SCB 
+ 244:Core/core_cm3.h **** 
+ 245:Core/core_cm3.h **** #define SCB_AIRCR_VECTCLRACTIVE_Pos         1                                             /*!< SCB 
+ 246:Core/core_cm3.h **** #define SCB_AIRCR_VECTCLRACTIVE_Msk        (1ul << SCB_AIRCR_VECTCLRACTIVE_Pos)           /*!< SCB 
+ 247:Core/core_cm3.h **** 
+ 248:Core/core_cm3.h **** #define SCB_AIRCR_VECTRESET_Pos             0                                             /*!< SCB 
+ 249:Core/core_cm3.h **** #define SCB_AIRCR_VECTRESET_Msk            (1ul << SCB_AIRCR_VECTRESET_Pos)               /*!< SCB 
+ 250:Core/core_cm3.h **** 
+ 251:Core/core_cm3.h **** /* SCB System Control Register Definitions */
+ 252:Core/core_cm3.h **** #define SCB_SCR_SEVONPEND_Pos               4                                             /*!< SCB 
+ 253:Core/core_cm3.h **** #define SCB_SCR_SEVONPEND_Msk              (1ul << SCB_SCR_SEVONPEND_Pos)                 /*!< SCB 
+ 254:Core/core_cm3.h **** 
+ 255:Core/core_cm3.h **** #define SCB_SCR_SLEEPDEEP_Pos               2                                             /*!< SCB 
+ 256:Core/core_cm3.h **** #define SCB_SCR_SLEEPDEEP_Msk              (1ul << SCB_SCR_SLEEPDEEP_Pos)                 /*!< SCB 
+ 257:Core/core_cm3.h **** 
+ 258:Core/core_cm3.h **** #define SCB_SCR_SLEEPONEXIT_Pos             1                                             /*!< SCB 
+ 259:Core/core_cm3.h **** #define SCB_SCR_SLEEPONEXIT_Msk            (1ul << SCB_SCR_SLEEPONEXIT_Pos)               /*!< SCB 
+ 260:Core/core_cm3.h **** 
+ 261:Core/core_cm3.h **** /* SCB Configuration Control Register Definitions */
+ 262:Core/core_cm3.h **** #define SCB_CCR_STKALIGN_Pos                9                                             /*!< SCB 
+ 263:Core/core_cm3.h **** #define SCB_CCR_STKALIGN_Msk               (1ul << SCB_CCR_STKALIGN_Pos)                  /*!< SCB 
+ 264:Core/core_cm3.h **** 
+ 265:Core/core_cm3.h **** #define SCB_CCR_BFHFNMIGN_Pos               8                                             /*!< SCB 
+ 266:Core/core_cm3.h **** #define SCB_CCR_BFHFNMIGN_Msk              (1ul << SCB_CCR_BFHFNMIGN_Pos)                 /*!< SCB 
+ 267:Core/core_cm3.h **** 
+ 268:Core/core_cm3.h **** #define SCB_CCR_DIV_0_TRP_Pos               4                                             /*!< SCB 
+ 269:Core/core_cm3.h **** #define SCB_CCR_DIV_0_TRP_Msk              (1ul << SCB_CCR_DIV_0_TRP_Pos)                 /*!< SCB 
+ 270:Core/core_cm3.h **** 
+ 271:Core/core_cm3.h **** #define SCB_CCR_UNALIGN_TRP_Pos             3                                             /*!< SCB 
+ 272:Core/core_cm3.h **** #define SCB_CCR_UNALIGN_TRP_Msk            (1ul << SCB_CCR_UNALIGN_TRP_Pos)               /*!< SCB 
+ 273:Core/core_cm3.h **** 
+ 274:Core/core_cm3.h **** #define SCB_CCR_USERSETMPEND_Pos            1                                             /*!< SCB 
+ 275:Core/core_cm3.h **** #define SCB_CCR_USERSETMPEND_Msk           (1ul << SCB_CCR_USERSETMPEND_Pos)              /*!< SCB 
+ 276:Core/core_cm3.h **** 
+ 277:Core/core_cm3.h **** #define SCB_CCR_NONBASETHRDENA_Pos          0                                             /*!< SCB 
+ 278:Core/core_cm3.h **** #define SCB_CCR_NONBASETHRDENA_Msk         (1ul << SCB_CCR_NONBASETHRDENA_Pos)            /*!< SCB 
+ 279:Core/core_cm3.h **** 
+ 280:Core/core_cm3.h **** /* SCB System Handler Control and State Register Definitions */
+ 281:Core/core_cm3.h **** #define SCB_SHCSR_USGFAULTENA_Pos          18                                             /*!< SCB 
+ 282:Core/core_cm3.h **** #define SCB_SHCSR_USGFAULTENA_Msk          (1ul << SCB_SHCSR_USGFAULTENA_Pos)             /*!< SCB 
+ 283:Core/core_cm3.h **** 
+ 284:Core/core_cm3.h **** #define SCB_SHCSR_BUSFAULTENA_Pos          17                                             /*!< SCB 
+ 285:Core/core_cm3.h **** #define SCB_SHCSR_BUSFAULTENA_Msk          (1ul << SCB_SHCSR_BUSFAULTENA_Pos)             /*!< SCB 
+ 286:Core/core_cm3.h **** 
+ 287:Core/core_cm3.h **** #define SCB_SHCSR_MEMFAULTENA_Pos          16                                             /*!< SCB 
+ 288:Core/core_cm3.h **** #define SCB_SHCSR_MEMFAULTENA_Msk          (1ul << SCB_SHCSR_MEMFAULTENA_Pos)             /*!< SCB 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 17
+
+
+ 289:Core/core_cm3.h **** 
+ 290:Core/core_cm3.h **** #define SCB_SHCSR_SVCALLPENDED_Pos         15                                             /*!< SCB 
+ 291:Core/core_cm3.h **** #define SCB_SHCSR_SVCALLPENDED_Msk         (1ul << SCB_SHCSR_SVCALLPENDED_Pos)            /*!< SCB 
+ 292:Core/core_cm3.h **** 
+ 293:Core/core_cm3.h **** #define SCB_SHCSR_BUSFAULTPENDED_Pos       14                                             /*!< SCB 
+ 294:Core/core_cm3.h **** #define SCB_SHCSR_BUSFAULTPENDED_Msk       (1ul << SCB_SHCSR_BUSFAULTPENDED_Pos)          /*!< SCB 
+ 295:Core/core_cm3.h **** 
+ 296:Core/core_cm3.h **** #define SCB_SHCSR_MEMFAULTPENDED_Pos       13                                             /*!< SCB 
+ 297:Core/core_cm3.h **** #define SCB_SHCSR_MEMFAULTPENDED_Msk       (1ul << SCB_SHCSR_MEMFAULTPENDED_Pos)          /*!< SCB 
+ 298:Core/core_cm3.h **** 
+ 299:Core/core_cm3.h **** #define SCB_SHCSR_USGFAULTPENDED_Pos       12                                             /*!< SCB 
+ 300:Core/core_cm3.h **** #define SCB_SHCSR_USGFAULTPENDED_Msk       (1ul << SCB_SHCSR_USGFAULTPENDED_Pos)          /*!< SCB 
+ 301:Core/core_cm3.h **** 
+ 302:Core/core_cm3.h **** #define SCB_SHCSR_SYSTICKACT_Pos           11                                             /*!< SCB 
+ 303:Core/core_cm3.h **** #define SCB_SHCSR_SYSTICKACT_Msk           (1ul << SCB_SHCSR_SYSTICKACT_Pos)              /*!< SCB 
+ 304:Core/core_cm3.h **** 
+ 305:Core/core_cm3.h **** #define SCB_SHCSR_PENDSVACT_Pos            10                                             /*!< SCB 
+ 306:Core/core_cm3.h **** #define SCB_SHCSR_PENDSVACT_Msk            (1ul << SCB_SHCSR_PENDSVACT_Pos)               /*!< SCB 
+ 307:Core/core_cm3.h **** 
+ 308:Core/core_cm3.h **** #define SCB_SHCSR_MONITORACT_Pos            8                                             /*!< SCB 
+ 309:Core/core_cm3.h **** #define SCB_SHCSR_MONITORACT_Msk           (1ul << SCB_SHCSR_MONITORACT_Pos)              /*!< SCB 
+ 310:Core/core_cm3.h **** 
+ 311:Core/core_cm3.h **** #define SCB_SHCSR_SVCALLACT_Pos             7                                             /*!< SCB 
+ 312:Core/core_cm3.h **** #define SCB_SHCSR_SVCALLACT_Msk            (1ul << SCB_SHCSR_SVCALLACT_Pos)               /*!< SCB 
+ 313:Core/core_cm3.h ****                                      
+ 314:Core/core_cm3.h **** #define SCB_SHCSR_USGFAULTACT_Pos           3                                             /*!< SCB 
+ 315:Core/core_cm3.h **** #define SCB_SHCSR_USGFAULTACT_Msk          (1ul << SCB_SHCSR_USGFAULTACT_Pos)             /*!< SCB 
+ 316:Core/core_cm3.h **** 
+ 317:Core/core_cm3.h **** #define SCB_SHCSR_BUSFAULTACT_Pos           1                                             /*!< SCB 
+ 318:Core/core_cm3.h **** #define SCB_SHCSR_BUSFAULTACT_Msk          (1ul << SCB_SHCSR_BUSFAULTACT_Pos)             /*!< SCB 
+ 319:Core/core_cm3.h **** 
+ 320:Core/core_cm3.h **** #define SCB_SHCSR_MEMFAULTACT_Pos           0                                             /*!< SCB 
+ 321:Core/core_cm3.h **** #define SCB_SHCSR_MEMFAULTACT_Msk          (1ul << SCB_SHCSR_MEMFAULTACT_Pos)             /*!< SCB 
+ 322:Core/core_cm3.h **** 
+ 323:Core/core_cm3.h **** /* SCB Configurable Fault Status Registers Definitions */
+ 324:Core/core_cm3.h **** #define SCB_CFSR_USGFAULTSR_Pos            16                                             /*!< SCB 
+ 325:Core/core_cm3.h **** #define SCB_CFSR_USGFAULTSR_Msk            (0xFFFFul << SCB_CFSR_USGFAULTSR_Pos)          /*!< SCB 
+ 326:Core/core_cm3.h **** 
+ 327:Core/core_cm3.h **** #define SCB_CFSR_BUSFAULTSR_Pos             8                                             /*!< SCB 
+ 328:Core/core_cm3.h **** #define SCB_CFSR_BUSFAULTSR_Msk            (0xFFul << SCB_CFSR_BUSFAULTSR_Pos)            /*!< SCB 
+ 329:Core/core_cm3.h **** 
+ 330:Core/core_cm3.h **** #define SCB_CFSR_MEMFAULTSR_Pos             0                                             /*!< SCB 
+ 331:Core/core_cm3.h **** #define SCB_CFSR_MEMFAULTSR_Msk            (0xFFul << SCB_CFSR_MEMFAULTSR_Pos)            /*!< SCB 
+ 332:Core/core_cm3.h **** 
+ 333:Core/core_cm3.h **** /* SCB Hard Fault Status Registers Definitions */
+ 334:Core/core_cm3.h **** #define SCB_HFSR_DEBUGEVT_Pos              31                                             /*!< SCB 
+ 335:Core/core_cm3.h **** #define SCB_HFSR_DEBUGEVT_Msk              (1ul << SCB_HFSR_DEBUGEVT_Pos)                 /*!< SCB 
+ 336:Core/core_cm3.h **** 
+ 337:Core/core_cm3.h **** #define SCB_HFSR_FORCED_Pos                30                                             /*!< SCB 
+ 338:Core/core_cm3.h **** #define SCB_HFSR_FORCED_Msk                (1ul << SCB_HFSR_FORCED_Pos)                   /*!< SCB 
+ 339:Core/core_cm3.h **** 
+ 340:Core/core_cm3.h **** #define SCB_HFSR_VECTTBL_Pos                1                                             /*!< SCB 
+ 341:Core/core_cm3.h **** #define SCB_HFSR_VECTTBL_Msk               (1ul << SCB_HFSR_VECTTBL_Pos)                  /*!< SCB 
+ 342:Core/core_cm3.h **** 
+ 343:Core/core_cm3.h **** /* SCB Debug Fault Status Register Definitions */
+ 344:Core/core_cm3.h **** #define SCB_DFSR_EXTERNAL_Pos               4                                             /*!< SCB 
+ 345:Core/core_cm3.h **** #define SCB_DFSR_EXTERNAL_Msk              (1ul << SCB_DFSR_EXTERNAL_Pos)                 /*!< SCB 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 18
+
+
+ 346:Core/core_cm3.h **** 
+ 347:Core/core_cm3.h **** #define SCB_DFSR_VCATCH_Pos                 3                                             /*!< SCB 
+ 348:Core/core_cm3.h **** #define SCB_DFSR_VCATCH_Msk                (1ul << SCB_DFSR_VCATCH_Pos)                   /*!< SCB 
+ 349:Core/core_cm3.h **** 
+ 350:Core/core_cm3.h **** #define SCB_DFSR_DWTTRAP_Pos                2                                             /*!< SCB 
+ 351:Core/core_cm3.h **** #define SCB_DFSR_DWTTRAP_Msk               (1ul << SCB_DFSR_DWTTRAP_Pos)                  /*!< SCB 
+ 352:Core/core_cm3.h **** 
+ 353:Core/core_cm3.h **** #define SCB_DFSR_BKPT_Pos                   1                                             /*!< SCB 
+ 354:Core/core_cm3.h **** #define SCB_DFSR_BKPT_Msk                  (1ul << SCB_DFSR_BKPT_Pos)                     /*!< SCB 
+ 355:Core/core_cm3.h **** 
+ 356:Core/core_cm3.h **** #define SCB_DFSR_HALTED_Pos                 0                                             /*!< SCB 
+ 357:Core/core_cm3.h **** #define SCB_DFSR_HALTED_Msk                (1ul << SCB_DFSR_HALTED_Pos)                   /*!< SCB 
+ 358:Core/core_cm3.h **** /*@}*/ /* end of group CMSIS_CM3_SCB */
+ 359:Core/core_cm3.h **** 
+ 360:Core/core_cm3.h **** 
+ 361:Core/core_cm3.h **** /** @addtogroup CMSIS_CM3_SysTick CMSIS CM3 SysTick
+ 362:Core/core_cm3.h ****   memory mapped structure for SysTick
+ 363:Core/core_cm3.h ****   @{
+ 364:Core/core_cm3.h ****  */
+ 365:Core/core_cm3.h **** typedef struct
+ 366:Core/core_cm3.h **** {
+ 367:Core/core_cm3.h ****   __IO uint32_t CTRL;                         /*!< Offset: 0x00  SysTick Control and Status Registe
+ 368:Core/core_cm3.h ****   __IO uint32_t LOAD;                         /*!< Offset: 0x04  SysTick Reload Value Register     
+ 369:Core/core_cm3.h ****   __IO uint32_t VAL;                          /*!< Offset: 0x08  SysTick Current Value Register    
+ 370:Core/core_cm3.h ****   __I  uint32_t CALIB;                        /*!< Offset: 0x0C  SysTick Calibration Register      
+ 371:Core/core_cm3.h **** } SysTick_Type;
+ 372:Core/core_cm3.h **** 
+ 373:Core/core_cm3.h **** /* SysTick Control / Status Register Definitions */
+ 374:Core/core_cm3.h **** #define SysTick_CTRL_COUNTFLAG_Pos         16                                             /*!< SysT
+ 375:Core/core_cm3.h **** #define SysTick_CTRL_COUNTFLAG_Msk         (1ul << SysTick_CTRL_COUNTFLAG_Pos)            /*!< SysT
+ 376:Core/core_cm3.h **** 
+ 377:Core/core_cm3.h **** #define SysTick_CTRL_CLKSOURCE_Pos          2                                             /*!< SysT
+ 378:Core/core_cm3.h **** #define SysTick_CTRL_CLKSOURCE_Msk         (1ul << SysTick_CTRL_CLKSOURCE_Pos)            /*!< SysT
+ 379:Core/core_cm3.h **** 
+ 380:Core/core_cm3.h **** #define SysTick_CTRL_TICKINT_Pos            1                                             /*!< SysT
+ 381:Core/core_cm3.h **** #define SysTick_CTRL_TICKINT_Msk           (1ul << SysTick_CTRL_TICKINT_Pos)              /*!< SysT
+ 382:Core/core_cm3.h **** 
+ 383:Core/core_cm3.h **** #define SysTick_CTRL_ENABLE_Pos             0                                             /*!< SysT
+ 384:Core/core_cm3.h **** #define SysTick_CTRL_ENABLE_Msk            (1ul << SysTick_CTRL_ENABLE_Pos)               /*!< SysT
+ 385:Core/core_cm3.h **** 
+ 386:Core/core_cm3.h **** /* SysTick Reload Register Definitions */
+ 387:Core/core_cm3.h **** #define SysTick_LOAD_RELOAD_Pos             0                                             /*!< SysT
+ 388:Core/core_cm3.h **** #define SysTick_LOAD_RELOAD_Msk            (0xFFFFFFul << SysTick_LOAD_RELOAD_Pos)        /*!< SysT
+ 389:Core/core_cm3.h **** 
+ 390:Core/core_cm3.h **** /* SysTick Current Register Definitions */
+ 391:Core/core_cm3.h **** #define SysTick_VAL_CURRENT_Pos             0                                             /*!< SysT
+ 392:Core/core_cm3.h **** #define SysTick_VAL_CURRENT_Msk            (0xFFFFFFul << SysTick_VAL_CURRENT_Pos)        /*!< SysT
+ 393:Core/core_cm3.h **** 
+ 394:Core/core_cm3.h **** /* SysTick Calibration Register Definitions */
+ 395:Core/core_cm3.h **** #define SysTick_CALIB_NOREF_Pos            31                                             /*!< SysT
+ 396:Core/core_cm3.h **** #define SysTick_CALIB_NOREF_Msk            (1ul << SysTick_CALIB_NOREF_Pos)               /*!< SysT
+ 397:Core/core_cm3.h **** 
+ 398:Core/core_cm3.h **** #define SysTick_CALIB_SKEW_Pos             30                                             /*!< SysT
+ 399:Core/core_cm3.h **** #define SysTick_CALIB_SKEW_Msk             (1ul << SysTick_CALIB_SKEW_Pos)                /*!< SysT
+ 400:Core/core_cm3.h **** 
+ 401:Core/core_cm3.h **** #define SysTick_CALIB_TENMS_Pos             0                                             /*!< SysT
+ 402:Core/core_cm3.h **** #define SysTick_CALIB_TENMS_Msk            (0xFFFFFFul << SysTick_VAL_CURRENT_Pos)        /*!< SysT
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 19
+
+
+ 403:Core/core_cm3.h **** /*@}*/ /* end of group CMSIS_CM3_SysTick */
+ 404:Core/core_cm3.h **** 
+ 405:Core/core_cm3.h **** 
+ 406:Core/core_cm3.h **** /** @addtogroup CMSIS_CM3_ITM CMSIS CM3 ITM
+ 407:Core/core_cm3.h ****   memory mapped structure for Instrumentation Trace Macrocell (ITM)
+ 408:Core/core_cm3.h ****   @{
+ 409:Core/core_cm3.h ****  */
+ 410:Core/core_cm3.h **** typedef struct
+ 411:Core/core_cm3.h **** {
+ 412:Core/core_cm3.h ****   __O  union  
+ 413:Core/core_cm3.h ****   {
+ 414:Core/core_cm3.h ****     __O  uint8_t    u8;                       /*!< Offset:       ITM Stimulus Port 8-bit           
+ 415:Core/core_cm3.h ****     __O  uint16_t   u16;                      /*!< Offset:       ITM Stimulus Port 16-bit          
+ 416:Core/core_cm3.h ****     __O  uint32_t   u32;                      /*!< Offset:       ITM Stimulus Port 32-bit          
+ 417:Core/core_cm3.h ****   }  PORT [32];                               /*!< Offset: 0x00  ITM Stimulus Port Registers       
+ 418:Core/core_cm3.h ****        uint32_t RESERVED0[864];                                 
+ 419:Core/core_cm3.h ****   __IO uint32_t TER;                          /*!< Offset:       ITM Trace Enable Register         
+ 420:Core/core_cm3.h ****        uint32_t RESERVED1[15];                                  
+ 421:Core/core_cm3.h ****   __IO uint32_t TPR;                          /*!< Offset:       ITM Trace Privilege Register      
+ 422:Core/core_cm3.h ****        uint32_t RESERVED2[15];                                  
+ 423:Core/core_cm3.h ****   __IO uint32_t TCR;                          /*!< Offset:       ITM Trace Control Register        
+ 424:Core/core_cm3.h ****        uint32_t RESERVED3[29];                                  
+ 425:Core/core_cm3.h ****   __IO uint32_t IWR;                          /*!< Offset:       ITM Integration Write Register    
+ 426:Core/core_cm3.h ****   __IO uint32_t IRR;                          /*!< Offset:       ITM Integration Read Register     
+ 427:Core/core_cm3.h ****   __IO uint32_t IMCR;                         /*!< Offset:       ITM Integration Mode Control Regis
+ 428:Core/core_cm3.h ****        uint32_t RESERVED4[43];                                  
+ 429:Core/core_cm3.h ****   __IO uint32_t LAR;                          /*!< Offset:       ITM Lock Access Register          
+ 430:Core/core_cm3.h ****   __IO uint32_t LSR;                          /*!< Offset:       ITM Lock Status Register          
+ 431:Core/core_cm3.h ****        uint32_t RESERVED5[6];                                   
+ 432:Core/core_cm3.h ****   __I  uint32_t PID4;                         /*!< Offset:       ITM Peripheral Identification Regi
+ 433:Core/core_cm3.h ****   __I  uint32_t PID5;                         /*!< Offset:       ITM Peripheral Identification Regi
+ 434:Core/core_cm3.h ****   __I  uint32_t PID6;                         /*!< Offset:       ITM Peripheral Identification Regi
+ 435:Core/core_cm3.h ****   __I  uint32_t PID7;                         /*!< Offset:       ITM Peripheral Identification Regi
+ 436:Core/core_cm3.h ****   __I  uint32_t PID0;                         /*!< Offset:       ITM Peripheral Identification Regi
+ 437:Core/core_cm3.h ****   __I  uint32_t PID1;                         /*!< Offset:       ITM Peripheral Identification Regi
+ 438:Core/core_cm3.h ****   __I  uint32_t PID2;                         /*!< Offset:       ITM Peripheral Identification Regi
+ 439:Core/core_cm3.h ****   __I  uint32_t PID3;                         /*!< Offset:       ITM Peripheral Identification Regi
+ 440:Core/core_cm3.h ****   __I  uint32_t CID0;                         /*!< Offset:       ITM Component  Identification Regi
+ 441:Core/core_cm3.h ****   __I  uint32_t CID1;                         /*!< Offset:       ITM Component  Identification Regi
+ 442:Core/core_cm3.h ****   __I  uint32_t CID2;                         /*!< Offset:       ITM Component  Identification Regi
+ 443:Core/core_cm3.h ****   __I  uint32_t CID3;                         /*!< Offset:       ITM Component  Identification Regi
+ 444:Core/core_cm3.h **** } ITM_Type;                                                
+ 445:Core/core_cm3.h **** 
+ 446:Core/core_cm3.h **** /* ITM Trace Privilege Register Definitions */
+ 447:Core/core_cm3.h **** #define ITM_TPR_PRIVMASK_Pos                0                                             /*!< ITM 
+ 448:Core/core_cm3.h **** #define ITM_TPR_PRIVMASK_Msk               (0xFul << ITM_TPR_PRIVMASK_Pos)                /*!< ITM 
+ 449:Core/core_cm3.h **** 
+ 450:Core/core_cm3.h **** /* ITM Trace Control Register Definitions */
+ 451:Core/core_cm3.h **** #define ITM_TCR_BUSY_Pos                   23                                             /*!< ITM 
+ 452:Core/core_cm3.h **** #define ITM_TCR_BUSY_Msk                   (1ul << ITM_TCR_BUSY_Pos)                      /*!< ITM 
+ 453:Core/core_cm3.h **** 
+ 454:Core/core_cm3.h **** #define ITM_TCR_ATBID_Pos                  16                                             /*!< ITM 
+ 455:Core/core_cm3.h **** #define ITM_TCR_ATBID_Msk                  (0x7Ful << ITM_TCR_ATBID_Pos)                  /*!< ITM 
+ 456:Core/core_cm3.h **** 
+ 457:Core/core_cm3.h **** #define ITM_TCR_TSPrescale_Pos              8                                             /*!< ITM 
+ 458:Core/core_cm3.h **** #define ITM_TCR_TSPrescale_Msk             (3ul << ITM_TCR_TSPrescale_Pos)                /*!< ITM 
+ 459:Core/core_cm3.h **** 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 20
+
+
+ 460:Core/core_cm3.h **** #define ITM_TCR_SWOENA_Pos                  4                                             /*!< ITM 
+ 461:Core/core_cm3.h **** #define ITM_TCR_SWOENA_Msk                 (1ul << ITM_TCR_SWOENA_Pos)                    /*!< ITM 
+ 462:Core/core_cm3.h **** 
+ 463:Core/core_cm3.h **** #define ITM_TCR_DWTENA_Pos                  3                                             /*!< ITM 
+ 464:Core/core_cm3.h **** #define ITM_TCR_DWTENA_Msk                 (1ul << ITM_TCR_DWTENA_Pos)                    /*!< ITM 
+ 465:Core/core_cm3.h **** 
+ 466:Core/core_cm3.h **** #define ITM_TCR_SYNCENA_Pos                 2                                             /*!< ITM 
+ 467:Core/core_cm3.h **** #define ITM_TCR_SYNCENA_Msk                (1ul << ITM_TCR_SYNCENA_Pos)                   /*!< ITM 
+ 468:Core/core_cm3.h **** 
+ 469:Core/core_cm3.h **** #define ITM_TCR_TSENA_Pos                   1                                             /*!< ITM 
+ 470:Core/core_cm3.h **** #define ITM_TCR_TSENA_Msk                  (1ul << ITM_TCR_TSENA_Pos)                     /*!< ITM 
+ 471:Core/core_cm3.h **** 
+ 472:Core/core_cm3.h **** #define ITM_TCR_ITMENA_Pos                  0                                             /*!< ITM 
+ 473:Core/core_cm3.h **** #define ITM_TCR_ITMENA_Msk                 (1ul << ITM_TCR_ITMENA_Pos)                    /*!< ITM 
+ 474:Core/core_cm3.h **** 
+ 475:Core/core_cm3.h **** /* ITM Integration Write Register Definitions */
+ 476:Core/core_cm3.h **** #define ITM_IWR_ATVALIDM_Pos                0                                             /*!< ITM 
+ 477:Core/core_cm3.h **** #define ITM_IWR_ATVALIDM_Msk               (1ul << ITM_IWR_ATVALIDM_Pos)                  /*!< ITM 
+ 478:Core/core_cm3.h **** 
+ 479:Core/core_cm3.h **** /* ITM Integration Read Register Definitions */
+ 480:Core/core_cm3.h **** #define ITM_IRR_ATREADYM_Pos                0                                             /*!< ITM 
+ 481:Core/core_cm3.h **** #define ITM_IRR_ATREADYM_Msk               (1ul << ITM_IRR_ATREADYM_Pos)                  /*!< ITM 
+ 482:Core/core_cm3.h **** 
+ 483:Core/core_cm3.h **** /* ITM Integration Mode Control Register Definitions */
+ 484:Core/core_cm3.h **** #define ITM_IMCR_INTEGRATION_Pos            0                                             /*!< ITM 
+ 485:Core/core_cm3.h **** #define ITM_IMCR_INTEGRATION_Msk           (1ul << ITM_IMCR_INTEGRATION_Pos)              /*!< ITM 
+ 486:Core/core_cm3.h **** 
+ 487:Core/core_cm3.h **** /* ITM Lock Status Register Definitions */
+ 488:Core/core_cm3.h **** #define ITM_LSR_ByteAcc_Pos                 2                                             /*!< ITM 
+ 489:Core/core_cm3.h **** #define ITM_LSR_ByteAcc_Msk                (1ul << ITM_LSR_ByteAcc_Pos)                   /*!< ITM 
+ 490:Core/core_cm3.h **** 
+ 491:Core/core_cm3.h **** #define ITM_LSR_Access_Pos                  1                                             /*!< ITM 
+ 492:Core/core_cm3.h **** #define ITM_LSR_Access_Msk                 (1ul << ITM_LSR_Access_Pos)                    /*!< ITM 
+ 493:Core/core_cm3.h **** 
+ 494:Core/core_cm3.h **** #define ITM_LSR_Present_Pos                 0                                             /*!< ITM 
+ 495:Core/core_cm3.h **** #define ITM_LSR_Present_Msk                (1ul << ITM_LSR_Present_Pos)                   /*!< ITM 
+ 496:Core/core_cm3.h **** /*@}*/ /* end of group CMSIS_CM3_ITM */
+ 497:Core/core_cm3.h **** 
+ 498:Core/core_cm3.h **** 
+ 499:Core/core_cm3.h **** /** @addtogroup CMSIS_CM3_InterruptType CMSIS CM3 Interrupt Type
+ 500:Core/core_cm3.h ****   memory mapped structure for Interrupt Type
+ 501:Core/core_cm3.h ****   @{
+ 502:Core/core_cm3.h ****  */
+ 503:Core/core_cm3.h **** typedef struct
+ 504:Core/core_cm3.h **** {
+ 505:Core/core_cm3.h ****        uint32_t RESERVED0;
+ 506:Core/core_cm3.h ****   __I  uint32_t ICTR;                         /*!< Offset: 0x04  Interrupt Control Type Register */
+ 507:Core/core_cm3.h **** #if ((defined __CM3_REV) && (__CM3_REV >= 0x200))
+ 508:Core/core_cm3.h ****   __IO uint32_t ACTLR;                        /*!< Offset: 0x08  Auxiliary Control Register      */
+ 509:Core/core_cm3.h **** #else
+ 510:Core/core_cm3.h ****        uint32_t RESERVED1;
+ 511:Core/core_cm3.h **** #endif
+ 512:Core/core_cm3.h **** } InterruptType_Type;
+ 513:Core/core_cm3.h **** 
+ 514:Core/core_cm3.h **** /* Interrupt Controller Type Register Definitions */
+ 515:Core/core_cm3.h **** #define InterruptType_ICTR_INTLINESNUM_Pos  0                                             /*!< Inte
+ 516:Core/core_cm3.h **** #define InterruptType_ICTR_INTLINESNUM_Msk (0x1Ful << InterruptType_ICTR_INTLINESNUM_Pos) /*!< Inte
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 21
+
+
+ 517:Core/core_cm3.h **** 
+ 518:Core/core_cm3.h **** /* Auxiliary Control Register Definitions */
+ 519:Core/core_cm3.h **** #define InterruptType_ACTLR_DISFOLD_Pos     2                                             /*!< Inte
+ 520:Core/core_cm3.h **** #define InterruptType_ACTLR_DISFOLD_Msk    (1ul << InterruptType_ACTLR_DISFOLD_Pos)       /*!< Inte
+ 521:Core/core_cm3.h **** 
+ 522:Core/core_cm3.h **** #define InterruptType_ACTLR_DISDEFWBUF_Pos  1                                             /*!< Inte
+ 523:Core/core_cm3.h **** #define InterruptType_ACTLR_DISDEFWBUF_Msk (1ul << InterruptType_ACTLR_DISDEFWBUF_Pos)    /*!< Inte
+ 524:Core/core_cm3.h **** 
+ 525:Core/core_cm3.h **** #define InterruptType_ACTLR_DISMCYCINT_Pos  0                                             /*!< Inte
+ 526:Core/core_cm3.h **** #define InterruptType_ACTLR_DISMCYCINT_Msk (1ul << InterruptType_ACTLR_DISMCYCINT_Pos)    /*!< Inte
+ 527:Core/core_cm3.h **** /*@}*/ /* end of group CMSIS_CM3_InterruptType */
+ 528:Core/core_cm3.h **** 
+ 529:Core/core_cm3.h **** 
+ 530:Core/core_cm3.h **** #if defined (__MPU_PRESENT) && (__MPU_PRESENT == 1)
+ 531:Core/core_cm3.h **** /** @addtogroup CMSIS_CM3_MPU CMSIS CM3 MPU
+ 532:Core/core_cm3.h ****   memory mapped structure for Memory Protection Unit (MPU)
+ 533:Core/core_cm3.h ****   @{
+ 534:Core/core_cm3.h ****  */
+ 535:Core/core_cm3.h **** typedef struct
+ 536:Core/core_cm3.h **** {
+ 537:Core/core_cm3.h ****   __I  uint32_t TYPE;                         /*!< Offset: 0x00  MPU Type Register                 
+ 538:Core/core_cm3.h ****   __IO uint32_t CTRL;                         /*!< Offset: 0x04  MPU Control Register              
+ 539:Core/core_cm3.h ****   __IO uint32_t RNR;                          /*!< Offset: 0x08  MPU Region RNRber Register        
+ 540:Core/core_cm3.h ****   __IO uint32_t RBAR;                         /*!< Offset: 0x0C  MPU Region Base Address Register  
+ 541:Core/core_cm3.h ****   __IO uint32_t RASR;                         /*!< Offset: 0x10  MPU Region Attribute and Size Regi
+ 542:Core/core_cm3.h ****   __IO uint32_t RBAR_A1;                      /*!< Offset: 0x14  MPU Alias 1 Region Base Address Re
+ 543:Core/core_cm3.h ****   __IO uint32_t RASR_A1;                      /*!< Offset: 0x18  MPU Alias 1 Region Attribute and S
+ 544:Core/core_cm3.h ****   __IO uint32_t RBAR_A2;                      /*!< Offset: 0x1C  MPU Alias 2 Region Base Address Re
+ 545:Core/core_cm3.h ****   __IO uint32_t RASR_A2;                      /*!< Offset: 0x20  MPU Alias 2 Region Attribute and S
+ 546:Core/core_cm3.h ****   __IO uint32_t RBAR_A3;                      /*!< Offset: 0x24  MPU Alias 3 Region Base Address Re
+ 547:Core/core_cm3.h ****   __IO uint32_t RASR_A3;                      /*!< Offset: 0x28  MPU Alias 3 Region Attribute and S
+ 548:Core/core_cm3.h **** } MPU_Type;                                                
+ 549:Core/core_cm3.h **** 
+ 550:Core/core_cm3.h **** /* MPU Type Register */
+ 551:Core/core_cm3.h **** #define MPU_TYPE_IREGION_Pos               16                                             /*!< MPU 
+ 552:Core/core_cm3.h **** #define MPU_TYPE_IREGION_Msk               (0xFFul << MPU_TYPE_IREGION_Pos)               /*!< MPU 
+ 553:Core/core_cm3.h **** 
+ 554:Core/core_cm3.h **** #define MPU_TYPE_DREGION_Pos                8                                             /*!< MPU 
+ 555:Core/core_cm3.h **** #define MPU_TYPE_DREGION_Msk               (0xFFul << MPU_TYPE_DREGION_Pos)               /*!< MPU 
+ 556:Core/core_cm3.h **** 
+ 557:Core/core_cm3.h **** #define MPU_TYPE_SEPARATE_Pos               0                                             /*!< MPU 
+ 558:Core/core_cm3.h **** #define MPU_TYPE_SEPARATE_Msk              (1ul << MPU_TYPE_SEPARATE_Pos)                 /*!< MPU 
+ 559:Core/core_cm3.h **** 
+ 560:Core/core_cm3.h **** /* MPU Control Register */
+ 561:Core/core_cm3.h **** #define MPU_CTRL_PRIVDEFENA_Pos             2                                             /*!< MPU 
+ 562:Core/core_cm3.h **** #define MPU_CTRL_PRIVDEFENA_Msk            (1ul << MPU_CTRL_PRIVDEFENA_Pos)               /*!< MPU 
+ 563:Core/core_cm3.h **** 
+ 564:Core/core_cm3.h **** #define MPU_CTRL_HFNMIENA_Pos               1                                             /*!< MPU 
+ 565:Core/core_cm3.h **** #define MPU_CTRL_HFNMIENA_Msk              (1ul << MPU_CTRL_HFNMIENA_Pos)                 /*!< MPU 
+ 566:Core/core_cm3.h **** 
+ 567:Core/core_cm3.h **** #define MPU_CTRL_ENABLE_Pos                 0                                             /*!< MPU 
+ 568:Core/core_cm3.h **** #define MPU_CTRL_ENABLE_Msk                (1ul << MPU_CTRL_ENABLE_Pos)                   /*!< MPU 
+ 569:Core/core_cm3.h **** 
+ 570:Core/core_cm3.h **** /* MPU Region Number Register */
+ 571:Core/core_cm3.h **** #define MPU_RNR_REGION_Pos                  0                                             /*!< MPU 
+ 572:Core/core_cm3.h **** #define MPU_RNR_REGION_Msk                 (0xFFul << MPU_RNR_REGION_Pos)                 /*!< MPU 
+ 573:Core/core_cm3.h **** 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 22
+
+
+ 574:Core/core_cm3.h **** /* MPU Region Base Address Register */
+ 575:Core/core_cm3.h **** #define MPU_RBAR_ADDR_Pos                   5                                             /*!< MPU 
+ 576:Core/core_cm3.h **** #define MPU_RBAR_ADDR_Msk                  (0x7FFFFFFul << MPU_RBAR_ADDR_Pos)             /*!< MPU 
+ 577:Core/core_cm3.h **** 
+ 578:Core/core_cm3.h **** #define MPU_RBAR_VALID_Pos                  4                                             /*!< MPU 
+ 579:Core/core_cm3.h **** #define MPU_RBAR_VALID_Msk                 (1ul << MPU_RBAR_VALID_Pos)                    /*!< MPU 
+ 580:Core/core_cm3.h **** 
+ 581:Core/core_cm3.h **** #define MPU_RBAR_REGION_Pos                 0                                             /*!< MPU 
+ 582:Core/core_cm3.h **** #define MPU_RBAR_REGION_Msk                (0xFul << MPU_RBAR_REGION_Pos)                 /*!< MPU 
+ 583:Core/core_cm3.h **** 
+ 584:Core/core_cm3.h **** /* MPU Region Attribute and Size Register */
+ 585:Core/core_cm3.h **** #define MPU_RASR_XN_Pos                    28                                             /*!< MPU 
+ 586:Core/core_cm3.h **** #define MPU_RASR_XN_Msk                    (1ul << MPU_RASR_XN_Pos)                       /*!< MPU 
+ 587:Core/core_cm3.h **** 
+ 588:Core/core_cm3.h **** #define MPU_RASR_AP_Pos                    24                                             /*!< MPU 
+ 589:Core/core_cm3.h **** #define MPU_RASR_AP_Msk                    (7ul << MPU_RASR_AP_Pos)                       /*!< MPU 
+ 590:Core/core_cm3.h **** 
+ 591:Core/core_cm3.h **** #define MPU_RASR_TEX_Pos                   19                                             /*!< MPU 
+ 592:Core/core_cm3.h **** #define MPU_RASR_TEX_Msk                   (7ul << MPU_RASR_TEX_Pos)                      /*!< MPU 
+ 593:Core/core_cm3.h **** 
+ 594:Core/core_cm3.h **** #define MPU_RASR_S_Pos                     18                                             /*!< MPU 
+ 595:Core/core_cm3.h **** #define MPU_RASR_S_Msk                     (1ul << MPU_RASR_S_Pos)                        /*!< MPU 
+ 596:Core/core_cm3.h **** 
+ 597:Core/core_cm3.h **** #define MPU_RASR_C_Pos                     17                                             /*!< MPU 
+ 598:Core/core_cm3.h **** #define MPU_RASR_C_Msk                     (1ul << MPU_RASR_C_Pos)                        /*!< MPU 
+ 599:Core/core_cm3.h **** 
+ 600:Core/core_cm3.h **** #define MPU_RASR_B_Pos                     16                                             /*!< MPU 
+ 601:Core/core_cm3.h **** #define MPU_RASR_B_Msk                     (1ul << MPU_RASR_B_Pos)                        /*!< MPU 
+ 602:Core/core_cm3.h **** 
+ 603:Core/core_cm3.h **** #define MPU_RASR_SRD_Pos                    8                                             /*!< MPU 
+ 604:Core/core_cm3.h **** #define MPU_RASR_SRD_Msk                   (0xFFul << MPU_RASR_SRD_Pos)                   /*!< MPU 
+ 605:Core/core_cm3.h **** 
+ 606:Core/core_cm3.h **** #define MPU_RASR_SIZE_Pos                   1                                             /*!< MPU 
+ 607:Core/core_cm3.h **** #define MPU_RASR_SIZE_Msk                  (0x1Ful << MPU_RASR_SIZE_Pos)                  /*!< MPU 
+ 608:Core/core_cm3.h **** 
+ 609:Core/core_cm3.h **** #define MPU_RASR_ENA_Pos                     0                                            /*!< MPU 
+ 610:Core/core_cm3.h **** #define MPU_RASR_ENA_Msk                    (0x1Ful << MPU_RASR_ENA_Pos)                  /*!< MPU 
+ 611:Core/core_cm3.h **** 
+ 612:Core/core_cm3.h **** /*@}*/ /* end of group CMSIS_CM3_MPU */
+ 613:Core/core_cm3.h **** #endif
+ 614:Core/core_cm3.h **** 
+ 615:Core/core_cm3.h **** 
+ 616:Core/core_cm3.h **** /** @addtogroup CMSIS_CM3_CoreDebug CMSIS CM3 Core Debug
+ 617:Core/core_cm3.h ****   memory mapped structure for Core Debug Register
+ 618:Core/core_cm3.h ****   @{
+ 619:Core/core_cm3.h ****  */
+ 620:Core/core_cm3.h **** typedef struct
+ 621:Core/core_cm3.h **** {
+ 622:Core/core_cm3.h ****   __IO uint32_t DHCSR;                        /*!< Offset: 0x00  Debug Halting Control and Status R
+ 623:Core/core_cm3.h ****   __O  uint32_t DCRSR;                        /*!< Offset: 0x04  Debug Core Register Selector Regis
+ 624:Core/core_cm3.h ****   __IO uint32_t DCRDR;                        /*!< Offset: 0x08  Debug Core Register Data Register 
+ 625:Core/core_cm3.h ****   __IO uint32_t DEMCR;                        /*!< Offset: 0x0C  Debug Exception and Monitor Contro
+ 626:Core/core_cm3.h **** } CoreDebug_Type;
+ 627:Core/core_cm3.h **** 
+ 628:Core/core_cm3.h **** /* Debug Halting Control and Status Register */
+ 629:Core/core_cm3.h **** #define CoreDebug_DHCSR_DBGKEY_Pos         16                                             /*!< Core
+ 630:Core/core_cm3.h **** #define CoreDebug_DHCSR_DBGKEY_Msk         (0xFFFFul << CoreDebug_DHCSR_DBGKEY_Pos)       /*!< Core
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 23
+
+
+ 631:Core/core_cm3.h **** 
+ 632:Core/core_cm3.h **** #define CoreDebug_DHCSR_S_RESET_ST_Pos     25                                             /*!< Core
+ 633:Core/core_cm3.h **** #define CoreDebug_DHCSR_S_RESET_ST_Msk     (1ul << CoreDebug_DHCSR_S_RESET_ST_Pos)        /*!< Core
+ 634:Core/core_cm3.h **** 
+ 635:Core/core_cm3.h **** #define CoreDebug_DHCSR_S_RETIRE_ST_Pos    24                                             /*!< Core
+ 636:Core/core_cm3.h **** #define CoreDebug_DHCSR_S_RETIRE_ST_Msk    (1ul << CoreDebug_DHCSR_S_RETIRE_ST_Pos)       /*!< Core
+ 637:Core/core_cm3.h **** 
+ 638:Core/core_cm3.h **** #define CoreDebug_DHCSR_S_LOCKUP_Pos       19                                             /*!< Core
+ 639:Core/core_cm3.h **** #define CoreDebug_DHCSR_S_LOCKUP_Msk       (1ul << CoreDebug_DHCSR_S_LOCKUP_Pos)          /*!< Core
+ 640:Core/core_cm3.h **** 
+ 641:Core/core_cm3.h **** #define CoreDebug_DHCSR_S_SLEEP_Pos        18                                             /*!< Core
+ 642:Core/core_cm3.h **** #define CoreDebug_DHCSR_S_SLEEP_Msk        (1ul << CoreDebug_DHCSR_S_SLEEP_Pos)           /*!< Core
+ 643:Core/core_cm3.h **** 
+ 644:Core/core_cm3.h **** #define CoreDebug_DHCSR_S_HALT_Pos         17                                             /*!< Core
+ 645:Core/core_cm3.h **** #define CoreDebug_DHCSR_S_HALT_Msk         (1ul << CoreDebug_DHCSR_S_HALT_Pos)            /*!< Core
+ 646:Core/core_cm3.h **** 
+ 647:Core/core_cm3.h **** #define CoreDebug_DHCSR_S_REGRDY_Pos       16                                             /*!< Core
+ 648:Core/core_cm3.h **** #define CoreDebug_DHCSR_S_REGRDY_Msk       (1ul << CoreDebug_DHCSR_S_REGRDY_Pos)          /*!< Core
+ 649:Core/core_cm3.h **** 
+ 650:Core/core_cm3.h **** #define CoreDebug_DHCSR_C_SNAPSTALL_Pos     5                                             /*!< Core
+ 651:Core/core_cm3.h **** #define CoreDebug_DHCSR_C_SNAPSTALL_Msk    (1ul << CoreDebug_DHCSR_C_SNAPSTALL_Pos)       /*!< Core
+ 652:Core/core_cm3.h **** 
+ 653:Core/core_cm3.h **** #define CoreDebug_DHCSR_C_MASKINTS_Pos      3                                             /*!< Core
+ 654:Core/core_cm3.h **** #define CoreDebug_DHCSR_C_MASKINTS_Msk     (1ul << CoreDebug_DHCSR_C_MASKINTS_Pos)        /*!< Core
+ 655:Core/core_cm3.h **** 
+ 656:Core/core_cm3.h **** #define CoreDebug_DHCSR_C_STEP_Pos          2                                             /*!< Core
+ 657:Core/core_cm3.h **** #define CoreDebug_DHCSR_C_STEP_Msk         (1ul << CoreDebug_DHCSR_C_STEP_Pos)            /*!< Core
+ 658:Core/core_cm3.h **** 
+ 659:Core/core_cm3.h **** #define CoreDebug_DHCSR_C_HALT_Pos          1                                             /*!< Core
+ 660:Core/core_cm3.h **** #define CoreDebug_DHCSR_C_HALT_Msk         (1ul << CoreDebug_DHCSR_C_HALT_Pos)            /*!< Core
+ 661:Core/core_cm3.h **** 
+ 662:Core/core_cm3.h **** #define CoreDebug_DHCSR_C_DEBUGEN_Pos       0                                             /*!< Core
+ 663:Core/core_cm3.h **** #define CoreDebug_DHCSR_C_DEBUGEN_Msk      (1ul << CoreDebug_DHCSR_C_DEBUGEN_Pos)         /*!< Core
+ 664:Core/core_cm3.h **** 
+ 665:Core/core_cm3.h **** /* Debug Core Register Selector Register */
+ 666:Core/core_cm3.h **** #define CoreDebug_DCRSR_REGWnR_Pos         16                                             /*!< Core
+ 667:Core/core_cm3.h **** #define CoreDebug_DCRSR_REGWnR_Msk         (1ul << CoreDebug_DCRSR_REGWnR_Pos)            /*!< Core
+ 668:Core/core_cm3.h **** 
+ 669:Core/core_cm3.h **** #define CoreDebug_DCRSR_REGSEL_Pos          0                                             /*!< Core
+ 670:Core/core_cm3.h **** #define CoreDebug_DCRSR_REGSEL_Msk         (0x1Ful << CoreDebug_DCRSR_REGSEL_Pos)         /*!< Core
+ 671:Core/core_cm3.h **** 
+ 672:Core/core_cm3.h **** /* Debug Exception and Monitor Control Register */
+ 673:Core/core_cm3.h **** #define CoreDebug_DEMCR_TRCENA_Pos         24                                             /*!< Core
+ 674:Core/core_cm3.h **** #define CoreDebug_DEMCR_TRCENA_Msk         (1ul << CoreDebug_DEMCR_TRCENA_Pos)            /*!< Core
+ 675:Core/core_cm3.h **** 
+ 676:Core/core_cm3.h **** #define CoreDebug_DEMCR_MON_REQ_Pos        19                                             /*!< Core
+ 677:Core/core_cm3.h **** #define CoreDebug_DEMCR_MON_REQ_Msk        (1ul << CoreDebug_DEMCR_MON_REQ_Pos)           /*!< Core
+ 678:Core/core_cm3.h **** 
+ 679:Core/core_cm3.h **** #define CoreDebug_DEMCR_MON_STEP_Pos       18                                             /*!< Core
+ 680:Core/core_cm3.h **** #define CoreDebug_DEMCR_MON_STEP_Msk       (1ul << CoreDebug_DEMCR_MON_STEP_Pos)          /*!< Core
+ 681:Core/core_cm3.h **** 
+ 682:Core/core_cm3.h **** #define CoreDebug_DEMCR_MON_PEND_Pos       17                                             /*!< Core
+ 683:Core/core_cm3.h **** #define CoreDebug_DEMCR_MON_PEND_Msk       (1ul << CoreDebug_DEMCR_MON_PEND_Pos)          /*!< Core
+ 684:Core/core_cm3.h **** 
+ 685:Core/core_cm3.h **** #define CoreDebug_DEMCR_MON_EN_Pos         16                                             /*!< Core
+ 686:Core/core_cm3.h **** #define CoreDebug_DEMCR_MON_EN_Msk         (1ul << CoreDebug_DEMCR_MON_EN_Pos)            /*!< Core
+ 687:Core/core_cm3.h **** 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 24
+
+
+ 688:Core/core_cm3.h **** #define CoreDebug_DEMCR_VC_HARDERR_Pos     10                                             /*!< Core
+ 689:Core/core_cm3.h **** #define CoreDebug_DEMCR_VC_HARDERR_Msk     (1ul << CoreDebug_DEMCR_VC_HARDERR_Pos)        /*!< Core
+ 690:Core/core_cm3.h **** 
+ 691:Core/core_cm3.h **** #define CoreDebug_DEMCR_VC_INTERR_Pos       9                                             /*!< Core
+ 692:Core/core_cm3.h **** #define CoreDebug_DEMCR_VC_INTERR_Msk      (1ul << CoreDebug_DEMCR_VC_INTERR_Pos)         /*!< Core
+ 693:Core/core_cm3.h **** 
+ 694:Core/core_cm3.h **** #define CoreDebug_DEMCR_VC_BUSERR_Pos       8                                             /*!< Core
+ 695:Core/core_cm3.h **** #define CoreDebug_DEMCR_VC_BUSERR_Msk      (1ul << CoreDebug_DEMCR_VC_BUSERR_Pos)         /*!< Core
+ 696:Core/core_cm3.h **** 
+ 697:Core/core_cm3.h **** #define CoreDebug_DEMCR_VC_STATERR_Pos      7                                             /*!< Core
+ 698:Core/core_cm3.h **** #define CoreDebug_DEMCR_VC_STATERR_Msk     (1ul << CoreDebug_DEMCR_VC_STATERR_Pos)        /*!< Core
+ 699:Core/core_cm3.h **** 
+ 700:Core/core_cm3.h **** #define CoreDebug_DEMCR_VC_CHKERR_Pos       6                                             /*!< Core
+ 701:Core/core_cm3.h **** #define CoreDebug_DEMCR_VC_CHKERR_Msk      (1ul << CoreDebug_DEMCR_VC_CHKERR_Pos)         /*!< Core
+ 702:Core/core_cm3.h **** 
+ 703:Core/core_cm3.h **** #define CoreDebug_DEMCR_VC_NOCPERR_Pos      5                                             /*!< Core
+ 704:Core/core_cm3.h **** #define CoreDebug_DEMCR_VC_NOCPERR_Msk     (1ul << CoreDebug_DEMCR_VC_NOCPERR_Pos)        /*!< Core
+ 705:Core/core_cm3.h **** 
+ 706:Core/core_cm3.h **** #define CoreDebug_DEMCR_VC_MMERR_Pos        4                                             /*!< Core
+ 707:Core/core_cm3.h **** #define CoreDebug_DEMCR_VC_MMERR_Msk       (1ul << CoreDebug_DEMCR_VC_MMERR_Pos)          /*!< Core
+ 708:Core/core_cm3.h **** 
+ 709:Core/core_cm3.h **** #define CoreDebug_DEMCR_VC_CORERESET_Pos    0                                             /*!< Core
+ 710:Core/core_cm3.h **** #define CoreDebug_DEMCR_VC_CORERESET_Msk   (1ul << CoreDebug_DEMCR_VC_CORERESET_Pos)      /*!< Core
+ 711:Core/core_cm3.h **** /*@}*/ /* end of group CMSIS_CM3_CoreDebug */
+ 712:Core/core_cm3.h **** 
+ 713:Core/core_cm3.h **** 
+ 714:Core/core_cm3.h **** /* Memory mapping of Cortex-M3 Hardware */
+ 715:Core/core_cm3.h **** #define SCS_BASE            (0xE000E000)                              /*!< System Control Space Bas
+ 716:Core/core_cm3.h **** #define ITM_BASE            (0xE0000000)                              /*!< ITM Base Address        
+ 717:Core/core_cm3.h **** #define CoreDebug_BASE      (0xE000EDF0)                              /*!< Core Debug Base Address 
+ 718:Core/core_cm3.h **** #define SysTick_BASE        (SCS_BASE +  0x0010)                      /*!< SysTick Base Address    
+ 719:Core/core_cm3.h **** #define NVIC_BASE           (SCS_BASE +  0x0100)                      /*!< NVIC Base Address       
+ 720:Core/core_cm3.h **** #define SCB_BASE            (SCS_BASE +  0x0D00)                      /*!< System Control Block Bas
+ 721:Core/core_cm3.h **** 
+ 722:Core/core_cm3.h **** #define InterruptType       ((InterruptType_Type *) SCS_BASE)         /*!< Interrupt Type Register 
+ 723:Core/core_cm3.h **** #define SCB                 ((SCB_Type *)           SCB_BASE)         /*!< SCB configuration struct
+ 724:Core/core_cm3.h **** #define SysTick             ((SysTick_Type *)       SysTick_BASE)     /*!< SysTick configuration st
+ 725:Core/core_cm3.h **** #define NVIC                ((NVIC_Type *)          NVIC_BASE)        /*!< NVIC configuration struc
+ 726:Core/core_cm3.h **** #define ITM                 ((ITM_Type *)           ITM_BASE)         /*!< ITM configuration struct
+ 727:Core/core_cm3.h **** #define CoreDebug           ((CoreDebug_Type *)     CoreDebug_BASE)   /*!< Core Debug configuration
+ 728:Core/core_cm3.h **** 
+ 729:Core/core_cm3.h **** #if defined (__MPU_PRESENT) && (__MPU_PRESENT == 1)
+ 730:Core/core_cm3.h ****   #define MPU_BASE          (SCS_BASE +  0x0D90)                      /*!< Memory Protection Unit  
+ 731:Core/core_cm3.h ****   #define MPU               ((MPU_Type*)            MPU_BASE)         /*!< Memory Protection Unit  
+ 732:Core/core_cm3.h **** #endif
+ 733:Core/core_cm3.h **** 
+ 734:Core/core_cm3.h **** /*@}*/ /* end of group CMSIS_CM3_core_register */
+ 735:Core/core_cm3.h **** 
+ 736:Core/core_cm3.h **** 
+ 737:Core/core_cm3.h **** /*******************************************************************************
+ 738:Core/core_cm3.h ****  *                Hardware Abstraction Layer
+ 739:Core/core_cm3.h ****  ******************************************************************************/
+ 740:Core/core_cm3.h **** 
+ 741:Core/core_cm3.h **** #if defined ( __CC_ARM   )
+ 742:Core/core_cm3.h ****   #define __ASM            __asm                                      /*!< asm keyword for ARM Comp
+ 743:Core/core_cm3.h ****   #define __INLINE         __inline                                   /*!< inline keyword for ARM C
+ 744:Core/core_cm3.h **** 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 25
+
+
+ 745:Core/core_cm3.h **** #elif defined ( __ICCARM__ )
+ 746:Core/core_cm3.h ****   #define __ASM           __asm                                       /*!< asm keyword for IAR Comp
+ 747:Core/core_cm3.h ****   #define __INLINE        inline                                      /*!< inline keyword for IAR C
+ 748:Core/core_cm3.h **** 
+ 749:Core/core_cm3.h **** #elif defined   (  __GNUC__  )
+ 750:Core/core_cm3.h ****   #define __ASM            __asm                                      /*!< asm keyword for GNU Comp
+ 751:Core/core_cm3.h ****   #define __INLINE         inline                                     /*!< inline keyword for GNU C
+ 752:Core/core_cm3.h **** 
+ 753:Core/core_cm3.h **** #elif defined   (  __TASKING__  )
+ 754:Core/core_cm3.h ****   #define __ASM            __asm                                      /*!< asm keyword for TASKING 
+ 755:Core/core_cm3.h ****   #define __INLINE         inline                                     /*!< inline keyword for TASKI
+ 756:Core/core_cm3.h **** 
+ 757:Core/core_cm3.h **** #endif
+ 758:Core/core_cm3.h **** 
+ 759:Core/core_cm3.h **** 
+ 760:Core/core_cm3.h **** /* ###################  Compiler specific Intrinsics  ########################### */
+ 761:Core/core_cm3.h **** 
+ 762:Core/core_cm3.h **** #if defined ( __CC_ARM   ) /*------------------RealView Compiler -----------------*/
+ 763:Core/core_cm3.h **** /* ARM armcc specific functions */
+ 764:Core/core_cm3.h **** 
+ 765:Core/core_cm3.h **** #define __enable_fault_irq                __enable_fiq
+ 766:Core/core_cm3.h **** #define __disable_fault_irq               __disable_fiq
+ 767:Core/core_cm3.h **** 
+ 768:Core/core_cm3.h **** #define __NOP                             __nop
+ 769:Core/core_cm3.h **** #define __WFI                             __wfi
+ 770:Core/core_cm3.h **** #define __WFE                             __wfe
+ 771:Core/core_cm3.h **** #define __SEV                             __sev
+ 772:Core/core_cm3.h **** #define __ISB()                           __isb(0)
+ 773:Core/core_cm3.h **** #define __DSB()                           __dsb(0)
+ 774:Core/core_cm3.h **** #define __DMB()                           __dmb(0)
+ 775:Core/core_cm3.h **** #define __REV                             __rev
+ 776:Core/core_cm3.h **** #define __RBIT                            __rbit
+ 777:Core/core_cm3.h **** #define __LDREXB(ptr)                     ((unsigned char ) __ldrex(ptr))
+ 778:Core/core_cm3.h **** #define __LDREXH(ptr)                     ((unsigned short) __ldrex(ptr))
+ 779:Core/core_cm3.h **** #define __LDREXW(ptr)                     ((unsigned int  ) __ldrex(ptr))
+ 780:Core/core_cm3.h **** #define __STREXB(value, ptr)              __strex(value, ptr)
+ 781:Core/core_cm3.h **** #define __STREXH(value, ptr)              __strex(value, ptr)
+ 782:Core/core_cm3.h **** #define __STREXW(value, ptr)              __strex(value, ptr)
+ 783:Core/core_cm3.h **** 
+ 784:Core/core_cm3.h **** 
+ 785:Core/core_cm3.h **** /* intrinsic unsigned long long __ldrexd(volatile void *ptr) */
+ 786:Core/core_cm3.h **** /* intrinsic int __strexd(unsigned long long val, volatile void *ptr) */
+ 787:Core/core_cm3.h **** /* intrinsic void __enable_irq();     */
+ 788:Core/core_cm3.h **** /* intrinsic void __disable_irq();    */
+ 789:Core/core_cm3.h **** 
+ 790:Core/core_cm3.h **** 
+ 791:Core/core_cm3.h **** /**
+ 792:Core/core_cm3.h ****  * @brief  Return the Process Stack Pointer
+ 793:Core/core_cm3.h ****  *
+ 794:Core/core_cm3.h ****  * @return ProcessStackPointer
+ 795:Core/core_cm3.h ****  *
+ 796:Core/core_cm3.h ****  * Return the actual process stack pointer
+ 797:Core/core_cm3.h ****  */
+ 798:Core/core_cm3.h **** extern uint32_t __get_PSP(void);
+ 799:Core/core_cm3.h **** 
+ 800:Core/core_cm3.h **** /**
+ 801:Core/core_cm3.h ****  * @brief  Set the Process Stack Pointer
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 26
+
+
+ 802:Core/core_cm3.h ****  *
+ 803:Core/core_cm3.h ****  * @param  topOfProcStack  Process Stack Pointer
+ 804:Core/core_cm3.h ****  *
+ 805:Core/core_cm3.h ****  * Assign the value ProcessStackPointer to the MSP 
+ 806:Core/core_cm3.h ****  * (process stack pointer) Cortex processor register
+ 807:Core/core_cm3.h ****  */
+ 808:Core/core_cm3.h **** extern void __set_PSP(uint32_t topOfProcStack);
+ 809:Core/core_cm3.h **** 
+ 810:Core/core_cm3.h **** /**
+ 811:Core/core_cm3.h ****  * @brief  Return the Main Stack Pointer
+ 812:Core/core_cm3.h ****  *
+ 813:Core/core_cm3.h ****  * @return Main Stack Pointer
+ 814:Core/core_cm3.h ****  *
+ 815:Core/core_cm3.h ****  * Return the current value of the MSP (main stack pointer)
+ 816:Core/core_cm3.h ****  * Cortex processor register
+ 817:Core/core_cm3.h ****  */
+ 818:Core/core_cm3.h **** extern uint32_t __get_MSP(void);
+ 819:Core/core_cm3.h **** 
+ 820:Core/core_cm3.h **** /**
+ 821:Core/core_cm3.h ****  * @brief  Set the Main Stack Pointer
+ 822:Core/core_cm3.h ****  *
+ 823:Core/core_cm3.h ****  * @param  topOfMainStack  Main Stack Pointer
+ 824:Core/core_cm3.h ****  *
+ 825:Core/core_cm3.h ****  * Assign the value mainStackPointer to the MSP 
+ 826:Core/core_cm3.h ****  * (main stack pointer) Cortex processor register
+ 827:Core/core_cm3.h ****  */
+ 828:Core/core_cm3.h **** extern void __set_MSP(uint32_t topOfMainStack);
+ 829:Core/core_cm3.h **** 
+ 830:Core/core_cm3.h **** /**
+ 831:Core/core_cm3.h ****  * @brief  Reverse byte order in unsigned short value
+ 832:Core/core_cm3.h ****  *
+ 833:Core/core_cm3.h ****  * @param   value  value to reverse
+ 834:Core/core_cm3.h ****  * @return         reversed value
+ 835:Core/core_cm3.h ****  *
+ 836:Core/core_cm3.h ****  * Reverse byte order in unsigned short value
+ 837:Core/core_cm3.h ****  */
+ 838:Core/core_cm3.h **** extern uint32_t __REV16(uint16_t value);
+ 839:Core/core_cm3.h **** 
+ 840:Core/core_cm3.h **** /**
+ 841:Core/core_cm3.h ****  * @brief  Reverse byte order in signed short value with sign extension to integer
+ 842:Core/core_cm3.h ****  *
+ 843:Core/core_cm3.h ****  * @param   value  value to reverse
+ 844:Core/core_cm3.h ****  * @return         reversed value
+ 845:Core/core_cm3.h ****  *
+ 846:Core/core_cm3.h ****  * Reverse byte order in signed short value with sign extension to integer
+ 847:Core/core_cm3.h ****  */
+ 848:Core/core_cm3.h **** extern int32_t __REVSH(int16_t value);
+ 849:Core/core_cm3.h **** 
+ 850:Core/core_cm3.h **** 
+ 851:Core/core_cm3.h **** #if (__ARMCC_VERSION < 400000)
+ 852:Core/core_cm3.h **** 
+ 853:Core/core_cm3.h **** /**
+ 854:Core/core_cm3.h ****  * @brief  Remove the exclusive lock created by ldrex
+ 855:Core/core_cm3.h ****  *
+ 856:Core/core_cm3.h ****  * Removes the exclusive lock which is created by ldrex.
+ 857:Core/core_cm3.h ****  */
+ 858:Core/core_cm3.h **** extern void __CLREX(void);
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 27
+
+
+ 859:Core/core_cm3.h **** 
+ 860:Core/core_cm3.h **** /**
+ 861:Core/core_cm3.h ****  * @brief  Return the Base Priority value
+ 862:Core/core_cm3.h ****  *
+ 863:Core/core_cm3.h ****  * @return BasePriority
+ 864:Core/core_cm3.h ****  *
+ 865:Core/core_cm3.h ****  * Return the content of the base priority register
+ 866:Core/core_cm3.h ****  */
+ 867:Core/core_cm3.h **** extern uint32_t __get_BASEPRI(void);
+ 868:Core/core_cm3.h **** 
+ 869:Core/core_cm3.h **** /**
+ 870:Core/core_cm3.h ****  * @brief  Set the Base Priority value
+ 871:Core/core_cm3.h ****  *
+ 872:Core/core_cm3.h ****  * @param  basePri  BasePriority
+ 873:Core/core_cm3.h ****  *
+ 874:Core/core_cm3.h ****  * Set the base priority register
+ 875:Core/core_cm3.h ****  */
+ 876:Core/core_cm3.h **** extern void __set_BASEPRI(uint32_t basePri);
+ 877:Core/core_cm3.h **** 
+ 878:Core/core_cm3.h **** /**
+ 879:Core/core_cm3.h ****  * @brief  Return the Priority Mask value
+ 880:Core/core_cm3.h ****  *
+ 881:Core/core_cm3.h ****  * @return PriMask
+ 882:Core/core_cm3.h ****  *
+ 883:Core/core_cm3.h ****  * Return state of the priority mask bit from the priority mask register
+ 884:Core/core_cm3.h ****  */
+ 885:Core/core_cm3.h **** extern uint32_t __get_PRIMASK(void);
+ 886:Core/core_cm3.h **** 
+ 887:Core/core_cm3.h **** /**
+ 888:Core/core_cm3.h ****  * @brief  Set the Priority Mask value
+ 889:Core/core_cm3.h ****  *
+ 890:Core/core_cm3.h ****  * @param   priMask  PriMask
+ 891:Core/core_cm3.h ****  *
+ 892:Core/core_cm3.h ****  * Set the priority mask bit in the priority mask register
+ 893:Core/core_cm3.h ****  */
+ 894:Core/core_cm3.h **** extern void __set_PRIMASK(uint32_t priMask);
+ 895:Core/core_cm3.h **** 
+ 896:Core/core_cm3.h **** /**
+ 897:Core/core_cm3.h ****  * @brief  Return the Fault Mask value
+ 898:Core/core_cm3.h ****  *
+ 899:Core/core_cm3.h ****  * @return FaultMask
+ 900:Core/core_cm3.h ****  *
+ 901:Core/core_cm3.h ****  * Return the content of the fault mask register
+ 902:Core/core_cm3.h ****  */
+ 903:Core/core_cm3.h **** extern uint32_t __get_FAULTMASK(void);
+ 904:Core/core_cm3.h **** 
+ 905:Core/core_cm3.h **** /**
+ 906:Core/core_cm3.h ****  * @brief  Set the Fault Mask value
+ 907:Core/core_cm3.h ****  *
+ 908:Core/core_cm3.h ****  * @param  faultMask faultMask value
+ 909:Core/core_cm3.h ****  *
+ 910:Core/core_cm3.h ****  * Set the fault mask register
+ 911:Core/core_cm3.h ****  */
+ 912:Core/core_cm3.h **** extern void __set_FAULTMASK(uint32_t faultMask);
+ 913:Core/core_cm3.h **** 
+ 914:Core/core_cm3.h **** /**
+ 915:Core/core_cm3.h ****  * @brief  Return the Control Register value
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 28
+
+
+ 916:Core/core_cm3.h ****  * 
+ 917:Core/core_cm3.h ****  * @return Control value
+ 918:Core/core_cm3.h ****  *
+ 919:Core/core_cm3.h ****  * Return the content of the control register
+ 920:Core/core_cm3.h ****  */
+ 921:Core/core_cm3.h **** extern uint32_t __get_CONTROL(void);
+ 922:Core/core_cm3.h **** 
+ 923:Core/core_cm3.h **** /**
+ 924:Core/core_cm3.h ****  * @brief  Set the Control Register value
+ 925:Core/core_cm3.h ****  *
+ 926:Core/core_cm3.h ****  * @param  control  Control value
+ 927:Core/core_cm3.h ****  *
+ 928:Core/core_cm3.h ****  * Set the control register
+ 929:Core/core_cm3.h ****  */
+ 930:Core/core_cm3.h **** extern void __set_CONTROL(uint32_t control);
+ 931:Core/core_cm3.h **** 
+ 932:Core/core_cm3.h **** #else  /* (__ARMCC_VERSION >= 400000)  */
+ 933:Core/core_cm3.h **** 
+ 934:Core/core_cm3.h **** /**
+ 935:Core/core_cm3.h ****  * @brief  Remove the exclusive lock created by ldrex
+ 936:Core/core_cm3.h ****  *
+ 937:Core/core_cm3.h ****  * Removes the exclusive lock which is created by ldrex.
+ 938:Core/core_cm3.h ****  */
+ 939:Core/core_cm3.h **** #define __CLREX                           __clrex
+ 940:Core/core_cm3.h **** 
+ 941:Core/core_cm3.h **** /**
+ 942:Core/core_cm3.h ****  * @brief  Return the Base Priority value
+ 943:Core/core_cm3.h ****  *
+ 944:Core/core_cm3.h ****  * @return BasePriority
+ 945:Core/core_cm3.h ****  *
+ 946:Core/core_cm3.h ****  * Return the content of the base priority register
+ 947:Core/core_cm3.h ****  */
+ 948:Core/core_cm3.h **** static __INLINE uint32_t  __get_BASEPRI(void)
+ 949:Core/core_cm3.h **** {
+ 950:Core/core_cm3.h ****   register uint32_t __regBasePri         __ASM("basepri");
+ 951:Core/core_cm3.h ****   return(__regBasePri);
+ 952:Core/core_cm3.h **** }
+ 953:Core/core_cm3.h **** 
+ 954:Core/core_cm3.h **** /**
+ 955:Core/core_cm3.h ****  * @brief  Set the Base Priority value
+ 956:Core/core_cm3.h ****  *
+ 957:Core/core_cm3.h ****  * @param  basePri  BasePriority
+ 958:Core/core_cm3.h ****  *
+ 959:Core/core_cm3.h ****  * Set the base priority register
+ 960:Core/core_cm3.h ****  */
+ 961:Core/core_cm3.h **** static __INLINE void __set_BASEPRI(uint32_t basePri)
+ 962:Core/core_cm3.h **** {
+ 963:Core/core_cm3.h ****   register uint32_t __regBasePri         __ASM("basepri");
+ 964:Core/core_cm3.h ****   __regBasePri = (basePri & 0xff);
+ 965:Core/core_cm3.h **** }
+ 966:Core/core_cm3.h **** 
+ 967:Core/core_cm3.h **** /**
+ 968:Core/core_cm3.h ****  * @brief  Return the Priority Mask value
+ 969:Core/core_cm3.h ****  *
+ 970:Core/core_cm3.h ****  * @return PriMask
+ 971:Core/core_cm3.h ****  *
+ 972:Core/core_cm3.h ****  * Return state of the priority mask bit from the priority mask register
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 29
+
+
+ 973:Core/core_cm3.h ****  */
+ 974:Core/core_cm3.h **** static __INLINE uint32_t __get_PRIMASK(void)
+ 975:Core/core_cm3.h **** {
+ 976:Core/core_cm3.h ****   register uint32_t __regPriMask         __ASM("primask");
+ 977:Core/core_cm3.h ****   return(__regPriMask);
+ 978:Core/core_cm3.h **** }
+ 979:Core/core_cm3.h **** 
+ 980:Core/core_cm3.h **** /**
+ 981:Core/core_cm3.h ****  * @brief  Set the Priority Mask value
+ 982:Core/core_cm3.h ****  *
+ 983:Core/core_cm3.h ****  * @param  priMask  PriMask
+ 984:Core/core_cm3.h ****  *
+ 985:Core/core_cm3.h ****  * Set the priority mask bit in the priority mask register
+ 986:Core/core_cm3.h ****  */
+ 987:Core/core_cm3.h **** static __INLINE void __set_PRIMASK(uint32_t priMask)
+ 988:Core/core_cm3.h **** {
+ 989:Core/core_cm3.h ****   register uint32_t __regPriMask         __ASM("primask");
+ 990:Core/core_cm3.h ****   __regPriMask = (priMask);
+ 991:Core/core_cm3.h **** }
+ 992:Core/core_cm3.h **** 
+ 993:Core/core_cm3.h **** /**
+ 994:Core/core_cm3.h ****  * @brief  Return the Fault Mask value
+ 995:Core/core_cm3.h ****  *
+ 996:Core/core_cm3.h ****  * @return FaultMask
+ 997:Core/core_cm3.h ****  *
+ 998:Core/core_cm3.h ****  * Return the content of the fault mask register
+ 999:Core/core_cm3.h ****  */
+1000:Core/core_cm3.h **** static __INLINE uint32_t __get_FAULTMASK(void)
+1001:Core/core_cm3.h **** {
+1002:Core/core_cm3.h ****   register uint32_t __regFaultMask       __ASM("faultmask");
+1003:Core/core_cm3.h ****   return(__regFaultMask);
+1004:Core/core_cm3.h **** }
+1005:Core/core_cm3.h **** 
+1006:Core/core_cm3.h **** /**
+1007:Core/core_cm3.h ****  * @brief  Set the Fault Mask value
+1008:Core/core_cm3.h ****  *
+1009:Core/core_cm3.h ****  * @param  faultMask  faultMask value
+1010:Core/core_cm3.h ****  *
+1011:Core/core_cm3.h ****  * Set the fault mask register
+1012:Core/core_cm3.h ****  */
+1013:Core/core_cm3.h **** static __INLINE void __set_FAULTMASK(uint32_t faultMask)
+1014:Core/core_cm3.h **** {
+1015:Core/core_cm3.h ****   register uint32_t __regFaultMask       __ASM("faultmask");
+1016:Core/core_cm3.h ****   __regFaultMask = (faultMask & 1);
+1017:Core/core_cm3.h **** }
+1018:Core/core_cm3.h **** 
+1019:Core/core_cm3.h **** /**
+1020:Core/core_cm3.h ****  * @brief  Return the Control Register value
+1021:Core/core_cm3.h ****  * 
+1022:Core/core_cm3.h ****  * @return Control value
+1023:Core/core_cm3.h ****  *
+1024:Core/core_cm3.h ****  * Return the content of the control register
+1025:Core/core_cm3.h ****  */
+1026:Core/core_cm3.h **** static __INLINE uint32_t __get_CONTROL(void)
+1027:Core/core_cm3.h **** {
+1028:Core/core_cm3.h ****   register uint32_t __regControl         __ASM("control");
+1029:Core/core_cm3.h ****   return(__regControl);
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 30
+
+
+1030:Core/core_cm3.h **** }
+1031:Core/core_cm3.h **** 
+1032:Core/core_cm3.h **** /**
+1033:Core/core_cm3.h ****  * @brief  Set the Control Register value
+1034:Core/core_cm3.h ****  *
+1035:Core/core_cm3.h ****  * @param  control  Control value
+1036:Core/core_cm3.h ****  *
+1037:Core/core_cm3.h ****  * Set the control register
+1038:Core/core_cm3.h ****  */
+1039:Core/core_cm3.h **** static __INLINE void __set_CONTROL(uint32_t control)
+1040:Core/core_cm3.h **** {
+1041:Core/core_cm3.h ****   register uint32_t __regControl         __ASM("control");
+1042:Core/core_cm3.h ****   __regControl = control;
+1043:Core/core_cm3.h **** }
+1044:Core/core_cm3.h **** 
+1045:Core/core_cm3.h **** #endif /* __ARMCC_VERSION  */ 
+1046:Core/core_cm3.h **** 
+1047:Core/core_cm3.h **** 
+1048:Core/core_cm3.h **** 
+1049:Core/core_cm3.h **** #elif (defined (__ICCARM__)) /*------------------ ICC Compiler -------------------*/
+1050:Core/core_cm3.h **** /* IAR iccarm specific functions */
+1051:Core/core_cm3.h **** 
+1052:Core/core_cm3.h **** #define __enable_irq                              __enable_interrupt        /*!< global Interrupt e
+1053:Core/core_cm3.h **** #define __disable_irq                             __disable_interrupt       /*!< global Interrupt d
+1054:Core/core_cm3.h **** 
+1055:Core/core_cm3.h **** static __INLINE void __enable_fault_irq()         { __ASM ("cpsie f"); }
+1056:Core/core_cm3.h **** static __INLINE void __disable_fault_irq()        { __ASM ("cpsid f"); }
+1057:Core/core_cm3.h **** 
+1058:Core/core_cm3.h **** #define __NOP                                     __no_operation            /*!< no operation intri
+1059:Core/core_cm3.h **** static __INLINE  void __WFI()                     { __ASM ("wfi"); }
+1060:Core/core_cm3.h **** static __INLINE  void __WFE()                     { __ASM ("wfe"); }
+1061:Core/core_cm3.h **** static __INLINE  void __SEV()                     { __ASM ("sev"); }
+1062:Core/core_cm3.h **** static __INLINE  void __CLREX()                   { __ASM ("clrex"); }
+1063:Core/core_cm3.h **** 
+1064:Core/core_cm3.h **** /* intrinsic void __ISB(void)                                     */
+1065:Core/core_cm3.h **** /* intrinsic void __DSB(void)                                     */
+1066:Core/core_cm3.h **** /* intrinsic void __DMB(void)                                     */
+1067:Core/core_cm3.h **** /* intrinsic void __set_PRIMASK();                                */
+1068:Core/core_cm3.h **** /* intrinsic void __get_PRIMASK();                                */
+1069:Core/core_cm3.h **** /* intrinsic void __set_FAULTMASK();                              */
+1070:Core/core_cm3.h **** /* intrinsic void __get_FAULTMASK();                              */
+1071:Core/core_cm3.h **** /* intrinsic uint32_t __REV(uint32_t value);                      */
+1072:Core/core_cm3.h **** /* intrinsic uint32_t __REVSH(uint32_t value);                    */
+1073:Core/core_cm3.h **** /* intrinsic unsigned long __STREX(unsigned long, unsigned long); */
+1074:Core/core_cm3.h **** /* intrinsic unsigned long __LDREX(unsigned long *);              */
+1075:Core/core_cm3.h **** 
+1076:Core/core_cm3.h **** 
+1077:Core/core_cm3.h **** /**
+1078:Core/core_cm3.h ****  * @brief  Return the Process Stack Pointer
+1079:Core/core_cm3.h ****  *
+1080:Core/core_cm3.h ****  * @return ProcessStackPointer
+1081:Core/core_cm3.h ****  *
+1082:Core/core_cm3.h ****  * Return the actual process stack pointer
+1083:Core/core_cm3.h ****  */
+1084:Core/core_cm3.h **** extern uint32_t __get_PSP(void);
+1085:Core/core_cm3.h **** 
+1086:Core/core_cm3.h **** /**
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 31
+
+
+1087:Core/core_cm3.h ****  * @brief  Set the Process Stack Pointer
+1088:Core/core_cm3.h ****  *
+1089:Core/core_cm3.h ****  * @param  topOfProcStack  Process Stack Pointer
+1090:Core/core_cm3.h ****  *
+1091:Core/core_cm3.h ****  * Assign the value ProcessStackPointer to the MSP 
+1092:Core/core_cm3.h ****  * (process stack pointer) Cortex processor register
+1093:Core/core_cm3.h ****  */
+1094:Core/core_cm3.h **** extern void __set_PSP(uint32_t topOfProcStack);
+1095:Core/core_cm3.h **** 
+1096:Core/core_cm3.h **** /**
+1097:Core/core_cm3.h ****  * @brief  Return the Main Stack Pointer
+1098:Core/core_cm3.h ****  *
+1099:Core/core_cm3.h ****  * @return Main Stack Pointer
+1100:Core/core_cm3.h ****  *
+1101:Core/core_cm3.h ****  * Return the current value of the MSP (main stack pointer)
+1102:Core/core_cm3.h ****  * Cortex processor register
+1103:Core/core_cm3.h ****  */
+1104:Core/core_cm3.h **** extern uint32_t __get_MSP(void);
+1105:Core/core_cm3.h **** 
+1106:Core/core_cm3.h **** /**
+1107:Core/core_cm3.h ****  * @brief  Set the Main Stack Pointer
+1108:Core/core_cm3.h ****  *
+1109:Core/core_cm3.h ****  * @param  topOfMainStack  Main Stack Pointer
+1110:Core/core_cm3.h ****  *
+1111:Core/core_cm3.h ****  * Assign the value mainStackPointer to the MSP 
+1112:Core/core_cm3.h ****  * (main stack pointer) Cortex processor register
+1113:Core/core_cm3.h ****  */
+1114:Core/core_cm3.h **** extern void __set_MSP(uint32_t topOfMainStack);
+1115:Core/core_cm3.h **** 
+1116:Core/core_cm3.h **** /**
+1117:Core/core_cm3.h ****  * @brief  Reverse byte order in unsigned short value
+1118:Core/core_cm3.h ****  *
+1119:Core/core_cm3.h ****  * @param  value  value to reverse
+1120:Core/core_cm3.h ****  * @return        reversed value
+1121:Core/core_cm3.h ****  *
+1122:Core/core_cm3.h ****  * Reverse byte order in unsigned short value
+1123:Core/core_cm3.h ****  */
+1124:Core/core_cm3.h **** extern uint32_t __REV16(uint16_t value);
+1125:Core/core_cm3.h **** 
+1126:Core/core_cm3.h **** /**
+1127:Core/core_cm3.h ****  * @brief  Reverse bit order of value
+1128:Core/core_cm3.h ****  *
+1129:Core/core_cm3.h ****  * @param  value  value to reverse
+1130:Core/core_cm3.h ****  * @return        reversed value
+1131:Core/core_cm3.h ****  *
+1132:Core/core_cm3.h ****  * Reverse bit order of value
+1133:Core/core_cm3.h ****  */
+1134:Core/core_cm3.h **** extern uint32_t __RBIT(uint32_t value);
+1135:Core/core_cm3.h **** 
+1136:Core/core_cm3.h **** /**
+1137:Core/core_cm3.h ****  * @brief  LDR Exclusive (8 bit)
+1138:Core/core_cm3.h ****  *
+1139:Core/core_cm3.h ****  * @param  *addr  address pointer
+1140:Core/core_cm3.h ****  * @return        value of (*address)
+1141:Core/core_cm3.h ****  *
+1142:Core/core_cm3.h ****  * Exclusive LDR command for 8 bit values)
+1143:Core/core_cm3.h ****  */
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 32
+
+
+1144:Core/core_cm3.h **** extern uint8_t __LDREXB(uint8_t *addr);
+1145:Core/core_cm3.h **** 
+1146:Core/core_cm3.h **** /**
+1147:Core/core_cm3.h ****  * @brief  LDR Exclusive (16 bit)
+1148:Core/core_cm3.h ****  *
+1149:Core/core_cm3.h ****  * @param  *addr  address pointer
+1150:Core/core_cm3.h ****  * @return        value of (*address)
+1151:Core/core_cm3.h ****  *
+1152:Core/core_cm3.h ****  * Exclusive LDR command for 16 bit values
+1153:Core/core_cm3.h ****  */
+1154:Core/core_cm3.h **** extern uint16_t __LDREXH(uint16_t *addr);
+1155:Core/core_cm3.h **** 
+1156:Core/core_cm3.h **** /**
+1157:Core/core_cm3.h ****  * @brief  LDR Exclusive (32 bit)
+1158:Core/core_cm3.h ****  *
+1159:Core/core_cm3.h ****  * @param  *addr  address pointer
+1160:Core/core_cm3.h ****  * @return        value of (*address)
+1161:Core/core_cm3.h ****  *
+1162:Core/core_cm3.h ****  * Exclusive LDR command for 32 bit values
+1163:Core/core_cm3.h ****  */
+1164:Core/core_cm3.h **** extern uint32_t __LDREXW(uint32_t *addr);
+1165:Core/core_cm3.h **** 
+1166:Core/core_cm3.h **** /**
+1167:Core/core_cm3.h ****  * @brief  STR Exclusive (8 bit)
+1168:Core/core_cm3.h ****  *
+1169:Core/core_cm3.h ****  * @param  value  value to store
+1170:Core/core_cm3.h ****  * @param  *addr  address pointer
+1171:Core/core_cm3.h ****  * @return        successful / failed
+1172:Core/core_cm3.h ****  *
+1173:Core/core_cm3.h ****  * Exclusive STR command for 8 bit values
+1174:Core/core_cm3.h ****  */
+1175:Core/core_cm3.h **** extern uint32_t __STREXB(uint8_t value, uint8_t *addr);
+1176:Core/core_cm3.h **** 
+1177:Core/core_cm3.h **** /**
+1178:Core/core_cm3.h ****  * @brief  STR Exclusive (16 bit)
+1179:Core/core_cm3.h ****  *
+1180:Core/core_cm3.h ****  * @param  value  value to store
+1181:Core/core_cm3.h ****  * @param  *addr  address pointer
+1182:Core/core_cm3.h ****  * @return        successful / failed
+1183:Core/core_cm3.h ****  *
+1184:Core/core_cm3.h ****  * Exclusive STR command for 16 bit values
+1185:Core/core_cm3.h ****  */
+1186:Core/core_cm3.h **** extern uint32_t __STREXH(uint16_t value, uint16_t *addr);
+1187:Core/core_cm3.h **** 
+1188:Core/core_cm3.h **** /**
+1189:Core/core_cm3.h ****  * @brief  STR Exclusive (32 bit)
+1190:Core/core_cm3.h ****  *
+1191:Core/core_cm3.h ****  * @param  value  value to store
+1192:Core/core_cm3.h ****  * @param  *addr  address pointer
+1193:Core/core_cm3.h ****  * @return        successful / failed
+1194:Core/core_cm3.h ****  *
+1195:Core/core_cm3.h ****  * Exclusive STR command for 32 bit values
+1196:Core/core_cm3.h ****  */
+1197:Core/core_cm3.h **** extern uint32_t __STREXW(uint32_t value, uint32_t *addr);
+1198:Core/core_cm3.h **** 
+1199:Core/core_cm3.h **** 
+1200:Core/core_cm3.h **** 
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 33
+
+
+1201:Core/core_cm3.h **** #elif (defined (__GNUC__)) /*------------------ GNU Compiler ---------------------*/
+1202:Core/core_cm3.h **** /* GNU gcc specific functions */
+1203:Core/core_cm3.h **** 
+1204:Core/core_cm3.h **** static __INLINE void __enable_irq()               { __ASM volatile ("cpsie i"); }
+1205:Core/core_cm3.h **** static __INLINE void __disable_irq()              { __ASM volatile ("cpsid i"); }
+1206:Core/core_cm3.h **** 
+1207:Core/core_cm3.h **** static __INLINE void __enable_fault_irq()         { __ASM volatile ("cpsie f"); }
+1208:Core/core_cm3.h **** static __INLINE void __disable_fault_irq()        { __ASM volatile ("cpsid f"); }
+1209:Core/core_cm3.h **** 
+1210:Core/core_cm3.h **** static __INLINE void __NOP()                      { __ASM volatile ("nop"); }
+ 479              		.loc 2 1210 22 view .LVU101
+ 480              	.LBB203:
+ 481              		.loc 2 1210 53 view .LVU102
+ 482              		.syntax unified
+ 483              	@ 1210 "Core/core_cm3.h" 1
+ 484 0022 00BF     		nop
+ 485              	@ 0 "" 2
+ 486              		.thumb
+ 487              		.syntax unified
+ 488              	.LBE203:
+ 489              	.LBE202:
+ 490              		.loc 1 103 5 view .LVU103
+ 491              	.LBB204:
+ 492              	.LBI204:
+ 493              		.loc 2 1210 22 view .LVU104
+ 494              	.LBB205:
+ 495              		.loc 2 1210 53 view .LVU105
+ 496              		.syntax unified
+ 497              	@ 1210 "Core/core_cm3.h" 1
+ 498 0024 00BF     		nop
+ 499              	@ 0 "" 2
+ 500              		.thumb
+ 501              		.syntax unified
+ 502              	.LBE205:
+ 503              	.LBE204:
+ 504              		.loc 1 103 5 view .LVU106
+ 505              	.LBB206:
+ 506              	.LBI206:
+ 507              		.loc 2 1210 22 view .LVU107
+ 508              	.LBB207:
+ 509              		.loc 2 1210 53 view .LVU108
+ 510              		.syntax unified
+ 511              	@ 1210 "Core/core_cm3.h" 1
+ 512 0026 00BF     		nop
+ 513              	@ 0 "" 2
+ 514              		.thumb
+ 515              		.syntax unified
+ 516              	.LBE207:
+ 517              	.LBE206:
+ 518              		.loc 1 103 5 view .LVU109
+ 519              	.LBB208:
+ 520              	.LBI208:
+ 521              		.loc 2 1210 22 view .LVU110
+ 522              	.LBB209:
+ 523              		.loc 2 1210 53 view .LVU111
+ 524              		.syntax unified
+ 525              	@ 1210 "Core/core_cm3.h" 1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 34
+
+
+ 526 0028 00BF     		nop
+ 527              	@ 0 "" 2
+ 528              		.thumb
+ 529              		.syntax unified
+ 530              	.LBE209:
+ 531              	.LBE208:
+ 532              		.loc 1 103 5 view .LVU112
+ 533              	.LBB210:
+ 534              	.LBI210:
+ 535              		.loc 2 1210 22 view .LVU113
+ 536              	.LBB211:
+ 537              		.loc 2 1210 53 view .LVU114
+ 538              		.syntax unified
+ 539              	@ 1210 "Core/core_cm3.h" 1
+ 540 002a 00BF     		nop
+ 541              	@ 0 "" 2
+ 542              		.thumb
+ 543              		.syntax unified
+ 544              	.LBE211:
+ 545              	.LBE210:
+ 546              		.loc 1 103 5 view .LVU115
+ 547              	.LBB212:
+ 548              	.LBI212:
+ 549              		.loc 2 1210 22 view .LVU116
+ 550              	.LBB213:
+ 551              		.loc 2 1210 53 view .LVU117
+ 552              		.syntax unified
+ 553              	@ 1210 "Core/core_cm3.h" 1
+ 554 002c 00BF     		nop
+ 555              	@ 0 "" 2
+ 556              		.thumb
+ 557              		.syntax unified
+ 558              	.LBE213:
+ 559              	.LBE212:
+ 560              		.loc 1 103 5 view .LVU118
+ 561              	.LBB214:
+ 562              	.LBI214:
+ 563              		.loc 2 1210 22 view .LVU119
+ 564              	.LBB215:
+ 565              		.loc 2 1210 53 view .LVU120
+ 566              		.syntax unified
+ 567              	@ 1210 "Core/core_cm3.h" 1
+ 568 002e 00BF     		nop
+ 569              	@ 0 "" 2
+ 570              		.thumb
+ 571              		.syntax unified
+ 572              	.LBE215:
+ 573              	.LBE214:
+ 574              		.loc 1 103 5 view .LVU121
+ 575              	.LBB216:
+ 576              	.LBI216:
+ 577              		.loc 2 1210 22 view .LVU122
+ 578              	.LBB217:
+ 579              		.loc 2 1210 53 view .LVU123
+ 580              		.syntax unified
+ 581              	@ 1210 "Core/core_cm3.h" 1
+ 582 0030 00BF     		nop
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 35
+
+
+ 583              	@ 0 "" 2
+ 584              		.thumb
+ 585              		.syntax unified
+ 586              	.LBE217:
+ 587              	.LBE216:
+ 588              		.loc 1 103 18 view .LVU124
  104:HW/TOUCH/gpio_spi.c **** 
  105:HW/TOUCH/gpio_spi.c ****     /* 发送命令 */
  106:HW/TOUCH/gpio_spi.c ****     for(uint8_t i = 0; i < 8; ++i){
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 12
-
-
- 479              		.loc 1 106 5 view .LVU101
- 480              	.LBB4:
- 481              		.loc 1 106 9 view .LVU102
- 482              		.loc 1 106 17 is_stmt 0 view .LVU103
- 483 0028 0024     		movs	r4, #0
- 484              		.loc 1 106 5 view .LVU104
- 485 002a 10E0     		b	.L27
- 486              	.LVL52:
- 487              	.L28:
+ 589              		.loc 1 106 5 view .LVU125
+ 590              	.LBB218:
+ 591              		.loc 1 106 9 view .LVU126
+ 592              	.LVL51:
+ 593              		.loc 1 106 17 is_stmt 0 view .LVU127
+ 594 0032 0024     		movs	r4, #0
+ 595              		.loc 1 106 5 view .LVU128
+ 596 0034 28E0     		b	.L27
+ 597              	.LVL52:
+ 598              	.L28:
  107:HW/TOUCH/gpio_spi.c ****         SPI_CLK_LOW();
  108:HW/TOUCH/gpio_spi.c ****         if(cmd & (0B10000000 >> (i)))   // 先发送高位
  109:HW/TOUCH/gpio_spi.c ****             SPI_MOSI_HIGH();
  110:HW/TOUCH/gpio_spi.c ****         else
  111:HW/TOUCH/gpio_spi.c ****             SPI_MOSI_LOW();
- 488              		.loc 1 111 13 is_stmt 1 view .LVU105
- 489 002c 4FF40071 		mov	r1, #512
- 490 0030 2D48     		ldr	r0, .L37
- 491 0032 FFF7FEFF 		bl	GPIO_ResetBits
- 492              	.LVL53:
- 493              	.L29:
- 112:HW/TOUCH/gpio_spi.c ****         delay_us(1);    // >= 200ns
- 494              		.loc 1 112 9 discriminator 2 view .LVU106
- 495 0036 0120     		movs	r0, #1
- 496 0038 FFF7FEFF 		bl	delay_us
- 497              	.LVL54:
+ 599              		.loc 1 111 13 is_stmt 1 view .LVU129
+ 600 0036 4FF40071 		mov	r1, #512
+ 601 003a 5148     		ldr	r0, .L37
+ 602 003c FFF7FEFF 		bl	GPIO_ResetBits
+ 603              	.LVL53:
+ 604              	.L29:
+ 112:HW/TOUCH/gpio_spi.c ****         delay_208ns();    // >= 200ns
+ 605              		.loc 1 112 9 discriminator 2 view .LVU130
+ 606              	.LBB219:
+ 607              	.LBI219:
+ 608              		.loc 2 1210 22 discriminator 2 view .LVU131
+ 609              	.LBB220:
+ 610              		.loc 2 1210 53 discriminator 2 view .LVU132
+ 611              		.syntax unified
+ 612              	@ 1210 "Core/core_cm3.h" 1
+ 613 0040 00BF     		nop
+ 614              	@ 0 "" 2
+ 615              		.thumb
+ 616              		.syntax unified
+ 617              	.LBE220:
+ 618              	.LBE219:
+ 619              		.loc 1 112 9 discriminator 2 view .LVU133
+ 620              	.LBB221:
+ 621              	.LBI221:
+ 622              		.loc 2 1210 22 discriminator 2 view .LVU134
+ 623              	.LBB222:
+ 624              		.loc 2 1210 53 discriminator 2 view .LVU135
+ 625              		.syntax unified
+ 626              	@ 1210 "Core/core_cm3.h" 1
+ 627 0042 00BF     		nop
+ 628              	@ 0 "" 2
+ 629              		.thumb
+ 630              		.syntax unified
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 36
+
+
+ 631              	.LBE222:
+ 632              	.LBE221:
+ 633              		.loc 1 112 9 discriminator 2 view .LVU136
+ 634              	.LBB223:
+ 635              	.LBI223:
+ 636              		.loc 2 1210 22 discriminator 2 view .LVU137
+ 637              	.LBB224:
+ 638              		.loc 2 1210 53 discriminator 2 view .LVU138
+ 639              		.syntax unified
+ 640              	@ 1210 "Core/core_cm3.h" 1
+ 641 0044 00BF     		nop
+ 642              	@ 0 "" 2
+ 643              		.thumb
+ 644              		.syntax unified
+ 645              	.LBE224:
+ 646              	.LBE223:
+ 647              		.loc 1 112 9 discriminator 2 view .LVU139
+ 648              	.LBB225:
+ 649              	.LBI225:
+ 650              		.loc 2 1210 22 discriminator 2 view .LVU140
+ 651              	.LBB226:
+ 652              		.loc 2 1210 53 discriminator 2 view .LVU141
+ 653              		.syntax unified
+ 654              	@ 1210 "Core/core_cm3.h" 1
+ 655 0046 00BF     		nop
+ 656              	@ 0 "" 2
+ 657              		.thumb
+ 658              		.syntax unified
+ 659              	.LBE226:
+ 660              	.LBE225:
+ 661              		.loc 1 112 9 discriminator 2 view .LVU142
+ 662              	.LBB227:
+ 663              	.LBI227:
+ 664              		.loc 2 1210 22 discriminator 2 view .LVU143
+ 665              	.LBB228:
+ 666              		.loc 2 1210 53 discriminator 2 view .LVU144
+ 667              		.syntax unified
+ 668              	@ 1210 "Core/core_cm3.h" 1
+ 669 0048 00BF     		nop
+ 670              	@ 0 "" 2
+ 671              		.thumb
+ 672              		.syntax unified
+ 673              	.LBE228:
+ 674              	.LBE227:
+ 675              		.loc 1 112 9 discriminator 2 view .LVU145
+ 676              	.LBB229:
+ 677              	.LBI229:
+ 678              		.loc 2 1210 22 discriminator 2 view .LVU146
+ 679              	.LBB230:
+ 680              		.loc 2 1210 53 discriminator 2 view .LVU147
+ 681              		.syntax unified
+ 682              	@ 1210 "Core/core_cm3.h" 1
+ 683 004a 00BF     		nop
+ 684              	@ 0 "" 2
+ 685              		.thumb
+ 686              		.syntax unified
+ 687              	.LBE230:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 37
+
+
+ 688              	.LBE229:
+ 689              		.loc 1 112 9 discriminator 2 view .LVU148
+ 690              	.LBB231:
+ 691              	.LBI231:
+ 692              		.loc 2 1210 22 discriminator 2 view .LVU149
+ 693              	.LBB232:
+ 694              		.loc 2 1210 53 discriminator 2 view .LVU150
+ 695              		.syntax unified
+ 696              	@ 1210 "Core/core_cm3.h" 1
+ 697 004c 00BF     		nop
+ 698              	@ 0 "" 2
+ 699              		.thumb
+ 700              		.syntax unified
+ 701              	.LBE232:
+ 702              	.LBE231:
+ 703              		.loc 1 112 9 discriminator 2 view .LVU151
+ 704              	.LBB233:
+ 705              	.LBI233:
+ 706              		.loc 2 1210 22 discriminator 2 view .LVU152
+ 707              	.LBB234:
+ 708              		.loc 2 1210 53 discriminator 2 view .LVU153
+ 709              		.syntax unified
+ 710              	@ 1210 "Core/core_cm3.h" 1
+ 711 004e 00BF     		nop
+ 712              	@ 0 "" 2
+ 713              		.thumb
+ 714              		.syntax unified
+ 715              	.LBE234:
+ 716              	.LBE233:
+ 717              		.loc 1 112 9 discriminator 2 view .LVU154
+ 718              	.LBB235:
+ 719              	.LBI235:
+ 720              		.loc 2 1210 22 discriminator 2 view .LVU155
+ 721              	.LBB236:
+ 722              		.loc 2 1210 53 discriminator 2 view .LVU156
+ 723              		.syntax unified
+ 724              	@ 1210 "Core/core_cm3.h" 1
+ 725 0050 00BF     		nop
+ 726              	@ 0 "" 2
+ 727              		.thumb
+ 728              		.syntax unified
+ 729              	.LBE236:
+ 730              	.LBE235:
+ 731              		.loc 1 112 9 discriminator 2 view .LVU157
+ 732              	.LBB237:
+ 733              	.LBI237:
+ 734              		.loc 2 1210 22 discriminator 2 view .LVU158
+ 735              	.LBB238:
+ 736              		.loc 2 1210 53 discriminator 2 view .LVU159
+ 737              		.syntax unified
+ 738              	@ 1210 "Core/core_cm3.h" 1
+ 739 0052 00BF     		nop
+ 740              	@ 0 "" 2
+ 741              		.thumb
+ 742              		.syntax unified
+ 743              	.LBE238:
+ 744              	.LBE237:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 38
+
+
+ 745              		.loc 1 112 9 discriminator 2 view .LVU160
+ 746              	.LBB239:
+ 747              	.LBI239:
+ 748              		.loc 2 1210 22 discriminator 2 view .LVU161
+ 749              	.LBB240:
+ 750              		.loc 2 1210 53 discriminator 2 view .LVU162
+ 751              		.syntax unified
+ 752              	@ 1210 "Core/core_cm3.h" 1
+ 753 0054 00BF     		nop
+ 754              	@ 0 "" 2
+ 755              		.thumb
+ 756              		.syntax unified
+ 757              	.LBE240:
+ 758              	.LBE239:
+ 759              		.loc 1 112 9 discriminator 2 view .LVU163
+ 760              	.LBB241:
+ 761              	.LBI241:
+ 762              		.loc 2 1210 22 discriminator 2 view .LVU164
+ 763              	.LBB242:
+ 764              		.loc 2 1210 53 discriminator 2 view .LVU165
+ 765              		.syntax unified
+ 766              	@ 1210 "Core/core_cm3.h" 1
+ 767 0056 00BF     		nop
+ 768              	@ 0 "" 2
+ 769              		.thumb
+ 770              		.syntax unified
+ 771              	.LBE242:
+ 772              	.LBE241:
+ 773              		.loc 1 112 9 discriminator 2 view .LVU166
+ 774              	.LBB243:
+ 775              	.LBI243:
+ 776              		.loc 2 1210 22 discriminator 2 view .LVU167
+ 777              	.LBB244:
+ 778              		.loc 2 1210 53 discriminator 2 view .LVU168
+ 779              		.syntax unified
+ 780              	@ 1210 "Core/core_cm3.h" 1
+ 781 0058 00BF     		nop
+ 782              	@ 0 "" 2
+ 783              		.thumb
+ 784              		.syntax unified
+ 785              	.LBE244:
+ 786              	.LBE243:
+ 787              		.loc 1 112 9 discriminator 2 view .LVU169
+ 788              	.LBB245:
+ 789              	.LBI245:
+ 790              		.loc 2 1210 22 discriminator 2 view .LVU170
+ 791              	.LBB246:
+ 792              		.loc 2 1210 53 discriminator 2 view .LVU171
+ 793              		.syntax unified
+ 794              	@ 1210 "Core/core_cm3.h" 1
+ 795 005a 00BF     		nop
+ 796              	@ 0 "" 2
+ 797              		.thumb
+ 798              		.syntax unified
+ 799              	.LBE246:
+ 800              	.LBE245:
+ 801              		.loc 1 112 9 discriminator 2 view .LVU172
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 39
+
+
+ 802              	.LBB247:
+ 803              	.LBI247:
+ 804              		.loc 2 1210 22 discriminator 2 view .LVU173
+ 805              	.LBB248:
+ 806              		.loc 2 1210 53 discriminator 2 view .LVU174
+ 807              		.syntax unified
+ 808              	@ 1210 "Core/core_cm3.h" 1
+ 809 005c 00BF     		nop
+ 810              	@ 0 "" 2
+ 811              		.thumb
+ 812              		.syntax unified
+ 813              	.LBE248:
+ 814              	.LBE247:
+ 815              		.loc 1 112 22 discriminator 2 view .LVU175
  113:HW/TOUCH/gpio_spi.c ****         SPI_CLK_HIGH();
- 498              		.loc 1 113 9 discriminator 2 view .LVU107
- 499 003c 0221     		movs	r1, #2
- 500 003e 2B48     		ldr	r0, .L37+4
- 501 0040 FFF7FEFF 		bl	GPIO_SetBits
- 502              	.LVL55:
- 114:HW/TOUCH/gpio_spi.c ****         delay_us(1);    // >= 200ns
- 503              		.loc 1 114 9 discriminator 2 view .LVU108
- 504 0044 0120     		movs	r0, #1
- 505 0046 FFF7FEFF 		bl	delay_us
- 506              	.LVL56:
+ 816              		.loc 1 113 9 discriminator 2 view .LVU176
+ 817 005e 0221     		movs	r1, #2
+ 818 0060 4848     		ldr	r0, .L37+4
+ 819 0062 FFF7FEFF 		bl	GPIO_SetBits
+ 820              	.LVL54:
+ 114:HW/TOUCH/gpio_spi.c ****         delay_208ns();    // >= 200ns
+ 821              		.loc 1 114 9 discriminator 2 view .LVU177
+ 822              	.LBB249:
+ 823              	.LBI249:
+ 824              		.loc 2 1210 22 discriminator 2 view .LVU178
+ 825              	.LBB250:
+ 826              		.loc 2 1210 53 discriminator 2 view .LVU179
+ 827              		.syntax unified
+ 828              	@ 1210 "Core/core_cm3.h" 1
+ 829 0066 00BF     		nop
+ 830              	@ 0 "" 2
+ 831              		.thumb
+ 832              		.syntax unified
+ 833              	.LBE250:
+ 834              	.LBE249:
+ 835              		.loc 1 114 9 discriminator 2 view .LVU180
+ 836              	.LBB251:
+ 837              	.LBI251:
+ 838              		.loc 2 1210 22 discriminator 2 view .LVU181
+ 839              	.LBB252:
+ 840              		.loc 2 1210 53 discriminator 2 view .LVU182
+ 841              		.syntax unified
+ 842              	@ 1210 "Core/core_cm3.h" 1
+ 843 0068 00BF     		nop
+ 844              	@ 0 "" 2
+ 845              		.thumb
+ 846              		.syntax unified
+ 847              	.LBE252:
+ 848              	.LBE251:
+ 849              		.loc 1 114 9 discriminator 2 view .LVU183
+ 850              	.LBB253:
+ 851              	.LBI253:
+ 852              		.loc 2 1210 22 discriminator 2 view .LVU184
+ 853              	.LBB254:
+ 854              		.loc 2 1210 53 discriminator 2 view .LVU185
+ 855              		.syntax unified
+ 856              	@ 1210 "Core/core_cm3.h" 1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 40
+
+
+ 857 006a 00BF     		nop
+ 858              	@ 0 "" 2
+ 859              		.thumb
+ 860              		.syntax unified
+ 861              	.LBE254:
+ 862              	.LBE253:
+ 863              		.loc 1 114 9 discriminator 2 view .LVU186
+ 864              	.LBB255:
+ 865              	.LBI255:
+ 866              		.loc 2 1210 22 discriminator 2 view .LVU187
+ 867              	.LBB256:
+ 868              		.loc 2 1210 53 discriminator 2 view .LVU188
+ 869              		.syntax unified
+ 870              	@ 1210 "Core/core_cm3.h" 1
+ 871 006c 00BF     		nop
+ 872              	@ 0 "" 2
+ 873              		.thumb
+ 874              		.syntax unified
+ 875              	.LBE256:
+ 876              	.LBE255:
+ 877              		.loc 1 114 9 discriminator 2 view .LVU189
+ 878              	.LBB257:
+ 879              	.LBI257:
+ 880              		.loc 2 1210 22 discriminator 2 view .LVU190
+ 881              	.LBB258:
+ 882              		.loc 2 1210 53 discriminator 2 view .LVU191
+ 883              		.syntax unified
+ 884              	@ 1210 "Core/core_cm3.h" 1
+ 885 006e 00BF     		nop
+ 886              	@ 0 "" 2
+ 887              		.thumb
+ 888              		.syntax unified
+ 889              	.LBE258:
+ 890              	.LBE257:
+ 891              		.loc 1 114 9 discriminator 2 view .LVU192
+ 892              	.LBB259:
+ 893              	.LBI259:
+ 894              		.loc 2 1210 22 discriminator 2 view .LVU193
+ 895              	.LBB260:
+ 896              		.loc 2 1210 53 discriminator 2 view .LVU194
+ 897              		.syntax unified
+ 898              	@ 1210 "Core/core_cm3.h" 1
+ 899 0070 00BF     		nop
+ 900              	@ 0 "" 2
+ 901              		.thumb
+ 902              		.syntax unified
+ 903              	.LBE260:
+ 904              	.LBE259:
+ 905              		.loc 1 114 9 discriminator 2 view .LVU195
+ 906              	.LBB261:
+ 907              	.LBI261:
+ 908              		.loc 2 1210 22 discriminator 2 view .LVU196
+ 909              	.LBB262:
+ 910              		.loc 2 1210 53 discriminator 2 view .LVU197
+ 911              		.syntax unified
+ 912              	@ 1210 "Core/core_cm3.h" 1
+ 913 0072 00BF     		nop
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 41
+
+
+ 914              	@ 0 "" 2
+ 915              		.thumb
+ 916              		.syntax unified
+ 917              	.LBE262:
+ 918              	.LBE261:
+ 919              		.loc 1 114 9 discriminator 2 view .LVU198
+ 920              	.LBB263:
+ 921              	.LBI263:
+ 922              		.loc 2 1210 22 discriminator 2 view .LVU199
+ 923              	.LBB264:
+ 924              		.loc 2 1210 53 discriminator 2 view .LVU200
+ 925              		.syntax unified
+ 926              	@ 1210 "Core/core_cm3.h" 1
+ 927 0074 00BF     		nop
+ 928              	@ 0 "" 2
+ 929              		.thumb
+ 930              		.syntax unified
+ 931              	.LBE264:
+ 932              	.LBE263:
+ 933              		.loc 1 114 9 discriminator 2 view .LVU201
+ 934              	.LBB265:
+ 935              	.LBI265:
+ 936              		.loc 2 1210 22 discriminator 2 view .LVU202
+ 937              	.LBB266:
+ 938              		.loc 2 1210 53 discriminator 2 view .LVU203
+ 939              		.syntax unified
+ 940              	@ 1210 "Core/core_cm3.h" 1
+ 941 0076 00BF     		nop
+ 942              	@ 0 "" 2
+ 943              		.thumb
+ 944              		.syntax unified
+ 945              	.LBE266:
+ 946              	.LBE265:
+ 947              		.loc 1 114 9 discriminator 2 view .LVU204
+ 948              	.LBB267:
+ 949              	.LBI267:
+ 950              		.loc 2 1210 22 discriminator 2 view .LVU205
+ 951              	.LBB268:
+ 952              		.loc 2 1210 53 discriminator 2 view .LVU206
+ 953              		.syntax unified
+ 954              	@ 1210 "Core/core_cm3.h" 1
+ 955 0078 00BF     		nop
+ 956              	@ 0 "" 2
+ 957              		.thumb
+ 958              		.syntax unified
+ 959              	.LBE268:
+ 960              	.LBE267:
+ 961              		.loc 1 114 9 discriminator 2 view .LVU207
+ 962              	.LBB269:
+ 963              	.LBI269:
+ 964              		.loc 2 1210 22 discriminator 2 view .LVU208
+ 965              	.LBB270:
+ 966              		.loc 2 1210 53 discriminator 2 view .LVU209
+ 967              		.syntax unified
+ 968              	@ 1210 "Core/core_cm3.h" 1
+ 969 007a 00BF     		nop
+ 970              	@ 0 "" 2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 42
+
+
+ 971              		.thumb
+ 972              		.syntax unified
+ 973              	.LBE270:
+ 974              	.LBE269:
+ 975              		.loc 1 114 9 discriminator 2 view .LVU210
+ 976              	.LBB271:
+ 977              	.LBI271:
+ 978              		.loc 2 1210 22 discriminator 2 view .LVU211
+ 979              	.LBB272:
+ 980              		.loc 2 1210 53 discriminator 2 view .LVU212
+ 981              		.syntax unified
+ 982              	@ 1210 "Core/core_cm3.h" 1
+ 983 007c 00BF     		nop
+ 984              	@ 0 "" 2
+ 985              		.thumb
+ 986              		.syntax unified
+ 987              	.LBE272:
+ 988              	.LBE271:
+ 989              		.loc 1 114 9 discriminator 2 view .LVU213
+ 990              	.LBB273:
+ 991              	.LBI273:
+ 992              		.loc 2 1210 22 discriminator 2 view .LVU214
+ 993              	.LBB274:
+ 994              		.loc 2 1210 53 discriminator 2 view .LVU215
+ 995              		.syntax unified
+ 996              	@ 1210 "Core/core_cm3.h" 1
+ 997 007e 00BF     		nop
+ 998              	@ 0 "" 2
+ 999              		.thumb
+ 1000              		.syntax unified
+ 1001              	.LBE274:
+ 1002              	.LBE273:
+ 1003              		.loc 1 114 9 discriminator 2 view .LVU216
+ 1004              	.LBB275:
+ 1005              	.LBI275:
+ 1006              		.loc 2 1210 22 discriminator 2 view .LVU217
+ 1007              	.LBB276:
+ 1008              		.loc 2 1210 53 discriminator 2 view .LVU218
+ 1009              		.syntax unified
+ 1010              	@ 1210 "Core/core_cm3.h" 1
+ 1011 0080 00BF     		nop
+ 1012              	@ 0 "" 2
+ 1013              		.thumb
+ 1014              		.syntax unified
+ 1015              	.LBE276:
+ 1016              	.LBE275:
+ 1017              		.loc 1 114 9 discriminator 2 view .LVU219
+ 1018              	.LBB277:
+ 1019              	.LBI277:
+ 1020              		.loc 2 1210 22 discriminator 2 view .LVU220
+ 1021              	.LBB278:
+ 1022              		.loc 2 1210 53 discriminator 2 view .LVU221
+ 1023              		.syntax unified
+ 1024              	@ 1210 "Core/core_cm3.h" 1
+ 1025 0082 00BF     		nop
+ 1026              	@ 0 "" 2
+ 1027              		.thumb
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 43
+
+
+ 1028              		.syntax unified
+ 1029              	.LBE278:
+ 1030              	.LBE277:
+ 1031              		.loc 1 114 22 discriminator 2 view .LVU222
  106:HW/TOUCH/gpio_spi.c ****         SPI_CLK_LOW();
- 507              		.loc 1 106 31 discriminator 2 view .LVU109
- 508 004a 0134     		adds	r4, r4, #1
- 509              	.LVL57:
+ 1032              		.loc 1 106 31 discriminator 2 view .LVU223
+ 1033 0084 0134     		adds	r4, r4, #1
+ 1034              	.LVL55:
  106:HW/TOUCH/gpio_spi.c ****         SPI_CLK_LOW();
- 510              		.loc 1 106 31 is_stmt 0 discriminator 2 view .LVU110
- 511 004c E4B2     		uxtb	r4, r4
- 512              	.LVL58:
- 513              	.L27:
+ 1035              		.loc 1 106 31 is_stmt 0 discriminator 2 view .LVU224
+ 1036 0086 E4B2     		uxtb	r4, r4
+ 1037              	.LVL56:
+ 1038              	.L27:
  106:HW/TOUCH/gpio_spi.c ****         SPI_CLK_LOW();
- 514              		.loc 1 106 26 is_stmt 1 discriminator 1 view .LVU111
- 515 004e 072C     		cmp	r4, #7
- 516 0050 0DD8     		bhi	.L35
+ 1039              		.loc 1 106 26 is_stmt 1 discriminator 1 view .LVU225
+ 1040 0088 072C     		cmp	r4, #7
+ 1041 008a 0DD8     		bhi	.L35
  107:HW/TOUCH/gpio_spi.c ****         if(cmd & (0B10000000 >> (i)))   // 先发送高位
- 517              		.loc 1 107 9 view .LVU112
- 518 0052 0221     		movs	r1, #2
- 519 0054 2548     		ldr	r0, .L37+4
- 520 0056 FFF7FEFF 		bl	GPIO_ResetBits
- 521              	.LVL59:
+ 1042              		.loc 1 107 9 view .LVU226
+ 1043 008c 0221     		movs	r1, #2
+ 1044 008e 3D48     		ldr	r0, .L37+4
+ 1045 0090 FFF7FEFF 		bl	GPIO_ResetBits
+ 1046              	.LVL57:
  108:HW/TOUCH/gpio_spi.c ****             SPI_MOSI_HIGH();
- 522              		.loc 1 108 9 view .LVU113
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 13
-
-
+ 1047              		.loc 1 108 9 view .LVU227
  108:HW/TOUCH/gpio_spi.c ****             SPI_MOSI_HIGH();
- 523              		.loc 1 108 30 is_stmt 0 view .LVU114
- 524 005a 8023     		movs	r3, #128
- 525 005c 2341     		asrs	r3, r3, r4
+ 1048              		.loc 1 108 30 is_stmt 0 view .LVU228
+ 1049 0094 8023     		movs	r3, #128
+ 1050 0096 2341     		asrs	r3, r3, r4
  108:HW/TOUCH/gpio_spi.c ****             SPI_MOSI_HIGH();
- 526              		.loc 1 108 11 view .LVU115
- 527 005e 1D42     		tst	r5, r3
- 528 0060 E4D0     		beq	.L28
+ 1051              		.loc 1 108 11 view .LVU229
+ 1052 0098 1D42     		tst	r5, r3
+ 1053 009a CCD0     		beq	.L28
  109:HW/TOUCH/gpio_spi.c ****         else
- 529              		.loc 1 109 13 is_stmt 1 view .LVU116
- 530 0062 4FF40071 		mov	r1, #512
- 531 0066 2048     		ldr	r0, .L37
- 532 0068 FFF7FEFF 		bl	GPIO_SetBits
- 533              	.LVL60:
- 534 006c E3E7     		b	.L29
- 535              	.L35:
- 536              	.LBE4:
+ 1054              		.loc 1 109 13 is_stmt 1 view .LVU230
+ 1055 009c 4FF40071 		mov	r1, #512
+ 1056 00a0 3748     		ldr	r0, .L37
+ 1057 00a2 FFF7FEFF 		bl	GPIO_SetBits
+ 1058              	.LVL58:
+ 1059 00a6 CBE7     		b	.L29
+ 1060              	.L35:
+ 1061              	.LBE218:
  115:HW/TOUCH/gpio_spi.c ****     }
  116:HW/TOUCH/gpio_spi.c **** 
  117:HW/TOUCH/gpio_spi.c ****     /* 等待BUSY */
  118:HW/TOUCH/gpio_spi.c ****     SPI_CLK_LOW();
- 537              		.loc 1 118 5 view .LVU117
- 538 006e 1F4C     		ldr	r4, .L37+4
- 539              	.LVL61:
- 540              		.loc 1 118 5 is_stmt 0 view .LVU118
- 541 0070 0221     		movs	r1, #2
- 542 0072 2046     		mov	r0, r4
- 543 0074 FFF7FEFF 		bl	GPIO_ResetBits
- 544              	.LVL62:
- 119:HW/TOUCH/gpio_spi.c ****     delay_us(1);    // >= 200ns
- 545              		.loc 1 119 5 is_stmt 1 view .LVU119
- 546 0078 0120     		movs	r0, #1
- 547 007a FFF7FEFF 		bl	delay_us
- 548              	.LVL63:
+ 1062              		.loc 1 118 5 view .LVU231
+ 1063 00a8 364C     		ldr	r4, .L37+4
+ 1064              	.LVL59:
+ 1065              		.loc 1 118 5 is_stmt 0 view .LVU232
+ 1066 00aa 0221     		movs	r1, #2
+ 1067 00ac 2046     		mov	r0, r4
+ 1068 00ae FFF7FEFF 		bl	GPIO_ResetBits
+ 1069              	.LVL60:
+ 119:HW/TOUCH/gpio_spi.c ****     delay_208ns();    // >= 200ns
+ 1070              		.loc 1 119 5 is_stmt 1 view .LVU233
+ 1071              	.LBB279:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 44
+
+
+ 1072              	.LBI279:
+ 1073              		.loc 2 1210 22 view .LVU234
+ 1074              	.LBB280:
+ 1075              		.loc 2 1210 53 view .LVU235
+ 1076              		.syntax unified
+ 1077              	@ 1210 "Core/core_cm3.h" 1
+ 1078 00b2 00BF     		nop
+ 1079              	@ 0 "" 2
+ 1080              		.thumb
+ 1081              		.syntax unified
+ 1082              	.LBE280:
+ 1083              	.LBE279:
+ 1084              		.loc 1 119 5 view .LVU236
+ 1085              	.LBB281:
+ 1086              	.LBI281:
+ 1087              		.loc 2 1210 22 view .LVU237
+ 1088              	.LBB282:
+ 1089              		.loc 2 1210 53 view .LVU238
+ 1090              		.syntax unified
+ 1091              	@ 1210 "Core/core_cm3.h" 1
+ 1092 00b4 00BF     		nop
+ 1093              	@ 0 "" 2
+ 1094              		.thumb
+ 1095              		.syntax unified
+ 1096              	.LBE282:
+ 1097              	.LBE281:
+ 1098              		.loc 1 119 5 view .LVU239
+ 1099              	.LBB283:
+ 1100              	.LBI283:
+ 1101              		.loc 2 1210 22 view .LVU240
+ 1102              	.LBB284:
+ 1103              		.loc 2 1210 53 view .LVU241
+ 1104              		.syntax unified
+ 1105              	@ 1210 "Core/core_cm3.h" 1
+ 1106 00b6 00BF     		nop
+ 1107              	@ 0 "" 2
+ 1108              		.thumb
+ 1109              		.syntax unified
+ 1110              	.LBE284:
+ 1111              	.LBE283:
+ 1112              		.loc 1 119 5 view .LVU242
+ 1113              	.LBB285:
+ 1114              	.LBI285:
+ 1115              		.loc 2 1210 22 view .LVU243
+ 1116              	.LBB286:
+ 1117              		.loc 2 1210 53 view .LVU244
+ 1118              		.syntax unified
+ 1119              	@ 1210 "Core/core_cm3.h" 1
+ 1120 00b8 00BF     		nop
+ 1121              	@ 0 "" 2
+ 1122              		.thumb
+ 1123              		.syntax unified
+ 1124              	.LBE286:
+ 1125              	.LBE285:
+ 1126              		.loc 1 119 5 view .LVU245
+ 1127              	.LBB287:
+ 1128              	.LBI287:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 45
+
+
+ 1129              		.loc 2 1210 22 view .LVU246
+ 1130              	.LBB288:
+ 1131              		.loc 2 1210 53 view .LVU247
+ 1132              		.syntax unified
+ 1133              	@ 1210 "Core/core_cm3.h" 1
+ 1134 00ba 00BF     		nop
+ 1135              	@ 0 "" 2
+ 1136              		.thumb
+ 1137              		.syntax unified
+ 1138              	.LBE288:
+ 1139              	.LBE287:
+ 1140              		.loc 1 119 5 view .LVU248
+ 1141              	.LBB289:
+ 1142              	.LBI289:
+ 1143              		.loc 2 1210 22 view .LVU249
+ 1144              	.LBB290:
+ 1145              		.loc 2 1210 53 view .LVU250
+ 1146              		.syntax unified
+ 1147              	@ 1210 "Core/core_cm3.h" 1
+ 1148 00bc 00BF     		nop
+ 1149              	@ 0 "" 2
+ 1150              		.thumb
+ 1151              		.syntax unified
+ 1152              	.LBE290:
+ 1153              	.LBE289:
+ 1154              		.loc 1 119 5 view .LVU251
+ 1155              	.LBB291:
+ 1156              	.LBI291:
+ 1157              		.loc 2 1210 22 view .LVU252
+ 1158              	.LBB292:
+ 1159              		.loc 2 1210 53 view .LVU253
+ 1160              		.syntax unified
+ 1161              	@ 1210 "Core/core_cm3.h" 1
+ 1162 00be 00BF     		nop
+ 1163              	@ 0 "" 2
+ 1164              		.thumb
+ 1165              		.syntax unified
+ 1166              	.LBE292:
+ 1167              	.LBE291:
+ 1168              		.loc 1 119 5 view .LVU254
+ 1169              	.LBB293:
+ 1170              	.LBI293:
+ 1171              		.loc 2 1210 22 view .LVU255
+ 1172              	.LBB294:
+ 1173              		.loc 2 1210 53 view .LVU256
+ 1174              		.syntax unified
+ 1175              	@ 1210 "Core/core_cm3.h" 1
+ 1176 00c0 00BF     		nop
+ 1177              	@ 0 "" 2
+ 1178              		.thumb
+ 1179              		.syntax unified
+ 1180              	.LBE294:
+ 1181              	.LBE293:
+ 1182              		.loc 1 119 5 view .LVU257
+ 1183              	.LBB295:
+ 1184              	.LBI295:
+ 1185              		.loc 2 1210 22 view .LVU258
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 46
+
+
+ 1186              	.LBB296:
+ 1187              		.loc 2 1210 53 view .LVU259
+ 1188              		.syntax unified
+ 1189              	@ 1210 "Core/core_cm3.h" 1
+ 1190 00c2 00BF     		nop
+ 1191              	@ 0 "" 2
+ 1192              		.thumb
+ 1193              		.syntax unified
+ 1194              	.LBE296:
+ 1195              	.LBE295:
+ 1196              		.loc 1 119 5 view .LVU260
+ 1197              	.LBB297:
+ 1198              	.LBI297:
+ 1199              		.loc 2 1210 22 view .LVU261
+ 1200              	.LBB298:
+ 1201              		.loc 2 1210 53 view .LVU262
+ 1202              		.syntax unified
+ 1203              	@ 1210 "Core/core_cm3.h" 1
+ 1204 00c4 00BF     		nop
+ 1205              	@ 0 "" 2
+ 1206              		.thumb
+ 1207              		.syntax unified
+ 1208              	.LBE298:
+ 1209              	.LBE297:
+ 1210              		.loc 1 119 5 view .LVU263
+ 1211              	.LBB299:
+ 1212              	.LBI299:
+ 1213              		.loc 2 1210 22 view .LVU264
+ 1214              	.LBB300:
+ 1215              		.loc 2 1210 53 view .LVU265
+ 1216              		.syntax unified
+ 1217              	@ 1210 "Core/core_cm3.h" 1
+ 1218 00c6 00BF     		nop
+ 1219              	@ 0 "" 2
+ 1220              		.thumb
+ 1221              		.syntax unified
+ 1222              	.LBE300:
+ 1223              	.LBE299:
+ 1224              		.loc 1 119 5 view .LVU266
+ 1225              	.LBB301:
+ 1226              	.LBI301:
+ 1227              		.loc 2 1210 22 view .LVU267
+ 1228              	.LBB302:
+ 1229              		.loc 2 1210 53 view .LVU268
+ 1230              		.syntax unified
+ 1231              	@ 1210 "Core/core_cm3.h" 1
+ 1232 00c8 00BF     		nop
+ 1233              	@ 0 "" 2
+ 1234              		.thumb
+ 1235              		.syntax unified
+ 1236              	.LBE302:
+ 1237              	.LBE301:
+ 1238              		.loc 1 119 5 view .LVU269
+ 1239              	.LBB303:
+ 1240              	.LBI303:
+ 1241              		.loc 2 1210 22 view .LVU270
+ 1242              	.LBB304:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 47
+
+
+ 1243              		.loc 2 1210 53 view .LVU271
+ 1244              		.syntax unified
+ 1245              	@ 1210 "Core/core_cm3.h" 1
+ 1246 00ca 00BF     		nop
+ 1247              	@ 0 "" 2
+ 1248              		.thumb
+ 1249              		.syntax unified
+ 1250              	.LBE304:
+ 1251              	.LBE303:
+ 1252              		.loc 1 119 5 view .LVU272
+ 1253              	.LBB305:
+ 1254              	.LBI305:
+ 1255              		.loc 2 1210 22 view .LVU273
+ 1256              	.LBB306:
+ 1257              		.loc 2 1210 53 view .LVU274
+ 1258              		.syntax unified
+ 1259              	@ 1210 "Core/core_cm3.h" 1
+ 1260 00cc 00BF     		nop
+ 1261              	@ 0 "" 2
+ 1262              		.thumb
+ 1263              		.syntax unified
+ 1264              	.LBE306:
+ 1265              	.LBE305:
+ 1266              		.loc 1 119 5 view .LVU275
+ 1267              	.LBB307:
+ 1268              	.LBI307:
+ 1269              		.loc 2 1210 22 view .LVU276
+ 1270              	.LBB308:
+ 1271              		.loc 2 1210 53 view .LVU277
+ 1272              		.syntax unified
+ 1273              	@ 1210 "Core/core_cm3.h" 1
+ 1274 00ce 00BF     		nop
+ 1275              	@ 0 "" 2
+ 1276              		.thumb
+ 1277              		.syntax unified
+ 1278              	.LBE308:
+ 1279              	.LBE307:
+ 1280              		.loc 1 119 18 view .LVU278
  120:HW/TOUCH/gpio_spi.c ****     SPI_CLK_HIGH();
- 549              		.loc 1 120 5 view .LVU120
- 550 007e 0221     		movs	r1, #2
- 551 0080 2046     		mov	r0, r4
- 552 0082 FFF7FEFF 		bl	GPIO_SetBits
- 553              	.LVL64:
- 121:HW/TOUCH/gpio_spi.c ****     delay_us(1);    // >= 200ns
- 554              		.loc 1 121 5 view .LVU121
- 555 0086 0120     		movs	r0, #1
- 556 0088 FFF7FEFF 		bl	delay_us
- 557              	.LVL65:
+ 1281              		.loc 1 120 5 view .LVU279
+ 1282 00d0 0221     		movs	r1, #2
+ 1283 00d2 2046     		mov	r0, r4
+ 1284 00d4 FFF7FEFF 		bl	GPIO_SetBits
+ 1285              	.LVL61:
+ 121:HW/TOUCH/gpio_spi.c ****     delay_208ns();    // >= 200ns
+ 1286              		.loc 1 121 5 view .LVU280
+ 1287              	.LBB309:
+ 1288              	.LBI309:
+ 1289              		.loc 2 1210 22 view .LVU281
+ 1290              	.LBB310:
+ 1291              		.loc 2 1210 53 view .LVU282
+ 1292              		.syntax unified
+ 1293              	@ 1210 "Core/core_cm3.h" 1
+ 1294 00d8 00BF     		nop
+ 1295              	@ 0 "" 2
+ 1296              		.thumb
+ 1297              		.syntax unified
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 48
+
+
+ 1298              	.LBE310:
+ 1299              	.LBE309:
+ 1300              		.loc 1 121 5 view .LVU283
+ 1301              	.LBB311:
+ 1302              	.LBI311:
+ 1303              		.loc 2 1210 22 view .LVU284
+ 1304              	.LBB312:
+ 1305              		.loc 2 1210 53 view .LVU285
+ 1306              		.syntax unified
+ 1307              	@ 1210 "Core/core_cm3.h" 1
+ 1308 00da 00BF     		nop
+ 1309              	@ 0 "" 2
+ 1310              		.thumb
+ 1311              		.syntax unified
+ 1312              	.LBE312:
+ 1313              	.LBE311:
+ 1314              		.loc 1 121 5 view .LVU286
+ 1315              	.LBB313:
+ 1316              	.LBI313:
+ 1317              		.loc 2 1210 22 view .LVU287
+ 1318              	.LBB314:
+ 1319              		.loc 2 1210 53 view .LVU288
+ 1320              		.syntax unified
+ 1321              	@ 1210 "Core/core_cm3.h" 1
+ 1322 00dc 00BF     		nop
+ 1323              	@ 0 "" 2
+ 1324              		.thumb
+ 1325              		.syntax unified
+ 1326              	.LBE314:
+ 1327              	.LBE313:
+ 1328              		.loc 1 121 5 view .LVU289
+ 1329              	.LBB315:
+ 1330              	.LBI315:
+ 1331              		.loc 2 1210 22 view .LVU290
+ 1332              	.LBB316:
+ 1333              		.loc 2 1210 53 view .LVU291
+ 1334              		.syntax unified
+ 1335              	@ 1210 "Core/core_cm3.h" 1
+ 1336 00de 00BF     		nop
+ 1337              	@ 0 "" 2
+ 1338              		.thumb
+ 1339              		.syntax unified
+ 1340              	.LBE316:
+ 1341              	.LBE315:
+ 1342              		.loc 1 121 5 view .LVU292
+ 1343              	.LBB317:
+ 1344              	.LBI317:
+ 1345              		.loc 2 1210 22 view .LVU293
+ 1346              	.LBB318:
+ 1347              		.loc 2 1210 53 view .LVU294
+ 1348              		.syntax unified
+ 1349              	@ 1210 "Core/core_cm3.h" 1
+ 1350 00e0 00BF     		nop
+ 1351              	@ 0 "" 2
+ 1352              		.thumb
+ 1353              		.syntax unified
+ 1354              	.LBE318:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 49
+
+
+ 1355              	.LBE317:
+ 1356              		.loc 1 121 5 view .LVU295
+ 1357              	.LBB319:
+ 1358              	.LBI319:
+ 1359              		.loc 2 1210 22 view .LVU296
+ 1360              	.LBB320:
+ 1361              		.loc 2 1210 53 view .LVU297
+ 1362              		.syntax unified
+ 1363              	@ 1210 "Core/core_cm3.h" 1
+ 1364 00e2 00BF     		nop
+ 1365              	@ 0 "" 2
+ 1366              		.thumb
+ 1367              		.syntax unified
+ 1368              	.LBE320:
+ 1369              	.LBE319:
+ 1370              		.loc 1 121 5 view .LVU298
+ 1371              	.LBB321:
+ 1372              	.LBI321:
+ 1373              		.loc 2 1210 22 view .LVU299
+ 1374              	.LBB322:
+ 1375              		.loc 2 1210 53 view .LVU300
+ 1376              		.syntax unified
+ 1377              	@ 1210 "Core/core_cm3.h" 1
+ 1378 00e4 00BF     		nop
+ 1379              	@ 0 "" 2
+ 1380              		.thumb
+ 1381              		.syntax unified
+ 1382              	.LBE322:
+ 1383              	.LBE321:
+ 1384              		.loc 1 121 5 view .LVU301
+ 1385              	.LBB323:
+ 1386              	.LBI323:
+ 1387              		.loc 2 1210 22 view .LVU302
+ 1388              	.LBB324:
+ 1389              		.loc 2 1210 53 view .LVU303
+ 1390              		.syntax unified
+ 1391              	@ 1210 "Core/core_cm3.h" 1
+ 1392 00e6 00BF     		nop
+ 1393              	@ 0 "" 2
+ 1394              		.thumb
+ 1395              		.syntax unified
+ 1396              	.LBE324:
+ 1397              	.LBE323:
+ 1398              		.loc 1 121 5 view .LVU304
+ 1399              	.LBB325:
+ 1400              	.LBI325:
+ 1401              		.loc 2 1210 22 view .LVU305
+ 1402              	.LBB326:
+ 1403              		.loc 2 1210 53 view .LVU306
+ 1404              		.syntax unified
+ 1405              	@ 1210 "Core/core_cm3.h" 1
+ 1406 00e8 00BF     		nop
+ 1407              	@ 0 "" 2
+ 1408              		.thumb
+ 1409              		.syntax unified
+ 1410              	.LBE326:
+ 1411              	.LBE325:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 50
+
+
+ 1412              		.loc 1 121 5 view .LVU307
+ 1413              	.LBB327:
+ 1414              	.LBI327:
+ 1415              		.loc 2 1210 22 view .LVU308
+ 1416              	.LBB328:
+ 1417              		.loc 2 1210 53 view .LVU309
+ 1418              		.syntax unified
+ 1419              	@ 1210 "Core/core_cm3.h" 1
+ 1420 00ea 00BF     		nop
+ 1421              	@ 0 "" 2
+ 1422              		.thumb
+ 1423              		.syntax unified
+ 1424              	.LBE328:
+ 1425              	.LBE327:
+ 1426              		.loc 1 121 5 view .LVU310
+ 1427              	.LBB329:
+ 1428              	.LBI329:
+ 1429              		.loc 2 1210 22 view .LVU311
+ 1430              	.LBB330:
+ 1431              		.loc 2 1210 53 view .LVU312
+ 1432              		.syntax unified
+ 1433              	@ 1210 "Core/core_cm3.h" 1
+ 1434 00ec 00BF     		nop
+ 1435              	@ 0 "" 2
+ 1436              		.thumb
+ 1437              		.syntax unified
+ 1438              	.LBE330:
+ 1439              	.LBE329:
+ 1440              		.loc 1 121 5 view .LVU313
+ 1441              	.LBB331:
+ 1442              	.LBI331:
+ 1443              		.loc 2 1210 22 view .LVU314
+ 1444              	.LBB332:
+ 1445              		.loc 2 1210 53 view .LVU315
+ 1446              		.syntax unified
+ 1447              	@ 1210 "Core/core_cm3.h" 1
+ 1448 00ee 00BF     		nop
+ 1449              	@ 0 "" 2
+ 1450              		.thumb
+ 1451              		.syntax unified
+ 1452              	.LBE332:
+ 1453              	.LBE331:
+ 1454              		.loc 1 121 5 view .LVU316
+ 1455              	.LBB333:
+ 1456              	.LBI333:
+ 1457              		.loc 2 1210 22 view .LVU317
+ 1458              	.LBB334:
+ 1459              		.loc 2 1210 53 view .LVU318
+ 1460              		.syntax unified
+ 1461              	@ 1210 "Core/core_cm3.h" 1
+ 1462 00f0 00BF     		nop
+ 1463              	@ 0 "" 2
+ 1464              		.thumb
+ 1465              		.syntax unified
+ 1466              	.LBE334:
+ 1467              	.LBE333:
+ 1468              		.loc 1 121 5 view .LVU319
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 51
+
+
+ 1469              	.LBB335:
+ 1470              	.LBI335:
+ 1471              		.loc 2 1210 22 view .LVU320
+ 1472              	.LBB336:
+ 1473              		.loc 2 1210 53 view .LVU321
+ 1474              		.syntax unified
+ 1475              	@ 1210 "Core/core_cm3.h" 1
+ 1476 00f2 00BF     		nop
+ 1477              	@ 0 "" 2
+ 1478              		.thumb
+ 1479              		.syntax unified
+ 1480              	.LBE336:
+ 1481              	.LBE335:
+ 1482              		.loc 1 121 5 view .LVU322
+ 1483              	.LBB337:
+ 1484              	.LBI337:
+ 1485              		.loc 2 1210 22 view .LVU323
+ 1486              	.LBB338:
+ 1487              		.loc 2 1210 53 view .LVU324
+ 1488              		.syntax unified
+ 1489              	@ 1210 "Core/core_cm3.h" 1
+ 1490 00f4 00BF     		nop
+ 1491              	@ 0 "" 2
+ 1492              		.thumb
+ 1493              		.syntax unified
+ 1494              	.LBE338:
+ 1495              	.LBE337:
+ 1496              		.loc 1 121 18 view .LVU325
  122:HW/TOUCH/gpio_spi.c ****     SPI_CLK_LOW();
- 558              		.loc 1 122 5 view .LVU122
- 559 008c 0221     		movs	r1, #2
- 560 008e 2046     		mov	r0, r4
- 561 0090 FFF7FEFF 		bl	GPIO_ResetBits
- 562              	.LVL66:
+ 1497              		.loc 1 122 5 view .LVU326
+ 1498 00f6 0221     		movs	r1, #2
+ 1499 00f8 2046     		mov	r0, r4
+ 1500 00fa FFF7FEFF 		bl	GPIO_ResetBits
+ 1501              	.LVL62:
  123:HW/TOUCH/gpio_spi.c **** 
  124:HW/TOUCH/gpio_spi.c ****     /* 接收返回值 */
  125:HW/TOUCH/gpio_spi.c ****     uint16_t data = 0;
- 563              		.loc 1 125 5 view .LVU123
+ 1502              		.loc 1 125 5 view .LVU327
  126:HW/TOUCH/gpio_spi.c ****     for(uint8_t i = 0; i < 12; ++i){
- 564              		.loc 1 126 5 view .LVU124
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 14
-
-
- 565              	.LBB5:
- 566              		.loc 1 126 9 view .LVU125
- 567              		.loc 1 126 17 is_stmt 0 view .LVU126
- 568 0094 0024     		movs	r4, #0
- 569              	.LBE5:
+ 1503              		.loc 1 126 5 view .LVU328
+ 1504              	.LBB339:
+ 1505              		.loc 1 126 9 view .LVU329
+ 1506              		.loc 1 126 17 is_stmt 0 view .LVU330
+ 1507 00fe 0024     		movs	r4, #0
+ 1508              	.LBE339:
  125:HW/TOUCH/gpio_spi.c ****     for(uint8_t i = 0; i < 12; ++i){
- 570              		.loc 1 125 14 view .LVU127
- 571 0096 2646     		mov	r6, r4
- 572              	.LBB6:
- 573              		.loc 1 126 5 view .LVU128
- 574 0098 08E0     		b	.L31
- 575              	.LVL67:
- 576              	.L32:
+ 1509              		.loc 1 125 14 view .LVU331
+ 1510 0100 2646     		mov	r6, r4
+ 1511              	.LBB400:
+ 1512              		.loc 1 126 5 view .LVU332
+ 1513 0102 14E0     		b	.L31
+ 1514              	.LVL63:
+ 1515              	.L32:
  127:HW/TOUCH/gpio_spi.c ****         SPI_CLK_HIGH();
- 128:HW/TOUCH/gpio_spi.c ****         delay_us(1);    // >= 200ns
+ 128:HW/TOUCH/gpio_spi.c ****         delay_208ns();    // >= 200ns
  129:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
  130:HW/TOUCH/gpio_spi.c ****             data |= 0X800 >> (i);   // 先接收高位
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 52
+
+
  131:HW/TOUCH/gpio_spi.c ****         }
  132:HW/TOUCH/gpio_spi.c ****         SPI_CLK_LOW();
- 577              		.loc 1 132 9 is_stmt 1 discriminator 2 view .LVU129
- 578 009a 0221     		movs	r1, #2
- 579 009c 1348     		ldr	r0, .L37+4
- 580 009e FFF7FEFF 		bl	GPIO_ResetBits
- 581              	.LVL68:
- 133:HW/TOUCH/gpio_spi.c ****         delay_us(1);    // >= 200ns
- 582              		.loc 1 133 9 discriminator 2 view .LVU130
- 583 00a2 0120     		movs	r0, #1
- 584 00a4 FFF7FEFF 		bl	delay_us
- 585              	.LVL69:
+ 1516              		.loc 1 132 9 is_stmt 1 discriminator 2 view .LVU333
+ 1517 0104 0221     		movs	r1, #2
+ 1518 0106 1F48     		ldr	r0, .L37+4
+ 1519 0108 FFF7FEFF 		bl	GPIO_ResetBits
+ 1520              	.LVL64:
+ 133:HW/TOUCH/gpio_spi.c ****         delay_208ns();    // >= 200ns
+ 1521              		.loc 1 133 9 discriminator 2 view .LVU334
+ 1522              	.LBB340:
+ 1523              	.LBI340:
+ 1524              		.loc 2 1210 22 discriminator 2 view .LVU335
+ 1525              	.LBB341:
+ 1526              		.loc 2 1210 53 discriminator 2 view .LVU336
+ 1527              		.syntax unified
+ 1528              	@ 1210 "Core/core_cm3.h" 1
+ 1529 010c 00BF     		nop
+ 1530              	@ 0 "" 2
+ 1531              		.thumb
+ 1532              		.syntax unified
+ 1533              	.LBE341:
+ 1534              	.LBE340:
+ 1535              		.loc 1 133 9 discriminator 2 view .LVU337
+ 1536              	.LBB342:
+ 1537              	.LBI342:
+ 1538              		.loc 2 1210 22 discriminator 2 view .LVU338
+ 1539              	.LBB343:
+ 1540              		.loc 2 1210 53 discriminator 2 view .LVU339
+ 1541              		.syntax unified
+ 1542              	@ 1210 "Core/core_cm3.h" 1
+ 1543 010e 00BF     		nop
+ 1544              	@ 0 "" 2
+ 1545              		.thumb
+ 1546              		.syntax unified
+ 1547              	.LBE343:
+ 1548              	.LBE342:
+ 1549              		.loc 1 133 9 discriminator 2 view .LVU340
+ 1550              	.LBB344:
+ 1551              	.LBI344:
+ 1552              		.loc 2 1210 22 discriminator 2 view .LVU341
+ 1553              	.LBB345:
+ 1554              		.loc 2 1210 53 discriminator 2 view .LVU342
+ 1555              		.syntax unified
+ 1556              	@ 1210 "Core/core_cm3.h" 1
+ 1557 0110 00BF     		nop
+ 1558              	@ 0 "" 2
+ 1559              		.thumb
+ 1560              		.syntax unified
+ 1561              	.LBE345:
+ 1562              	.LBE344:
+ 1563              		.loc 1 133 9 discriminator 2 view .LVU343
+ 1564              	.LBB346:
+ 1565              	.LBI346:
+ 1566              		.loc 2 1210 22 discriminator 2 view .LVU344
+ 1567              	.LBB347:
+ 1568              		.loc 2 1210 53 discriminator 2 view .LVU345
+ 1569              		.syntax unified
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 53
+
+
+ 1570              	@ 1210 "Core/core_cm3.h" 1
+ 1571 0112 00BF     		nop
+ 1572              	@ 0 "" 2
+ 1573              		.thumb
+ 1574              		.syntax unified
+ 1575              	.LBE347:
+ 1576              	.LBE346:
+ 1577              		.loc 1 133 9 discriminator 2 view .LVU346
+ 1578              	.LBB348:
+ 1579              	.LBI348:
+ 1580              		.loc 2 1210 22 discriminator 2 view .LVU347
+ 1581              	.LBB349:
+ 1582              		.loc 2 1210 53 discriminator 2 view .LVU348
+ 1583              		.syntax unified
+ 1584              	@ 1210 "Core/core_cm3.h" 1
+ 1585 0114 00BF     		nop
+ 1586              	@ 0 "" 2
+ 1587              		.thumb
+ 1588              		.syntax unified
+ 1589              	.LBE349:
+ 1590              	.LBE348:
+ 1591              		.loc 1 133 9 discriminator 2 view .LVU349
+ 1592              	.LBB350:
+ 1593              	.LBI350:
+ 1594              		.loc 2 1210 22 discriminator 2 view .LVU350
+ 1595              	.LBB351:
+ 1596              		.loc 2 1210 53 discriminator 2 view .LVU351
+ 1597              		.syntax unified
+ 1598              	@ 1210 "Core/core_cm3.h" 1
+ 1599 0116 00BF     		nop
+ 1600              	@ 0 "" 2
+ 1601              		.thumb
+ 1602              		.syntax unified
+ 1603              	.LBE351:
+ 1604              	.LBE350:
+ 1605              		.loc 1 133 9 discriminator 2 view .LVU352
+ 1606              	.LBB352:
+ 1607              	.LBI352:
+ 1608              		.loc 2 1210 22 discriminator 2 view .LVU353
+ 1609              	.LBB353:
+ 1610              		.loc 2 1210 53 discriminator 2 view .LVU354
+ 1611              		.syntax unified
+ 1612              	@ 1210 "Core/core_cm3.h" 1
+ 1613 0118 00BF     		nop
+ 1614              	@ 0 "" 2
+ 1615              		.thumb
+ 1616              		.syntax unified
+ 1617              	.LBE353:
+ 1618              	.LBE352:
+ 1619              		.loc 1 133 9 discriminator 2 view .LVU355
+ 1620              	.LBB354:
+ 1621              	.LBI354:
+ 1622              		.loc 2 1210 22 discriminator 2 view .LVU356
+ 1623              	.LBB355:
+ 1624              		.loc 2 1210 53 discriminator 2 view .LVU357
+ 1625              		.syntax unified
+ 1626              	@ 1210 "Core/core_cm3.h" 1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 54
+
+
+ 1627 011a 00BF     		nop
+ 1628              	@ 0 "" 2
+ 1629              		.thumb
+ 1630              		.syntax unified
+ 1631              	.LBE355:
+ 1632              	.LBE354:
+ 1633              		.loc 1 133 9 discriminator 2 view .LVU358
+ 1634              	.LBB356:
+ 1635              	.LBI356:
+ 1636              		.loc 2 1210 22 discriminator 2 view .LVU359
+ 1637              	.LBB357:
+ 1638              		.loc 2 1210 53 discriminator 2 view .LVU360
+ 1639              		.syntax unified
+ 1640              	@ 1210 "Core/core_cm3.h" 1
+ 1641 011c 00BF     		nop
+ 1642              	@ 0 "" 2
+ 1643              		.thumb
+ 1644              		.syntax unified
+ 1645              	.LBE357:
+ 1646              	.LBE356:
+ 1647              		.loc 1 133 9 discriminator 2 view .LVU361
+ 1648              	.LBB358:
+ 1649              	.LBI358:
+ 1650              		.loc 2 1210 22 discriminator 2 view .LVU362
+ 1651              	.LBB359:
+ 1652              		.loc 2 1210 53 discriminator 2 view .LVU363
+ 1653              		.syntax unified
+ 1654              	@ 1210 "Core/core_cm3.h" 1
+ 1655 011e 00BF     		nop
+ 1656              	@ 0 "" 2
+ 1657              		.thumb
+ 1658              		.syntax unified
+ 1659              	.LBE359:
+ 1660              	.LBE358:
+ 1661              		.loc 1 133 9 discriminator 2 view .LVU364
+ 1662              	.LBB360:
+ 1663              	.LBI360:
+ 1664              		.loc 2 1210 22 discriminator 2 view .LVU365
+ 1665              	.LBB361:
+ 1666              		.loc 2 1210 53 discriminator 2 view .LVU366
+ 1667              		.syntax unified
+ 1668              	@ 1210 "Core/core_cm3.h" 1
+ 1669 0120 00BF     		nop
+ 1670              	@ 0 "" 2
+ 1671              		.thumb
+ 1672              		.syntax unified
+ 1673              	.LBE361:
+ 1674              	.LBE360:
+ 1675              		.loc 1 133 9 discriminator 2 view .LVU367
+ 1676              	.LBB362:
+ 1677              	.LBI362:
+ 1678              		.loc 2 1210 22 discriminator 2 view .LVU368
+ 1679              	.LBB363:
+ 1680              		.loc 2 1210 53 discriminator 2 view .LVU369
+ 1681              		.syntax unified
+ 1682              	@ 1210 "Core/core_cm3.h" 1
+ 1683 0122 00BF     		nop
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 55
+
+
+ 1684              	@ 0 "" 2
+ 1685              		.thumb
+ 1686              		.syntax unified
+ 1687              	.LBE363:
+ 1688              	.LBE362:
+ 1689              		.loc 1 133 9 discriminator 2 view .LVU370
+ 1690              	.LBB364:
+ 1691              	.LBI364:
+ 1692              		.loc 2 1210 22 discriminator 2 view .LVU371
+ 1693              	.LBB365:
+ 1694              		.loc 2 1210 53 discriminator 2 view .LVU372
+ 1695              		.syntax unified
+ 1696              	@ 1210 "Core/core_cm3.h" 1
+ 1697 0124 00BF     		nop
+ 1698              	@ 0 "" 2
+ 1699              		.thumb
+ 1700              		.syntax unified
+ 1701              	.LBE365:
+ 1702              	.LBE364:
+ 1703              		.loc 1 133 9 discriminator 2 view .LVU373
+ 1704              	.LBB366:
+ 1705              	.LBI366:
+ 1706              		.loc 2 1210 22 discriminator 2 view .LVU374
+ 1707              	.LBB367:
+ 1708              		.loc 2 1210 53 discriminator 2 view .LVU375
+ 1709              		.syntax unified
+ 1710              	@ 1210 "Core/core_cm3.h" 1
+ 1711 0126 00BF     		nop
+ 1712              	@ 0 "" 2
+ 1713              		.thumb
+ 1714              		.syntax unified
+ 1715              	.LBE367:
+ 1716              	.LBE366:
+ 1717              		.loc 1 133 9 discriminator 2 view .LVU376
+ 1718              	.LBB368:
+ 1719              	.LBI368:
+ 1720              		.loc 2 1210 22 discriminator 2 view .LVU377
+ 1721              	.LBB369:
+ 1722              		.loc 2 1210 53 discriminator 2 view .LVU378
+ 1723              		.syntax unified
+ 1724              	@ 1210 "Core/core_cm3.h" 1
+ 1725 0128 00BF     		nop
+ 1726              	@ 0 "" 2
+ 1727              		.thumb
+ 1728              		.syntax unified
+ 1729              	.LBE369:
+ 1730              	.LBE368:
+ 1731              		.loc 1 133 22 discriminator 2 view .LVU379
  126:HW/TOUCH/gpio_spi.c ****         SPI_CLK_HIGH();
- 586              		.loc 1 126 32 discriminator 2 view .LVU131
- 587 00a8 0134     		adds	r4, r4, #1
- 588              	.LVL70:
+ 1732              		.loc 1 126 32 discriminator 2 view .LVU380
+ 1733 012a 0134     		adds	r4, r4, #1
+ 1734              	.LVL65:
  126:HW/TOUCH/gpio_spi.c ****         SPI_CLK_HIGH();
- 589              		.loc 1 126 32 is_stmt 0 discriminator 2 view .LVU132
- 590 00aa E4B2     		uxtb	r4, r4
- 591              	.LVL71:
- 592              	.L31:
+ 1735              		.loc 1 126 32 is_stmt 0 discriminator 2 view .LVU381
+ 1736 012c E4B2     		uxtb	r4, r4
+ 1737              	.LVL66:
+ 1738              	.L31:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 56
+
+
  126:HW/TOUCH/gpio_spi.c ****         SPI_CLK_HIGH();
- 593              		.loc 1 126 26 is_stmt 1 discriminator 1 view .LVU133
- 594 00ac 0B2C     		cmp	r4, #11
- 595 00ae 13D8     		bhi	.L36
+ 1739              		.loc 1 126 26 is_stmt 1 discriminator 1 view .LVU382
+ 1740 012e 0B2C     		cmp	r4, #11
+ 1741 0130 1FD8     		bhi	.L36
  127:HW/TOUCH/gpio_spi.c ****         SPI_CLK_HIGH();
- 596              		.loc 1 127 9 view .LVU134
- 597 00b0 0E4D     		ldr	r5, .L37+4
- 598 00b2 0221     		movs	r1, #2
- 599 00b4 2846     		mov	r0, r5
- 600 00b6 FFF7FEFF 		bl	GPIO_SetBits
- 601              	.LVL72:
+ 1742              		.loc 1 127 9 view .LVU383
+ 1743 0132 144D     		ldr	r5, .L37+4
+ 1744 0134 0221     		movs	r1, #2
+ 1745 0136 2846     		mov	r0, r5
+ 1746 0138 FFF7FEFF 		bl	GPIO_SetBits
+ 1747              	.LVL67:
  128:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
- 602              		.loc 1 128 9 view .LVU135
- 603 00ba 0120     		movs	r0, #1
- 604 00bc FFF7FEFF 		bl	delay_us
- 605              	.LVL73:
- 129:HW/TOUCH/gpio_spi.c ****             data |= 0X800 >> (i);   // 先接收高位
- 606              		.loc 1 129 9 view .LVU136
- 129:HW/TOUCH/gpio_spi.c ****             data |= 0X800 >> (i);   // 先接收高位
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 15
+ 1748              		.loc 1 128 9 view .LVU384
+ 1749              	.LBB370:
+ 1750              	.LBI370:
+ 1751              		.loc 2 1210 22 view .LVU385
+ 1752              	.LBB371:
+ 1753              		.loc 2 1210 53 view .LVU386
+ 1754              		.syntax unified
+ 1755              	@ 1210 "Core/core_cm3.h" 1
+ 1756 013c 00BF     		nop
+ 1757              	@ 0 "" 2
+ 1758              		.thumb
+ 1759              		.syntax unified
+ 1760              	.LBE371:
+ 1761              	.LBE370:
+ 128:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
+ 1762              		.loc 1 128 9 view .LVU387
+ 1763              	.LBB372:
+ 1764              	.LBI372:
+ 1765              		.loc 2 1210 22 view .LVU388
+ 1766              	.LBB373:
+ 1767              		.loc 2 1210 53 view .LVU389
+ 1768              		.syntax unified
+ 1769              	@ 1210 "Core/core_cm3.h" 1
+ 1770 013e 00BF     		nop
+ 1771              	@ 0 "" 2
+ 1772              		.thumb
+ 1773              		.syntax unified
+ 1774              	.LBE373:
+ 1775              	.LBE372:
+ 128:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
+ 1776              		.loc 1 128 9 view .LVU390
+ 1777              	.LBB374:
+ 1778              	.LBI374:
+ 1779              		.loc 2 1210 22 view .LVU391
+ 1780              	.LBB375:
+ 1781              		.loc 2 1210 53 view .LVU392
+ 1782              		.syntax unified
+ 1783              	@ 1210 "Core/core_cm3.h" 1
+ 1784 0140 00BF     		nop
+ 1785              	@ 0 "" 2
+ 1786              		.thumb
+ 1787              		.syntax unified
+ 1788              	.LBE375:
+ 1789              	.LBE374:
+ 128:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 57
 
 
- 607              		.loc 1 129 12 is_stmt 0 view .LVU137
- 608 00c0 0421     		movs	r1, #4
- 609 00c2 2846     		mov	r0, r5
- 610 00c4 FFF7FEFF 		bl	GPIO_ReadInputDataBit
- 611              	.LVL74:
+ 1790              		.loc 1 128 9 view .LVU393
+ 1791              	.LBB376:
+ 1792              	.LBI376:
+ 1793              		.loc 2 1210 22 view .LVU394
+ 1794              	.LBB377:
+ 1795              		.loc 2 1210 53 view .LVU395
+ 1796              		.syntax unified
+ 1797              	@ 1210 "Core/core_cm3.h" 1
+ 1798 0142 00BF     		nop
+ 1799              	@ 0 "" 2
+ 1800              		.thumb
+ 1801              		.syntax unified
+ 1802              	.LBE377:
+ 1803              	.LBE376:
+ 128:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
+ 1804              		.loc 1 128 9 view .LVU396
+ 1805              	.LBB378:
+ 1806              	.LBI378:
+ 1807              		.loc 2 1210 22 view .LVU397
+ 1808              	.LBB379:
+ 1809              		.loc 2 1210 53 view .LVU398
+ 1810              		.syntax unified
+ 1811              	@ 1210 "Core/core_cm3.h" 1
+ 1812 0144 00BF     		nop
+ 1813              	@ 0 "" 2
+ 1814              		.thumb
+ 1815              		.syntax unified
+ 1816              	.LBE379:
+ 1817              	.LBE378:
+ 128:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
+ 1818              		.loc 1 128 9 view .LVU399
+ 1819              	.LBB380:
+ 1820              	.LBI380:
+ 1821              		.loc 2 1210 22 view .LVU400
+ 1822              	.LBB381:
+ 1823              		.loc 2 1210 53 view .LVU401
+ 1824              		.syntax unified
+ 1825              	@ 1210 "Core/core_cm3.h" 1
+ 1826 0146 00BF     		nop
+ 1827              	@ 0 "" 2
+ 1828              		.thumb
+ 1829              		.syntax unified
+ 1830              	.LBE381:
+ 1831              	.LBE380:
+ 128:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
+ 1832              		.loc 1 128 9 view .LVU402
+ 1833              	.LBB382:
+ 1834              	.LBI382:
+ 1835              		.loc 2 1210 22 view .LVU403
+ 1836              	.LBB383:
+ 1837              		.loc 2 1210 53 view .LVU404
+ 1838              		.syntax unified
+ 1839              	@ 1210 "Core/core_cm3.h" 1
+ 1840 0148 00BF     		nop
+ 1841              	@ 0 "" 2
+ 1842              		.thumb
+ 1843              		.syntax unified
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 58
+
+
+ 1844              	.LBE383:
+ 1845              	.LBE382:
+ 128:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
+ 1846              		.loc 1 128 9 view .LVU405
+ 1847              	.LBB384:
+ 1848              	.LBI384:
+ 1849              		.loc 2 1210 22 view .LVU406
+ 1850              	.LBB385:
+ 1851              		.loc 2 1210 53 view .LVU407
+ 1852              		.syntax unified
+ 1853              	@ 1210 "Core/core_cm3.h" 1
+ 1854 014a 00BF     		nop
+ 1855              	@ 0 "" 2
+ 1856              		.thumb
+ 1857              		.syntax unified
+ 1858              	.LBE385:
+ 1859              	.LBE384:
+ 128:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
+ 1860              		.loc 1 128 9 view .LVU408
+ 1861              	.LBB386:
+ 1862              	.LBI386:
+ 1863              		.loc 2 1210 22 view .LVU409
+ 1864              	.LBB387:
+ 1865              		.loc 2 1210 53 view .LVU410
+ 1866              		.syntax unified
+ 1867              	@ 1210 "Core/core_cm3.h" 1
+ 1868 014c 00BF     		nop
+ 1869              	@ 0 "" 2
+ 1870              		.thumb
+ 1871              		.syntax unified
+ 1872              	.LBE387:
+ 1873              	.LBE386:
+ 128:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
+ 1874              		.loc 1 128 9 view .LVU411
+ 1875              	.LBB388:
+ 1876              	.LBI388:
+ 1877              		.loc 2 1210 22 view .LVU412
+ 1878              	.LBB389:
+ 1879              		.loc 2 1210 53 view .LVU413
+ 1880              		.syntax unified
+ 1881              	@ 1210 "Core/core_cm3.h" 1
+ 1882 014e 00BF     		nop
+ 1883              	@ 0 "" 2
+ 1884              		.thumb
+ 1885              		.syntax unified
+ 1886              	.LBE389:
+ 1887              	.LBE388:
+ 128:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
+ 1888              		.loc 1 128 9 view .LVU414
+ 1889              	.LBB390:
+ 1890              	.LBI390:
+ 1891              		.loc 2 1210 22 view .LVU415
+ 1892              	.LBB391:
+ 1893              		.loc 2 1210 53 view .LVU416
+ 1894              		.syntax unified
+ 1895              	@ 1210 "Core/core_cm3.h" 1
+ 1896 0150 00BF     		nop
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 59
+
+
+ 1897              	@ 0 "" 2
+ 1898              		.thumb
+ 1899              		.syntax unified
+ 1900              	.LBE391:
+ 1901              	.LBE390:
+ 128:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
+ 1902              		.loc 1 128 9 view .LVU417
+ 1903              	.LBB392:
+ 1904              	.LBI392:
+ 1905              		.loc 2 1210 22 view .LVU418
+ 1906              	.LBB393:
+ 1907              		.loc 2 1210 53 view .LVU419
+ 1908              		.syntax unified
+ 1909              	@ 1210 "Core/core_cm3.h" 1
+ 1910 0152 00BF     		nop
+ 1911              	@ 0 "" 2
+ 1912              		.thumb
+ 1913              		.syntax unified
+ 1914              	.LBE393:
+ 1915              	.LBE392:
+ 128:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
+ 1916              		.loc 1 128 9 view .LVU420
+ 1917              	.LBB394:
+ 1918              	.LBI394:
+ 1919              		.loc 2 1210 22 view .LVU421
+ 1920              	.LBB395:
+ 1921              		.loc 2 1210 53 view .LVU422
+ 1922              		.syntax unified
+ 1923              	@ 1210 "Core/core_cm3.h" 1
+ 1924 0154 00BF     		nop
+ 1925              	@ 0 "" 2
+ 1926              		.thumb
+ 1927              		.syntax unified
+ 1928              	.LBE395:
+ 1929              	.LBE394:
+ 128:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
+ 1930              		.loc 1 128 9 view .LVU423
+ 1931              	.LBB396:
+ 1932              	.LBI396:
+ 1933              		.loc 2 1210 22 view .LVU424
+ 1934              	.LBB397:
+ 1935              		.loc 2 1210 53 view .LVU425
+ 1936              		.syntax unified
+ 1937              	@ 1210 "Core/core_cm3.h" 1
+ 1938 0156 00BF     		nop
+ 1939              	@ 0 "" 2
+ 1940              		.thumb
+ 1941              		.syntax unified
+ 1942              	.LBE397:
+ 1943              	.LBE396:
+ 128:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
+ 1944              		.loc 1 128 9 view .LVU426
+ 1945              	.LBB398:
+ 1946              	.LBI398:
+ 1947              		.loc 2 1210 22 view .LVU427
+ 1948              	.LBB399:
+ 1949              		.loc 2 1210 53 view .LVU428
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 60
+
+
+ 1950              		.syntax unified
+ 1951              	@ 1210 "Core/core_cm3.h" 1
+ 1952 0158 00BF     		nop
+ 1953              	@ 0 "" 2
+ 1954              		.thumb
+ 1955              		.syntax unified
+ 1956              	.LBE399:
+ 1957              	.LBE398:
+ 128:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
+ 1958              		.loc 1 128 22 view .LVU429
  129:HW/TOUCH/gpio_spi.c ****             data |= 0X800 >> (i);   // 先接收高位
- 612              		.loc 1 129 11 view .LVU138
- 613 00c8 0028     		cmp	r0, #0
- 614 00ca E6D0     		beq	.L32
+ 1959              		.loc 1 129 9 view .LVU430
+ 129:HW/TOUCH/gpio_spi.c ****             data |= 0X800 >> (i);   // 先接收高位
+ 1960              		.loc 1 129 12 is_stmt 0 view .LVU431
+ 1961 015a 0421     		movs	r1, #4
+ 1962 015c 2846     		mov	r0, r5
+ 1963 015e FFF7FEFF 		bl	GPIO_ReadInputDataBit
+ 1964              	.LVL68:
+ 129:HW/TOUCH/gpio_spi.c ****             data |= 0X800 >> (i);   // 先接收高位
+ 1965              		.loc 1 129 11 view .LVU432
+ 1966 0162 0028     		cmp	r0, #0
+ 1967 0164 CED0     		beq	.L32
  130:HW/TOUCH/gpio_spi.c ****         }
- 615              		.loc 1 130 13 is_stmt 1 view .LVU139
+ 1968              		.loc 1 130 13 is_stmt 1 view .LVU433
  130:HW/TOUCH/gpio_spi.c ****         }
- 616              		.loc 1 130 27 is_stmt 0 view .LVU140
- 617 00cc 4FF40063 		mov	r3, #2048
- 618 00d0 2341     		asrs	r3, r3, r4
+ 1969              		.loc 1 130 27 is_stmt 0 view .LVU434
+ 1970 0166 4FF40063 		mov	r3, #2048
+ 1971 016a 2341     		asrs	r3, r3, r4
  130:HW/TOUCH/gpio_spi.c ****         }
- 619              		.loc 1 130 18 view .LVU141
- 620 00d2 1E43     		orrs	r6, r6, r3
- 621              	.LVL75:
+ 1972              		.loc 1 130 18 view .LVU435
+ 1973 016c 1E43     		orrs	r6, r6, r3
+ 1974              	.LVL69:
  130:HW/TOUCH/gpio_spi.c ****         }
- 622              		.loc 1 130 18 view .LVU142
- 623 00d4 B6B2     		uxth	r6, r6
- 624              	.LVL76:
+ 1975              		.loc 1 130 18 view .LVU436
+ 1976 016e B6B2     		uxth	r6, r6
+ 1977              	.LVL70:
  130:HW/TOUCH/gpio_spi.c ****         }
- 625              		.loc 1 130 18 view .LVU143
- 626 00d6 E0E7     		b	.L32
- 627              	.L36:
+ 1978              		.loc 1 130 18 view .LVU437
+ 1979 0170 C8E7     		b	.L32
+ 1980              	.L36:
  130:HW/TOUCH/gpio_spi.c ****         }
- 628              		.loc 1 130 18 view .LVU144
- 629              	.LBE6:
+ 1981              		.loc 1 130 18 view .LVU438
+ 1982              	.LBE400:
  134:HW/TOUCH/gpio_spi.c ****     }
  135:HW/TOUCH/gpio_spi.c **** 
  136:HW/TOUCH/gpio_spi.c ****     /* 取消片选 */
  137:HW/TOUCH/gpio_spi.c ****     SPI_CS_HIGH();
- 630              		.loc 1 137 5 is_stmt 1 view .LVU145
- 631 00d8 4FF40061 		mov	r1, #2048
- 632 00dc 0248     		ldr	r0, .L37
- 633 00de FFF7FEFF 		bl	GPIO_SetBits
- 634              	.LVL77:
+ 1983              		.loc 1 137 5 is_stmt 1 view .LVU439
+ 1984 0172 4FF40061 		mov	r1, #2048
+ 1985 0176 0248     		ldr	r0, .L37
+ 1986 0178 FFF7FEFF 		bl	GPIO_SetBits
+ 1987              	.LVL71:
  138:HW/TOUCH/gpio_spi.c **** 
  139:HW/TOUCH/gpio_spi.c ****     return data;
- 635              		.loc 1 139 5 view .LVU146
+ 1988              		.loc 1 139 5 view .LVU440
  140:HW/TOUCH/gpio_spi.c **** }...
- 636              		.loc 1 140 1 is_stmt 0 view .LVU147
- 637 00e2 3046     		mov	r0, r6
- 638 00e4 70BD     		pop	{r4, r5, r6, pc}
- 639              	.LVL78:
- 640              	.L38:
- 641              		.loc 1 140 1 view .LVU148
- 642 00e6 00BF     		.align	2
- 643              	.L37:
- 644 00e8 001C0140 		.word	1073814528
- 645 00ec 000C0140 		.word	1073810432
- 646              		.cfi_endproc
- 647              	.LFE34:
- 649              		.text
- 650              	.Letext0:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 16
+ 1989              		.loc 1 140 1 is_stmt 0 view .LVU441
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 61
 
 
- 651              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
- 652              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
- 653              		.file 4 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
- 654              		.file 5 "USER/stm32f10x.h"
- 655              		.file 6 "STM32F10x_FWLib/inc/stm32f10x_gpio.h"
- 656              		.file 7 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
- 657              		.file 8 "SYSTEM/delay/delay.h"
- 658              		.file 9 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
- 659              		.file 10 "<built-in>"
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s 			page 17
+ 1990 017c 3046     		mov	r0, r6
+ 1991 017e 70BD     		pop	{r4, r5, r6, pc}
+ 1992              	.LVL72:
+ 1993              	.L38:
+ 1994              		.loc 1 140 1 view .LVU442
+ 1995              		.align	2
+ 1996              	.L37:
+ 1997 0180 001C0140 		.word	1073814528
+ 1998 0184 000C0140 		.word	1073810432
+ 1999              		.cfi_endproc
+ 2000              	.LFE34:
+ 2002              		.text
+ 2003              	.Letext0:
+ 2004              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 2005              		.file 4 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 2006              		.file 5 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 2007              		.file 6 "USER/stm32f10x.h"
+ 2008              		.file 7 "STM32F10x_FWLib/inc/stm32f10x_gpio.h"
+ 2009              		.file 8 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 2010              		.file 9 "SYSTEM/delay/delay.h"
+ 2011              		.file 10 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
+ 2012              		.file 11 "<built-in>"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s 			page 62
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 gpio_spi.c
-C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:19     .text.__GPIO_SPI_SendData:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:24     .text.__GPIO_SPI_SendData:00000000 __GPIO_SPI_SendData
-C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:138    .text.__GPIO_SPI_SendData:00000084 $d
-C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:144    .text.__GPIO_SPI_RecieveData:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:149    .text.__GPIO_SPI_RecieveData:00000000 __GPIO_SPI_RecieveData
-C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:273    .text.__GPIO_SPI_RecieveData:0000008c $d
-C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:279    .text.GPIO_SPI_Init:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:285    .text.GPIO_SPI_Init:00000000 GPIO_SPI_Init
-C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:373    .text.GPIO_SPI_Init:00000070 $d
-C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:379    .text.GPIO_SPI_SendData:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:385    .text.GPIO_SPI_SendData:00000000 GPIO_SPI_SendData
-C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:407    .text.GPIO_SPI_RecieveData:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:413    .text.GPIO_SPI_RecieveData:00000000 GPIO_SPI_RecieveData
-C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:435    .text.GPIO_SPI_Touch_Func:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:441    .text.GPIO_SPI_Touch_Func:00000000 GPIO_SPI_Touch_Func
-C:\Users\86157\AppData\Local\Temp\ccR2IMyZ.s:644    .text.GPIO_SPI_Touch_Func:000000e8 $d
+C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s:19     .text.__GPIO_SPI_SendData:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s:24     .text.__GPIO_SPI_SendData:00000000 __GPIO_SPI_SendData
+C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s:138    .text.__GPIO_SPI_SendData:00000084 $d
+C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s:144    .text.__GPIO_SPI_RecieveData:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s:149    .text.__GPIO_SPI_RecieveData:00000000 __GPIO_SPI_RecieveData
+C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s:273    .text.__GPIO_SPI_RecieveData:0000008c $d
+C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s:279    .text.GPIO_SPI_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s:285    .text.GPIO_SPI_Init:00000000 GPIO_SPI_Init
+C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s:373    .text.GPIO_SPI_Init:00000070 $d
+C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s:379    .text.GPIO_SPI_SendData:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s:385    .text.GPIO_SPI_SendData:00000000 GPIO_SPI_SendData
+C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s:407    .text.GPIO_SPI_RecieveData:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s:413    .text.GPIO_SPI_RecieveData:00000000 GPIO_SPI_RecieveData
+C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s:435    .text.GPIO_SPI_Touch_Func:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s:441    .text.GPIO_SPI_Touch_Func:00000000 GPIO_SPI_Touch_Func
+C:\Users\86157\AppData\Local\Temp\ccPEQZXq.s:1997   .text.GPIO_SPI_Touch_Func:00000180 $d
 
 UNDEFINED SYMBOLS
 GPIO_ResetBits

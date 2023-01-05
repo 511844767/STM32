@@ -23,14 +23,6 @@
  */
 extern uint16_t GPIO_SPI_Touch_Func(uint8_t cmd);
 
-/* 电压参考值 */
-typedef struct{
-    float x;
-    float y;
-} Touch_Ref_t;
-static Touch_Ref_t reference = {0};
-
-
 void Touch_Init(){
     /* 初始化SPI引脚 */
     GPIO_SPI_Init();
@@ -41,39 +33,6 @@ void Touch_Init(){
     gpioDef.GPIO_Pin    = GPIO_Pin_10;
     gpioDef.GPIO_Speed  = GPIO_Speed_50MHz;
     GPIO_Init(GPIOF, &gpioDef);
-
-    /* 检测空状态下的电压参考值 */
-    {
-        /* 记录10次 */
-        int i, j;
-        uint16_t xBuffer[10], yBuffer[10];
-        for(i = 0; i < 10; ++i) {
-            xBuffer[i] = GPIO_SPI_Touch_Func(0B11010000);
-            yBuffer[i] = GPIO_SPI_Touch_Func(0B10010000);
-        }
-
-        /* 冒泡排序 */
-        uint16_t temp;
-        for(i = 10 - 1; i > 0; --i){
-            for(j = 0; j < i; ++j){
-                if(xBuffer[j] > xBuffer[j + 1]){
-                    temp = xBuffer[j]; xBuffer[j] = xBuffer[j + 1]; xBuffer[j + 1] = temp;  // swap
-                }
-                if(yBuffer[j] > yBuffer[j + 1]){
-                    temp = yBuffer[j]; yBuffer[j] = yBuffer[j + 1]; yBuffer[j + 1] = temp;  // swap
-                }
-            }
-        }
-        /* 统计其中的6次 */
-        float xSum = 0, ySum = 0;
-        for(i = 2; i < 8; ++i) {
-            xSum += xBuffer[i];
-            ySum += yBuffer[i];
-        }
-
-        reference.x = xSum / 6;
-        reference.y = ySum / 6;
-    }
 }
 
 typedef enum{
@@ -82,9 +41,12 @@ typedef enum{
     Touch_State_Pressed
 } Touch_State_t;
 
+/* 坐标可以看做定点数Q12表示 */
+#define TOUCH_SHIFT 12
+
 typedef struct{
-    float x; 
-    float y;
+    uint16_t x; 
+    uint16_t y;
     Touch_State_t state;
 } Touch_Info_t;
 
@@ -94,8 +56,8 @@ Touch_Info_t Touch_Scan(){
     static uint8_t acc;
 
     #define PEN (!GPIO_ReadInputDataBit(GPIOF, GPIO_Pin_10))
-    #define READ_X() GPIO_SPI_Touch_Func(0B11010000) / (4095 - reference.x)
-    #define READ_Y() (reference.y - GPIO_SPI_Touch_Func(0B10010000)) / reference.y
+    #define READ_X() (4096 - GPIO_SPI_Touch_Func(0B11010000))
+    #define READ_Y() (4096 - GPIO_SPI_Touch_Func(0B10010000))
 
     switch (touchInfo.state)
     {
@@ -151,7 +113,7 @@ void Touch_Run(){
     while(1){
         touchInfo = Touch_Scan();
         if(touchInfo.state == Touch_State_Pressed){
-            printf("x = %.3f\ty = %.3f\r\n", touchInfo.x, touchInfo.y);
+            printf("x = %d\ty = %d\r\n", touchInfo.x, touchInfo.y);
         }
         delay_ms(5);
     }

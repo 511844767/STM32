@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
   30:STM32F10x_FWLib/src/stm32f10x_tim.c **** /** @defgroup TIM 
   31:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @brief TIM driver modules
   32:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @{
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 2
 
 
   33:STM32F10x_FWLib/src/stm32f10x_tim.c ****   */
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
   87:STM32F10x_FWLib/src/stm32f10x_tim.c ****   */
   88:STM32F10x_FWLib/src/stm32f10x_tim.c **** 
   89:STM32F10x_FWLib/src/stm32f10x_tim.c **** /** @defgroup TIM_Private_Macros
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 3
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 3
 
 
   90:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @{
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  144:STM32F10x_FWLib/src/stm32f10x_tim.c ****     RCC_APB1PeriphResetCmd(RCC_APB1Periph_TIM4, ENABLE);
  145:STM32F10x_FWLib/src/stm32f10x_tim.c ****     RCC_APB1PeriphResetCmd(RCC_APB1Periph_TIM4, DISABLE);
  146:STM32F10x_FWLib/src/stm32f10x_tim.c ****   } 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 4
 
 
  147:STM32F10x_FWLib/src/stm32f10x_tim.c ****   else if (TIMx == TIM5)
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  201:STM32F10x_FWLib/src/stm32f10x_tim.c ****   } 
  202:STM32F10x_FWLib/src/stm32f10x_tim.c ****   else if (TIMx == TIM16)
  203:STM32F10x_FWLib/src/stm32f10x_tim.c ****   {
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 5
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 5
 
 
  204:STM32F10x_FWLib/src/stm32f10x_tim.c ****     RCC_APB2PeriphResetCmd(RCC_APB2Periph_TIM16, ENABLE);
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  258:STM32F10x_FWLib/src/stm32f10x_tim.c ****   TIMx->PSC = TIM_TimeBaseInitStruct->TIM_Prescaler;
  259:STM32F10x_FWLib/src/stm32f10x_tim.c ****     
  260:STM32F10x_FWLib/src/stm32f10x_tim.c ****   if ((TIMx == TIM1) || (TIMx == TIM8)|| (TIMx == TIM15)|| (TIMx == TIM16) || (TIMx == TIM17))  
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 6
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 6
 
 
  261:STM32F10x_FWLib/src/stm32f10x_tim.c ****   {
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  315:STM32F10x_FWLib/src/stm32f10x_tim.c ****   {
  316:STM32F10x_FWLib/src/stm32f10x_tim.c ****     assert_param(IS_TIM_OUTPUTN_STATE(TIM_OCInitStruct->TIM_OutputNState));
  317:STM32F10x_FWLib/src/stm32f10x_tim.c ****     assert_param(IS_TIM_OCN_POLARITY(TIM_OCInitStruct->TIM_OCNPolarity));
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 7
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 7
 
 
  318:STM32F10x_FWLib/src/stm32f10x_tim.c ****     assert_param(IS_TIM_OCNIDLE_STATE(TIM_OCInitStruct->TIM_OCNIdleState));
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  372:STM32F10x_FWLib/src/stm32f10x_tim.c ****   TIMx->CCER &= (uint16_t)(~((uint16_t)TIM_CCER_CC2E));
  373:STM32F10x_FWLib/src/stm32f10x_tim.c ****   
  374:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Get the TIMx CCER register value */  
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 8
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 8
 
 
  375:STM32F10x_FWLib/src/stm32f10x_tim.c ****   tmpccer = TIMx->CCER;
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  429:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Set the Capture Compare Register value */
  430:STM32F10x_FWLib/src/stm32f10x_tim.c ****   TIMx->CCR2 = TIM_OCInitStruct->TIM_Pulse;
  431:STM32F10x_FWLib/src/stm32f10x_tim.c ****   
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 9
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 9
 
 
  432:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Write to TIMx CCER */
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  486:STM32F10x_FWLib/src/stm32f10x_tim.c ****     tmpccer &= (uint16_t)(~((uint16_t)TIM_CCER_CC3NP));
  487:STM32F10x_FWLib/src/stm32f10x_tim.c ****     /* Set the Output N Polarity */
  488:STM32F10x_FWLib/src/stm32f10x_tim.c ****     tmpccer |= (uint16_t)(TIM_OCInitStruct->TIM_OCNPolarity << 8);
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 10
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 10
 
 
  489:STM32F10x_FWLib/src/stm32f10x_tim.c ****     /* Reset the Output N State */
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  543:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Reset the Output Compare mode and Capture/Compare selection Bits */
  544:STM32F10x_FWLib/src/stm32f10x_tim.c ****   tmpccmrx &= (uint16_t)(~((uint16_t)TIM_CCMR2_OC4M));
  545:STM32F10x_FWLib/src/stm32f10x_tim.c ****   tmpccmrx &= (uint16_t)(~((uint16_t)TIM_CCMR2_CC4S));
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 11
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 11
 
 
  546:STM32F10x_FWLib/src/stm32f10x_tim.c ****   
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  600:STM32F10x_FWLib/src/stm32f10x_tim.c ****   else
  601:STM32F10x_FWLib/src/stm32f10x_tim.c ****   {
  602:STM32F10x_FWLib/src/stm32f10x_tim.c ****     assert_param(IS_TIM_IC_POLARITY_LITE(TIM_ICInitStruct->TIM_ICPolarity));
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 12
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 12
 
 
  603:STM32F10x_FWLib/src/stm32f10x_tim.c ****   }
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  657:STM32F10x_FWLib/src/stm32f10x_tim.c ****   uint16_t icoppositeselection = TIM_ICSelection_DirectTI;
  658:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Check the parameters */
  659:STM32F10x_FWLib/src/stm32f10x_tim.c ****   assert_param(IS_TIM_LIST6_PERIPH(TIMx));
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 13
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 13
 
 
  660:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Select the Opposite Input Polarity */
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  714:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Check the parameters */
  715:STM32F10x_FWLib/src/stm32f10x_tim.c ****   assert_param(IS_TIM_LIST2_PERIPH(TIMx));
  716:STM32F10x_FWLib/src/stm32f10x_tim.c ****   assert_param(IS_TIM_OSSR_STATE(TIM_BDTRInitStruct->TIM_OSSRState));
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 14
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 14
 
 
  717:STM32F10x_FWLib/src/stm32f10x_tim.c ****   assert_param(IS_TIM_OSSI_STATE(TIM_BDTRInitStruct->TIM_OSSIState));
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  771:STM32F10x_FWLib/src/stm32f10x_tim.c **** void TIM_ICStructInit(TIM_ICInitTypeDef* TIM_ICInitStruct)
  772:STM32F10x_FWLib/src/stm32f10x_tim.c **** {
  773:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Set the default configuration */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 15
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 15
 
 
  774:STM32F10x_FWLib/src/stm32f10x_tim.c ****   TIM_ICInitStruct->TIM_Channel = TIM_Channel_1;
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  828:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *   This parameter can be: ENABLE or DISABLE.
  829:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @retval None
  830:STM32F10x_FWLib/src/stm32f10x_tim.c ****   */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 16
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 16
 
 
  831:STM32F10x_FWLib/src/stm32f10x_tim.c **** void TIM_CtrlPWMOutputs(TIM_TypeDef* TIMx, FunctionalState NewState)
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  885:STM32F10x_FWLib/src/stm32f10x_tim.c ****   {
  886:STM32F10x_FWLib/src/stm32f10x_tim.c ****     /* Disable the Interrupt sources */
  887:STM32F10x_FWLib/src/stm32f10x_tim.c ****     TIMx->DIER &= (uint16_t)~TIM_IT;
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 17
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 17
 
 
  888:STM32F10x_FWLib/src/stm32f10x_tim.c ****   }
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  942:STM32F10x_FWLib/src/stm32f10x_tim.c ****   assert_param(IS_TIM_DMA_LENGTH(TIM_DMABurstLength));
  943:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Set the DMA Base and the DMA Burst Length */
  944:STM32F10x_FWLib/src/stm32f10x_tim.c ****   TIMx->DCR = TIM_DMABase | TIM_DMABurstLength;
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 18
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 18
 
 
  945:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  999:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @param  TIMx: where x can be  1, 2, 3, 4, 5, 9, 12 or 15 to select the TIM peripheral.
 1000:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @param  TIM_ITRSource: Trigger source.
 1001:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *   This parameter can be one of the following values:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 19
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 19
 
 
 1002:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @param  TIM_TS_ITR0: Internal Trigger 0
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 1056:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
 1057:STM32F10x_FWLib/src/stm32f10x_tim.c **** 
 1058:STM32F10x_FWLib/src/stm32f10x_tim.c **** /**
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 20
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 20
 
 
 1059:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @brief  Configures the External clock Mode1
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 1113:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @param  ExtTRGFilter: External Trigger Filter.
 1114:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *   This parameter must be a value between 0x00 and 0x0F
 1115:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @retval None
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 21
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 21
 
 
 1116:STM32F10x_FWLib/src/stm32f10x_tim.c ****   */
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 1170:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @param  TIM_PSCReloadMode: specifies the TIM Prescaler Reload mode
 1171:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *   This parameter can be one of the following values:
 1172:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *     @arg TIM_PSCReloadMode_Update: The Prescaler is loaded at the update event.
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 22
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 22
 
 
 1173:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *     @arg TIM_PSCReloadMode_Immediate: The Prescaler is loaded immediately.
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 1227:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @retval None
 1228:STM32F10x_FWLib/src/stm32f10x_tim.c ****   */
 1229:STM32F10x_FWLib/src/stm32f10x_tim.c **** void TIM_SelectInputTrigger(TIM_TypeDef* TIMx, uint16_t TIM_InputTriggerSource)
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 23
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 23
 
 
 1230:STM32F10x_FWLib/src/stm32f10x_tim.c **** {
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 1284:STM32F10x_FWLib/src/stm32f10x_tim.c ****   tmpccer = TIMx->CCER;
 1285:STM32F10x_FWLib/src/stm32f10x_tim.c ****   
 1286:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Set the encoder Mode */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 24
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 24
 
 
 1287:STM32F10x_FWLib/src/stm32f10x_tim.c ****   tmpsmcr &= (uint16_t)(~((uint16_t)TIM_SMCR_SMS));
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 1341:STM32F10x_FWLib/src/stm32f10x_tim.c ****   uint16_t tmpccmr1 = 0;
 1342:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Check the parameters */
 1343:STM32F10x_FWLib/src/stm32f10x_tim.c ****   assert_param(IS_TIM_LIST6_PERIPH(TIMx));
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 25
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 25
 
 
 1344:STM32F10x_FWLib/src/stm32f10x_tim.c ****   assert_param(IS_TIM_FORCED_ACTION(TIM_ForcedAction));
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 1398:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Write to TIMx CCMR2 register */
 1399:STM32F10x_FWLib/src/stm32f10x_tim.c ****   TIMx->CCMR2 = tmpccmr2;
 1400:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 26
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 26
 
 
 1401:STM32F10x_FWLib/src/stm32f10x_tim.c **** 
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 1455:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *   This parameter can be: ENABLE or DISABLE.
 1456:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @retval None
 1457:STM32F10x_FWLib/src/stm32f10x_tim.c ****   */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 27
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 27
 
 
 1458:STM32F10x_FWLib/src/stm32f10x_tim.c **** void TIM_SelectCCDMA(TIM_TypeDef* TIMx, FunctionalState NewState)
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 1512:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Check the parameters */
 1513:STM32F10x_FWLib/src/stm32f10x_tim.c ****   assert_param(IS_TIM_LIST8_PERIPH(TIMx));
 1514:STM32F10x_FWLib/src/stm32f10x_tim.c ****   assert_param(IS_TIM_OCPRELOAD_STATE(TIM_OCPreload));
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 28
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 28
 
 
 1515:STM32F10x_FWLib/src/stm32f10x_tim.c ****   tmpccmr1 = TIMx->CCMR1;
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 1569:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Write to TIMx CCMR2 register */
 1570:STM32F10x_FWLib/src/stm32f10x_tim.c ****   TIMx->CCMR2 = tmpccmr2;
 1571:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 29
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 29
 
 
 1572:STM32F10x_FWLib/src/stm32f10x_tim.c **** 
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 1626:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @param  TIM_OCFast: new state of the Output Compare Fast Enable Bit.
 1627:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *   This parameter can be one of the following values:
 1628:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *     @arg TIM_OCFast_Enable: TIM output compare fast enable
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 30
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 30
 
 
 1629:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *     @arg TIM_OCFast_Disable: TIM output compare fast disable
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 1683:STM32F10x_FWLib/src/stm32f10x_tim.c **** {
 1684:STM32F10x_FWLib/src/stm32f10x_tim.c ****   uint16_t tmpccmr2 = 0;
 1685:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Check the parameters */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 31
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 31
 
 
 1686:STM32F10x_FWLib/src/stm32f10x_tim.c ****   assert_param(IS_TIM_LIST3_PERIPH(TIMx));
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 1740:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Reset the OC2CE Bit */
 1741:STM32F10x_FWLib/src/stm32f10x_tim.c ****   tmpccmr1 &= (uint16_t)~((uint16_t)TIM_CCMR1_OC2CE);
 1742:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Enable or Disable the Output Compare Clear Bit */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 32
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 32
 
 
 1743:STM32F10x_FWLib/src/stm32f10x_tim.c ****   tmpccmr1 |= (uint16_t)(TIM_OCClear << 8);
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 1797:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @brief  Configures the TIMx channel 1 polarity.
 1798:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @param  TIMx: where x can be 1 to 17 except 6 and 7 to select the TIM peripheral.
 1799:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @param  TIM_OCPolarity: specifies the OC1 Polarity
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 33
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 33
 
 
 1800:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *   This parameter can be one of the following values:
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 1854:STM32F10x_FWLib/src/stm32f10x_tim.c ****   uint16_t tmpccer = 0;
 1855:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Check the parameters */
 1856:STM32F10x_FWLib/src/stm32f10x_tim.c ****   assert_param(IS_TIM_LIST6_PERIPH(TIMx));
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 34
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 34
 
 
 1857:STM32F10x_FWLib/src/stm32f10x_tim.c ****   assert_param(IS_TIM_OC_POLARITY(TIM_OCPolarity));
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 1911:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
 1912:STM32F10x_FWLib/src/stm32f10x_tim.c **** 
 1913:STM32F10x_FWLib/src/stm32f10x_tim.c **** /**
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 35
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 35
 
 
 1914:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @brief  Configures the TIMx Channel 3N polarity.
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 1968:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *     @arg TIM_Channel_3: TIM Channel 3
 1969:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *     @arg TIM_Channel_4: TIM Channel 4
 1970:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @param  TIM_CCx: specifies the TIM Channel CCxE bit new state.
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 36
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 36
 
 
 1971:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *   This parameter can be: TIM_CCx_Enable or TIM_CCx_Disable. 
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2025:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *         Compare Mode.
 2026:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *         User has to enable this channel using TIM_CCxCmd and TIM_CCxNCmd functions.
 2027:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @param  TIMx: where x can be 1 to 17 except 6 and 7 to select the TIM peripheral.
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 37
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 37
 
 
 2028:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @param  TIM_Channel: specifies the TIM Channel
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2082:STM32F10x_FWLib/src/stm32f10x_tim.c ****   }
 2083:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
 2084:STM32F10x_FWLib/src/stm32f10x_tim.c **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 38
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 38
 
 
 2085:STM32F10x_FWLib/src/stm32f10x_tim.c **** /**
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2139:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @param  TIMx: where x can be 1, 2, 3, 4, 5 or 8 to select the TIM peripheral.
 2140:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @param  NewState: new state of the TIMx Hall sensor interface.
 2141:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *   This parameter can be: ENABLE or DISABLE.
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 39
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 39
 
 
 2142:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @retval None
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2196:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *     @arg TIM_TRGOSource_OC2Ref: OC2REF signal is used as the trigger output (TRGO).
 2197:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *     @arg TIM_TRGOSource_OC3Ref: OC3REF signal is used as the trigger output (TRGO).
 2198:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *     @arg TIM_TRGOSource_OC4Ref: OC4REF signal is used as the trigger output (TRGO).
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 40
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 40
 
 
 2199:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2253:STM32F10x_FWLib/src/stm32f10x_tim.c ****   
 2254:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Set or Reset the MSM Bit */
 2255:STM32F10x_FWLib/src/stm32f10x_tim.c ****   TIMx->SMCR |= TIM_MasterSlaveMode;
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 41
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 41
 
 
 2256:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2310:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Set the Capture Compare2 Register value */
 2311:STM32F10x_FWLib/src/stm32f10x_tim.c ****   TIMx->CCR2 = Compare2;
 2312:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 42
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 42
 
 
 2313:STM32F10x_FWLib/src/stm32f10x_tim.c **** 
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2367:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @param  TIM_ICPSC: specifies the Input Capture2 prescaler new value.
 2368:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *   This parameter can be one of the following values:
 2369:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *     @arg TIM_ICPSC_DIV1: no prescaler
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 43
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 43
 
 
 2370:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *     @arg TIM_ICPSC_DIV2: capture is done once every 2 events
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2424:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Reset the IC4PSC Bits */
 2425:STM32F10x_FWLib/src/stm32f10x_tim.c ****   TIMx->CCMR2 &= (uint16_t)~((uint16_t)TIM_CCMR2_IC4PSC);
 2426:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Set the IC4PSC value */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 44
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 44
 
 
 2427:STM32F10x_FWLib/src/stm32f10x_tim.c ****   TIMx->CCMR2 |= (uint16_t)(TIM_ICPSC << 8);
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2481:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @retval Capture Compare 3 Register value.
 2482:STM32F10x_FWLib/src/stm32f10x_tim.c ****   */
 2483:STM32F10x_FWLib/src/stm32f10x_tim.c **** uint16_t TIM_GetCapture3(TIM_TypeDef* TIMx)
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 45
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 45
 
 
 2484:STM32F10x_FWLib/src/stm32f10x_tim.c **** {
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2538:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *     @arg TIM_FLAG_CC3: TIM Capture Compare 3 Flag
 2539:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *     @arg TIM_FLAG_CC4: TIM Capture Compare 4 Flag
 2540:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *     @arg TIM_FLAG_COM: TIM Commutation Flag
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 46
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 46
 
 
 2541:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *     @arg TIM_FLAG_Trigger: TIM Trigger Flag
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2595:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *   - TIM10, TIM11, TIM13, TIM14, TIM16 and TIM17 can have TIM_FLAG_Update or TIM_FLAG_CC1.   
 2596:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *   - TIM_FLAG_Break is used only with TIM1, TIM8 and TIM15. 
 2597:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *   - TIM_FLAG_COM is used only with TIM1, TIM8, TIM15, TIM16 and TIM17.   
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 47
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 47
 
 
 2598:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @retval None
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2652:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
 2653:STM32F10x_FWLib/src/stm32f10x_tim.c **** 
 2654:STM32F10x_FWLib/src/stm32f10x_tim.c **** /**
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 48
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 48
 
 
 2655:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @brief  Clears the TIMx's interrupt pending bits.
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
   32 0000 00B5     		push	{lr}
   33              	.LCFI0:
   34              		.cfi_def_cfa_offset 4
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 49
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 49
 
 
   35              		.cfi_offset 14, -4
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
   79 003a 124B     		ldr	r3, .L6+4
   80 003c 9842     		cmp	r0, r3
   81 003e 14D0     		beq	.L2
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 50
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 50
 
 
   82              		.loc 1 2713 39 discriminator 2 view .LVU21
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  120              		.loc 1 2718 13 view .LVU35
  121 0070 43F00103 		orr	r3, r3, #1
  122              	.LVL14:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 51
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 51
 
 
  123              	.L4:
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  153              		.loc 1 2750 1 is_stmt 0 view .LVU42
  154 0000 10B5     		push	{r4, lr}
  155              	.LCFI1:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 52
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 52
 
 
  156              		.cfi_def_cfa_offset 8
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  200              		.loc 1 2760 3 is_stmt 1 view .LVU60
  201              		.loc 1 2760 15 is_stmt 0 view .LVU61
  202 003a 1202     		lsls	r2, r2, #8
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 53
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 53
 
 
  203              	.LVL24:
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  244              		.loc 1 2773 13 view .LVU76
  245 0078 05E0     		b	.L11
  246              	.LVL29:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 54
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 54
 
 
  247              	.L9:
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2786:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *     @arg TIM_ICPolarity_Rising
 2787:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *     @arg TIM_ICPolarity_Falling
 2788:STM32F10x_FWLib/src/stm32f10x_tim.c ****   * @param  TIM_ICSelection: specifies the input to be used.
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 55
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 55
 
 
 2789:STM32F10x_FWLib/src/stm32f10x_tim.c ****   *   This parameter can be one of the following values:
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  323              	.LVL39:
 2806:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Select the Input and set the filter */
 2807:STM32F10x_FWLib/src/stm32f10x_tim.c ****   tmpccmr2 &= (uint16_t)(((uint16_t)~((uint16_t)TIM_CCMR2_CC3S)) & ((uint16_t)~((uint16_t)TIM_CCMR2
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 56
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 56
 
 
  324              		.loc 1 2807 3 is_stmt 1 view .LVU101
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  365              		.loc 1 2820 5 is_stmt 1 view .LVU116
  366              		.loc 1 2820 13 is_stmt 0 view .LVU117
  367 0062 21F42063 		bic	r3, r1, #2560
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 57
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 57
 
 
  368              	.LVL44:
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  411              		.thumb_func
  413              	TI4_Config:
  414              	.LVL50:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 58
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 58
 
 
  415              	.LFB119:
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  443 001e 1FFA8CFC 		uxth	ip, ip
  444              	.LVL53:
 2854:STM32F10x_FWLib/src/stm32f10x_tim.c ****   tmp = (uint16_t)(TIM_ICPolarity << 12);
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 59
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 59
 
 
  445              		.loc 1 2854 3 is_stmt 1 view .LVU142
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  493 005c 02F58062 		add	r2, r2, #1024
  494 0060 9042     		cmp	r0, r2
  495 0062 0ED0     		beq	.L23
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 60
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 60
 
 
 2861:STM32F10x_FWLib/src/stm32f10x_tim.c ****      (TIMx == TIM4) ||(TIMx == TIM5))
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  531              		.loc 1 2874 3 is_stmt 1 view .LVU174
  532              		.loc 1 2874 15 is_stmt 0 view .LVU175
  533 008c 8383     		strh	r3, [r0, #28]	@ movhi
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 61
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 61
 
 
 2875:STM32F10x_FWLib/src/stm32f10x_tim.c ****   TIMx->CCER = tmpccer;
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  579              		.loc 1 137 11 is_stmt 0 view .LVU188
  580 000e 704B     		ldr	r3, .L64+4
  581 0010 9842     		cmp	r0, r3
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 62
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 62
 
 
  582 0012 4ED0     		beq	.L50
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  620 003e 6C4B     		ldr	r3, .L64+36
  621 0040 9842     		cmp	r0, r3
  622 0042 00F08480 		beq	.L58
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 63
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 63
 
 
  182:STM32F10x_FWLib/src/stm32f10x_tim.c ****   {      
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  662 0080 4FF48020 		mov	r0, #262144
  663 0084 FFF7FEFF 		bl	RCC_APB2PeriphResetCmd
  664              	.LVL73:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 64
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 64
 
 
  215:STM32F10x_FWLib/src/stm32f10x_tim.c **** 
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  708              		.loc 1 140 5 is_stmt 1 view .LVU230
  709 00ba 0021     		movs	r1, #0
  710 00bc 0220     		movs	r0, #2
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 65
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 65
 
 
  711 00be FFF7FEFF 		bl	RCC_APB1PeriphResetCmd
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  756 00f4 FFF7FEFF 		bl	RCC_APB1PeriphResetCmd
  757              	.LVL97:
  758 00f8 D1E7     		b	.L29
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 66
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 66
 
 
  759              	.LVL98:
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  804              	.LVL110:
  805              	.L57:
  174:STM32F10x_FWLib/src/stm32f10x_tim.c ****     RCC_APB2PeriphResetCmd(RCC_APB2Periph_TIM10, DISABLE);  
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 67
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 67
 
 
  806              		.loc 1 174 5 view .LVU249
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  851              		.loc 1 189 5 view .LVU258
  852 0176 0121     		movs	r1, #1
  853 0178 8020     		movs	r0, #128
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 68
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 68
 
 
  854              	.LVL123:
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  899              	.LVL135:
  204:STM32F10x_FWLib/src/stm32f10x_tim.c ****     RCC_APB2PeriphResetCmd(RCC_APB2Periph_TIM16, DISABLE);
  900              		.loc 1 204 5 is_stmt 0 view .LVU268
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 69
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 69
 
 
  901 01ba FFF7FEFF 		bl	RCC_APB2PeriphResetCmd
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  950              		.loc 1 235 3 view .LVU275
  235:STM32F10x_FWLib/src/stm32f10x_tim.c **** 
  951              		.loc 1 235 10 is_stmt 0 view .LVU276
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 70
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 70
 
 
  952 0000 0388     		ldrh	r3, [r0]
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  992              		.loc 1 245 5 is_stmt 0 view .LVU290
  993 0038 154A     		ldr	r2, .L72+4
  994 003a 9042     		cmp	r0, r2
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 71
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 71
 
 
  995 003c 08D0     		beq	.L69
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  1032 005c 9842     		cmp	r0, r3
  1033 005e 0FD0     		beq	.L70
  260:STM32F10x_FWLib/src/stm32f10x_tim.c ****   {
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 72
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 72
 
 
  1034              		.loc 1 260 22 discriminator 1 view .LVU308
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  280:STM32F10x_FWLib/src/stm32f10x_tim.c ****   uint16_t tmpccmrx = 0, tmpccer = 0, tmpcr2 = 0;
  1081              		.loc 1 280 1 is_stmt 1 view -0
  1082              		.cfi_startproc
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 73
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 73
 
 
  1083              		@ args = 0, pretend = 0, frame = 0
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  1120              		.loc 1 300 3 view .LVU335
  300:STM32F10x_FWLib/src/stm32f10x_tim.c **** 
  1121              		.loc 1 300 12 is_stmt 0 view .LVU336
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 74
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 74
 
 
  1122 001e 23F07303 		bic	r3, r3, #115
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  1160 004c 02F58062 		add	r2, r2, #1024
  1161 0050 9042     		cmp	r0, r2
  1162 0052 03D0     		beq	.L75
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 75
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 75
 
 
  314:STM32F10x_FWLib/src/stm32f10x_tim.c ****   {
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  336:STM32F10x_FWLib/src/stm32f10x_tim.c ****     /* Set the Output N Idle state */
  1198              		.loc 1 336 31 is_stmt 0 view .LVU372
  1199 0070 8A89     		ldrh	r2, [r1, #12]
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 76
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 76
 
 
  336:STM32F10x_FWLib/src/stm32f10x_tim.c ****     /* Set the Output N Idle state */
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  1242              	.LFB32:
  363:STM32F10x_FWLib/src/stm32f10x_tim.c ****   uint16_t tmpccmrx = 0, tmpccer = 0, tmpcr2 = 0;
  1243              		.loc 1 363 1 is_stmt 1 view -0
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 77
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 77
 
 
  1244              		.cfi_startproc
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  384:STM32F10x_FWLib/src/stm32f10x_tim.c ****   
  1282              		.loc 1 384 3 view .LVU404
  384:STM32F10x_FWLib/src/stm32f10x_tim.c ****   
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 78
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 78
 
 
  1283              		.loc 1 384 12 is_stmt 0 view .LVU405
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  1321 0048 03D0     		beq	.L81
  397:STM32F10x_FWLib/src/stm32f10x_tim.c ****   {
  1322              		.loc 1 397 21 discriminator 1 view .LVU422
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 79
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 79
 
 
  1323 004a 02F50062 		add	r2, r2, #2048
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  416:STM32F10x_FWLib/src/stm32f10x_tim.c ****     
  1359              		.loc 1 416 12 is_stmt 0 view .LVU441
  1360 006a 2EF4406E 		bic	lr, lr, #3072
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 80
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 80
 
 
  1361              	.LVL178:
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  1397              	.L85:
  1398              		.align	2
  1399              	.L84:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 81
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 81
 
 
  1400 0094 002C0140 		.word	1073818624
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  459:STM32F10x_FWLib/src/stm32f10x_tim.c ****   
  1443              		.loc 1 459 10 is_stmt 0 view .LVU473
  1444 0012 B0F804E0 		ldrh	lr, [r0, #4]
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 82
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 82
 
 
  1445 0016 1FFA8EFE 		uxth	lr, lr
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  476:STM32F10x_FWLib/src/stm32f10x_tim.c ****     
  1482              		.loc 1 476 11 view .LVU491
  1483 003e 1343     		orrs	r3, r3, r2
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 83
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 83
 
 
  1484              	.LVL190:
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  1520 0060 1202     		lsls	r2, r2, #8
  1521 0062 92B2     		uxth	r2, r2
  493:STM32F10x_FWLib/src/stm32f10x_tim.c ****     /* Reset the Output Compare and Output Compare N IDLE State */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 84
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 84
 
 
  1522              		.loc 1 493 13 view .LVU510
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  1558              		.loc 1 509 14 view .LVU528
  1559 0088 8287     		strh	r2, [r0, #60]	@ movhi
  512:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 85
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 85
 
 
  1560              		.loc 1 512 3 is_stmt 1 view .LVU529
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  1604 000a 9BB2     		uxth	r3, r3
  1605 000c 0384     		strh	r3, [r0, #32]	@ movhi
  536:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Get the TIMx CR2 register value */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 86
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 86
 
 
  1606              		.loc 1 536 3 is_stmt 1 view .LVU542
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  1643 0034 1B03     		lsls	r3, r3, #12
  1644 0036 9BB2     		uxth	r3, r3
  553:STM32F10x_FWLib/src/stm32f10x_tim.c ****   
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 87
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 87
 
 
  1645              		.loc 1 553 11 view .LVU560
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  1683              		.loc 1 567 13 is_stmt 0 view .LVU576
  1684 0068 A0F804E0 		strh	lr, [r0, #4]	@ movhi
  570:STM32F10x_FWLib/src/stm32f10x_tim.c **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 88
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 88
 
 
  1685              		.loc 1 570 3 is_stmt 1 view .LVU577
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  1730              		.loc 1 716 3 view .LVU588
  717:STM32F10x_FWLib/src/stm32f10x_tim.c ****   assert_param(IS_TIM_LOCK_LEVEL(TIM_BDTRInitStruct->TIM_LOCKLevel));
  1731              		.loc 1 717 3 view .LVU589
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 89
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 89
 
 
  718:STM32F10x_FWLib/src/stm32f10x_tim.c ****   assert_param(IS_TIM_BREAK_STATE(TIM_BDTRInitStruct->TIM_Break));
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  1773              	TIM_TimeBaseStructInit:
  1774              	.LVL214:
  1775              	.LFB38:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 90
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 90
 
 
  737:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Set the default configuration */
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  1818              		.loc 1 755 3 view .LVU618
  755:STM32F10x_FWLib/src/stm32f10x_tim.c ****   TIM_OCInitStruct->TIM_OutputState = TIM_OutputState_Disable;
  1819              		.loc 1 755 32 is_stmt 0 view .LVU619
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 91
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 91
 
 
  1820 0000 0023     		movs	r3, #0
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  1860              		@ args = 0, pretend = 0, frame = 0
  1861              		@ frame_needed = 0, uses_anonymous_args = 0
  1862              		@ link register save eliminated.
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 92
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 92
 
 
  774:STM32F10x_FWLib/src/stm32f10x_tim.c ****   TIM_ICInitStruct->TIM_ICPolarity = TIM_ICPolarity_Rising;
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  1904              		.loc 1 791 3 is_stmt 1 view .LVU650
  791:STM32F10x_FWLib/src/stm32f10x_tim.c ****   TIM_BDTRInitStruct->TIM_LOCKLevel = TIM_LOCKLevel_OFF;
  1905              		.loc 1 791 37 is_stmt 0 view .LVU651
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 93
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 93
 
 
  1906 0004 4380     		strh	r3, [r0, #2]	@ movhi
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  1946 0000 29B1     		cbz	r1, .L105
  815:STM32F10x_FWLib/src/stm32f10x_tim.c ****   }
  1947              		.loc 1 815 5 is_stmt 1 view .LVU668
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 94
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 94
 
 
  815:STM32F10x_FWLib/src/stm32f10x_tim.c ****   }
@@ -5638,7 +5638,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  1991 0002 B0F84430 		ldrh	r3, [r0, #68]
  839:STM32F10x_FWLib/src/stm32f10x_tim.c ****   }
  1992              		.loc 1 839 16 view .LVU682
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 95
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 95
 
 
  1993 0006 6FEA4343 		mvn	r3, r3, lsl #17
@@ -5698,7 +5698,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  2036 0006 0B43     		orrs	r3, r3, r1
  2037 0008 8381     		strh	r3, [r0, #12]	@ movhi
  2038 000a 7047     		bx	lr
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 96
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 96
 
 
  2039              	.L111:
@@ -5758,7 +5758,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  2084              		.syntax unified
  2085              		.thumb
  2086              		.thumb_func
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 97
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 97
 
 
  2088              	TIM_DMAConfig:
@@ -5818,7 +5818,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  2130 0000 22B1     		cbz	r2, .L116
  974:STM32F10x_FWLib/src/stm32f10x_tim.c ****   }
  2131              		.loc 1 974 5 is_stmt 1 view .LVU722
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 98
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 98
 
 
  974:STM32F10x_FWLib/src/stm32f10x_tim.c ****   }
@@ -5878,7 +5878,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  994:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
  2176              		.loc 1 994 14 view .LVU735
  2177 0004 23F00703 		bic	r3, r3, #7
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 99
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 99
 
 
  2178 0008 9BB2     		uxth	r3, r3
@@ -5938,7 +5938,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  2219              		.loc 1 1161 47 view .LVU750
  2220 000c 1343     		orrs	r3, r3, r2
 1161:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Write to TIMx SMCR */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 100
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 100
 
 
  2221              		.loc 1 1161 14 view .LVU751
@@ -5998,7 +5998,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  2264              		.loc 1 1088 3 view .LVU764
 1088:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Reset the SMS Bits */
  2265              		.loc 1 1088 11 is_stmt 0 view .LVU765
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 101
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 101
 
 
  2266 0008 2389     		ldrh	r3, [r4, #8]
@@ -6058,7 +6058,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  2308              		.loc 1 1123 3 view .LVU779
 1124:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Configure the ETR Clock source */
  2309              		.loc 1 1124 3 view .LVU780
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 102
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 102
 
 
 1126:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Enable the External clock mode2 */
@@ -6118,7 +6118,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  2352              	.LFE54:
  2354              		.section	.text.TIM_CounterModeConfig,"ax",%progbits
  2355              		.align	1
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 103
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 103
 
 
  2356              		.global	TIM_CounterModeConfig
@@ -6178,7 +6178,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  2400              	TIM_SelectInputTrigger:
  2401              	.LVL245:
  2402              	.LFB56:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 104
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 104
 
 
 1230:STM32F10x_FWLib/src/stm32f10x_tim.c ****   uint16_t tmpsmcr = 0;
@@ -6238,7 +6238,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  2445              		@ frame_needed = 0, uses_anonymous_args = 0
 1009:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Check the parameters */
  2446              		.loc 1 1009 1 is_stmt 0 view .LVU822
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 105
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 105
 
 
  2447 0000 10B5     		push	{r4, lr}
@@ -6298,7 +6298,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  2493 0002 0446     		mov	r4, r0
  2494 0004 0D46     		mov	r5, r1
  2495 0006 1146     		mov	r1, r2
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 106
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 106
 
 
  2496              	.LVL252:
@@ -6358,7 +6358,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  2534              		.loc 1 1046 5 view .LVU848
  2535 002c F1E7     		b	.L131
  2536              		.cfi_endproc
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 107
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 107
 
 
  2537              	.LFE50:
@@ -6418,7 +6418,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  2578              		.loc 1 1284 11 is_stmt 0 view .LVU863
  2579 000e B0F820E0 		ldrh	lr, [r0, #32]
  2580 0012 1FFA8EFE 		uxth	lr, lr
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 108
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 108
 
 
  2581              	.LVL263:
@@ -6478,7 +6478,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  2618              	.LVL272:
 1299:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Write to TIMx CCMR1 */
  2619              		.loc 1 1299 3 is_stmt 1 view .LVU881
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 109
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 109
 
 
 1299:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Write to TIMx CCMR1 */
@@ -6538,7 +6538,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 1325:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Write to TIMx CCMR1 register */
  2661              		.loc 1 1325 3 is_stmt 1 view .LVU897
 1325:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Write to TIMx CCMR1 register */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 110
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 110
 
 
  2662              		.loc 1 1325 12 is_stmt 0 view .LVU898
@@ -6598,7 +6598,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  2704              		.loc 1 1349 15 view .LVU912
  2705 000a 89B2     		uxth	r1, r1
 1349:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Write to TIMx CCMR1 register */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 111
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 111
 
 
  2706              		.loc 1 1349 12 view .LVU913
@@ -6658,7 +6658,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  2748              		.loc 1 1375 3 is_stmt 1 view .LVU927
 1375:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
  2749              		.loc 1 1375 15 is_stmt 0 view .LVU928
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 112
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 112
 
 
  2750 000a 8383     		strh	r3, [r0, #28]	@ movhi
@@ -6718,7 +6718,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  2792              		.loc 1 1399 3 is_stmt 1 view .LVU942
 1399:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
  2793              		.loc 1 1399 15 is_stmt 0 view .LVU943
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 113
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 113
 
 
  2794 000e 8383     		strh	r3, [r0, #28]	@ movhi
@@ -6778,7 +6778,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  2837              		.loc 1 1424 1 view .LVU956
  2838 001a 7047     		bx	lr
  2839              		.cfi_endproc
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 114
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 114
 
 
  2840              	.LFE62:
@@ -6838,7 +6838,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  2885              		.align	1
  2886              		.global	TIM_SelectCCDMA
  2887              		.syntax unified
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 115
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 115
 
 
  2888              		.thumb
@@ -6898,7 +6898,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  2933              	TIM_CCPreloadControl:
  2934              	.LVL294:
  2935              	.LFB65:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 116
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 116
 
 
 1484:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Check the parameters */
@@ -6958,7 +6958,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  2979              		.cfi_startproc
  2980              		@ args = 0, pretend = 0, frame = 0
  2981              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 117
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 117
 
 
  2982              		@ link register save eliminated.
@@ -7018,7 +7018,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  3023              		.loc 1 1538 3 view .LVU1008
 1539:STM32F10x_FWLib/src/stm32f10x_tim.c ****   tmpccmr1 = TIMx->CCMR1;
  3024              		.loc 1 1539 3 view .LVU1009
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 118
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 118
 
 
 1540:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Reset the OC2PE Bit */
@@ -7078,7 +7078,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  3067              		.loc 1 1562 3 view .LVU1023
 1563:STM32F10x_FWLib/src/stm32f10x_tim.c ****   tmpccmr2 = TIMx->CCMR2;
  3068              		.loc 1 1563 3 view .LVU1024
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 119
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 119
 
 
 1564:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Reset the OC3PE Bit */
@@ -7138,7 +7138,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  3110 0000 838B     		ldrh	r3, [r0, #28]
  3111 0002 9BB2     		uxth	r3, r3
  3112              	.LVL309:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 120
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 120
 
 
 1590:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Enable or Disable the Output Compare Preload feature */
@@ -7198,7 +7198,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  3154 0000 038B     		ldrh	r3, [r0, #24]
  3155 0002 9BB2     		uxth	r3, r3
  3156              	.LVL314:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 121
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 121
 
 
 1615:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Enable or Disable the Output Compare Fast Bit */
@@ -7258,7 +7258,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  3198 0004 23F48063 		bic	r3, r3, #1024
  3199              	.LVL319:
 1643:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Write to TIMx CCMR1 */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 122
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 122
 
 
  3200              		.loc 1 1643 3 is_stmt 1 view .LVU1070
@@ -7318,7 +7318,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  3242 0004 23F00403 		bic	r3, r3, #4
  3243              	.LVL324:
 1668:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Write to TIMx CCMR2 */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 123
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 123
 
 
  3244              		.loc 1 1668 3 is_stmt 1 view .LVU1085
@@ -7378,7 +7378,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  3286              	.LVL329:
 1693:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Write to TIMx CCMR2 */
  3287              		.loc 1 1693 15 view .LVU1100
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 124
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 124
 
 
  3288 000a 89B2     		uxth	r1, r1
@@ -7438,7 +7438,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  3330              	.LVL334:
 1721:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
  3331              		.loc 1 1721 3 is_stmt 1 view .LVU1115
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 125
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 125
 
 
 1721:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
@@ -7498,7 +7498,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 1745:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
  3374              		.loc 1 1745 3 is_stmt 1 view .LVU1130
 1745:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 126
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 126
 
 
  3375              		.loc 1 1745 15 is_stmt 0 view .LVU1131
@@ -7558,7 +7558,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  3417 000c 7047     		bx	lr
  3418              		.cfi_endproc
  3419              	.LFE76:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 127
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 127
 
 
  3421              		.section	.text.TIM_ClearOC4Ref,"ax",%progbits
@@ -7618,7 +7618,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  3461              		.cfi_endproc
  3462              	.LFE77:
  3464              		.section	.text.TIM_OC1PolarityConfig,"ax",%progbits
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 128
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 128
 
 
  3465              		.align	1
@@ -7678,7 +7678,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  3508              		.thumb_func
  3510              	TIM_OC1NPolarityConfig:
  3511              	.LVL353:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 129
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 129
 
 
  3512              	.LFB79:
@@ -7738,7 +7738,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  3554              		@ args = 0, pretend = 0, frame = 0
  3555              		@ frame_needed = 0, uses_anonymous_args = 0
  3556              		@ link register save eliminated.
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 130
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 130
 
 
 1854:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Check the parameters */
@@ -7798,7 +7798,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  3598              		@ args = 0, pretend = 0, frame = 0
  3599              		@ frame_needed = 0, uses_anonymous_args = 0
  3600              		@ link register save eliminated.
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 131
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 131
 
 
 1877:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Check the parameters */
@@ -7858,7 +7858,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  3642              		@ args = 0, pretend = 0, frame = 0
  3643              		@ frame_needed = 0, uses_anonymous_args = 0
  3644              		@ link register save eliminated.
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 132
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 132
 
 
 1901:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Check the parameters */
@@ -7918,7 +7918,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  3686              		@ args = 0, pretend = 0, frame = 0
  3687              		@ frame_needed = 0, uses_anonymous_args = 0
  3688              		@ link register save eliminated.
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 133
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 133
 
 
 1924:STM32F10x_FWLib/src/stm32f10x_tim.c ****  
@@ -7978,7 +7978,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  3730              		@ args = 0, pretend = 0, frame = 0
  3731              		@ frame_needed = 0, uses_anonymous_args = 0
  3732              		@ link register save eliminated.
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 134
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 134
 
 
 1949:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Check the parameters */
@@ -8038,7 +8038,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  3774              		@ args = 0, pretend = 0, frame = 0
  3775              		@ frame_needed = 0, uses_anonymous_args = 0
  3776              		@ link register save eliminated.
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 135
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 135
 
 
 1976:STM32F10x_FWLib/src/stm32f10x_tim.c **** 
@@ -8098,7 +8098,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  3813 0020 7047     		bx	lr
  3814              		.cfi_endproc
  3815              	.LFE85:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 136
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 136
 
 
  3817              		.section	.text.TIM_CCxNCmd,"ax",%progbits
@@ -8158,7 +8158,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  3857 0014 038C     		ldrh	r3, [r0, #32]
  3858 0016 9BB2     		uxth	r3, r3
 2019:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 137
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 137
 
 
  3859              		.loc 1 2019 38 view .LVU1296
@@ -8218,7 +8218,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2058:STM32F10x_FWLib/src/stm32f10x_tim.c **** 
  3902              		.loc 1 2058 3 is_stmt 1 view .LVU1310
 2058:STM32F10x_FWLib/src/stm32f10x_tim.c **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 138
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 138
 
 
  3903              		.loc 1 2058 23 is_stmt 0 view .LVU1311
@@ -8278,7 +8278,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  3941              		.loc 1 2081 31 is_stmt 0 view .LVU1327
  3942 0036 1202     		lsls	r2, r2, #8
  3943              	.LVL400:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 139
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 139
 
 
 2081:STM32F10x_FWLib/src/stm32f10x_tim.c ****   }
@@ -8338,7 +8338,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2095:STM32F10x_FWLib/src/stm32f10x_tim.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
  3989              		.loc 1 2095 3 view .LVU1339
 2096:STM32F10x_FWLib/src/stm32f10x_tim.c ****   if (NewState != DISABLE)
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 140
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 140
 
 
  3990              		.loc 1 2096 3 view .LVU1340
@@ -8398,7 +8398,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  4033              		.loc 1 2125 3 view .LVU1353
 2125:STM32F10x_FWLib/src/stm32f10x_tim.c ****   {
  4034              		.loc 1 2125 6 is_stmt 0 view .LVU1354
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 141
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 141
 
 
  4035 0000 29B1     		cbz	r1, .L182
@@ -8458,7 +8458,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  4078              		.loc 1 2152 5 is_stmt 1 view .LVU1367
 2152:STM32F10x_FWLib/src/stm32f10x_tim.c ****   }
  4079              		.loc 1 2152 9 is_stmt 0 view .LVU1368
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 142
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 142
 
 
  4080 0002 8388     		ldrh	r3, [r0, #4]
@@ -8518,7 +8518,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2178:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
  4125              		.loc 1 2178 3 is_stmt 1 view .LVU1380
 2178:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 143
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 143
 
 
  4126              		.loc 1 2178 7 is_stmt 0 view .LVU1381
@@ -8578,7 +8578,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  4170 0014 7047     		bx	lr
  4171              		.cfi_endproc
  4172              	.LFE92:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 144
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 144
 
 
  4174              		.section	.text.TIM_SelectSlaveMode,"ax",%progbits
@@ -8638,7 +8638,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2247:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Check the parameters */
  4221              		.loc 1 2247 1 is_stmt 1 view -0
  4222              		.cfi_startproc
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 145
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 145
 
 
  4223              		@ args = 0, pretend = 0, frame = 0
@@ -8698,7 +8698,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  4266 0000 8184     		strh	r1, [r0, #36]	@ movhi
 2270:STM32F10x_FWLib/src/stm32f10x_tim.c **** 
  4267              		.loc 1 2270 1 view .LVU1418
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 146
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 146
 
 
  4268 0002 7047     		bx	lr
@@ -8758,7 +8758,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  4316 0002 7047     		bx	lr
  4317              		.cfi_endproc
  4318              	.LFE97:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 147
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 147
 
 
  4320              		.section	.text.TIM_SetCompare2,"ax",%progbits
@@ -8818,7 +8818,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  4368              		.section	.text.TIM_SetCompare4,"ax",%progbits
  4369              		.align	1
  4370              		.global	TIM_SetCompare4
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 148
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 148
 
 
  4371              		.syntax unified
@@ -8878,7 +8878,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2361:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
  4417              		.loc 1 2361 3 is_stmt 1 view .LVU1450
 2361:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 149
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 149
 
 
  4418              		.loc 1 2361 7 is_stmt 0 view .LVU1451
@@ -8938,7 +8938,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  4462 0012 89B2     		uxth	r1, r1
 2383:STM32F10x_FWLib/src/stm32f10x_tim.c **** }
  4463              		.loc 1 2383 15 view .LVU1464
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 150
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 150
 
 
  4464 0014 0B43     		orrs	r3, r3, r1
@@ -8998,7 +8998,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  4510              	.LVL423:
  670:STM32F10x_FWLib/src/stm32f10x_tim.c ****   {
  4511              		.loc 1 670 3 is_stmt 1 view .LVU1475
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 151
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 151
 
 
  670:STM32F10x_FWLib/src/stm32f10x_tim.c ****   {
@@ -9058,7 +9058,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  4554              	.L204:
  667:STM32F10x_FWLib/src/stm32f10x_tim.c ****   }
  4555              		.loc 1 667 24 view .LVU1488
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 152
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 152
 
 
  4556 003e 0026     		movs	r6, #0
@@ -9118,7 +9118,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  4604              		.loc 1 2398 1 is_stmt 1 view -0
  4605              		.cfi_startproc
  4606              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 153
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 153
 
 
  4607              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -9178,7 +9178,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  4649              		.loc 1 2425 7 is_stmt 0 view .LVU1510
  4650 0000 838B     		ldrh	r3, [r0, #28]
  4651 0002 9BB2     		uxth	r3, r3
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 154
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 154
 
 
 2425:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Set the IC4PSC value */
@@ -9238,7 +9238,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  591:STM32F10x_FWLib/src/stm32f10x_tim.c ****   assert_param(IS_TIM_IC_PRESCALER(TIM_ICInitStruct->TIM_ICPrescaler));
  4698              		.loc 1 591 3 view .LVU1521
  592:STM32F10x_FWLib/src/stm32f10x_tim.c ****   assert_param(IS_TIM_IC_FILTER(TIM_ICInitStruct->TIM_ICFilter));
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 155
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 155
 
 
  4699              		.loc 1 592 3 view .LVU1522
@@ -9298,7 +9298,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  4736              		.loc 1 608 5 view .LVU1539
  4737 0026 0B89     		ldrh	r3, [r1, #8]
  4738 0028 8A88     		ldrh	r2, [r1, #4]
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 156
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 156
 
 
  4739 002a 4988     		ldrh	r1, [r1, #2]
@@ -9358,7 +9358,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  4783 0060 E0E7     		b	.L210
  4784              		.cfi_endproc
  4785              	.LFE35:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 157
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 157
 
 
  4787              		.section	.text.TIM_SetClockDivision,"ax",%progbits
@@ -9418,7 +9418,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2458:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Check the parameters */
  4834              		.loc 1 2458 1 is_stmt 1 view -0
  4835              		.cfi_startproc
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 158
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 158
 
 
  4836              		@ args = 0, pretend = 0, frame = 0
@@ -9478,7 +9478,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  4885              	.LFB108:
 2484:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Check the parameters */
  4886              		.loc 1 2484 1 is_stmt 1 view -0
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 159
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 159
 
 
  4887              		.cfi_startproc
@@ -9538,7 +9538,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  4936              	.LVL466:
  4937              	.LFB110:
 2510:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Check the parameters */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 160
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 160
 
 
  4938              		.loc 1 2510 1 is_stmt 1 view -0
@@ -9598,7 +9598,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  4987              	TIM_GetFlagStatus:
  4988              	.LVL470:
  4989              	.LFB112:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 161
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 161
 
 
 2557:STM32F10x_FWLib/src/stm32f10x_tim.c ****   ITStatus bitstatus = RESET;  
@@ -9658,7 +9658,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  5033              		@ frame_needed = 0, uses_anonymous_args = 0
  5034              		@ link register save eliminated.
 2603:STM32F10x_FWLib/src/stm32f10x_tim.c ****   assert_param(IS_TIM_CLEAR_FLAG(TIM_FLAG));
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 162
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 162
 
 
  5035              		.loc 1 2603 3 view .LVU1603
@@ -9718,7 +9718,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2642:STM32F10x_FWLib/src/stm32f10x_tim.c ****   if ((itstatus != (uint16_t)RESET) && (itenable != (uint16_t)RESET))
  5076              		.loc 1 2642 12 view .LVU1619
  5077 0004 0B40     		ands	r3, r3, r1
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 163
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 163
 
 
  5078              	.LVL478:
@@ -9778,7 +9778,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
 2679:STM32F10x_FWLib/src/stm32f10x_tim.c ****   assert_param(IS_TIM_IT(TIM_IT));
  5123              		.loc 1 2679 3 view .LVU1631
 2680:STM32F10x_FWLib/src/stm32f10x_tim.c ****   /* Clear the IT pending Bit */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 164
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 164
 
 
  5124              		.loc 1 2680 3 view .LVU1632
@@ -9806,212 +9806,212 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 1
  5142              		.file 4 "USER/stm32f10x.h"
  5143              		.file 5 "STM32F10x_FWLib/inc/stm32f10x_tim.h"
  5144              		.file 6 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 165
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 165
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f10x_tim.c
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:19     .text.TI1_Config:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:24     .text.TI1_Config:00000000 TI1_Config
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:135    .text.TI1_Config:00000080 $d
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:141    .text.TI2_Config:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:146    .text.TI2_Config:00000000 TI2_Config
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:273    .text.TI2_Config:00000090 $d
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:278    .text.TI3_Config:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:283    .text.TI3_Config:00000000 TI3_Config
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:402    .text.TI3_Config:00000084 $d
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:408    .text.TI4_Config:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:413    .text.TI4_Config:00000000 TI4_Config
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:544    .text.TI4_Config:00000094 $d
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:549    .text.TIM_DeInit:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:555    .text.TIM_DeInit:00000000 TIM_DeInit
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:912    .text.TIM_DeInit:000001cc $d
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:932    .text.TIM_TimeBaseInit:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:938    .text.TIM_TimeBaseInit:00000000 TIM_TimeBaseInit
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1066   .text.TIM_TimeBaseInit:0000008c $d
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1072   .text.TIM_OC1Init:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1078   .text.TIM_OC1Init:00000000 TIM_OC1Init
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1229   .text.TIM_OC1Init:00000090 $d
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1234   .text.TIM_OC2Init:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1240   .text.TIM_OC2Init:00000000 TIM_OC2Init
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1400   .text.TIM_OC2Init:00000094 $d
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1405   .text.TIM_OC3Init:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1411   .text.TIM_OC3Init:00000000 TIM_OC3Init
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1568   .text.TIM_OC3Init:00000090 $d
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1573   .text.TIM_OC4Init:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1579   .text.TIM_OC4Init:00000000 TIM_OC4Init
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1703   .text.TIM_OC4Init:00000078 $d
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1708   .text.TIM_BDTRConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1714   .text.TIM_BDTRConfig:00000000 TIM_BDTRConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1767   .text.TIM_TimeBaseStructInit:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1773   .text.TIM_TimeBaseStructInit:00000000 TIM_TimeBaseStructInit
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1804   .text.TIM_OCStructInit:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1810   .text.TIM_OCStructInit:00000000 TIM_OCStructInit
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1849   .text.TIM_ICStructInit:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1855   .text.TIM_ICStructInit:00000000 TIM_ICStructInit
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1886   .text.TIM_BDTRStructInit:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1892   .text.TIM_BDTRStructInit:00000000 TIM_BDTRStructInit
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1928   .text.TIM_Cmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1934   .text.TIM_Cmd:00000000 TIM_Cmd
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1970   .text.TIM_CtrlPWMOutputs:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:1976   .text.TIM_CtrlPWMOutputs:00000000 TIM_CtrlPWMOutputs
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2011   .text.TIM_ITConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2017   .text.TIM_ITConfig:00000000 TIM_ITConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2057   .text.TIM_GenerateEvent:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2063   .text.TIM_GenerateEvent:00000000 TIM_GenerateEvent
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2082   .text.TIM_DMAConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2088   .text.TIM_DMAConfig:00000000 TIM_DMAConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2111   .text.TIM_DMACmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2117   .text.TIM_DMACmd:00000000 TIM_DMACmd
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2157   .text.TIM_InternalClockConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2163   .text.TIM_InternalClockConfig:00000000 TIM_InternalClockConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2186   .text.TIM_ETRConfig:00000000 $t
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 166
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:19     .text.TI1_Config:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:24     .text.TI1_Config:00000000 TI1_Config
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:135    .text.TI1_Config:00000080 $d
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:141    .text.TI2_Config:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:146    .text.TI2_Config:00000000 TI2_Config
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:273    .text.TI2_Config:00000090 $d
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:278    .text.TI3_Config:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:283    .text.TI3_Config:00000000 TI3_Config
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:402    .text.TI3_Config:00000084 $d
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:408    .text.TI4_Config:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:413    .text.TI4_Config:00000000 TI4_Config
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:544    .text.TI4_Config:00000094 $d
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:549    .text.TIM_DeInit:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:555    .text.TIM_DeInit:00000000 TIM_DeInit
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:912    .text.TIM_DeInit:000001cc $d
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:932    .text.TIM_TimeBaseInit:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:938    .text.TIM_TimeBaseInit:00000000 TIM_TimeBaseInit
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1066   .text.TIM_TimeBaseInit:0000008c $d
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1072   .text.TIM_OC1Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1078   .text.TIM_OC1Init:00000000 TIM_OC1Init
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1229   .text.TIM_OC1Init:00000090 $d
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1234   .text.TIM_OC2Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1240   .text.TIM_OC2Init:00000000 TIM_OC2Init
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1400   .text.TIM_OC2Init:00000094 $d
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1405   .text.TIM_OC3Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1411   .text.TIM_OC3Init:00000000 TIM_OC3Init
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1568   .text.TIM_OC3Init:00000090 $d
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1573   .text.TIM_OC4Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1579   .text.TIM_OC4Init:00000000 TIM_OC4Init
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1703   .text.TIM_OC4Init:00000078 $d
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1708   .text.TIM_BDTRConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1714   .text.TIM_BDTRConfig:00000000 TIM_BDTRConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1767   .text.TIM_TimeBaseStructInit:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1773   .text.TIM_TimeBaseStructInit:00000000 TIM_TimeBaseStructInit
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1804   .text.TIM_OCStructInit:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1810   .text.TIM_OCStructInit:00000000 TIM_OCStructInit
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1849   .text.TIM_ICStructInit:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1855   .text.TIM_ICStructInit:00000000 TIM_ICStructInit
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1886   .text.TIM_BDTRStructInit:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1892   .text.TIM_BDTRStructInit:00000000 TIM_BDTRStructInit
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1928   .text.TIM_Cmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1934   .text.TIM_Cmd:00000000 TIM_Cmd
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1970   .text.TIM_CtrlPWMOutputs:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:1976   .text.TIM_CtrlPWMOutputs:00000000 TIM_CtrlPWMOutputs
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2011   .text.TIM_ITConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2017   .text.TIM_ITConfig:00000000 TIM_ITConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2057   .text.TIM_GenerateEvent:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2063   .text.TIM_GenerateEvent:00000000 TIM_GenerateEvent
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2082   .text.TIM_DMAConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2088   .text.TIM_DMAConfig:00000000 TIM_DMAConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2111   .text.TIM_DMACmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2117   .text.TIM_DMACmd:00000000 TIM_DMACmd
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2157   .text.TIM_InternalClockConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2163   .text.TIM_InternalClockConfig:00000000 TIM_InternalClockConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2186   .text.TIM_ETRConfig:00000000 $t
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 166
 
 
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2192   .text.TIM_ETRConfig:00000000 TIM_ETRConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2235   .text.TIM_ETRClockMode1Config:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2241   .text.TIM_ETRClockMode1Config:00000000 TIM_ETRClockMode1Config
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2286   .text.TIM_ETRClockMode2Config:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2292   .text.TIM_ETRClockMode2Config:00000000 TIM_ETRClockMode2Config
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2327   .text.TIM_PrescalerConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2333   .text.TIM_PrescalerConfig:00000000 TIM_PrescalerConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2355   .text.TIM_CounterModeConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2361   .text.TIM_CounterModeConfig:00000000 TIM_CounterModeConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2394   .text.TIM_SelectInputTrigger:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2400   .text.TIM_SelectInputTrigger:00000000 TIM_SelectInputTrigger
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2433   .text.TIM_ITRxExternalClockConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2439   .text.TIM_ITRxExternalClockConfig:00000000 TIM_ITRxExternalClockConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2472   .text.TIM_TIxExternalClockConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2478   .text.TIM_TIxExternalClockConfig:00000000 TIM_TIxExternalClockConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2540   .text.TIM_EncoderInterfaceConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2546   .text.TIM_EncoderInterfaceConfig:00000000 TIM_EncoderInterfaceConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2635   .text.TIM_ForcedOC1Config:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2641   .text.TIM_ForcedOC1Config:00000000 TIM_ForcedOC1Config
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2674   .text.TIM_ForcedOC2Config:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2680   .text.TIM_ForcedOC2Config:00000000 TIM_ForcedOC2Config
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2718   .text.TIM_ForcedOC3Config:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2724   .text.TIM_ForcedOC3Config:00000000 TIM_ForcedOC3Config
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2757   .text.TIM_ForcedOC4Config:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2763   .text.TIM_ForcedOC4Config:00000000 TIM_ForcedOC4Config
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2801   .text.TIM_ARRPreloadConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2807   .text.TIM_ARRPreloadConfig:00000000 TIM_ARRPreloadConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2843   .text.TIM_SelectCOM:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2849   .text.TIM_SelectCOM:00000000 TIM_SelectCOM
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2885   .text.TIM_SelectCCDMA:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2891   .text.TIM_SelectCCDMA:00000000 TIM_SelectCCDMA
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2927   .text.TIM_CCPreloadControl:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2933   .text.TIM_CCPreloadControl:00000000 TIM_CCPreloadControl
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2969   .text.TIM_OC1PreloadConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:2975   .text.TIM_OC1PreloadConfig:00000000 TIM_OC1PreloadConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3008   .text.TIM_OC2PreloadConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3014   .text.TIM_OC2PreloadConfig:00000000 TIM_OC2PreloadConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3052   .text.TIM_OC3PreloadConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3058   .text.TIM_OC3PreloadConfig:00000000 TIM_OC3PreloadConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3091   .text.TIM_OC4PreloadConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3097   .text.TIM_OC4PreloadConfig:00000000 TIM_OC4PreloadConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3135   .text.TIM_OC1FastConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3141   .text.TIM_OC1FastConfig:00000000 TIM_OC1FastConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3174   .text.TIM_OC2FastConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3180   .text.TIM_OC2FastConfig:00000000 TIM_OC2FastConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3218   .text.TIM_OC3FastConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3224   .text.TIM_OC3FastConfig:00000000 TIM_OC3FastConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3257   .text.TIM_OC4FastConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3263   .text.TIM_OC4FastConfig:00000000 TIM_OC4FastConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3301   .text.TIM_ClearOC1Ref:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3307   .text.TIM_ClearOC1Ref:00000000 TIM_ClearOC1Ref
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3340   .text.TIM_ClearOC2Ref:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3346   .text.TIM_ClearOC2Ref:00000000 TIM_ClearOC2Ref
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3383   .text.TIM_ClearOC3Ref:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3389   .text.TIM_ClearOC3Ref:00000000 TIM_ClearOC3Ref
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3422   .text.TIM_ClearOC4Ref:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3428   .text.TIM_ClearOC4Ref:00000000 TIM_ClearOC4Ref
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 167
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2192   .text.TIM_ETRConfig:00000000 TIM_ETRConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2235   .text.TIM_ETRClockMode1Config:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2241   .text.TIM_ETRClockMode1Config:00000000 TIM_ETRClockMode1Config
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2286   .text.TIM_ETRClockMode2Config:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2292   .text.TIM_ETRClockMode2Config:00000000 TIM_ETRClockMode2Config
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2327   .text.TIM_PrescalerConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2333   .text.TIM_PrescalerConfig:00000000 TIM_PrescalerConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2355   .text.TIM_CounterModeConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2361   .text.TIM_CounterModeConfig:00000000 TIM_CounterModeConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2394   .text.TIM_SelectInputTrigger:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2400   .text.TIM_SelectInputTrigger:00000000 TIM_SelectInputTrigger
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2433   .text.TIM_ITRxExternalClockConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2439   .text.TIM_ITRxExternalClockConfig:00000000 TIM_ITRxExternalClockConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2472   .text.TIM_TIxExternalClockConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2478   .text.TIM_TIxExternalClockConfig:00000000 TIM_TIxExternalClockConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2540   .text.TIM_EncoderInterfaceConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2546   .text.TIM_EncoderInterfaceConfig:00000000 TIM_EncoderInterfaceConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2635   .text.TIM_ForcedOC1Config:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2641   .text.TIM_ForcedOC1Config:00000000 TIM_ForcedOC1Config
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2674   .text.TIM_ForcedOC2Config:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2680   .text.TIM_ForcedOC2Config:00000000 TIM_ForcedOC2Config
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2718   .text.TIM_ForcedOC3Config:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2724   .text.TIM_ForcedOC3Config:00000000 TIM_ForcedOC3Config
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2757   .text.TIM_ForcedOC4Config:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2763   .text.TIM_ForcedOC4Config:00000000 TIM_ForcedOC4Config
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2801   .text.TIM_ARRPreloadConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2807   .text.TIM_ARRPreloadConfig:00000000 TIM_ARRPreloadConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2843   .text.TIM_SelectCOM:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2849   .text.TIM_SelectCOM:00000000 TIM_SelectCOM
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2885   .text.TIM_SelectCCDMA:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2891   .text.TIM_SelectCCDMA:00000000 TIM_SelectCCDMA
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2927   .text.TIM_CCPreloadControl:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2933   .text.TIM_CCPreloadControl:00000000 TIM_CCPreloadControl
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2969   .text.TIM_OC1PreloadConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:2975   .text.TIM_OC1PreloadConfig:00000000 TIM_OC1PreloadConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3008   .text.TIM_OC2PreloadConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3014   .text.TIM_OC2PreloadConfig:00000000 TIM_OC2PreloadConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3052   .text.TIM_OC3PreloadConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3058   .text.TIM_OC3PreloadConfig:00000000 TIM_OC3PreloadConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3091   .text.TIM_OC4PreloadConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3097   .text.TIM_OC4PreloadConfig:00000000 TIM_OC4PreloadConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3135   .text.TIM_OC1FastConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3141   .text.TIM_OC1FastConfig:00000000 TIM_OC1FastConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3174   .text.TIM_OC2FastConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3180   .text.TIM_OC2FastConfig:00000000 TIM_OC2FastConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3218   .text.TIM_OC3FastConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3224   .text.TIM_OC3FastConfig:00000000 TIM_OC3FastConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3257   .text.TIM_OC4FastConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3263   .text.TIM_OC4FastConfig:00000000 TIM_OC4FastConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3301   .text.TIM_ClearOC1Ref:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3307   .text.TIM_ClearOC1Ref:00000000 TIM_ClearOC1Ref
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3340   .text.TIM_ClearOC2Ref:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3346   .text.TIM_ClearOC2Ref:00000000 TIM_ClearOC2Ref
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3383   .text.TIM_ClearOC3Ref:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3389   .text.TIM_ClearOC3Ref:00000000 TIM_ClearOC3Ref
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3422   .text.TIM_ClearOC4Ref:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3428   .text.TIM_ClearOC4Ref:00000000 TIM_ClearOC4Ref
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 167
 
 
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3465   .text.TIM_OC1PolarityConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3471   .text.TIM_OC1PolarityConfig:00000000 TIM_OC1PolarityConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3504   .text.TIM_OC1NPolarityConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3510   .text.TIM_OC1NPolarityConfig:00000000 TIM_OC1NPolarityConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3543   .text.TIM_OC2PolarityConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3549   .text.TIM_OC2PolarityConfig:00000000 TIM_OC2PolarityConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3587   .text.TIM_OC2NPolarityConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3593   .text.TIM_OC2NPolarityConfig:00000000 TIM_OC2NPolarityConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3631   .text.TIM_OC3PolarityConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3637   .text.TIM_OC3PolarityConfig:00000000 TIM_OC3PolarityConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3675   .text.TIM_OC3NPolarityConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3681   .text.TIM_OC3NPolarityConfig:00000000 TIM_OC3NPolarityConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3719   .text.TIM_OC4PolarityConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3725   .text.TIM_OC4PolarityConfig:00000000 TIM_OC4PolarityConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3763   .text.TIM_CCxCmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3769   .text.TIM_CCxCmd:00000000 TIM_CCxCmd
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3818   .text.TIM_CCxNCmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3824   .text.TIM_CCxNCmd:00000000 TIM_CCxNCmd
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3873   .text.TIM_SelectOCxM:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3879   .text.TIM_SelectOCxM:00000000 TIM_SelectOCxM
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3975   .text.TIM_UpdateDisableConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:3981   .text.TIM_UpdateDisableConfig:00000000 TIM_UpdateDisableConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4017   .text.TIM_UpdateRequestConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4023   .text.TIM_UpdateRequestConfig:00000000 TIM_UpdateRequestConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4059   .text.TIM_SelectHallSensor:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4065   .text.TIM_SelectHallSensor:00000000 TIM_SelectHallSensor
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4101   .text.TIM_SelectOnePulseMode:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4107   .text.TIM_SelectOnePulseMode:00000000 TIM_SelectOnePulseMode
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4138   .text.TIM_SelectOutputTrigger:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4144   .text.TIM_SelectOutputTrigger:00000000 TIM_SelectOutputTrigger
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4175   .text.TIM_SelectSlaveMode:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4181   .text.TIM_SelectSlaveMode:00000000 TIM_SelectSlaveMode
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4212   .text.TIM_SelectMasterSlaveMode:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4218   .text.TIM_SelectMasterSlaveMode:00000000 TIM_SelectMasterSlaveMode
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4249   .text.TIM_SetCounter:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4255   .text.TIM_SetCounter:00000000 TIM_SetCounter
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4273   .text.TIM_SetAutoreload:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4279   .text.TIM_SetAutoreload:00000000 TIM_SetAutoreload
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4297   .text.TIM_SetCompare1:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4303   .text.TIM_SetCompare1:00000000 TIM_SetCompare1
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4321   .text.TIM_SetCompare2:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4327   .text.TIM_SetCompare2:00000000 TIM_SetCompare2
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4345   .text.TIM_SetCompare3:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4351   .text.TIM_SetCompare3:00000000 TIM_SetCompare3
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4369   .text.TIM_SetCompare4:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4375   .text.TIM_SetCompare4:00000000 TIM_SetCompare4
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4393   .text.TIM_SetIC1Prescaler:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4399   .text.TIM_SetIC1Prescaler:00000000 TIM_SetIC1Prescaler
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4430   .text.TIM_SetIC2Prescaler:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4436   .text.TIM_SetIC2Prescaler:00000000 TIM_SetIC2Prescaler
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4472   .text.TIM_PWMIConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4478   .text.TIM_PWMIConfig:00000000 TIM_PWMIConfig
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4595   .text.TIM_SetIC3Prescaler:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4601   .text.TIM_SetIC3Prescaler:00000000 TIM_SetIC3Prescaler
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4632   .text.TIM_SetIC4Prescaler:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4638   .text.TIM_SetIC4Prescaler:00000000 TIM_SetIC4Prescaler
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4674   .text.TIM_ICInit:00000000 $t
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s 			page 168
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3465   .text.TIM_OC1PolarityConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3471   .text.TIM_OC1PolarityConfig:00000000 TIM_OC1PolarityConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3504   .text.TIM_OC1NPolarityConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3510   .text.TIM_OC1NPolarityConfig:00000000 TIM_OC1NPolarityConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3543   .text.TIM_OC2PolarityConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3549   .text.TIM_OC2PolarityConfig:00000000 TIM_OC2PolarityConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3587   .text.TIM_OC2NPolarityConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3593   .text.TIM_OC2NPolarityConfig:00000000 TIM_OC2NPolarityConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3631   .text.TIM_OC3PolarityConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3637   .text.TIM_OC3PolarityConfig:00000000 TIM_OC3PolarityConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3675   .text.TIM_OC3NPolarityConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3681   .text.TIM_OC3NPolarityConfig:00000000 TIM_OC3NPolarityConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3719   .text.TIM_OC4PolarityConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3725   .text.TIM_OC4PolarityConfig:00000000 TIM_OC4PolarityConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3763   .text.TIM_CCxCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3769   .text.TIM_CCxCmd:00000000 TIM_CCxCmd
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3818   .text.TIM_CCxNCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3824   .text.TIM_CCxNCmd:00000000 TIM_CCxNCmd
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3873   .text.TIM_SelectOCxM:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3879   .text.TIM_SelectOCxM:00000000 TIM_SelectOCxM
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3975   .text.TIM_UpdateDisableConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:3981   .text.TIM_UpdateDisableConfig:00000000 TIM_UpdateDisableConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4017   .text.TIM_UpdateRequestConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4023   .text.TIM_UpdateRequestConfig:00000000 TIM_UpdateRequestConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4059   .text.TIM_SelectHallSensor:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4065   .text.TIM_SelectHallSensor:00000000 TIM_SelectHallSensor
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4101   .text.TIM_SelectOnePulseMode:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4107   .text.TIM_SelectOnePulseMode:00000000 TIM_SelectOnePulseMode
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4138   .text.TIM_SelectOutputTrigger:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4144   .text.TIM_SelectOutputTrigger:00000000 TIM_SelectOutputTrigger
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4175   .text.TIM_SelectSlaveMode:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4181   .text.TIM_SelectSlaveMode:00000000 TIM_SelectSlaveMode
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4212   .text.TIM_SelectMasterSlaveMode:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4218   .text.TIM_SelectMasterSlaveMode:00000000 TIM_SelectMasterSlaveMode
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4249   .text.TIM_SetCounter:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4255   .text.TIM_SetCounter:00000000 TIM_SetCounter
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4273   .text.TIM_SetAutoreload:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4279   .text.TIM_SetAutoreload:00000000 TIM_SetAutoreload
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4297   .text.TIM_SetCompare1:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4303   .text.TIM_SetCompare1:00000000 TIM_SetCompare1
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4321   .text.TIM_SetCompare2:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4327   .text.TIM_SetCompare2:00000000 TIM_SetCompare2
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4345   .text.TIM_SetCompare3:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4351   .text.TIM_SetCompare3:00000000 TIM_SetCompare3
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4369   .text.TIM_SetCompare4:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4375   .text.TIM_SetCompare4:00000000 TIM_SetCompare4
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4393   .text.TIM_SetIC1Prescaler:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4399   .text.TIM_SetIC1Prescaler:00000000 TIM_SetIC1Prescaler
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4430   .text.TIM_SetIC2Prescaler:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4436   .text.TIM_SetIC2Prescaler:00000000 TIM_SetIC2Prescaler
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4472   .text.TIM_PWMIConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4478   .text.TIM_PWMIConfig:00000000 TIM_PWMIConfig
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4595   .text.TIM_SetIC3Prescaler:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4601   .text.TIM_SetIC3Prescaler:00000000 TIM_SetIC3Prescaler
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4632   .text.TIM_SetIC4Prescaler:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4638   .text.TIM_SetIC4Prescaler:00000000 TIM_SetIC4Prescaler
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4674   .text.TIM_ICInit:00000000 $t
+ARM GAS  C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s 			page 168
 
 
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4680   .text.TIM_ICInit:00000000 TIM_ICInit
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4788   .text.TIM_SetClockDivision:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4794   .text.TIM_SetClockDivision:00000000 TIM_SetClockDivision
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4825   .text.TIM_GetCapture1:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4831   .text.TIM_GetCapture1:00000000 TIM_GetCapture1
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4851   .text.TIM_GetCapture2:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4857   .text.TIM_GetCapture2:00000000 TIM_GetCapture2
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4877   .text.TIM_GetCapture3:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4883   .text.TIM_GetCapture3:00000000 TIM_GetCapture3
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4903   .text.TIM_GetCapture4:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4909   .text.TIM_GetCapture4:00000000 TIM_GetCapture4
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4929   .text.TIM_GetCounter:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4935   .text.TIM_GetCounter:00000000 TIM_GetCounter
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4955   .text.TIM_GetPrescaler:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4961   .text.TIM_GetPrescaler:00000000 TIM_GetPrescaler
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4981   .text.TIM_GetFlagStatus:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:4987   .text.TIM_GetFlagStatus:00000000 TIM_GetFlagStatus
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:5021   .text.TIM_ClearFlag:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:5027   .text.TIM_ClearFlag:00000000 TIM_ClearFlag
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:5051   .text.TIM_GetITStatus:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:5057   .text.TIM_GetITStatus:00000000 TIM_GetITStatus
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:5109   .text.TIM_ClearITPendingBit:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccV4hw1i.s:5115   .text.TIM_ClearITPendingBit:00000000 TIM_ClearITPendingBit
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4680   .text.TIM_ICInit:00000000 TIM_ICInit
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4788   .text.TIM_SetClockDivision:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4794   .text.TIM_SetClockDivision:00000000 TIM_SetClockDivision
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4825   .text.TIM_GetCapture1:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4831   .text.TIM_GetCapture1:00000000 TIM_GetCapture1
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4851   .text.TIM_GetCapture2:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4857   .text.TIM_GetCapture2:00000000 TIM_GetCapture2
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4877   .text.TIM_GetCapture3:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4883   .text.TIM_GetCapture3:00000000 TIM_GetCapture3
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4903   .text.TIM_GetCapture4:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4909   .text.TIM_GetCapture4:00000000 TIM_GetCapture4
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4929   .text.TIM_GetCounter:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4935   .text.TIM_GetCounter:00000000 TIM_GetCounter
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4955   .text.TIM_GetPrescaler:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4961   .text.TIM_GetPrescaler:00000000 TIM_GetPrescaler
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4981   .text.TIM_GetFlagStatus:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:4987   .text.TIM_GetFlagStatus:00000000 TIM_GetFlagStatus
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:5021   .text.TIM_ClearFlag:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:5027   .text.TIM_ClearFlag:00000000 TIM_ClearFlag
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:5051   .text.TIM_GetITStatus:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:5057   .text.TIM_GetITStatus:00000000 TIM_GetITStatus
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:5109   .text.TIM_ClearITPendingBit:00000000 $t
+C:\Users\86157\AppData\Local\Temp\cc1FwYOe.s:5115   .text.TIM_ClearITPendingBit:00000000 TIM_ClearITPendingBit
 
 UNDEFINED SYMBOLS
 RCC_APB2PeriphResetCmd

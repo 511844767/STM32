@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
   29:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
   30:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
   31:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /** @defgroup I2C 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 2
 
 
   32:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief I2C driver modules
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
   86:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_NOSTRETCH_Reset     ((uint16_t)0xFF7F)
   87:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
   88:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /* I2C registers Masks */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 3
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 3
 
 
   89:STM32F10x_FWLib/src/stm32f10x_i2c.c **** #define CR1_CLEAR_Mask          ((uint16_t)0xFBF5)
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  143:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
  144:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
  145:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /** @defgroup I2C_Private_FunctionPrototypes
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 4
 
 
  146:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @{
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
   50              	.LVL2:
  178:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Release I2C2 from reset state */
  179:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C2, DISABLE);
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 5
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 5
 
 
   51              		.loc 1 179 5 is_stmt 1 view .LVU7
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
   91              		.loc 1 192 1 view -0
   92              		.cfi_startproc
   93              		@ args = 0, pretend = 0, frame = 24
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 6
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 6
 
 
   94              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  130 0010 B6B2     		uxth	r6, r6
  131              	.LVL12:
  211:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Get pclk1 frequency value */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 7
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 7
 
 
  212:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   RCC_GetClocksFreq(&rcc_clocks);
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  169 0036 264E     		ldr	r6, .L18+4
  170 0038 B342     		cmp	r3, r6
  171 003a 20D8     		bhi	.L9
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 8
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 8
 
 
  172 003c 1046     		mov	r0, r2
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  258:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
  259:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Test if CCR value is under 0x1*/
  260:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     if ((result & CCR_CCR_Set) == 0)
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 9
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 9
 
 
  261:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     {
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  227              		.loc 1 284 13 view .LVU72
  228 006c 0A43     		orrs	r2, r2, r1
  229              		.loc 1 284 10 view .LVU73
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 10
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 10
 
 
  230 006e 1343     		orrs	r3, r3, r2
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  270              		.loc 1 254 14 view .LVU87
  271 0094 89B2     		uxth	r1, r1
  272              	.LVL32:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 11
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 11
 
 
  256:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     }
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  311              		.loc 1 249 33 view .LVU103
  312 00c4 B1FBF3F3 		udiv	r3, r1, r3
  249:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     }
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 12
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 12
 
 
  313              		.loc 1 249 14 view .LVU104
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  353 000e C280     		strh	r2, [r0, #6]	@ movhi
  307:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Initialize the I2C_OwnAddress1 member */
  308:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2C_InitStruct->I2C_OwnAddress1 = 0;
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 13
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 13
 
 
  354              		.loc 1 308 3 is_stmt 1 view .LVU113
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  330:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 |= CR1_PE_Set;
  389              		.loc 1 330 5 is_stmt 1 view .LVU125
  390              		.loc 1 330 9 is_stmt 0 view .LVU126
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 14
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 14
 
 
  391 0002 0388     		ldrh	r3, [r0]
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  427              		.loc 1 350 3 view .LVU134
  351:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (NewState != DISABLE)
  428              		.loc 1 351 3 view .LVU135
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 15
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 15
 
 
  429              		.loc 1 351 6 is_stmt 0 view .LVU136
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  465              		@ args = 0, pretend = 0, frame = 0
  466              		@ frame_needed = 0, uses_anonymous_args = 0
  467              		@ link register save eliminated.
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 16
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 16
 
 
  372:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  391:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be: ENABLE or DISABLE.
  392:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None.
  393:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 17
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 17
 
 
  394:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_GenerateSTART(I2C_TypeDef* I2Cx, FunctionalState NewState)
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  545              	.LVL44:
  546              	.LFB36:
  410:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 18
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 18
 
 
  411:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  579              		.section	.text.I2C_AcknowledgeConfig,"ax",%progbits
  580              		.align	1
  581              		.global	I2C_AcknowledgeConfig
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 19
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 19
 
 
  582              		.syntax unified
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  615 0018 0380     		strh	r3, [r0]	@ movhi
  456:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
  457:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 20
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 20
 
 
  616              		.loc 1 457 1 view .LVU191
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  650              	.LVL49:
  651              		.loc 1 479 10 view .LVU201
  652 000c 0B43     		orrs	r3, r3, r1
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 21
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 21
 
 
  653              	.LVL50:
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  688 000a 8381     		strh	r3, [r0, #12]	@ movhi
  689 000c 7047     		bx	lr
  690              	.L41:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 22
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 22
 
 
  501:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  524:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     I2Cx->CR1 |= CR1_ENGC_Set;
  724              		.loc 1 524 5 is_stmt 1 view .LVU222
  725              		.loc 1 524 9 is_stmt 0 view .LVU223
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 23
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 23
 
 
  726 0002 0388     		ldrh	r3, [r0]
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  760              		@ link register save eliminated.
  547:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Check the parameters */
  548:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_I2C_ALL_PERIPH(I2Cx));
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 24
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 24
 
 
  761              		.loc 1 548 3 view .LVU230
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  564:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
  565:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Sends a data byte through the I2Cx peripheral.
  566:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 25
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 25
 
 
  567:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  Data: Byte to be transmitted..
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  589:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
  836              		.loc 1 589 1 view .LVU253
  837 0002 C0B2     		uxtb	r0, r0
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 26
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 26
 
 
  838 0004 7047     		bx	lr
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  617:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Send the address */
  618:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   I2Cx->DR = Address;
  867              		.loc 1 618 3 is_stmt 1 view .LVU261
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 27
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 27
 
 
  868              		.loc 1 618 12 is_stmt 0 view .LVU262
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  901              		.loc 1 638 3 is_stmt 1 view .LVU269
  902              		.loc 1 638 17 is_stmt 0 view .LVU270
  903 0002 0023     		movs	r3, #0
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 28
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 28
 
 
  904 0004 0193     		str	r3, [sp, #4]
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  656:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
  657:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
  658:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_SoftwareResetCmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 29
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 29
 
 
  659:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  674:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
  675:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
  676:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @brief  Selects the specified I2C NACK position in master receiver mode.
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 30
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 30
 
 
  677:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *         This function is useful in I2C Master Receiver mode when the number
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  712:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
  713:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
  1003              		.loc 1 713 1 view .LVU302
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 31
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 31
 
 
  1004 0012 7047     		bx	lr
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  733:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
  734:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   else
  735:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 32
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 32
 
 
  736:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Drive the SMBusAlert pin High  */
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  1075              		.loc 1 751 3 view .LVU319
  752:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
  1076              		.loc 1 752 3 view .LVU320
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 33
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 33
 
 
  753:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   if (NewState != DISABLE)
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  774:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *          but is intended to be used in SMBUS mode while I2C_NACKPositionConfig() 
  775:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *          is intended to used in I2C mode.
  776:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *               
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 34
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 34
 
 
  777:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  1146              		.align	1
  1147              		.global	I2C_CalculatePEC
  1148              		.syntax unified
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 35
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 35
 
 
  1149              		.thumb
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  817:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   }
  818:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
  1182              		.loc 1 818 1 view .LVU353
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 36
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 36
 
 
  1183 001a 7047     		bx	lr
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  837:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be: ENABLE or DISABLE.
  838:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval None
  839:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 37
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 37
 
 
  840:STM32F10x_FWLib/src/stm32f10x_i2c.c **** void I2C_ARPCmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  1263              	.LVL73:
  1264              	.LFB54:
  856:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 38
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 38
 
 
  857:STM32F10x_FWLib/src/stm32f10x_i2c.c **** /**
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  1297              		.section	.text.I2C_FastModeDutyCycleConfig,"ax",%progbits
  1298              		.align	1
  1299              		.global	I2C_FastModeDutyCycleConfig
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 39
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 39
 
 
  1300              		.syntax unified
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  1331 0016 9BB2     		uxth	r3, r3
  1332              		.loc 1 903 15 view .LVU393
  1333 0018 43F48043 		orr	r3, r3, #16384
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 40
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 40
 
 
  1334 001c 8383     		strh	r3, [r0, #28]	@ movhi
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  944:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *            in order to determine which error occured.
  945:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *          - I2C_ClearFlag() or I2C_ClearITPendingBit() and/or I2C_SoftwareResetCmd()
  946:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *            and/or I2C_GenerateStop() in order to clear the error flag and source,
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 41
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 41
 
 
  947:STM32F10x_FWLib/src/stm32f10x_i2c.c ****  *            and return to correct communication status.
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
 1001:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be one of the following values:
 1002:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED           : EV1
 1003:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED              : EV1
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 42
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 42
 
 
 1004:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_EVENT_SLAVE_TRANSMITTER_SECONDADDRESS_MATCHED     : EV1
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  1365              		.loc 1 1042 3 is_stmt 1 view .LVU403
  1366              		.loc 1 1042 15 is_stmt 0 view .LVU404
  1367 0004 028B     		ldrh	r2, [r0, #24]
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 43
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 43
 
 
  1368              	.LVL77:
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  1402              		.syntax unified
  1403              		.thumb
  1404              		.thumb_func
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 44
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 44
 
 
  1406              	I2C_GetLastEvent:
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  1429 0006 43EA0240 		orr	r0, r3, r2, lsl #16
  1430              	.LVL87:
 1093:STM32F10x_FWLib/src/stm32f10x_i2c.c **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 45
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 45
 
 
 1094:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   /* Return status */
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
 1131:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @retval The new state of I2C_FLAG (SET or RESET).
 1132:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   */
 1133:STM32F10x_FWLib/src/stm32f10x_i2c.c **** FlagStatus I2C_GetFlagStatus(I2C_TypeDef* I2Cx, uint32_t I2C_FLAG)
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 46
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 46
 
 
 1134:STM32F10x_FWLib/src/stm32f10x_i2c.c **** {
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
 1152:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   {
 1153:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Get the I2Cx SR1 register address */
 1154:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     i2cxbase += 0x14;
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 47
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 47
 
 
  1486              		.loc 1 1154 5 is_stmt 1 view .LVU449
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  1516              		.loc 1 1159 5 is_stmt 1 view .LVU458
 1159:STM32F10x_FWLib/src/stm32f10x_i2c.c ****     /* Get the I2Cx SR2 register address */
  1517              		.loc 1 1159 14 is_stmt 0 view .LVU459
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 48
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 48
 
 
  1518 002a 090C     		lsrs	r1, r1, #16
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
 1203:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     read/write to I2C_DR register (I2C_SendData()).
 1204:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   - ADDR (Address sent) is cleared by software sequence: a read operation to 
 1205:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     I2C_SR1 register (I2C_GetFlagStatus()) followed by a read operation to 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 49
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 49
 
 
 1206:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     I2C_SR2 register ((void)(I2Cx->SR2)).
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
 1226:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
 1227:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   * @param  I2C_IT: specifies the interrupt source to check. 
 1228:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *   This parameter can be one of the following values:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 50
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 50
 
 
 1229:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_SMBALERT: SMBus Alert flag
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  1601 000a 828A     		ldrh	r2, [r0, #20]
  1602 000c 92B2     		uxth	r2, r2
  1603              		.loc 1 1262 6 view .LVU487
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 51
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 51
 
 
  1604 000e 1142     		tst	r1, r2
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
 1281:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_SMBALERT: SMBus Alert interrupt
 1282:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_TIMEOUT: Timeout or Tlow error interrupt
 1283:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_PECERR: PEC error in reception  interrupt
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 52
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 52
 
 
 1284:STM32F10x_FWLib/src/stm32f10x_i2c.c ****   *     @arg I2C_IT_OVR: Overrun/Underrun interrupt (Slave mode)
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
 1317:STM32F10x_FWLib/src/stm32f10x_i2c.c **** }
  1662              		.loc 1 1317 1 view .LVU506
  1663 000a 7047     		bx	lr
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 53
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 53
 
 
  1664              		.cfi_endproc
@@ -3130,82 +3130,82 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 1
  1671              		.file 4 "USER/stm32f10x.h"
  1672              		.file 5 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
  1673              		.file 6 "STM32F10x_FWLib/inc/stm32f10x_i2c.h"
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 54
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 54
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f10x_i2c.c
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:19     .text.I2C_DeInit:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:25     .text.I2C_DeInit:00000000 I2C_DeInit
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:77     .text.I2C_DeInit:00000034 $d
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:82     .text.I2C_Init:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:88     .text.I2C_Init:00000000 I2C_Init
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:321    .text.I2C_Init:000000cc $d
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:328    .text.I2C_StructInit:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:334    .text.I2C_StructInit:00000000 I2C_StructInit
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:370    .text.I2C_Cmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:376    .text.I2C_Cmd:00000000 I2C_Cmd
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:412    .text.I2C_DMACmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:418    .text.I2C_DMACmd:00000000 I2C_DMACmd
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:454    .text.I2C_DMALastTransferCmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:460    .text.I2C_DMALastTransferCmd:00000000 I2C_DMALastTransferCmd
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:496    .text.I2C_GenerateSTART:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:502    .text.I2C_GenerateSTART:00000000 I2C_GenerateSTART
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:538    .text.I2C_GenerateSTOP:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:544    .text.I2C_GenerateSTOP:00000000 I2C_GenerateSTOP
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:580    .text.I2C_AcknowledgeConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:586    .text.I2C_AcknowledgeConfig:00000000 I2C_AcknowledgeConfig
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:622    .text.I2C_OwnAddress2Config:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:628    .text.I2C_OwnAddress2Config:00000000 I2C_OwnAddress2Config
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:663    .text.I2C_DualAddressCmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:669    .text.I2C_DualAddressCmd:00000000 I2C_DualAddressCmd
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:705    .text.I2C_GeneralCallCmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:711    .text.I2C_GeneralCallCmd:00000000 I2C_GeneralCallCmd
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:747    .text.I2C_ITConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:753    .text.I2C_ITConfig:00000000 I2C_ITConfig
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:793    .text.I2C_SendData:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:799    .text.I2C_SendData:00000000 I2C_SendData
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:817    .text.I2C_ReceiveData:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:823    .text.I2C_ReceiveData:00000000 I2C_ReceiveData
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:843    .text.I2C_Send7bitAddress:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:849    .text.I2C_Send7bitAddress:00000000 I2C_Send7bitAddress
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:883    .text.I2C_ReadRegister:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:889    .text.I2C_ReadRegister:00000000 I2C_ReadRegister
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:934    .text.I2C_SoftwareResetCmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:940    .text.I2C_SoftwareResetCmd:00000000 I2C_SoftwareResetCmd
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:975    .text.I2C_NACKPositionConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:981    .text.I2C_NACKPositionConfig:00000000 I2C_NACKPositionConfig
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1018   .text.I2C_SMBusAlertConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1024   .text.I2C_SMBusAlertConfig:00000000 I2C_SMBusAlertConfig
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1061   .text.I2C_TransmitPEC:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1067   .text.I2C_TransmitPEC:00000000 I2C_TransmitPEC
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1103   .text.I2C_PECPositionConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1109   .text.I2C_PECPositionConfig:00000000 I2C_PECPositionConfig
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1146   .text.I2C_CalculatePEC:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1152   .text.I2C_CalculatePEC:00000000 I2C_CalculatePEC
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1188   .text.I2C_GetPEC:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1194   .text.I2C_GetPEC:00000000 I2C_GetPEC
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1214   .text.I2C_ARPCmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1220   .text.I2C_ARPCmd:00000000 I2C_ARPCmd
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1256   .text.I2C_StretchClockCmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1262   .text.I2C_StretchClockCmd:00000000 I2C_StretchClockCmd
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1298   .text.I2C_FastModeDutyCycleConfig:00000000 $t
-ARM GAS  C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s 			page 55
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:19     .text.I2C_DeInit:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:25     .text.I2C_DeInit:00000000 I2C_DeInit
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:77     .text.I2C_DeInit:00000034 $d
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:82     .text.I2C_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:88     .text.I2C_Init:00000000 I2C_Init
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:321    .text.I2C_Init:000000cc $d
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:328    .text.I2C_StructInit:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:334    .text.I2C_StructInit:00000000 I2C_StructInit
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:370    .text.I2C_Cmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:376    .text.I2C_Cmd:00000000 I2C_Cmd
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:412    .text.I2C_DMACmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:418    .text.I2C_DMACmd:00000000 I2C_DMACmd
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:454    .text.I2C_DMALastTransferCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:460    .text.I2C_DMALastTransferCmd:00000000 I2C_DMALastTransferCmd
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:496    .text.I2C_GenerateSTART:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:502    .text.I2C_GenerateSTART:00000000 I2C_GenerateSTART
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:538    .text.I2C_GenerateSTOP:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:544    .text.I2C_GenerateSTOP:00000000 I2C_GenerateSTOP
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:580    .text.I2C_AcknowledgeConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:586    .text.I2C_AcknowledgeConfig:00000000 I2C_AcknowledgeConfig
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:622    .text.I2C_OwnAddress2Config:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:628    .text.I2C_OwnAddress2Config:00000000 I2C_OwnAddress2Config
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:663    .text.I2C_DualAddressCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:669    .text.I2C_DualAddressCmd:00000000 I2C_DualAddressCmd
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:705    .text.I2C_GeneralCallCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:711    .text.I2C_GeneralCallCmd:00000000 I2C_GeneralCallCmd
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:747    .text.I2C_ITConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:753    .text.I2C_ITConfig:00000000 I2C_ITConfig
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:793    .text.I2C_SendData:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:799    .text.I2C_SendData:00000000 I2C_SendData
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:817    .text.I2C_ReceiveData:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:823    .text.I2C_ReceiveData:00000000 I2C_ReceiveData
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:843    .text.I2C_Send7bitAddress:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:849    .text.I2C_Send7bitAddress:00000000 I2C_Send7bitAddress
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:883    .text.I2C_ReadRegister:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:889    .text.I2C_ReadRegister:00000000 I2C_ReadRegister
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:934    .text.I2C_SoftwareResetCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:940    .text.I2C_SoftwareResetCmd:00000000 I2C_SoftwareResetCmd
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:975    .text.I2C_NACKPositionConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:981    .text.I2C_NACKPositionConfig:00000000 I2C_NACKPositionConfig
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1018   .text.I2C_SMBusAlertConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1024   .text.I2C_SMBusAlertConfig:00000000 I2C_SMBusAlertConfig
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1061   .text.I2C_TransmitPEC:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1067   .text.I2C_TransmitPEC:00000000 I2C_TransmitPEC
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1103   .text.I2C_PECPositionConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1109   .text.I2C_PECPositionConfig:00000000 I2C_PECPositionConfig
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1146   .text.I2C_CalculatePEC:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1152   .text.I2C_CalculatePEC:00000000 I2C_CalculatePEC
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1188   .text.I2C_GetPEC:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1194   .text.I2C_GetPEC:00000000 I2C_GetPEC
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1214   .text.I2C_ARPCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1220   .text.I2C_ARPCmd:00000000 I2C_ARPCmd
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1256   .text.I2C_StretchClockCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1262   .text.I2C_StretchClockCmd:00000000 I2C_StretchClockCmd
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1298   .text.I2C_FastModeDutyCycleConfig:00000000 $t
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDnYSId.s 			page 55
 
 
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1304   .text.I2C_FastModeDutyCycleConfig:00000000 I2C_FastModeDutyCycleConfig
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1341   .text.I2C_CheckEvent:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1347   .text.I2C_CheckEvent:00000000 I2C_CheckEvent
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1400   .text.I2C_GetLastEvent:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1406   .text.I2C_GetLastEvent:00000000 I2C_GetLastEvent
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1441   .text.I2C_GetFlagStatus:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1447   .text.I2C_GetFlagStatus:00000000 I2C_GetFlagStatus
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1536   .text.I2C_ClearFlag:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1542   .text.I2C_ClearFlag:00000000 I2C_ClearFlag
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1572   .text.I2C_GetITStatus:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1578   .text.I2C_GetITStatus:00000000 I2C_GetITStatus
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1632   .text.I2C_ClearITPendingBit:00000000 $t
-C:\Users\86157\AppData\Local\Temp\cc3qcRWh.s:1638   .text.I2C_ClearITPendingBit:00000000 I2C_ClearITPendingBit
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1304   .text.I2C_FastModeDutyCycleConfig:00000000 I2C_FastModeDutyCycleConfig
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1341   .text.I2C_CheckEvent:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1347   .text.I2C_CheckEvent:00000000 I2C_CheckEvent
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1400   .text.I2C_GetLastEvent:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1406   .text.I2C_GetLastEvent:00000000 I2C_GetLastEvent
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1441   .text.I2C_GetFlagStatus:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1447   .text.I2C_GetFlagStatus:00000000 I2C_GetFlagStatus
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1536   .text.I2C_ClearFlag:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1542   .text.I2C_ClearFlag:00000000 I2C_ClearFlag
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1572   .text.I2C_GetITStatus:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1578   .text.I2C_GetITStatus:00000000 I2C_GetITStatus
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1632   .text.I2C_ClearITPendingBit:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccDnYSId.s:1638   .text.I2C_ClearITPendingBit:00000000 I2C_ClearITPendingBit
 
 UNDEFINED SYMBOLS
 RCC_APB1PeriphResetCmd
