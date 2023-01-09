@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
   30:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   * @brief RCC driver modules
   31:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   * @{
   32:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   */ 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 2
 
 
   33:STM32F10x_FWLib/src/stm32f10x_rcc.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
   87:STM32F10x_FWLib/src/stm32f10x_rcc.c **** /* --- BDCR Register ---*/
   88:STM32F10x_FWLib/src/stm32f10x_rcc.c **** 
   89:STM32F10x_FWLib/src/stm32f10x_rcc.c **** /* Alias word address of RTCEN bit */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 3
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 3
 
 
   90:STM32F10x_FWLib/src/stm32f10x_rcc.c **** #define BDCR_OFFSET               (RCC_OFFSET + 0x20)
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  144:STM32F10x_FWLib/src/stm32f10x_rcc.c **** #define CFGR_PPRE2_Set_Mask       ((uint32_t)0x00003800)
  145:STM32F10x_FWLib/src/stm32f10x_rcc.c **** #define CFGR_ADCPRE_Reset_Mask    ((uint32_t)0xFFFF3FFF)
  146:STM32F10x_FWLib/src/stm32f10x_rcc.c **** #define CFGR_ADCPRE_Set_Mask      ((uint32_t)0x0000C000)
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 4
 
 
  147:STM32F10x_FWLib/src/stm32f10x_rcc.c **** 
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  201:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   * @{
  202:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   */
  203:STM32F10x_FWLib/src/stm32f10x_rcc.c **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 5
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 5
 
 
  204:STM32F10x_FWLib/src/stm32f10x_rcc.c **** /**
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  232:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   /* Reset HSEBYP bit */
  233:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   RCC->CR &= (uint32_t)0xFFFBFFFF;
   53              		.loc 1 233 3 is_stmt 1 view .LVU10
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 6
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 6
 
 
   54              		.loc 1 233 6 is_stmt 0 view .LVU11
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
   84              		.thumb_func
   86              	RCC_HSEConfig:
   87              	.LVL0:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 7
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 7
 
 
   88              	.LFB30:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  116              		.loc 1 284 10 is_stmt 0 view .LVU29
  117 0020 054A     		ldr	r2, .L8
  118 0022 1368     		ldr	r3, [r2]
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 8
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 8
 
 
  119              		.loc 1 284 15 view .LVU30
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  308:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   FlagStatus HSEStatus = RESET;
  309:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   
  310:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   /* Wait till HSE is ready and if Time out is reached exit */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 9
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 9
 
 
  311:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   do
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  345:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   RCC->CR = tmpreg;
  172              		.loc 1 345 3 is_stmt 1 view .LVU46
  173              		.loc 1 345 11 is_stmt 0 view .LVU47
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 10
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 10
 
 
  174 000c 1360     		str	r3, [r2]
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  217              		.thumb
  218              		.thumb_func
  220              	RCC_PLLConfig:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 11
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 11
 
 
  221              	.LVL6:
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  244              		.loc 1 390 10 view .LVU64
  245 000a 1843     		orrs	r0, r0, r3
  246              	.LVL10:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 12
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 12
 
 
  391:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   /* Store the new value */
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  286              	.LFE35:
  288              		.section	.text.RCC_SYSCLKConfig,"ax",%progbits
  289              		.align	1
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 13
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 13
 
 
  290              		.global	RCC_SYSCLKConfig
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  455:STM32F10x_FWLib/src/stm32f10x_rcc.c **** {
  456:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   uint32_t tmpreg = 0;
  457:STM32F10x_FWLib/src/stm32f10x_rcc.c **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 14
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 14
 
 
  458:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   /* Check the parameters */
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  512:STM32F10x_FWLib/src/stm32f10x_rcc.c **** 
  513:STM32F10x_FWLib/src/stm32f10x_rcc.c **** 
  514:STM32F10x_FWLib/src/stm32f10x_rcc.c **** /**
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 15
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 15
 
 
  515:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   * @brief  Configures the PLL3 multiplication factor.
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  301              		@ frame_needed = 0, uses_anonymous_args = 0
  302              		@ link register save eliminated.
  566:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   uint32_t tmpreg = 0;
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 16
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 16
 
 
  303              		.loc 1 566 3 view .LVU74
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  587:STM32F10x_FWLib/src/stm32f10x_rcc.c **** uint8_t RCC_GetSYSCLKSource(void)
  588:STM32F10x_FWLib/src/stm32f10x_rcc.c **** {
  339              		.loc 1 588 1 is_stmt 1 view -0
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 17
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 17
 
 
  340              		.cfi_startproc
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  611:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   /* Check the parameters */
  612:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   assert_param(IS_RCC_HCLK(RCC_SYSCLK));
  374              		.loc 1 612 3 view .LVU91
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 18
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 18
 
 
  613:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   tmpreg = RCC->CFGR;
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  634:STM32F10x_FWLib/src/stm32f10x_rcc.c **** void RCC_PCLK1Config(uint32_t RCC_HCLK)
  635:STM32F10x_FWLib/src/stm32f10x_rcc.c **** {
  410              		.loc 1 635 1 is_stmt 1 view -0
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 19
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 19
 
 
  411              		.cfi_startproc
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  651:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *   the AHB clock (HCLK).
  652:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *   This parameter can be one of the following values:
  653:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *     @arg RCC_HCLK_Div1: APB2 clock = HCLK
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 20
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 20
 
 
  654:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *     @arg RCC_HCLK_Div2: APB2 clock = HCLK/2
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  488              		.thumb
  489              		.thumb_func
  491              	RCC_ITConfig:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 21
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 21
 
 
  492              	.LVL28:
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  510 000a 7047     		bx	lr
  511              	.L38:
  709:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   }
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 22
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 22
 
 
  710:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   else
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  544              		.loc 1 733 37 is_stmt 0 view .LVU138
  545 0000 014B     		ldr	r3, .L43
  546 0002 C3F8D800 		str	r0, [r3, #216]
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 23
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 23
 
 
  734:STM32F10x_FWLib/src/stm32f10x_rcc.c **** }
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  569              		@ frame_needed = 0, uses_anonymous_args = 0
  570              		@ link register save eliminated.
  768:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   uint32_t tmpreg = 0;
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 24
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 24
 
 
  571              		.loc 1 768 3 view .LVU141
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  788:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *     @arg RCC_I2S2CLKSource_SYSCLK: system clock selected as I2S2 clock entry
  789:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *     @arg RCC_I2S2CLKSource_PLL3_VCO: PLL3 VCO clock selected as I2S2 clock entry
  790:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   * @retval None
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 25
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 25
 
 
  791:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   */
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  617 0002 0022     		movs	r2, #0
  618 0004 83F82020 		strb	r2, [r3, #32]
  836:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   /* Reset LSEBYP bit */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 26
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 26
 
 
  837:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *(__IO uint8_t *) BDCR_ADDRESS = RCC_LSE_OFF;
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  656              		.thumb
  657              		.thumb_func
  659              	RCC_LSICmd:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 27
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 27
 
 
  660              	.LVL35:
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  880:STM32F10x_FWLib/src/stm32f10x_rcc.c **** {
  691              		.loc 1 880 1 is_stmt 1 view -0
  692              		.cfi_startproc
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 28
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 28
 
 
  693              		@ args = 0, pretend = 0, frame = 0
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  732 0002 C3F83C04 		str	r0, [r3, #1084]
  898:STM32F10x_FWLib/src/stm32f10x_rcc.c **** }
  733              		.loc 1 898 1 view .LVU181
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 29
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 29
 
 
  734 0006 7047     		bx	lr
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  767 0004 5B68     		ldr	r3, [r3, #4]
  768              		.loc 1 921 7 view .LVU187
  769 0006 03F00C03 		and	r3, r3, #12
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 30
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 30
 
 
  770              	.LVL40:
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  969:STM32F10x_FWLib/src/stm32f10x_rcc.c ****       else
  970:STM32F10x_FWLib/src/stm32f10x_rcc.c ****       { /* PLL multiplication factor = PLL input clock * 6.5 */
  971:STM32F10x_FWLib/src/stm32f10x_rcc.c ****         pllmull = 13 / 2; 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 31
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 31
 
 
  972:STM32F10x_FWLib/src/stm32f10x_rcc.c ****       }
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  795              	.L67:
 1004:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   }
 1005:STM32F10x_FWLib/src/stm32f10x_rcc.c **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 32
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 32
 
 
 1006:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   /* Compute HCLK, PCLK1, PCLK2 and ADCCLK clocks frequencies ----------------*/
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  837              	.LVL53:
  838              		.loc 1 1018 31 view .LVU216
  839 0040 8260     		str	r2, [r0, #8]
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 33
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 33
 
 
 1019:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   /* Get PCLK2 prescaler */
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  881              		.loc 1 1031 1 view .LVU237
  882 0062 10BC     		pop	{r4}
  883              	.LCFI1:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 34
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 34
 
 
  884              		.cfi_remember_state
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  923              		.loc 1 942 57 is_stmt 0 view .LVU252
  924 007e 0E4A     		ldr	r2, .L72+16
  925              	.LVL69:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 35
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 35
 
 
  942:STM32F10x_FWLib/src/stm32f10x_rcc.c ****       }
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  968 00b8 00093D00 		.word	4000000
  969              		.cfi_endproc
  970              	.LFE48:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 36
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 36
 
 
  972              		.section	.text.RCC_AHBPeriphClockCmd,"ax",%progbits
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
 1070:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   if (NewState != DISABLE)
  989              		.loc 1 1070 3 view .LVU268
  990              		.loc 1 1070 6 is_stmt 0 view .LVU269
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 37
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 37
 
 
  991 0000 21B1     		cbz	r1, .L75
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
 1091:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   * @param  NewState: new state of the specified peripheral clock.
 1092:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *   This parameter can be: ENABLE or DISABLE.
 1093:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   * @retval None
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 38
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 38
 
 
 1094:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   */
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  1067              		.thumb_func
  1069              	RCC_APB1PeriphClockCmd:
  1070              	.LVL78:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 39
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 39
 
 
  1071              	.LFB51:
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  1096 0010 23EA0003 		bic	r3, r3, r0
  1097 0014 D361     		str	r3, [r2, #28]
 1138:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   }
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 40
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 40
 
 
 1139:STM32F10x_FWLib/src/stm32f10x_rcc.c **** }
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
 1176:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *          RCC_APB2Periph_GPIOF, RCC_APB2Periph_GPIOG, RCC_APB2Periph_ADC1,
 1177:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *          RCC_APB2Periph_ADC2, RCC_APB2Periph_TIM1, RCC_APB2Periph_SPI1,
 1178:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *          RCC_APB2Periph_TIM8, RCC_APB2Periph_USART1, RCC_APB2Periph_ADC3,
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 41
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 41
 
 
 1179:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *          RCC_APB2Periph_TIM15, RCC_APB2Periph_TIM16, RCC_APB2Periph_TIM17,
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  1152              		.section	.text.RCC_APB1PeriphResetCmd,"ax",%progbits
  1153              		.align	1
  1154              		.global	RCC_APB1PeriphResetCmd
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 42
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 42
 
 
  1155              		.syntax unified
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  1181              		.loc 1 1227 5 is_stmt 1 view .LVU321
  1182              		.loc 1 1227 8 is_stmt 0 view .LVU322
  1183 000c 024A     		ldr	r2, .L97
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 43
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 43
 
 
  1184 000e 1369     		ldr	r3, [r2, #16]
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  1226              		.section	.text.RCC_ClockSecuritySystemCmd,"ax",%progbits
  1227              		.align	1
  1228              		.global	RCC_ClockSecuritySystemCmd
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 44
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 44
 
 
  1229              		.syntax unified
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
 1264:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *     @arg RCC_MCO_SYSCLK: System clock selected
 1265:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *     @arg RCC_MCO_HSI: HSI oscillator clock selected
 1266:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *     @arg RCC_MCO_HSE: HSE oscillator clock selected
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 45
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 45
 
 
 1267:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *     @arg RCC_MCO_PLLCLK_Div2: PLL clock divided by 2 selected
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
 1294:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *   
 1295:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *   For @b STM32_Connectivity_line_devices, this parameter can be one of the
 1296:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *   following values:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 46
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 46
 
 
 1297:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *     @arg RCC_FLAG_HSIRDY: HSI oscillator clock ready
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  1308              		.loc 1 1336 6 is_stmt 0 view .LVU348
  1309 0002 012B     		cmp	r3, #1
  1310 0004 0BD0     		beq	.L114
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 47
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 47
 
 
 1337:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   {
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  1345              		.loc 1 1338 15 view .LVU363
  1346 0020 1B68     		ldr	r3, [r3]
  1347              	.LVL93:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 48
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 48
 
 
 1338:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   }
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  1389 0000 00B5     		push	{lr}
  1390              	.LCFI3:
  1391              		.cfi_def_cfa_offset 4
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 49
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 49
 
 
  1392              		.cfi_offset 14, -4
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  1430 0022 FFF7FEFF 		bl	RCC_GetFlagStatus
  1431              	.LVL102:
  317:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   {
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 50
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 50
 
 
  1432              		.loc 1 317 6 view .LVU389
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  1472              		.align	2
  1473              	.L124:
  1474 000c 00100240 		.word	1073876992
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 51
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 51
 
 
  1475              		.cfi_endproc
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  1497 0000 034B     		ldr	r3, .L129
  1498 0002 9B68     		ldr	r3, [r3, #8]
  1499              		.loc 1 1409 6 view .LVU403
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 52
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 52
 
 
  1500 0004 1842     		tst	r0, r3
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
 1434:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *     @arg RCC_IT_PLL3RDY: PLL3 ready interrupt                      
 1435:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *     @arg RCC_IT_CSS: Clock Security System interrupt
 1436:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   * 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 53
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 53
 
 
 1437:STM32F10x_FWLib/src/stm32f10x_rcc.c ****   *   For @b other_STM32_devices, this parameter can be any combination of the
@@ -3177,112 +3177,112 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 1
  1567              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
  1568              		.file 4 "USER/stm32f10x.h"
  1569              		.file 5 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 54
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 54
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f10x_rcc.c
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:19     .text.RCC_DeInit:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:25     .text.RCC_DeInit:00000000 RCC_DeInit
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:74     .text.RCC_DeInit:00000038 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:80     .text.RCC_HSEConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:86     .text.RCC_HSEConfig:00000000 RCC_HSEConfig
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:138    .text.RCC_HSEConfig:00000038 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:143    .text.RCC_AdjustHSICalibrationValue:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:149    .text.RCC_AdjustHSICalibrationValue:00000000 RCC_AdjustHSICalibrationValue
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:180    .text.RCC_AdjustHSICalibrationValue:00000010 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:185    .text.RCC_HSICmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:191    .text.RCC_HSICmd:00000000 RCC_HSICmd
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:209    .text.RCC_HSICmd:00000008 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:214    .text.RCC_PLLConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:220    .text.RCC_PLLConfig:00000000 RCC_PLLConfig
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:255    .text.RCC_PLLConfig:00000010 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:260    .text.RCC_PLLCmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:266    .text.RCC_PLLCmd:00000000 RCC_PLLCmd
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:284    .text.RCC_PLLCmd:00000008 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:289    .text.RCC_SYSCLKConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:295    .text.RCC_SYSCLKConfig:00000000 RCC_SYSCLKConfig
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:326    .text.RCC_SYSCLKConfig:00000010 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:331    .text.RCC_GetSYSCLKSource:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:337    .text.RCC_GetSYSCLKSource:00000000 RCC_GetSYSCLKSource
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:354    .text.RCC_GetSYSCLKSource:0000000c $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:359    .text.RCC_HCLKConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:365    .text.RCC_HCLKConfig:00000000 RCC_HCLKConfig
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:396    .text.RCC_HCLKConfig:00000010 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:401    .text.RCC_PCLK1Config:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:407    .text.RCC_PCLK1Config:00000000 RCC_PCLK1Config
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:438    .text.RCC_PCLK1Config:00000010 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:443    .text.RCC_PCLK2Config:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:449    .text.RCC_PCLK2Config:00000000 RCC_PCLK2Config
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:480    .text.RCC_PCLK2Config:00000010 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:485    .text.RCC_ITConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:491    .text.RCC_ITConfig:00000000 RCC_ITConfig
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:523    .text.RCC_ITConfig:00000018 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:528    .text.RCC_USBCLKConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:534    .text.RCC_USBCLKConfig:00000000 RCC_USBCLKConfig
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:552    .text.RCC_USBCLKConfig:00000008 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:557    .text.RCC_ADCCLKConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:563    .text.RCC_ADCCLKConfig:00000000 RCC_ADCCLKConfig
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:594    .text.RCC_ADCCLKConfig:00000010 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:599    .text.RCC_LSEConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:605    .text.RCC_LSEConfig:00000000 RCC_LSEConfig
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:648    .text.RCC_LSEConfig:0000002c $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:653    .text.RCC_LSICmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:659    .text.RCC_LSICmd:00000000 RCC_LSICmd
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:677    .text.RCC_LSICmd:00000008 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:682    .text.RCC_RTCCLKConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:688    .text.RCC_RTCCLKConfig:00000000 RCC_RTCCLKConfig
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:709    .text.RCC_RTCCLKConfig:0000000c $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:714    .text.RCC_RTCCLKCmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:720    .text.RCC_RTCCLKCmd:00000000 RCC_RTCCLKCmd
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:738    .text.RCC_RTCCLKCmd:00000008 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:743    .text.RCC_GetClocksFreq:00000000 $t
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s 			page 55
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:19     .text.RCC_DeInit:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:25     .text.RCC_DeInit:00000000 RCC_DeInit
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:74     .text.RCC_DeInit:00000038 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:80     .text.RCC_HSEConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:86     .text.RCC_HSEConfig:00000000 RCC_HSEConfig
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:138    .text.RCC_HSEConfig:00000038 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:143    .text.RCC_AdjustHSICalibrationValue:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:149    .text.RCC_AdjustHSICalibrationValue:00000000 RCC_AdjustHSICalibrationValue
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:180    .text.RCC_AdjustHSICalibrationValue:00000010 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:185    .text.RCC_HSICmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:191    .text.RCC_HSICmd:00000000 RCC_HSICmd
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:209    .text.RCC_HSICmd:00000008 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:214    .text.RCC_PLLConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:220    .text.RCC_PLLConfig:00000000 RCC_PLLConfig
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:255    .text.RCC_PLLConfig:00000010 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:260    .text.RCC_PLLCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:266    .text.RCC_PLLCmd:00000000 RCC_PLLCmd
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:284    .text.RCC_PLLCmd:00000008 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:289    .text.RCC_SYSCLKConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:295    .text.RCC_SYSCLKConfig:00000000 RCC_SYSCLKConfig
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:326    .text.RCC_SYSCLKConfig:00000010 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:331    .text.RCC_GetSYSCLKSource:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:337    .text.RCC_GetSYSCLKSource:00000000 RCC_GetSYSCLKSource
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:354    .text.RCC_GetSYSCLKSource:0000000c $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:359    .text.RCC_HCLKConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:365    .text.RCC_HCLKConfig:00000000 RCC_HCLKConfig
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:396    .text.RCC_HCLKConfig:00000010 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:401    .text.RCC_PCLK1Config:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:407    .text.RCC_PCLK1Config:00000000 RCC_PCLK1Config
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:438    .text.RCC_PCLK1Config:00000010 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:443    .text.RCC_PCLK2Config:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:449    .text.RCC_PCLK2Config:00000000 RCC_PCLK2Config
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:480    .text.RCC_PCLK2Config:00000010 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:485    .text.RCC_ITConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:491    .text.RCC_ITConfig:00000000 RCC_ITConfig
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:523    .text.RCC_ITConfig:00000018 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:528    .text.RCC_USBCLKConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:534    .text.RCC_USBCLKConfig:00000000 RCC_USBCLKConfig
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:552    .text.RCC_USBCLKConfig:00000008 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:557    .text.RCC_ADCCLKConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:563    .text.RCC_ADCCLKConfig:00000000 RCC_ADCCLKConfig
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:594    .text.RCC_ADCCLKConfig:00000010 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:599    .text.RCC_LSEConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:605    .text.RCC_LSEConfig:00000000 RCC_LSEConfig
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:648    .text.RCC_LSEConfig:0000002c $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:653    .text.RCC_LSICmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:659    .text.RCC_LSICmd:00000000 RCC_LSICmd
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:677    .text.RCC_LSICmd:00000008 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:682    .text.RCC_RTCCLKConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:688    .text.RCC_RTCCLKConfig:00000000 RCC_RTCCLKConfig
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:709    .text.RCC_RTCCLKConfig:0000000c $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:714    .text.RCC_RTCCLKCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:720    .text.RCC_RTCCLKCmd:00000000 RCC_RTCCLKCmd
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:738    .text.RCC_RTCCLKCmd:00000008 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:743    .text.RCC_GetClocksFreq:00000000 $t
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccGehjrO.s 			page 55
 
 
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:749    .text.RCC_GetClocksFreq:00000000 RCC_GetClocksFreq
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:964    .text.RCC_GetClocksFreq:000000a8 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1561   .data.APBAHBPrescTable:00000000 APBAHBPrescTable
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1555   .data.ADCPrescTable:00000000 ADCPrescTable
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:973    .text.RCC_AHBPeriphClockCmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:979    .text.RCC_AHBPeriphClockCmd:00000000 RCC_AHBPeriphClockCmd
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1013   .text.RCC_AHBPeriphClockCmd:00000018 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1018   .text.RCC_APB2PeriphClockCmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1024   .text.RCC_APB2PeriphClockCmd:00000000 RCC_APB2PeriphClockCmd
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1058   .text.RCC_APB2PeriphClockCmd:00000018 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1063   .text.RCC_APB1PeriphClockCmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1069   .text.RCC_APB1PeriphClockCmd:00000000 RCC_APB1PeriphClockCmd
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1103   .text.RCC_APB1PeriphClockCmd:00000018 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1108   .text.RCC_APB2PeriphResetCmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1114   .text.RCC_APB2PeriphResetCmd:00000000 RCC_APB2PeriphResetCmd
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1148   .text.RCC_APB2PeriphResetCmd:00000018 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1153   .text.RCC_APB1PeriphResetCmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1159   .text.RCC_APB1PeriphResetCmd:00000000 RCC_APB1PeriphResetCmd
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1193   .text.RCC_APB1PeriphResetCmd:00000018 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1198   .text.RCC_BackupResetCmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1204   .text.RCC_BackupResetCmd:00000000 RCC_BackupResetCmd
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1222   .text.RCC_BackupResetCmd:00000008 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1227   .text.RCC_ClockSecuritySystemCmd:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1233   .text.RCC_ClockSecuritySystemCmd:00000000 RCC_ClockSecuritySystemCmd
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1251   .text.RCC_ClockSecuritySystemCmd:00000008 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1256   .text.RCC_MCOConfig:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1262   .text.RCC_MCOConfig:00000000 RCC_MCOConfig
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1280   .text.RCC_MCOConfig:00000008 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1285   .text.RCC_GetFlagStatus:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1291   .text.RCC_GetFlagStatus:00000000 RCC_GetFlagStatus
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1372   .text.RCC_GetFlagStatus:00000030 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1377   .text.RCC_WaitForHSEStartUp:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1383   .text.RCC_WaitForHSEStartUp:00000000 RCC_WaitForHSEStartUp
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1449   .text.RCC_ClearFlag:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1455   .text.RCC_ClearFlag:00000000 RCC_ClearFlag
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1474   .text.RCC_ClearFlag:0000000c $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1479   .text.RCC_GetITStatus:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1485   .text.RCC_GetITStatus:00000000 RCC_GetITStatus
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1518   .text.RCC_GetITStatus:00000010 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1523   .text.RCC_ClearITPendingBit:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1529   .text.RCC_ClearITPendingBit:00000000 RCC_ClearITPendingBit
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1547   .text.RCC_ClearITPendingBit:00000008 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1552   .data.ADCPrescTable:00000000 $d
-C:\Users\86157\AppData\Local\Temp\ccDVjXSp.s:1558   .data.APBAHBPrescTable:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:749    .text.RCC_GetClocksFreq:00000000 RCC_GetClocksFreq
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:964    .text.RCC_GetClocksFreq:000000a8 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1561   .data.APBAHBPrescTable:00000000 APBAHBPrescTable
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1555   .data.ADCPrescTable:00000000 ADCPrescTable
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:973    .text.RCC_AHBPeriphClockCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:979    .text.RCC_AHBPeriphClockCmd:00000000 RCC_AHBPeriphClockCmd
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1013   .text.RCC_AHBPeriphClockCmd:00000018 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1018   .text.RCC_APB2PeriphClockCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1024   .text.RCC_APB2PeriphClockCmd:00000000 RCC_APB2PeriphClockCmd
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1058   .text.RCC_APB2PeriphClockCmd:00000018 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1063   .text.RCC_APB1PeriphClockCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1069   .text.RCC_APB1PeriphClockCmd:00000000 RCC_APB1PeriphClockCmd
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1103   .text.RCC_APB1PeriphClockCmd:00000018 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1108   .text.RCC_APB2PeriphResetCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1114   .text.RCC_APB2PeriphResetCmd:00000000 RCC_APB2PeriphResetCmd
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1148   .text.RCC_APB2PeriphResetCmd:00000018 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1153   .text.RCC_APB1PeriphResetCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1159   .text.RCC_APB1PeriphResetCmd:00000000 RCC_APB1PeriphResetCmd
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1193   .text.RCC_APB1PeriphResetCmd:00000018 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1198   .text.RCC_BackupResetCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1204   .text.RCC_BackupResetCmd:00000000 RCC_BackupResetCmd
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1222   .text.RCC_BackupResetCmd:00000008 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1227   .text.RCC_ClockSecuritySystemCmd:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1233   .text.RCC_ClockSecuritySystemCmd:00000000 RCC_ClockSecuritySystemCmd
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1251   .text.RCC_ClockSecuritySystemCmd:00000008 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1256   .text.RCC_MCOConfig:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1262   .text.RCC_MCOConfig:00000000 RCC_MCOConfig
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1280   .text.RCC_MCOConfig:00000008 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1285   .text.RCC_GetFlagStatus:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1291   .text.RCC_GetFlagStatus:00000000 RCC_GetFlagStatus
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1372   .text.RCC_GetFlagStatus:00000030 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1377   .text.RCC_WaitForHSEStartUp:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1383   .text.RCC_WaitForHSEStartUp:00000000 RCC_WaitForHSEStartUp
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1449   .text.RCC_ClearFlag:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1455   .text.RCC_ClearFlag:00000000 RCC_ClearFlag
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1474   .text.RCC_ClearFlag:0000000c $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1479   .text.RCC_GetITStatus:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1485   .text.RCC_GetITStatus:00000000 RCC_GetITStatus
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1518   .text.RCC_GetITStatus:00000010 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1523   .text.RCC_ClearITPendingBit:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1529   .text.RCC_ClearITPendingBit:00000000 RCC_ClearITPendingBit
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1547   .text.RCC_ClearITPendingBit:00000008 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1552   .data.ADCPrescTable:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccGehjrO.s:1558   .data.APBAHBPrescTable:00000000 $d
 
 NO UNDEFINED SYMBOLS

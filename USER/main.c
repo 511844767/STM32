@@ -41,7 +41,9 @@ extern void Touch_Run();
 extern void ADC_Single_Run();		// 单ADC实验
 /* DAC模拟电压输出实验 */
 extern void DAC_Single_Run();		// 但DAC实验
+/* CAN通讯实验 */
+extern void CAN_Silent_LoopBack_Run();	// 静默回环测试
 
 int main(){
-	DAC_Single_Run();
+	CAN_Silent_LoopBack_Run();
 }

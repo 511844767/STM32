@@ -1,0 +1,658 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"CAN.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "HW/CAN/CAN.c"
+  18              		.section	.text.CAN_Silent_LoopBack_Init,"ax",%progbits
+  19              		.align	1
+  20              		.global	CAN_Silent_LoopBack_Init
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	CAN_Silent_LoopBack_Init:
+  26              	.LFB32:
+   1:HW/CAN/CAN.c  **** /**
+   2:HW/CAN/CAN.c  ****  * @file CAN.c
+   3:HW/CAN/CAN.c  ****  * @author 511844767
+   4:HW/CAN/CAN.c  ****  * @brief CAN的静默回环工作测试
+   5:HW/CAN/CAN.c  ****  * @version 0.1
+   6:HW/CAN/CAN.c  ****  * @date 2023-01-09
+   7:HW/CAN/CAN.c  ****  * 
+   8:HW/CAN/CAN.c  ****  * @copyright Copyright (c) 2023
+   9:HW/CAN/CAN.c  ****  * 
+  10:HW/CAN/CAN.c  ****  */
+  11:HW/CAN/CAN.c  **** #include"stdio.h"
+  12:HW/CAN/CAN.c  **** #include"string.h"
+  13:HW/CAN/CAN.c  **** #include"stm32f10x.h"
+  14:HW/CAN/CAN.c  **** #include"stm32f10x_can.h"
+  15:HW/CAN/CAN.c  **** #include"KEY.h"
+  16:HW/CAN/CAN.c  **** #include"delay.h"
+  17:HW/CAN/CAN.c  **** 
+  18:HW/CAN/CAN.c  **** /* 32bit的ID号 */
+  19:HW/CAN/CAN.c  **** #define ID1 ((uint32_t)0X1314)
+  20:HW/CAN/CAN.c  **** 
+  21:HW/CAN/CAN.c  **** /**
+  22:HW/CAN/CAN.c  ****  * @brief CAN1对应PA11(RX)和PA12(TX)
+  23:HW/CAN/CAN.c  ****  * 
+  24:HW/CAN/CAN.c  ****  */
+  25:HW/CAN/CAN.c  **** void CAN_Silent_LoopBack_Init(){
+  27              		.loc 1 25 32 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 40
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 20
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s 			page 2
+
+
+  34              		.cfi_offset 4, -20
+  35              		.cfi_offset 5, -16
+  36              		.cfi_offset 6, -12
+  37              		.cfi_offset 7, -8
+  38              		.cfi_offset 14, -4
+  39 0002 8BB0     		sub	sp, sp, #44
+  40              	.LCFI1:
+  41              		.cfi_def_cfa_offset 64
+  26:HW/CAN/CAN.c  ****     /* 使能时钟 */
+  27:HW/CAN/CAN.c  ****     RCC_APB1PeriphClockCmd(RCC_APB1Periph_CAN1, ENABLE);    // F103只有CAN1
+  42              		.loc 1 27 5 view .LVU1
+  43 0004 0121     		movs	r1, #1
+  44 0006 4FF00070 		mov	r0, #33554432
+  45 000a FFF7FEFF 		bl	RCC_APB1PeriphClockCmd
+  46              	.LVL0:
+  28:HW/CAN/CAN.c  ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+  47              		.loc 1 28 5 view .LVU2
+  48 000e 0121     		movs	r1, #1
+  49 0010 0420     		movs	r0, #4
+  50 0012 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+  51              	.LVL1:
+  29:HW/CAN/CAN.c  ****     /* 初始化GPIO */
+  30:HW/CAN/CAN.c  ****     GPIO_InitTypeDef gpioDef;
+  52              		.loc 1 30 5 view .LVU3
+  31:HW/CAN/CAN.c  ****     gpioDef.GPIO_Speed  = GPIO_Speed_50MHz;
+  53              		.loc 1 31 5 view .LVU4
+  54              		.loc 1 31 25 is_stmt 0 view .LVU5
+  55 0016 0325     		movs	r5, #3
+  56 0018 8DF82650 		strb	r5, [sp, #38]
+  32:HW/CAN/CAN.c  ****     gpioDef.GPIO_Pin    = GPIO_Pin_11;  // RX
+  57              		.loc 1 32 5 is_stmt 1 view .LVU6
+  58              		.loc 1 32 25 is_stmt 0 view .LVU7
+  59 001c 4FF40063 		mov	r3, #2048
+  60 0020 ADF82430 		strh	r3, [sp, #36]	@ movhi
+  33:HW/CAN/CAN.c  ****     gpioDef.GPIO_Mode   = GPIO_Mode_IN_FLOATING;
+  61              		.loc 1 33 5 is_stmt 1 view .LVU8
+  62              		.loc 1 33 25 is_stmt 0 view .LVU9
+  63 0024 0426     		movs	r6, #4
+  64 0026 8DF82760 		strb	r6, [sp, #39]
+  34:HW/CAN/CAN.c  ****     GPIO_Init(GPIOA, &gpioDef);
+  65              		.loc 1 34 5 is_stmt 1 view .LVU10
+  66 002a 2D4C     		ldr	r4, .L3
+  67 002c 09A9     		add	r1, sp, #36
+  68 002e 2046     		mov	r0, r4
+  69 0030 FFF7FEFF 		bl	GPIO_Init
+  70              	.LVL2:
+  35:HW/CAN/CAN.c  ****     gpioDef.GPIO_Pin    = GPIO_Pin_12;  // TX
+  71              		.loc 1 35 5 view .LVU11
+  72              		.loc 1 35 25 is_stmt 0 view .LVU12
+  73 0034 4FF48053 		mov	r3, #4096
+  74 0038 ADF82430 		strh	r3, [sp, #36]	@ movhi
+  36:HW/CAN/CAN.c  ****     gpioDef.GPIO_Mode   = GPIO_Mode_AF_PP;
+  75              		.loc 1 36 5 is_stmt 1 view .LVU13
+  76              		.loc 1 36 25 is_stmt 0 view .LVU14
+  77 003c 1823     		movs	r3, #24
+  78 003e 8DF82730 		strb	r3, [sp, #39]
+  37:HW/CAN/CAN.c  ****     GPIO_Init(GPIOA, &gpioDef);
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s 			page 3
+
+
+  79              		.loc 1 37 5 is_stmt 1 view .LVU15
+  80 0042 09A9     		add	r1, sp, #36
+  81 0044 2046     		mov	r0, r4
+  82 0046 FFF7FEFF 		bl	GPIO_Init
+  83              	.LVL3:
+  38:HW/CAN/CAN.c  ****     /* 初始化CAN */
+  39:HW/CAN/CAN.c  ****     CAN_InitTypeDef canDef;
+  84              		.loc 1 39 5 view .LVU16
+  40:HW/CAN/CAN.c  ****     canDef.CAN_ABOM     = ENABLE;                   // 使能自动离线退出(ENABLE: 只检测CA
+  85              		.loc 1 40 5 view .LVU17
+  86              		.loc 1 40 25 is_stmt 0 view .LVU18
+  87 004a 0124     		movs	r4, #1
+  88 004c 8DF81F40 		strb	r4, [sp, #31]
+  41:HW/CAN/CAN.c  ****     canDef.CAN_AWUM     = ENABLE;                   // 使能硬件自动唤醒
+  89              		.loc 1 41 5 is_stmt 1 view .LVU19
+  90              		.loc 1 41 25 is_stmt 0 view .LVU20
+  91 0050 8DF82040 		strb	r4, [sp, #32]
+  42:HW/CAN/CAN.c  ****     canDef.CAN_BS1      = CAN_BS1_5tq;              // BS1 = 5Tq
+  92              		.loc 1 42 5 is_stmt 1 view .LVU21
+  93              		.loc 1 42 25 is_stmt 0 view .LVU22
+  94 0054 8DF81C60 		strb	r6, [sp, #28]
+  43:HW/CAN/CAN.c  ****     canDef.CAN_BS2      = CAN_BS2_3tq;              // BS2 = 3Tq
+  95              		.loc 1 43 5 is_stmt 1 view .LVU23
+  96              		.loc 1 43 25 is_stmt 0 view .LVU24
+  97 0058 0226     		movs	r6, #2
+  98 005a 8DF81D60 		strb	r6, [sp, #29]
+  44:HW/CAN/CAN.c  ****     canDef.CAN_Mode     = CAN_Mode_Silent_LoopBack; // 静默回环工作模式
+  99              		.loc 1 44 5 is_stmt 1 view .LVU25
+ 100              		.loc 1 44 25 is_stmt 0 view .LVU26
+ 101 005e 8DF81A50 		strb	r5, [sp, #26]
+  45:HW/CAN/CAN.c  ****     canDef.CAN_NART     = ENABLE;                   // 使能自动重传(报文发送失败后尝�
+ 102              		.loc 1 45 5 is_stmt 1 view .LVU27
+ 103              		.loc 1 45 25 is_stmt 0 view .LVU28
+ 104 0062 8DF82140 		strb	r4, [sp, #33]
+  46:HW/CAN/CAN.c  ****     canDef.CAN_Prescaler= 1;                        // Tq = 1 / 36000000 s
+ 105              		.loc 1 46 5 is_stmt 1 view .LVU29
+ 106              		.loc 1 46 25 is_stmt 0 view .LVU30
+ 107 0066 ADF81840 		strh	r4, [sp, #24]	@ movhi
+  47:HW/CAN/CAN.c  ****     canDef.CAN_RFLM     = ENABLE;                   // 当FIFO溢出时，是否锁定FIFO
+ 108              		.loc 1 47 5 is_stmt 1 view .LVU31
+ 109              		.loc 1 47 25 is_stmt 0 view .LVU32
+ 110 006a 8DF82240 		strb	r4, [sp, #34]
+  48:HW/CAN/CAN.c  ****     canDef.CAN_SJW      = CAN_SJW_4tq;              // 1bit信号长度允许吸收的误差大小
+ 111              		.loc 1 48 5 is_stmt 1 view .LVU33
+ 112              		.loc 1 48 25 is_stmt 0 view .LVU34
+ 113 006e 8DF81B50 		strb	r5, [sp, #27]
+  49:HW/CAN/CAN.c  ****     canDef.CAN_TTCM     = DISABLE;                  // 时间触发通信（ISO11898-4标准，用�
+ 114              		.loc 1 49 5 is_stmt 1 view .LVU35
+ 115              		.loc 1 49 25 is_stmt 0 view .LVU36
+ 116 0072 0025     		movs	r5, #0
+ 117 0074 8DF81E50 		strb	r5, [sp, #30]
+  50:HW/CAN/CAN.c  ****     canDef.CAN_TXFP     = DISABLE;                  // FIFO发送顺序按照ID优先级发送
+ 118              		.loc 1 50 5 is_stmt 1 view .LVU37
+ 119              		.loc 1 50 25 is_stmt 0 view .LVU38
+ 120 0078 8DF82350 		strb	r5, [sp, #35]
+  51:HW/CAN/CAN.c  ****     CAN_Init(CAN1, &canDef);
+ 121              		.loc 1 51 5 is_stmt 1 view .LVU39
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s 			page 4
+
+
+ 122 007c 194F     		ldr	r7, .L3+4
+ 123 007e 06A9     		add	r1, sp, #24
+ 124 0080 3846     		mov	r0, r7
+ 125 0082 FFF7FEFF 		bl	CAN_Init
+ 126              	.LVL4:
+  52:HW/CAN/CAN.c  ****     /* 初始化CAN过滤器 */
+  53:HW/CAN/CAN.c  ****     CAN_FilterInitTypeDef canFilterDef;
+ 127              		.loc 1 53 5 view .LVU40
+  54:HW/CAN/CAN.c  ****     canFilterDef.CAN_FilterActivation       = ENABLE;               // 使能过滤器
+ 128              		.loc 1 54 5 view .LVU41
+ 129              		.loc 1 54 45 is_stmt 0 view .LVU42
+ 130 0086 8DF81540 		strb	r4, [sp, #21]
+  55:HW/CAN/CAN.c  ****     canFilterDef.CAN_FilterFIFOAssignment   = CAN_Filter_FIFO0;     // 给过滤器分配到FIFO邮
+ 131              		.loc 1 55 5 is_stmt 1 view .LVU43
+ 132              		.loc 1 55 45 is_stmt 0 view .LVU44
+ 133 008a ADF81050 		strh	r5, [sp, #16]	@ movhi
+  56:HW/CAN/CAN.c  ****     /**
+  57:HW/CAN/CAN.c  ****      * STM32 32bit的FilterID = 29bit的ID + 1bit的IDE + 1bit的RTR + 1bit的r0
+  58:HW/CAN/CAN.c  ****      */
+  59:HW/CAN/CAN.c  ****     canFilterDef.CAN_FilterIdHigh           = (((ID1 << 3) | CAN_ID_EXT | CAN_RTR_DATA) & 0XFFFF000
+ 134              		.loc 1 59 5 is_stmt 1 view .LVU45
+ 135              		.loc 1 59 45 is_stmt 0 view .LVU46
+ 136 008e ADF80850 		strh	r5, [sp, #8]	@ movhi
+  60:HW/CAN/CAN.c  ****     canFilterDef.CAN_FilterIdLow            = (((ID1 << 3) | CAN_ID_EXT | CAN_RTR_DATA) & 0X0000FFF
+ 137              		.loc 1 60 5 is_stmt 1 view .LVU47
+ 138              		.loc 1 60 45 is_stmt 0 view .LVU48
+ 139 0092 49F6A403 		movw	r3, #39076
+ 140 0096 ADF80A30 		strh	r3, [sp, #10]	@ movhi
+  61:HW/CAN/CAN.c  ****     canFilterDef.CAN_FilterMaskIdHigh       = 0XFFFF;               // 过滤掩码高16bit（1表�
+ 141              		.loc 1 61 5 is_stmt 1 view .LVU49
+ 142              		.loc 1 61 45 is_stmt 0 view .LVU50
+ 143 009a 4FF6FF73 		movw	r3, #65535
+ 144 009e ADF80C30 		strh	r3, [sp, #12]	@ movhi
+  62:HW/CAN/CAN.c  ****     canFilterDef.CAN_FilterMaskIdLow        = 0XFFFF;               // 过滤掩码低16bit
+ 145              		.loc 1 62 5 is_stmt 1 view .LVU51
+ 146              		.loc 1 62 45 is_stmt 0 view .LVU52
+ 147 00a2 ADF80E30 		strh	r3, [sp, #14]	@ movhi
+  63:HW/CAN/CAN.c  ****     canFilterDef.CAN_FilterMode             = CAN_FilterMode_IdMask;// 掩码工作模式（关键�
+ 148              		.loc 1 63 5 is_stmt 1 view .LVU53
+ 149              		.loc 1 63 45 is_stmt 0 view .LVU54
+ 150 00a6 8DF81350 		strb	r5, [sp, #19]
+  64:HW/CAN/CAN.c  ****     canFilterDef.CAN_FilterNumber           = 0;                    // 第几个过滤器
+ 151              		.loc 1 64 5 is_stmt 1 view .LVU55
+ 152              		.loc 1 64 45 is_stmt 0 view .LVU56
+ 153 00aa 8DF81250 		strb	r5, [sp, #18]
+  65:HW/CAN/CAN.c  ****     canFilterDef.CAN_FilterScale            = CAN_FilterScale_32bit;// 过滤器宽度为32bit
+ 154              		.loc 1 65 5 is_stmt 1 view .LVU57
+ 155              		.loc 1 65 45 is_stmt 0 view .LVU58
+ 156 00ae 8DF81440 		strb	r4, [sp, #20]
+  66:HW/CAN/CAN.c  ****     CAN_FilterInit(&canFilterDef);
+ 157              		.loc 1 66 5 is_stmt 1 view .LVU59
+ 158 00b2 02A8     		add	r0, sp, #8
+ 159 00b4 FFF7FEFF 		bl	CAN_FilterInit
+ 160              	.LVL5:
+  67:HW/CAN/CAN.c  ****     /* 配置CAN中断 */
+  68:HW/CAN/CAN.c  ****     NVIC_InitTypeDef nvicDef;
+ 161              		.loc 1 68 5 view .LVU60
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s 			page 5
+
+
+  69:HW/CAN/CAN.c  ****     nvicDef.NVIC_IRQChannel = USB_LP_CAN1_RX0_IRQn; // USB_LP_CAN1_RX0_IRQn表示FIFO邮箱0，CAN1
+ 162              		.loc 1 69 5 view .LVU61
+ 163              		.loc 1 69 29 is_stmt 0 view .LVU62
+ 164 00b8 1423     		movs	r3, #20
+ 165 00ba 8DF80430 		strb	r3, [sp, #4]
+  70:HW/CAN/CAN.c  ****     nvicDef.NVIC_IRQChannelCmd = ENABLE;
+ 166              		.loc 1 70 5 is_stmt 1 view .LVU63
+ 167              		.loc 1 70 32 is_stmt 0 view .LVU64
+ 168 00be 8DF80740 		strb	r4, [sp, #7]
+  71:HW/CAN/CAN.c  ****     nvicDef.NVIC_IRQChannelPreemptionPriority = 2;
+ 169              		.loc 1 71 5 is_stmt 1 view .LVU65
+ 170              		.loc 1 71 47 is_stmt 0 view .LVU66
+ 171 00c2 8DF80560 		strb	r6, [sp, #5]
+  72:HW/CAN/CAN.c  ****     nvicDef.NVIC_IRQChannelSubPriority = 2;
+ 172              		.loc 1 72 5 is_stmt 1 view .LVU67
+ 173              		.loc 1 72 40 is_stmt 0 view .LVU68
+ 174 00c6 8DF80660 		strb	r6, [sp, #6]
+  73:HW/CAN/CAN.c  ****     NVIC_Init(&nvicDef);
+ 175              		.loc 1 73 5 is_stmt 1 view .LVU69
+ 176 00ca 01A8     		add	r0, sp, #4
+ 177 00cc FFF7FEFF 		bl	NVIC_Init
+ 178              	.LVL6:
+  74:HW/CAN/CAN.c  ****     CAN_ITConfig(CAN1, CAN_IT_FMP0, ENABLE);       // 使能FIFO邮箱0中断
+ 179              		.loc 1 74 5 view .LVU70
+ 180 00d0 2246     		mov	r2, r4
+ 181 00d2 3146     		mov	r1, r6
+ 182 00d4 3846     		mov	r0, r7
+ 183 00d6 FFF7FEFF 		bl	CAN_ITConfig
+ 184              	.LVL7:
+  75:HW/CAN/CAN.c  **** }
+ 185              		.loc 1 75 1 is_stmt 0 view .LVU71
+ 186 00da 0BB0     		add	sp, sp, #44
+ 187              	.LCFI2:
+ 188              		.cfi_def_cfa_offset 20
+ 189              		@ sp needed
+ 190 00dc F0BD     		pop	{r4, r5, r6, r7, pc}
+ 191              	.L4:
+ 192 00de 00BF     		.align	2
+ 193              	.L3:
+ 194 00e0 00080140 		.word	1073809408
+ 195 00e4 00640040 		.word	1073767424
+ 196              		.cfi_endproc
+ 197              	.LFE32:
+ 199              		.section	.rodata.USB_LP_CAN1_RX0_IRQHandler.str1.4,"aMS",%progbits,1
+ 200              		.align	2
+ 201              	.LC0:
+ 202 0000 52656369 		.ascii	"Recieve: %#X, %#X, %#X, %#X, %#X, %#X, %#X, %#X\015"
+ 202      6576653A 
+ 202      20252358 
+ 202      2C202523 
+ 202      582C2025 
+ 203 0030 0A00     		.ascii	"\012\000"
+ 204              		.section	.text.USB_LP_CAN1_RX0_IRQHandler,"ax",%progbits
+ 205              		.align	1
+ 206              		.global	USB_LP_CAN1_RX0_IRQHandler
+ 207              		.syntax unified
+ 208              		.thumb
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s 			page 6
+
+
+ 209              		.thumb_func
+ 211              	USB_LP_CAN1_RX0_IRQHandler:
+ 212              	.LFB33:
+  76:HW/CAN/CAN.c  **** 
+  77:HW/CAN/CAN.c  **** /* CAN FIFO0中断服务函数 */
+  78:HW/CAN/CAN.c  **** void USB_LP_CAN1_RX0_IRQHandler(){
+ 213              		.loc 1 78 34 is_stmt 1 view -0
+ 214              		.cfi_startproc
+ 215              		@ args = 0, pretend = 0, frame = 24
+ 216              		@ frame_needed = 0, uses_anonymous_args = 0
+ 217 0000 10B5     		push	{r4, lr}
+ 218              	.LCFI3:
+ 219              		.cfi_def_cfa_offset 8
+ 220              		.cfi_offset 4, -8
+ 221              		.cfi_offset 14, -4
+ 222 0002 8CB0     		sub	sp, sp, #48
+ 223              	.LCFI4:
+ 224              		.cfi_def_cfa_offset 56
+  79:HW/CAN/CAN.c  ****     CanRxMsg RxMessage;
+ 225              		.loc 1 79 5 view .LVU73
+  80:HW/CAN/CAN.c  ****     CAN_Receive(CAN1, CAN_FIFO0, &RxMessage);
+ 226              		.loc 1 80 5 view .LVU74
+ 227 0004 07AA     		add	r2, sp, #28
+ 228 0006 0021     		movs	r1, #0
+ 229 0008 0E48     		ldr	r0, .L7
+ 230 000a FFF7FEFF 		bl	CAN_Receive
+ 231              	.LVL8:
+  81:HW/CAN/CAN.c  ****     printf("Recieve: %#X, %#X, %#X, %#X, %#X, %#X, %#X, %#X\r\n", 
+ 232              		.loc 1 81 5 view .LVU75
+  82:HW/CAN/CAN.c  ****         RxMessage.Data[0], RxMessage.Data[1], 
+  83:HW/CAN/CAN.c  ****         RxMessage.Data[2], RxMessage.Data[3], 
+ 233              		.loc 1 83 42 is_stmt 0 view .LVU76
+ 234 000e 9DF82A30 		ldrb	r3, [sp, #42]	@ zero_extendqisi2
+  84:HW/CAN/CAN.c  ****         RxMessage.Data[4], RxMessage.Data[5], 
+ 235              		.loc 1 84 23 view .LVU77
+ 236 0012 9DF82B20 		ldrb	r2, [sp, #43]	@ zero_extendqisi2
+ 237              		.loc 1 84 42 view .LVU78
+ 238 0016 9DF82C10 		ldrb	r1, [sp, #44]	@ zero_extendqisi2
+  85:HW/CAN/CAN.c  ****         RxMessage.Data[6], RxMessage.Data[7]);
+ 239              		.loc 1 85 23 view .LVU79
+ 240 001a 9DF82D00 		ldrb	r0, [sp, #45]	@ zero_extendqisi2
+ 241              		.loc 1 85 42 view .LVU80
+ 242 001e 9DF82E40 		ldrb	r4, [sp, #46]	@ zero_extendqisi2
+  81:HW/CAN/CAN.c  ****         RxMessage.Data[0], RxMessage.Data[1], 
+ 243              		.loc 1 81 5 view .LVU81
+ 244 0022 0494     		str	r4, [sp, #16]
+ 245 0024 0390     		str	r0, [sp, #12]
+ 246 0026 0291     		str	r1, [sp, #8]
+ 247 0028 0192     		str	r2, [sp, #4]
+ 248 002a 0093     		str	r3, [sp]
+ 249 002c 9DF82930 		ldrb	r3, [sp, #41]	@ zero_extendqisi2
+ 250 0030 9DF82820 		ldrb	r2, [sp, #40]	@ zero_extendqisi2
+ 251 0034 9DF82710 		ldrb	r1, [sp, #39]	@ zero_extendqisi2
+ 252 0038 0348     		ldr	r0, .L7+4
+ 253 003a FFF7FEFF 		bl	printf
+ 254              	.LVL9:
+  86:HW/CAN/CAN.c  **** }
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s 			page 7
+
+
+ 255              		.loc 1 86 1 view .LVU82
+ 256 003e 0CB0     		add	sp, sp, #48
+ 257              	.LCFI5:
+ 258              		.cfi_def_cfa_offset 8
+ 259              		@ sp needed
+ 260 0040 10BD     		pop	{r4, pc}
+ 261              	.L8:
+ 262 0042 00BF     		.align	2
+ 263              	.L7:
+ 264 0044 00640040 		.word	1073767424
+ 265 0048 00000000 		.word	.LC0
+ 266              		.cfi_endproc
+ 267              	.LFE33:
+ 269              		.section	.rodata.CAN_Silent_LoopBack_Run.str1.4,"aMS",%progbits,1
+ 270              		.align	2
+ 271              	.LC2:
+ 272 0000 E68C89E4 		.ascii	"\346\214\211\344\270\213KEY0\345\217\221\351\200\201"
+ 272      B88B4B45 
+ 272      5930E58F 
+ 272      91E98081 
+ 273 0010 E695B0E6 		.ascii	"\346\225\260\346\215\256: \015\000"
+ 273      8DAE3A20 
+ 273      0D00
+ 274              		.section	.text.CAN_Silent_LoopBack_Run,"ax",%progbits
+ 275              		.align	1
+ 276              		.global	CAN_Silent_LoopBack_Run
+ 277              		.syntax unified
+ 278              		.thumb
+ 279              		.thumb_func
+ 281              	CAN_Silent_LoopBack_Run:
+ 282              	.LFB34:
+  87:HW/CAN/CAN.c  **** 
+  88:HW/CAN/CAN.c  **** extern void USART1_Init();
+  89:HW/CAN/CAN.c  **** 
+  90:HW/CAN/CAN.c  **** void CAN_Silent_LoopBack_Run(){
+ 283              		.loc 1 90 31 is_stmt 1 view -0
+ 284              		.cfi_startproc
+ 285              		@ args = 0, pretend = 0, frame = 32
+ 286              		@ frame_needed = 0, uses_anonymous_args = 0
+ 287 0000 10B5     		push	{r4, lr}
+ 288              	.LCFI6:
+ 289              		.cfi_def_cfa_offset 8
+ 290              		.cfi_offset 4, -8
+ 291              		.cfi_offset 14, -4
+ 292 0002 88B0     		sub	sp, sp, #32
+ 293              	.LCFI7:
+ 294              		.cfi_def_cfa_offset 40
+  91:HW/CAN/CAN.c  ****     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+ 295              		.loc 1 91 5 view .LVU84
+ 296 0004 4FF4A060 		mov	r0, #1280
+ 297 0008 FFF7FEFF 		bl	NVIC_PriorityGroupConfig
+ 298              	.LVL10:
+  92:HW/CAN/CAN.c  ****     delay_init();
+ 299              		.loc 1 92 5 view .LVU85
+ 300 000c FFF7FEFF 		bl	delay_init
+ 301              	.LVL11:
+  93:HW/CAN/CAN.c  ****     USART1_Init();
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s 			page 8
+
+
+ 302              		.loc 1 93 5 view .LVU86
+ 303 0010 FFF7FEFF 		bl	USART1_Init
+ 304              	.LVL12:
+  94:HW/CAN/CAN.c  ****     KEY_Init();
+ 305              		.loc 1 94 5 view .LVU87
+ 306 0014 FFF7FEFF 		bl	KEY_Init
+ 307              	.LVL13:
+  95:HW/CAN/CAN.c  ****     CAN_Silent_LoopBack_Init();
+ 308              		.loc 1 95 5 view .LVU88
+ 309 0018 FFF7FEFF 		bl	CAN_Silent_LoopBack_Init
+ 310              	.LVL14:
+  96:HW/CAN/CAN.c  **** 
+  97:HW/CAN/CAN.c  ****     CanTxMsg TxMessage;
+ 311              		.loc 1 97 5 view .LVU89
+  98:HW/CAN/CAN.c  ****     uint8_t buffer[8] = {0, 1, 2, 3, 4, 5, 6, 7};
+ 312              		.loc 1 98 5 view .LVU90
+ 313              		.loc 1 98 13 is_stmt 0 view .LVU91
+ 314 001c 1E4A     		ldr	r2, .L16
+ 315 001e 01AB     		add	r3, sp, #4
+ 316 0020 92E80300 		ldm	r2, {r0, r1}
+ 317 0024 83E80300 		stm	r3, {r0, r1}
+  99:HW/CAN/CAN.c  ****     uint8_t transmit_mailbox;
+ 318              		.loc 1 99 5 is_stmt 1 view .LVU92
+ 100:HW/CAN/CAN.c  **** 
+ 101:HW/CAN/CAN.c  ****     printf("按下KEY0发送数据: \r\n");
+ 319              		.loc 1 101 5 view .LVU93
+ 320 0028 1C48     		ldr	r0, .L16+4
+ 321 002a FFF7FEFF 		bl	puts
+ 322              	.LVL15:
+ 323 002e 0BE0     		b	.L10
+ 324              	.LVL16:
+ 325              	.L14:
+ 326              	.LBB2:
+ 327              	.LBB3:
+ 102:HW/CAN/CAN.c  ****     while(1){
+ 103:HW/CAN/CAN.c  ****         KEY_STATUS_t key = KEY_Scan(KEY_SCAN_ONCE);
+ 104:HW/CAN/CAN.c  ****         if(key != KEY_NONE_PRESS){
+ 105:HW/CAN/CAN.c  ****             switch (key)
+ 106:HW/CAN/CAN.c  ****             {
+ 107:HW/CAN/CAN.c  ****             case KEY0_PRESS:    // 发送1帧数据
+ 108:HW/CAN/CAN.c  ****                 memcpy(TxMessage.Data, buffer, 8);
+ 109:HW/CAN/CAN.c  ****                 TxMessage.DLC       = 8;                                // 数据长度
+ 110:HW/CAN/CAN.c  ****                 TxMessage.ExtId     = ID1;                              // ID号（扩展帧）
+ 111:HW/CAN/CAN.c  ****                 TxMessage.IDE       = CAN_Id_Extended;                  // 扩展帧标志
+ 112:HW/CAN/CAN.c  ****                 TxMessage.RTR       = CAN_RTR_Data;                     // 数据帧标志
+ 113:HW/CAN/CAN.c  ****                 TxMessage.StdId     = 0;                                // 标准帧ID号（没用�
+ 114:HW/CAN/CAN.c  ****                 transmit_mailbox    = CAN_Transmit(CAN1, &TxMessage);   // 发送并返回邮箱号
+ 115:HW/CAN/CAN.c  ****                 while(CAN_TransmitStatus(CAN1, transmit_mailbox) != CAN_TxStatus_Ok);   // 等待�
+ 116:HW/CAN/CAN.c  ****                 for(int i = 0; i < 8; ++i)
+ 117:HW/CAN/CAN.c  ****                     ++buffer[i];
+ 328              		.loc 1 117 21 discriminator 3 view .LVU94
+ 329              		.loc 1 117 29 is_stmt 0 discriminator 3 view .LVU95
+ 330 0030 03F12002 		add	r2, r3, #32
+ 331 0034 0DEB0201 		add	r1, sp, r2
+ 332 0038 11F81C2C 		ldrb	r2, [r1, #-28]	@ zero_extendqisi2
+ 333              		.loc 1 117 21 discriminator 3 view .LVU96
+ 334 003c 0132     		adds	r2, r2, #1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s 			page 9
+
+
+ 335 003e 01F81C2C 		strb	r2, [r1, #-28]
+ 116:HW/CAN/CAN.c  ****                     ++buffer[i];
+ 336              		.loc 1 116 39 is_stmt 1 discriminator 3 view .LVU97
+ 337 0042 0133     		adds	r3, r3, #1
+ 338              	.LVL17:
+ 339              	.L13:
+ 116:HW/CAN/CAN.c  ****                     ++buffer[i];
+ 340              		.loc 1 116 34 discriminator 1 view .LVU98
+ 341 0044 072B     		cmp	r3, #7
+ 342 0046 F3DD     		ble	.L14
+ 343              	.LVL18:
+ 344              	.L10:
+ 116:HW/CAN/CAN.c  ****                     ++buffer[i];
+ 345              		.loc 1 116 34 is_stmt 0 discriminator 1 view .LVU99
+ 346              	.LBE3:
+ 347              	.LBE2:
+ 102:HW/CAN/CAN.c  ****     while(1){
+ 348              		.loc 1 102 5 is_stmt 1 view .LVU100
+ 349              	.LBB5:
+ 103:HW/CAN/CAN.c  ****         if(key != KEY_NONE_PRESS){
+ 350              		.loc 1 103 9 view .LVU101
+ 103:HW/CAN/CAN.c  ****         if(key != KEY_NONE_PRESS){
+ 351              		.loc 1 103 28 is_stmt 0 view .LVU102
+ 352 0048 0120     		movs	r0, #1
+ 353 004a FFF7FEFF 		bl	KEY_Scan
+ 354              	.LVL19:
+ 104:HW/CAN/CAN.c  ****             switch (key)
+ 355              		.loc 1 104 9 is_stmt 1 view .LVU103
+ 104:HW/CAN/CAN.c  ****             switch (key)
+ 356              		.loc 1 104 11 is_stmt 0 view .LVU104
+ 357 004e 0028     		cmp	r0, #0
+ 358 0050 FAD0     		beq	.L10
+ 105:HW/CAN/CAN.c  ****             {
+ 359              		.loc 1 105 13 is_stmt 1 view .LVU105
+ 360 0052 0128     		cmp	r0, #1
+ 361 0054 F8D1     		bne	.L10
+ 108:HW/CAN/CAN.c  ****                 TxMessage.DLC       = 8;                                // 数据长度
+ 362              		.loc 1 108 17 view .LVU106
+ 363 0056 01AB     		add	r3, sp, #4
+ 364 0058 03CB     		ldmia	r3!, {r0, r1}
+ 365              	.LVL20:
+ 108:HW/CAN/CAN.c  ****                 TxMessage.DLC       = 8;                                // 数据长度
+ 366              		.loc 1 108 17 is_stmt 0 view .LVU107
+ 367 005a CDF81700 		str	r0, [sp, #23]	@ unaligned
+ 368 005e CDF81B10 		str	r1, [sp, #27]	@ unaligned
+ 109:HW/CAN/CAN.c  ****                 TxMessage.ExtId     = ID1;                              // ID号（扩展帧）
+ 369              		.loc 1 109 17 is_stmt 1 view .LVU108
+ 109:HW/CAN/CAN.c  ****                 TxMessage.ExtId     = ID1;                              // ID号（扩展帧）
+ 370              		.loc 1 109 37 is_stmt 0 view .LVU109
+ 371 0062 0823     		movs	r3, #8
+ 372 0064 8DF81630 		strb	r3, [sp, #22]
+ 110:HW/CAN/CAN.c  ****                 TxMessage.IDE       = CAN_Id_Extended;                  // 扩展帧标志
+ 373              		.loc 1 110 17 is_stmt 1 view .LVU110
+ 110:HW/CAN/CAN.c  ****                 TxMessage.IDE       = CAN_Id_Extended;                  // 扩展帧标志
+ 374              		.loc 1 110 37 is_stmt 0 view .LVU111
+ 375 0068 41F21433 		movw	r3, #4884
+ 376 006c 0493     		str	r3, [sp, #16]
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s 			page 10
+
+
+ 111:HW/CAN/CAN.c  ****                 TxMessage.RTR       = CAN_RTR_Data;                     // 数据帧标志
+ 377              		.loc 1 111 17 is_stmt 1 view .LVU112
+ 111:HW/CAN/CAN.c  ****                 TxMessage.RTR       = CAN_RTR_Data;                     // 数据帧标志
+ 378              		.loc 1 111 37 is_stmt 0 view .LVU113
+ 379 006e 0423     		movs	r3, #4
+ 380 0070 8DF81430 		strb	r3, [sp, #20]
+ 112:HW/CAN/CAN.c  ****                 TxMessage.StdId     = 0;                                // 标准帧ID号（没用�
+ 381              		.loc 1 112 17 is_stmt 1 view .LVU114
+ 112:HW/CAN/CAN.c  ****                 TxMessage.StdId     = 0;                                // 标准帧ID号（没用�
+ 382              		.loc 1 112 37 is_stmt 0 view .LVU115
+ 383 0074 0023     		movs	r3, #0
+ 384 0076 8DF81530 		strb	r3, [sp, #21]
+ 113:HW/CAN/CAN.c  ****                 transmit_mailbox    = CAN_Transmit(CAN1, &TxMessage);   // 发送并返回邮箱号
+ 385              		.loc 1 113 17 is_stmt 1 view .LVU116
+ 113:HW/CAN/CAN.c  ****                 transmit_mailbox    = CAN_Transmit(CAN1, &TxMessage);   // 发送并返回邮箱号
+ 386              		.loc 1 113 37 is_stmt 0 view .LVU117
+ 387 007a 0393     		str	r3, [sp, #12]
+ 114:HW/CAN/CAN.c  ****                 while(CAN_TransmitStatus(CAN1, transmit_mailbox) != CAN_TxStatus_Ok);   // 等待�
+ 388              		.loc 1 114 17 is_stmt 1 view .LVU118
+ 114:HW/CAN/CAN.c  ****                 while(CAN_TransmitStatus(CAN1, transmit_mailbox) != CAN_TxStatus_Ok);   // 等待�
+ 389              		.loc 1 114 39 is_stmt 0 view .LVU119
+ 390 007c 03A9     		add	r1, sp, #12
+ 391 007e 0848     		ldr	r0, .L16+8
+ 392 0080 FFF7FEFF 		bl	CAN_Transmit
+ 393              	.LVL21:
+ 394 0084 0446     		mov	r4, r0
+ 395              	.LVL22:
+ 115:HW/CAN/CAN.c  ****                 for(int i = 0; i < 8; ++i)
+ 396              		.loc 1 115 17 is_stmt 1 view .LVU120
+ 397              	.L12:
+ 115:HW/CAN/CAN.c  ****                 for(int i = 0; i < 8; ++i)
+ 398              		.loc 1 115 66 discriminator 1 view .LVU121
+ 115:HW/CAN/CAN.c  ****                 for(int i = 0; i < 8; ++i)
+ 399              		.loc 1 115 23 is_stmt 0 discriminator 1 view .LVU122
+ 400 0086 2146     		mov	r1, r4
+ 401 0088 0548     		ldr	r0, .L16+8
+ 402 008a FFF7FEFF 		bl	CAN_TransmitStatus
+ 403              	.LVL23:
+ 115:HW/CAN/CAN.c  ****                 for(int i = 0; i < 8; ++i)
+ 404              		.loc 1 115 66 discriminator 1 view .LVU123
+ 405 008e 0128     		cmp	r0, #1
+ 406 0090 F9D1     		bne	.L12
+ 407              	.LBB4:
+ 116:HW/CAN/CAN.c  ****                     ++buffer[i];
+ 408              		.loc 1 116 25 view .LVU124
+ 409 0092 0023     		movs	r3, #0
+ 410 0094 D6E7     		b	.L13
+ 411              	.L17:
+ 412 0096 00BF     		.align	2
+ 413              	.L16:
+ 414 0098 00000000 		.word	.LANCHOR0
+ 415 009c 00000000 		.word	.LC2
+ 416 00a0 00640040 		.word	1073767424
+ 417              	.LBE4:
+ 418              	.LBE5:
+ 419              		.cfi_endproc
+ 420              	.LFE34:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s 			page 11
+
+
+ 422              		.section	.rodata
+ 423              		.align	2
+ 424              		.set	.LANCHOR0,. + 0
+ 425              	.LC1:
+ 426 0000 00010203 		.ascii	"\000\001\002\003\004\005\006\007"
+ 426      04050607 
+ 427              		.text
+ 428              	.Letext0:
+ 429              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 430              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 431              		.file 4 "USER/stm32f10x.h"
+ 432              		.file 5 "STM32F10x_FWLib/inc/stm32f10x_can.h"
+ 433              		.file 6 "STM32F10x_FWLib/inc/stm32f10x_gpio.h"
+ 434              		.file 7 "STM32F10x_FWLib/inc/misc.h"
+ 435              		.file 8 "HW/KEY/KEY.h"
+ 436              		.file 9 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 437              		.file 10 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
+ 438              		.file 11 "SYSTEM/delay/delay.h"
+ 439              		.file 12 "<built-in>"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 CAN.c
+C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s:19     .text.CAN_Silent_LoopBack_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s:25     .text.CAN_Silent_LoopBack_Init:00000000 CAN_Silent_LoopBack_Init
+C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s:194    .text.CAN_Silent_LoopBack_Init:000000e0 $d
+C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s:200    .rodata.USB_LP_CAN1_RX0_IRQHandler.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s:205    .text.USB_LP_CAN1_RX0_IRQHandler:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s:211    .text.USB_LP_CAN1_RX0_IRQHandler:00000000 USB_LP_CAN1_RX0_IRQHandler
+C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s:264    .text.USB_LP_CAN1_RX0_IRQHandler:00000044 $d
+C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s:270    .rodata.CAN_Silent_LoopBack_Run.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s:275    .text.CAN_Silent_LoopBack_Run:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s:281    .text.CAN_Silent_LoopBack_Run:00000000 CAN_Silent_LoopBack_Run
+C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s:414    .text.CAN_Silent_LoopBack_Run:00000098 $d
+C:\Users\86157\AppData\Local\Temp\ccWwfZeX.s:423    .rodata:00000000 $d
+
+UNDEFINED SYMBOLS
+RCC_APB1PeriphClockCmd
+RCC_APB2PeriphClockCmd
+GPIO_Init
+CAN_Init
+CAN_FilterInit
+NVIC_Init
+CAN_ITConfig
+CAN_Receive
+printf
+NVIC_PriorityGroupConfig
+delay_init
+USART1_Init
+KEY_Init
+puts
+KEY_Scan
+CAN_Transmit
+CAN_TransmitStatus

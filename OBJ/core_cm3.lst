@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
   30:CORE/core_cm3.c **** 
   31:CORE/core_cm3.c **** #elif defined ( __ICCARM__ )
   32:CORE/core_cm3.c ****   #define __ASM           __asm                                       /*!< asm keyword for IAR Comp
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 2
 
 
   33:CORE/core_cm3.c ****   #define __INLINE        inline                                      /*!< inline keyword for IAR C
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
   87:CORE/core_cm3.c **** {
   88:CORE/core_cm3.c ****   mrs r0, msp
   89:CORE/core_cm3.c ****   bx lr
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 3
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 3
 
 
   90:CORE/core_cm3.c **** }
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  144:CORE/core_cm3.c ****   clrex
  145:CORE/core_cm3.c **** }
  146:CORE/core_cm3.c **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 4
 
 
  147:CORE/core_cm3.c **** /**
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  201:CORE/core_cm3.c ****  *
  202:CORE/core_cm3.c ****  * @return FaultMask
  203:CORE/core_cm3.c ****  *
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 5
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 5
 
 
  204:CORE/core_cm3.c ****  * Return the content of the fault mask register
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  258:CORE/core_cm3.c **** 
  259:CORE/core_cm3.c **** /**
  260:CORE/core_cm3.c ****  * @brief  Return the Process Stack Pointer
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 6
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 6
 
 
  261:CORE/core_cm3.c ****  *
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  315:CORE/core_cm3.c ****  * @brief  Reverse byte order in unsigned short value
  316:CORE/core_cm3.c ****  *
  317:CORE/core_cm3.c ****  * @param  value  value to reverse
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 7
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 7
 
 
  318:CORE/core_cm3.c ****  * @return        reversed value
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  372:CORE/core_cm3.c ****  *
  373:CORE/core_cm3.c ****  * @param  *addr  address pointer
  374:CORE/core_cm3.c ****  * @return        value of (*address)
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 8
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 8
 
 
  375:CORE/core_cm3.c ****  *
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  429:CORE/core_cm3.c **** #pragma diag_default=Pe940
  430:CORE/core_cm3.c **** 
  431:CORE/core_cm3.c **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 9
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 9
 
 
  432:CORE/core_cm3.c **** #elif (defined (__GNUC__)) /*------------------ GNU Compiler ---------------------*/
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  455:CORE/core_cm3.c ****  *
  456:CORE/core_cm3.c ****  * @param  topOfProcStack  Process Stack Pointer
  457:CORE/core_cm3.c ****  *
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 10
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 10
 
 
  458:CORE/core_cm3.c ****  * Assign the value ProcessStackPointer to the MSP 
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  480:CORE/core_cm3.c **** 
  481:CORE/core_cm3.c ****   __ASM volatile ("MRS %0, msp\n\t" 
   94              		.loc 1 481 3 view .LVU10
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 11
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 11
 
 
   95              		.syntax unified
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  132              		.loc 1 500 1 is_stmt 0 view .LVU15
  133              		.thumb
  134              		.syntax unified
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 12
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 12
 
 
  135              		.cfi_endproc
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  516:CORE/core_cm3.c **** 
  517:CORE/core_cm3.c **** /**
  518:CORE/core_cm3.c ****  * @brief  Set the Base Priority value
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 13
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 13
 
 
  519:CORE/core_cm3.c ****  *
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  212              		.syntax unified
  213              	@ 540 "CORE/core_cm3.c" 1
  214 0000 EFF31080 		MRS r0, primask
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 14
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 14
 
 
  215              	@ 0 "" 2
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  259              	__get_FAULTMASK:
  260              	.LFB8:
  555:CORE/core_cm3.c **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 15
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 15
 
 
  556:CORE/core_cm3.c **** /**
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  293              		.cfi_startproc
  294              		@ args = 0, pretend = 0, frame = 0
  295              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 16
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 16
 
 
  296              		@ link register save eliminated.
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  335 0004 7047     		bx	lr
  336              		.cfi_endproc
  337              	.LFE10:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 17
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 17
 
 
  339              		.section	.text.__set_CONTROL,"ax",%progbits
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  617:CORE/core_cm3.c ****  * Reverse byte order in integer value
  618:CORE/core_cm3.c ****  */
  619:CORE/core_cm3.c **** uint32_t __REV(uint32_t value)
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 18
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 18
 
 
  620:CORE/core_cm3.c **** {
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  412              		.loc 1 639 3 view .LVU55
  413              		.syntax unified
  414              	@ 639 "CORE/core_cm3.c" 1
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 19
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 19
 
 
  415 0000 40BA     		rev16 r0, r0
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  453              		.cfi_endproc
  454              	.LFE14:
  456              		.section	.text.__RBIT,"ax",%progbits
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 20
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 20
 
 
  457              		.align	1
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  676:CORE/core_cm3.c ****  * @brief  LDR Exclusive (8 bit)
  677:CORE/core_cm3.c ****  *
  678:CORE/core_cm3.c ****  * @param  *addr  address pointer
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 21
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 21
 
 
  679:CORE/core_cm3.c ****  * @return        value of (*address)
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  530              		@ args = 0, pretend = 0, frame = 0
  531              		@ frame_needed = 0, uses_anonymous_args = 0
  532              		@ link register save eliminated.
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 22
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 22
 
 
  701:CORE/core_cm3.c ****     uint16_t result=0;
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  570              	@ 0 "" 2
  571              	.LVL31:
  720:CORE/core_cm3.c ****    return(result);
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 23
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 23
 
 
  572              		.loc 1 720 4 view .LVU83
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  610              		.cfi_endproc
  611              	.LFE19:
  613              		.section	.text.__STREXH,"ax",%progbits
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 24
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 24
 
 
  614              		.align	1
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  654              	.LVL38:
  655              	.LFB21:
  756:CORE/core_cm3.c **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 25
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 25
 
 
  757:CORE/core_cm3.c **** /**
@@ -1480,54 +1480,54 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 1
  677              	.Letext0:
  678              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
  679              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s 			page 26
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s 			page 26
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 core_cm3.c
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:19     .text.__get_PSP:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:25     .text.__get_PSP:00000000 __get_PSP
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:51     .text.__set_PSP:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:57     .text.__set_PSP:00000000 __set_PSP
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:79     .text.__get_MSP:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:85     .text.__get_MSP:00000000 __get_MSP
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:111    .text.__set_MSP:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:117    .text.__set_MSP:00000000 __set_MSP
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:139    .text.__get_BASEPRI:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:145    .text.__get_BASEPRI:00000000 __get_BASEPRI
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:169    .text.__set_BASEPRI:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:175    .text.__set_BASEPRI:00000000 __set_BASEPRI
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:196    .text.__get_PRIMASK:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:202    .text.__get_PRIMASK:00000000 __get_PRIMASK
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:226    .text.__set_PRIMASK:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:232    .text.__set_PRIMASK:00000000 __set_PRIMASK
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:253    .text.__get_FAULTMASK:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:259    .text.__get_FAULTMASK:00000000 __get_FAULTMASK
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:283    .text.__set_FAULTMASK:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:289    .text.__set_FAULTMASK:00000000 __set_FAULTMASK
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:310    .text.__get_CONTROL:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:316    .text.__get_CONTROL:00000000 __get_CONTROL
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:340    .text.__set_CONTROL:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:346    .text.__set_CONTROL:00000000 __set_CONTROL
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:367    .text.__REV:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:373    .text.__REV:00000000 __REV
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:397    .text.__REV16:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:403    .text.__REV16:00000000 __REV16
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:427    .text.__REVSH:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:433    .text.__REVSH:00000000 __REVSH
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:457    .text.__RBIT:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:463    .text.__RBIT:00000000 __RBIT
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:487    .text.__LDREXB:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:493    .text.__LDREXB:00000000 __LDREXB
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:519    .text.__LDREXH:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:525    .text.__LDREXH:00000000 __LDREXH
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:551    .text.__LDREXW:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:557    .text.__LDREXW:00000000 __LDREXW
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:581    .text.__STREXB:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:587    .text.__STREXB:00000000 __STREXB
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:614    .text.__STREXH:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:620    .text.__STREXH:00000000 __STREXH
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:647    .text.__STREXW:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccdM4eKp.s:653    .text.__STREXW:00000000 __STREXW
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:19     .text.__get_PSP:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:25     .text.__get_PSP:00000000 __get_PSP
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:51     .text.__set_PSP:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:57     .text.__set_PSP:00000000 __set_PSP
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:79     .text.__get_MSP:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:85     .text.__get_MSP:00000000 __get_MSP
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:111    .text.__set_MSP:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:117    .text.__set_MSP:00000000 __set_MSP
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:139    .text.__get_BASEPRI:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:145    .text.__get_BASEPRI:00000000 __get_BASEPRI
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:169    .text.__set_BASEPRI:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:175    .text.__set_BASEPRI:00000000 __set_BASEPRI
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:196    .text.__get_PRIMASK:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:202    .text.__get_PRIMASK:00000000 __get_PRIMASK
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:226    .text.__set_PRIMASK:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:232    .text.__set_PRIMASK:00000000 __set_PRIMASK
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:253    .text.__get_FAULTMASK:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:259    .text.__get_FAULTMASK:00000000 __get_FAULTMASK
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:283    .text.__set_FAULTMASK:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:289    .text.__set_FAULTMASK:00000000 __set_FAULTMASK
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:310    .text.__get_CONTROL:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:316    .text.__get_CONTROL:00000000 __get_CONTROL
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:340    .text.__set_CONTROL:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:346    .text.__set_CONTROL:00000000 __set_CONTROL
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:367    .text.__REV:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:373    .text.__REV:00000000 __REV
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:397    .text.__REV16:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:403    .text.__REV16:00000000 __REV16
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:427    .text.__REVSH:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:433    .text.__REVSH:00000000 __REVSH
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:457    .text.__RBIT:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:463    .text.__RBIT:00000000 __RBIT
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:487    .text.__LDREXB:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:493    .text.__LDREXB:00000000 __LDREXB
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:519    .text.__LDREXH:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:525    .text.__LDREXH:00000000 __LDREXH
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:551    .text.__LDREXW:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:557    .text.__LDREXW:00000000 __LDREXW
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:581    .text.__STREXB:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:587    .text.__STREXB:00000000 __STREXB
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:614    .text.__STREXH:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:620    .text.__STREXH:00000000 __STREXH
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:647    .text.__STREXW:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccUjbyBP.s:653    .text.__STREXW:00000000 __STREXW
 
 NO UNDEFINED SYMBOLS

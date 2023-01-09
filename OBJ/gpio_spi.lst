@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
   30:HW/TOUCH/gpio_spi.c ****     GPIO_InitTypeDef gpioDef;
   31:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Speed  = GPIO_Speed_50MHz;
   32:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Pin    = SPI_MISO_PIN;             // MISO输入
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 2
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 2
 
 
   33:HW/TOUCH/gpio_spi.c ****     gpioDef.GPIO_Mode   = GPIO_Mode_IN_FLOATING;
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
   59 0020 FFF7FEFF 		bl	GPIO_ResetBits
   60              	.LVL5:
   55:HW/TOUCH/gpio_spi.c ****     delay_us(1);    // >= 100ns
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 3
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 3
 
 
   61              		.loc 1 55 5 view .LVU7
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  102 0054 FFF7FEFF 		bl	GPIO_ResetBits
  103              	.LVL13:
   59:HW/TOUCH/gpio_spi.c ****             SPI_MOSI_HIGH();
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 4
 
 
  104              		.loc 1 59 9 view .LVU19
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  150              	.LVL17:
  151              	.LFB32:
   68:HW/TOUCH/gpio_spi.c **** void GPIO_SPI_SendData(void* src, uint8_t size){
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 5
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 5
 
 
   69:HW/TOUCH/gpio_spi.c ****     __GPIO_SPI_SendData((uint8_t*)src, size);
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
   81:HW/TOUCH/gpio_spi.c ****     delay_us(1);    // >= 100ns
  194              		.loc 1 81 5 view .LVU38
  195 002e 0120     		movs	r0, #1
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 6
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 6
 
 
  196 0030 FFF7FEFF 		bl	delay_us
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
   86:HW/TOUCH/gpio_spi.c ****             dst[i / 8] |= 0B10000000 >> (i % 8);
  236              		.loc 1 86 9 view .LVU50
   86:HW/TOUCH/gpio_spi.c ****             dst[i / 8] |= 0B10000000 >> (i % 8);
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 7
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 7
 
 
  237              		.loc 1 86 12 is_stmt 0 view .LVU51
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  282              		.thumb
  283              		.thumb_func
  285              	GPIO_SPI_Init:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 8
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 8
 
 
  286              	.LFB29:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
   36:HW/TOUCH/gpio_spi.c ****     GPIO_Init(SPI_MOSI_GPIO, &gpioDef);
  328              		.loc 1 36 5 is_stmt 1 view .LVU74
   36:HW/TOUCH/gpio_spi.c ****     GPIO_Init(SPI_MOSI_GPIO, &gpioDef);
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 9
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 9
 
 
  329              		.loc 1 36 25 is_stmt 0 view .LVU75
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  373 0070 000C0140 		.word	1073810432
  374 0074 001C0140 		.word	1073814528
  375              		.cfi_endproc
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 10
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 10
 
 
  376              	.LFE29:
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  428              	.LVL45:
   96:HW/TOUCH/gpio_spi.c **** }
  429              		.loc 1 96 1 is_stmt 0 view .LVU93
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 11
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 11
 
 
  430 0006 08BD     		pop	{r3, pc}
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
    1:Core/core_cm3.h **** /**************************************************************************//**
    2:Core/core_cm3.h ****  * @file     core_cm3.h
    3:Core/core_cm3.h ****  * @brief    CMSIS Cortex-M3 Core Peripheral Access Layer Header File
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 12
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 12
 
 
    4:Core/core_cm3.h ****  * @version  V1.30
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
   58:Core/core_cm3.h ****  * Note:  To re-enable a Message, insert a space before 'lint' *
   59:Core/core_cm3.h ****  *
   60:Core/core_cm3.h ****  */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 13
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 13
 
 
   61:Core/core_cm3.h **** 
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  115:Core/core_cm3.h **** #define     __O     volatile                  /*!< defines 'write only' permissions     */
  116:Core/core_cm3.h **** #define     __IO    volatile                  /*!< defines 'read / write' permissions   */
  117:Core/core_cm3.h **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 14
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 14
 
 
  118:Core/core_cm3.h **** 
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  172:Core/core_cm3.h ****   __I  uint32_t DFR;                          /*!< Offset: 0x48  Debug Feature Register            
  173:Core/core_cm3.h ****   __I  uint32_t ADR;                          /*!< Offset: 0x4C  Auxiliary Feature Register        
  174:Core/core_cm3.h ****   __I  uint32_t MMFR[4];                      /*!< Offset: 0x50  Memory Model Feature Register     
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 15
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 15
 
 
  175:Core/core_cm3.h ****   __I  uint32_t ISAR[5];                      /*!< Offset: 0x60  ISA Feature Register              
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  229:Core/core_cm3.h **** /* SCB Application Interrupt and Reset Control Register Definitions */
  230:Core/core_cm3.h **** #define SCB_AIRCR_VECTKEY_Pos              16                                             /*!< SCB 
  231:Core/core_cm3.h **** #define SCB_AIRCR_VECTKEY_Msk              (0xFFFFul << SCB_AIRCR_VECTKEY_Pos)            /*!< SCB 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 16
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 16
 
 
  232:Core/core_cm3.h **** 
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  286:Core/core_cm3.h **** 
  287:Core/core_cm3.h **** #define SCB_SHCSR_MEMFAULTENA_Pos          16                                             /*!< SCB 
  288:Core/core_cm3.h **** #define SCB_SHCSR_MEMFAULTENA_Msk          (1ul << SCB_SHCSR_MEMFAULTENA_Pos)             /*!< SCB 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 17
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 17
 
 
  289:Core/core_cm3.h **** 
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  343:Core/core_cm3.h **** /* SCB Debug Fault Status Register Definitions */
  344:Core/core_cm3.h **** #define SCB_DFSR_EXTERNAL_Pos               4                                             /*!< SCB 
  345:Core/core_cm3.h **** #define SCB_DFSR_EXTERNAL_Msk              (1ul << SCB_DFSR_EXTERNAL_Pos)                 /*!< SCB 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 18
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 18
 
 
  346:Core/core_cm3.h **** 
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  400:Core/core_cm3.h **** 
  401:Core/core_cm3.h **** #define SysTick_CALIB_TENMS_Pos             0                                             /*!< SysT
  402:Core/core_cm3.h **** #define SysTick_CALIB_TENMS_Msk            (0xFFFFFFul << SysTick_VAL_CURRENT_Pos)        /*!< SysT
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 19
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 19
 
 
  403:Core/core_cm3.h **** /*@}*/ /* end of group CMSIS_CM3_SysTick */
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  457:Core/core_cm3.h **** #define ITM_TCR_TSPrescale_Pos              8                                             /*!< ITM 
  458:Core/core_cm3.h **** #define ITM_TCR_TSPrescale_Msk             (3ul << ITM_TCR_TSPrescale_Pos)                /*!< ITM 
  459:Core/core_cm3.h **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 20
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 20
 
 
  460:Core/core_cm3.h **** #define ITM_TCR_SWOENA_Pos                  4                                             /*!< ITM 
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  514:Core/core_cm3.h **** /* Interrupt Controller Type Register Definitions */
  515:Core/core_cm3.h **** #define InterruptType_ICTR_INTLINESNUM_Pos  0                                             /*!< Inte
  516:Core/core_cm3.h **** #define InterruptType_ICTR_INTLINESNUM_Msk (0x1Ful << InterruptType_ICTR_INTLINESNUM_Pos) /*!< Inte
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 21
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 21
 
 
  517:Core/core_cm3.h **** 
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  571:Core/core_cm3.h **** #define MPU_RNR_REGION_Pos                  0                                             /*!< MPU 
  572:Core/core_cm3.h **** #define MPU_RNR_REGION_Msk                 (0xFFul << MPU_RNR_REGION_Pos)                 /*!< MPU 
  573:Core/core_cm3.h **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 22
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 22
 
 
  574:Core/core_cm3.h **** /* MPU Region Base Address Register */
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  628:Core/core_cm3.h **** /* Debug Halting Control and Status Register */
  629:Core/core_cm3.h **** #define CoreDebug_DHCSR_DBGKEY_Pos         16                                             /*!< Core
  630:Core/core_cm3.h **** #define CoreDebug_DHCSR_DBGKEY_Msk         (0xFFFFul << CoreDebug_DHCSR_DBGKEY_Pos)       /*!< Core
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 23
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 23
 
 
  631:Core/core_cm3.h **** 
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  685:Core/core_cm3.h **** #define CoreDebug_DEMCR_MON_EN_Pos         16                                             /*!< Core
  686:Core/core_cm3.h **** #define CoreDebug_DEMCR_MON_EN_Msk         (1ul << CoreDebug_DEMCR_MON_EN_Pos)            /*!< Core
  687:Core/core_cm3.h **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 24
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 24
 
 
  688:Core/core_cm3.h **** #define CoreDebug_DEMCR_VC_HARDERR_Pos     10                                             /*!< Core
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  742:Core/core_cm3.h ****   #define __ASM            __asm                                      /*!< asm keyword for ARM Comp
  743:Core/core_cm3.h ****   #define __INLINE         __inline                                   /*!< inline keyword for ARM C
  744:Core/core_cm3.h **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 25
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 25
 
 
  745:Core/core_cm3.h **** #elif defined ( __ICCARM__ )
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  799:Core/core_cm3.h **** 
  800:Core/core_cm3.h **** /**
  801:Core/core_cm3.h ****  * @brief  Set the Process Stack Pointer
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 26
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 26
 
 
  802:Core/core_cm3.h ****  *
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  856:Core/core_cm3.h ****  * Removes the exclusive lock which is created by ldrex.
  857:Core/core_cm3.h ****  */
  858:Core/core_cm3.h **** extern void __CLREX(void);
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 27
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 27
 
 
  859:Core/core_cm3.h **** 
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  913:Core/core_cm3.h **** 
  914:Core/core_cm3.h **** /**
  915:Core/core_cm3.h ****  * @brief  Return the Control Register value
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 28
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 28
 
 
  916:Core/core_cm3.h ****  * 
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  970:Core/core_cm3.h ****  * @return PriMask
  971:Core/core_cm3.h ****  *
  972:Core/core_cm3.h ****  * Return state of the priority mask bit from the priority mask register
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 29
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 29
 
 
  973:Core/core_cm3.h ****  */
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
 1027:Core/core_cm3.h **** {
 1028:Core/core_cm3.h ****   register uint32_t __regControl         __ASM("control");
 1029:Core/core_cm3.h ****   return(__regControl);
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 30
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 30
 
 
 1030:Core/core_cm3.h **** }
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
 1084:Core/core_cm3.h **** extern uint32_t __get_PSP(void);
 1085:Core/core_cm3.h **** 
 1086:Core/core_cm3.h **** /**
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 31
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 31
 
 
 1087:Core/core_cm3.h ****  * @brief  Set the Process Stack Pointer
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
 1141:Core/core_cm3.h ****  *
 1142:Core/core_cm3.h ****  * Exclusive LDR command for 8 bit values)
 1143:Core/core_cm3.h ****  */
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 32
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 32
 
 
 1144:Core/core_cm3.h **** extern uint8_t __LDREXB(uint8_t *addr);
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
 1198:Core/core_cm3.h **** 
 1199:Core/core_cm3.h **** 
 1200:Core/core_cm3.h **** 
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 33
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 33
 
 
 1201:Core/core_cm3.h **** #elif (defined (__GNUC__)) /*------------------ GNU Compiler ---------------------*/
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  523              		.loc 2 1210 53 view .LVU111
  524              		.syntax unified
  525              	@ 1210 "Core/core_cm3.h" 1
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 34
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 34
 
 
  526 0028 00BF     		nop
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  580              		.syntax unified
  581              	@ 1210 "Core/core_cm3.h" 1
  582 0030 00BF     		nop
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 35
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 35
 
 
  583              	@ 0 "" 2
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  628              	@ 0 "" 2
  629              		.thumb
  630              		.syntax unified
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 36
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 36
 
 
  631              	.LBE222:
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  685              		.thumb
  686              		.syntax unified
  687              	.LBE230:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 37
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 37
 
 
  688              	.LBE229:
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  742              		.syntax unified
  743              	.LBE238:
  744              	.LBE237:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 38
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 38
 
 
  745              		.loc 1 112 9 discriminator 2 view .LVU160
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  799              	.LBE246:
  800              	.LBE245:
  801              		.loc 1 112 9 discriminator 2 view .LVU172
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 39
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 39
 
 
  802              	.LBB247:
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  854              		.loc 2 1210 53 discriminator 2 view .LVU185
  855              		.syntax unified
  856              	@ 1210 "Core/core_cm3.h" 1
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 40
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 40
 
 
  857 006a 00BF     		nop
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  911              		.syntax unified
  912              	@ 1210 "Core/core_cm3.h" 1
  913 0072 00BF     		nop
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 41
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 41
 
 
  914              	@ 0 "" 2
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  968              	@ 1210 "Core/core_cm3.h" 1
  969 007a 00BF     		nop
  970              	@ 0 "" 2
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 42
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 42
 
 
  971              		.thumb
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  1025 0082 00BF     		nop
  1026              	@ 0 "" 2
  1027              		.thumb
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 43
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 43
 
 
  1028              		.syntax unified
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  119:HW/TOUCH/gpio_spi.c ****     delay_208ns();    // >= 200ns
  1070              		.loc 1 119 5 is_stmt 1 view .LVU233
  1071              	.LBB279:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 44
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 44
 
 
  1072              	.LBI279:
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  1126              		.loc 1 119 5 view .LVU245
  1127              	.LBB287:
  1128              	.LBI287:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 45
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 45
 
 
  1129              		.loc 2 1210 22 view .LVU246
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  1183              	.LBB295:
  1184              	.LBI295:
  1185              		.loc 2 1210 22 view .LVU258
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 46
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 46
 
 
  1186              	.LBB296:
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  1240              	.LBI303:
  1241              		.loc 2 1210 22 view .LVU270
  1242              	.LBB304:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 47
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 47
 
 
  1243              		.loc 2 1210 53 view .LVU271
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  1295              	@ 0 "" 2
  1296              		.thumb
  1297              		.syntax unified
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 48
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 48
 
 
  1298              	.LBE310:
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  1352              		.thumb
  1353              		.syntax unified
  1354              	.LBE318:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 49
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 49
 
 
  1355              	.LBE317:
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  1409              		.syntax unified
  1410              	.LBE326:
  1411              	.LBE325:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 50
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 50
 
 
  1412              		.loc 1 121 5 view .LVU307
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  1466              	.LBE334:
  1467              	.LBE333:
  1468              		.loc 1 121 5 view .LVU319
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 51
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 51
 
 
  1469              	.LBB335:
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  128:HW/TOUCH/gpio_spi.c ****         delay_208ns();    // >= 200ns
  129:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
  130:HW/TOUCH/gpio_spi.c ****             data |= 0X800 >> (i);   // 先接收高位
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 52
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 52
 
 
  131:HW/TOUCH/gpio_spi.c ****         }
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  1567              	.LBB347:
  1568              		.loc 2 1210 53 discriminator 2 view .LVU345
  1569              		.syntax unified
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 53
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 53
 
 
  1570              	@ 1210 "Core/core_cm3.h" 1
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  1624              		.loc 2 1210 53 discriminator 2 view .LVU357
  1625              		.syntax unified
  1626              	@ 1210 "Core/core_cm3.h" 1
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 54
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 54
 
 
  1627 011a 00BF     		nop
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  1681              		.syntax unified
  1682              	@ 1210 "Core/core_cm3.h" 1
  1683 0122 00BF     		nop
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 55
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 55
 
 
  1684              	@ 0 "" 2
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  1736 012c E4B2     		uxtb	r4, r4
  1737              	.LVL66:
  1738              	.L31:
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 56
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 56
 
 
  126:HW/TOUCH/gpio_spi.c ****         SPI_CLK_HIGH();
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  1788              	.LBE375:
  1789              	.LBE374:
  128:HW/TOUCH/gpio_spi.c ****         if(SPI_MISO_READ()){
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 57
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 57
 
 
  1790              		.loc 1 128 9 view .LVU393
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  1841              	@ 0 "" 2
  1842              		.thumb
  1843              		.syntax unified
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 58
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 58
 
 
  1844              	.LBE383:
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  1894              		.syntax unified
  1895              	@ 1210 "Core/core_cm3.h" 1
  1896 0150 00BF     		nop
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 59
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 59
 
 
  1897              	@ 0 "" 2
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  1947              		.loc 2 1210 22 view .LVU427
  1948              	.LBB399:
  1949              		.loc 2 1210 53 view .LVU428
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 60
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 60
 
 
  1950              		.syntax unified
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  1988              		.loc 1 139 5 view .LVU440
  140:HW/TOUCH/gpio_spi.c **** }...
  1989              		.loc 1 140 1 is_stmt 0 view .LVU441
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 61
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 61
 
 
  1990 017c 3046     		mov	r0, r6
@@ -3623,27 +3623,27 @@ ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 1
  2010              		.file 9 "SYSTEM/delay/delay.h"
  2011              		.file 10 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
  2012              		.file 11 "<built-in>"
-ARM GAS  C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s 			page 62
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s 			page 62
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 gpio_spi.c
-C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s:19     .text.__GPIO_SPI_SendData:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s:24     .text.__GPIO_SPI_SendData:00000000 __GPIO_SPI_SendData
-C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s:138    .text.__GPIO_SPI_SendData:00000084 $d
-C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s:144    .text.__GPIO_SPI_RecieveData:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s:149    .text.__GPIO_SPI_RecieveData:00000000 __GPIO_SPI_RecieveData
-C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s:273    .text.__GPIO_SPI_RecieveData:0000008c $d
-C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s:279    .text.GPIO_SPI_Init:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s:285    .text.GPIO_SPI_Init:00000000 GPIO_SPI_Init
-C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s:373    .text.GPIO_SPI_Init:00000070 $d
-C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s:379    .text.GPIO_SPI_SendData:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s:385    .text.GPIO_SPI_SendData:00000000 GPIO_SPI_SendData
-C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s:407    .text.GPIO_SPI_RecieveData:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s:413    .text.GPIO_SPI_RecieveData:00000000 GPIO_SPI_RecieveData
-C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s:435    .text.GPIO_SPI_Touch_Func:00000000 $t
-C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s:441    .text.GPIO_SPI_Touch_Func:00000000 GPIO_SPI_Touch_Func
-C:\Users\86157\AppData\Local\Temp\ccRaUcJf.s:1997   .text.GPIO_SPI_Touch_Func:00000180 $d
+C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s:19     .text.__GPIO_SPI_SendData:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s:24     .text.__GPIO_SPI_SendData:00000000 __GPIO_SPI_SendData
+C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s:138    .text.__GPIO_SPI_SendData:00000084 $d
+C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s:144    .text.__GPIO_SPI_RecieveData:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s:149    .text.__GPIO_SPI_RecieveData:00000000 __GPIO_SPI_RecieveData
+C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s:273    .text.__GPIO_SPI_RecieveData:0000008c $d
+C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s:279    .text.GPIO_SPI_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s:285    .text.GPIO_SPI_Init:00000000 GPIO_SPI_Init
+C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s:373    .text.GPIO_SPI_Init:00000070 $d
+C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s:379    .text.GPIO_SPI_SendData:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s:385    .text.GPIO_SPI_SendData:00000000 GPIO_SPI_SendData
+C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s:407    .text.GPIO_SPI_RecieveData:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s:413    .text.GPIO_SPI_RecieveData:00000000 GPIO_SPI_RecieveData
+C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s:435    .text.GPIO_SPI_Touch_Func:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s:441    .text.GPIO_SPI_Touch_Func:00000000 GPIO_SPI_Touch_Func
+C:\Users\86157\AppData\Local\Temp\ccPGWI8B.s:1997   .text.GPIO_SPI_Touch_Func:00000180 $d
 
 UNDEFINED SYMBOLS
 GPIO_ResetBits

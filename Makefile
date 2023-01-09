@@ -59,6 +59,7 @@ STM32F10x_FWLib/src/stm32f10x_fsmc.c \
 STM32F10x_FWLib/src/stm32f10x_sdio.c \
 STM32F10x_FWLib/src/stm32f10x_adc.c \
 STM32F10x_FWLib/src/stm32f10x_dac.c \
+STM32F10x_FWLib/src/stm32f10x_can.c \
 SYSTEM/delay/delay.c \
 SYSTEM/sys/sys.c \
 ${FATFS_SOURCES} \
@@ -89,7 +90,8 @@ HW/LCD/Fonts/Song_Unicode_Resolution_16_16/Flash_Font.c \
 HW/TOUCH/gpio_spi.c \
 HW/TOUCH/touch.c \
 HW/ADC/ADC.c \
-HW/DAC/DAC.c
+HW/DAC/DAC.c \
+HW/CAN/CAN.c
 
 # ASM sources
 ASM_SOURCES =  \
