@@ -1,0 +1,487 @@
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccCvxidV.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"ADC.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "HW/ADC/ADC.c"
+  18              		.section	.text.ADC_Single_Init,"ax",%progbits
+  19              		.align	1
+  20              		.global	ADC_Single_Init
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	ADC_Single_Init:
+  26              	.LFB32:
+   1:HW/ADC/ADC.c  **** #include"stdio.h"
+   2:HW/ADC/ADC.c  **** #include"stm32f10x.h"
+   3:HW/ADC/ADC.c  **** #include"stm32f10x_adc.h"
+   4:HW/ADC/ADC.c  **** #include"delay.h"
+   5:HW/ADC/ADC.c  **** 
+   6:HW/ADC/ADC.c  **** /**
+   7:HW/ADC/ADC.c  ****  * @brief 1: 用DMA读取ADC数据；0: 用中断读取ADC数据
+   8:HW/ADC/ADC.c  ****  * @note DMA是异步读取，中断是同步读取; 
+   9:HW/ADC/ADC.c  ****  *  双ADC工作时通过ADC_Mode选择工作顺序和触发方式
+  10:HW/ADC/ADC.c  ****  *  双ADC只能是ADC1和ADC2，而ADC3是一个完全独立的ADC外设
+  11:HW/ADC/ADC.c  ****  *  单ADC多通道手册上推荐用DMA读取数据
+  12:HW/ADC/ADC.c  ****  */
+  13:HW/ADC/ADC.c  **** #define USE_DMA 1
+  14:HW/ADC/ADC.c  **** 
+  15:HW/ADC/ADC.c  **** /* Q12定点数 */
+  16:HW/ADC/ADC.c  **** __IO uint16_t ADC_Value = 0;
+  17:HW/ADC/ADC.c  **** 
+  18:HW/ADC/ADC.c  **** /**
+  19:HW/ADC/ADC.c  ****  * @brief 单ADC初始化
+  20:HW/ADC/ADC.c  ****  * 
+  21:HW/ADC/ADC.c  ****  */
+  22:HW/ADC/ADC.c  **** void ADC_Single_Init(){
+  27              		.loc 1 22 23 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 72
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 20
+  34              		.cfi_offset 4, -20
+  35              		.cfi_offset 5, -16
+  36              		.cfi_offset 6, -12
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccCvxidV.s 			page 2
+
+
+  37              		.cfi_offset 7, -8
+  38              		.cfi_offset 14, -4
+  39 0002 93B0     		sub	sp, sp, #76
+  40              	.LCFI1:
+  41              		.cfi_def_cfa_offset 96
+  23:HW/ADC/ADC.c  ****     /* 配置GPIO引脚 */
+  24:HW/ADC/ADC.c  ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+  42              		.loc 1 24 5 view .LVU1
+  43 0004 0121     		movs	r1, #1
+  44 0006 0420     		movs	r0, #4
+  45 0008 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+  46              	.LVL0:
+  25:HW/ADC/ADC.c  ****     GPIO_InitTypeDef gpioDef;
+  47              		.loc 1 25 5 view .LVU2
+  26:HW/ADC/ADC.c  ****     gpioDef.GPIO_Mode   = GPIO_Mode_AIN;
+  48              		.loc 1 26 5 view .LVU3
+  49              		.loc 1 26 25 is_stmt 0 view .LVU4
+  50 000c 0025     		movs	r5, #0
+  51 000e 8DF84750 		strb	r5, [sp, #71]
+  27:HW/ADC/ADC.c  ****     gpioDef.GPIO_Pin    = GPIO_Pin_1;
+  52              		.loc 1 27 5 is_stmt 1 view .LVU5
+  53              		.loc 1 27 25 is_stmt 0 view .LVU6
+  54 0012 0223     		movs	r3, #2
+  55 0014 ADF84430 		strh	r3, [sp, #68]	@ movhi
+  28:HW/ADC/ADC.c  ****     gpioDef.GPIO_Speed  = GPIO_Speed_50MHz;
+  56              		.loc 1 28 5 is_stmt 1 view .LVU7
+  57              		.loc 1 28 25 is_stmt 0 view .LVU8
+  58 0018 0323     		movs	r3, #3
+  59 001a 8DF84630 		strb	r3, [sp, #70]
+  29:HW/ADC/ADC.c  ****     GPIO_Init(GPIOA, &gpioDef);
+  60              		.loc 1 29 5 is_stmt 1 view .LVU9
+  61 001e 11A9     		add	r1, sp, #68
+  62 0020 2E48     		ldr	r0, .L4
+  63 0022 FFF7FEFF 		bl	GPIO_Init
+  64              	.LVL1:
+  30:HW/ADC/ADC.c  ****     /* 配置ADC外设 */
+  31:HW/ADC/ADC.c  ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
+  65              		.loc 1 31 5 view .LVU10
+  66 0026 0121     		movs	r1, #1
+  67 0028 4FF40070 		mov	r0, #512
+  68 002c FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+  69              	.LVL2:
+  32:HW/ADC/ADC.c  ****     ADC_InitTypeDef adcDef;
+  70              		.loc 1 32 5 view .LVU11
+  33:HW/ADC/ADC.c  ****     adcDef.ADC_ContinuousConvMode   = ENABLE;                       // 持续检测模式
+  71              		.loc 1 33 5 view .LVU12
+  72              		.loc 1 33 37 is_stmt 0 view .LVU13
+  73 0030 0124     		movs	r4, #1
+  74 0032 8DF83540 		strb	r4, [sp, #53]
+  34:HW/ADC/ADC.c  ****     adcDef.ADC_DataAlign            = ADC_DataAlign_Right;          // 12bit数据右对齐到16bit
+  75              		.loc 1 34 5 is_stmt 1 view .LVU14
+  76              		.loc 1 34 37 is_stmt 0 view .LVU15
+  77 0036 0F95     		str	r5, [sp, #60]
+  35:HW/ADC/ADC.c  ****     adcDef.ADC_ExternalTrigConv     = ADC_ExternalTrigConv_None;    // 检测触发源，可以是�
+  78              		.loc 1 35 5 is_stmt 1 view .LVU16
+  79              		.loc 1 35 37 is_stmt 0 view .LVU17
+  80 0038 4FF46023 		mov	r3, #917504
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccCvxidV.s 			page 3
+
+
+  81 003c 0E93     		str	r3, [sp, #56]
+  36:HW/ADC/ADC.c  ****     adcDef.ADC_Mode                 = ADC_Mode_Independent;         // 单ADC下选择独立模式
+  82              		.loc 1 36 5 is_stmt 1 view .LVU18
+  83              		.loc 1 36 37 is_stmt 0 view .LVU19
+  84 003e 0C95     		str	r5, [sp, #48]
+  37:HW/ADC/ADC.c  ****     adcDef.ADC_NbrOfChannel         = 1;                            // 通道数量
+  85              		.loc 1 37 5 is_stmt 1 view .LVU20
+  86              		.loc 1 37 37 is_stmt 0 view .LVU21
+  87 0040 8DF84040 		strb	r4, [sp, #64]
+  38:HW/ADC/ADC.c  ****     adcDef.ADC_ScanConvMode         = DISABLE;                      // 单通道选择不扫描
+  88              		.loc 1 38 5 is_stmt 1 view .LVU22
+  89              		.loc 1 38 37 is_stmt 0 view .LVU23
+  90 0044 8DF83450 		strb	r5, [sp, #52]
+  39:HW/ADC/ADC.c  ****     ADC_Init(ADC1, &adcDef);
+  91              		.loc 1 39 5 is_stmt 1 view .LVU24
+  92 0048 254E     		ldr	r6, .L4+4
+  93 004a 0CA9     		add	r1, sp, #48
+  94 004c 3046     		mov	r0, r6
+  95 004e FFF7FEFF 		bl	ADC_Init
+  96              	.LVL3:
+  40:HW/ADC/ADC.c  ****     RCC_ADCCLKConfig(RCC_PCLK2_Div6);   // 配置时钟频率，72MHz / 6 = 12MHz
+  97              		.loc 1 40 5 view .LVU25
+  98 0052 4FF40040 		mov	r0, #32768
+  99 0056 FFF7FEFF 		bl	RCC_ADCCLKConfig
+ 100              	.LVL4:
+  41:HW/ADC/ADC.c  ****     ADC_RegularChannelConfig(ADC1, ADC_Channel_1, 1, ADC_SampleTime_239Cycles5);  // 配置ADC通�
+ 101              		.loc 1 41 5 view .LVU26
+ 102 005a 0723     		movs	r3, #7
+ 103 005c 2246     		mov	r2, r4
+ 104 005e 2146     		mov	r1, r4
+ 105 0060 3046     		mov	r0, r6
+ 106 0062 FFF7FEFF 		bl	ADC_RegularChannelConfig
+ 107              	.LVL5:
+  42:HW/ADC/ADC.c  **** 
+  43:HW/ADC/ADC.c  **** #if(USE_DMA)
+  44:HW/ADC/ADC.c  ****     /**
+  45:HW/ADC/ADC.c  ****      * @brief n通道连续采样时，n个通道扫描完一轮后，会产生dma请求，此时�
+  46:HW/ADC/ADC.c  ****      */
+  47:HW/ADC/ADC.c  ****     DMA_DeInit(DMA1_Channel1);
+ 108              		.loc 1 47 5 view .LVU27
+ 109 0066 1F4F     		ldr	r7, .L4+8
+ 110 0068 3846     		mov	r0, r7
+ 111 006a FFF7FEFF 		bl	DMA_DeInit
+ 112              	.LVL6:
+  48:HW/ADC/ADC.c  ****     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
+ 113              		.loc 1 48 5 view .LVU28
+ 114 006e 2146     		mov	r1, r4
+ 115 0070 2046     		mov	r0, r4
+ 116 0072 FFF7FEFF 		bl	RCC_AHBPeriphClockCmd
+ 117              	.LVL7:
+  49:HW/ADC/ADC.c  ****     DMA_InitTypeDef dmaDef;
+ 118              		.loc 1 49 5 view .LVU29
+  50:HW/ADC/ADC.c  ****     dmaDef.DMA_PeripheralBaseAddr   = (uint32_t)(&(ADC1->DR));                  // ADC数据寄存�
+ 119              		.loc 1 50 5 view .LVU30
+ 120              		.loc 1 50 37 is_stmt 0 view .LVU31
+ 121 0076 1C4B     		ldr	r3, .L4+12
+ 122 0078 0193     		str	r3, [sp, #4]
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccCvxidV.s 			page 4
+
+
+  51:HW/ADC/ADC.c  ****     dmaDef.DMA_MemoryBaseAddr       = (uint32_t)(&ADC_Value);                   // 内存地址
+ 123              		.loc 1 51 5 is_stmt 1 view .LVU32
+ 124              		.loc 1 51 39 is_stmt 0 view .LVU33
+ 125 007a 1C4B     		ldr	r3, .L4+16
+ 126              		.loc 1 51 37 view .LVU34
+ 127 007c 0293     		str	r3, [sp, #8]
+  52:HW/ADC/ADC.c  ****     dmaDef.DMA_DIR                  = DMA_DIR_PeripheralSRC;                    // 传输方向，P
+ 128              		.loc 1 52 5 is_stmt 1 view .LVU35
+ 129              		.loc 1 52 37 is_stmt 0 view .LVU36
+ 130 007e 0395     		str	r5, [sp, #12]
+  53:HW/ADC/ADC.c  ****     dmaDef.DMA_BufferSize           = 1;                                        // 数据大小(CND
+ 131              		.loc 1 53 5 is_stmt 1 view .LVU37
+ 132              		.loc 1 53 37 is_stmt 0 view .LVU38
+ 133 0080 0494     		str	r4, [sp, #16]
+  54:HW/ADC/ADC.c  ****     dmaDef.DMA_PeripheralInc        = DMA_PeripheralInc_Disable;                // 地址自增
+ 134              		.loc 1 54 5 is_stmt 1 view .LVU39
+ 135              		.loc 1 54 37 is_stmt 0 view .LVU40
+ 136 0082 0595     		str	r5, [sp, #20]
+  55:HW/ADC/ADC.c  ****     dmaDef.DMA_MemoryInc            = DMA_MemoryInc_Disable;                    // 地址自增
+ 137              		.loc 1 55 5 is_stmt 1 view .LVU41
+ 138              		.loc 1 55 37 is_stmt 0 view .LVU42
+ 139 0084 0695     		str	r5, [sp, #24]
+  56:HW/ADC/ADC.c  ****     dmaDef.DMA_PeripheralDataSize   = DMA_PeripheralDataSize_HalfWord;          // 数据大小
+ 140              		.loc 1 56 5 is_stmt 1 view .LVU43
+ 141              		.loc 1 56 37 is_stmt 0 view .LVU44
+ 142 0086 4FF48073 		mov	r3, #256
+ 143 008a 0793     		str	r3, [sp, #28]
+  57:HW/ADC/ADC.c  ****     dmaDef.DMA_MemoryDataSize       = DMA_MemoryDataSize_HalfWord;              // 数据大小
+ 144              		.loc 1 57 5 is_stmt 1 view .LVU45
+ 145              		.loc 1 57 37 is_stmt 0 view .LVU46
+ 146 008c 4FF48063 		mov	r3, #1024
+ 147 0090 0893     		str	r3, [sp, #32]
+  58:HW/ADC/ADC.c  ****     dmaDef.DMA_Mode                 = DMA_Mode_Circular;                        // 传输模式（�
+ 148              		.loc 1 58 5 is_stmt 1 view .LVU47
+ 149              		.loc 1 58 37 is_stmt 0 view .LVU48
+ 150 0092 2023     		movs	r3, #32
+ 151 0094 0993     		str	r3, [sp, #36]
+  59:HW/ADC/ADC.c  ****     dmaDef.DMA_Priority             = DMA_Priority_Medium;                      // 传输优先级
+ 152              		.loc 1 59 5 is_stmt 1 view .LVU49
+ 153              		.loc 1 59 37 is_stmt 0 view .LVU50
+ 154 0096 4FF48053 		mov	r3, #4096
+ 155 009a 0A93     		str	r3, [sp, #40]
+  60:HW/ADC/ADC.c  ****     dmaDef.DMA_M2M                  = DMA_M2M_Disable;                          // 关闭M->M的传
+ 156              		.loc 1 60 5 is_stmt 1 view .LVU51
+ 157              		.loc 1 60 37 is_stmt 0 view .LVU52
+ 158 009c 0B95     		str	r5, [sp, #44]
+  61:HW/ADC/ADC.c  ****     DMA_Init(DMA1_Channel1, &dmaDef);
+ 159              		.loc 1 61 5 is_stmt 1 view .LVU53
+ 160 009e 01A9     		add	r1, sp, #4
+ 161 00a0 3846     		mov	r0, r7
+ 162 00a2 FFF7FEFF 		bl	DMA_Init
+ 163              	.LVL8:
+  62:HW/ADC/ADC.c  ****     DMA_Cmd(DMA1_Channel1, ENABLE);
+ 164              		.loc 1 62 5 view .LVU54
+ 165 00a6 2146     		mov	r1, r4
+ 166 00a8 3846     		mov	r0, r7
+ 167 00aa FFF7FEFF 		bl	DMA_Cmd
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccCvxidV.s 			page 5
+
+
+ 168              	.LVL9:
+  63:HW/ADC/ADC.c  ****     ADC_DMACmd(ADC1, ENABLE);   // 开启循环传输
+ 169              		.loc 1 63 5 view .LVU55
+ 170 00ae 2146     		mov	r1, r4
+ 171 00b0 3046     		mov	r0, r6
+ 172 00b2 FFF7FEFF 		bl	ADC_DMACmd
+ 173              	.LVL10:
+  64:HW/ADC/ADC.c  **** #else
+  65:HW/ADC/ADC.c  ****     /* 配置ADC中断 */
+  66:HW/ADC/ADC.c  ****     ADC_ITConfig(ADC1, ADC_IT_EOC, ENABLE); // EOC通道转换完成中断
+  67:HW/ADC/ADC.c  ****     NVIC_InitTypeDef nvicDef;
+  68:HW/ADC/ADC.c  ****     nvicDef.NVIC_IRQChannel                     = ADC1_2_IRQn;
+  69:HW/ADC/ADC.c  ****     nvicDef.NVIC_IRQChannelCmd                  = ENABLE;
+  70:HW/ADC/ADC.c  ****     nvicDef.NVIC_IRQChannelPreemptionPriority   = 2;
+  71:HW/ADC/ADC.c  ****     nvicDef.NVIC_IRQChannelSubPriority          = 2;
+  72:HW/ADC/ADC.c  ****     NVIC_Init(&nvicDef);
+  73:HW/ADC/ADC.c  **** #endif /* USE_DMA */
+  74:HW/ADC/ADC.c  **** 
+  75:HW/ADC/ADC.c  ****     /* 使能ADC */
+  76:HW/ADC/ADC.c  ****     ADC_Cmd(ADC1, ENABLE);
+ 174              		.loc 1 76 5 view .LVU56
+ 175 00b6 2146     		mov	r1, r4
+ 176 00b8 3046     		mov	r0, r6
+ 177 00ba FFF7FEFF 		bl	ADC_Cmd
+ 178              	.LVL11:
+  77:HW/ADC/ADC.c  ****     /* 校准ADC */
+  78:HW/ADC/ADC.c  ****     ADC_StartCalibration(ADC1);
+ 179              		.loc 1 78 5 view .LVU57
+ 180 00be 3046     		mov	r0, r6
+ 181 00c0 FFF7FEFF 		bl	ADC_StartCalibration
+ 182              	.LVL12:
+  79:HW/ADC/ADC.c  ****     while(ADC_GetCalibrationStatus(ADC1));  // 等待校准完成
+ 183              		.loc 1 79 5 view .LVU58
+ 184              	.L2:
+ 185              		.loc 1 79 11 discriminator 1 view .LVU59
+ 186 00c4 0648     		ldr	r0, .L4+4
+ 187 00c6 FFF7FEFF 		bl	ADC_GetCalibrationStatus
+ 188              	.LVL13:
+ 189 00ca 0028     		cmp	r0, #0
+ 190 00cc FAD1     		bne	.L2
+  80:HW/ADC/ADC.c  ****     /* 使能软件触发ADC */
+  81:HW/ADC/ADC.c  ****     ADC_SoftwareStartConvCmd(ADC1, ENABLE);
+ 191              		.loc 1 81 5 view .LVU60
+ 192 00ce 0121     		movs	r1, #1
+ 193 00d0 0348     		ldr	r0, .L4+4
+ 194 00d2 FFF7FEFF 		bl	ADC_SoftwareStartConvCmd
+ 195              	.LVL14:
+  82:HW/ADC/ADC.c  **** }
+ 196              		.loc 1 82 1 is_stmt 0 view .LVU61
+ 197 00d6 13B0     		add	sp, sp, #76
+ 198              	.LCFI2:
+ 199              		.cfi_def_cfa_offset 20
+ 200              		@ sp needed
+ 201 00d8 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 202              	.L5:
+ 203 00da 00BF     		.align	2
+ 204              	.L4:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccCvxidV.s 			page 6
+
+
+ 205 00dc 00080140 		.word	1073809408
+ 206 00e0 00240140 		.word	1073816576
+ 207 00e4 08000240 		.word	1073872904
+ 208 00e8 4C240140 		.word	1073816652
+ 209 00ec 00000000 		.word	ADC_Value
+ 210              		.cfi_endproc
+ 211              	.LFE32:
+ 213              		.global	__aeabi_ui2f
+ 214              		.global	__aeabi_fdiv
+ 215              		.global	__aeabi_fmul
+ 216              		.global	__aeabi_f2d
+ 217              		.section	.rodata.ADC_Single_Run.str1.4,"aMS",%progbits,1
+ 218              		.align	2
+ 219              	.LC0:
+ 220 0000 4144435F 		.ascii	"ADC_Value = %.3f\015\012\000"
+ 220      56616C75 
+ 220      65203D20 
+ 220      252E3366 
+ 220      0D0A00
+ 221              		.section	.text.ADC_Single_Run,"ax",%progbits
+ 222              		.align	1
+ 223              		.global	ADC_Single_Run
+ 224              		.syntax unified
+ 225              		.thumb
+ 226              		.thumb_func
+ 228              	ADC_Single_Run:
+ 229              	.LFB33:
+  83:HW/ADC/ADC.c  **** 
+  84:HW/ADC/ADC.c  **** #if(!USE_DMA)
+  85:HW/ADC/ADC.c  **** /**
+  86:HW/ADC/ADC.c  ****  * @brief 中断服务函数
+  87:HW/ADC/ADC.c  ****  * @note n个通道连续采样时，如果用中断读取结果，每次扫描一轮就会进入n�
+  88:HW/ADC/ADC.c  ****  *      多通道连续采样用dma读取数据会更加方便和安全，因为dma是异步的，�
+  89:HW/ADC/ADC.c  ****  */
+  90:HW/ADC/ADC.c  **** void ADC1_2_IRQHandler(void){
+  91:HW/ADC/ADC.c  ****     if(ADC_GetITStatus(ADC1, ADC_IT_EOC)){
+  92:HW/ADC/ADC.c  ****         ADC_Value = ADC_GetConversionValue(ADC1);   // 读取当前通道的数值
+  93:HW/ADC/ADC.c  ****         printf("ADC_Value = %.3f\r\n", 3.3f * ((float)ADC_Value / 4096));
+  94:HW/ADC/ADC.c  ****         delay_s(1);
+  95:HW/ADC/ADC.c  ****         ADC_ClearITPendingBit(ADC1, ADC_IT_EOC);
+  96:HW/ADC/ADC.c  ****     }
+  97:HW/ADC/ADC.c  **** }
+  98:HW/ADC/ADC.c  **** #endif /* USE_DMA */
+  99:HW/ADC/ADC.c  **** 
+ 100:HW/ADC/ADC.c  **** extern void USART1_Init();
+ 101:HW/ADC/ADC.c  **** 
+ 102:HW/ADC/ADC.c  **** void ADC_Single_Run(){
+ 230              		.loc 1 102 22 is_stmt 1 view -0
+ 231              		.cfi_startproc
+ 232              		@ Volatile: function does not return.
+ 233              		@ args = 0, pretend = 0, frame = 0
+ 234              		@ frame_needed = 0, uses_anonymous_args = 0
+ 235 0000 08B5     		push	{r3, lr}
+ 236              	.LCFI3:
+ 237              		.cfi_def_cfa_offset 8
+ 238              		.cfi_offset 3, -8
+ 239              		.cfi_offset 14, -4
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccCvxidV.s 			page 7
+
+
+ 103:HW/ADC/ADC.c  ****     /* 初始化 */
+ 104:HW/ADC/ADC.c  ****     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+ 240              		.loc 1 104 5 view .LVU63
+ 241 0002 4FF4A060 		mov	r0, #1280
+ 242 0006 FFF7FEFF 		bl	NVIC_PriorityGroupConfig
+ 243              	.LVL15:
+ 105:HW/ADC/ADC.c  ****     USART1_Init();
+ 244              		.loc 1 105 5 view .LVU64
+ 245 000a FFF7FEFF 		bl	USART1_Init
+ 246              	.LVL16:
+ 106:HW/ADC/ADC.c  ****     delay_init();
+ 247              		.loc 1 106 5 view .LVU65
+ 248 000e FFF7FEFF 		bl	delay_init
+ 249              	.LVL17:
+ 107:HW/ADC/ADC.c  ****     ADC_Single_Init();
+ 250              		.loc 1 107 5 view .LVU66
+ 251 0012 FFF7FEFF 		bl	ADC_Single_Init
+ 252              	.LVL18:
+ 253              	.L7:
+ 108:HW/ADC/ADC.c  **** 
+ 109:HW/ADC/ADC.c  **** #if(USE_DMA)
+ 110:HW/ADC/ADC.c  ****     /* 打印结果 */
+ 111:HW/ADC/ADC.c  ****     while(1){
+ 254              		.loc 1 111 5 discriminator 1 view .LVU67
+ 112:HW/ADC/ADC.c  ****         printf("ADC_Value = %.3f\r\n", 3.3f * ((float)ADC_Value / 4095));
+ 255              		.loc 1 112 9 discriminator 1 view .LVU68
+ 256              		.loc 1 112 48 is_stmt 0 discriminator 1 view .LVU69
+ 257 0016 0B4B     		ldr	r3, .L9
+ 258 0018 1888     		ldrh	r0, [r3]
+ 259 001a 80B2     		uxth	r0, r0
+ 260 001c FFF7FEFF 		bl	__aeabi_ui2f
+ 261              	.LVL19:
+ 262              		.loc 1 112 65 discriminator 1 view .LVU70
+ 263 0020 0949     		ldr	r1, .L9+4
+ 264 0022 FFF7FEFF 		bl	__aeabi_fdiv
+ 265              	.LVL20:
+ 266              		.loc 1 112 45 discriminator 1 view .LVU71
+ 267 0026 0949     		ldr	r1, .L9+8
+ 268 0028 FFF7FEFF 		bl	__aeabi_fmul
+ 269              	.LVL21:
+ 270              		.loc 1 112 9 discriminator 1 view .LVU72
+ 271 002c FFF7FEFF 		bl	__aeabi_f2d
+ 272              	.LVL22:
+ 273 0030 0246     		mov	r2, r0
+ 274 0032 0B46     		mov	r3, r1
+ 275 0034 0648     		ldr	r0, .L9+12
+ 276 0036 FFF7FEFF 		bl	printf
+ 277              	.LVL23:
+ 113:HW/ADC/ADC.c  ****         delay_s(1);
+ 278              		.loc 1 113 9 is_stmt 1 discriminator 1 view .LVU73
+ 279 003a 0120     		movs	r0, #1
+ 280 003c FFF7FEFF 		bl	delay_s
+ 281              	.LVL24:
+ 111:HW/ADC/ADC.c  ****         printf("ADC_Value = %.3f\r\n", 3.3f * ((float)ADC_Value / 4095));
+ 282              		.loc 1 111 10 discriminator 1 view .LVU74
+ 283 0040 E9E7     		b	.L7
+ 284              	.L10:
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccCvxidV.s 			page 8
+
+
+ 285 0042 00BF     		.align	2
+ 286              	.L9:
+ 287 0044 00000000 		.word	ADC_Value
+ 288 0048 00F07F45 		.word	1166012416
+ 289 004c 33335340 		.word	1079194419
+ 290 0050 00000000 		.word	.LC0
+ 291              		.cfi_endproc
+ 292              	.LFE33:
+ 294              		.global	ADC_Value
+ 295              		.section	.bss.ADC_Value,"aw",%nobits
+ 296              		.align	1
+ 299              	ADC_Value:
+ 300 0000 0000     		.space	2
+ 301              		.text
+ 302              	.Letext0:
+ 303              		.file 2 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 304              		.file 3 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\\
+ 305              		.file 4 "USER/stm32f10x.h"
+ 306              		.file 5 "STM32F10x_FWLib/inc/stm32f10x_adc.h"
+ 307              		.file 6 "STM32F10x_FWLib/inc/stm32f10x_dma.h"
+ 308              		.file 7 "STM32F10x_FWLib/inc/stm32f10x_gpio.h"
+ 309              		.file 8 "SYSTEM/delay/delay.h"
+ 310              		.file 9 "STM32F10x_FWLib/inc/misc.h"
+ 311              		.file 10 "e:\\windows\\programs\\arm-gnu-toolchain-12.2.mpacbti-bet1-mingw-w64-i686-arm-none-eabi\
+ 312              		.file 11 "STM32F10x_FWLib/inc/stm32f10x_rcc.h"
+ARM GAS  C:\Users\86157\AppData\Local\Temp\ccCvxidV.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 ADC.c
+C:\Users\86157\AppData\Local\Temp\ccCvxidV.s:19     .text.ADC_Single_Init:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccCvxidV.s:25     .text.ADC_Single_Init:00000000 ADC_Single_Init
+C:\Users\86157\AppData\Local\Temp\ccCvxidV.s:205    .text.ADC_Single_Init:000000dc $d
+C:\Users\86157\AppData\Local\Temp\ccCvxidV.s:299    .bss.ADC_Value:00000000 ADC_Value
+C:\Users\86157\AppData\Local\Temp\ccCvxidV.s:218    .rodata.ADC_Single_Run.str1.4:00000000 $d
+C:\Users\86157\AppData\Local\Temp\ccCvxidV.s:222    .text.ADC_Single_Run:00000000 $t
+C:\Users\86157\AppData\Local\Temp\ccCvxidV.s:228    .text.ADC_Single_Run:00000000 ADC_Single_Run
+C:\Users\86157\AppData\Local\Temp\ccCvxidV.s:287    .text.ADC_Single_Run:00000044 $d
+C:\Users\86157\AppData\Local\Temp\ccCvxidV.s:296    .bss.ADC_Value:00000000 $d
+
+UNDEFINED SYMBOLS
+RCC_APB2PeriphClockCmd
+GPIO_Init
+ADC_Init
+RCC_ADCCLKConfig
+ADC_RegularChannelConfig
+DMA_DeInit
+RCC_AHBPeriphClockCmd
+DMA_Init
+DMA_Cmd
+ADC_DMACmd
+ADC_Cmd
+ADC_StartCalibration
+ADC_GetCalibrationStatus
+ADC_SoftwareStartConvCmd
+__aeabi_ui2f
+__aeabi_fdiv
+__aeabi_fmul
+__aeabi_f2d
+NVIC_PriorityGroupConfig
+USART1_Init
+delay_init
+printf
+delay_s

@@ -37,7 +37,11 @@ extern void LCD_Run();				// LCD底层驱动实验
 extern void Font_Download();		// 字体文件烧录实验（从SD卡烧录到Flash）
 /* 触摸屏实验 */
 extern void Touch_Run();
+/* ADC转换实验 */
+extern void ADC_Single_Run();		// 单ADC实验
+/* DAC模拟电压输出实验 */
+extern void DAC_Single_Run();		// 但DAC实验
 
 int main(){
-	Touch_Run();
+	DAC_Single_Run();
 }

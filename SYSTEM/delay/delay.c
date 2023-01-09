@@ -49,3 +49,9 @@ void delay_ms(u16 nms)
 {	 		  	  
 	__delay_impl(nms * fac_ms);				 					  	    
 }
+
+void delay_s(uint32_t s){
+	for(int i = 0; i < s; ++i){
+		delay_ms(1000);
+	}
+}
