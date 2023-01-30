@@ -62,7 +62,6 @@ defined in linker script */
   .weak Reset_Handler
   .type Reset_Handler, %function
 Reset_Handler:
-
 /* Copy the data segment initializers from flash to SRAM */
   ldr r0, =_sdata
   ldr r1, =_edata
@@ -95,9 +94,9 @@ LoopFillZerobss:
   bcc FillZerobss
 
 /* Call the clock system intitialization function.*/
-    bl  SystemInit
+    bl  SystemInit    /* 初始化STM32，这个函数来自system_stm32f10x.c */
 /* Call static constructors */
-    bl __libc_init_array
+    bl __libc_init_array  /* 这个函数来自编译工具链的库 */
 /* Call the application's entry point.*/
   bl main
   bx lr
@@ -112,7 +111,7 @@ LoopFillZerobss:
  * @retval : None
 */
     .section .text.Default_Handler,"ax",%progbits
-Default_Handler:
+Default_Handler:  /* 所有中断的默认weak声明都指向这里 */
 Infinite_Loop:
   b Infinite_Loop
   .size Default_Handler, .-Default_Handler
@@ -128,7 +127,7 @@ Infinite_Loop:
   .size g_pfnVectors, .-g_pfnVectors
 
 
-g_pfnVectors:
+g_pfnVectors: /* Cortex-M3的中断向量表只保存目标地址，不需要bl指令 */
 
   .word _estack
   .word Reset_Handler
@@ -262,7 +261,7 @@ g_pfnVectors:
 *******************************************************************************/
 
   .weak NMI_Handler
-  .thumb_set NMI_Handler,Default_Handler
+  .thumb_set NMI_Handler,Default_Handler  /* 将中断服务函数指向默认服务函数(Infinite_Loop) */
 
   .weak HardFault_Handler
   .thumb_set HardFault_Handler,Default_Handler

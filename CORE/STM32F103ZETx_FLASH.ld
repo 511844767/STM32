@@ -49,7 +49,7 @@
 *****************************************************************************
 */
 
-/* Entry Point */
+/* 指定程序入口地址 */
 ENTRY(Reset_Handler)
 
 /* Highest address of the user mode stack */
@@ -58,10 +58,10 @@ _estack = ORIGIN(RAM) + LENGTH(RAM);    /* end of RAM */
 _Min_Heap_Size = 0x200;      /* required amount of heap  */
 _Min_Stack_Size = 0x400; /* required amount of stack */
 
-/* Specify the memory areas */
-MEMORY
+/* 指定内存布局 */
+MEMORY 
 {
-RAM (xrw)      : ORIGIN = 0x20000000, LENGTH = 64K
+RAM (xrw)      : ORIGIN = 0x20000000, LENGTH = 64K /* 用ORIGIN(RAM)可以获取到RAM的ORIGIN值 */
 FLASH (rx)      : ORIGIN = 0x8000000, LENGTH = 512K
 }
 
@@ -72,28 +72,30 @@ SECTIONS
   .isr_vector :
   {
     . = ALIGN(4);
-    KEEP(*(.isr_vector)) /* Startup code */
+    KEEP(*(.isr_vector)) /* 链接时加上-gc-sections选项可以过滤掉没用的section，而KEEP关键字就是防止这一段被过滤  */
     . = ALIGN(4);
-  } >FLASH
+  } >FLASH  /* 指定这段section放在FLASH内存中 */
 
   /* The program code and other data goes into FLASH */
+  /* 代码段 */
   .text :
   {
-    . = ALIGN(4);
-    *(.text)           /* .text sections (code) */
-    *(.text*)          /* .text* sections (code) */
-    *(.glue_7)         /* glue arm to thumb code */
-    *(.glue_7t)        /* glue thumb to arm code */
-    *(.eh_frame)
+    . = ALIGN(4);      /* ALIGN(4)对齐到4Byte */
+    *(.text)           /* .text sections (code)，代码段 */
+    *(.text*)          /* .text* sections (code)，主要有.text.Reset_Handler和.text.Default_Handler */
+    *(.glue_7)         /* glue arm to thumb code，没有这一段 */
+    *(.glue_7t)        /* glue thumb to arm code，没有这一段 */
+    *(.eh_frame)       /* 没有这一段 */
 
-    KEEP (*(.init))
-    KEEP (*(.fini))
+    KEEP (*(.init))    /* 构造相关（默认代码来自编译工具链的库） */
+    KEEP (*(.fini))    /* 析构相关（默认代码来自编译工具链的库）  */
 
     . = ALIGN(4);
     _etext = .;        /* define a global symbols at end of code */
   } >FLASH
 
   /* Constant data goes into FLASH */
+  /* 字符串常量、const常量 */
   .rodata :
   {
     . = ALIGN(4);
@@ -102,27 +104,27 @@ SECTIONS
     . = ALIGN(4);
   } >FLASH
 
-  .ARM.extab   : { *(.ARM.extab* .gnu.linkonce.armextab.*) } >FLASH
-  .ARM : {
+  .ARM.extab   : { *(.ARM.extab* .gnu.linkonce.armextab.*) } >FLASH /* 外设扩展Flash */
+  .ARM : {            /* 栈展开信息段，没有这一段 */
     __exidx_start = .;
     *(.ARM.exidx*)
     __exidx_end = .;
   } >FLASH
 
-  .preinit_array     :
+  .preinit_array     :  /* main函数开始之前的一些初始化操作，没有这一段 */
   {
     PROVIDE_HIDDEN (__preinit_array_start = .);
     KEEP (*(.preinit_array*))
     PROVIDE_HIDDEN (__preinit_array_end = .);
   } >FLASH
-  .init_array :
+  .init_array :         /* main函数开始之前的一些初始化操作（默认代码来自编译工具链的库） */
   {
     PROVIDE_HIDDEN (__init_array_start = .);
     KEEP (*(SORT(.init_array.*)))
     KEEP (*(.init_array*))
     PROVIDE_HIDDEN (__init_array_end = .);
   } >FLASH
-  .fini_array :
+  .fini_array :         /* main函数结束之后的一些析构操作（默认代码来自编译工具链的库） */
   {
     PROVIDE_HIDDEN (__fini_array_start = .);
     KEEP (*(SORT(.fini_array.*)))
@@ -131,18 +133,18 @@ SECTIONS
   } >FLASH
 
   /* used by the startup to initialize data */
-  _sidata = LOADADDR(.data);
+  _sidata = LOADADDR(.data);  /* 获取.data段的Flash地址 */
 
   /* Initialized data sections goes into RAM, load LMA copy after code */
   .data : 
   {
     . = ALIGN(4);
-    _sdata = .;        /* create a global symbol at data start */
+    _sdata = .;        /* create a global symbol at data start，这里的地址是RAM地址 */
     *(.data)           /* .data sections */
-    *(.data*)          /* .data* sections */
+    *(.data*)          /* .data* sections，这里有一些来自编译工具链的默认代码 */
 
     . = ALIGN(4);
-    _edata = .;        /* define a global symbol at data end */
+    _edata = .;        /* define a global symbol at data end，这里的地址是RAM地址 */
   } >RAM AT> FLASH
 
   
@@ -154,7 +156,7 @@ SECTIONS
     _sbss = .;         /* define a global symbol at bss start */
     __bss_start__ = _sbss;
     *(.bss)
-    *(.bss*)
+    *(.bss*)           /* .bss* sections，这里有一些来自编译工具链的默认代码 */
     *(COMMON)
 
     . = ALIGN(4);
@@ -163,12 +165,12 @@ SECTIONS
   } >RAM
 
   /* User_heap_stack section, used to check that there is enough RAM left */
-  ._user_heap_stack :
+  ._user_heap_stack : /* 用户堆栈空间 */
   {
     . = ALIGN(8);
     PROVIDE ( end = . );
     PROVIDE ( _end = . );
-    . = . + _Min_Heap_Size;
+    . = . + _Min_Heap_Size;   /* 这一段啥也没做，只是RAM空间溢出时会报错 */
     . = . + _Min_Stack_Size;
     . = ALIGN(8);
   } >RAM
@@ -176,14 +178,12 @@ SECTIONS
   
 
   /* Remove information from the standard libraries */
-  /DISCARD/ :
+  /DISCARD/ : /* 舍弃的内容（估计是防止编译工具链的c语言库和电脑上其他的c语言库冲突） */
   {
     libc.a ( * )
     libm.a ( * )
     libgcc.a ( * )
   }
 
-  .ARM.attributes 0 : { *(.ARM.attributes) }
+  .ARM.attributes 0 : { *(.ARM.attributes) }  /* 特殊属性代码段，详情见：http://gcc.gnu.org/onlinedocs/gcc/ARM-Function-Attributes.html */
 }
-
-
